@@ -1,0 +1,47 @@
+<pokedex>
+  <pokemon>
+    <species>BULBASAUR</species>
+    <types>
+      <type>GRASS</type>
+      <type>POISON</type>
+    </types>
+    <baseStats>
+      <HP>45</HP>
+      <ATK>49</ATK>
+      <DEF>49</DEF>
+      <SPD>45</SPD>
+      <SATK>45</SATK>
+      <SDEF>65</SDEF>
+    </baseStats>
+  </pokemon>
+  
+  <pokemon>
+    <species>CHARMANDER</species>
+    <types>
+      <type>FIRE</type>
+    </types>
+    <baseStats>
+      <HP>39</HP>
+      <ATK>52</ATK>
+      <DEF>43</DEF>
+      <SPD>65</SPD>
+      <SATK>60</SATK>
+      <SDEF>50</SDEF>
+    </baseStats>
+  </pokemon>
+  
+  <pokemon>
+    <species>SQUIRTLE</species>
+    <types>
+      <type>WATER</type>
+    </types>
+    <baseStats>
+      <HP>44</HP>
+      <ATK>48</ATK>
+      <DEF>65</DEF>
+      <SPD>43</SPD>
+      <SATK>50</SATK>
+      <SDEF>64</SDEF>
+    </baseStats>
+  </pokemon>
+</pokedex>

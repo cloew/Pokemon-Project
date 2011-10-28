@@ -1,0 +1,118 @@
+from Battle.Attack.DamageDelegates.effectiveness import Effectiveness
+
+import random 
+
+class DamageDelegate(object):
+    """ Handles how an Attack deals Damage """
+    statLevels = [1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0]
+    
+    def __init__(self, parent, power, isPhysical):
+        """ """
+        self.parent = parent
+        self.power = power
+        self.isPhysical = isPhysical
+    
+    def doDamage(self, actingSide, otherSide):
+        """ Calculates the damage the attack does
+        Returns the damage done """
+        user = actingSide.currPokemon
+        target = otherSide.currPokemon
+    
+        messages = []
+    
+        # Apply the modifier, have the target take damage
+        damage, messages = self.damage(actingSide, otherSide)
+        self.takeDamage(damage, target)
+        
+        # Return the messages
+        return messages
+        
+    def damage(self, actingSide, otherSide):
+        """ Returns  the damage of the attack
+        including effectiveness and STAB """
+        user = actingSide.currPokemon
+        target = otherSide.currPokemon
+        messages = []
+        
+        # Get damage
+        damage = self.calcDamage(actingSide, otherSide)
+        
+        # Get modifiers
+        mod = self.getEffectiveness(messages, target)
+        mod = mod*self.getStab(user)
+        mod = mod*self.getCrit(messages, actingSide)
+        
+        return self.normalize(damage*mod), messages
+        
+    def calcDamage(self, actingSide, otherSide):
+        """ Calculate the damage before modifiers """
+        return self.coreDamage(actingSide, otherSide)*\
+                self.applyRand()
+        
+    def coreDamage(self, actingSide, otherSide):
+        """ Calculate the damage before modifiers and rands """
+        user = actingSide.currPokemon
+        target = otherSide.currPokemon
+        
+        atkStat, defStat = self.getAtkAndDefType()
+    
+        attack = self.getStatWithMod(atkStat, actingSide)
+        defense = self.getStatWithMod(defStat, otherSide)
+        level = user.level
+        
+        return ((((2*level/5 + 2)*attack*self.power/defense)/50) + 2)
+        
+    def getAtkAndDefType(self):
+        """ Returns the stat that should be used for attack and defense """
+        if self.isPhysical:
+            return "ATK", "DEF"
+        else:
+            return "SATK", "SDEF"
+        
+    def getStatWithMod(self, stat, side):
+        """ Returns the sepcified stat, modified by the BattleSide's stat mods """
+        result = side.currPokemon.getStat(stat)
+        modLevel = side.statMods[stat]
+        mod = DamageDelegate.statLevels[abs(modLevel)]
+        
+        if modLevel < 0:
+            mod = 1/mod
+        return result*mod
+        
+    def applyRand(self):
+        return random.randint(85, 100)/100.0
+        
+    def normalize(self, damage):
+        """ Damage cannot be lower than 1, unless the target is immune """
+        if damage < 1:
+            return 1
+        return int(damage)
+        
+    def getEffectiveness(self, messages, target):
+        """ Returns the modifier returned based on effectiveness
+        and adds the message to the list of messages """
+        mod, message = Effectiveness.getEffectiveness(self.parent.type,\
+                target.battleDelegate.types)
+    
+        if message:
+            messages.append(message)
+            
+        return mod
+        
+    def getStab(self, user):
+        """ Returns the modifier for STAB """
+        if self.parent.type in user.battleDelegate.types:
+            return 1.5
+        return 1
+        
+    def getCrit(self, messages, actingSide):
+        """ Returns whether crit worked """
+        ret, message = self.parent.critDelegate.crit(actingSide)
+        if ret:
+            messages.append(message)
+            return 2
+        return 1
+        
+    def takeDamage(self, damage, target):
+        """ Has the target take damage """
+        target.battleDelegate.takeDamage(damage)

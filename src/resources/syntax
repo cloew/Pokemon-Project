@@ -1,0 +1,54 @@
+Trainer:
+NAME
+NumPokemon
+Pokemon Objects
+
+Pokemon:
+NAME SPECIES LEVEL
+NumAttacks
+Attack Objects
+
+Attack:
+NAME
+CURRPP  TOTALPP
+
+Pokedex:
+NAME
+TYPE1 TYPE2
+BaseStats(HP ATK DEF SPD SATK SDEF)
+
+Attackdex:
+NAME
+TYPE
+HitDelegate
+DamageDelegate
+CritDelegate
+EffectDelegates
+PP
+
+HitDelegate:
+HitDelegateType
+
+HitDelegate Types:
+CORE
+ACC
+
+STATUS CORE
+ACC
+
+DamageDelegate:
+DamageDelegateType
+
+DamageDelegate Types:
+CORE
+BASEPOW
+
+CritDelegate:
+CRITBASE
+
+EffectDelegate:
+EffectDelegate Type
+
+EffectDelegate Types:
+STAT MOD
+STAT DEGREE ACTINGSIDE?

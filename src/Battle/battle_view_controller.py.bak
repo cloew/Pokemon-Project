@@ -1,0 +1,48 @@
+from Battle.Actions.action_factory import ActionFactory
+from Battle.battle import Battle
+from Screen.Console.battle_view import ConsoleBattleScreen
+
+class BattleViewController:
+    """ Controls the interaction between the visible Screen and a battle 
+    between two Trainers """
+    
+    def __init__(self):
+        """  """
+        
+        
+    def begin(self, playerTrainer, oppTrainer):
+        """ Starts showing the Battle Screen and initializes the Battle """
+        self.battle = Battle(playerTrainer, oppTrainer)
+        self.screen = ConsoleBattleScreen(self.battle)
+        
+        # Play intro (DUNANANANANANANAAAA!)
+        
+        
+        # Introduce the Battle Environment
+        self.screen.introduce()
+        
+        # Start the Game Loop
+        self.gameLoop()
+        
+    def gameLoop(self):
+        """ Runs through one iteration if the game """
+        while (not self.battle.over):
+            # Print the stats of each Pokemon
+            self.screen.printScreen()
+        
+            # Pick action
+            actionParams = self.screen.pickAction()
+            action = ActionFactory.buildActionFromType(actionParams)
+        
+            # Have the Battle start the battle iteration
+            actions = self.battle.battle(action)
+        
+            for action in actions:
+                self.screen.reportAction(action())
+                self.screen.reportAction(self.battle.checkFaint())
+                if self.battle.over:
+                    return
+        
+        
+        
+   

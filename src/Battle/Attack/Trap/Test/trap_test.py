@@ -1,0 +1,55 @@
+from Battle.Attack.Trap.trap import Trap
+from Pokemon.pokemon import Pokemon
+
+import unittest
+
+class afterTurn(unittest.TestCase):
+    """ Test that immune returns correctly """
+    
+    def setUp(self):
+        """ Builds the Paralysis status"""
+        self.pokemon = Pokemon("BULBASAUR")
+        self.message = " hurt."
+        self.trap = Trap(self.message)
+    
+    def turnDecreases(self):
+        """ Test the turn counter decreases """
+        turns = self.trap.turns
+        self.trap.afterTurn(self.pokemon)
+        assert self.trap.turns == turns - 1, "Turns should decrement"
+        
+    def message(self):
+        """ Test the message is correct"""
+        message = self.trap.afterTurn(self.pokemon)
+        assert message == [self.pokemon.name + self.message], "Message should be the pokemon's name and the message given to the Trap."
+        
+testcasesAfterTurn = ["turnDecreases", "message"]
+suiteAfterTurn = unittest.TestSuite(map(afterTurn, testcasesAfterTurn))
+
+##########################################################
+
+class getDamage(unittest.TestCase):
+    """ Test that immune returns correctly """
+    
+    def setUp(self):
+        """ Builds the Paralysis status"""
+        self.pokemon = Pokemon("BULBASAUR")
+        self.trap = Trap("")
+        self.hp = 32.0
+    
+    def damage(self):
+        """ Test the damage returns is the proper ratio """
+        self.pokemon.battleDelegate.stats["HP"] = self.hp
+        damage = self.trap.getDamage(self.pokemon)
+        assert damage == self.hp/Trap.ratio, "Damage should be a sixteenth of the targets health"
+        
+testcasesGetDamage = ["damage"]
+suiteGetDamage = unittest.TestSuite(map(getDamage, testcasesGetDamage))
+
+##########################################################
+ 
+suites = [suiteGetDamage, suiteAfterTurn]
+suite = unittest.TestSuite(suites)
+
+if __name__ == "__main__":
+    unittest.main()

@@ -1,0 +1,1055 @@
+<attacks>
+    <!-- Normal -->
+
+    <attack>
+        <name>ENCORE</name>
+        <type>NORMAL</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>APPLY LOCK</type>
+                <turns>3</turns>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+
+    <attack>
+        <name>EXTREMESPEED</name>
+        <type>NORMAL</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>2</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>80</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+
+    <attack>
+        <name>FOCUS ENERGY</name>
+        <type>NORMAL</type>
+        <PP>30</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CRIT MOD</type>
+                <stat>CRT</stat>
+                <degree>2</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+
+    <attack>
+        <name>GROWL</name>
+        <type>NORMAL</type>
+        <PP>40</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>ATK</stat>
+                <degree>-1</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>HYPER BEAM</name>
+        <type>NORMAL</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>150</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHARGE</type>
+                <turns>2</turns>
+                <hitOnTurn>0</hitOnTurn>
+                <message> is recharging.</message>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>QUICK ATTACK</name>
+        <type>NORMAL</type>
+        <PP>30</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>1</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>40</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>RECOVER</name>
+        <type>NORMAL</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>HEAL HP RATIO</type>
+                <ratio>2</ratio>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>SCRATCH</name>
+        <type>NORMAL</type>
+        <PP>25</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>40</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+        
+    <attack>
+        <name>SELFDESTRUCT</name>
+        <type>NORMAL</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>200</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>SELFDESTRUCT</type>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+
+    <attack>
+        <name>SLASH</name>
+        <type>NORMAL</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>70</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>1</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>SUPER FANG</name>
+        <type>NORMAL</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>HALF HEALTH</type>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>TACKLE</name>
+        <type>NORMAL</type>
+        <PP>35</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>95</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>35</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>TAIL WHIP</name>
+        <type>NORMAL</type>
+        <PP>30</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>DEF</stat>
+                <degree>-1</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <!-- Fire -->
+    
+    <attack>
+        <name>EMBER</name>
+        <type>FIRE</type>
+        <PP>25</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>40</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>BRN</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>WILL-O-WISP</name>
+        <type>FIRE</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>75</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STATUS</type>
+                <status>BRN</status>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <!-- Water -->
+    
+    <attack>
+        <name>WHIRLPOOL</name>
+        <type>WATER</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>85</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>35</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>TRAP</type>
+                <startMessage> is caught in a whirlpool.</startMessage>
+                <message> is hurt by the whirlpool.</message>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <!-- Electric -->
+    
+    <attack>
+        <name>THUNDER WAVE</name>
+        <type>ELECTRIC</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STATUS</type>
+                <status>PAR</status>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>THUNDERSHOCK</name>
+        <type>ELECTRIC</type>
+        <PP>30</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>40</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <!-- Grass -->
+    
+    <attack>
+        <name>MEGA DRAIN</name>
+        <type>GRASS</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>EFFECT ON DAMAGE</type>
+            <power>40</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>HEAL DAMAGE RATIO</type>
+                <ratio>2</ratio>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <!-- Ice -->
+    
+    <attack>
+        <name>HAZE</name>
+        <type>ICE</type>
+        <PP>30</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>RESET STAT MODS</type>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>SHEER COLD</name>
+        <type>ICE</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>30</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>ONE HIT KO</type>
+            <physical>0</physical>
+        </damageDelegate>
+    </attack>
+    
+    <!-- Fighting -->
+    
+    <attack>
+        <name>HI JUMP KICK</name>
+        <type>FIGHTING</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CRASH</type>
+            <hit>90</hit>
+            <effectDelegate>
+                <type>RECOIL</type>
+                <ratio>2</ratio>
+            </effectDelegate>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>130</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>STORM THROW</name>
+        <type>FIGHTING</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>40</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>6</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>VITAL THROW</name>
+        <type>FIGHTING</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>-1</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>ALWAYS</type>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>70</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <!-- Poison -->
+    
+    <attack>
+        <name>GUNK SHOT</name>
+        <type>POISON</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>70</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>120</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>30</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PSN</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>TOXIC</name>
+        <type>POISON</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STATUS</type>
+                <status>BPSN</status>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <!-- Ground -->
+    
+    <attack>
+        <name>DIG</name>
+        <type>GROUND</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>80</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>DODGE</type>
+                <dodgeType>DIG</dodgeType>
+                <message> burrowed underground.</message>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>EARTHQUAKE</name>
+        <type>GROUND</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>PIERCE DODGE</type>
+            <hit>100</hit>
+            <pierce>DIG</pierce>
+        </hitDelegate>
+        <damageDelegate>
+            <type>PIERCE DODGE 2X</type>
+            <power>100</power>
+            <physical>1</physical>
+            <pierce>DIG</pierce>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+        </effectDelegates>
+    </attack>
+    
+    <!-- Flying -->
+    
+    <attack>
+        <name>AERIAL ACE</name>
+        <type>FLYING</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>ALWAYS</type>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>60</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>BOUNCE</name>
+        <type>FLYING</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>85</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>85</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>DODGE</type>
+                <dodgeType>FLY</dodgeType>
+                <message> bounced into the air.</message>
+            </effectDelegate>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>30</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PAR</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>GUST</name>
+        <type>FLYING</type>
+        <PP>35</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>PIERCE DODGE</type>
+            <hit>100</hit>
+            <pierce>FLY</pierce>
+        </hitDelegate>
+        <damageDelegate>
+            <type>PIERCE DODGE 2X</type>
+            <power>100</power>
+            <physical>0</physical>
+            <pierce>FLY</pierce>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+        </effectDelegates>
+    </attack>
+    
+    <!-- Psychic -->
+    
+    <attack>
+        <name>HEART SWAP</name>
+        <type>PSYCHIC</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS ALWAYS</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>SWAP STAT MODS</type>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <!-- Bug -->
+    
+    <attack>
+        <name>SILVER WIND</name>
+        <type>BUG</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>60</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>ATK</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>DEF</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SPD</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SATK</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SDEF</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <!-- Rock -->
+    
+    <attack>
+        <name>HEAD SMASH</name>
+        <type>ROCK</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>80</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>EFFECT ON DAMAGE</type>
+            <power>150</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>RECOIL</type>
+                <ratio>2</ratio>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>ROLLOUT</name>
+        <type>ROCK</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>SCALE</type>
+            <power>30</power>
+            <physical>1</physical>
+            <factor>2</factor>
+            <turns>5</turns>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>DAMAGE IS EFFECT</type>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <!-- Ghost -->
+    
+    <attack>
+        <name>NIGHT SHADE</name>
+        <type>GHOST</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>LEVEL</type>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <!-- Dragon -->
+    
+    <attack>
+        <name>DRAGON RAGE</name>
+        <type>DRAGON</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>FIXED</type>
+            <physical>0</physical>
+            <damage>40</damage>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <!-- Dark -->
+    
+    <attack>
+        <name>BITE</name>
+        <type>DARK</type>
+        <PP>25</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>60</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>30</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>FLINCH</type>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>HONE CLAWS</name>
+        <type>DARK</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>ATK</stat>
+                <degree>1</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>ACC</stat>
+                <degree>1</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>SNARL</name>
+        <type>DARK</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>95</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>55</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>SATK</stat>
+                <degree>-1</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <!-- Steel -->
+</attacks>

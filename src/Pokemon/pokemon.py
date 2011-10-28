@@ -1,0 +1,67 @@
+from Pokemon.pokemon_battle_delegate import PokemonBattleDelegate
+
+import sys
+
+class Pokemon:
+    """ Holds the information for a Pokemon """
+  
+    def __init__(self, species=None):
+        """ Builds a Pkmn """
+        if species:
+            self.buildStarter(species)
+        
+    def buildStarter(self, species):
+        """ Creates a Pokemon with Starter stats """
+        self.name = species
+        self.species = species
+        self.level = 5
+        self.battleDelegate = PokemonBattleDelegate().buildStarter(self)
+        
+  
+    def loadFromHumanTrainerFile(self, file):
+        """ Loads a Pokemon object from a file """
+        values = file.readline().strip().split(" ")
+        self.name = values[0]
+        self.species = values[1]
+        self.level = int(values[2])
+    
+        self.id = ""
+    
+        self.battleDelegate = PokemonBattleDelegate().loadFromHumanTrainerFile(self, file)
+    
+        return self
+    
+    def isFainted(self):
+        """ Returns if the Pkmn is fainted or not """
+        return self.battleDelegate.currHP is 0
+        
+    def getTypes(self):
+        """ Returns the Pokemon's types """
+        return self.battleDelegate.types
+        
+    def getStat(self, stat):
+        """ Returns the Speed for battle of the Pokemon """
+        return self.battleDelegate.stats[stat]*self.battleDelegate.status.getStatMod(stat)
+        
+    def getStatus(self):
+        """ Gets the status of the Pokemon """
+        return self.battleDelegate.status
+        
+    def setStatus(self, status):
+        """ Sets the status of the Pokemon """
+        self.battleDelegate.status = status
+        
+    def getRatioOfHealth(self, ratio):
+        """ Returns the ratio of the pokemon's health """
+        val = int(self.getStat("HP")/float(ratio))
+        if val == 0:
+            return 1
+        return val
+        
+    def heal(self, heal):
+        """ Has the Pokemon heal itself """
+        self.battleDelegate.heal(heal)
+        
+    def takeDamage(self, damage):
+        """ Has the Pokemon take damage """
+        self.battleDelegate.takeDamage(damage)
