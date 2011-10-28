@@ -4,6 +4,7 @@ import unittest
 
 class getScale(unittest.TestCase):
     """ Test that core damage is calculated correctly """ 
+    
     def setUp(self):
         """ Setup the attack and Pokemon to use the attack """
         self.factor = 2

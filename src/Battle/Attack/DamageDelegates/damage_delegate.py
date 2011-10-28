@@ -60,7 +60,13 @@ class DamageDelegate(object):
         defense = self.getStatWithMod(defStat, otherSide)
         level = user.level
         
-        return ((((2*level/5 + 2)*attack*self.power/defense)/50) + 2)
+        power = self.getPower(actingSide, otherSide)
+        
+        return ((((2*level/5 + 2)*attack*power/defense)/50) + 2)
+        
+    def getPower(self, actingSide, otherSide):
+        """ Returns the power of the move """
+        return self.power
         
     def getAtkAndDefType(self):
         """ Returns the stat that should be used for attack and defense """
