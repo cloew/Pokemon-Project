@@ -1052,4 +1052,25 @@
     </attack>
     
     <!-- Steel -->
+    <attack>
+        <name>GYRO BALL</name>
+        <type>STEEL</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>STAT RATIO</type>
+            <physical>1</physical>
+            <stat>SPD</stat>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
 </attacks>

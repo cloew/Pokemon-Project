@@ -1,12 +1,14 @@
 from Battle.Attack.DamageDelegates.damage_delegate import DamageDelegate
 from Battle.Attack.DamageDelegates.damagescale_delegate import DamageScaleDelegate
+from Battle.Attack.DamageDelegates.effect_ondamage_delegate import EffectOnDamageDelegate
 from Battle.Attack.DamageDelegates.fixed_delegate import FixedDelegate
 from Battle.Attack.DamageDelegates.halfhealth_delegate import HalfHealthDelegate
 from Battle.Attack.DamageDelegates.level_delegate import LevelDelegate
 from Battle.Attack.DamageDelegates.null_damage_delegate import NullDamageDelegate
 from Battle.Attack.DamageDelegates.onehit_delegate import OneHitDelegate
 from Battle.Attack.DamageDelegates.piercedodge_2Xdelegate import PierceDodge2XDelegate
-from Battle.Attack.DamageDelegates.effect_ondamage_delegate import EffectOnDamageDelegate
+from Battle.Attack.DamageDelegates.statratio_delegate import StatRatioDelegate
+
 
 from Battle.Attack.CritDelegates.crit_delegate import CritDelegate
 
@@ -78,6 +80,12 @@ class DamageDelegateFactory:
             factor = int(element.find(Tags.factorTag).text)
             turns = int(element.find(Tags.turnsTag).text)
             return DamageScaleDelegate(parent, power, isPhysical, factor, turns)
+            
+        elif delegateType == "STAT RATIO":
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            stat = element.find(Tags.statTag).text
+            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
+            return StatRatioDelegate(parent, isPhysical, stat)
             
         
             
