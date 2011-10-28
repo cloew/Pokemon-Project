@@ -1,0 +1,28 @@
+All rights reserved to their respective owners.
+This work is purely for educational purposes and meant as a tribute to the awesomeness that is Pokemon.
+
+ ----------
+| Attacks |
+ ----------
+    Attacks represent the moves pokemon use in the game.
+    Specific pieces are handled by delegates.
+
+        |HitDelegate|
+            Represents how an attack hits a target.
+            
+            hit - Called by attack to determine whether it hits
+                Params: actingSide, otherSide - Both BattleSide objects, represent each side of the battle
+                Returns whether the attack hits or not.
+                Returns list of messages to display.
+                
+            core - Performs the probability check for whether an attck hits
+                Params: actingSide, otherSide - Both BattleSide objects, represent each side of the battle
+                Returns whether the attack hits probabilistically
+                
+            dodging - Check if the opponent is dodging
+                Params: otherSide - BattleSide object, representing the target's Side
+                Returns whether the opponent is dodging
+            
+            
+            
+            
