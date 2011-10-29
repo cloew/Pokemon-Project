@@ -69,19 +69,19 @@ class hasThisTrap(unittest.TestCase):
         self.otherTrap = Trap("other.")
         
     def hasTrap(self):
-        """ Tests if hasTRap returns true when there is an object of this trap """
+        """ Tests if hasThisTrap returns true when there is an object of this trap """
         self.side.afterEffects = [self.trap]
         
         assert self.delegate.hasThisTrap(self.side), "Should have a trap effect"
         
     def noTrap(self):
-        """ Tests if hasTrap returns false when there is no trap """
+        """ Tests if hasThisTrap returns false when there is no trap """
         self.side.afterEffects = []
         
         assert not self.delegate.hasThisTrap(self.side), "Should not have a trap effect"
         
     def otherTrap(self):
-        """ Tests if hasTrap returns false when there is a different trap """
+        """ Tests if hasThisTrap returns false when there is a different trap """
         self.side.afterEffects = [self.otherTrap]
         
         assert not self.delegate.hasThisTrap(self.side), "Should not have a trap effect if there is a different trap effect there"

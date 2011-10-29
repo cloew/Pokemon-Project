@@ -450,6 +450,27 @@
     <!-- Grass -->
     
     <attack>
+        <name>LEECH SEED</name>
+        <type>GRASS</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>LEECH</type>
+                <startMessage> was seeded.</startMessage>
+                <message> health was sapped by LEECH SEED.</message>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
         <name>MEGA DRAIN</name>
         <type>GRASS</type>
         <PP>15</PP>

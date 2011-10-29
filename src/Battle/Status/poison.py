@@ -20,5 +20,5 @@ class Poison(Status):
         return [message]
         
     def immune(self, targetTypes, attackType):
-        """ Returns whether the given types is immune to the status """
+        """ Returns whether the given types are immune to the status """
         return "POISON" in targetTypes or "STEEL" in targetTypes

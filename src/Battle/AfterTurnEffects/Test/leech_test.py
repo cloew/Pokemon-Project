@@ -1,4 +1,4 @@
-from Battle.AfterTurnEffects.periodic_heal import PeriodicHeal
+from Battle.AfterTurnEffects.leech import Leech
 from Battle.battle_side import BattleSide
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
@@ -9,46 +9,48 @@ class afterTurn(unittest.TestCase):
     """ Test that afterTurn returns correctly """
     
     def setUp(self):
-        """ Builds the side and heal """
+        """ Builds the side and the leech """
         trainer = Trainer()
         pokemon = Pokemon("BULBASAUR")
+        self.pokemon2 = Pokemon("BULBASAUR")
         trainer.beltPokemon = [pokemon]
         self.side = BattleSide(trainer)
         
         self.message = " hurt."
-        self.heal = PeriodicHeal(self.message)
+        self.leech = Leech(self.pokemon2, self.message)
         
     def message(self):
         """ Test the message is correct """
-        message = self.heal.afterTurn(self.side)
-        assert message == [self.side.getHeader() + self.message], "Message should be the pokemon's name and the message given to the Heal."
+        message = self.leech.afterTurn(self.side)
+        assert message == [self.side.getHeader() + self.message], "Message should be the pokemon's name and the message given to the Leech."
         
 testcasesAfterTurn = ["message"]
 suiteAfterTurn = unittest.TestSuite(map(afterTurn, testcasesAfterTurn))
 
 ##########################################################
 
-class getHeal(unittest.TestCase):
-    """ Test that getHeal returns the right amount to heal """
+class getAmount(unittest.TestCase):
+    """ Test that getAmount returns the right amount to heal """
     
     def setUp(self):
         """ Builds the heal """
         self.pokemon = Pokemon("BULBASAUR")
-        self.heal = PeriodicHeal("")
+        self.pokemon2 = Pokemon("BULBASAUR")
+        self.leech = Leech(self.pokemon2, "")
         self.hp = 32.0
     
-    def heal(self):
+    def amount(self):
         """ Test the heal returns the proper ratio """
         self.pokemon.battleDelegate.stats["HP"] = self.hp
-        heal = self.heal.getHeal(self.pokemon)
-        assert heal == self.hp/PeriodicHeal.ratio, "Heal should be a sixteenth of the targets health"
+        amount = self.leech.getAmount(self.pokemon)
+        assert amount == self.hp/Leech.ratio, "Amount should be a sixteenth of the targets health"
         
-testcasesGetHeal = ["heal"]
-suiteGetHeal = unittest.TestSuite(map(getHeal, testcasesGetHeal))
+testcasesGetAmount = ["amount"]
+suiteGetAmount = unittest.TestSuite(map(getAmount, testcasesGetAmount))
 
 ##########################################################
  
-suites = [suiteGetHeal, suiteAfterTurn]
+suites = [suiteGetAmount, suiteAfterTurn]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

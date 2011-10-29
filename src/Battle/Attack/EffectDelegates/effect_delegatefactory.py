@@ -7,6 +7,7 @@ from Battle.Attack.EffectDelegates.dodge_delegate import DodgeDelegate
 from Battle.Attack.EffectDelegates.flinch_delegate import FlinchDelegate
 from Battle.Attack.EffectDelegates.heal_damageratio_delegate import HealByDamageRatioDelegate
 from Battle.Attack.EffectDelegates.heal_hpratio_delegate import HealByHPRatioDelegate
+from leech_delegate import LeechDelegate
 from Battle.Attack.EffectDelegates.null_effect_delegate import NullEffectDelegate
 from Battle.Attack.EffectDelegates.periodicheal_delegate import PeriodicHealDelegate
 from Battle.Attack.EffectDelegates.recoil_delegate import RecoilDelegate
@@ -82,6 +83,11 @@ class EffectDelegateFactory:
         elif delegateType == "HEAL HP RATIO":
             healRatio = int(element.find(Tags.ratioTag).text)
             return HealByHPRatioDelegate(healRatio)
+            
+        elif delegateType == "LEECH":
+            startMessage = element.find(Tags.startMessageTag).text
+            message = element.find(Tags.messageTag).text
+            return LeechDelegate(startMessage, message, parent.type)
             
         elif delegateType == "RECOIL":
             recoilRatio = int(element.find(Tags.ratioTag).text)
