@@ -26,14 +26,17 @@ class BattleSide:
         for key in self.statMods:
             self.statMods[key] = 0
             
-    def afterTurn(self):
+    def afterTurn(self, func):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
-        messages = self.currPokemon.getStatus().afterTurn(self.currPokemon)
+        messages = self.currPokemon.getStatus().afterTurn(self)
+        if func(messages):
+            return
         
         for effect in  self.afterEffects:
-            messages = messages + effect.afterTurn(self.currPokemon)
-        
-        return messages
+            messages = effect.afterTurn(self)
+            if func(messages):
+                return
+
         
     def betweenTurns(self):
         """ Perform between turns """

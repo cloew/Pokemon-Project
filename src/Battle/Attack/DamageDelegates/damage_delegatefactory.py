@@ -19,7 +19,7 @@ class DamageDelegateFactory:
     
     @staticmethod
     def loadFromAttackDex(attackdex, parent):
-        """ Builds a HitDelegate from a file of the designated type """
+        """ Builds a DamageDelegate from a file of the designated type """
         delegateType = attackdex.readline().strip()
         
         if delegateType == "CORE":

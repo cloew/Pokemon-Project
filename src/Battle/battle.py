@@ -43,29 +43,17 @@ class Battle:
             return False
         else:
             return random.randint(0,1)
-            
-    def playerAct(self):
-        """ Performs the player's portion of the Battle """
-        self.playerSide.lastAction = self.playerAction
-        return self.act(self.playerSide, self.playerAction,
-                               self.oppSide)
-        
-    def oppAct(self):
-        """ Performs opp's portion of the Battle """
-        self.oppSide.lastAction = self.oppAction
-        return self.act(self.oppSide, self.oppAction,
-                               self.playerSide)
                                
     def act(self, actingSide, action, otherSide):
         """ Performs the action """
         actingSide.lastAction = action
         return action.doAction(actingSide, otherSide)
         
-    def afterTurn(self, actingSide):
+    def afterTurn(self, actingSide, func):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
-        return actingSide.afterTurn()
+        return actingSide.afterTurn(func)
         
-    def betweenTurns(self):
+    def betweenTurns(self, func):
         """ Perform between turns """
         self.playerSide.betweenTurns()
         self.oppSide.betweenTurns()
@@ -76,9 +64,9 @@ class Battle:
         messages = []
         
         if (self.playerSide.currPokemon.isFainted()):
-            messages.append(self.playerSide.currPokemon.name + " fainted.")
+            messages.append(self.playerSide.getHeader() + " fainted.")
         if (self.oppSide.currPokemon.isFainted()):
-            messages.append(self.oppSide.currPokemon.name + " fainted.")
+            messages.append(self.oppSide.getHeader() + " fainted.")
             
         message = self.checkOver()
         if message:

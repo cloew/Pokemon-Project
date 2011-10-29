@@ -44,19 +44,22 @@ class BattleViewController:
                 if self.reportAndCheckEnd(messages):
                     return
                 
-                messages = self.battle.afterTurn(sAndAs[i].side)
+                messages = self.battle.afterTurn(sAndAs[i].side, self.reportAndCheckEnd)
                 if self.reportAndCheckEnd(messages):
                     return
                 
-                messages = self.battle.betweenTurns()
-                if self.screen.reportAction(messages):
+                self.battle.betweenTurns(self.reportAndCheckEnd)
+                if self.checkOver():
                     return
                     
     def reportAndCheckEnd(self, messages):
         """ Report the messages given and check if the game is over """
-        self.screen.reportAction(messages)
-        self.screen.reportAction(self.battle.checkFaint())
+        if messages:
+            self.screen.reportAction(messages)
+            self.screen.reportAction(self.battle.checkFaint())
         
-        if self.battle.over:
-            return True
-        return False 
+        return self.checkOver()
+        
+    def checkOver(self):
+        """ Checks if the Battle is over """
+        return self.battle.over

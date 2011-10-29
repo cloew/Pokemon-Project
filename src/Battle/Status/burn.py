@@ -13,9 +13,10 @@ class Burn(Status):
         self.setStatMods()
         self.statMods["ATK"] = .5
         
-    def afterTurn(self, user):
+    def afterTurn(self, side):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
-        message = user.name + Burn.intermittent
+        user = side.currPokemon
+        message = side.getHeader() + Burn.intermittent
         user.takeDamage(user.getRatioOfHealth(Burn.ratio))
         return [message]
         

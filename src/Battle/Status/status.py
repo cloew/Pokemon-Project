@@ -15,7 +15,7 @@ class Status:
         """ Returns whether the status prevents an action """
         return False, []
         
-    def afterTurn(self, user):
+    def afterTurn(self, side):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
         return []
         

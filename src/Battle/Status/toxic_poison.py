@@ -11,10 +11,12 @@ class ToxicPoison(Poison):
         self.counter = 1
         self.setStatMods()
         
-    def afterTurn(self, user):
+    def afterTurn(self, side):
         """ Inflicts the damage from the Poison status """
-        message = user.name + Poison.intermittent
+        user = side.currPokemon
+        message = side.getHeader() + Poison.intermittent
         damage = self.getDamage(user)
+        
         user.takeDamage(damage)
         self.counter = self.counter + 1
         return [message]

@@ -353,6 +353,25 @@
     </attack>
     
     <!-- Water -->
+    <attack>
+        <name>AQUA RING</name>
+        <type>WATER</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>PERIODIC HEAL</type>
+                <startMessage> surrounded itself with a veil of water.</startMessage>
+                <message> was healed by the veil.</message>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     
     <attack>
         <name>WHIRLPOOL</name>
