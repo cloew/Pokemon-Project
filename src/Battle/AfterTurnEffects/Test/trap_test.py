@@ -20,16 +20,26 @@ class afterTurn(unittest.TestCase):
     
     def turnDecreases(self):
         """ Test the turn counter decreases """
+        self.trap.turns = 5
         turns = self.trap.turns
         self.trap.afterTurn(self.side)
         assert self.trap.turns == turns - 1, "Turns should decrement"
+        
+    def effectIsRemoved(self):
+        """ Test that the effect is removed when the turn count is reduced to zero """
+        self.trap.turns = 1
+        self.side.afterEffects.append(self.trap)
+        self.trap.afterTurn(self.side)
+        
+        assert self.trap.turns == 0, "Turns should be zero"
+        assert not self.trap in self.side.afterEffects
         
     def message(self):
         """ Test the message is correct """
         message = self.trap.afterTurn(self.side)
         assert message == [self.side.getHeader() + self.message], "Message should be the pokemon's name and the message given to the Trap."
         
-testcasesAfterTurn = ["turnDecreases", "message"]
+testcasesAfterTurn = ["turnDecreases", "effectIsRemoved", "message"]
 suiteAfterTurn = unittest.TestSuite(map(afterTurn, testcasesAfterTurn))
 
 ##########################################################

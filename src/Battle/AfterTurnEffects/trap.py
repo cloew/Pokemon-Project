@@ -21,6 +21,10 @@ class Trap:
         
         message = side.getHeader() + self.message
         self.turns = self.turns - 1
+        
+        if self.turns == 0:
+            side.afterEffects.remove(self)
+        
         return [message]
         
     def damage(self, user):
