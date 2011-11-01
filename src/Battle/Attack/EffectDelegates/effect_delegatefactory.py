@@ -121,4 +121,5 @@ class EffectDelegateFactory:
         elif delegateType == "TRAP":    
             startMessage = element.find(Tags.startMessageTag).text
             message = element.find(Tags.messageTag).text
-            return TrapDelegate(startMessage, message)
+            doneMessage = element.find(Tags.doneMessageTag).text
+            return TrapDelegate(startMessage, message, doneMessage)

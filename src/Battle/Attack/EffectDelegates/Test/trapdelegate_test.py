@@ -17,7 +17,7 @@ class applyEffect(unittest.TestCase):
         pokemon = Pokemon("BULBASAUR")
         trainer.beltPokemon = [pokemon]
         self.side = BattleSide(trainer)
-        self.delegate = TrapDelegate("", "")
+        self.delegate = TrapDelegate("", "", "")
         
     def appliesTrap(self):
         """ Tests if applyEffect applies the trap """
@@ -40,8 +40,8 @@ class removePreviousTrap(unittest.TestCase):
         pokemon = Pokemon("BULBASAUR")
         trainer.beltPokemon = [pokemon]
         self.side = BattleSide(trainer)
-        self.delegate = TrapDelegate("", "")
-        self.trap = Trap("")
+        self.delegate = TrapDelegate("", "", "")
+        self.trap = Trap("", "")
         
     def removeTrap(self):
         """ Tests if the trap is removed """
@@ -64,9 +64,9 @@ class hasThisTrap(unittest.TestCase):
         pokemon = Pokemon("BULBASAUR")
         trainer.beltPokemon = [pokemon]
         self.side = BattleSide(trainer)
-        self.delegate = TrapDelegate("", "")
-        self.trap = Trap("")
-        self.otherTrap = Trap("other.")
+        self.delegate = TrapDelegate("", "", "")
+        self.trap = Trap("", "")
+        self.otherTrap = Trap("other.", "")
         
     def hasTrap(self):
         """ Tests if hasThisTrap returns true when there is an object of this trap """

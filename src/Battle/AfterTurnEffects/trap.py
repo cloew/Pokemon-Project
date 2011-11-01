@@ -5,9 +5,10 @@ class Trap:
     minTurns = 4
     ratio = 16
     
-    def __init__(self, message):
+    def __init__(self, message, doneMessage):
         """ Builds a trap with the given message """
         self.message = message
+        self.doneMessage = doneMessage
         self.turns = self.getTurns()
         
     def getTurns(self):
@@ -19,13 +20,14 @@ class Trap:
         user = side.currPokemon
         self.damage(user)
         
-        message = side.getHeader() + self.message
+        messages = [side.getHeader() + self.message]
         self.turns = self.turns - 1
         
         if self.turns == 0:
             side.afterEffects.remove(self)
+            messages.append(side.getHeader() + self.doneMessage)
         
-        return [message]
+        return messages
         
     def damage(self, user):
         """ Damages the user """

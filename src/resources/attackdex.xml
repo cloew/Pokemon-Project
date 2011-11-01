@@ -398,6 +398,7 @@
                 <type>TRAP</type>
                 <startMessage> is caught in a whirlpool.</startMessage>
                 <message> is hurt by the whirlpool.</message>
+                <doneMessage> is no longer caught in the whirlpool.</doneMessage>
             </effectDelegate>
         </effectDelegates>
     </attack>
@@ -465,7 +466,7 @@
             <effectDelegate>
                 <type>LEECH</type>
                 <startMessage> was seeded.</startMessage>
-                <message> health was sapped by LEECH SEED.</message>
+                <message>'s health was sapped by LEECH SEED.</message>
             </effectDelegate>
         </effectDelegates>
     </attack>

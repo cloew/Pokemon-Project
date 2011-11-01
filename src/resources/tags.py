@@ -37,6 +37,7 @@ class Tags:
     hitOnTurnTag = "hitOnTurn"
     startMessageTag = "startMessage"
     messageTag = "message"
+    doneMessageTag = "doneMessage"
     
     dodgeTypeTag = "dodgeType"
     pierceTag = "pierce"

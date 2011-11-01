@@ -16,7 +16,8 @@ class afterTurn(unittest.TestCase):
         self.side = BattleSide(trainer)
         
         self.message = " hurt."
-        self.trap = Trap(self.message)
+        self.doneMessage = " done."
+        self.trap = Trap(self.message, self.doneMessage)
     
     def turnDecreases(self):
         """ Test the turn counter decreases """
@@ -39,7 +40,16 @@ class afterTurn(unittest.TestCase):
         message = self.trap.afterTurn(self.side)
         assert message == [self.side.getHeader() + self.message], "Message should be the pokemon's name and the message given to the Trap."
         
-testcasesAfterTurn = ["turnDecreases", "effectIsRemoved", "message"]
+    def doneMessage(self):
+        """ Test the done message is correct """
+        self.trap.turns = 1
+        self.side.afterEffects.append(self.trap)
+        messages = self.trap.afterTurn(self.side)
+        
+        assert len(messages) == 2, "Should have two messages"
+        assert messages[1] == self.side.getHeader() + self.doneMessage, "Done message should be returned."
+        
+testcasesAfterTurn = ["turnDecreases", "effectIsRemoved", "message", "doneMessage"]
 suiteAfterTurn = unittest.TestSuite(map(afterTurn, testcasesAfterTurn))
 
 ##########################################################
@@ -50,7 +60,7 @@ class getDamage(unittest.TestCase):
     def setUp(self):
         """ Builds the Paralysis status"""
         self.pokemon = Pokemon("BULBASAUR")
-        self.trap = Trap("")
+        self.trap = Trap("", "")
         self.hp = 32.0
     
     def damage(self):
