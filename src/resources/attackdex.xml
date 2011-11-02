@@ -1,5 +1,25 @@
 <attacks>
     <!-- Normal -->
+    
+    <attack>
+        <name>ACUPRESSURE</name>
+        <type>NORMAL</type>
+        <PP>30</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>RND STAT MOD</type>
+                <degree>2</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
 
     <attack>
         <name>ENCORE</name>

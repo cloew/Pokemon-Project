@@ -1,21 +1,22 @@
-from Battle.Attack.EffectDelegates.applylock_delegate import ApplyLockDelegate
-from Battle.Attack.EffectDelegates.charge_delegate import ChargeDelegate
-from Battle.Attack.EffectDelegates.chance_delegate import ChanceDelegate
-from Battle.Attack.EffectDelegates.applystatus_delegate import ApplyStatusDelegate
-from Battle.Attack.EffectDelegates.critmod_delegate import CritModDelegate
-from Battle.Attack.EffectDelegates.dodge_delegate import DodgeDelegate
-from Battle.Attack.EffectDelegates.flinch_delegate import FlinchDelegate
-from Battle.Attack.EffectDelegates.heal_damageratio_delegate import HealByDamageRatioDelegate
-from Battle.Attack.EffectDelegates.heal_hpratio_delegate import HealByHPRatioDelegate
+from applylock_delegate import ApplyLockDelegate
+from charge_delegate import ChargeDelegate
+from chance_delegate import ChanceDelegate
+from applystatus_delegate import ApplyStatusDelegate
+from critmod_delegate import CritModDelegate
+from dodge_delegate import DodgeDelegate
+from flinch_delegate import FlinchDelegate
+from heal_damageratio_delegate import HealByDamageRatioDelegate
+from heal_hpratio_delegate import HealByHPRatioDelegate
 from leech_delegate import LeechDelegate
-from Battle.Attack.EffectDelegates.null_effect_delegate import NullEffectDelegate
-from Battle.Attack.EffectDelegates.periodicheal_delegate import PeriodicHealDelegate
-from Battle.Attack.EffectDelegates.recoil_delegate import RecoilDelegate
-from Battle.Attack.EffectDelegates.reset_statmods_delegate import ResetStatmodsDelegate
-from Battle.Attack.EffectDelegates.selfdestruct_delegate import SelfDestructDelegate
-from Battle.Attack.EffectDelegates.statmod_delegate import StatModDelegate
-from Battle.Attack.EffectDelegates.swapstatmods_delegate import SwapStatModsDelegate
-from Battle.Attack.EffectDelegates.trap_delegate import TrapDelegate
+from null_effect_delegate import NullEffectDelegate
+from periodicheal_delegate import PeriodicHealDelegate
+from randomstatmod_delegate import RandomStatModDelegate
+from recoil_delegate import RecoilDelegate
+from reset_statmods_delegate import ResetStatmodsDelegate
+from selfdestruct_delegate import SelfDestructDelegate
+from statmod_delegate import StatModDelegate
+from swapstatmods_delegate import SwapStatModsDelegate
+from trap_delegate import TrapDelegate
 
 from resources.tags import Tags
 
@@ -88,6 +89,11 @@ class EffectDelegateFactory:
             startMessage = element.find(Tags.startMessageTag).text
             message = element.find(Tags.messageTag).text
             return LeechDelegate(startMessage, message, parent.type)
+            
+        elif delegateType == "RND STAT MOD":
+            degree = int(element.find(Tags.degreeTag).text)
+            affectUser = int(element.find(Tags.affectUserTag).text)
+            return RandomStatModDelegate(degree, affectUser)
             
         elif delegateType == "RECOIL":
             recoilRatio = int(element.find(Tags.ratioTag).text)

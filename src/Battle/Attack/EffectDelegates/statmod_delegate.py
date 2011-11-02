@@ -1,5 +1,5 @@
 
-class StatModDelegate:
+class StatModDelegate(object):
     """ Handles modifying stats """
     
     noChangeDown = " cannot be lowered anymore"
