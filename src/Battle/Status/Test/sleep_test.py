@@ -7,7 +7,7 @@ from Trainer.trainer import Trainer
 import unittest
 
 class getTurns(unittest.TestCase):
-    """ Test that getTurns returns the correct values for all stats """
+    """ Test that getTurns returns the correct values """
     
     def setUp(self):
         """ Builds the Sleep status"""
