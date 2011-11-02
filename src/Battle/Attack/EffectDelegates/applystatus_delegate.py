@@ -28,7 +28,7 @@ class ApplyStatusDelegate:
             return []
         
         side.currPokemon.setStatus(status)
-        message = side.currPokemon.name + message
+        message = side.getHeader() + message
         
         return [message]
         

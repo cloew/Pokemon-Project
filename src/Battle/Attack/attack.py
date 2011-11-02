@@ -21,6 +21,7 @@ class Attack:
         
         # Check for pre attack factors
         stop, preMessages = self.checkPreConditions(actingSide, otherSide)
+        messages = preMessages
         if stop:
             return preMessages
         
@@ -90,7 +91,7 @@ class Attack:
         
     def checkStatus(self, actingSide, otherSide):
         """ Checks if the user's status prevents a move this turn """
-        return actingSide.currPokemon.getStatus().immobilized(actingSide.currPokemon)
+        return actingSide.currPokemon.getStatus().immobilized(actingSide)
         
     def applyEffectsOnMiss(self, actingSide, otherSide):
         """ Apply effects on miss """

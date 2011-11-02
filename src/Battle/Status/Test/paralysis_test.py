@@ -4,6 +4,7 @@ import unittest
 
 class getStatMod(unittest.TestCase):
     """ Test that statMod returns the correct values for all stats """
+    
     def setUp(self):
         """ Builds the Paralysis status"""
         self.status = Paralysis()

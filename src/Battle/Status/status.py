@@ -11,7 +11,7 @@ class Status:
         self.statMods = {"ATK":1, "DEF":1, "SPD":1, "SATK":1, "SDEF":1, 
                                 "ACC":1, "EVAS":1, "CRT":1, "HP":1}
         
-    def immobilized(self, user):
+    def immobilized(self, side):
         """ Returns whether the status prevents an action """
         return False, []
         

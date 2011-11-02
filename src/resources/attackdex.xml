@@ -519,6 +519,27 @@
         </effectDelegates>
     </attack>
     
+    <attack>
+        <name>SPORE</name>
+        <type>GRASS</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STATUS</type>
+                <status>SLP</status>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
     <!-- Ice -->
     
     <attack>
