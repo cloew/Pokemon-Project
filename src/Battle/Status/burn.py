@@ -9,7 +9,6 @@ class Burn(Status):
     ratio = 8
     
     def __init__(self):
-        self.abbr = Burn.abbr
         self.setStatMods()
         self.statMods["ATK"] = .5
         

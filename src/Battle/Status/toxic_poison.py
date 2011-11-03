@@ -9,6 +9,7 @@ class ToxicPoison(Poison):
     def __init__(self):
         self.abbr = Poison.abbr
         self.counter = 1
+        
         self.setStatMods()
         
     def afterTurn(self, side):

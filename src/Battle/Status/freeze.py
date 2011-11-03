@@ -10,7 +10,6 @@ class Freeze(Status):
     done = " thawed out."
     
     def __init__(self):
-        self.abbr = Freeze.abbr
         self.setStatMods()
         
     def thawed(self, rand):
@@ -26,7 +25,7 @@ class Freeze(Status):
         messages = [side.getHeader() + Freeze.intermittent]
         
         if self.thawed(self.getRandom()):
-            messages.append(side.getHeader() + Freeze.done)
+            messages = messages + self.getDoneMessage(side)
             side.currPokemon.setStatus(Status())
         
         return True, messages

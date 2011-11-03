@@ -2,6 +2,7 @@
 class Status:
     """ Represents a Status on a Pokemon """
     
+    
     def __init__(self):
         """ Build a Status """
         self.abbr = "   "
@@ -25,5 +26,9 @@ class Status:
         
     def immune(self, targetTypes, attackType):
         """ Returns whether the given types is immune to the status """
+        
+    def getDoneMessage(self, side):
+        """  Returns the string to be displayed when the function ends """
+        return [side.getHeader() + self.done]
         
     

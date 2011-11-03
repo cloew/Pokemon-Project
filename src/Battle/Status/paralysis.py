@@ -12,7 +12,6 @@ class Paralysis(Status):
     
     def __init__(self):
         """ Build a paralysis status """
-        self.abbr = Paralysis.abbr
         self.setStatMods()
         self.statMods["SPD"] = .25
         

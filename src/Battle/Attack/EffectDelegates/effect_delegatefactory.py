@@ -3,6 +3,7 @@ from charge_delegate import ChargeDelegate
 from chance_delegate import ChanceDelegate
 from applystatus_delegate import ApplyStatusDelegate
 from critmod_delegate import CritModDelegate
+from curestatus_delegate import CureStatusDelegate
 from dodge_delegate import DodgeDelegate
 from flinch_delegate import FlinchDelegate
 from heal_damageratio_delegate import HealByDamageRatioDelegate
@@ -65,6 +66,11 @@ class EffectDelegateFactory:
             degree = int(element.find(Tags.degreeTag).text)
             affectUser = int(element.find(Tags.affectUserTag).text)
             return CritModDelegate(stat, degree, affectUser)
+            
+        elif delegateType == "CURE STATUS":
+            status = element.find(Tags.statusTag).text
+            affectUser = int(element.find(Tags.affectUserTag).text)
+            return CureStatusDelegate(status, affectUser)
             
         elif delegateType == "DAMAGE IS EFFECT":
             return parent.damageDelegate

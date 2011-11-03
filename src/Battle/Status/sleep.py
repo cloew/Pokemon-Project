@@ -13,7 +13,6 @@ class Sleep(Status):
     max = 7
     
     def __init__(self):
-        self.abbr = Sleep.abbr
         self.setStatMods()
         self.turns = self.getTurns()
         
@@ -26,7 +25,7 @@ class Sleep(Status):
         messages = [side.getHeader() + Sleep.intermittent]
         
         if self.turns == 0:
-            messages.append(side.getHeader() + Sleep.done)
+            messages= messages + self.getDoneMessage(side)
             side.currPokemon.setStatus(Status())
             return False, messages
         

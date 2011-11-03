@@ -9,7 +9,6 @@ class Poison(Status):
     ratio = 8
     
     def __init__(self):
-        self.abbr = Poison.abbr
         self.setStatMods()
         
     def afterTurn(self, side):

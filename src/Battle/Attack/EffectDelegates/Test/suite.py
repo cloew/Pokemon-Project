@@ -1,6 +1,7 @@
 import unittest
 import applystatus_test
 import charge_test
+import curestatus_test
 import leechdelegate_test
 import periodichealdelegate_test
 import randomstatmod_test
@@ -9,6 +10,7 @@ import swapstatmods_test
 import trapdelegate_test
 
 suites = [applystatus_test.suite, charge_test.suite, 
+              curestatus_test.suite,
               leechdelegate_test.suite,
               periodichealdelegate_test.suite,
               randomstatmod_test.suite,
