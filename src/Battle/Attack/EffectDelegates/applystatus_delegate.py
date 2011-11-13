@@ -9,12 +9,17 @@ class ApplyStatusDelegate:
         self.status = status
         self.affectUser = affectUser
         
+    def getTargetSide(self, actingSide, otherSide):
+        """ Returns the side that is affected """
+        if self.affectUser:
+            return actingSide
+        else:
+            return otherSide
+        
     def applyEffect(self, actingSide, otherSide):
         """ Applies the status to one side based on affectUser """
-        if self.affectUser:
-            messages = self.applyStatus(actingSide)
-        else:
-            messages = self.applyStatus(otherSide)
+        side = self.getTargetSide(actingSide, otherSide)
+        messages = self.applyStatus(side)
             
         return messages
         
@@ -31,6 +36,13 @@ class ApplyStatusDelegate:
         message = side.getHeader() + message
         
         return [message]
+        
+    def immune(self, actingSide, otherSide):
+        """ Checks if the target is immune to the status effect """
+        status, message = StatusFactory.buildStatusFromAbbr(self.status)
+        side = self.getTargetSide(actingSide, otherSide)
+        
+        return self.checkImmune(status, side) or self.checkStatusAlready(side)
         
     def checkImmune(self, status, side):
         """ Returns if the target is immune to the status effect """

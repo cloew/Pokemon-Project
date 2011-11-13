@@ -5,11 +5,10 @@ import random
 class CrashDelegate(HitDelegate):
     """ An attack that can crash if it misses """
     
-    def __init__(self, parent, toHit, message, recoilEffect):
+    def __init__(self, parent, toHit, recoilEffect):
         """ Build a crash delegate """
         self.parent = parent
         self.chanceToHit = toHit
-        self.message = message
         self.recoilEffect = recoilEffect
         
     def hit(self, actingSide, otherSide):

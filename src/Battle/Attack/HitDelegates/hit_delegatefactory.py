@@ -1,8 +1,9 @@
-from Battle.Attack.HitDelegates.alwayshit_delegate import AlwaysHitDelegate
-from Battle.Attack.HitDelegates.crash_delegate import CrashDelegate
-from Battle.Attack.HitDelegates.hit_delegate import HitDelegate
-from Battle.Attack.HitDelegates.hitself_delegate import HitSelfDelegate
-from Battle.Attack.HitDelegates.piercedodge_delegate import PierceDodgeDelegate
+from alwayshit_delegate import AlwaysHitDelegate
+from crash_delegate import CrashDelegate
+from hit_delegate import HitDelegate
+from hitself_delegate import HitSelfDelegate
+from piercedodge_delegate import PierceDodgeDelegate
+from statushit_delegate import StatusHitDelegate
 
 
 from Battle.Attack.EffectDelegates.effect_delegatefactory import EffectDelegateFactory
@@ -11,9 +12,6 @@ from resources.tags import Tags
 
 class HitDelegateFactory:
     """ Builds HitDelegates """
-    
-    MISS = "Attack missed."
-    STATUSMISS = "But it failed."
     
     @staticmethod
     def loadFromAttackDex(attackdex, parent):
@@ -38,7 +36,7 @@ class HitDelegateFactory:
         
         elif delegateType == "CORE":
             accuracy = int(element.find(Tags.hitTag).text)
-            return HitDelegate(parent, accuracy, HitDelegateFactory.MISS)
+            return HitDelegate(parent, accuracy)
             
         elif delegateType == "CRASH":
             accuracy = int(element.find(Tags.hitTag).text)
@@ -59,7 +57,7 @@ class HitDelegateFactory:
             
         elif delegateType == "STATUS CORE":
             accuracy = int(element.find(Tags.hitTag).text)
-            return HitDelegate(parent, accuracy, HitDelegateFactory.STATUSMISS)
+            return StatusHitDelegate(parent, accuracy)
             
     @staticmethod
     def buildNull():

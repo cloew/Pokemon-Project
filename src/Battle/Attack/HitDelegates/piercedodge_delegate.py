@@ -3,11 +3,10 @@ from Battle.Attack.HitDelegates.hit_delegate import HitDelegate
 class PierceDodgeDelegate(HitDelegate):
     """ Represents an attack that pierces a certain kind of dodge """
     
-    def __init__(self, parent, toHit, message, pierce):
+    def __init__(self, parent, toHit, pierce):
         """ Build a core hit Delegate """
         self.parent = parent
         self.chanceToHit = toHit
-        self.message = message
         self.pierce = pierce
         
     def dodging(self, otherSide):

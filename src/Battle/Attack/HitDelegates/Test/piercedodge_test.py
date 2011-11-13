@@ -7,6 +7,7 @@ import unittest
 
 class dodging(unittest.TestCase):
     """ Test that dodging returns the correct values """
+    
     def setUp(self):
         """ Build side for use in test cases """
         trainer = Trainer()
@@ -14,7 +15,7 @@ class dodging(unittest.TestCase):
         trainer.beltPokemon = [pokemon]
         self.side = BattleSide(trainer)
         self.pierce = "DIG"
-        self.delegate = PierceDodgeDelegate(None, 100, "", self.pierce)
+        self.delegate = PierceDodgeDelegate(None, 100, self.pierce)
     
     def dodging(self):
         """ Test dodging function returns true correctly when the opp is dodging """
