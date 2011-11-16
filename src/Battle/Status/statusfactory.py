@@ -15,6 +15,6 @@ class StatusFactory:
     @staticmethod
     def buildStatusFromAbbr(abbr):
         """ Builds a status from the status' abbreviation"""
-        statusClass = StatusFactory.statuses[abbr]
+        status = StatusFactory.statuses[abbr]()
         
-        return statusClass(), statusClass.start
+        return status, status.start
