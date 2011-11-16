@@ -374,11 +374,6 @@
                 <status>BRN</status>
                 <affectUser>0</affectUser>
             </effectDelegate>
-            <effectDelegate>
-                <type>CURE STATUS</type>
-                <status>FRZ</status>
-                <affectUser>0</affectUser>
-            </effectDelegate>
         </effectDelegates>
     </attack>
     
