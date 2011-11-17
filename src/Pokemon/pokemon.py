@@ -1,3 +1,4 @@
+from Pokemon.Abilities.abilityfactory import AbilityFactory
 from Pokemon.pokemon_battle_delegate import PokemonBattleDelegate
 
 import sys
@@ -26,7 +27,7 @@ class Pokemon:
         self.level = int(values[2])
     
         self.id = ""
-    
+        self.ability = AbilityFactory.loadFromPkmnXML(file)
         self.battleDelegate = PokemonBattleDelegate().loadFromHumanTrainerFile(self, file)
     
         return self

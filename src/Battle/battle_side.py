@@ -38,7 +38,6 @@ class BattleSide:
             messages = effect.afterTurn(self)
             if func(messages):
                 return
-
         
     def betweenTurns(self):
         """ Perform between turns """

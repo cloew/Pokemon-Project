@@ -33,9 +33,12 @@ class ApplyStatusDelegate:
             return []
         
         side.currPokemon.setStatus(status)
-        message = side.getHeader() + message
+        messages = [side.getHeader() + message]
         
-        return [message]
+        message = side.currPokemon.ability.onStatus(side, status)
+        messages = messages + message
+        
+        return messages
         
     def immune(self, actingSide, otherSide):
         """ Checks if the target is immune to the status effect """

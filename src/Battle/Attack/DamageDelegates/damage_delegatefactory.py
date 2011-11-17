@@ -17,7 +17,7 @@ from Battle.Attack.CritDelegates.crit_delegate import CritDelegate
 from resources.tags import Tags
 
 class DamageDelegateFactory:
-    """ Builds HitDelegates """
+    """ Builds DamageDelegates """
     
     @staticmethod
     def loadFromAttackDex(attackdex, parent):

@@ -1,7 +1,9 @@
 
 class Tags:
     """ Holds all XML tags """
+    abilityTag = "ability"
     attackTag = "attack"
+    
     
     nameTag = "name"
     typeTag = "type"
