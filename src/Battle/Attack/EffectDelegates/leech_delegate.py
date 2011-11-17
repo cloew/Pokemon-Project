@@ -1,10 +1,10 @@
-from Battle.SecondaryEffects.AfterTurnEffects.leech import Leech
+from Battle.SecondaryEffects.leech import Leech
 
 class LeechDelegate :
     """ Represents an effect that slowly heals the user """
     
     def __init__(self, startMessage, message, type):
-        """ Build the Periodic Heal Delegate """
+        """ Build the Leech Delegate """
         self.startMessage = startMessage
         self.message = message
         self.type = type
@@ -15,19 +15,19 @@ class LeechDelegate :
         
         if not leech.immune(otherSide.currPokemon.getTypes(), type):
             self.removePreviousLeech(otherSide)
-            otherSide.afterEffects.append(leech)
+            otherSide.secondaryEffects.append(leech)
             return [otherSide.getHeader() + self.startMessage]
         
     def removePreviousLeech(self, side):
         """ Checks if the side already has a leech """
         effect = self.hasThisLeech(side)
         if effect:
-            side.afterEffects.remove(effect)
+            side.secondaryEffects.remove(effect)
                 
     def hasThisLeech(self, side):
         """ Returns if the side receiving the leech already has a leech """
-        for effect in side.afterEffects:
-            if effect.message == self.message:
+        for effect in side.secondaryEffects:
+            if effect.message is self.message:
                 return effect
                 
         return False 

@@ -17,7 +17,7 @@ class BattleSide:
         self.lastAction = None
         self.dodge = None
         
-        self.afterEffects = []
+        self.secondaryEffects = []
         
     def hasMorePokemon(self):
         """ Returns whether this side has more Pokemon """
@@ -34,7 +34,7 @@ class BattleSide:
         if func(messages):
             return
         
-        for effect in  self.afterEffects:
+        for effect in  self.secondaryEffects:
             messages = effect.afterTurn(self)
             if func(messages):
                 return

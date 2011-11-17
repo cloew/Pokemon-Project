@@ -48,8 +48,9 @@ class Effectiveness:
     def getEffectiveness(attackType, pokeTypes):
         """ Returns the effectiveness of an attack against a pokemon """
         mod = 1
-        for type in pokeTypes:
-            mod = mod*Effectiveness.getMod(attackType, type)
+        if not attackType == "":
+            for type in pokeTypes:
+                mod = mod*Effectiveness.getMod(attackType, type)
             
         return mod, Effectiveness.respond(mod)
     

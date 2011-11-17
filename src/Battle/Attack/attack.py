@@ -11,7 +11,7 @@ class Attack:
         self.effectDelegates = []
         
         self.conditionsToCheck = [self.checkLock, self.checkFlinch, self.checkCharging,
-                                              self.checkEncore, self.checkStatus]
+                                              self.checkEncore, self.checkStatus, self.checkSecondaries]
         
     def use(self, actingSide, otherSide):
         """ Uses the current attack Object in a Battle """
@@ -98,6 +98,16 @@ class Attack:
     def checkStatus(self, actingSide, otherSide):
         """ Checks if the user's status prevents a move this turn """
         return actingSide.currPokemon.getStatus().immobilized(actingSide)
+        
+    def checkSecondaries(self, actingSide, otherSide):
+        """ Checks if the user's secondary effects prevent a move this turn """
+        allMessages = []
+        for effect in actingSide.secondaryEffects:
+            stop, messages = effect.immobilized(actingSide)
+            allMessages = allMessages + messages
+            if stop:
+                return stop, allMessages
+        return False, allMessages
         
     def applyEffectsOnMiss(self, actingSide, otherSide):
         """ Apply effects on miss """

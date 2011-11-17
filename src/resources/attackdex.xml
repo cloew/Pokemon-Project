@@ -1037,6 +1037,26 @@
     <!-- Ghost -->
     
     <attack>
+        <name>CONFUSE RAY</name>
+        <type>GHOST</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CONFUSE</type>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
         <name>NIGHT SHADE</name>
         <type>GHOST</type>
         <PP>15</PP>

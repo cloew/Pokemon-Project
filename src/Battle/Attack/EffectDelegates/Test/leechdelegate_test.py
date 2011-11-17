@@ -1,7 +1,7 @@
 from Battle.Attack.EffectDelegates.leech_delegate import LeechDelegate
 
 from Battle.Attack.attack import Attack
-from Battle.SecondaryEffects.AfterTurnEffects.leech import Leech
+from Battle.SecondaryEffects.leech import Leech
 from Battle.battle_side import BattleSide
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
@@ -25,17 +25,17 @@ class applyEffect(unittest.TestCase):
         
     def appliesLeech(self):
         """ Tests if applyEffect applies the leech """
-        self.side.afterEffects = []
+        self.side.secondaryEffects = []
         self.delegate.applyEffect(self.side2, self.side)
         
-        assert isinstance(self.side.afterEffects[0], Leech), "Should have a Leech effect"
+        assert isinstance(self.side.secondaryEffects[0], Leech), "Should have a Leech effect"
         
     def immune(self):
         """ Tests if applyEffect applies the leech """
-        self.side2.afterEffects = []
+        self.side2.secondaryEffects = []
         self.delegate.applyEffect(self.side, self.side2)
         
-        assert len(self.side2.afterEffects) == 0, "Should have no Leech effects when the target is immune"
+        assert len(self.side2.secondaryEffects) == 0, "Should have no Leech effects when the target is immune"
         
 testcasesApplyEffect = ["appliesLeech", "immune"]
 suiteApplyEffect = unittest.TestSuite(map(applyEffect, testcasesApplyEffect))
@@ -56,10 +56,10 @@ class removePreviousLeech(unittest.TestCase):
         
     def removeLeech(self):
         """ Tests if the leech is removed """
-        self.side.afterEffects = [self.leech]
+        self.side.secondaryEffects = [self.leech]
         self.delegate.removePreviousLeech(self.side)
         
-        assert not self.leech in self.side.afterEffects, "Should have removed original trap effect"
+        assert not self.leech in self.side.secondaryEffects, "Should have removed original trap effect"
         
 testcasesRemovePreviousLeech = ["removeLeech"]
 suiteRemovePreviousLeech = unittest.TestSuite(map(removePreviousLeech, testcasesRemovePreviousLeech))
@@ -81,19 +81,19 @@ class hasThisLeech(unittest.TestCase):
         
     def hasLeech(self):
         """ Tests if hasThisLeech returns true when there is an object of this leech """
-        self.side.afterEffects = [self.leech]
+        self.side.secondaryEffects = [self.leech]
         
         assert self.delegate.hasThisLeech(self.side), "Should have a leech effect"
         
     def noLeech(self):
         """ Tests if hasThisLeech returns false when there is no trap """
-        self.side.afterEffects = []
+        self.side.secondaryEffects = []
         
         assert not self.delegate.hasThisLeech(self.side), "Should not have a leech effect"
         
     def otherLeech(self):
         """ Tests if hasThisLeech returns false when there is a different leech """
-        self.side.afterEffects = [self.otherLeech]
+        self.side.secondaryEffects = [self.otherLeech]
         
         assert not self.delegate.hasThisLeech(self.side), "Should not have a leech effect if there is a different leech effect there"
         

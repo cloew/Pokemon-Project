@@ -2,6 +2,7 @@ from applylock_delegate import ApplyLockDelegate
 from charge_delegate import ChargeDelegate
 from chance_delegate import ChanceDelegate
 from applystatus_delegate import ApplyStatusDelegate
+from confuse_delegate import ConfuseDelegate
 from critmod_delegate import CritModDelegate
 from curestatus_delegate import CureStatusDelegate
 from dodge_delegate import DodgeDelegate
@@ -60,6 +61,10 @@ class EffectDelegateFactory:
             hitOnTurn = int(element.find(Tags.hitOnTurnTag).text)
             message = element.find(Tags.messageTag).text
             return ChargeDelegate(turns, hitOnTurn, message)
+            
+        elif delegateType == "CONFUSE":
+            affectUser = int(element.find(Tags.affectUserTag).text)
+            return ConfuseDelegate(affectUser)
                 
         elif delegateType == "CRIT MOD":
             stat = element.find(Tags.statTag).text

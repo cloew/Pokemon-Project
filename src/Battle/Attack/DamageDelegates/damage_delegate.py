@@ -113,10 +113,11 @@ class DamageDelegate(object):
         
     def getCrit(self, messages, actingSide):
         """ Returns whether crit worked """
-        ret, message = self.parent.critDelegate.crit(actingSide)
-        if ret:
-            messages.append(message)
-            return 2
+        if hasattr(self.parent, "critDelegate"):
+            ret, message = self.parent.critDelegate.crit(actingSide)
+            if ret:
+                messages.append(message)
+                return 2
         return 1
         
     def takeDamage(self, damage, target):

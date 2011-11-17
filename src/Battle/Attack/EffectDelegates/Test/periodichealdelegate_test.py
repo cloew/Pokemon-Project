@@ -1,7 +1,7 @@
 from Battle.Attack.EffectDelegates.periodicheal_delegate import PeriodicHealDelegate
 
 from Battle.Attack.attack import Attack
-from Battle.SecondaryEffects.AfterTurnEffects.periodic_heal import PeriodicHeal
+from Battle.SecondaryEffects.periodic_heal import PeriodicHeal
 from Battle.battle_side import BattleSide
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
@@ -21,10 +21,10 @@ class applyEffect(unittest.TestCase):
         
     def appliesPeriodicHeal(self):
         """ Tests if applyEffect applies the heal """
-        self.side.afterEffects = []
+        self.side.secondaryEffects = []
         self.delegate.applyEffect(self.side, None)
         
-        assert isinstance(self.side.afterEffects[0], PeriodicHeal), "Should have a periodic heal effect"
+        assert isinstance(self.side.secondaryEffects[0], PeriodicHeal), "Should have a periodic heal effect"
         
 testcasesApplyEffect = ["appliesPeriodicHeal"]
 suiteApplyEffect = unittest.TestSuite(map(applyEffect, testcasesApplyEffect))
@@ -45,10 +45,10 @@ class removePreviousHeal(unittest.TestCase):
         
     def removesPeriodicHeal(self):
         """ Tests if removePreviousHeal actually removes the heal """
-        self.side.afterEffects = [self.heal]
+        self.side.secondaryEffects = [self.heal]
         self.delegate.removePreviousHeal(self.side)
         
-        assert not self.heal in self.side.afterEffects, "Should not have the original periodic heal effect"
+        assert not self.heal in self.side.secondaryEffects, "Should not have the original periodic heal effect"
         
 testcasesRemovePreviousHeal = ["removesPeriodicHeal"]
 suiteRemovePreviousHeal = unittest.TestSuite(map(removePreviousHeal, testcasesRemovePreviousHeal))
@@ -69,13 +69,13 @@ class hasHeal(unittest.TestCase):
         
     def hasHeal(self):
         """ Tests if hasHeal returns true when there is a heal """
-        self.side.afterEffects = [self.heal]
+        self.side.secondaryEffects = [self.heal]
         
         assert self.delegate.hasHeal(self.side), "Should have a periodic heal effect"
         
     def noHeal(self):
         """ Tests if hasHeal returns false when there is no heal """
-        self.side.afterEffects = []
+        self.side.secondaryEffects = []
         
         assert not self.delegate.hasHeal(self.side), "Should not have a periodic heal effect"
         

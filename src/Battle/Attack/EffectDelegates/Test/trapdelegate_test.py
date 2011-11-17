@@ -1,7 +1,7 @@
 from Battle.Attack.EffectDelegates.trap_delegate import TrapDelegate
 
 from Battle.Attack.attack import Attack
-from Battle.SecondaryEffects.AfterTurnEffects.trap import Trap
+from Battle.SecondaryEffects.trap import Trap
 from Battle.battle_side import BattleSide
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
@@ -21,10 +21,10 @@ class applyEffect(unittest.TestCase):
         
     def appliesTrap(self):
         """ Tests if applyEffect applies the trap """
-        self.side.afterEffects = []
+        self.side.secondaryEffects = []
         self.delegate.applyEffect(None, self.side)
         
-        assert isinstance(self.side.afterEffects[0], Trap), "Should have a trap effect"
+        assert isinstance(self.side.secondaryEffects[0], Trap), "Should have a trap effect"
         
 testcasesApplyEffect = ["appliesTrap"]
 suiteApplyEffect = unittest.TestSuite(map(applyEffect, testcasesApplyEffect))
@@ -45,10 +45,10 @@ class removePreviousTrap(unittest.TestCase):
         
     def removeTrap(self):
         """ Tests if the trap is removed """
-        self.side.afterEffects = [self.trap]
+        self.side.secondaryEffects = [self.trap]
         self.delegate.removePreviousTrap(self.side)
         
-        assert not self.trap in self.side.afterEffects, "Should have removed original trap effect"
+        assert not self.trap in self.side.secondaryEffects, "Should have removed original trap effect"
         
 testcasesRemovePreviousTrap = ["removeTrap"]
 suiteRemovePreviousTrap = unittest.TestSuite(map(removePreviousTrap, testcasesRemovePreviousTrap))
@@ -70,19 +70,19 @@ class hasThisTrap(unittest.TestCase):
         
     def hasTrap(self):
         """ Tests if hasThisTrap returns true when there is an object of this trap """
-        self.side.afterEffects = [self.trap]
+        self.side.secondaryEffects = [self.trap]
         
         assert self.delegate.hasThisTrap(self.side), "Should have a trap effect"
         
     def noTrap(self):
         """ Tests if hasThisTrap returns false when there is no trap """
-        self.side.afterEffects = []
+        self.side.secondaryEffects = []
         
         assert not self.delegate.hasThisTrap(self.side), "Should not have a trap effect"
         
     def otherTrap(self):
         """ Tests if hasThisTrap returns false when there is a different trap """
-        self.side.afterEffects = [self.otherTrap]
+        self.side.secondaryEffects = [self.otherTrap]
         
         assert not self.delegate.hasThisTrap(self.side), "Should not have a trap effect if there is a different trap effect there"
         

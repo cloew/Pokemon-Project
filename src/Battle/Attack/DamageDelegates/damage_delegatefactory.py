@@ -1,3 +1,5 @@
+from Battle.Attack.attack import Attack
+
 from Battle.Attack.DamageDelegates.damage_delegate import DamageDelegate
 from Battle.Attack.DamageDelegates.damagescale_delegate import DamageScaleDelegate
 from Battle.Attack.DamageDelegates.effect_ondamage_delegate import EffectOnDamageDelegate
@@ -102,3 +104,10 @@ class DamageDelegateFactory:
         delegate = element.find(Tags.critDelegateTag)
         base = int(delegate.find(Tags.baseTag).text)
         return CritDelegate(base)
+        
+    @staticmethod
+    def getConfusionAttack():
+        """  Builds and returns the DamageDelegate used for Confusion """
+        attack = Attack()
+        attack.type = ""
+        return DamageDelegate(attack, 40, 1)
