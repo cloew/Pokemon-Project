@@ -1,4 +1,4 @@
-from Battle.AfterTurnEffects.periodic_heal import PeriodicHeal
+from Battle.SecondaryEffects.AfterTurnEffects.periodic_heal import PeriodicHeal
 
 class PeriodicHealDelegate :
     """ Represents an effect that slowly heals the user """

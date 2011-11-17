@@ -1,7 +1,7 @@
 from Battle.Attack.EffectDelegates.leech_delegate import LeechDelegate
 
 from Battle.Attack.attack import Attack
-from Battle.AfterTurnEffects.leech import Leech
+from Battle.SecondaryEffects.AfterTurnEffects.leech import Leech
 from Battle.battle_side import BattleSide
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer

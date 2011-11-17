@@ -11,7 +11,7 @@ class Attack:
         self.effectDelegates = []
         
         self.conditionsToCheck = [self.checkLock, self.checkFlinch, self.checkCharging,
-                                              self.checkStatus]
+                                              self.checkEncore, self.checkStatus]
         
     def use(self, actingSide, otherSide):
         """ Uses the current attack Object in a Battle """
@@ -70,8 +70,8 @@ class Attack:
         if actingSide.trainer.actionLock and \
                 hasattr(actingSide.trainer.actionLock.action, "attack") and \
                 actingSide.trainer.actionLock.action.attack is not self:
-            actingSide.trainer.actionLock.attack.use(actingSide, otherSide)
-            return True, []
+            messages = actingSide.trainer.actionLock.attack.use(actingSide, otherSide)
+            return True, messages
         return False, []
         
         
@@ -87,6 +87,12 @@ class Attack:
             if hasattr(effect, "isCharging") and effect.isCharging(actingSide):
                 return True, [actingSide.getHeader() + effect.message]
                 
+        return False, []
+        
+    def checkEncore(self, actingSide, otherSide):
+        """ Checks if the user is being forced to encore """
+        if actingSide.encore > 0:
+            actingSide.encore = actingSide.encore - 1
         return False, []
         
     def checkStatus(self, actingSide, otherSide):

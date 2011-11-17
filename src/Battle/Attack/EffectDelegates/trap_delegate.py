@@ -1,4 +1,4 @@
-from Battle.AfterTurnEffects.trap import Trap
+from Battle.SecondaryEffects.AfterTurnEffects.trap import Trap
 
 class TrapDelegate :
     """ Represents an effect that traps the opponent """

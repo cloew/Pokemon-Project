@@ -1,4 +1,4 @@
-from Battle.AfterTurnEffects.leech import Leech
+from Battle.SecondaryEffects.AfterTurnEffects.leech import Leech
 
 class LeechDelegate :
     """ Represents an effect that slowly heals the user """

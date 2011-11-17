@@ -1,7 +1,7 @@
 from Battle.Attack.EffectDelegates.periodicheal_delegate import PeriodicHealDelegate
 
 from Battle.Attack.attack import Attack
-from Battle.AfterTurnEffects.periodic_heal import PeriodicHeal
+from Battle.SecondaryEffects.AfterTurnEffects.periodic_heal import PeriodicHeal
 from Battle.battle_side import BattleSide
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer

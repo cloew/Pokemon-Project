@@ -35,7 +35,7 @@
         </hitDelegate>
         <effectDelegates>
             <effectDelegate>
-                <type>APPLY LOCK</type>
+                <type>ENCORE</type>
                 <turns>3</turns>
                 <affectUser>0</affectUser>
             </effectDelegate>

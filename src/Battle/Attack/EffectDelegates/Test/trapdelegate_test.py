@@ -1,7 +1,7 @@
 from Battle.Attack.EffectDelegates.trap_delegate import TrapDelegate
 
 from Battle.Attack.attack import Attack
-from Battle.AfterTurnEffects.trap import Trap
+from Battle.SecondaryEffects.AfterTurnEffects.trap import Trap
 from Battle.battle_side import BattleSide
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer

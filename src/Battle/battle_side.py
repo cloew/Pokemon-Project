@@ -12,6 +12,8 @@ class BattleSide:
                                 
         self.flinching = False
         
+        self.encore = 0
+        
         self.lastAction = None
         self.dodge = None
         
