@@ -20,7 +20,7 @@ class Ability:
     def onLowHealth(self, side, status):
         """ Perform on low health """
         
-    def onStatMod(self, side, stat, degree, affectUser):
+    def onStatMod(self, side, stat, degree, selfInflicted):
         """ Perform when a stat is modded """
         return degree, [] #  Returns a modified degree and any messages related to that
     
