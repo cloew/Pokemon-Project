@@ -1,6 +1,9 @@
 
 class Ability:
     """ Represents a Pokemon's ability """
+    
+    def afterTurn(self, actingSide, otherSide):
+        """ Perform after a turn  """
         
     def effectiveness(self, side):
         """ Return effectiveness mods """
@@ -17,7 +20,7 @@ class Ability:
     def onLowHealth(self, side, status):
         """ Perform on low health """
         
-    def onStatMod(self, side, stat, degree):
+    def onStatMod(self, side, stat, degree, affectUser):
         """ Perform when a stat is modded """
         return degree, [] #  Returns a modified degree and any messages related to that
     

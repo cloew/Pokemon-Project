@@ -1,5 +1,11 @@
 <abilities>
     <ability>
+        <name>HYPER CUTTER</name>
+        <type>CANT LOWER STAT</type>
+        <stat>ATK</stat>
+    </ability>
+
+    <ability>
         <name>QUICK FEET</name>
         <type>STAT MOD ON STATUS</type>
         <status>PAR</status>

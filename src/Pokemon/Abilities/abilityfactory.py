@@ -1,5 +1,6 @@
 import xml.etree.ElementTree
 
+from cantlowerstat_ability import CantLowerStatAbility
 from statmodonstatus_ability import StatModOnStatusAbility
 
 from resources.tags import Tags
@@ -46,7 +47,11 @@ class AbilityFactory:
         name = tree.find(Tags.nameTag).text
         abilityType = tree.find(Tags.typeTag).text
         
-        if abilityType == "STAT MOD ON STATUS":
+        if abilityType == "CANT LOWER STAT":
+            stat = tree.find(Tags.statTag).text
+            return CantLowerStatAbility(name, stat)
+        
+        elif abilityType == "STAT MOD ON STATUS":
             status = tree.find(Tags.statusTag).text
             stat = tree.find(Tags.statTag).text
             mod = float(tree.find(Tags.degreeTag).text)

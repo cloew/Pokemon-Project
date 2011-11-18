@@ -16,23 +16,32 @@ class StatModDelegate(object):
     def applyEffect(self, actingSide, otherSide):
         """ Applies the Deleagates effect """
         if self.affectUser:
-            return [self.applyMod(actingSide)]
+            return self.applyMod(actingSide)
         else:
-            return [self.applyMod(otherSide)]
+            return self.applyMod(otherSide)
             
     def applyMod(self, side):
         """ Apply the modifier to the given side """
         header = self.getHeader(side)
-        newMod = side.statMods[self.stat] + self.degree
-        if newMod > 6:
+        messages = [header + self.getMessage()] 
+        
+        degree, abilityMessages = side.currPokemon.ability.\
+                                                onStatMod(side, self.stat, self.degree, self.affectUser)
+        
+        newMod = side.statMods[self.stat] + degree
+        
+        if degree == 0:
+            messages = abilityMessages
+        elif newMod > 6:
             side.statMods[self.stat] = 6
-            return header + StatModDelegate.noChangeUp
+            messages = [header + StatModDelegate.noChangeUp]
         elif newMod < -6:
             side.statMods[self.stat] = -6
-            return header + StatModDelegate.noChangeDown
+            messages = [header + StatModDelegate.noChangeDown]
+        else:
+            side.statMods[self.stat] = newMod
         
-        side.statMods[self.stat] = newMod
-        return header + self.getMessage()
+        return messages
         
     def getMessage(self):
         """ Return the appropriate message for whether the stat increased or decreased """

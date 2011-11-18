@@ -12,7 +12,7 @@ class onStatMod(unittest.TestCase):
         
     def properReturnValues(self):
         """ Check that onStatMod returns the proper default values """
-        degree, messages = self.ability.onStatMod(None, None, self.degree)
+        degree, messages = self.ability.onStatMod(None, None, self.degree, None)
         
         assert degree == self.degree, "Degree should be unmodified."
         assert len(messages) == 0, "Messages should have no elements"

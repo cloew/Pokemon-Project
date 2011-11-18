@@ -9,7 +9,7 @@ from Trainer.trainer import Trainer
 import unittest
 
 class onStatus(unittest.TestCase):
-    """ Test that onStatus returns the correct default values """
+    """ Test that onStatus operates correctly"""
     
     def setUp(self):
         """ Builds the delegate and side for use in the tests """
