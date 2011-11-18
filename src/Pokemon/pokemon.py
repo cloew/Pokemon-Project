@@ -1,4 +1,5 @@
 from Pokemon.Abilities.abilityfactory import AbilityFactory
+from Pokemon.Abilities.ability import Ability
 from Pokemon.pokemon_battle_delegate import PokemonBattleDelegate
 
 import sys
@@ -16,6 +17,7 @@ class Pokemon:
         self.name = species
         self.species = species
         self.level = 5
+        self.ability = Ability()
         self.battleDelegate = PokemonBattleDelegate().buildStarter(self)
         
   

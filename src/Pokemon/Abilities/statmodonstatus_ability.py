@@ -12,5 +12,10 @@ class StatModOnStatusAbility(Ability):
         
     def onStatus(self, side, status):
         """ Alter the statMods of the Status to reflect the abilities effect """
-        status.statMods[self.stat] = self.mod
-        return [side.getHeader() + " raised it's " + self.stat + "."]
+        messages = []
+        
+        if status.abbr == self.status:
+            status.statMods[self.stat] = self.mod
+            messages = [side.getHeader() + " raised it's " + self.stat + "."]
+            
+        return messages
