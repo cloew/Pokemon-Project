@@ -1,5 +1,10 @@
 <abilities>
     <ability>
+        <name>BATTLE ARMOR</name>
+        <type>NO CRIT</type>
+    </ability>
+
+    <ability>
         <name>HYPER CUTTER</name>
         <type>CANT LOWER STAT</type>
         <stat>ATK</stat>
@@ -11,5 +16,10 @@
         <status>PAR</status>
         <stat>SPD</stat>
         <degree>1.5</degree>
+    </ability>
+    
+    <ability>
+        <name>SNIPER</name>
+        <type>SNIPER</type>
     </ability>
 </abilities>

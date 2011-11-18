@@ -40,7 +40,7 @@ class DamageDelegate(object):
         # Get modifiers
         mod = self.getEffectiveness(messages, target)
         mod = mod*self.getStab(user)
-        mod = mod*self.getCrit(messages, actingSide)
+        mod = mod*self.getCrit(messages, actingSide, otherSide)
         
         return self.normalize(damage*mod), messages
         
@@ -111,14 +111,17 @@ class DamageDelegate(object):
             return 1.5
         return 1
         
-    def getCrit(self, messages, actingSide):
+    def getCrit(self, messages, actingSide, otherSide):
         """ Returns whether crit worked """
+        newMod = 1
         if hasattr(self.parent, "critDelegate"):
-            ret, message = self.parent.critDelegate.crit(actingSide)
-            if ret:
-                messages.append(message)
-                return 2
-        return 1
+            crit, message = self.parent.critDelegate.crit(actingSide)
+            if crit:
+                newMod = actingSide.currPokemon.ability.onCrit(2)
+                newMod = otherSide.currPokemon.ability.onCrit(newMod)
+                if newMod > 1:
+                    messages.append(message)
+        return newMod
         
     def takeDamage(self, damage, target):
         """ Has the target take damage """

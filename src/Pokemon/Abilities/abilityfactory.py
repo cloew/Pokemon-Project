@@ -1,6 +1,8 @@
 import xml.etree.ElementTree
 
 from cantlowerstat_ability import CantLowerStatAbility
+from nocrit_ability import NoCritAbility
+from sniper_ability import SniperAbility
 from statmodonstatus_ability import StatModOnStatusAbility
 
 from resources.tags import Tags
@@ -16,7 +18,7 @@ class AbilityFactory:
         tree = AbilityFactory.getAbilitydexTree()
         tree = AbilityFactory.getAbilityXML(tree, name)
         
-        # Build the ABility
+        # Build the Ability
         ability = AbilityFactory.buildAbilityFromXML(tree)
     
         return ability
@@ -50,6 +52,12 @@ class AbilityFactory:
         if abilityType == "CANT LOWER STAT":
             stat = tree.find(Tags.statTag).text
             return CantLowerStatAbility(name, stat)
+            
+        elif abilityType == "NO CRIT":
+            return NoCritAbility(name)
+            
+        elif abilityType == "SNIPER":
+            return SniperAbility(name)
         
         elif abilityType == "STAT MOD ON STATUS":
             status = tree.find(Tags.statusTag).text

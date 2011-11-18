@@ -11,6 +11,10 @@ class Ability:
     def onContact(self, side):
         """ Perform on attack that makes contact """
         
+    def onCrit(self, critMod):
+        """ Perform on a critical hit """
+        return critMod
+        
     def onDamage(self, side, damage):
         """ Perform on damage """
         
@@ -28,5 +32,5 @@ class Ability:
         """ Perform on application of status """
         return []
     
-    def onSwitch(self): # Maybe onEntry
+    def onSwitch(self):
         """ Perform on switch """
