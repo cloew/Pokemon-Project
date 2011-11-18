@@ -1,7 +1,7 @@
 from ability import Ability
 
 class CantLowerStatAbility(Ability):
-    """ An ability that modifies a stat when the parent receives a status """
+    """ An ability that prevents the opp from lowering a stat """
     message = "%s's %s prevented it's %s from being lowered."
     
     def __init__(self, name, stat):
