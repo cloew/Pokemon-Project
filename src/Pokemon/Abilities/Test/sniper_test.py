@@ -2,8 +2,8 @@ from Pokemon.Abilities.sniper_ability import SniperAbility
 
 import unittest
 
-class onCrit(unittest.TestCase):
-    """ Test that onCrit operates correctly """
+class giveCrit(unittest.TestCase):
+    """ Test that giveCrit operates correctly """
     
     def setUp(self):
         """ Builds the ability for use in the tests """
@@ -11,17 +11,17 @@ class onCrit(unittest.TestCase):
         
     def alwaysReturns3(self):
         """ Check gaurded stat is the only protected stat """
-        newMod = self.ability.onCrit(2)
+        newMod = self.ability.giveCrit(2)
         
         assert newMod == 3, "Mod should always be three."
         
-testcasesOnCrit = ["alwaysReturns3"]
-suiteOnCrit = unittest.TestSuite(map(onCrit, testcasesOnCrit))
+testcasesGiveCrit = ["alwaysReturns3"]
+suiteGiveCrit = unittest.TestSuite(map(giveCrit, testcasesGiveCrit))
 
 ##########################################################
 
  
-suites = [suiteOnCrit]
+suites = [suiteGiveCrit]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

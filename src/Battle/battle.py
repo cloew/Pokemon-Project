@@ -49,9 +49,9 @@ class Battle:
         actingSide.lastAction = action
         return action.doAction(actingSide, otherSide)
         
-    def afterTurn(self, actingSide, func):
+    def afterTurn(self, actingSide, func, otherSide):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
-        return actingSide.afterTurn(func)
+        return actingSide.afterTurn(func, otherSide)
         
     def betweenTurns(self, func):
         """ Perform between turns """

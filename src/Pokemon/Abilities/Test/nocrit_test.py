@@ -2,8 +2,8 @@ from Pokemon.Abilities.nocrit_ability import NoCritAbility
 
 import unittest
 
-class onCrit(unittest.TestCase):
-    """ Test that onCrit operates correctly """
+class takeCrit(unittest.TestCase):
+    """ Test that takeCrit operates correctly """
     
     def setUp(self):
         """ Builds the ability for use in the tests """
@@ -11,17 +11,18 @@ class onCrit(unittest.TestCase):
         
     def alwaysReturns1(self):
         """ Check gaurded stat is the only protected stat """
-        newMod = self.ability.onCrit(2)
+        newMod, messages = self.ability.takeCrit(2, None, None)
         
         assert newMod == 1, "Mod should always be one."
+        assert len(messages) == 0, "Should have no messages"
         
-testcasesOnCrit = ["alwaysReturns1"]
-suiteOnCrit = unittest.TestSuite(map(onCrit, testcasesOnCrit))
+testcasesTakeCrit = ["alwaysReturns1"]
+suiteTakeCrit = unittest.TestSuite(map(takeCrit, testcasesTakeCrit))
 
 ##########################################################
 
  
-suites = [suiteOnCrit]
+suites = [suiteTakeCrit]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

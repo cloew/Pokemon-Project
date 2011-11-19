@@ -44,7 +44,8 @@ class BattleViewController:
                 if self.reportAndCheckEnd(messages):
                     return
                 
-                messages = self.battle.afterTurn(sAndAs[i].side, self.reportAndCheckEnd)
+                messages = self.battle.afterTurn(sAndAs[i].side, self.reportAndCheckEnd,\
+                                                                sAndAs[not i].side)
                 if self.reportAndCheckEnd(messages):
                     return
                 

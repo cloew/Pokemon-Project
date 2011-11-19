@@ -5,8 +5,82 @@ from Pokemon.pokemon import Pokemon
 
 import unittest
 
+class checkNoChange(unittest.TestCase):
+    """ Test that checkNoChange returns the correct values """
+    
+    def setUp(self):
+        """ Builds the BattleSide """
+        self.stat = "ATK"
+        trainer = Trainer()
+        trainer.beltPokemon = [Pokemon("BULBASAUR")]
+        self.side = BattleSide(trainer)
+        
+        self.abilityMessages =  ["ability message"]
+        
+    def buildStatModDelegate(self, degree):
+        """ Returns a stat mod delegate with the given degree """
+        return StatModDelegate(self.stat, degree, 1)
+        
+    def change_ModRaise(self):
+        """ Test that a mod raise can return as a change"""
+        self.side.statMods[self.stat] = 0
+        delegate = self.buildStatModDelegate(1)
+        
+        noChange, messages = delegate.checkNoChange(self.side, 1, self.abilityMessages)
+        
+        assert not noChange, "Change when the mod can raise"
+        assert len(messages) == 0, "Should return no messages"
+        
+    def change_ModLower(self):
+        """ Test that a mod lower can return as a change"""
+        self.side.statMods[self.stat] = 0
+        delegate = self.buildStatModDelegate(-1)
+        
+        noChange, messages = delegate.checkNoChange(self.side, -1, self.abilityMessages)
+        
+        assert not noChange, "Change when the mod can lower"
+        assert len(messages) == 0, "Should return no messages"
+        
+    def noChange_modZero(self):
+        """ Test that a mod of zero returns as no change """
+        self.side.statMods[self.stat] = 0
+        delegate = self.buildStatModDelegate(0)
+        
+        noChange, messages = delegate.checkNoChange(self.side, 0, self.abilityMessages)
+        
+        assert noChange, "No change when degree is 0"
+        assert messages == self.abilityMessages, "Should return the ability message"
+        
+    def noChange_modTooHigh(self):
+        """ Test that a mod that can't raise returns as no change """
+        self.side.statMods[self.stat] = 6
+        delegate = self.buildStatModDelegate(2)
+        
+        noChange, messages = delegate.checkNoChange(self.side, 2, self.abilityMessages)
+        
+        assert noChange, "No change when degree is 0"
+        find = messages[0].find(StatModDelegate.noChangeUp)
+        assert not find == -1,"Should contain the message for going too high"
+        
+    def noChange_modTooLow(self):
+        """ Test that a mod that can't lower returns as no change """
+        self.side.statMods[self.stat] = -6
+        delegate = self.buildStatModDelegate(-2)
+        
+        noChange, messages = delegate.checkNoChange(self.side, -2, self.abilityMessages)
+        
+        assert noChange, "No change when degree is 0"
+        find = messages[0].find(StatModDelegate.noChangeDown)
+        assert not find == -1, "Should contain the message for going too low"
+        
+testcasesCheckNoChange = ["change_ModRaise", "change_ModLower", "noChange_modZero", "noChange_modTooHigh", "noChange_modTooLow"]
+suiteCheckNoChange = unittest.TestSuite(map(checkNoChange, testcasesCheckNoChange))
+
+##########################################################
+
 class getMessage(unittest.TestCase):
     """ Test that getMessage returns the correct values """
+    
     def setUp(self):
         """ Grabs the message dictionary from StatModDelegate """
         self.riseOrFall = StatModDelegate.riseOrFall
@@ -137,7 +211,7 @@ suiteGetHeader = unittest.TestSuite(map(getHeader, testcasesGetHeader))
 
 #########################################################
  
-suites = [suiteGetMessage, suiteApplyEffect, suiteGetHeader]
+suites = [suiteCheckNoChange, suiteGetMessage, suiteApplyEffect, suiteGetHeader]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

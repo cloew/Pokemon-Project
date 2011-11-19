@@ -107,8 +107,8 @@ class DamageDelegate(object):
         
     def getStab(self, user):
         """ Returns the modifier for STAB """
-        if self.parent.type in user.battleDelegate.types:
-            return 1.5
+        if self.parent.type in user.getTypes():
+            return user.ability.onStab()
         return 1
         
     def getCrit(self, messages, actingSide, otherSide):
@@ -117,10 +117,15 @@ class DamageDelegate(object):
         if hasattr(self.parent, "critDelegate"):
             crit, message = self.parent.critDelegate.crit(actingSide)
             if crit:
-                newMod = actingSide.currPokemon.ability.onCrit(2)
-                newMod = otherSide.currPokemon.ability.onCrit(newMod)
+                newMod = actingSide.currPokemon.ability.giveCrit(2)
+                newMod, abilityMessages = otherSide.currPokemon.ability.takeCrit\
+                                                                        (newMod, otherSide, actingSide)
+                
                 if newMod > 1:
                     messages.append(message)
+                    for message in abilityMessages:
+                        messages.append(message)
+                    
         return newMod
         
     def takeDamage(self, damage, target):

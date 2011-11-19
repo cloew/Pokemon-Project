@@ -7,6 +7,6 @@ class NoCritAbility(Ability):
         """ Builds the Ability """
         self.name = name
         
-    def onCrit(self, critMod):
+    def takeCrit(self, critMod, thisSide, otherSide):
         """ Prevent the crit """
-        return 1
+        return 1, []

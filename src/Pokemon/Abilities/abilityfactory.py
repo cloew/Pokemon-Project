@@ -1,6 +1,11 @@
 import xml.etree.ElementTree
 
+from Battle.Attack.EffectDelegates.effect_delegatefactory import EffectDelegateFactory
+
+from booststab_ability import BoostStabAbility
 from cantlowerstat_ability import CantLowerStatAbility
+from effectafterturn_ability import EffectAfterTurnAbility
+from effectoncrit_ability import EffectOnCritAbility
 from nocrit_ability import NoCritAbility
 from sniper_ability import SniperAbility
 from statmodonstatus_ability import StatModOnStatusAbility
@@ -49,9 +54,32 @@ class AbilityFactory:
         name = tree.find(Tags.nameTag).text
         abilityType = tree.find(Tags.typeTag).text
         
-        if abilityType == "CANT LOWER STAT":
+        if abilityType == "BOOST STAB":
+            return BoostStabAbility(name)
+        
+        elif abilityType == "CANT LOWER STAT":
             stat = tree.find(Tags.statTag).text
             return CantLowerStatAbility(name, stat)
+            
+        elif abilityType == "EFFECT AFTER TURN":
+            effectsTree = tree.find(Tags.effectDelegatesTag)
+            effects = []
+        
+            for effectTree in effectsTree.getchildren():
+                effect = EffectDelegateFactory.loadFromXML(effectTree, None)
+                effects.append(effect)
+                
+            return EffectAfterTurnAbility(name, effects)
+            
+        elif abilityType == "EFFECT ON CRIT":
+            effectsTree = tree.find(Tags.effectDelegatesTag)
+            effects = []
+        
+            for effectTree in effectsTree.getchildren():
+                effect = EffectDelegateFactory.loadFromXML(effectTree, None)
+                effects.append(effect)
+                
+            return EffectOnCritAbility(name, effects)
             
         elif abilityType == "NO CRIT":
             return NoCritAbility(name)

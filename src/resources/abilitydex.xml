@@ -1,5 +1,23 @@
 <abilities>
     <ability>
+        <name>ADAPTABILITY</name>
+        <type>BOOST STAB</type>
+    </ability>
+    
+    <ability>
+        <name>ANGER POINT</name>
+        <type>EFFECT ON CRIT</type>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>ATK</stat>
+                <degree>12</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </ability>
+
+    <ability>
         <name>BATTLE ARMOR</name>
         <type>NO CRIT</type>
     </ability>
@@ -16,6 +34,44 @@
         <status>PAR</status>
         <stat>SPD</stat>
         <degree>1.5</degree>
+    </ability>
+    
+    <ability>
+        <name>SHED SKIN</name>
+        <type>EFFECT AFTER TURN</type>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>33</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>CURE STATUS</type>
+                        <status>BRN</status>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>CURE STATUS</type>
+                        <status>FRZ</status>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>CURE STATUS</type>
+                        <status>PAR</status>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>CURE STATUS</type>
+                        <status>PSN</status>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>CURE STATUS</type>
+                        <status>SLP</status>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
     </ability>
     
     <ability>

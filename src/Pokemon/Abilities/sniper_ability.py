@@ -7,6 +7,6 @@ class SniperAbility(Ability):
         """ Builds the Ability """
         self.name = name
         
-    def onCrit(self, critMod):
+    def giveCrit(self, critMod):
         """ Triple crit damage """
         return 3

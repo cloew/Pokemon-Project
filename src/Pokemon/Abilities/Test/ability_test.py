@@ -2,6 +2,80 @@ from Pokemon.Abilities.ability import Ability
 
 import unittest
 
+class afterTurn(unittest.TestCase):
+    """ Test that afterTurn returns the correct default values """
+    
+    def setUp(self):
+        """ Builds the ability """
+        self.ability = Ability()
+        
+    def properReturnValues(self):
+        """ Check that onStatMod returns the proper default values """
+        messages = self.ability.afterTurn(None, None)
+        assert len(messages) == 0, "Messages should have no elements"
+        
+testcasesAfterTurn = ["properReturnValues"]
+suiteAfterTurn = unittest.TestSuite(map(afterTurn, testcasesAfterTurn))
+
+##########################################################
+
+class giveCrit(unittest.TestCase):
+    """ Test that giveCrit returns the correct mods """
+    
+    def setUp(self):
+        """ Builds the delegate and side for use in the tests """
+        self.ability = Ability()
+        self.mod = 2
+        
+    def properReturnValues(self):
+        """ Check that onStatMod returns the proper default values """
+        mod = self.ability.giveCrit(self.mod)
+        
+        assert mod == self.mod, "Mod should not be altered."
+        
+testcasesGiveCrit = ["properReturnValues"]
+suiteGiveCrit = unittest.TestSuite(map(giveCrit, testcasesGiveCrit))
+
+##########################################################
+
+class takeCrit(unittest.TestCase):
+    """ Test that takeCrit returns the correct mods """
+    
+    def setUp(self):
+        """ Builds the delegate and side for use in the tests """
+        self.ability = Ability()
+        self.mod = 2
+        
+    def properReturnValues(self):
+        """ Check that onStatMod returns the proper default values """
+        mod, messages = self.ability.takeCrit(self.mod, None, None)
+        
+        assert mod == self.mod, "Mod should not be altered."
+        assert len(messages) == 0, "Should have no messages returned."
+        
+testcasesTakeCrit = ["properReturnValues"]
+suiteTakeCrit = unittest.TestSuite(map(takeCrit, testcasesTakeCrit))
+
+##########################################################
+
+class onStab(unittest.TestCase):
+    """ Test that onStab returns the correct mods """
+    
+    def setUp(self):
+        """ Builds the delegate and side for use in the tests """
+        self.ability = Ability()
+        
+    def properReturnValues(self):
+        """ Check that onStatMod returns the proper default values """
+        mod = self.ability.onStab()
+        
+        assert mod == self.ability.stabMod, "Stab Mod should be default."
+        
+testcasesOnStab = ["properReturnValues"]
+suiteOnStab = unittest.TestSuite(map(onStab, testcasesOnStab))
+
+##########################################################
+
 class onStatMod(unittest.TestCase):
     """ Test that onStatMod returns the correct default values """
     
@@ -41,7 +115,7 @@ suiteOnStatus = unittest.TestSuite(map(onStatus, testcasesOnStatus))
 ##########################################################
 
  
-suites = [suiteOnStatMod, suiteOnStatus]
+suites = [suiteAfterTurn, suiteGiveCrit, suiteTakeCrit, suiteOnStab, suiteOnStatMod, suiteOnStatus]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
