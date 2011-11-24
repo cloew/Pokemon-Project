@@ -2,6 +2,7 @@ import xml.etree.ElementTree
 
 from Battle.Attack.EffectDelegates.effect_delegatefactory import EffectDelegateFactory
 
+from accmod_ability import AccModAbility
 from booststab_ability import BoostStabAbility
 from cantlowerstat_ability import CantLowerStatAbility
 from effectafterturn_ability import EffectAfterTurnAbility
@@ -54,7 +55,11 @@ class AbilityFactory:
         name = tree.find(Tags.nameTag).text
         abilityType = tree.find(Tags.typeTag).text
         
-        if abilityType == "BOOST STAB":
+        if abilityType == "ACC MOD":
+            mod = float(tree.find(Tags.degreeTag).text)
+            return AccModAbility(name, mod)
+        
+        elif abilityType == "BOOST STAB":
             return BoostStabAbility(name)
         
         elif abilityType == "CANT LOWER STAT":

@@ -21,6 +21,12 @@
         <name>BATTLE ARMOR</name>
         <type>NO CRIT</type>
     </ability>
+    
+    <ability>
+        <name>COMPOUNDEYES</name>
+        <type>ACC MOD</type>
+        <degree>1.3</degree>
+    </ability>
 
     <ability>
         <name>HYPER CUTTER</name>

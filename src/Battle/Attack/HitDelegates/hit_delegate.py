@@ -21,9 +21,10 @@ class HitDelegate(object):
     def core(self, actingSide, otherSide):
         """ Calculates a random #, compares to chanceToHit to determine if it
         lands or not """
+        accuracy = actingSide.currPokemon.ability.onAccuracy(self.chanceToHit)
         accMod = HitDelegate.accMods[actingSide.statMods["ACC"]]
         evasMod = HitDelegate.accMods[-1*otherSide.statMods["EVAS"]]
-        toHit = self.chanceToHit*accMod*evasMod
+        toHit = accuracy*accMod*evasMod
         return random.randint(0, 99) < toHit
         
     def dodging(self, otherSide):

@@ -9,6 +9,6 @@ class EffectAfterTurnAbility(Ability):
         self.effects = effects
         
     def afterTurn(self, thisSide, otherSide):
-        """ Prevent the crit """
+        """ Call the effects """
         messages = self.callEffects(thisSide, otherSide)
         return messages

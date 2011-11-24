@@ -37,7 +37,11 @@ class Attack:
         # Do damage
         message = self.damageDelegate.doDamage(actingSide, otherSide)
         if message and len(message) is not 0:
-            messages = messages + message      
+            messages = messages + message  
+
+        # Check if effects should be used
+        if self.preventEffects(user, target):
+            return messages
         
         # Apply effects
         for effect in self.effectDelegates:
@@ -108,6 +112,12 @@ class Attack:
             if stop:
                 return stop, allMessages
         return False, allMessages
+        
+    def preventEffects(self, user, target):
+        """ Return whether the effects are prevented """
+        nullDamage = hasattr(self.damageDelegate, "isNull")
+        canUse = user.ability.canUseEffects() and target.ability.canUseEffects()
+        return not nullDamage and not canUse
         
     def applyEffectsOnMiss(self, actingSide, otherSide):
         """ Apply effects on miss """

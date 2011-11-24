@@ -10,12 +10,29 @@ class afterTurn(unittest.TestCase):
         self.ability = Ability()
         
     def properReturnValues(self):
-        """ Check that onStatMod returns the proper default values """
+        """ Check that afterTurn returns the proper default values """
         messages = self.ability.afterTurn(None, None)
         assert len(messages) == 0, "Messages should have no elements"
         
 testcasesAfterTurn = ["properReturnValues"]
 suiteAfterTurn = unittest.TestSuite(map(afterTurn, testcasesAfterTurn))
+
+##########################################################
+
+class canUseEffects(unittest.TestCase):
+    """ Test that canUseEffects returns the correct default values """
+    
+    def setUp(self):
+        """ Builds the ability """
+        self.ability = Ability()
+        
+    def properReturnValues(self):
+        """ Check that afterTurn returns the proper default values """
+        can = self.ability.canUseEffects()
+        assert can, "Should be able to use Effects"
+        
+testcasesCanUseEffects = ["properReturnValues"]
+suiteCanUseEffects = unittest.TestSuite(map(canUseEffects, testcasesCanUseEffects))
 
 ##########################################################
 
@@ -28,7 +45,7 @@ class giveCrit(unittest.TestCase):
         self.mod = 2
         
     def properReturnValues(self):
-        """ Check that onStatMod returns the proper default values """
+        """ Check that giveCrit returns the proper default values """
         mod = self.ability.giveCrit(self.mod)
         
         assert mod == self.mod, "Mod should not be altered."
@@ -47,7 +64,7 @@ class takeCrit(unittest.TestCase):
         self.mod = 2
         
     def properReturnValues(self):
-        """ Check that onStatMod returns the proper default values """
+        """ Check that takeCrit returns the proper default values """
         mod, messages = self.ability.takeCrit(self.mod, None, None)
         
         assert mod == self.mod, "Mod should not be altered."
@@ -55,6 +72,24 @@ class takeCrit(unittest.TestCase):
         
 testcasesTakeCrit = ["properReturnValues"]
 suiteTakeCrit = unittest.TestSuite(map(takeCrit, testcasesTakeCrit))
+
+##########################################################
+
+class onAccuracy(unittest.TestCase):
+    """ Test that onAccuracy returns the correct default values """
+    
+    def setUp(self):
+        """ Builds the ability """
+        self.ability = Ability()
+        self.accuracy = 90
+        
+    def properReturnValues(self):
+        """ Check that onAccuracy returns the proper default values """
+        accuracy = self.ability.onAccuracy(self.accuracy)
+        assert accuracy == self.accuracy, "Accuracy should be unaltered."
+        
+testcasesOnAccuracy = ["properReturnValues"]
+suiteOnAccuracy = unittest.TestSuite(map(onAccuracy, testcasesOnAccuracy))
 
 ##########################################################
 
@@ -115,7 +150,8 @@ suiteOnStatus = unittest.TestSuite(map(onStatus, testcasesOnStatus))
 ##########################################################
 
  
-suites = [suiteAfterTurn, suiteGiveCrit, suiteTakeCrit, suiteOnStab, suiteOnStatMod, suiteOnStatus]
+suites = [suiteAfterTurn, suiteCanUseEffects, suiteGiveCrit, suiteTakeCrit,\
+             suiteOnAccuracy, suiteOnStab, suiteOnStatMod, suiteOnStatus]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

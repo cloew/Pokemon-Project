@@ -11,6 +11,9 @@ class Ability:
     def effectiveness(self, side):
         """ Return effectiveness mods """
         
+    def canUseEffects(self):
+        """ Return whether effects on damaging attacks can be used """
+        return True
         
     # Effects on Crit
     def giveCrit(self, critMod):
@@ -22,7 +25,9 @@ class Ability:
         return critMod, []
         
         
-        
+    def onAccuracy(self, accuracy):
+        """ Perform on accuracy """
+        return accuracy
         
     def onContact(self, side):
         """ Perform on attack that makes contact """
