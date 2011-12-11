@@ -7,12 +7,11 @@ class PkmnBattleWrapper:
         self.side = side
         self.pkmn = None
         #self.trainer = trainer # May add back later if I decide to have mulitple trainers on the same side in a battle
-        #self.currPokemon = trainer.getFirstPokemon()
+        
         self.statMods = {"ATK":0, "DEF":0, "SPD":0, "SATK":0, "SDEF":0, 
                                 "ACC":0, "EVAS":0, "CRT":0}
                                 
         self.flinching = False
-        
         self.encore = 0
         
         self.lastAction = None
@@ -23,7 +22,7 @@ class PkmnBattleWrapper:
     def sendOutPkmn(self, pkmn):
         """ Sends out the wrapper's pkmn """
         self.pkmn = pkmn
-        return "%s sends out %s." % (self.side.trainer.getFullName(), self.pkmn.name)
+        return self.side.trainer.announcePkmn(pkmn)
         
     def resetStatMods(self):
         """ Resets the stat mods for the side """

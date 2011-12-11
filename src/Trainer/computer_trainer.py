@@ -27,6 +27,10 @@ class ComputerTrainer(Trainer):
         """ Return the header based on the type of trainer """
         return ComputerTrainer.header
         
+    def announcePkmn(self, pkmn):
+        """ Announce a pkmn the trainer sends out """
+        return "%s sends out %s." % (self.getFullName(), pkmn.name)
+        
     def getFullName(self):
         """ Return the full Name and Title of the trainer """
         return "%s %s" % (self.title, self.name)

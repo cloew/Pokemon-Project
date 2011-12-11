@@ -7,10 +7,15 @@ import random
 class HumanTrainer(Trainer):
     """ Represents a Pokemon Trainer """
     header = ""
+    
 
     def getHeader(self):
         """ Return the header based on the type of trainer """
         return HumanTrainer.header
+        
+    def announcePkmn(self, pkmn):
+        """ Announce a pkmn the trainer sends out """
+        return "%s, I choose you!." % pkmn.name
         
     def getFullName(self):
         """ Return the full Name and Title of the trainer """
