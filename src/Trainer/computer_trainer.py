@@ -26,3 +26,7 @@ class ComputerTrainer(Trainer):
     def getHeader(self):
         """ Return the header based on the type of trainer """
         return ComputerTrainer.header
+        
+    def getFullName(self):
+        """ Return the full Name and Title of the trainer """
+        return "%s %s" % (self.title, self.name)

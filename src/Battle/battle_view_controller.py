@@ -21,8 +21,17 @@ class BattleViewController:
         # Introduce the Battle Environment
         self.screen.introduce()
         
+        self.sendOutPkmnOnSide(self.battle.oppSide)
+        self.sendOutPkmnOnSide(self.battle.playerSide)
+        
         # Start the Game Loop
-        self.gameLoop()
+        #self.gameLoop()
+        
+    def sendOutPkmnOnSide(self, side):
+        """ Sends out the Pkmn for the given side """
+        messages = side.sendOutPkmn()
+        for message in messages:
+            self.screen.reportMessage(message)
         
     def gameLoop(self):
         """ Runs through one iteration if the game """

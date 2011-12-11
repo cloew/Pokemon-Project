@@ -17,11 +17,8 @@ class ConsoleBattleScreen:
     def introduce(self):
         """ Performs the introduction to the battle """
         oppTrainer = self.battle.getOppTrainer()
-        playerTrainer = self.battle.getPlayerTrainer()
         
-        print oppTrainer.name, "challenges you to a Pokemon Battle!"
-        print oppTrainer.name, "sends out", oppTrainer.getFirstPokemon().name
-        print "You send out", playerTrainer.getFirstPokemon().name
+        print oppTrainer.getFullName(), " challenges you to a Pokemon Battle!"
         
     def printScreen(self):
         """ Prints the screen """
@@ -88,9 +85,13 @@ class ConsoleBattleScreen:
         self.printScreen()
         
         for message in messages:
-            print message
+            self.reportMessage(message)
         
         raw_input("Press 'Enter' to continue")
+        
+    def reportMessage(self, message):
+        """ Report a Single message """
+        print message
     
     @staticmethod
     def getInput(validInput):
