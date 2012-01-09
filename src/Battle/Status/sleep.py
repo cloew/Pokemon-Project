@@ -20,13 +20,13 @@ class Sleep(Status):
         """ Returns a # of turns from 1-7 """
         return random.randint(Sleep.min, Sleep.max)
         
-    def immobilized(self, side):
+    def immobilized(self, pkmn):
         """ Returns whether the status prevents an action """
-        messages = [side.getHeader() + Sleep.intermittent]
+        messages = [pkmn.getHeader() + Sleep.intermittent]
         
         if self.turns == 0:
-            messages= messages + self.getDoneMessage(side)
-            side.currPokemon.setStatus(Status())
+            messages= messages + self.getDoneMessage(pkmn)
+            pkmn.currPokemon.setStatus(Status())
             return False, messages
         
         self.turns = self.turns - 1

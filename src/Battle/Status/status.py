@@ -2,7 +2,6 @@
 class Status:
     """ Represents a Status on a Pokemon """
     
-    
     def __init__(self):
         """ Build a Status """
         self.abbr = "   "
@@ -12,11 +11,11 @@ class Status:
         self.statMods = {"ATK":1, "DEF":1, "SPD":1, "SATK":1, "SDEF":1, 
                                 "ACC":1, "EVAS":1, "CRT":1, "HP":1}
         
-    def immobilized(self, side):
+    def immobilized(self, pkmn):
         """ Returns whether the status prevents an action """
         return False, []
         
-    def afterTurn(self, side):
+    def afterTurn(self, pkmn):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
         return []
         
@@ -27,8 +26,8 @@ class Status:
     def immune(self, targetTypes, attackType):
         """ Returns whether the given types is immune to the status """
         
-    def getDoneMessage(self, side):
+    def getDoneMessage(self, pkmn):
         """  Returns the string to be displayed when the function ends """
-        return [side.getHeader() + self.done]
+        return [pkmn.getHeader() + self.done]
         
     

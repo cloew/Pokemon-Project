@@ -15,11 +15,11 @@ class Paralysis(Status):
         self.setStatMods()
         self.statMods["SPD"] = .25
         
-    def immobilized(self, side):
+    def immobilized(self, pkmn):
         """ Return whether the user is paralyzed
         and any messages for the screen"""
         if Paralysis.paralyzed(random.randint(0, 99)):
-            return True, [side.getHeader() + Paralysis.cantMove]
+            return True, [pkmn.getHeader() + Paralysis.cantMove]
         return False, []
         
     def immune(self, targetTypes, attackType):

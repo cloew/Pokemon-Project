@@ -20,12 +20,12 @@ class Freeze(Status):
         """ Returns a random # from 0-4 """
         return random.randint(0, 4)
         
-    def immobilized(self, side):
+    def immobilized(self, pkmn):
         """ Returns whether the status prevents an action """
-        messages = [side.getHeader() + Freeze.intermittent]
+        messages = [pkmn.getHeader() + Freeze.intermittent]
         
         if self.thawed(self.getRandom()):
-            messages = messages + self.getDoneMessage(side)
-            side.currPokemon.setStatus(Status())
+            messages = messages + self.getDoneMessage(pkmn)
+            pkmn.currPokemon.setStatus(Status())
         
         return True, messages
