@@ -9,7 +9,8 @@ class HitSelfDelegate(HitDelegate):
     def __init__(self):
         """ Builds an self hit delegate with no parameters """
     
-    
-    def hit(self, actingSide, otherSide):
+    # Will incorporate into the default hit
+    # When user is target, automatically hits
+    def hit(self, user, target):
         """ Returns true, always hits, unless other circumstances """
         return True, []

@@ -13,20 +13,20 @@ class HitDelegate(object):
         self.chanceToHit = toHit
     
     
-    def hit(self, actingSide, otherSide):
+    def hit(self, user, target):
         """ Returns whether or not an attack hit its target """
-        return not self.dodging(otherSide) and self.core(actingSide, otherSide), [self.message]
+        return not self.dodging(target) and self.core(user, target), [self.message]
         
         
-    def core(self, actingSide, otherSide):
+    def core(self, user, target):
         """ Calculates a random #, compares to chanceToHit to determine if it
         lands or not """
-        accuracy = actingSide.currPokemon.ability.onAccuracy(self.chanceToHit)
-        accMod = HitDelegate.accMods[actingSide.statMods["ACC"]]
-        evasMod = HitDelegate.accMods[-1*otherSide.statMods["EVAS"]]
+        accuracy = user.currPokemon.ability.onAccuracy(self.chanceToHit)
+        accMod = HitDelegate.accMods[user.statMods["ACC"]]
+        evasMod = HitDelegate.accMods[-1*target.statMods["EVAS"]]
         toHit = accuracy*accMod*evasMod
         return random.randint(0, 99) < toHit
         
-    def dodging(self, otherSide):
+    def dodging(self, target):
             """ Returns if the opp is dodging """
-            return otherSide.dodge is not None 
+            return target.dodge is not None 

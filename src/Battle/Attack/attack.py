@@ -1,3 +1,4 @@
+from preconditions import PreconditionsChecker
 from resources.tags import Tags
 
 class Attack:
@@ -10,25 +11,26 @@ class Attack:
         
         self.effectDelegates = []
         
-        self.conditionsToCheck = [self.checkLock, self.checkFlinch, self.checkCharging,
-                                              self.checkEncore, self.checkStatus, self.checkSecondaries]
-        
-    def use(self, actingSide, otherSide):
+    #def use(self, actingSide, otherSide):
+    def use(self, user, target):
         """ Uses the current attack Object in a Battle """
-        user = actingSide.currPokemon
-        target = otherSide.currPokemon
+        #user = actingSide.currPokemon
+        #target = otherSide.currPokemon
         messages = []
         
         # Check for pre attack factors
-        stop, preMessages = self.checkPreConditions(actingSide, otherSide)
+        preconditionChecker = PreconditionsChecker(user, target, self)
+        stop, preMessages = preconditionChecker.checkPreConditions(user, target)
         messages = preMessages
         if stop:
             return preMessages
+            
+        # Lower PP
         
-        messages = messages + ["{0} USED {1}".format(actingSide.getHeader(), self.name)]
+        messages = messages + ["{0} USED {1}".format(user.getHeader(), self.name)]
         
         # Check for hit
-        hit, hitMessages = self.hitDelegate.hit(actingSide, otherSide)
+        hit, hitMessages = self.hitDelegate.hit(user, target)
         if not hit:
             messages = messages + hitMessages
             messages = messages + self.applyEffectsOnMiss(actingSide, otherSide)
@@ -56,62 +58,6 @@ class Attack:
             self.effectDelegates.append(delegate)
             return
         setattr(self, delegateCategory, delegate)
-        
-    def checkPreConditions(self, actingSide, otherSide):
-        """ Checks all pre-conditions to the Battle """
-        messages = []
-        for condition in self.conditionsToCheck:
-            stop, message = condition(actingSide, otherSide)
-            messages = messages + message
-            if stop:
-                return stop, messages
-        
-        return False, messages
-        
-    def checkLock(self, actingSide, otherSide):
-        """ Checks if the user has acquired a lock during this turn
-        If so, use the lock """
-        if actingSide.trainer.actionLock and \
-                hasattr(actingSide.trainer.actionLock.action, "attack") and \
-                actingSide.trainer.actionLock.action.attack is not self:
-            messages = actingSide.trainer.actionLock.attack.use(actingSide, otherSide)
-            return True, messages
-        return False, []
-        
-        
-    def checkFlinch(self, actingSide, otherSide):
-        """ Checks if the actor is flinching """
-        if actingSide.flinching:
-            return True, [actingSide.getHeader() + " flinched."]
-        return False, []
-        
-    def checkCharging(self, actingSide, otherSide):
-        """ Checks if the user's attack requires charging on this turn """
-        for effect in self.effectDelegates:
-            if hasattr(effect, "isCharging") and effect.isCharging(actingSide):
-                return True, [actingSide.getHeader() + effect.message]
-                
-        return False, []
-        
-    def checkEncore(self, actingSide, otherSide):
-        """ Checks if the user is being forced to encore """
-        if actingSide.encore > 0:
-            actingSide.encore = actingSide.encore - 1
-        return False, []
-        
-    def checkStatus(self, actingSide, otherSide):
-        """ Checks if the user's status prevents a move this turn """
-        return actingSide.currPokemon.getStatus().immobilized(actingSide)
-        
-    def checkSecondaries(self, actingSide, otherSide):
-        """ Checks if the user's secondary effects prevent a move this turn """
-        allMessages = []
-        for effect in actingSide.secondaryEffects:
-            stop, messages = effect.immobilized(actingSide)
-            allMessages = allMessages + messages
-            if stop:
-                return stop, allMessages
-        return False, allMessages
         
     def preventEffects(self, user, target):
         """ Return whether the effects are prevented """
