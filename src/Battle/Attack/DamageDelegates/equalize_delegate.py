@@ -8,19 +8,19 @@ class EqualizeDelegate(DamageDelegate):
         self.fixedDamage = damage
         self.physical = physical
         
-    def damage(self, actingSide, otherSide):
+    def damage(self, user, target):
         """ Returns  the damage of the attack
         including effectiveness and STAB """
-        user = actingSide.currPokemon
-        target = otherSide.currPokemon
+        #user = actingSide.currPokemon
+        #target = otherSide.currPokemon
         messages = []
         
         # Get damage
-        damage = self.calcDamage(actingSide, otherSide)
+        damage = self.calcDamage(user, target)
         
         # Get modifiers
         mod = self.getEffectiveness(messages, target)
         mod = mod*self.getStab(user)
-        mod = mod*self.getCrit(messages, actingSide)
+        mod = mod*self.getCrit(messages, user)
         
         return self.normalize(damage*mod), messages

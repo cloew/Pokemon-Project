@@ -11,20 +11,20 @@ class CrashDelegate(HitDelegate):
         self.chanceToHit = toHit
         self.recoilEffect = recoilEffect
         
-    def hit(self, actingSide, otherSide):
+    def hit(self, user, target):
         """ Calculates if the attack hits or misses
         If it misses"""
-        hit, messages = super(CrashDelegate, self).hit(actingSide, otherSide)
+        hit, messages = super(CrashDelegate, self).hit(user, target)
         
         if hit:
             return True, []
         else:
-            self.crash(actingSide, otherSide)
-            return False, [self.message, actingSide.currPokemon.name + " kept going and crashed."]
+            self.crash(user, target)
+            return False, [self.message, user.currPokemon.name + " kept going and crashed."]
         
-    def crash(self, actingSide, otherSide):
+    def crash(self, user, target):
         """ Apply damage from crashing """
-        damage, messages = self.parent.damageDelegate.damage(actingSide, otherSide)
+        damage, messages = self.parent.damageDelegate.damage(user, target)
         
         self.recoilEffect.setDamage(damage)
-        self.recoilEffect.applyEffect(actingSide, otherSide)
+        self.recoilEffect.applyEffect(user, target)

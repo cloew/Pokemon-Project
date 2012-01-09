@@ -7,9 +7,9 @@ class OneHitDelegate(DamageDelegate):
         self.parent = parent
         self.isPhysical = isPhysical
     
-    def damage(self, actingSide, otherSide):
+    def damage(self, user, target):
         """ Deals damage for a One Hit KO """
-        target = otherSide.currPokemon
+        #target = otherSide.currPokemon
         
         messages = []
         

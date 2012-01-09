@@ -8,6 +8,6 @@ class FixedDelegate(DamageDelegate):
         self.fixedDamage = damage
         self.physical = physical
         
-    def calcDamage(self, actingSide, otherSide):
+    def calcDamage(self, user, target):
         """ Return the level of the user """
         return self.fixedDamage

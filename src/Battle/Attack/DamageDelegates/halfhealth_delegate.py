@@ -8,6 +8,6 @@ class HalfHealthDelegate(DamageDelegate):
         self.parent = parent
         self.isPhysical = isPhysical
     
-    def calcDamage(self, actingSide, otherSide):
+    def calcDamage(self, user, target):
         """ Returns damage as half the target's health """
-        return otherSide.currPokemon.battleDelegate.currHP/2
+        return target.currPokemon.battleDelegate.currHP/2

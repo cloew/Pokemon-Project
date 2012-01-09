@@ -11,9 +11,9 @@ class StatRatioDelegate(DamageDelegate):
         self.isPhysical = isPhysical
         self.stat = stat
         
-    def getPower(self, actingSide, otherSide):
+    def getPower(self, user, target):
         """ Returns the power of the move based on the ratio of the stat """
-        ratio = self.getStatWithMod(self.stat, otherSide)/self.getStatWithMod(self.stat, actingSide)
+        ratio = self.getStatWithMod(self.stat, target)/self.getStatWithMod(self.stat, user)
         power = StatRatioDelegate.base*ratio
         if power > StatRatioDelegate.max:
             power = StatRatioDelegate.max

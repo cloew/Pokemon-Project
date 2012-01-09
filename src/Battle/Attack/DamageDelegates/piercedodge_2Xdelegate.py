@@ -11,11 +11,11 @@ class PierceDodge2XDelegate(DamageDelegate):
         self.isPhysical = isPhysical
         self.pierce = pierce
         
-    def coreDamage(self, actingSide, otherSide):
+    def coreDamage(self, user, target):
         """ Doubles the damage when the opponent is dodging 
         in the manner that is pierced """
-        damage = super(PierceDodge2XDelegate, self).coreDamage(actingSide, otherSide)
-        if otherSide.dodge == self.pierce:
+        damage = super(PierceDodge2XDelegate, self).coreDamage(user, target)
+        if target.dodge == self.pierce:
             return 2*damage
         else:
             return damage

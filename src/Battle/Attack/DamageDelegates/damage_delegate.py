@@ -12,59 +12,59 @@ class DamageDelegate(object):
         self.power = power
         self.isPhysical = isPhysical
     
-    def doDamage(self, actingSide, otherSide):
+    def doDamage(self, user, target):
         """ Calculates the damage the attack does
         Returns the damage done """
-        user = actingSide.currPokemon
-        target = otherSide.currPokemon
+        #user = actingSide.currPokemon
+        #target = otherSide.currPokemon
     
         messages = []
     
         # Apply the modifier, have the target take damage
-        damage, messages = self.damage(actingSide, otherSide)
+        damage, messages = self.damage(user, target)
         self.takeDamage(damage, target)
         
         # Return the messages
         return messages
         
-    def damage(self, actingSide, otherSide):
+    def damage(self, user, target):
         """ Returns  the damage of the attack
         including effectiveness and STAB """
-        user = actingSide.currPokemon
-        target = otherSide.currPokemon
+        #user = actingSide.currPokemon
+        #target = otherSide.currPokemon
         messages = []
         
         # Get damage
-        damage = self.calcDamage(actingSide, otherSide)
+        damage = self.calcDamage(user, target)
         
         # Get modifiers
         mod = self.getEffectiveness(messages, target)
         mod = mod*self.getStab(user)
-        mod = mod*self.getCrit(messages, actingSide, otherSide)
+        mod = mod*self.getCrit(messages, user, target)
         
         return self.normalize(damage*mod), messages
         
-    def calcDamage(self, actingSide, otherSide):
+    def calcDamage(self, user, target):
         """ Calculate the damage before modifiers """
-        return self.coreDamage(actingSide, otherSide)*\
+        return self.coreDamage(user, target)*\
                 self.applyRand()
         
-    def coreDamage(self, actingSide, otherSide):
+    def coreDamage(self, user, target):
         """ Calculate the damage before modifiers and rands """
-        user = actingSide.currPokemon
-        target = otherSide.currPokemon
+        #user = actingSide.currPokemon
+        #target = otherSide.currPokemon
         
         atkStat, defStat = self.getAtkAndDefType()
     
-        attack = self.getStatWithMod(atkStat, actingSide)
-        defense = self.getStatWithMod(defStat, otherSide)
+        attack = self.getStatWithMod(atkStat, user)
+        defense = self.getStatWithMod(defStat, target)
         level = user.level
         
-        power = self.getPower(actingSide, otherSide)
+        power = self.getPower(user, target)
         
         return ((((2*level/5 + 2)*attack*power/defense)/50) + 2)
         
-    def getPower(self, actingSide, otherSide):
+    def getPower(self, user, target):
         """ Returns the power of the move """
         return self.power
         
@@ -75,10 +75,10 @@ class DamageDelegate(object):
         else:
             return "SATK", "SDEF"
         
-    def getStatWithMod(self, stat, side):
-        """ Returns the sepcified stat, modified by the BattleSide's stat mods """
-        result = side.currPokemon.getStat(stat)
-        modLevel = side.statMods[stat]
+    def getStatWithMod(self, stat, pkmn):
+        """ Returns the sepcified stat, modified by the pkmn's stat mods """
+        result = pkmn.currPokemon.getStat(stat)
+        modLevel = pkmn.statMods[stat]
         mod = DamageDelegate.statLevels[abs(modLevel)]
         
         if modLevel < 0:
@@ -111,15 +111,15 @@ class DamageDelegate(object):
             return user.ability.onStab()
         return 1
         
-    def getCrit(self, messages, actingSide, otherSide):
+    def getCrit(self, messages, user, target):
         """ Returns whether crit worked """
         newMod = 1
         if hasattr(self.parent, "critDelegate"):
-            crit, message = self.parent.critDelegate.crit(actingSide)
+            crit, message = self.parent.critDelegate.crit(user)
             if crit:
-                newMod = actingSide.currPokemon.ability.giveCrit(2)
-                newMod, abilityMessages = otherSide.currPokemon.ability.takeCrit\
-                                                                        (newMod, otherSide, actingSide)
+                newMod = user.currPokemon.ability.giveCrit(2)
+                newMod, abilityMessages = target.currPokemon.ability.takeCrit\
+                                                                        (newMod, target, user)
                 
                 if newMod > 1:
                     messages.append(message)

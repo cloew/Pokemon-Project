@@ -13,15 +13,15 @@ class DamageScaleDelegate(DamageDelegate):
         
         self.turnOn = 0
         
-    def coreDamage(self, actingSide, otherSide):
+    def coreDamage(self, user, target):
         """ Calculate the damage before modifiers and rands """
-        user = actingSide.currPokemon
-        target = otherSide.currPokemon
+        #user = actingSide.currPokemon
+        #target = otherSide.currPokemon
         
         atkStat, defStat = self.getAtkAndDefType()
     
-        attack = self.getStatWithMod(atkStat, actingSide)
-        defense = self.getStatWithMod(defStat, otherSide)
+        attack = self.getStatWithMod(atkStat, user)
+        defense = self.getStatWithMod(defStat, target)
         level = user.level
         scale = self.getScale()
         
@@ -31,7 +31,7 @@ class DamageScaleDelegate(DamageDelegate):
         """ Returns the scale based on the number of turns the attack has run """
         return self.factor**self.turnOn
         
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Applies the delegate's effect when the attack hits """
         if self.turnOn == 0:
             self.applyLock(actingSide)
@@ -39,10 +39,10 @@ class DamageScaleDelegate(DamageDelegate):
         self.incTurns()
         return []
         
-    def effectOnMiss(self, actingSide, otherSide):
+    def effectOnMiss(self, user, target):
         """ Applies the deleagte's effect on a miss """
         self.turnOn = 0
-        actingSide.trainer.actionLock = None
+        user.trainer.actionLock = None
         return []
         
     def incTurns(self):

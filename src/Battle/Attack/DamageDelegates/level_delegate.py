@@ -7,6 +7,6 @@ class LevelDelegate(DamageDelegate):
         self.parent = parent
         self.physical = physical
         
-    def calcDamage(self, actingSide, otherSide):
+    def calcDamage(self, user, target):
         """ Return the level of the user """
-        return actingSide.currPokemon.level
+        return user.currPokemon.level

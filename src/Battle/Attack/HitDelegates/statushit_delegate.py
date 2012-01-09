@@ -15,20 +15,20 @@ class StatusHitDelegate(HitDelegate):
         self.chanceToHit = toHit
     
     
-    def hit(self, actingSide, otherSide):
+    def hit(self, user, target):
         """ Returns whether or not an attack hit its target """
-        if self.immune(actingSide, otherSide):
+        if self.immune(user, target):
             return False, [self.message]
         
-        return super(StatusHitDelegate, self).hit(actingSide, otherSide)
+        return super(StatusHitDelegate, self).hit(user, target)
         
         
-    def immune(self, actingSide, otherSide):
+    def immune(self, user, target):
         """ Check if the target is immune to the effect """
         immune = False
         
         for effect in self.parent.effectDelegates:
-            if hasattr(effect, "immune") and effect.immune(actingSide, otherSide):
+            if hasattr(effect, "immune") and effect.immune(user, target):
                 immune = True
             else:
                 return False

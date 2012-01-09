@@ -9,6 +9,6 @@ class AlwaysHitDelegate(HitDelegate):
     """ Build a core hit Delegate """
     
     
-  def hit(self, actingSide, otherSide):
+  def hit(self, user, target):
     """ Returns true, always hits, unless other circumstances """
-    return not self.dodging(otherSide), [self.message]
+    return not self.dodging(target), [self.message]

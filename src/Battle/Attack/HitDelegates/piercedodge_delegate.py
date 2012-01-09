@@ -9,11 +9,11 @@ class PierceDodgeDelegate(HitDelegate):
         self.chanceToHit = toHit
         self.pierce = pierce
         
-    def dodging(self, otherSide):
+    def dodging(self, target):
         """ Returns if the opp is dodging the current attack """
-        dodging = super(PierceDodgeDelegate, self).dodging(otherSide)
+        dodging = super(PierceDodgeDelegate, self).dodging(target)
         
-        if dodging and otherSide.dodge != self.pierce:
+        if dodging and target.dodge != self.pierce:
             return True
         else:
             return False 
