@@ -17,17 +17,17 @@ class Trap(SecondaryEffect):
         """ Returns the 4-5 turns """
         return Trap.minTurns + random.randint(0, 1)
         
-    def afterTurn(self, side):
+    def afterTurn(self, pkmn):
         """ Does the damage of the Trap """
-        user = side.currPokemon
+        user = pkmn.pkmn
         self.damage(user)
         
-        messages = [side.getHeader() + self.message]
+        messages = [pkmn.getHeader() + self.message]
         self.turns = self.turns - 1
         
         if self.turns == 0:
-            side.secondaryEffects.remove(self)
-            messages.append(side.getHeader() + self.doneMessage)
+            pkmn.secondaryEffects.remove(self)
+            messages.append(pkmn.getHeader() + self.doneMessage)
         
         return messages
         

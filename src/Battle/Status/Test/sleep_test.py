@@ -1,6 +1,7 @@
 from Battle.Status.sleep import Sleep
 
 from Battle.battle_side import BattleSide
+from Battle.pkmn_battle_wrapper import PkmnBattleWrapper
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
 
@@ -38,17 +39,19 @@ class immobilized(unittest.TestCase):
         self.pokemon = Pokemon("BULBASAUR")
         self.pokemon.setStatus(self.status)
         trainer.beltPokemon = [self.pokemon]
-        self.side = BattleSide(trainer)
+        side = BattleSide(trainer)
+        self.pkmnWrapper = PkmnBattleWrapper(side)
+        self.pkmnWrapper.sendOutPkmn(self.pokemon)
         self.turns = 1
     
     def notDone(self):
         """ Test if immobilized returns correctly when it is not done """
         self.status.turns = self.turns
         
-        immobilized, messages = self.status.immobilized(self.side)
+        immobilized, messages = self.status.immobilized(self.pkmnWrapper)
         
         assert immobilized, "Should be immobilized"
-        assert messages == [self.side.getHeader() + Sleep.intermittent],\
+        assert messages == [self.pkmnWrapper.getHeader() + Sleep.intermittent],\
                 "Should return Sleep's intermittent message"
         assert self.status.turns == self.turns - 1, "Turns should be decremented"
         
@@ -58,14 +61,14 @@ class immobilized(unittest.TestCase):
         
         assert self.pokemon.getStatus() == self.status, "Should have status to start"
         
-        immobilized, messages = self.status.immobilized(self.side)
+        immobilized, messages = self.status.immobilized(self.pkmnWrapper)
         
         assert not immobilized, "Should not be immobilized"
         assert len(messages) == 2, "Should have two messages"
         
-        assert messages[0] == self.side.getHeader() + Sleep.intermittent,\
+        assert messages[0] == self.pkmnWrapper.getHeader() + Sleep.intermittent,\
                 "Should return Sleep's intermittent message"
-        assert messages[1] == self.side.getHeader() + Sleep.done,\
+        assert messages[1] == self.pkmnWrapper.getHeader() + Sleep.done,\
                 "Should return Sleep's done message"
                 
         assert self.pokemon.getStatus() != self.status, "Status should be removed"

@@ -14,7 +14,7 @@ class ToxicPoison(Poison):
         
     def afterTurn(self, pkmn):
         """ Inflicts the damage from the Poison status """
-        user = pkmn.currPokemon
+        user = pkmn.pkmn
         message = pkmn.getHeader() + Poison.intermittent
         damage = self.getDamage(user)
         

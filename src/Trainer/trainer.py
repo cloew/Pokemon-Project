@@ -23,6 +23,10 @@ class Trainer:
         
         return self
         
+    def announcePkmn(self, pkmn):
+        """ Announces the Pokemon """
+        
+        
     def getPokemon(self, i):
         """ Returns the first Battle-ready Pokemon on the Belt 
         Skips fainted Pkmn and eggs '"""

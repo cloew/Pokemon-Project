@@ -22,7 +22,7 @@ class DamageDelegate(object):
     
         # Apply the modifier, have the target take damage
         damage, messages = self.damage(user, target)
-        self.takeDamage(damage, target)
+        self.takeDamage(damage, target.currPokemon)
         
         # Return the messages
         return messages
@@ -38,8 +38,8 @@ class DamageDelegate(object):
         damage = self.calcDamage(user, target)
         
         # Get modifiers
-        mod = self.getEffectiveness(messages, target)
-        mod = mod*self.getStab(user)
+        mod = self.getEffectiveness(messages, target.currPokemon)
+        mod = mod*self.getStab(user.currPokemon)
         mod = mod*self.getCrit(messages, user, target)
         
         return self.normalize(damage*mod), messages
@@ -131,3 +131,4 @@ class DamageDelegate(object):
     def takeDamage(self, damage, target):
         """ Has the target take damage """
         target.battleDelegate.takeDamage(damage)
+        

@@ -429,7 +429,6 @@
     </attack>
     
     <!-- Electric -->
-    
     <attack>
         <name>THUNDER WAVE</name>
         <type>ELECTRIC</type>
@@ -474,7 +473,6 @@
     </attack>
     
     <!-- Grass -->
-    
     <attack>
         <name>LEECH SEED</name>
         <type>GRASS</type>
@@ -546,7 +544,6 @@
     </attack>
     
     <!-- Ice -->
-    
     <attack>
         <name>HAZE</name>
         <type>ICE</type>
@@ -619,7 +616,6 @@
     </attack>
     
     <!-- Fighting -->
-    
     <attack>
         <name>HI JUMP KICK</name>
         <type>FIGHTING</type>
@@ -690,7 +686,6 @@
     </attack>
     
     <!-- Poison -->
-    
     <attack>
         <name>GUNK SHOT</name>
         <type>POISON</type>
@@ -748,7 +743,6 @@
     </attack>
     
     <!-- Ground -->
-    
     <attack>
         <name>DIG</name>
         <type>GROUND</type>
@@ -805,7 +799,6 @@
     </attack>
     
     <!-- Flying -->
-    
     <attack>
         <name>AERIAL ACE</name>
         <type>FLYING</type>
@@ -894,7 +887,6 @@
     </attack>
     
     <!-- Psychic -->
-    
     <attack>
         <name>HEART SWAP</name>
         <type>PSYCHIC</type>
@@ -914,7 +906,6 @@
     </attack>
     
     <!-- Bug -->
-    
     <attack>
         <name>SILVER WIND</name>
         <type>BUG</type>
@@ -976,7 +967,6 @@
     </attack>
     
     <!-- Rock -->
-    
     <attack>
         <name>HEAD SMASH</name>
         <type>ROCK</type>
@@ -1035,7 +1025,6 @@
     </attack>
     
     <!-- Ghost -->
-    
     <attack>
         <name>CONFUSE RAY</name>
         <type>GHOST</type>
@@ -1078,7 +1067,6 @@
     </attack>
     
     <!-- Dragon -->
-    
     <attack>
         <name>DRAGON RAGE</name>
         <type>DRAGON</type>
@@ -1102,7 +1090,6 @@
     </attack>
     
     <!-- Dark -->
-    
     <attack>
         <name>BITE</name>
         <type>DARK</type>

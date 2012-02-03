@@ -2,6 +2,7 @@ from Battle.Status.poison import Poison
 from Battle.Status.toxic_poison import ToxicPoison
 
 from Battle.battle_side import BattleSide
+from Battle.pkmn_battle_wrapper import PkmnBattleWrapper
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
 
@@ -33,12 +34,14 @@ class afterTurn(unittest.TestCase):
         trainer = Trainer()
         pokemon = Pokemon("BULBASAUR")
         trainer.beltPokemon = [pokemon]
-        self.side = BattleSide(trainer)
+        side = BattleSide(trainer)
+        self.pkmnWrapper = PkmnBattleWrapper(side)
+        self.pkmnWrapper.sendOutPkmn(pokemon)
     
     def counterIsUpped(self):
         """ Test if the counter is increased """
         self.status.counter = 1
-        self.status.afterTurn(self.side)
+        self.status.afterTurn(self.pkmnWrapper)
         
         assert self.status.counter == 2, "Counter should be 2"
         

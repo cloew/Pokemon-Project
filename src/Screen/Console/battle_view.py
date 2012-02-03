@@ -104,5 +104,5 @@ class ConsoleBattleScreen:
         
     @staticmethod
     def validateInput(input, validInput):
-        """ Validates that inpout entered is valid """
+        """ Validates that input entered is valid """
         return input in validInput or input == ConsoleBattleScreen.cancelLetter

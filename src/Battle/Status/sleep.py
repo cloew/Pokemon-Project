@@ -26,7 +26,7 @@ class Sleep(Status):
         
         if self.turns == 0:
             messages= messages + self.getDoneMessage(pkmn)
-            pkmn.currPokemon.setStatus(Status())
+            pkmn.pkmn.setStatus(Status())
             return False, messages
         
         self.turns = self.turns - 1

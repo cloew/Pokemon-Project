@@ -1,4 +1,4 @@
-from preconditions import PreconditionsChecker
+from preconditions import PreconditionChecker
 from resources.tags import Tags
 
 class Attack:
@@ -19,7 +19,7 @@ class Attack:
         messages = []
         
         # Check for pre attack factors
-        preconditionChecker = PreconditionsChecker(user, target, self)
+        preconditionChecker = PreconditionChecker(user, target, self)
         stop, preMessages = preconditionChecker.checkPreConditions(user, target)
         messages = preMessages
         if stop:
@@ -33,11 +33,11 @@ class Attack:
         hit, hitMessages = self.hitDelegate.hit(user, target)
         if not hit:
             messages = messages + hitMessages
-            messages = messages + self.applyEffectsOnMiss(actingSide, otherSide)
+            messages = messages + self.applyEffectsOnMiss(user, target)
             return messages
           
         # Do damage
-        message = self.damageDelegate.doDamage(actingSide, otherSide)
+        message = self.damageDelegate.doDamage(user, target)
         if message and len(message) is not 0:
             messages = messages + message  
 
@@ -47,7 +47,7 @@ class Attack:
         
         # Apply effects
         for effect in self.effectDelegates:
-            effectMessages = effect.applyEffect(actingSide, otherSide)
+            effectMessages = effect.applyEffect(user, target)
             messages = messages + effectMessages
         
         return messages
@@ -65,14 +65,15 @@ class Attack:
         canUse = user.ability.canUseEffects() and target.ability.canUseEffects()
         return not nullDamage and not canUse
         
-    def applyEffectsOnMiss(self, actingSide, otherSide):
+    def applyEffectsOnMiss(self, user, target):
         """ Apply effects on miss """
         messages = []
         for effect in self.effectDelegates:
             if hasattr(effect, "applyOnMiss"):
-                effectMessages = effect.applyEffect(actingSide, otherSide)
+                effectMessages = effect.applyEffect(user, target)
                 messages = messages + effectMessages
             if hasattr(effect, "effectOnMiss"):
-                effectMessages = effect.effectOnMiss(actingSide, otherSide)
+                effectMessages = effect.effectOnMiss(user, target)
                 messages = messages + effectMessages
         return messages
+        
