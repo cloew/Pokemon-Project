@@ -1,5 +1,6 @@
 from Battle.SecondaryEffects.periodic_heal import PeriodicHeal
 from Battle.battle_side import BattleSide
+from Battle.pkmn_battle_wrapper import PkmnBattleWrapper
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
 
@@ -13,15 +14,17 @@ class afterTurn(unittest.TestCase):
         trainer = Trainer()
         pokemon = Pokemon("BULBASAUR")
         trainer.beltPokemon = [pokemon]
-        self.side = BattleSide(trainer)
+        side = BattleSide(trainer)
+        self.wrapper = PkmnBattleWrapper(side)
+        self.wrapper.pkmn = pokemon
         
         self.message = " hurt."
         self.heal = PeriodicHeal(self.message)
         
     def message(self):
         """ Test the message is correct """
-        message = self.heal.afterTurn(self.side)
-        assert message == [self.side.getHeader() + self.message], "Message should be the pokemon's name and the message given to the Heal."
+        message = self.heal.afterTurn(self.wrapper)
+        assert message == [self.wrapper.getHeader() + self.message], "Message should be the pokemon's name and the message given to the Heal."
         
 testcasesAfterTurn = ["message"]
 suiteAfterTurn = unittest.TestSuite(map(afterTurn, testcasesAfterTurn))

@@ -8,17 +8,16 @@ class PeriodicHeal(SecondaryEffect):
         """ Builds a Periodic Heal """
         self.message = message
         
-    def afterTurn(self, side):
-        """ Heals the given user """
-        user = side.currPokemon
-        self.heal(user)
-        return [side.getHeader() + self.message]
+    def afterTurn(self, user):
+        """ Heals the given user (User is a pkmnBattleWrapper) """
+        self.heal(user.pkmn)
+        return [user.getHeader() + self.message]
         
-    def heal(self, user):
-        """ Heals the user """
-        heal = self.getHeal(user)
-        user.heal(heal)
+    def heal(self, pkmn):
+        """ Heals the given Pokemon """
+        heal = self.getHeal(pkmn)
+        pkmn.heal(heal)
         
-    def getHeal(self, user):
+    def getHeal(self, pkmn):
         """ Returns the amount the pokemon should be healed by """
-        return user.getRatioOfHealth(PeriodicHeal.ratio)
+        return pkmn.getRatioOfHealth(PeriodicHeal.ratio)
