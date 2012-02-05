@@ -9,25 +9,25 @@ class Leech(SecondaryEffect):
         self.source = source
         self.message = message
         
-    def afterTurn(self, side):
+    def afterTurn(self, user):
         """ Leech health from the user and give it to the source """
-        user = side.currPokemon
-        self.damage(user)
-        self.heal(user)
-        return [side.getHeader() + self.message]
+        pkmn = user.pkmn
+        self.damage(pkmn)
+        self.leech(pkmn)
+        return [user.getHeader() + self.message]
         
-    def damage(self, user):
+    def damage(self, pkmn):
         """ Damages the user """
-        user.takeDamage(self.getAmount(user))
+        pkmn.takeDamage(self.getAmount(pkmn))
 
-    def heal(self, user):
-        """ Heals the source """
-        heal = self.getAmount(user)
+    def leech(self, pkmn):
+        """ Leech Health from the pkmn and heal the source """
+        heal = self.getAmount(pkmn)
         self.source.heal(heal)
         
-    def getAmount(self, user):
+    def getAmount(self, pkmn):
         """ Returns the amount the Leech damages/heals """
-        return user.getRatioOfHealth(Leech.ratio)
+        return pkmn.getRatioOfHealth(Leech.ratio)
         
     def immune(self, targetTypes, attackType):
         """ Returns whether the given types are immune to the status """

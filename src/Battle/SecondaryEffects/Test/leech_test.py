@@ -1,5 +1,6 @@
 from Battle.SecondaryEffects.leech import Leech
 from Battle.battle_side import BattleSide
+from Battle.pkmn_battle_wrapper import PkmnBattleWrapper
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
 
@@ -14,15 +15,17 @@ class afterTurn(unittest.TestCase):
         pokemon = Pokemon("BULBASAUR")
         self.pokemon2 = Pokemon("BULBASAUR")
         trainer.beltPokemon = [pokemon]
-        self.side = BattleSide(trainer)
+        side = BattleSide(trainer)
+        self.wrapper = PkmnBattleWrapper(side)
+        self.wrapper.pkmn = pokemon
         
         self.message = " hurt."
         self.leech = Leech(self.pokemon2, self.message)
         
     def message(self):
         """ Test the message is correct """
-        message = self.leech.afterTurn(self.side)
-        assert message == [self.side.getHeader() + self.message], "Message should be the pokemon's name and the message given to the Leech."
+        message = self.leech.afterTurn(self.wrapper)
+        assert message == [self.wrapper.getHeader() + self.message], "Message should be the pokemon's name and the message given to the Leech."
         
 testcasesAfterTurn = ["message"]
 suiteAfterTurn = unittest.TestSuite(map(afterTurn, testcasesAfterTurn))
