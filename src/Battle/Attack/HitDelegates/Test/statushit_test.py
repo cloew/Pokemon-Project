@@ -3,6 +3,7 @@ from Battle.Attack.EffectDelegates.applystatus_delegate import ApplyStatusDelega
 from Battle.Attack.EffectDelegates.statmod_delegate import StatModDelegate
 from Battle.Attack.HitDelegates.statushit_delegate import StatusHitDelegate
 from Battle.battle_side import BattleSide
+from Battle.pkmn_battle_wrapper import PkmnBattleWrapper
 from Battle.Status.status import Status
 from Battle.Status.statusfactory import StatusFactory
 from Trainer.trainer import Trainer
@@ -18,7 +19,9 @@ class immune(unittest.TestCase):
         trainer = Trainer()
         pokemon = Pokemon("BULBASAUR")
         trainer.beltPokemon = [pokemon]
-        self.side = BattleSide(trainer)
+        side = BattleSide(trainer)
+        self.wrapper = PkmnBattleWrapper(side)
+        self.wrapper.pkmn = pokemon
         self.parent = Attack()
         self.parent.type ="NORMAL"
         
@@ -30,26 +33,26 @@ class immune(unittest.TestCase):
     def notImmune(self):
         """ Test an effect that is not immune returns correctly  """
         status = Status()
-        self.side.currPokemon.setStatus(status)
+        self.wrapper.pkmn.setStatus(status)
         
         effect = ApplyStatusDelegate(self.parent, "PAR", 1)
         self.buildDelegate(effect)
-        assert not self.delegate.immune(self.side, None), "Should not be immune"
+        assert not self.delegate.immune(self.wrapper, None), "Should not be immune"
     
     def immune(self):
         """ Test an effect that is immune will result in a miss """
         status, message = StatusFactory.buildStatusFromAbbr("PAR")
-        self.side.currPokemon.setStatus(status)
+        self.wrapper.pkmn.setStatus(status)
         
         effect = ApplyStatusDelegate(self.parent, "PAR", 1)
         self.buildDelegate(effect)
-        assert self.delegate.immune(self.side, None), "Should be immune"
+        assert self.delegate.immune(self.wrapper, None), "Should be immune"
         
     def noImmune(self):
         """ Test an effect that has no immune function isn't immune """
         effect = StatModDelegate("ATK", 1, 1)
         self.buildDelegate(effect)
-        assert not  self.delegate.immune(self.side, None), "Should never be immune"
+        assert not  self.delegate.immune(self.wrapper, None), "Should never be immune"
         
 testcasesImmune= ["notImmune", "immune", "noImmune"]
 suiteImmune= unittest.TestSuite(map(immune, testcasesImmune))
