@@ -9,21 +9,21 @@ class TrapDelegate :
         self.message = message
         self.doneMessage = doneMessage
         
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Apply the trap to the opponent """
-        self.removePreviousTrap(otherSide)
-        otherSide.secondaryEffects.append(Trap(self.message, self.doneMessage))
-        return [otherSide.getHeader() + self.startMessage]
+        self.removePreviousTrap(target)
+        target.secondaryEffects.append(Trap(self.message, self.doneMessage))
+        return [target.getHeader() + self.startMessage]
         
-    def removePreviousTrap(self, side):
+    def removePreviousTrap(self, pkmn):
         """ Removes any previous implementations of the trap """
-        effect = self.hasThisTrap(side)
+        effect = self.hasThisTrap(pkmn)
         if effect:
-            side.secondaryEffects.remove(effect)
+            pkmn.secondaryEffects.remove(effect)
                 
-    def hasThisTrap(self, side):
-        """ Returns if the side has the same trap this delegate applies """
-        for effect in side.secondaryEffects:
+    def hasThisTrap(self, pkmn):
+        """ Returns if the pkmn has the same trap this delegate applies """
+        for effect in pkmn.secondaryEffects:
             if effect.message == self.message:
                 return effect
                 
