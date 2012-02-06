@@ -1,6 +1,7 @@
 from Battle.Attack.EffectDelegates.swapstatmods_delegate import SwapStatModsDelegate
 
 from Battle.battle_side import BattleSide
+from Battle.pkmn_battle_wrapper import PkmnBattleWrapper
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
 
@@ -13,23 +14,30 @@ class applyEffect(unittest.TestCase):
         trainer = Trainer()
         pokemon = Pokemon("BULBASAUR")
         trainer.beltPokemon = [pokemon]
-        self.side1 = BattleSide(trainer)
-        self.side2 = BattleSide(trainer)
+        
+        side1 = BattleSide(trainer)
+        self.wrapper1 = PkmnBattleWrapper(side1)
+        self.wrapper1.pkmn = pokemon
+        
+        side2 = BattleSide(trainer)
+        self.wrapper2 = PkmnBattleWrapper(side2)
+        self.wrapper2.pkmn = pokemon
+        
         self.delegate = SwapStatModsDelegate()
         
         self.statMods1 = {"ATK":1, "DEF":0, "SPD":0, "SATK":0, "SDEF":0, 
                                 "ACC":0, "EVAS":0, "CRT":1}
-        self.side1.statMods = self.statMods1
+        self.wrapper1.statMods = self.statMods1
                                 
         self.statMods2 = {"ATK":0, "DEF":0, "SPD":1, "SATK":1, "SDEF":1, 
                                 "ACC":0, "EVAS":0, "CRT":0}
-        self.side2.statMods = self.statMods2
+        self.wrapper2.statMods = self.statMods2
         
     def statModsSwitched(self):
         """ Tests if ithe stat mods are swapped """
-        self.delegate.applyEffect(self.side1, self.side2)
-        assert self.side1.statMods == self.statMods2, "Side1 should have stats from side2"
-        assert self.side2.statMods == self.statMods1, "Side2 should have stats from side1"
+        self.delegate.applyEffect(self.wrapper1, self.wrapper2)
+        assert self.wrapper1.statMods == self.statMods2, "Pkmn 1 should have stats from Pkmn 2"
+        assert self.wrapper2.statMods == self.statMods1, "Pkmn 2 should have stats from Pkmn 1"
         
 testcasesApplyEffect= ["statModsSwitched"]
 suiteApplyEffect = unittest.TestSuite(map(applyEffect, testcasesApplyEffect))
