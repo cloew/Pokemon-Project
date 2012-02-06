@@ -59,6 +59,14 @@ class PkmnBattleWrapper:
         """ Returns the Wrapper's Pokemon's Ability """
         return self.pkmn.ability
         
+    def getStatus(self):
+        """ Returns the Wrapper's Pokemon's Status """
+        return self.pkmn.getStatus()
+        
+    def setStatus(self, status):
+        """ Sets the Wrapper's Pokemon's Status """
+        self.pkmn.setStatus(status)
+        
     def getTypes(self):
         """ Returns the Wrapper's Pokemon's Types """
         return self.pkmn.getTypes()

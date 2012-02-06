@@ -8,24 +8,24 @@ class CureStatusDelegate(object):
         self.status = status
         self.affectUser = affectUser
         
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Applies the deleagte's effect """
         if self.affectUser:
-            return self.checkCurable(actingSide)
+            return self.checkCurable(user)
         else:
-            return self.checkCurable(otherSide)
+            return self.checkCurable(target)
         
-    def checkCurable(self, side):
+    def checkCurable(self, pkmn):
         """ Checks if the status is curable """
         messages = []
-        if self.status == side.currPokemon.getStatus().abbr:
-            messages = self.cureStatus(side)
+        if self.status == pkmn.getStatus().abbr:
+            messages = self.cureStatus(pkmn)
         
         return messages
         
-    def cureStatus(self, side):
-        """ Cures the status from the active pokemon on the given side """
-        status = side.currPokemon.getStatus()
-        messages = status.getDoneMessage(side)
-        side.currPokemon.setStatus(Status())
+    def cureStatus(self, pkmn):
+        """ Cures the status from thegiven pokemon """
+        status = pkmn.getStatus()
+        messages = status.getDoneMessage(pkmn)
+        pkmn.setStatus(Status())
         return messages
