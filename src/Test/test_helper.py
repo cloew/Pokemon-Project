@@ -4,7 +4,7 @@ from Trainer.trainer import Trainer
 from Pokemon.pokemon import Pokemon
 
 
-def buildPokemonBattleWrapper():
+def BuildPokemonBattleWrapper():
     """  Builds a Pokemon Battle Wrapper """
     trainer = Trainer()
     pokemon = Pokemon("BULBASAUR")

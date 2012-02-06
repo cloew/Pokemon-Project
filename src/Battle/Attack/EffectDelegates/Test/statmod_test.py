@@ -1,4 +1,4 @@
-from Test.test_helper import buildPokemonBattleWrapper
+from Test.test_helper import BuildPokemonBattleWrapper
 
 from Battle.Attack.EffectDelegates.statmod_delegate import StatModDelegate
 from Battle.battle_side import BattleSide
@@ -13,7 +13,7 @@ class checkNoChange(unittest.TestCase):
     def setUp(self):
         """ Builds the BattleSide """
         self.stat = "ATK"
-        self.wrapper =  buildPokemonBattleWrapper()
+        self.wrapper =  BuildPokemonBattleWrapper()
         
         self.abilityMessages =  ["ability message"]
         
@@ -130,7 +130,7 @@ class applyEffect(unittest.TestCase):
     def setUp(self):
         """ Builds the BattleSide """
         self.stat = "ATK"
-        self.wrapper = buildPokemonBattleWrapper()
+        self.wrapper = BuildPokemonBattleWrapper()
         
     def buildStatModDelegate(self, degree):
         """ Returns a stat mod delegate with the given degree """
@@ -188,7 +188,7 @@ class getHeader(unittest.TestCase):
     def setUp(self):
         """ Builds the BattleSide """
         self.stat = "ATK"
-        self.wrapper = buildPokemonBattleWrapper()
+        self.wrapper = BuildPokemonBattleWrapper()
         
     def buildStatModDelegate(self, degree):
         """ Returns a stat mod delegate with the given degree """
