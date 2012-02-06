@@ -15,6 +15,7 @@ class PkmnBattleWrapper:
         self.encore = 0
         
         self.lastAction = None
+        self.actionLock = None
         self.dodge = None
         
         self.secondaryEffects = []

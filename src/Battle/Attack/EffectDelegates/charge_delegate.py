@@ -12,17 +12,17 @@ class ChargeDelegate(object):
         self.turnOn = 0
         
         
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Applies the delegate's effect when the attack hits """
         return []
         
-    def effectOnMiss(self, actingSide, otherSide):
+    def effectOnMiss(self, user, target):
         """ Applies the deleagte's effect on a miss """
         self.turnOn = 0
         actingSide.trainer.actionLock = None
         return []
         
-    def isCharging(self, actingSide):
+    def isCharging(self, user):
         """ Modifies how the attack hits """
         # Check if the user is charging
         # AKA no damage should be calculated
@@ -33,7 +33,7 @@ class ChargeDelegate(object):
         # Check if this is the first turn
         # If so lock the move for its duration
         if self.turnOn == 0:
-            self.applyLock(actingSide)
+            self.applyLock(user)
             
         self.incTurn()
         return charging
@@ -42,7 +42,7 @@ class ChargeDelegate(object):
         """ Move to the next turn """
         self.turnOn = (self.turnOn+1)%self.turns
         
-    def applyLock(self, side):
-        """ Locks the side to use this move """
-        side.trainer.actionLock = ActionLock(side.trainer,  \
-                                                        side.lastAction, self.turns-1)
+    def applyLock(self, pkmn):
+        """ Locks the pkmn to use this move """
+        pkmn.actionLock = ActionLock(pkmn,  \
+                                                        pkmn.lastAction, self.turns-1)
