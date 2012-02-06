@@ -8,21 +8,21 @@ class PeriodicHealDelegate :
         self.startMessage = startMessage
         self.message = message
         
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Apply the heal to the user """
-        self.removePreviousHeal(actingSide)
-        actingSide.secondaryEffects.append(PeriodicHeal(self.message))
-        return [actingSide.getHeader() + self.startMessage]
+        self.removePreviousHeal(user)
+        user.secondaryEffects.append(PeriodicHeal(self.message))
+        return [user.getHeader() + self.startMessage]
         
-    def removePreviousHeal(self, side):
-        """ Checks if the side already has the heal """
-        effect = self.hasHeal(side)
+    def removePreviousHeal(self, pkmn):
+        """ Checks if the pkmn already has the heal """
+        effect = self.hasHeal(pkmn)
         if effect:
-            side.secondaryEffects.remove(effect)
+            pkmn.secondaryEffects.remove(effect)
                 
-    def hasHeal(self, side):
+    def hasHeal(self, pkmn):
         """ Returns if the side receiving the heal already has a heal """
-        for effect in side.secondaryEffects:
+        for effect in pkmn.secondaryEffects:
             if isinstance(effect, PeriodicHeal):
                 return effect
                 
