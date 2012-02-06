@@ -51,3 +51,10 @@ class PkmnBattleWrapper:
     def getHeader(self):
         """ Returns the string header based on the trainer and current Pokemon """
         return self.side.trainer.getHeader() + self.pkmn.name
+        
+        
+    # Pokemon Accessors
+    
+    def getAbility(self):
+        """ Returns the Wrapper's Pokemon's Ability """
+        return self.pkmn.ability

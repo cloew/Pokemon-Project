@@ -16,53 +16,53 @@ class StatModDelegate(object):
         self.degree = degree
         self.affectUser = side
     
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Applies the Deleagates effect """
         if self.affectUser:
-            return self.applyMod(actingSide)
+            return self.applyMod(user)
         else:
-            return self.applyMod(otherSide)
+            return self.applyMod(target)
             
-    def applyMod(self, side):
-        """ Apply the modifier to the given side """
-        degree, abilityMessages = side.currPokemon.ability.\
-                                                onStatMod(side, self.stat, self.degree, self.affectUser)
+    def applyMod(self, pkmn):
+        """ Apply the modifier to the given pkmn """
+        degree, abilityMessages = pkmn.getAbility().\
+                                                onStatMod(pkmn, self.stat, self.degree, self.affectUser)
                                                 
-        noChange, messages = self.checkNoChange(side, degree, abilityMessages)
+        noChange, messages = self.checkNoChange(pkmn, degree, abilityMessages)
         if noChange:
             return messages
             
-        return self.changeStats(side, degree)
+        return self.changeStats(pkmn, degree)
         
-    def checkNoChange(self, side, degree, abilityMessages):
+    def checkNoChange(self, pkmn, degree, abilityMessages):
         """ Check if anything will change """
         noChange = False
         messages = []
-        header = self.getHeader(side)
+        header = self.getHeader(pkmn)
         
         if degree == 0:
             noChange = True
             messages = abilityMessages
-        elif degree > 0 and side.statMods[self.stat] == self.max:
+        elif degree > 0 and pkmn.statMods[self.stat] == self.max:
             noChange = True
             messages = [header + StatModDelegate.noChangeUp]
-        elif degree < 0 and side.statMods[self.stat] == self.min:
+        elif degree < 0 and pkmn.statMods[self.stat] == self.min:
             noChange = True
             messages = [header + StatModDelegate.noChangeDown]
             
         return noChange, messages
         
-    def changeStats(self, side, degree):
-        """ Actually change the side's stat mod """
-        messages = [self.getHeader(side) + self.getMessage()] 
-        newMod = side.statMods[self.stat] + degree
+    def changeStats(self, pkmn, degree):
+        """ Actually change the pkmn's stat mod """
+        messages = [self.getHeader(pkmn) + self.getMessage()] 
+        newMod = pkmn.statMods[self.stat] + degree
         
         if newMod > self.max:
-            side.statMods[self.stat] = self.max
+            pkmn.statMods[self.stat] = self.max
         elif newMod < self.min:
-            side.statMods[self.stat] = self.min
+            pkmn.statMods[self.stat] = self.min
         else:
-            side.statMods[self.stat] = newMod
+            pkmn.statMods[self.stat] = newMod
         
         return messages       
         
@@ -71,6 +71,6 @@ class StatModDelegate(object):
         message = StatModDelegate.riseOrFall[self.degree>0] 
         return message + StatModDelegate.sharply[abs(self.degree)]
         
-    def getHeader(self, side):
+    def getHeader(self, pkmn):
         """ Returns the Pokemon and stat as a string """
-        return "{0}'s {1} ".format(side.getHeader(), self.stat)
+        return "{0}'s {1} ".format(pkmn.getHeader(), self.stat)

@@ -1,3 +1,5 @@
+from Test.test_helper import buildPokemonBattleWrapper
+
 from Battle.Attack.EffectDelegates.statmod_delegate import StatModDelegate
 from Battle.battle_side import BattleSide
 from Trainer.trainer import Trainer
@@ -11,9 +13,7 @@ class checkNoChange(unittest.TestCase):
     def setUp(self):
         """ Builds the BattleSide """
         self.stat = "ATK"
-        trainer = Trainer()
-        trainer.beltPokemon = [Pokemon("BULBASAUR")]
-        self.side = BattleSide(trainer)
+        self.wrapper =  buildPokemonBattleWrapper()
         
         self.abilityMessages =  ["ability message"]
         
@@ -23,40 +23,40 @@ class checkNoChange(unittest.TestCase):
         
     def change_ModRaise(self):
         """ Test that a mod raise can return as a change"""
-        self.side.statMods[self.stat] = 0
+        self.wrapper.statMods[self.stat] = 0
         delegate = self.buildStatModDelegate(1)
         
-        noChange, messages = delegate.checkNoChange(self.side, 1, self.abilityMessages)
+        noChange, messages = delegate.checkNoChange(self.wrapper, 1, self.abilityMessages)
         
         assert not noChange, "Change when the mod can raise"
         assert len(messages) == 0, "Should return no messages"
         
     def change_ModLower(self):
         """ Test that a mod lower can return as a change"""
-        self.side.statMods[self.stat] = 0
+        self.wrapper.statMods[self.stat] = 0
         delegate = self.buildStatModDelegate(-1)
         
-        noChange, messages = delegate.checkNoChange(self.side, -1, self.abilityMessages)
+        noChange, messages = delegate.checkNoChange(self.wrapper, -1, self.abilityMessages)
         
         assert not noChange, "Change when the mod can lower"
         assert len(messages) == 0, "Should return no messages"
         
     def noChange_modZero(self):
         """ Test that a mod of zero returns as no change """
-        self.side.statMods[self.stat] = 0
+        self.wrapper.statMods[self.stat] = 0
         delegate = self.buildStatModDelegate(0)
         
-        noChange, messages = delegate.checkNoChange(self.side, 0, self.abilityMessages)
+        noChange, messages = delegate.checkNoChange(self.wrapper, 0, self.abilityMessages)
         
         assert noChange, "No change when degree is 0"
         assert messages == self.abilityMessages, "Should return the ability message"
         
     def noChange_modTooHigh(self):
         """ Test that a mod that can't raise returns as no change """
-        self.side.statMods[self.stat] = 6
+        self.wrapper.statMods[self.stat] = 6
         delegate = self.buildStatModDelegate(2)
         
-        noChange, messages = delegate.checkNoChange(self.side, 2, self.abilityMessages)
+        noChange, messages = delegate.checkNoChange(self.wrapper, 2, self.abilityMessages)
         
         assert noChange, "No change when degree is 0"
         find = messages[0].find(StatModDelegate.noChangeUp)
@@ -64,10 +64,10 @@ class checkNoChange(unittest.TestCase):
         
     def noChange_modTooLow(self):
         """ Test that a mod that can't lower returns as no change """
-        self.side.statMods[self.stat] = -6
+        self.wrapper.statMods[self.stat] = -6
         delegate = self.buildStatModDelegate(-2)
         
-        noChange, messages = delegate.checkNoChange(self.side, -2, self.abilityMessages)
+        noChange, messages = delegate.checkNoChange(self.wrapper, -2, self.abilityMessages)
         
         assert noChange, "No change when degree is 0"
         find = messages[0].find(StatModDelegate.noChangeDown)
@@ -130,9 +130,7 @@ class applyEffect(unittest.TestCase):
     def setUp(self):
         """ Builds the BattleSide """
         self.stat = "ATK"
-        trainer = Trainer()
-        trainer.beltPokemon = [Pokemon("BULBASAUR")]
-        self.side = BattleSide(trainer)
+        self.wrapper = buildPokemonBattleWrapper()
         
     def buildStatModDelegate(self, degree):
         """ Returns a stat mod delegate with the given degree """
@@ -141,39 +139,39 @@ class applyEffect(unittest.TestCase):
     def modIncrease(self):
         """ test that modifiers can increase """
         delegate = self.buildStatModDelegate(1)
-        message = delegate.applyEffect(self.side, self.side)
-        assert self.side.statMods[self.stat] == 1, "ATK should be 1"
+        message = delegate.applyEffect(self.wrapper, self.wrapper)
+        assert self.wrapper.statMods[self.stat] == 1, "ATK should be 1"
         
     def modDecrease(self):
         """ test that modifiers can decrease """
         delegate = self.buildStatModDelegate(-1)
-        message = delegate.applyEffect(self.side, self.side)
-        assert self.side.statMods[self.stat] == -1, "ATK should be -1"
+        message = delegate.applyEffect(self.wrapper, self.wrapper)
+        assert self.wrapper.statMods[self.stat] == -1, "ATK should be -1"
         
     def modStack(self):
         """ test that modifiers stack on the preceding value """
-        self.side.statMods[self.stat] = 1
+        self.wrapper.statMods[self.stat] = 1
         delegate = self.buildStatModDelegate(-2)
-        message = delegate.applyEffect(self.side, self.side)
-        assert self.side.statMods[self.stat] == -1, "ATK should be -1"
+        message = delegate.applyEffect(self.wrapper, self.wrapper)
+        assert self.wrapper.statMods[self.stat] == -1, "ATK should be -1"
         
     def modTooHigh(self):
         """ test that modifiers stack on the preceding value """
-        self.side.statMods[self.stat] = 6
+        self.wrapper.statMods[self.stat] = 6
         delegate = self.buildStatModDelegate(2)
-        message = delegate.applyEffect(self.side, self.side)[0]
+        message = delegate.applyEffect(self.wrapper, self.wrapper)[0]
         
-        assert self.side.statMods[self.stat] == 6, "ATK should be 6"
+        assert self.wrapper.statMods[self.stat] == 6, "ATK should be 6"
         find = message.find(StatModDelegate.noChangeUp)
         assert not find == -1,"Should contain the message for going too high"
         
     def modTooLow(self):
         """ test that modifiers stack on the preceding value """
-        self.side.statMods[self.stat] = -6
+        self.wrapper.statMods[self.stat] = -6
         delegate = self.buildStatModDelegate(-2)
-        message = delegate.applyEffect(self.side, self.side)[0]
+        message = delegate.applyEffect(self.wrapper, self.wrapper)[0]
         
-        assert self.side.statMods[self.stat] == -6, "ATK should be -6"
+        assert self.wrapper.statMods[self.stat] == -6, "ATK should be -6"
         find = message.find(StatModDelegate.noChangeDown)
         assert not find == -1, "Should contain the message for going too low"
         
@@ -190,10 +188,7 @@ class getHeader(unittest.TestCase):
     def setUp(self):
         """ Builds the BattleSide """
         self.stat = "ATK"
-        trainer = Trainer()
-        self.pokemon = Pokemon("BULBASAUR")
-        trainer.beltPokemon = [self.pokemon]
-        self.side = BattleSide(trainer)
+        self.wrapper = buildPokemonBattleWrapper()
         
     def buildStatModDelegate(self, degree):
         """ Returns a stat mod delegate with the given degree """
@@ -202,8 +197,8 @@ class getHeader(unittest.TestCase):
     def testHeader(self):
         """ Test that the get Header returns the correct header """
         delegate = self.buildStatModDelegate(1)
-        header = delegate.getHeader(self.side)
-        find = header.find("{0}'s {1}".format(self.pokemon.name, self.stat))
+        header = delegate.getHeader(self.wrapper)
+        find = header.find("{0}'s {1}".format(self.wrapper.pkmn.name, self.stat))
         assert not find == -1, "Should have the format name's stat"
         
 testcasesGetHeader = ["testHeader"]
