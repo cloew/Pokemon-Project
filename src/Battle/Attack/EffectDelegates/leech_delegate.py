@@ -9,24 +9,25 @@ class LeechDelegate :
         self.message = message
         self.type = type
         
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Apply the Leech to the target """
-        leech = Leech(actingSide.currPokemon, self.message)
+        leech = Leech(user.pkmn, self.message)
         
-        if not leech.immune(otherSide.currPokemon.getTypes(), type):
-            self.removePreviousLeech(otherSide)
-            otherSide.secondaryEffects.append(leech)
-            return [otherSide.getHeader() + self.startMessage]
+        if not leech.immune(target.getTypes(), self.type):
+            self.removePreviousLeech(target)
+            
+            target.secondaryEffects.append(leech)
+            return [target.getHeader() + self.startMessage]
         
-    def removePreviousLeech(self, side):
-        """ Checks if the side already has a leech """
-        effect = self.hasThisLeech(side)
+    def removePreviousLeech(self, pkmn):
+        """ Checks if the pkmn already has a leech """
+        effect = self.hasThisLeech(pkmn)
         if effect:
-            side.secondaryEffects.remove(effect)
+            pkmn.secondaryEffects.remove(effect)
                 
-    def hasThisLeech(self, side):
-        """ Returns if the side receiving the leech already has a leech """
-        for effect in side.secondaryEffects:
+    def hasThisLeech(self, pkmn):
+        """ Returns if the pkmn receiving the leech already has a leech """
+        for effect in pkmn.secondaryEffects:
             if effect.message is self.message:
                 return effect
                 

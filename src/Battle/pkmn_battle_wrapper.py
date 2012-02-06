@@ -58,3 +58,7 @@ class PkmnBattleWrapper:
     def getAbility(self):
         """ Returns the Wrapper's Pokemon's Ability """
         return self.pkmn.ability
+        
+    def getTypes(self):
+        """ Returns the Wrapper's Pokemon's Types """
+        return self.pkmn.getTypes()

@@ -4,10 +4,10 @@ from Trainer.trainer import Trainer
 from Pokemon.pokemon import Pokemon
 
 
-def BuildPokemonBattleWrapper():
+def BuildPokemonBattleWrapper(pkmn = "BULBASAUR"):
     """  Builds a Pokemon Battle Wrapper """
     trainer = Trainer()
-    pokemon = Pokemon("BULBASAUR")
+    pokemon = Pokemon(pkmn)
     trainer.beltPokemon = [pokemon]
     
     side = BattleSide(trainer)
