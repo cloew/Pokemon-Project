@@ -15,16 +15,14 @@ class Battle:
         
     def battle(self, playerAction):
         """ Perform the action based on target """
-        self.oppAction = self.oppSide.trainer.getAction(self.oppSide.currPokemon)
+        self.oppAction = self.oppSide.trainer.getAction(self.oppSide.pkmnInPlay[0], self.getPlayerPkmn())
         self.playerAction = playerAction
         
-        playerSideAndAction = SideAndAction(self.playerSide, self.playerAction)
-        oppSideAndAction = SideAndAction(self.oppSide, self.oppAction)
 
         if self.doesPlayerGoFirst(playerAction, self.oppAction):
-            return [playerSideAndAction, oppSideAndAction]
+            return [playerAction, self.oppAction]
         else:
-            return [oppSideAndAction, playerSideAndAction]
+            return [oppAction,self.playerAction]
         
     def doesPlayerGoFirst(self, playerAction, oppAction):
         """ Compare action priorities to see who goes first """
@@ -34,8 +32,8 @@ class Battle:
     
     def doesPlayerGoFirstBySpeed(self):
         """ Compares Speeds to decide if the player goes first """
-        oppSpeed = self.oppSide.currPokemon.getStat("SPD")
-        playerSpeed = self.playerSide.currPokemon.getStat("SPD")
+        oppSpeed = self.oppSide.pkmnInPlay[0].getStat("SPD")
+        playerSpeed = self.playerSide.pkmnInPlay[0].getStat("SPD")
         
         if oppSpeed < playerSpeed:
             return True
@@ -44,14 +42,14 @@ class Battle:
         else:
             return random.randint(0,1)
                                
-    def act(self, actingSide, action, otherSide):
+    def act(self, action):
         """ Performs the action """
-        actingSide.lastAction = action
-        return action.doAction(actingSide, otherSide)
+        action.user.lastAction = action
+        return action.doAction()
         
-    def afterTurn(self, actingSide, func, otherSide):
+    def afterTurn(self, user, func):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
-        return actingSide.afterTurn(func, otherSide)
+        return actingSide.afterTurn(func)
         
     def betweenTurns(self, func):
         """ Perform between turns """
@@ -63,10 +61,10 @@ class Battle:
         """ Check if a Pokemon has fainted """
         messages = []
         
-        if (self.playerSide.currPokemon.isFainted()):
-            messages.append(self.playerSide.getHeader() + " fainted.")
-        if (self.oppSide.currPokemon.isFainted()):
-            messages.append(self.oppSide.getHeader() + " fainted.")
+        if (self.playerSide.pkmnInPlay[0].isFainted()):
+            messages.append(self.playerSide.pkmnInPlay[0].getHeader() + " fainted.")
+        if (self.oppSide.pkmnInPlay[0].isFainted()):
+            messages.append(self.oppSide.pkmnInPlay[0].getHeader() + " fainted.")
             
         message = self.checkOver()
         if message:
@@ -91,10 +89,10 @@ class Battle:
         """ Returns the Opposing Trainer """
         return self.oppSide.trainer
         
-    def getPlayerPokemon(self):
+    def getPlayerPkmn(self):
         """ Returns the Pokemon currently out """
-        return self.playerSide.currPokemon
+        return self.playerSide.pkmnInPlay
         
-    def getOppPokemon(self):
+    def getOppPkmn(self):
         """ Returns the Pokemon currently out """
-        return self.oppSide.currPokemon
+        return self.oppSide.pkmnInPlay

@@ -21,7 +21,7 @@ class HitDelegate(object):
     def core(self, user, target):
         """ Calculates a random #, compares to chanceToHit to determine if it
         lands or not """
-        accuracy = user.currPokemon.ability.onAccuracy(self.chanceToHit)
+        accuracy = user.getAbility().onAccuracy(self.chanceToHit)
         accMod = HitDelegate.accMods[user.statMods["ACC"]]
         evasMod = HitDelegate.accMods[-1*target.statMods["EVAS"]]
         toHit = accuracy*accMod*evasMod

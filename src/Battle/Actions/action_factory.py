@@ -10,4 +10,4 @@ class ActionFactory:
         """ Builds an action based on the type as a string """
         actionType = actionParams[0]
         if actionType == Constants.fightAction:
-            return AttackAction(actionParams[1])
+            return AttackAction(actionParams[1], actionParams[2], actionParams[3])

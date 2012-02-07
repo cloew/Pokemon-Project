@@ -30,9 +30,9 @@ class PkmnBattleWrapper:
         for key in self.statMods:
             self.statMods[key] = 0
             
-    def afterTurn(self, func, otherSide):
+    def afterTurn(self, func):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
-        messages = self.pkmn.ability.afterTurn(self, otherSide)
+        messages = self.pkmn.ability.afterTurn(self)
         if func(messages):
             return
             
@@ -68,13 +68,25 @@ class PkmnBattleWrapper:
         """ Has the Pkmn take the given amount of damage """
         self.pkmn.takeDamage(damage)
         
+    def isFainted(self):
+        """ Return whether the Wrapper's Pokemon is fainted """
+        return self.pkmn.isFainted()
+        
     def getLevel(self):
         """ Returns the Wrapper's POkemon's Level """
         return self.pkmn.level
         
+    def getName(self):
+        """ Returns the Wrapper's Pokemon's name """
+        return self.pkmn.name
+        
     def getStat(self, stat):
         """ Returns the Wrapper's Pokemon's stat """
         return self.pkmn.getStat(stat)
+       
+    def getCurrHP(self):
+        """ Returns the Wrapper's Pokemon's Current HP """
+        return self.pkmn.getCurrHP()
         
     def getStatus(self):
         """ Returns the Wrapper's Pokemon's Status """

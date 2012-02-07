@@ -15,8 +15,8 @@ class PreconditionChecker:
     def checkPreConditions(self):
         """ Checks all pre-conditions to the Battle """
         messages = []
-        for condition in conditionsToCheck:
-            stop, message = condition(self.user, self.target)
+        for condition in self.conditionsToCheck:
+            stop, message = condition()
             messages = messages + message
             if stop:
                 return stop, messages
@@ -26,10 +26,10 @@ class PreconditionChecker:
     def checkLock(self):
         """ Checks if the user has acquired a lock during this turn
         If so, use the lock """
-        if self.user.trainer.actionLock and \
-                hasattr(self.user.trainer.actionLock.action, "attack") and \
-                self.user.trainer.actionLock.action.attack is not self:
-            messages = self.user.trainer.actionLock.attack.use(self.user, self.target)
+        if self.user.actionLock and \
+                hasattr(self.user.actionLock.action, "attack") and \
+                self.user.actionLock.action.attack is not self:
+            messages = self.user.actionLock.attack.use(self.user, self.target) # This needs to be looked at...
             return True, messages
         return False, []
         
@@ -56,7 +56,7 @@ class PreconditionChecker:
         
     def checkStatus(self):
         """ Checks if the user's status prevents a move this turn """
-        return self.user.currPokemon.getStatus().immobilized(self.user)
+        return self.user.getStatus().immobilized(self.user)
         
     def checkSecondaries(self):
         """ Checks if the user's secondary effects prevent a move this turn """

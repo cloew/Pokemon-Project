@@ -15,4 +15,4 @@ class AttackAction(BattleAction):
         
     def doAction(self):
         """ Performs the action """
-        return self.attack.use(user, target)
+        return self.attack.use(self.user, self.target)

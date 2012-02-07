@@ -25,7 +25,7 @@ class BattleViewController:
         self.sendOutPkmnOnSide(self.battle.playerSide)
         
         # Start the Game Loop
-        #self.gameLoop()
+        self.gameLoop()
         
     def sendOutPkmnOnSide(self, side):
         """ Sends out the Pkmn for the given side """
@@ -46,15 +46,18 @@ class BattleViewController:
                 action = self.battle.playerSide.trainer.actionLock.useAction()
         
             # Have the Battle start the battle iteration
-            sAndAs = self.battle.battle(action)
-        
-            for i in range(2):
-                messages = self.battle.act(sAndAs[i].side, sAndAs[i].action, sAndAs[not i].side)
+            actions = self.battle.battle(action)
+            
+            self.performActions(actions)
+                    
+    def performActions(self, actions):
+        """ Perform all the given actions """
+        for action in actions:
+                messages = self.battle.act(action)
                 if self.reportAndCheckEnd(messages):
                     return
                 
-                messages = self.battle.afterTurn(sAndAs[i].side, self.reportAndCheckEnd,\
-                                                                sAndAs[not i].side)
+                messages = self.battle.afterTurn(action.user, self.reportAndCheckEnd)
                 if self.reportAndCheckEnd(messages):
                     return
                 

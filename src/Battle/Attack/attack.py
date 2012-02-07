@@ -11,16 +11,13 @@ class Attack:
         
         self.effectDelegates = []
         
-    #def use(self, actingSide, otherSide):
     def use(self, user, target):
         """ Uses the current attack Object in a Battle """
-        #user = actingSide.currPokemon
-        #target = otherSide.currPokemon
         messages = []
         
         # Check for pre attack factors
         preconditionChecker = PreconditionChecker(user, target, self)
-        stop, preMessages = preconditionChecker.checkPreConditions(user, target)
+        stop, preMessages = preconditionChecker.checkPreConditions()
         messages = preMessages
         if stop:
             return preMessages

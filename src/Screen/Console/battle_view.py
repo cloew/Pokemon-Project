@@ -22,13 +22,17 @@ class ConsoleBattleScreen:
         
     def printScreen(self):
         """ Prints the screen """
-        oppPoke = self.battle.getOppPokemon()
-        playerPoke = self.battle.getPlayerPokemon()
+        oppPkmn = self.battle.getOppPkmn()
+        playerPkmn = self.battle.getPlayerPkmn()
         print "\n"
-        print oppPoke.battleDelegate.currHP, "/", oppPoke.battleDelegate.stats["HP"], \
-                 "\t", oppPoke.getStatus().abbr, "\t", oppPoke.name
-        print playerPoke.name, "\t", playerPoke.getStatus().abbr, "\t", \
-                 playerPoke.battleDelegate.currHP,  "/", playerPoke.battleDelegate.stats["HP"]
+        
+        for pkmn in oppPkmn:
+            print pkmn.getCurrHP(), "/", pkmn.getStat("HP"), \
+                    "\t", pkmn.getStatus().abbr, "\t", pkmn.getName()
+                 
+        for pkmn in playerPkmn:
+            print pkmn.getName(), "\t", pkmn.getStatus().abbr, "\t", \
+                    pkmn.getCurrHP(),  "/", pkmn.getStat("HP")
         
     def pickAction(self):
         """ Loops until user has decided on their action """
@@ -51,7 +55,7 @@ class ConsoleBattleScreen:
     def fight(self):
         """ Handles logic for fighting and stuff """
         self.printScreen()
-        attacks = self.battle.getPlayerPokemon().battleDelegate.attacks
+        attacks = self.battle.getPlayerPkmn()[0].getAttacks()
         
         for i in range(len(attacks)):
             print "%i." % (i+1), attacks[i].name
@@ -60,7 +64,7 @@ class ConsoleBattleScreen:
         
         if i == ConsoleBattleScreen.cancelLetter:
             return False, None
-        return True, [Constants.fightAction, attacks[i-1]]
+        return True, [Constants.fightAction, attacks[i-1], self.battle.getPlayerPkmn()[0], self.battle.getOppPkmn()[0]]
         
     def switch(self):
         """ Switches Pokemon """

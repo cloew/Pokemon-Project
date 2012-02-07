@@ -54,6 +54,10 @@ class Pokemon:
         """ Returns the Speed for battle of the Pokemon """
         return self.battleDelegate.stats[stat]*self.battleDelegate.status.getStatMod(stat)
         
+    def getCurrHP(self):
+        """ Return the Pokemon's Current HP """
+        return self.battleDelegate.currHP
+        
     def getStatus(self):
         """ Gets the status of the Pokemon """
         return self.battleDelegate.status
