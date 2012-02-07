@@ -9,12 +9,12 @@ class CantLowerStatAbility(Ability):
         self.name = name
         self.stat = stat
         
-    def onStatMod(self, side, stat, degree, selfInflicted):
+    def onStatMod(self, pkmn, stat, degree, selfInflicted):
         """ Alter the statMods of the Status to reflect the abilities effect """
         messages = []
         
         if not selfInflicted and stat == self.stat and degree < 0:
             degree = 0
-            messages = [self.message % (side.getHeader(), self.name, self.stat)]
+            messages = [self.message % (pkmn.getHeader(), self.name, self.stat)]
             
         return degree, messages

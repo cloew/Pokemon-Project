@@ -1,22 +1,17 @@
+import unittest
+from Test.test_helper import BuildPokemonBattleWrapper
+
 from Pokemon.Abilities.cantlowerstat_ability import CantLowerStatAbility
 
-from Battle.battle_side import BattleSide
 from Battle.Status.status import Status
 from Battle.Status.paralysis import Paralysis
-from Pokemon.pokemon import Pokemon
-from Trainer.trainer import Trainer
-
-import unittest
 
 class onStatMod(unittest.TestCase):
     """ Test that onStatMod operates correctly """
     
     def setUp(self):
-        """ Builds the delegate and side for use in the tests """
-        trainer = Trainer()
-        pokemon = Pokemon("BULBASAUR")
-        trainer.beltPokemon = [pokemon]
-        self.side = BattleSide(trainer)
+        """ Builds the Ability and Pkmn for use in the tests """
+        self.battlePkmn = BuildPokemonBattleWrapper()
         
         self.stat = "ATK"
         self.stat2 = "DEF"
@@ -28,28 +23,28 @@ class onStatMod(unittest.TestCase):
         
     def statChange_notStat(self):
         """ Check gaurded stat is the only protected stat """
-        degree, messages = self.ability.onStatMod(self.side, self.stat2, self.degree, 0)
+        degree, messages = self.ability.onStatMod(self.battlePkmn, self.stat2, self.degree, 0)
         
         assert degree == self.degree, "Degree should not be altered when stat lowered is not protected."
         assert len(messages) == 0, "Messages be empty."
         
     def statChange_Raised(self):
         """ Check that the stat is only protected against lowering """
-        degree, messages = self.ability.onStatMod(self.side, self.stat, self.degree2, 0)
+        degree, messages = self.ability.onStatMod(self.battlePkmn, self.stat, self.degree2, 0)
         
         assert degree == self.degree2, "Degree should not be altered when stat is raised."
         assert len(messages) == 0, "Messages be empty."
         
     def statChange_SelfInflicted(self):
         """ Check that the stat is only protected against opp """
-        degree, messages = self.ability.onStatMod(self.side, self.stat, self.degree, 1)
+        degree, messages = self.ability.onStatMod(self.battlePkmn, self.stat, self.degree, 1)
         
         assert degree == self.degree, "Degree should not be altered when self-inflicted."
         assert len(messages) == 0, "Messages be empty."
         
     def blockStatChange(self):
         """ Check that the stat decrease is blocked """
-        degree, messages = self.ability.onStatMod(self.side, self.stat, self.degree, 0)
+        degree, messages = self.ability.onStatMod(self.battlePkmn, self.stat, self.degree, 0)
         
         assert degree == 0, "Degree should be zero."
         assert len(messages) == 1, "Should have a message."
