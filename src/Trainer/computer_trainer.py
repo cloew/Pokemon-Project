@@ -8,20 +8,22 @@ class ComputerTrainer(Trainer):
     """ Represents a Pokemon Trainer """
     header = "Enemy "
                 
-    def getAction(self, currPokemon):
+    def getAction(self, user, targets):
         """ Get action, randomly pick an available attack """
-        if self.actionLock:
+        if user.actionLock:
             action = self.actionLock.useAction()
         else:
-            action = self.pickAction(currPokemon)
+            action = self.pickAction(user, targets)
             
             
         return action
         
-    def pickAction(self, currPokemon):
+    def pickAction(self, user, targets):
         """ Has the computer pick its action """
-        attacks = currPokemon.battleDelegate.attacks
-        return  AttackAction(attacks[random.randint(0, len(attacks)-1)])
+        attacks = user.getAttacks()
+        attack = random.choice(attacks)
+        target = random.choice(targets)
+        return  AttackAction(attack, user, target)
         
     def getHeader(self):
         """ Return the header based on the type of trainer """

@@ -60,6 +60,10 @@ class PkmnBattleWrapper:
         """ Returns the Wrapper's Pokemon's Ability """
         return self.pkmn.ability
         
+    def getAttacks(self):
+        """ Returns the Wrapper's Pokemon's Attacks """
+        return self.pkmn.getAttacks()
+        
     def takeDamage(self, damage):
         """ Has the Pkmn take the given amount of damage """
         self.pkmn.takeDamage(damage)
