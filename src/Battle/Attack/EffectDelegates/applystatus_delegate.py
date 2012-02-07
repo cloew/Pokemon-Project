@@ -18,24 +18,24 @@ class ApplyStatusDelegate:
         
     def applyEffect(self, user, target):
         """ Applies the status to one side based on affectUser """
-        pkmnWrapper = self.getEffectedPokemon(user, target)
-        messages = self.applyStatus(pkmnWrapper)
+        pkmn = self.getEffectedPokemon(user, target)
+        messages = self.applyStatus(pkmn)
             
         return messages
         
-    def applyStatus(self, pkmnWrapper):
+    def applyStatus(self, pkmn):
         """ Applies the given status to the given Pokemon """
         status, message = StatusFactory.buildStatusFromAbbr(self.status)
         
-        if self.checkImmune(status, pkmnWrapper.pkmn):
+        if self.checkImmune(status, pkmn):
             return []
-        if self.checkStatusAlready(pkmnWrapper.pkmn):
+        if self.checkStatusAlready(pkmn):
             return []
         
-        pkmnWrapper.pkmn.setStatus(status)
-        messages = [pkmnWrapper.getHeader() + message]
+        pkmn.setStatus(status)
+        messages = [pkmn.getHeader() + message]
         
-        message = pkmnWrapper.pkmn.ability.onStatus(pkmnWrapper, status)
+        message = pkmn.getAbility().onStatus(pkmn, status)
         messages = messages + message
         
         return messages
@@ -43,9 +43,9 @@ class ApplyStatusDelegate:
     def immune(self, user, target):
         """ Checks if the target is immune to the status effect """
         status, message = StatusFactory.buildStatusFromAbbr(self.status)
-        pkmnWrapper = self.getEffectedPokemon(user, target)
+        pkmn = self.getEffectedPokemon(user, target)
         
-        return self.checkImmune(status, pkmnWrapper.pkmn) or self.checkStatusAlready(pkmnWrapper.pkmn)
+        return self.checkImmune(status, pkmn) or self.checkStatusAlready(pkmn)
         
     def checkImmune(self, status, pkmn):
         """ Returns if the target is immune to the status effect """
