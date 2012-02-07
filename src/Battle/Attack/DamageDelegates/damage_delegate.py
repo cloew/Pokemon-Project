@@ -22,7 +22,7 @@ class DamageDelegate(object):
     
         # Apply the modifier, have the target take damage
         damage, messages = self.damage(user, target)
-        self.takeDamage(damage, target.currPokemon)
+        self.takeDamage(damage, target)
         
         # Return the messages
         return messages
@@ -30,35 +30,29 @@ class DamageDelegate(object):
     def damage(self, user, target):
         """ Returns  the damage of the attack
         including effectiveness and STAB """
-        #user = actingSide.currPokemon
-        #target = otherSide.currPokemon
         messages = []
         
         # Get damage
         damage = self.calcDamage(user, target)
         
         # Get modifiers
-        mod = self.getEffectiveness(messages, target.currPokemon)
-        mod = mod*self.getStab(user.currPokemon)
+        mod = self.getEffectiveness(messages, target)
+        mod = mod*self.getStab(user)
         mod = mod*self.getCrit(messages, user, target)
         
         return self.normalize(damage*mod), messages
         
     def calcDamage(self, user, target):
         """ Calculate the damage before modifiers """
-        return self.coreDamage(user, target)*\
-                self.applyRand()
+        return self.coreDamage(user, target)*self.applyRand()
         
     def coreDamage(self, user, target):
         """ Calculate the damage before modifiers and rands """
-        #user = actingSide.currPokemon
-        #target = otherSide.currPokemon
-        
         atkStat, defStat = self.getAtkAndDefType()
     
         attack = self.getStatWithMod(atkStat, user)
         defense = self.getStatWithMod(defStat, target)
-        level = user.level
+        level = user.getLevel()
         
         power = self.getPower(user, target)
         
@@ -77,7 +71,7 @@ class DamageDelegate(object):
         
     def getStatWithMod(self, stat, pkmn):
         """ Returns the sepcified stat, modified by the pkmn's stat mods """
-        result = pkmn.currPokemon.getStat(stat)
+        result = pkmn.getStat(stat)
         modLevel = pkmn.statMods[stat]
         mod = DamageDelegate.statLevels[abs(modLevel)]
         
@@ -98,7 +92,7 @@ class DamageDelegate(object):
         """ Returns the modifier returned based on effectiveness
         and adds the message to the list of messages """
         mod, message = Effectiveness.getEffectiveness(self.parent.type,\
-                target.battleDelegate.types)
+                target.getTypes())
     
         if message:
             messages.append(message)
@@ -108,7 +102,7 @@ class DamageDelegate(object):
     def getStab(self, user):
         """ Returns the modifier for STAB """
         if self.parent.type in user.getTypes():
-            return user.ability.onStab()
+            return user.getAbility().onStab()
         return 1
         
     def getCrit(self, messages, user, target):
@@ -117,8 +111,8 @@ class DamageDelegate(object):
         if hasattr(self.parent, "critDelegate"):
             crit, message = self.parent.critDelegate.crit(user)
             if crit:
-                newMod = user.currPokemon.ability.giveCrit(2)
-                newMod, abilityMessages = target.currPokemon.ability.takeCrit\
+                newMod = user.getAbility().giveCrit(2)
+                newMod, abilityMessages = target.getAbility().takeCrit\
                                                                         (newMod, target, user)
                 
                 if newMod > 1:
@@ -130,5 +124,5 @@ class DamageDelegate(object):
         
     def takeDamage(self, damage, target):
         """ Has the target take damage """
-        target.battleDelegate.takeDamage(damage)
+        target.takeDamage(damage)
         

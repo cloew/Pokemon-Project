@@ -1,8 +1,6 @@
-from Battle.Attack.DamageDelegates.statratio_delegate import StatRatioDelegate
+from Test.test_helper import BuildPokemonBattleWrapper
 
-from Battle.battle_side import BattleSide
-from Trainer.trainer import Trainer
-from Pokemon.pokemon import Pokemon
+from Battle.Attack.DamageDelegates.statratio_delegate import StatRatioDelegate
 
 import unittest
 
@@ -11,25 +9,20 @@ class getPower(unittest.TestCase):
     
     def setUp(self):
         """ Setup the attack and Pokemon to use the attack """
-        trainer = Trainer()
-        self.user = Pokemon("BULBASAUR")
-        trainer.beltPokemon = [self.user]
-        self.actingSide = BattleSide(trainer)
+        self.actingPokemon = BuildPokemonBattleWrapper()
+        self.otherPokemon = BuildPokemonBattleWrapper()
         
-        trainer2 = Trainer()
-        self.target = Pokemon("BULBASAUR")
-        trainer2.beltPokemon = [self.target]
-        self.otherSide = BattleSide(trainer2)
+        self.user = self.actingPokemon.pkmn
+        self.target = self.otherPokemon.pkmn
         
         self.stat = "SPD"
-        
         self.delegate = StatRatioDelegate(None, 1, self.stat)
         
     def basePower(self):
         """ Test that the base power is correct """
         self.user.battleDelegate.stats[self.stat] = 25
         self.target.battleDelegate.stats[self.stat] = 25
-        power = self.delegate.getPower(self.actingSide, self.otherSide)
+        power = self.delegate.getPower(self.actingPokemon, self.otherPokemon)
         
         assert power == StatRatioDelegate.base, "Power should be the base when the ratio of the stat is 0"
         
@@ -37,7 +30,7 @@ class getPower(unittest.TestCase):
         """ Test that the power is greater when the user's stat is lower """
         self.user.battleDelegate.stats[self.stat] = 20
         self.target.battleDelegate.stats[self.stat] = 25
-        power = self.delegate.getPower(self.actingSide, self.otherSide)
+        power = self.delegate.getPower(self.actingPokemon, self.otherPokemon)
         
         assert power > StatRatioDelegate.base, "Power should be larger when user's stat decreases"
         
@@ -45,7 +38,7 @@ class getPower(unittest.TestCase):
         """ Test that the power is smaller when the user's stat is higher """
         self.user.battleDelegate.stats[self.stat] = 30
         self.target.battleDelegate.stats[self.stat] = 25
-        power = self.delegate.getPower(self.actingSide, self.otherSide)
+        power = self.delegate.getPower(self.actingPokemon, self.otherPokemon)
         
         assert power < StatRatioDelegate.base, "Power should be smaller when user's stat increases"
         
@@ -53,7 +46,7 @@ class getPower(unittest.TestCase):
         """ Test that the power is not greater than the max """
         self.user.battleDelegate.stats[self.stat] = 1
         self.target.battleDelegate.stats[self.stat] = 300
-        power = self.delegate.getPower(self.actingSide, self.otherSide)
+        power = self.delegate.getPower(self.actingPokemon, self.otherPokemon)
         
         assert power ==  StatRatioDelegate.max, "Power should be max at greatest"
 

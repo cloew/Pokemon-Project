@@ -1,7 +1,8 @@
+from Test.test_helper import BuildPokemonBattleWrapper
+
 from Battle.Attack.attack import Attack
 from Battle.Attack.DamageDelegates.damage_delegate import DamageDelegate
-from Battle.battle_side import BattleSide
-from Trainer.trainer import Trainer
+
 from Pokemon.pokemon import Pokemon
 
 import unittest
@@ -10,35 +11,34 @@ class coreDamage(unittest.TestCase):
     """ Test that core damage is calculated correctly """ 
     def setUp(self):
         """ Setup the attack and Pokemon to use the attack """
-        trainer = Trainer()
-        self.pokemon = Pokemon("BULBASAUR")
-        trainer.beltPokemon = [self.pokemon]
-        self.side = BattleSide(trainer)
-        self.delegate = DamageDelegate(None, 50, 1)
-        self.pokemon.battleDelegate.stats["ATK"] = 10
-        self.pokemon.battleDelegate.stats["DEF"] = 10
-        self.pokemon.battleDelegate.level = 5
+        self.battlePkmn = BuildPokemonBattleWrapper()
+        self.pkmn = self.battlePkmn.pkmn
         
-        self.core = self.delegate.coreDamage(self.side, self.side) - 2
+        self.delegate = DamageDelegate(None, 50, 1)
+        self.pkmn.battleDelegate.stats["ATK"] = 10
+        self.pkmn.battleDelegate.stats["DEF"] = 10
+        self.pkmn.battleDelegate.level = 5
+        
+        self.core = self.delegate.coreDamage(self.battlePkmn, self.battlePkmn) - 2
         
     def testAtkEffect(self):
         """ Test that altering ATK has the correct effect """
-        self.pokemon.battleDelegate.stats["ATK"] = self.pokemon.battleDelegate.stats["ATK"]*2
-        damage = self.delegate.coreDamage(self.side, self.side) - 2
+        self.pkmn.battleDelegate.stats["ATK"] = self.pkmn.battleDelegate.stats["ATK"]*2
+        damage = self.delegate.coreDamage(self.battlePkmn, self.battlePkmn) - 2
         
         assert damage == 2*self.core, "Damage should double when Attack is doubled"
         
     def testDefEffect(self):
-        """ Test that altering ATK has the correct effect """
-        self.pokemon.battleDelegate.stats["DEF"] = self.pokemon.battleDelegate.stats["DEF"]*2
-        damage = self.delegate.coreDamage(self.side, self.side) - 2
+        """ Test that altering DEF has the correct effect """
+        self.pkmn.battleDelegate.stats["DEF"] = self.pkmn.battleDelegate.stats["DEF"]*2
+        damage = self.delegate.coreDamage(self.battlePkmn, self.battlePkmn) - 2
         
         assert damage == self.core/2.0, "Damage should half when Defense is doubled"
         
     def testPowerEffect(self):
-        """ Test that altering ATK has the correct effect """
+        """ Test that altering Power has the correct effect """
         self.delegate.power = 100
-        damage = self.delegate.coreDamage(self.side, self.side) - 2
+        damage = self.delegate.coreDamage(self.battlePkmn, self.battlePkmn) - 2
         
         assert damage == self.core*2.0, "Damage should double when Power is doubled"
 
@@ -77,13 +77,10 @@ class getStatWithMod(unittest.TestCase):
     """ Test that get Stat with Mod, modifies the satats correctly """
     
     def setUp(self):
-        """ Build the side """
+        """ Build the Pkmn """
         self.stat = "ATK"
-        trainer = Trainer()
-        self.pokemon = Pokemon("BULBASAUR")
-        trainer.beltPokemon = [self.pokemon]
-        self.side = BattleSide(trainer)
-        
+        self.battlePkmn = BuildPokemonBattleWrapper()
+        self.pkmn = self.battlePkmn.pkmn
     
     def buildDamageDelegate(self):
         """ Returns a damage delegate """
@@ -92,25 +89,25 @@ class getStatWithMod(unittest.TestCase):
     def noModifier(self):
         """ Test that no modifier returns the correct value """
         delegate = self.buildDamageDelegate()
-        pokeValue = self.pokemon.battleDelegate.stats[self.stat]
-        sideValue = delegate.getStatWithMod(self.stat, self.side)
+        pokeValue = self.pkmn.battleDelegate.stats[self.stat]
+        sideValue = delegate.getStatWithMod(self.stat, self.battlePkmn)
         assert pokeValue == sideValue, "Stat should be unchanged"
         
     def highModifier(self):
         """ Test that high modifier returns the correct value """
         delegate = self.buildDamageDelegate()
-        self.side.statMods[self.stat] = 2
-        pokeValue = self.pokemon.battleDelegate.stats[self.stat]
-        sideValue = delegate.getStatWithMod(self.stat, self.side)
+        self.battlePkmn.statMods[self.stat] = 2
+        pokeValue = self.pkmn.battleDelegate.stats[self.stat]
+        sideValue = delegate.getStatWithMod(self.stat, self.battlePkmn)
         
         assert pokeValue*2.0 == sideValue, "Stat should be twice normal"
         
     def lowModifier(self):
         """ Test that low modifier returns the correct value """
         delegate = self.buildDamageDelegate()
-        self.side.statMods[self.stat] = -2
-        pokeValue = self.pokemon.battleDelegate.stats[self.stat]
-        sideValue = delegate.getStatWithMod(self.stat, self.side)
+        self.battlePkmn.statMods[self.stat] = -2
+        pokeValue = self.pkmn.battleDelegate.stats[self.stat]
+        sideValue = delegate.getStatWithMod(self.stat, self.battlePkmn)
         
         assert pokeValue/2.0 == sideValue, "Stat should be half normal"
 
@@ -131,14 +128,14 @@ class getStab(unittest.TestCase):
         
     def hasStab(self):
         """ Test that it correctly returns STAB modifier """
-        poke = Pokemon("CHARMANDER")
-        stab = self.delegate.getStab(poke)
+        pkmn = BuildPokemonBattleWrapper("CHARMANDER")
+        stab = self.delegate.getStab(pkmn)
         assert stab == 1.5, "Should return with STAB modifier"
         
     def noStab(self):
         """ Test that it correctly returns STAB modifier """
-        poke = Pokemon("BULBASAUR")
-        stab = self.delegate.getStab(poke)
+        pkmn = BuildPokemonBattleWrapper("BULBASAUR")
+        stab = self.delegate.getStab(pkmn)
         assert stab == 1, "Should return with modifier of 1"
 
 # Collect all test cases in this class      

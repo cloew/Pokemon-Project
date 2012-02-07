@@ -38,9 +38,13 @@ class Pokemon:
         """ Returns if the Pkmn is fainted or not """
         return self.battleDelegate.currHP is 0
         
-    def getTypes(self):
-        """ Returns the Pokemon's types """
-        return self.battleDelegate.types
+    def takeDamage(self, damage):
+        """ Has the Pokemon take damage """
+        self.battleDelegate.takeDamage(damage)
+        
+    def heal(self, heal):
+        """ Has the Pokemon heal itself """
+        self.battleDelegate.heal(heal)
         
     def getStat(self, stat):
         """ Returns the Speed for battle of the Pokemon """
@@ -54,17 +58,13 @@ class Pokemon:
         """ Sets the status of the Pokemon """
         self.battleDelegate.status = status
         
+    def getTypes(self):
+        """ Returns the Pokemon's types """
+        return self.battleDelegate.types
+        
     def getRatioOfHealth(self, ratio):
         """ Returns the ratio of the pokemon's health """
         val = int(self.getStat("HP")/float(ratio))
         if val == 0:
             return 1
         return val
-        
-    def heal(self, heal):
-        """ Has the Pokemon heal itself """
-        self.battleDelegate.heal(heal)
-        
-    def takeDamage(self, damage):
-        """ Has the Pokemon take damage """
-        self.battleDelegate.takeDamage(damage)
