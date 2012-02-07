@@ -7,7 +7,7 @@ class BattleSide:
     def __init__(self, trainer):
         """  """
         self.trainer = trainer
-        self.pkmnInPlay =[PkmnBattleWrapper(self)]
+        self.pkmnInPlay = [PkmnBattleWrapper(self)]
         
     def sendOutPkmn(self):
         """  Send out Pokemon to fill out all pkmnInPlay """
@@ -28,5 +28,5 @@ class BattleSide:
         
     def betweenTurns(self):
         """ Perform between turns """
-        for pkmn in pkmnInPlay:
+        for pkmn in self.pkmnInPlay:
             pkmn.betweenTurns()
