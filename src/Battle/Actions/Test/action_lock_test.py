@@ -10,7 +10,7 @@ class useAction(unittest.TestCase):
     def setUp(self):
         """ Build action for the test"""
         attack = AttackFactory.getAttackAsNew("TACKLE")
-        self.action = AttackAction(attack)
+        self.action = AttackAction(attack, None, None)
         self.turns = 2
         self.actionLock = ActionLock(None, self.action, self.turns)
         

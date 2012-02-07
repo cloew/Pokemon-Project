@@ -13,6 +13,6 @@ class AttackAction(BattleAction):
         """ Returns the Speed Priority of the Action """
         return self.attack.speedDelegate.priority
         
-    def doAction(self, actingSide, otherSide):
+    def doAction(self):
         """ Performs the action """
-        return self.attack.use(actingSide, otherSide)
+        return self.attack.use(user, target)
