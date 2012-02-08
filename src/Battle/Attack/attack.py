@@ -59,7 +59,7 @@ class Attack:
     def preventEffects(self, user, target):
         """ Return whether the effects are prevented """
         nullDamage = hasattr(self.damageDelegate, "isNull")
-        canUse = user.ability.canUseEffects() and target.ability.canUseEffects()
+        canUse = user.getAbility().canUseEffects() and target.getAbility().canUseEffects()
         return not nullDamage and not canUse
         
     def applyEffectsOnMiss(self, user, target):
