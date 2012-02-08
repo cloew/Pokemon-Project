@@ -29,7 +29,7 @@ class checkLock(unittest.TestCase):
         
     def noLock(self):
         """ Test that check lock returns correctly when the user has no lock """
-        self.user.actionLock = None;
+        self.user.actionLock = None
         stop, messages = self.preconditionChecker.checkLock()
         
         assert not stop, "Should not stop if the user has no lock"
@@ -42,8 +42,44 @@ suiteCheckLock = unittest.TestSuite(map(checkLock, testcasesCheckLock))
 
 ##########################################################
 
+class checkFlinch(unittest.TestCase):
+    """ Test cases of checkFlinch """
+    
+    def  setUp(self):
+        """ Build the Pkmn, Lock, and Precondition Checker for the test """
+        self.user = BuildPokemonBattleWrapper()
+        self.target = BuildPokemonBattleWrapper()
+        
+        attack = AttackFactory.getAttackAsNew("TACKLE")
+        self.preconditionChecker = PreconditionChecker(self.user, self.target, attack)
+        
+    def flinching(self):
+        """ Test that check lock returns correctly when the user has a lock  """
+        self.user.flinching = True
+        stop, messages = self.preconditionChecker.checkFlinch()
+        
+        message = [self.user.getHeader() + " flinched."]
+        
+        assert stop, "Should stop if the user flinches"
+        assert messages == message, "Should have flinching message"
+        
+    def notFlinching(self):
+        """ Test that check lock returns correctly when the user has no lock """
+        self.user.flinching = False
+        stop, messages = self.preconditionChecker.checkLock()
+        
+        assert not stop, "Should not stop if the user isn't flinching"
+        assert messages == [], "Should not receive any messages"
+        
+
+# Collect all test cases in this class
+testcasesCheckFlinch = ["flinching", "notFlinching"]
+suiteCheckFlinch = unittest.TestSuite(map(checkFlinch, testcasesCheckFlinch))
+
+##########################################################
+
 # Collect all test cases in this file
-suites = [suiteCheckLock]
+suites = [suiteCheckLock, suiteCheckFlinch]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
