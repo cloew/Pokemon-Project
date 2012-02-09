@@ -2,6 +2,7 @@ from Battle.Actions.action_lock import ActionLock
 from Battle.Attack.DamageDelegates.damage_delegate import DamageDelegate
 
 class DamageScaleDelegate(DamageDelegate):
+    """ Damage Delegate whose damage scales each turn it is used """
     
     def __init__(self, parent, power, isPhysical, factor, turns):
         """ """
@@ -15,17 +16,11 @@ class DamageScaleDelegate(DamageDelegate):
         
     def coreDamage(self, user, target):
         """ Calculate the damage before modifiers and rands """
-        #user = actingSide.currPokemon
-        #target = otherSide.currPokemon
-        
-        atkStat, defStat = self.getAtkAndDefType()
-    
-        attack = self.getStatWithMod(atkStat, user)
-        defense = self.getStatWithMod(defStat, target)
-        level = user.level
         scale = self.getScale()
         
-        return ((((2*level/5 + 2)*attack*self.power*scale/defense)/50) + 2)
+        damage = super(DamageScaleDelegate, self).coreDamage(user, target)-2
+        damage = damage*scale
+        return damage + 2
         
     def getScale(self):
         """ Returns the scale based on the number of turns the attack has run """

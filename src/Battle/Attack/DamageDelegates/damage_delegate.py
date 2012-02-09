@@ -15,9 +15,6 @@ class DamageDelegate(object):
     def doDamage(self, user, target):
         """ Calculates the damage the attack does
         Returns the damage done """
-        #user = actingSide.currPokemon
-        #target = otherSide.currPokemon
-    
         messages = []
     
         # Apply the modifier, have the target take damage

@@ -1,14 +1,12 @@
+import unittest
 from Test.test_helper import BuildPokemonBattleWrapper
 
 from Battle.Attack.attack import Attack
 from Battle.Attack.DamageDelegates.damage_delegate import DamageDelegate
 
-from Pokemon.pokemon import Pokemon
-
-import unittest
-
 class coreDamage(unittest.TestCase):
     """ Test that core damage is calculated correctly """ 
+    
     def setUp(self):
         """ Setup the attack and Pokemon to use the attack """
         self.battlePkmn = BuildPokemonBattleWrapper()
