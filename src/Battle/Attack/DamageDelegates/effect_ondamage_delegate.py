@@ -5,7 +5,7 @@ class EffectOnDamageDelegate(DamageDelegate):
     
     def takeDamage(self, damage, target):
         """ Has the target take damage """
-        target.battleDelegate.takeDamage(damage)
+        super(EffectOnDamageDelegate, self).takeDamage(damage, target)
         
         effects = self.parent.effectDelegates
         for effect in effects:
