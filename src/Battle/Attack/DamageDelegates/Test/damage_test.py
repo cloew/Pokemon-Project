@@ -83,7 +83,7 @@ class getStatWithMod(unittest.TestCase):
         self.pkmn = self.battlePkmn.pkmn
     
     def buildDamageDelegate(self):
-        """ Returns a damage delegate """
+        """ Returns a Damage Delegate """
         return DamageDelegate(None, 50, 1)
         
     def noModifier(self):
@@ -117,11 +117,48 @@ suiteGetStatWithMod = unittest.TestSuite(map(getStatWithMod, testcasesGetStatWit
         
 #########################################################
 
+class normalize(unittest.TestCase):
+    """ Tests that Normalize normalizes correctly """
+    
+    def setUp(self):
+        """ Build the Damage Delegate """
+        self.delegate = DamageDelegate(None, 0, 1)
+        
+    def zero(self):
+        """ Test that 0 is normalized correctly """
+        damage = 0
+        newDamage = self.delegate.normalize(damage)
+        assert newDamage == 0, "Should return zero"
+        
+    def lessThanOne(self):
+        """ Test that < 1 is normalized correctly """
+        damage = 0.1
+        newDamage = self.delegate.normalize(damage)
+        assert newDamage == 1, "Should return one if between 0 and 1"
+        
+    def normalizeInt(self):
+        """ Test that normalizing an int returns the int """
+        damage = 3
+        newDamage = self.delegate.normalize(damage)
+        assert newDamage == damage, "Should return the number if its an int"
+        
+    def normalizeFloat(self):
+        """ Test that normalizing a float returns the int """
+        damage = 3.3
+        newDamage = self.delegate.normalize(damage)
+        assert newDamage == int(damage), "Should return the floored number if its an int"
+
+# Collect all test cases in this class      
+testcasesNormalize = ["zero", "lessThanOne", "normalizeInt", "normalizeFloat"]
+suiteNormalize  = unittest.TestSuite(map(normalize , testcasesNormalize ))
+        
+#########################################################
+
 class getStab(unittest.TestCase):
     """ Tests that STAB returns the appropriate modifier """
     
     def setUp(self):
-        """ Build the Attack """
+        """ Build the Attack and Damage Delegate """
         attack = Attack()
         attack.type ="FIRE"
         self.delegate = DamageDelegate(attack, 0, 1)
@@ -144,7 +181,7 @@ suiteGetStab  = unittest.TestSuite(map(getStab , testcasesGetStab ))
         
 #########################################################
  
-suites = [suiteCoreDamage, suiteAtkAndDefType, suiteGetStatWithMod, suiteGetStab]
+suites = [suiteCoreDamage, suiteAtkAndDefType, suiteGetStatWithMod, suiteNormalize, suiteGetStab]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

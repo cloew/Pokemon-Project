@@ -84,7 +84,9 @@ class DamageDelegate(object):
         
     def normalize(self, damage):
         """ Damage cannot be lower than 1, unless the target is immune """
-        if damage < 1:
+        if damage == 0:
+            return 0
+        elif damage < 1:
             return 1
         return int(damage)
         
