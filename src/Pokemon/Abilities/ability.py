@@ -60,12 +60,11 @@ class Ability:
         """ Perform on switch """
         
     
-    def callEffects(self, thisSide, otherSide):
+    def callEffects(self, user, target):
         """ Call the effects the ability has """
         messages = []
-        print "In here"
         for effect in self.effects:
-            effectMessages = effect.applyEffect(thisSide, otherSide)
+            effectMessages = effect.applyEffect(user, target)
             messages = messages + effectMessages
             
         return messages

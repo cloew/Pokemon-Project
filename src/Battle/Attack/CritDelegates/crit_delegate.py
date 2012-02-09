@@ -8,9 +8,14 @@ class CritDelegate:
         """ Builds a crit delegate, based on the core level """
         self.base  = base
         
-    def crit(self, actingSide):
+    def crit(self, user):
         """ Returns whether the attack crit or not """
-        mod = self.base + actingSide.statMods["CRT"]
-        ret = CritDelegate.critMods[mod] > random.random()
+        critChance = self.getCritChance(user)
+        ret =  critChance > random.random()
         return ret, "Critical hit!"
+        
+    def getCritChance(self, user):
+        """ Return the Crit Chance of the Attack """
+        mod = self.base + user.statMods["CRT"]
+        return CritDelegate.critMods[mod]
         
