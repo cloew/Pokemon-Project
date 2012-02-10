@@ -21,16 +21,16 @@ class calcDamage(unittest.TestCase):
         damage = self.delegate.calcDamage(self.user, self.target)
         assert damage == hp/2, "Damage should be half the targets health"
         
-    def halfHealthFloored(self):
+    def halfHealthNotFloored(self):
         """ Test that the damage is Half the Health of the target """
         hp = 101
         self.target.setCurrHP(hp)
         
         damage = self.delegate.calcDamage(self.user, self.target)
-        assert damage == hp/2.0, "Damage should be half the targets health floored"
+        assert damage == hp/2.0, "Damage should be half the targets health, not floored"
 
 # Collect all test cases in this class
-testcasesCalcDamage = ["halfHealth", "halfHealthFloored"]
+testcasesCalcDamage = ["halfHealth", "halfHealthNotFloored"]
 suiteCalcDamage = unittest.TestSuite(map(calcDamage, testcasesCalcDamage))
 
 ##########################################################
