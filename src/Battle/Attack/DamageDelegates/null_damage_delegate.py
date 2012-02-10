@@ -1,6 +1,6 @@
 
 class NullDamageDelegate:
-    """ Represents an attack that does Zero Damage """
+    """ Represents an attack that does No Damage """
     isNull = True
     
     def doDamage(self, user, target):
