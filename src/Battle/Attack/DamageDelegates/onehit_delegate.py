@@ -2,6 +2,8 @@ from Battle.Attack.DamageDelegates.damage_delegate import DamageDelegate
 
 class OneHitDelegate(DamageDelegate):
     """ Handles One Hit KOs """
+    message = "One-hit KO"
+    
     def __init__(self, parent, isPhysical):
         """ Initialize with a physical """
         self.parent = parent
@@ -9,16 +11,12 @@ class OneHitDelegate(DamageDelegate):
     
     def damage(self, user, target):
         """ Deals damage for a One Hit KO """
-        #target = otherSide.currPokemon
-        
         messages = []
         
         mod = self.getEffectiveness(messages, target)
         
         if mod is 0:
-            return messages
+            return 0, messages
             
-        damage = target.battleDelegate.currHP
-        self.takeDamage(damage, target)
-        
-        return ["One-hit KO"]
+        damage = target.getCurrHP()
+        return damage, [OneHitDelegate.message]
