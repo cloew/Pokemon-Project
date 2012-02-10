@@ -9,4 +9,4 @@ class LevelDelegate(DamageDelegate):
         
     def calcDamage(self, user, target):
         """ Return the level of the user """
-        return user.currPokemon.level
+        return user.getLevel()
