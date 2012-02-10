@@ -5,7 +5,7 @@ class PierceDodge2XDelegate(DamageDelegate):
     against an opponent dodging in a certain manner """
     
     def __init__(self, parent, power, isPhysical, pierce):
-        """ """
+        """ Build the Damage Delegate with the dodge it pierces """
         self.parent = parent
         self.power = power
         self.isPhysical = isPhysical
