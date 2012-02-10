@@ -4,9 +4,10 @@ import damage_test
 import effectiveness_test
 import effect_ondamage_test
 import fixed_test
+import halfhealth_test
 import scale_test
 import statratio_test
 
 suites = [damage_test.suite, effectiveness_test.suite, effect_ondamage_test.suite,
-              fixed_test.suite, scale_test.suite, statratio_test.suite]
+              fixed_test.suite, halfhealth_test.suite, scale_test.suite, statratio_test.suite]
 suite = unittest.TestSuite(suites)

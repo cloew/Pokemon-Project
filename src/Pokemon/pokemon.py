@@ -51,12 +51,20 @@ class Pokemon:
         self.battleDelegate.heal(heal)
         
     def getStat(self, stat):
-        """ Returns the Speed for battle of the Pokemon """
+        """ Returns the given Stat """
         return self.battleDelegate.stats[stat]*self.battleDelegate.status.getStatMod(stat)
+        
+    def setStat(self, stat, amount):
+        """ Set the given Stat to the given Amount """
+        self.battleDelegate.stats[stat] = amount
         
     def getCurrHP(self):
         """ Return the Pokemon's Current HP """
         return self.battleDelegate.currHP
+        
+    def setCurrHP(self, amount):
+        """ Sets the Pokemon's Current HP to the given amount """
+        self.battleDelegate.currHP = amount
         
     def getStatus(self):
         """ Gets the status of the Pokemon """

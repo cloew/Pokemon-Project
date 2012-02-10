@@ -10,4 +10,4 @@ class HalfHealthDelegate(DamageDelegate):
     
     def calcDamage(self, user, target):
         """ Returns damage as half the target's health """
-        return target.currPokemon.battleDelegate.currHP/2
+        return target.getCurrHP()/2.0

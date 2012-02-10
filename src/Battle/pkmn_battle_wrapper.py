@@ -83,10 +83,18 @@ class PkmnBattleWrapper:
     def getStat(self, stat):
         """ Returns the Wrapper's Pokemon's stat """
         return self.pkmn.getStat(stat)
+        
+    def setStat(self, stat, amount):
+        """ Sets the Wrapper's Pokemon's Stat to the given amount """
+        self.pkmn.setStat(stat, amount)
        
     def getCurrHP(self):
         """ Returns the Wrapper's Pokemon's Current HP """
         return self.pkmn.getCurrHP()
+        
+    def setCurrHP(self, amount):
+        """ Sets the Wrapper's Pokemon's Current HP to the given amount """
+        self.pkmn.setCurrHP(amount)
         
     def getStatus(self):
         """ Returns the Wrapper's Pokemon's Status """
