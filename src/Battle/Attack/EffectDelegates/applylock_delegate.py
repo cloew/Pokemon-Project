@@ -8,19 +8,19 @@ class ApplyLockDelegate:
         self.turns = turns
         self.affectUser = affectUser
         
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Applies the delegates effect """
         if self.affectUser:
-            return self.affectSide(actingSide)
+            return self.affectPkmn(user)
         else:
-            return self.affectSide(otherSide)
+            return self.affectPkmn(target)
         
-    def affectSide(self, side):
-        """ Applies the lock to the correct side """
+    def affectPkmn(self, pkmn):
+        """ Applies the lock to the correct pkmn """
         message = []
-        if side.lastAction and hasattr(side.lastAction, "attack"):
-            side.trainer.actionLock = ActionLock(side.trainer,  \
-                                                        side.lastAction, self.turns)
+        if pkmn.lastAction and hasattr(pkmn.lastAction, "attack"):
+            pkmn.actionLock = ActionLock(pkmn,  \
+                                                        pkmn.lastAction, self.turns)
         else:
             message = ["But it failed"]
                 
