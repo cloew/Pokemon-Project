@@ -7,6 +7,7 @@ import confuse_test
 import critmod_test
 import curestatus_test
 import dodge_test
+import encore_test
 import leechdelegate_test
 import periodichealdelegate_test
 import randomstatmod_test
@@ -18,7 +19,7 @@ suites = [applylock_test.suite, applystatus_test.suite,
               chance_test.suite, charge_test.suite, 
               confuse_test.suite, critmod_test.suite,
               curestatus_test.suite, dodge_test.suite,
-              leechdelegate_test.suite,
+              encore_test.suite, leechdelegate_test.suite,
               periodichealdelegate_test.suite,
               randomstatmod_test.suite,
               statmod_test.suite,

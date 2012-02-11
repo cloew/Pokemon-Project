@@ -1,3 +1,4 @@
+from Battle.Actions.action_lock import ActionLock
 
 class EncoreDelegate:
     """ Represents an attack that is locked for some number of future turns """
@@ -7,29 +8,23 @@ class EncoreDelegate:
         self.turns = turns
         self.affectUser = affectUser
         
-    def getTargetSide(self, actingSide, otherSide):
-        """ Returns the side that is affected """
+    def getTargetPkmn(self, user, target):
+        """ Returns the Pkmn that is affected """
         if self.affectUser:
-            return actingSide
+            return user
         else:
-            return otherSide
+            return target
         
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Applies the delegates effect """
-        message = []
-        side = getTargetSide(actingSide, otherSide)
+        messages = []
+        pkmn = self.getTargetPkmn(user, target)
         
-        if self.immune(actingSide, otherSide):
-            side.encore = self.turns
-        else:
-            message = []
+        if not self.immune(pkmn):
+            pkmn.encore = ActionLock(pkmn, pkmn.lastAction, self.turns)
                 
-        return message
+        return messages
         
-    def immune(self, actingSide, otherSide):
+    def immune(self, pkmn):
         """ Returns if the target is immune to the attack """
-        return True # This attack is going to be more troublesome
-                            # Have to keep track of target and the like as well
-                            # Just gonna save this for after I've added the PkmnWrapper Class
-        side = getTargetSide(actingSide, otherSide)
-        return side.lastAction and hasattr(side.lastAction, "attack")
+        return not (pkmn.lastAction and hasattr(pkmn.lastAction, "attack") and not pkmn.encore)
