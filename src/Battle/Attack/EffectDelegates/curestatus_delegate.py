@@ -9,7 +9,7 @@ class CureStatusDelegate(object):
         self.affectUser = affectUser
         
     def applyEffect(self, user, target):
-        """ Applies the deleagte's effect """
+        """ Applies the delegate's effect """
         if self.affectUser:
             return self.checkCurable(user)
         else:
@@ -24,7 +24,7 @@ class CureStatusDelegate(object):
         return messages
         
     def cureStatus(self, pkmn):
-        """ Cures the status from thegiven pokemon """
+        """ Cures the status from the given pokemon """
         status = pkmn.getStatus()
         messages = status.getDoneMessage(pkmn)
         pkmn.setStatus(Status())
