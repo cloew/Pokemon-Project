@@ -9,14 +9,17 @@ class ChanceDelegate:
         self.chance = chance
         self.effects = effects
         
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Applies the delegates effect """
         messages = []
         
-        if random.randint(0,99) < self.chance:
+        if shouldApply(random.randint(0,99)):
             for effect in self.effects:
-                effectMessages = effect.applyEffect(actingSide, otherSide)
+                effectMessages = effect.applyEffect(user, target)
                 messages = messages + effectMessages
                 
         return messages
-            
+        
+    def shouldApply(self, rand):
+        """ Return if the effect should be applied """
+        return rand < self.chance
