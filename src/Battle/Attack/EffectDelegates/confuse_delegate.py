@@ -7,29 +7,29 @@ class ConfuseDelegate :
         """ Build the Confuse Delegate """
         self.affectUser = affectUser
         
-    def getTargetSide(self, actingSide, otherSide):
-        """ Returns the side that is affected """
+    def getTargetPkmn(self, user, target):
+        """ Returns the Pkmn that is affected """
         if self.affectUser:
-            return actingSide
+            return user
         else:
-            return otherSide
+            return target
         
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Apply the Confusion to the target """
-        side = self.getTargetSide(actingSide, otherSide)
-        message = side.getHeader()
+        pkmn = self.getTargetPkmn(user, target)
+        message = pkmn.getHeader()
         
-        if not self.isConfused(side):
-            side.secondaryEffects.append(Confusion())
+        if not self.isConfused(pkmn):
+            pkmn.secondaryEffects.append(Confusion())
             message = message + Confusion.start
         else:
             message = message + Confusion.already
             
         return [message]
                 
-    def isConfused(self, side):
-        """ Returns if the side is already confused """
-        for effect in side.secondaryEffects:
+    def isConfused(self, pkmn):
+        """ Returns if the Pkmn is already confused """
+        for effect in pkmn.secondaryEffects:
             if effect.__class__ == Confusion:
                 return True
                 
