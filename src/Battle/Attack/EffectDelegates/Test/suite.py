@@ -11,6 +11,7 @@ import encore_test
 import flinch_test
 import heal_damageratio_test
 import heal_hpratio_test
+import heal_ratio_test
 import leechdelegate_test
 import periodichealdelegate_test
 import randomstatmod_test
@@ -24,7 +25,7 @@ suites = [applylock_test.suite, applystatus_test.suite,
               curestatus_test.suite, dodge_test.suite,
               encore_test.suite, flinch_test.suite,
               heal_damageratio_test.suite,
-              heal_hpratio_test.suite,
+              heal_hpratio_test.suite, heal_ratio_test.suite,
               leechdelegate_test.suite,
               periodichealdelegate_test.suite,
               randomstatmod_test.suite,
