@@ -11,9 +11,3 @@ class HealByRatioDelegate:
         """ Applies the Delegates effect """
         self.heal(actingSide)
         return [actingSide.currPokemon.name + " restored some of its HP."]
-        
-    def heal(self, side):
-        """ Heals the target """
-        target = side.currPokemon
-        toheal = self.damage/self.healRatio
-        target.battleDelegate.heal(toheal)

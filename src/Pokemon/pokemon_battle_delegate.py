@@ -84,14 +84,14 @@ class PokemonBattleDelegate:
         
     def heal(self, heal):
         """ Has the Pokemon heal itself """
-        self.currHP = self.currHP + heal
+        self.currHP = self.currHP + int(heal)
         
         if self.currHP > self.stats["HP"]:
             self.currHP = self.stats["HP"]
         
     def takeDamage(self, damage):
         """ Has the Pokemon take damage """
-        self.currHP = self.currHP - damage
+        self.currHP = self.currHP - int(damage)
         
         if self.currHP <= 0:
             self.currHP = 0
