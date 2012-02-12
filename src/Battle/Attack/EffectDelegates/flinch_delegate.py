@@ -2,7 +2,7 @@
 class FlinchDelegate:
     """ Handles Flinch Effects """
     
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Applies a flinch effect """
-        otherSide.flinching = 1
+        target.flinching = 1
         return []
