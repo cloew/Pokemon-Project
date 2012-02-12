@@ -14,7 +14,7 @@ from null_effect_delegate import NullEffectDelegate
 from periodicheal_delegate import PeriodicHealDelegate
 from randomstatmod_delegate import RandomStatModDelegate
 from recoil_delegate import RecoilDelegate
-from reset_statmods_delegate import ResetStatmodsDelegate
+from reset_statmods_delegate import ResetStatModsDelegate
 from selfdestruct_delegate import SelfDestructDelegate
 from statmod_delegate import StatModDelegate
 from swapstatmods_delegate import SwapStatModsDelegate
@@ -111,7 +111,7 @@ class EffectDelegateFactory:
             return RecoilDelegate(recoilRatio)
             
         elif delegateType == "RESET STAT MODS":
-            return ResetStatmodsDelegate()
+            return ResetStatModsDelegate()
             
         elif delegateType == "PERIODIC HEAL":
             startMessage = element.find(Tags.startMessageTag).text
