@@ -3,9 +3,8 @@ from Battle.Attack.EffectDelegates.heal_ratio_delegate import HealByRatioDelegat
 class HealByHPRatioDelegate(HealByRatioDelegate):
     """ Represents an effect that heals """
         
-    def heal(self, side):
+    def heal(self, pkmn):
         """ Heals the target """
-        target = side.currPokemon
-        total = target.battleDelegate.stats["HP"]
+        total = pkmn.getStat("HP")
         toheal = total/self.healRatio
-        target.battleDelegate.heal(toheal)
+        pkmn.heal(toheal)
