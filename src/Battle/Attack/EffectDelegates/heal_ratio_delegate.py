@@ -3,6 +3,7 @@ class HealByRatioDelegate:
     """ Represents an effect that heals
     Abstract: Not to be instantiated """
     message = " restored some of its HP."
+    
     def __init__(self, healRatio):
         """ Build a HealDelegate by ratio """
         self.healRatio = healRatio
