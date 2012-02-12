@@ -15,6 +15,7 @@ import heal_ratio_test
 import leechdelegate_test
 import periodichealdelegate_test
 import randomstatmod_test
+import recoil_test
 import statmod_test
 import swapstatmods_test
 import trapdelegate_test
@@ -28,7 +29,7 @@ suites = [applylock_test.suite, applystatus_test.suite,
               heal_hpratio_test.suite, heal_ratio_test.suite,
               leechdelegate_test.suite,
               periodichealdelegate_test.suite,
-              randomstatmod_test.suite,
+              randomstatmod_test.suite, recoil_test.suite,
               statmod_test.suite,
               swapstatmods_test.suite, trapdelegate_test.suite]
 suite = unittest.TestSuite(suites)

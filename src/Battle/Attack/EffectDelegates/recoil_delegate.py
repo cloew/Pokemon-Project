@@ -1,6 +1,7 @@
 
 class RecoilDelegate:
     """ Represents a recoil effect on an Attack """
+    message = " was hit by recoil."
     
     def __init__(self, recoilRatio):
         """ Builds a Recoil Effect with a set ration """
@@ -10,14 +11,13 @@ class RecoilDelegate:
         """ Set the damage that the recoil will be based on """
         self.damage = damage
         
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Apply the recoil effect """
-        user = actingSide.currPokemon
         totake = self.damage/self.recoilRatio
         totake = self.normalize(totake)
-        user.battleDelegate.takeDamage(totake)
+        user.takeDamage(totake)
         
-        return [actingSide.getHeader() + " was hit by recoil."]
+        return [user.getHeader() + RecoilDelegate.message]
         
     def normalize(self, damage):
         if damage < 1:
