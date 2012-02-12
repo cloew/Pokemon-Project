@@ -13,7 +13,7 @@ class applyEffect(unittest.TestCase):
     
     def setUp(self):
         """ Builds the delegate and pkmn for use in the tests """
-        self.battlePokemon = BuildPokemonBattleWrapper()
+        self.pkmn = BuildPokemonBattleWrapper()
         self.status = "PAR"
         attack = Attack()
         attack.type = ""
@@ -22,9 +22,9 @@ class applyEffect(unittest.TestCase):
     def appliesStatusUser(self):
         """ Tests if applyEffect applies the status to the user's pkmn """
         self.delegate.affectUser = 1
-        message = self.delegate.applyEffect(self.battlePokemon, None)
+        message = self.delegate.applyEffect(self.pkmn, None)
         
-        assert self.battlePokemon.getStatus().abbr == self.status, "Status should be PAR on the user pkmn"
+        assert self.pkmn.getStatus().abbr == self.status, "Status should be PAR on the user pkmn"
         
 testcasesApplyEffect = ["appliesStatusUser"]
 suiteApplyEffect = unittest.TestSuite(map(applyEffect, testcasesApplyEffect))
@@ -36,7 +36,7 @@ class applyStatus(unittest.TestCase):
     
     def setUp(self):
         """ Builds the delegate and pkmn for use in the tests """
-        self.battlePokemon = BuildPokemonBattleWrapper()
+        self.pkmn = BuildPokemonBattleWrapper()
         self.status = "PAR"
         attack = Attack()
         attack.type = ""
@@ -45,8 +45,8 @@ class applyStatus(unittest.TestCase):
     def appliesStatusUser(self):
         """ Tests if applyStatus applies the staus and returns the method """
         self.delegate.affectUser = 1
-        self.delegate.applyStatus(self.battlePokemon)
-        assert self.battlePokemon.getStatus().abbr == self.status, "Status should be PAR on the user pkmn"
+        self.delegate.applyStatus(self.pkmn)
+        assert self.pkmn.getStatus().abbr == self.status, "Status should be PAR on the user pkmn"
         
 testcasesApplyStatus = ["appliesStatusUser"]
 suiteApplyStatus = unittest.TestSuite(map(applyStatus, testcasesApplyStatus))
@@ -58,7 +58,7 @@ class checkStatusAlready(unittest.TestCase):
     
     def setUp(self):
         """ Builds the delegate and pkmn for use in the tests """
-        self.battlePokemon = BuildPokemonBattleWrapper()
+        self.pkmn = BuildPokemonBattleWrapper()
         self.status = "PAR"
         attack = Attack()
         attack.type = ""
@@ -66,13 +66,13 @@ class checkStatusAlready(unittest.TestCase):
         
     def hasStatusAlready(self):
         """ Tests checkStatusAlready returns correctly if the pkmn has a status already """
-        self.battlePokemon.setStatus(Paralysis())
-        assert self.delegate.checkStatusAlready(self.battlePokemon), "Should have a status already"
+        self.pkmn.setStatus(Paralysis())
+        assert self.delegate.checkStatusAlready(self.pkmn), "Should have a status already"
         
     def hasNoStatusAlready(self):
         """ Tests checkStatusAlready returns correctly if the pkmn has a status already """
-        self.battlePokemon.setStatus(Status())
-        assert not self.delegate.checkStatusAlready(self.battlePokemon), "Should not have a status already"
+        self.pkmn.setStatus(Status())
+        assert not self.delegate.checkStatusAlready(self.pkmn), "Should not have a status already"
         
 testcasesCheckStatusAlready = ["hasStatusAlready", "hasNoStatusAlready"]
 suiteCheckStatusAlready = unittest.TestSuite(map(checkStatusAlready, testcasesCheckStatusAlready))

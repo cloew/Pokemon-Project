@@ -13,7 +13,7 @@ class checkCurable(unittest.TestCase):
     
     def setUp(self):
         """ Builds the delegate and pkmn for use in the tests """
-        self.wrapper = BuildPokemonBattleWrapper()
+        self.pkmn = BuildPokemonBattleWrapper()
         
         self.statusAbbr = "PAR"
         self.status = Paralysis()
@@ -24,17 +24,17 @@ class checkCurable(unittest.TestCase):
         
     def isCurable(self):
         """ Tests if checkCurable cures the status when it can """
-        self.wrapper.setStatus(self.status)
-        self.delegate.checkCurable(self.wrapper)
+        self.pkmn.setStatus(self.status)
+        self.delegate.checkCurable(self.pkmn)
         
-        assert self.wrapper.getStatus() != self.status, "Status should be cured"
+        assert self.pkmn.getStatus() != self.status, "Status should be cured"
         
     def notCurable(self):
         """ Tests if checkCurable cures the status when it can """
-        self.wrapper.setStatus(self.status)
-        self.delegate2.checkCurable(self.wrapper)
+        self.pkmn.setStatus(self.status)
+        self.delegate2.checkCurable(self.pkmn)
         
-        assert self.wrapper.getStatus() == self.status, "Status should not be cured"
+        assert self.pkmn.getStatus() == self.status, "Status should not be cured"
         
 testcasescheckCurable = ["isCurable", "notCurable"]
 suitecheckCurable = unittest.TestSuite(map(checkCurable, testcasescheckCurable))
