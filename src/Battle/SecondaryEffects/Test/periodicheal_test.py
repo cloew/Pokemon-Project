@@ -2,10 +2,6 @@ import unittest
 from Test.test_helper import BuildPokemonBattleWrapper
 
 from Battle.SecondaryEffects.periodic_heal import PeriodicHeal
-from Battle.battle_side import BattleSide
-from Battle.pkmn_battle_wrapper import PkmnBattleWrapper
-from Pokemon.pokemon import Pokemon
-from Trainer.trainer import Trainer
 
 class afterTurn(unittest.TestCase):
     """ Test that afterTurn returns correctly """

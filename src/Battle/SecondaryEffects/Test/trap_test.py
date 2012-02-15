@@ -1,22 +1,14 @@
-from Battle.SecondaryEffects.trap import Trap
-from Battle.battle_side import BattleSide
-from Battle.pkmn_battle_wrapper import PkmnBattleWrapper
-from Pokemon.pokemon import Pokemon
-from Trainer.trainer import Trainer
-
 import unittest
+from Test.test_helper import BuildPokemonBattleWrapper
+
+from Battle.SecondaryEffects.trap import Trap
 
 class afterTurn(unittest.TestCase):
     """ Test that afterTurn returns correctly """
     
     def setUp(self):
         """ Builds the side and trap """
-        trainer = Trainer()
-        pokemon = Pokemon("BULBASAUR")
-        trainer.beltPokemon = [pokemon]
-        side = BattleSide(trainer)
-        self.pkmnWrapper = PkmnBattleWrapper(side)
-        self.pkmnWrapper.sendOutPkmn(pokemon)
+        self.pkmn = BuildPokemonBattleWrapper()
         
         self.message = " hurt."
         self.doneMessage = " done."
@@ -26,31 +18,31 @@ class afterTurn(unittest.TestCase):
         """ Test the turn counter decreases """
         self.trap.turns = 5
         turns = self.trap.turns
-        self.trap.afterTurn(self.pkmnWrapper)
+        self.trap.afterTurn(self.pkmn)
         assert self.trap.turns == turns - 1, "Turns should decrement"
         
     def effectIsRemoved(self):
         """ Test that the effect is removed when the turn count is reduced to zero """
         self.trap.turns = 1
-        self.pkmnWrapper.secondaryEffects.append(self.trap)
-        self.trap.afterTurn(self.pkmnWrapper)
+        self.pkmn.secondaryEffects.append(self.trap)
+        self.trap.afterTurn(self.pkmn)
         
         assert self.trap.turns == 0, "Turns should be zero"
-        assert not self.trap in self.pkmnWrapper.secondaryEffects
+        assert not self.trap in self.pkmn.secondaryEffects
         
     def message(self):
         """ Test the message is correct """
-        message = self.trap.afterTurn(self.pkmnWrapper)
-        assert message == [self.pkmnWrapper.getHeader() + self.message], "Message should be the pokemon's name and the message given to the Trap."
+        message = self.trap.afterTurn(self.pkmn)
+        assert message == [self.pkmn.getHeader() + self.message], "Message should be the pokemon's name and the message given to the Trap."
         
     def doneMessage(self):
         """ Test the done message is correct """
         self.trap.turns = 1
-        self.pkmnWrapper.secondaryEffects.append(self.trap)
-        messages = self.trap.afterTurn(self.pkmnWrapper)
+        self.pkmn.secondaryEffects.append(self.trap)
+        messages = self.trap.afterTurn(self.pkmn)
         
         assert len(messages) == 2, "Should have two messages"
-        assert messages[1] == self.pkmnWrapper.getHeader() + self.doneMessage, "Done message should be returned."
+        assert messages[1] == self.pkmn.getHeader() + self.doneMessage, "Done message should be returned."
         
 testcasesAfterTurn = ["turnDecreases", "effectIsRemoved", "message", "doneMessage"]
 suiteAfterTurn = unittest.TestSuite(map(afterTurn, testcasesAfterTurn))
@@ -62,14 +54,14 @@ class getDamage(unittest.TestCase):
     
     def setUp(self):
         """ Builds the Paralysis status"""
-        self.pokemon = Pokemon("BULBASAUR")
+        self.pkmn = BuildPokemonBattleWrapper()
         self.trap = Trap("", "")
         self.hp = 32.0
     
     def damage(self):
         """ Test the damage returns the proper ratio """
-        self.pokemon.battleDelegate.stats["HP"] = self.hp
-        damage = self.trap.getDamage(self.pokemon)
+        self.pkmn.setStat("HP", self.hp)
+        damage = self.trap.getDamage(self.pkmn)
         assert damage == self.hp/Trap.ratio, "Damage should be a sixteenth of the targets health"
         
 testcasesGetDamage = ["damage"]

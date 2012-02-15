@@ -17,17 +17,16 @@ class Trap(SecondaryEffect):
         """ Returns the 4-5 turns """
         return Trap.minTurns + random.randint(0, 1)
         
-    def afterTurn(self, pkmn):
+    def afterTurn(self, user):
         """ Does the damage of the Trap """
-        user = pkmn.pkmn
         self.damage(user)
         
-        messages = [pkmn.getHeader() + self.message]
+        messages = [user.getHeader() + self.message]
         self.turns = self.turns - 1
         
         if self.turns == 0:
-            pkmn.secondaryEffects.remove(self)
-            messages.append(pkmn.getHeader() + self.doneMessage)
+            user.secondaryEffects.remove(self)
+            messages.append(user.getHeader() + self.doneMessage)
         
         return messages
         
