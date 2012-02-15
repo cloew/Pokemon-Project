@@ -13,23 +13,25 @@ class applyEffect(unittest.TestCase):
     def setUp(self):
         """ Builds the delegate and pkmn for use in the tests """
         self.user = BuildPokemonBattleWrapper(pkmn = "CHARMANDER")
-        self.target = BuildPokemonBattleWrapper(pkmn = "BULBASAUR")
+        self.target = BuildPokemonBattleWrapper(pkmn = "CHARMANDER")
+        self.target2 = BuildPokemonBattleWrapper(pkmn = "BULBASAUR")
         
         self.delegate = LeechDelegate("", "", "FIRE")
         
     def appliesLeech(self):
         """ Tests if applyEffect applies the leech """
-        self.user.secondaryEffects = []
-        self.delegate.applyEffect(self.target, self.user)
-        
-        assert isinstance(self.user.secondaryEffects[0], Leech), "Should have a Leech effect"
-        
-    def immune(self):
-        """ Tests if applyEffect applies the leech """
         self.target.secondaryEffects = []
         self.delegate.applyEffect(self.user, self.target)
         
-        assert len(self.target.secondaryEffects) == 0, "Should have no Leech effects when the target is immune"
+        assert isinstance(self.target.secondaryEffects[0], Leech), "Target should have a Leech effect"
+        assert self.target.secondaryEffects[0].source is self.user, "Leech should have the Pkmn as the Leech's Source"
+        
+    def immune(self):
+        """ Tests if applyEffect applies the leech """
+        self.target2.secondaryEffects = []
+        self.delegate.applyEffect(self.user, self.target2)
+        
+        assert len(self.target2.secondaryEffects) == 0, "Should have no Leech effects when the target is immune"
         
 testcasesApplyEffect = ["appliesLeech", "immune"]
 suiteApplyEffect = unittest.TestSuite(map(applyEffect, testcasesApplyEffect))
