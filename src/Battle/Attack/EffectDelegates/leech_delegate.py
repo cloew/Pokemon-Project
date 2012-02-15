@@ -11,7 +11,7 @@ class LeechDelegate :
         
     def applyEffect(self, user, target):
         """ Apply the Leech to the target """
-        leech = Leech(user.pkmn, self.message)
+        leech = Leech(user, self.message)
         
         if not leech.immune(target.getTypes(), self.type):
             self.removePreviousLeech(target)
