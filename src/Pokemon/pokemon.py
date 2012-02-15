@@ -81,6 +81,8 @@ class Pokemon:
     def getRatioOfHealth(self, ratio):
         """ Returns the ratio of the pokemon's health """
         val = int(self.getStat("HP")/float(ratio))
-        if val == 0:
+        if val > self.getCurrHP():
+            return self.getCurrHP()
+        elif val == 0:
             return 1
         return val

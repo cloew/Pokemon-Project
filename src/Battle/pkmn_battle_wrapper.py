@@ -77,12 +77,16 @@ class PkmnBattleWrapper:
         return self.pkmn.isFainted()
         
     def getLevel(self):
-        """ Returns the Wrapper's POkemon's Level """
+        """ Returns the Wrapper's Pokemon's Level """
         return self.pkmn.level
         
     def getName(self):
         """ Returns the Wrapper's Pokemon's name """
         return self.pkmn.name
+        
+    def getRatioOfHealth(self, ratio):
+        """ Returns the given ratio of the Wrapper's Pokemon's Health """
+        return self.pkmn.getRatioOfHealth(ratio)
         
     def getStat(self, stat):
         """ Returns the Wrapper's Pokemon's stat """
