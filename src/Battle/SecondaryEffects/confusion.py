@@ -23,16 +23,41 @@ class Confusion(SecondaryEffect):
         """ Returns a # of turns from 1-7 """
         return random.randint(self.min, self.max)
         
-    def immobilized(self, side):
+    def immobilized(self, user):
         """ Checks if the confusion prevents the current attack """
-        if self.turns == 0:
-            side.secondaryEffects.remove(self)
-            return False, [side.getHeader() + self.over]
-            
-        self.turns = self.turns -1
-        messages = [side.getHeader() + self.start]
+        messages = []
+        immobilized = False
         
-        if random.randint(0,1) > 0:
-            self.damageDelegate.doDamage(side, side)
-            return True, messages + [self.hurtItself]
-        return False, messages
+        if self.checkOver(user, messages):
+            immobilized = False
+        
+        elif self.confused(random.randint(0, 1)):
+            self.doDamage(user, messages)
+            immobilized = True
+            
+        return immobilized, messages
+        
+    def checkOver(self, user, messages):
+        """ Check if the Confusion is cured """
+        over = self.turns == 0
+        
+        if over:
+            self.cure(user)
+            messages.append(user.getHeader() + self.over)
+        else:
+            self.turns -= 1
+            messages.append(user.getHeader() + self.start)
+        return over
+            
+    def cure(self, user):
+        """ Cure the confusion """
+        user.secondaryEffects.remove(self)
+        
+    def confused(self, rand):
+        """ Return wether the Pkmn should hurt itself in its confusion """
+        return rand > 0
+        
+    def doDamage(self, user, messages):
+        """ Do Damage to the confused user """
+        self.damageDelegate.doDamage(user, user)
+        messages.append(self.hurtItself)
