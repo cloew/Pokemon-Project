@@ -84,9 +84,9 @@ class PkmnBattleWrapper:
         """ Returns the Wrapper's Pokemon's name """
         return self.pkmn.name
         
-    def getRatioOfHealth(self, ratio):
+    def getRatioOfHealth(self, ratio, forDamage = False):
         """ Returns the given ratio of the Wrapper's Pokemon's Health """
-        return self.pkmn.getRatioOfHealth(ratio)
+        return self.pkmn.getRatioOfHealth(ratio, forDamage = forDamage)
         
     def getStat(self, stat):
         """ Returns the Wrapper's Pokemon's stat """

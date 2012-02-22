@@ -26,7 +26,7 @@ class Leech(SecondaryEffect):
         
     def getAmount(self, pkmn):
         """ Returns the amount the Leech damages/heals """
-        return pkmn.getRatioOfHealth(Leech.ratio)
+        return pkmn.getRatioOfHealth(Leech.ratio, forDamage = True)
         
     def immune(self, targetTypes, attackType):
         """ Returns whether the given types are immune to the status """

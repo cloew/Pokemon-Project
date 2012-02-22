@@ -47,26 +47,34 @@ class getRatioOfHealth(unittest.TestCase):
         """ Test ratio with no truncation"""
         self.setHP(self.pkmn, self.hp1)
         ratio = self.pkmn.getRatioOfHealth(self.ratio)
+        ratioForDamage = self.pkmn.getRatioOfHealth(self.ratio, forDamage = True)
         assert ratio == self.half, "getRatio result should be hp/ratio"
+        assert ratioForDamage == self.half, "getRatio for Damage result should be hp/ratio"
         
     def getRatioTruncated(self):
         """ Test ratio with truncation """
         self.setHP(self.pkmn, self.hp2)
         ratio = self.pkmn.getRatioOfHealth(self.ratio)
+        ratioForDamage = self.pkmn.getRatioOfHealth(self.ratio, forDamage = True)
         assert ratio == self.half, "getRatio result should be hp/ratio truncated"
+        assert ratioForDamage == self.half, "getRatio for Damage result should be hp/ratio"
         
     def getRatioUnderCurrHP(self):
         """ Test ratio returned is equivalent to the Curr HP when CurrHP Is less than """
         self.pkmn.setStat("HP", self.hp1)
         self.pkmn.setCurrHP(self.hp3)
         ratio = self.pkmn.getRatioOfHealth(self.ratio)
-        assert ratio == self.hp3, "getRatio result should be Current HP"
+        ratioForDamage = self.pkmn.getRatioOfHealth(self.ratio, forDamage = True)
+        assert ratio == self.half, "getRatio result should be Current HP"
+        assert ratioForDamage == self.hp3, "getRatio for Damage result should be hp/ratio"
         
     def getRatioUnder1(self):
         """ Test ratio with result under 1 """
         self.setHP(self.pkmn, self.hp4)
         ratio = self.pkmn.getRatioOfHealth(self.ratio)
+        ratioForDamage = self.pkmn.getRatioOfHealth(self.ratio, forDamage = True)
         assert ratio == 1, "getRatio result should be 1 if hp/ratio would be under 1"
+        assert ratioForDamage == 1, "getRatio for Damage result should be 1 if hp/ratio would be under 1"
 
 # Collect all test cases in this file
 testcasesGetRatioOfHealth = ["getRatio", "getRatioTruncated", "getRatioUnderCurrHP", "getRatioUnder1"]
