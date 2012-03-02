@@ -37,17 +37,7 @@ class BattleViewController:
         """ Runs through one iteration if the game """
         while (not self.battle.over):
             # Pick action
-            if self.battle.playerSide.trainer.actionLock is None:
-                # Print the stats of each Pokemon
-                self.screen.printScreen()
-                actionParams = self.screen.pickAction()
-                action = ActionFactory.buildActionFromType(actionParams)
-            else:
-                action = self.battle.playerSide.trainer.actionLock.useAction()
-        
-            # Have the Battle start the battle iteration
-            actions = self.battle.battle(action)
-            
+            actions = self.battle.getActionsInOrder(self.screen)
             self.performActions(actions)
                     
     def performActions(self, actions):
@@ -76,3 +66,4 @@ class BattleViewController:
     def checkOver(self):
         """ Checks if the Battle is over """
         return self.battle.over
+        

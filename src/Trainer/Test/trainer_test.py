@@ -1,7 +1,42 @@
 import unittest
+from Test.test_helper import BuildPokemonBattleWrapper, BuildAttackAction, BuildActionLock
 
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
+
+class getAction(unittest.TestCase):
+    """ Test cases of getAction """
+    
+    def  setUp(self):
+        """ Build the Trainer and Pokemon lists for use in tests """
+        self.trainer = Trainer()
+        self.user = BuildPokemonBattleWrapper(trainer = self.trainer)
+        
+        self.attackAction = BuildAttackAction()
+        self.actionLock = BuildActionLock(attackAction = self.attackAction)
+        
+    def hasLock(self):
+        """ Check that the action is the Pkmn's Lock """
+        self.user.actionLock = self.actionLock
+        
+        action = self.trainer.getAction(self.user, [None], None)
+        assert action is self.attackAction, "Should be the lock's action"
+        
+    def noLock(self):
+        """ Check the action is from Pick Action """
+        self.user.actionLock = None
+        
+        action = self.trainer.getAction(self.user, [None], None)
+        picked = self.trainer.pickAction(self.user, [None], None)
+        assert action.user == picked.user, "Should have the same user"
+        assert action.target == picked.target, "Should have the same target"
+        assert action.attack == picked.attack, "Should have the same attack"
+
+# Collect all test cases in this class
+testcasesGetAction = ["hasLock",  "noLock"]
+suiteGetAction  = unittest.TestSuite(map(getAction, testcasesGetAction))
+
+##########################################################
 
 class getPokemon(unittest.TestCase):
     """ Test cases of getPokemon """
@@ -61,7 +96,7 @@ suiteHasMorePokemon  = unittest.TestSuite(map(hasMorePokemon, testcasesHasMorePo
 
 ##########################################################
 # Collect all test cases in this file
-suites = [suiteGetPokemon, suiteHasMorePokemon]
+suites = [suiteGetAction, suiteGetPokemon, suiteHasMorePokemon]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

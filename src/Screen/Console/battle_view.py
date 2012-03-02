@@ -18,7 +18,7 @@ class ConsoleBattleScreen:
         """ Performs the introduction to the battle """
         oppTrainer = self.battle.getOppTrainer()
         
-        print oppTrainer.getFullName(), " challenges you to a Pokemon Battle!\n"
+        print "%s challenges you to a Pokemon Battle!\n" % oppTrainer.getFullName()
         
     def printScreen(self):
         """ Prints the screen """

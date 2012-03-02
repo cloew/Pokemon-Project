@@ -5,8 +5,8 @@ from Battle.Attack.attackfactory import AttackFactory
 from Trainer.computer_trainer import ComputerTrainer
 
 
-class getAction(unittest.TestCase):
-    """ Test cases of getFirstPokemon """
+class pickAction(unittest.TestCase):
+    """ Test cases of pickAction """
     
     def  setUp(self):
         """ Build the Trainer and Pokemon lists for use in tests """
@@ -19,22 +19,22 @@ class getAction(unittest.TestCase):
         
     def actionIsAttack(self):
         """ Check that the attack returned by getAction is an attack the Pokemon has """
-        attackAction = self.trainer.getAction(self.battlePkmn, [self.targetPkmn])
+        attackAction = self.trainer.pickAction(self.battlePkmn, [self.targetPkmn], None)
         assert attackAction.attack is self.attack, "Should be the attack"
         
     def userIsBattlePkmn(self):
         """ Check the user is the Battle Pkmn """
-        attackAction = self.trainer.getAction(self.battlePkmn, [self.targetPkmn])
+        attackAction = self.trainer.pickAction(self.battlePkmn, [self.targetPkmn], None)
         assert attackAction.user is self.battlePkmn, "Should be the Battle Pkmn"
 
     def targetIsTargetPkmn(self):
         """ Check the target is the Target Pkmn """
-        attackAction = self.trainer.getAction(self.battlePkmn, [self.targetPkmn])
+        attackAction = self.trainer.pickAction(self.battlePkmn, [self.targetPkmn], None)
         assert attackAction.target is self.targetPkmn, "Should be the Target Pkmn"
 
 # Collect all test cases in this class
-testcasesGetAction = ["actionIsAttack",  "userIsBattlePkmn", "targetIsTargetPkmn"]
-suiteGetAction  = unittest.TestSuite(map(getAction, testcasesGetAction))
+testcasesPickAction = ["actionIsAttack",  "userIsBattlePkmn", "targetIsTargetPkmn"]
+suitePickAction  = unittest.TestSuite(map(pickAction, testcasesPickAction))
 
 ##########################################################
 
@@ -55,7 +55,7 @@ suiteGetHeader   = unittest.TestSuite(map(getHeader , testcasesGetHeader ))
 
 ##########################################################
 # Collect all test cases in this file
-suites = [suiteGetAction, suiteGetHeader]
+suites = [suitePickAction, suiteGetHeader]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

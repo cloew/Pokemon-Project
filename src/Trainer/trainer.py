@@ -18,8 +18,6 @@ class Trainer:
         numPokemon = int(file.readline())
         for x in range(numPokemon):
             self.beltPokemon.append(Pokemon().loadFromHumanTrainerFile(file))
-            
-        #self.actionLock = None # Needs to be moved to PkmnBattleWrapper
         
         return self
         
@@ -44,11 +42,19 @@ class Trainer:
                 
         return False
                 
-    # I'll prolly build a wrapper for this on the BattleSide to make it easier for multiple trainers on one side
-    def getAction(self, currPokemon): 
-        """ Get action, randomly pick an available attack """
-        return None
-        
+    def getAction(self, user, targets, screen):
+        """ Get Trainer's action """
+        if user.actionLock:
+            action = user.actionLock.useAction()
+        else:
+            action = self.pickAction(user, targets, screen)
+            
+        return action
+            
+    def pickAction(self, user, targets, screen):
+        """ Has the trainer pick its action via the screen
+             Should be overwritten in subclasses """
+        return AttackAction(None, None, None)
         
     def getFullName(self):
         """ Return the full Name and Title of the trainer """

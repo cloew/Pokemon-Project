@@ -13,6 +13,16 @@ class Battle:
         self.oppSide = BattleSide(oppTrainer)
         self.over = False
         
+    def getActionsInOrder(self, screen):
+        """ Returns all the Actions for this turn in the Battle """
+         self.oppAction = self.oppSide.trainer.getAction(self.getOppPkmn(), self.getPlayerPkmn(), screen)
+        self.playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn(), self.getOppPkmn(), screen)
+        
+        if self.doesPlayerGoFirst(playerAction, self.oppAction):
+            return [playerAction, self.oppAction]
+        else:
+            return [oppAction,self.playerAction]
+        
     def battle(self, playerAction):
         """ Perform the action based on target """
         self.oppAction = self.oppSide.trainer.getAction(self.oppSide.pkmnInPlay[0], self.getPlayerPkmn())

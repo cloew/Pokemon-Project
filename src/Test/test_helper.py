@@ -22,9 +22,9 @@ def BuildAttackAction(user = BuildPokemonBattleWrapper(), target = BuildPokemonB
     """ Builds an Attack Action """
     return AttackAction(attack, user, target)
     
-def BuildActionLock(user = BuildPokemonBattleWrapper()):
+def BuildActionLock(user = BuildPokemonBattleWrapper(), attackAction = BuildAttackAction(user = BuildPokemonBattleWrapper())):
     """ Builds an Action Lock """
-    attackAction = BuildAttackAction(user = user)
+    attackAction.user = user
     turns = 3
     return ActionLock(user, attackAction, turns)
     
