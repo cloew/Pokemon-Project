@@ -35,6 +35,12 @@
     </ability>
 
     <ability>
+        <name>KEEN EYE</name>
+        <type>CANT LOWER STAT</type>
+        <stat>ACC</stat>
+    </ability>
+
+    <ability>
         <name>QUICK FEET</name>
         <type>STAT MOD ON STATUS</type>
         <status>PAR</status>
