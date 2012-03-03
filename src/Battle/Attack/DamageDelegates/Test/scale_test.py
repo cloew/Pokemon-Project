@@ -50,13 +50,13 @@ class getScale(unittest.TestCase):
         
     def correctScale(self):
         """ Test that getScale returns the correct scale """
-        self.delegate.turnsToGo = 0
+        self.delegate.turnOn = 0
         scale = self.delegate.getScale()
         assert scale == 1, "Scale should be 1 when turnsToGo is 0"
         
     def correctScaleAfterInc(self):
         """ Test that scale returns correctly after the turn increments """
-        self.delegate.turnsToGo = 0
+        self.delegate.turnOn = 0
         scale = self.delegate.getScale()
         
         self.delegate.incTurns()
@@ -70,7 +70,39 @@ suiteGetScale = unittest.TestSuite(map(getScale, testcasesGetScale))
 
 #########################################################
 
-suites = [suiteCoreDamage, suiteGetScale]
+class applyEffect(unittest.TestCase):
+    """ Test that applyEffect returns correctly """ 
+    
+    def setUp(self):
+        """ Setup the attack and Pokemon to use the attack """
+        self.pkmn = BuildPokemonBattleWrapper()
+        self.delegate = DamageScaleDelegate(None, 50, 1, 1, 5)
+        
+    def turnZero(self):
+        """ Test that applyEffect operates correctly on turn 0 """
+        self.delegate.turnOn = 0
+        self.pkmn.actionLock = None
+        self.delegate.applyEffect(self.pkmn, None)
+        
+        assert self.pkmn.actionLock is not None, "Should have an action Lock"
+        assert self.delegate.turnOn == 1, "Turns should be incremented"
+        
+    def otherwise(self):
+        """ Test that applyEffect does not do anything except increment turns if the turn is not zero """
+        self.delegate.turnOn = 1
+        self.pkmn.actionLock = None
+        self.delegate.applyEffect(self.pkmn, None)
+        
+        assert self.pkmn.actionLock is None, "Should not have an actionLock"
+        assert self.delegate.turnOn == 2, "Turns should be incremented"
+
+# Collect all test cases in this class      
+testcasesApplyEffect = ["turnZero", "otherwise"]
+suiteApplyEffect = unittest.TestSuite(map(applyEffect, testcasesApplyEffect))
+
+#########################################################
+
+suites = [suiteCoreDamage, suiteGetScale, suiteApplyEffect]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
