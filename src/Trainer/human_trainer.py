@@ -11,7 +11,7 @@ class HumanTrainer(Trainer):
             
     def pickAction(self, user, targets, screen):
         """ Has the trainer pick its action via the screen """
-        actionParams = self.screen.pickAction()
+        actionParams = screen.pickAction()
         return ActionFactory.buildActionFromType(actionParams)
 
     def getHeader(self):

@@ -4,7 +4,7 @@ class Ability:
     """ Represents a Pokemon's ability """
     stabMod = 1.5
     
-    def afterTurn(self, thisSide, otherSide):
+    def afterTurn(self, user, target):
         """ Perform after a turn  """
         return []
         

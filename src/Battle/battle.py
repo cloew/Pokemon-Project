@@ -15,13 +15,13 @@ class Battle:
         
     def getActionsInOrder(self, screen):
         """ Returns all the Actions for this turn in the Battle """
-         self.oppAction = self.oppSide.trainer.getAction(self.getOppPkmn(), self.getPlayerPkmn(), screen)
-        self.playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn(), self.getOppPkmn(), screen)
+        oppAction = self.oppSide.trainer.getAction(self.getOppPkmn()[0], self.getPlayerPkmn(), screen)
+        playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn()[0], self.getOppPkmn(), screen)
         
-        if self.doesPlayerGoFirst(playerAction, self.oppAction):
-            return [playerAction, self.oppAction]
+        if self.doesPlayerGoFirst(playerAction, oppAction):
+            return [playerAction, oppAction]
         else:
-            return [oppAction,self.playerAction]
+            return [oppAction, playerAction]
         
     def battle(self, playerAction):
         """ Perform the action based on target """
@@ -57,9 +57,9 @@ class Battle:
         action.user.lastAction = action
         return action.doAction()
         
-    def afterTurn(self, user, func):
+    def afterTurn(self, user, target, func):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
-        return actingSide.afterTurn(func)
+        return user.afterTurn(target, func)
         
     def betweenTurns(self, func):
         """ Perform between turns """

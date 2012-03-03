@@ -13,7 +13,7 @@ class ChanceDelegate:
         """ Applies the delegates effect """
         messages = []
         
-        if shouldApply(random.randint(0,99)):
+        if self.shouldApply(random.randint(0,99)):
             for effect in self.effects:
                 effectMessages = effect.applyEffect(user, target)
                 messages = messages + effectMessages
