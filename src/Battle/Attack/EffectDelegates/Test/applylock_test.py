@@ -33,7 +33,7 @@ class affectPkmn(unittest.TestCase):
         assert messages == [], "Should not receive any messages"
         assert actionLock != None, "Should have an action lock"
         assert actionLock.parent == self.target, "Parent should be attached to the target"
-        assert actionLock.action == self.target.lastAction, "Action should be the target's last action"
+        assert actionLock.action is self.target.lastAction, "Action should be the target's last action"
         assert actionLock.turnsToGo == self.turns, "Turns should be the delegates's turns"
         
     def otherActionApplied(self):

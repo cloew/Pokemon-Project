@@ -23,17 +23,6 @@ class Battle:
         else:
             return [oppAction, playerAction]
         
-    def battle(self, playerAction):
-        """ Perform the action based on target """
-        self.oppAction = self.oppSide.trainer.getAction(self.oppSide.pkmnInPlay[0], self.getPlayerPkmn())
-        self.playerAction = playerAction
-        
-
-        if self.doesPlayerGoFirst(playerAction, self.oppAction):
-            return [playerAction, self.oppAction]
-        else:
-            return [oppAction,self.playerAction]
-        
     def doesPlayerGoFirst(self, playerAction, oppAction):
         """ Compare action priorities to see who goes first """
         if playerAction.getPriority() == oppAction.getPriority():

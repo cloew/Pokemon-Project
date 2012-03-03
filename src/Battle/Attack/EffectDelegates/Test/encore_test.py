@@ -1,7 +1,6 @@
 import unittest
-from Test.test_helper import BuildPokemonBattleWrapper, BuildAttackAction, BuildActionLock
+from Test.test_helper import BuildPokemonBattleWrapper, BuildBattleAction, BuildAttackAction, BuildActionLock
 
-from Battle.Actions.battle_action import BattleAction
 from Battle.Attack.EffectDelegates.encore_delegate import EncoreDelegate
 
 class applyEffect(unittest.TestCase):
@@ -24,7 +23,7 @@ class applyEffect(unittest.TestCase):
         assert self.pkmn.encore is None, "Should not have an encore effect"
         
     def notImmune(self):
-        """ Test that the encore is applied when the Pkmn is  not immune """
+        """ Test that the encore is applied when the Pkmn is not immune """
         self.pkmn.lastAction = self.action
         self.pkmn.encore = None
         
@@ -34,7 +33,7 @@ class applyEffect(unittest.TestCase):
         encore = self.pkmn.encore
         assert encore, "Should have an encore effect"
         assert encore.parent == self.pkmn, "Should belong to the Pkmn"
-        assert encore.action == self.action, "Should be the last action"
+        assert encore.action is self.action, "Should be the last action"
         assert encore.turnsToGo == self.turns, "Should last the turn count of the delegate"
 
 # Collect all test cases in this class
@@ -61,7 +60,7 @@ class immune(unittest.TestCase):
         
     def battleAction(self):
         """ Test that the target is immune when it doesn't have a attack action """
-        self.pkmn.lastAction = BattleAction()
+        self.pkmn.lastAction = BuildBattleAction()
         self.pkmn.encore = None
         
         immune = self.delegate.immune(self.pkmn)

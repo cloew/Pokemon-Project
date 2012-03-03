@@ -1,5 +1,6 @@
 from Battle.battle_side import BattleSide
 from Battle.pkmn_battle_wrapper import PkmnBattleWrapper
+from Battle.Actions.battle_action import BattleAction
 from Battle.Actions.attack_action import AttackAction
 from Battle.Actions.action_lock import ActionLock
 from Battle.Attack.attackfactory import AttackFactory
@@ -17,6 +18,10 @@ def BuildPokemonBattleWrapper(pkmn = "BULBASAUR",  trainer = Trainer()):
     wrapper.pkmn = pokemon
     
     return wrapper
+    
+def BuildBattleAction(user = BuildPokemonBattleWrapper(), priority = 0):
+    """ Builds a Battle Action """
+    return BattleAction(user, priority)
     
 def BuildAttackAction(user = BuildPokemonBattleWrapper(), target = BuildPokemonBattleWrapper(), attack = AttackFactory.getAttackAsNew("TACKLE")):
     """ Builds an Attack Action """
