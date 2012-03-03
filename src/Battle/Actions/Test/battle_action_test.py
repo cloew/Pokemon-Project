@@ -1,6 +1,32 @@
 import unittest
 from Test.test_helper import BuildPokemonBattleWrapper, BuildBattleAction
 
+class __cmp__(unittest.TestCase):
+    """ Test cases of __cmp__ """
+    
+    def  setUp(self):
+        """ Build the Action for the test """
+        self.action1 = BuildBattleAction(priority = 1)
+        self.action2 = BuildBattleAction(priority = 0)
+        
+    def notImplemented(self):
+        """ Test that it returns NotImplemented """
+        cmp = self.action1.__cmp__(1)
+        assert cmp is NotImplemented, "Should be NotImplemented"
+        
+    def sortList(self):
+        """ Test that it sorts a list properly """
+        actions =  [self.action1, self.action2]
+        actions.sort()
+        assert actions[0] is self.action2, "Should put low priority action to the front"
+        assert actions[1] is self.action1, "Should put high priority action to the back"
+
+# Collect all test cases in this class
+testcases__cmp__ = ["notImplemented", "sortList"]
+suite__cmp__ = unittest.TestSuite(map(__cmp__, testcases__cmp__))
+
+##########################################################
+
 class comparePrioirty(unittest.TestCase):
     """ Test cases of comparePrioirty """
     
@@ -56,7 +82,7 @@ suiteCompareSpeed = unittest.TestSuite(map(compareSpeed, testcasesCompareSpeed))
 ##########################################################
 
 # Collect all test cases in this file
-suites = [suiteComparePrioirty, suiteCompareSpeed]
+suites = [suite__cmp__, suiteComparePrioirty, suiteCompareSpeed]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
