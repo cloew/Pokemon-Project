@@ -18,28 +18,10 @@ class Battle:
         oppAction = self.oppSide.trainer.getAction(self.getOppPkmn()[0], self.getPlayerPkmn(), screen)
         playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn()[0], self.getOppPkmn(), screen)
         
-        if self.doesPlayerGoFirst(playerAction, oppAction):
-            return [playerAction, oppAction]
-        else:
-            return [oppAction, playerAction]
+        actions = [oppAction] + [playerAction]
+        actions.sort(reverse = True)
         
-    def doesPlayerGoFirst(self, playerAction, oppAction):
-        """ Compare action priorities to see who goes first """
-        if playerAction.getPriority() == oppAction.getPriority():
-            return self.doesPlayerGoFirstBySpeed()
-        return playerAction.getPriority() > oppAction.getPriority()
-    
-    def doesPlayerGoFirstBySpeed(self):
-        """ Compares Speeds to decide if the player goes first """
-        oppSpeed = self.oppSide.pkmnInPlay[0].getStat("SPD")
-        playerSpeed = self.playerSide.pkmnInPlay[0].getStat("SPD")
-        
-        if oppSpeed < playerSpeed:
-            return True
-        elif playerSpeed < oppSpeed:
-            return False
-        else:
-            return random.randint(0,1)
+        return actions
                                
     def act(self, action):
         """ Performs the action """
