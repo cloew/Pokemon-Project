@@ -10,7 +10,7 @@ class ActionLock:
         
     def useAction(self):
         """ Returns the action for use and decrements the counter """
-        self.turnsToGo = self.turnsToGo - 1
+        self.turnsToGo -= 1
         if self.done():
             self.parent.actionLock = None
         return self.action

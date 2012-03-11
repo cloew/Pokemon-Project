@@ -15,6 +15,9 @@ class BattleViewController:
         self.battle = Battle(playerTrainer, oppTrainer)
         self.screen = ConsoleBattleScreen(self.battle)
         
+        # Set the Player Trainer to use the screen
+        playerTrainer.screen = self.screen
+        
         # Play intro (DUNANANANANANANAAAA!)
         
         
@@ -27,9 +30,9 @@ class BattleViewController:
         # Start the Game Loop
         self.gameLoop()
         
-    def sendOutPkmnOnSide(self, side):
+    def sendOutPkmnOnSide(self, side): # Belongs in Battle Class
         """ Sends out the Pkmn for the given side """
-        messages = side.sendOutPkmn()
+        messages = side.sendOutPkmnAtStart()
         for message in messages:
             self.screen.reportMessage(message)
         
@@ -37,7 +40,7 @@ class BattleViewController:
         """ Runs through one iteration if the game """
         while (not self.battle.over):
             # Pick action
-            actions = self.battle.getActionsInOrder(self.screen)
+            actions = self.battle.getActionsInOrder()
             self.performActions(actions)
                     
     def performActions(self, actions):

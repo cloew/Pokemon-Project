@@ -9,9 +9,9 @@ class HumanTrainer(Trainer):
     """ Represents a Pokemon Trainer """
     header = ""
             
-    def pickAction(self, user, targets, screen):
+    def pickAction(self, user, targets):
         """ Has the trainer pick its action via the screen """
-        actionParams = screen.pickAction()
+        actionParams = self.screen.pickAction()
         return ActionFactory.buildActionFromType(actionParams)
 
     def getHeader(self):
@@ -25,3 +25,7 @@ class HumanTrainer(Trainer):
     def getFullName(self):
         """ Return the full Name and Title of the trainer """
         return "You"
+        
+    def beaten(self):
+        """ Returns a string that tells that the Trainer was beaten in Battle """
+        return self.name + " blacked out."

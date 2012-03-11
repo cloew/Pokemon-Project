@@ -28,7 +28,7 @@ class PreconditionChecker:
         If so, use the lock """
         if self.user.actionLock and \
                 hasattr(self.user.actionLock.action, "attack") and \
-                self.user.actionLock.action.attack is not self:
+                self.user.actionLock.action.attack is not self.attack:
             messages = self.user.actionLock.useAction().doAction()  # This needs to be looked at... # VERY needs to be looked at
             return True, messages
         return False, []

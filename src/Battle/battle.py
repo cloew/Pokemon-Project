@@ -13,14 +13,13 @@ class Battle:
         self.oppSide = BattleSide(oppTrainer)
         self.over = False
         
-    def getActionsInOrder(self, screen):
+    def getActionsInOrder(self):
         """ Returns all the Actions for this turn in the Battle """
-        oppAction = self.oppSide.trainer.getAction(self.getOppPkmn()[0], self.getPlayerPkmn(), screen)
-        playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn()[0], self.getOppPkmn(), screen)
+        oppAction = self.oppSide.trainer.getAction(self.getOppPkmn()[0], self.getPlayerPkmn())
+        playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn()[0], self.getOppPkmn())
         
         actions = [oppAction] + [playerAction]
         actions.sort(reverse = True)
-        
         return actions
                                
     def act(self, action):
@@ -42,25 +41,35 @@ class Battle:
         """ Check if a Pokemon has fainted """
         messages = []
         
-        if (self.playerSide.pkmnInPlay[0].isFainted()):
-            messages.append(self.playerSide.pkmnInPlay[0].getHeader() + " fainted.")
-        if (self.oppSide.pkmnInPlay[0].isFainted()):
-            messages.append(self.oppSide.pkmnInPlay[0].getHeader() + " fainted.")
+        messages += self.checkFaintOnSide(self.playerSide)
+        if (self.over):
+            return messages
             
-        message = self.checkOver()
-        if message:
-            messages.append(message)
+        messages += self.checkFaintOnSide(self.oppSide)
+        if (self.over):
+            return messages
             
         return messages
         
-    def checkOver(self):
+    def checkFaintOnSide(self, side):
+        """ Checks if a Pkmn on a side has fainted """
+        messages = []
+        
+        if (side.pkmnInPlay[0].isFainted()):
+            messages.append(side.pkmnInPlay[0].getHeader() + " fainted.")
+            messages += self.checkOver(side)
+        return messages
+        
+    def checkOver(self, side):
         """ Checks if the game is over """
-        if (not self.playerSide.hasMorePokemon()):
+        messages = []
+        
+        if (side.hasMorePokemon()):
+            """ """
+        else:
             self.over = True
-            return self.playerSide.trainer.name + " blacked out."
-        if (not self.oppSide.hasMorePokemon()):
-            self.over = True
-            return "Defeated " +self.oppSide.trainer.name + "."
+            messages.append(side.trainer.beaten())
+        return messages
         
     def getPlayerTrainer(self):
         """ Returns the Playing Trainer """

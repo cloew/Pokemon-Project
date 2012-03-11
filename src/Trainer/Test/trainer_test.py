@@ -19,15 +19,15 @@ class getAction(unittest.TestCase):
         """ Check that the action is the Pkmn's Lock """
         self.user.actionLock = self.actionLock
         
-        action = self.trainer.getAction(self.user, [None], None)
+        action = self.trainer.getAction(self.user, [None])
         assert action is self.attackAction, "Should be the lock's action"
         
     def noLock(self):
         """ Check the action is from Pick Action """
         self.user.actionLock = None
         
-        action = self.trainer.getAction(self.user, [None], None)
-        picked = self.trainer.pickAction(self.user, [None], None)
+        action = self.trainer.getAction(self.user, [None])
+        picked = self.trainer.pickAction(self.user, [None])
         assert action.user == picked.user, "Should have the same user"
         assert action.target == picked.target, "Should have the same target"
         assert action.attack == picked.attack, "Should have the same attack"

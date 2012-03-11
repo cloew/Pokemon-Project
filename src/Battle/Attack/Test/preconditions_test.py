@@ -13,8 +13,8 @@ class checkLock(unittest.TestCase):
         self.target = BuildPokemonBattleWrapper()
         
         self.actionLock = BuildActionLock(user = self.user)
-        attack = AttackFactory.getAttackAsNew("TACKLE")
-        self.preconditionChecker = PreconditionChecker(self.user, self.target, attack)
+        self.attack = AttackFactory.getAttackAsNew("TACKLE")
+        self.preconditionChecker = PreconditionChecker(self.user, self.target, self.attack)
         
     def hasLock(self):
         """ Test that check lock returns correctly when the user has a lock  """
@@ -27,6 +27,17 @@ class checkLock(unittest.TestCase):
         assert len(messages) > 0,  "Should receive the messages for the actual attack"
         assert messages[0] == message, "Should use the actionLock attack"
         
+    def usingLock(self):
+        """ Test that check lock returns correctly when the user is using its lock attack  """
+        self.preconditionChecker.attack = self.actionLock.action.attack
+        self.user.actionLock = self.actionLock
+        stop, messages = self.preconditionChecker.checkLock()
+        
+        message = "{0} USED {1}".format(self.user.getHeader(), self.actionLock.action.attack.name)
+        
+        assert not stop, "Should not stop if the user is using its lock"
+        assert messages == [], "Should not receive any messages"
+        
     def noLock(self):
         """ Test that check lock returns correctly when the user has no lock """
         self.user.actionLock = None
@@ -37,7 +48,7 @@ class checkLock(unittest.TestCase):
         
 
 # Collect all test cases in this class
-testcasesCheckLock = ["hasLock", "noLock"]
+testcasesCheckLock = ["hasLock", "usingLock", "noLock"]
 suiteCheckLock = unittest.TestSuite(map(checkLock, testcasesCheckLock))
 
 ##########################################################

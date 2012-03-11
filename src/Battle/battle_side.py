@@ -9,8 +9,8 @@ class BattleSide:
         self.trainer = trainer
         self.pkmnInPlay = [PkmnBattleWrapper(self)]
         
-    def sendOutPkmn(self):
-        """  Send out Pokemon to fill out all pkmnInPlay """
+    def sendOutPkmnAtStart(self):
+        """  Send out Pokemon to fill out all pkmnInPlay at the start of a battle """
         messages = []
         
         for i in range(0, len(self.pkmnInPlay)):
@@ -21,6 +21,11 @@ class BattleSide:
             messages.append(self.pkmnInPlay[i].sendOutPkmn(pkmn))
             
         return messages
+        
+    def sendOutPkmn(self):
+        """ Send out a Pkmn  """
+        pkmn = self.trainer.choosePkmn()
+        messages.append(self.pkmnInPlay[0].sendOutPkmn(pkmn))
         
     def hasMorePokemon(self):
         """ Returns whether this side has more Pokemon """
