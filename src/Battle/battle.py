@@ -58,6 +58,7 @@ class Battle:
         if (side.pkmnInPlay[0].isFainted()):
             messages.append(side.pkmnInPlay[0].getHeader() + " fainted.")
             messages += self.checkOver(side)
+            
         return messages
         
     def checkOver(self, side):
@@ -65,7 +66,7 @@ class Battle:
         messages = []
         
         if (side.hasMorePokemon()):
-            """ """
+            messages += side.sendOutPkmn()
         else:
             self.over = True
             messages.append(side.trainer.beaten())

@@ -24,8 +24,10 @@ class BattleSide:
         
     def sendOutPkmn(self):
         """ Send out a Pkmn  """
-        pkmn = self.trainer.choosePkmn()
+        messages = []
+        pkmn = self.trainer.choosePokemon()
         messages.append(self.pkmnInPlay[0].sendOutPkmn(pkmn))
+        return messages
         
     def hasMorePokemon(self):
         """ Returns whether this side has more Pokemon """
