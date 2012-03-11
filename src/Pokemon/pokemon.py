@@ -19,18 +19,6 @@ class Pokemon:
         self.level = 5
         self.ability = Ability()
         self.battleDelegate = PokemonBattleDelegate().buildStarter(self)
-        
-  
-    def loadFromHumanTrainerFile(self, file):
-        """ Loads a Pokemon object from a file """
-        values = file.readline().strip().split(" ")
-        self.name = values[0]
-        self.species = values[1]
-        self.level = int(values[2])
-    
-        self.id = ""
-        self.ability = AbilityFactory.loadFromPkmnXML(file)
-        self.battleDelegate = PokemonBattleDelegate().loadFromHumanTrainerFile(self, file)
     
         return self
     
