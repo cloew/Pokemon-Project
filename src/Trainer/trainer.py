@@ -1,4 +1,4 @@
-from Pokemon.pokemon import Pokemon
+from Pokemon.pokemon_factory import PokemonFactory
 from Battle.Actions.attack_action import AttackAction
 
 import random
@@ -17,7 +17,7 @@ class Trainer:
         self.beltPokemon = []
         numPokemon = int(file.readline())
         for x in range(numPokemon):
-            self.beltPokemon.append(Pokemon().loadFromHumanTrainerFile(file))
+            self.beltPokemon.append(PokemonFactory.loadFromTrainerFile(file))
         
         return self
         

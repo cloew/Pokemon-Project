@@ -1,4 +1,3 @@
-from Battle.Attack.attackfactory import AttackFactory
 from Battle.Status.status import Status
 
 class PokemonBattleDelegate:

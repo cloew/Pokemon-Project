@@ -44,4 +44,9 @@ class Tags:
     dodgeTypeTag = "dodgeType"
     pierceTag = "pierce"
     
-    statusTag ="status"
+    statusTag = "status"
+    
+    pokemonTag =  "pokemon"
+    speciesTag = "species"
+    typesTag = "types"
+    baseStatsTag = "baseStats"
