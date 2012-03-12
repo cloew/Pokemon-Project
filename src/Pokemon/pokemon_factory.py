@@ -26,18 +26,17 @@ class PokemonFactory:
         return pkmn
     
     @staticmethod
-    def loadFromTrainerFile(file):
+    def loadFromXML(tree):
         """ Loads a Pokemon object from a file """
         pkmn = Pokemon()
         
-        values = file.readline().strip().split(" ")
-        pkmn.name = values[0]
-        pkmn.species = values[1]
-        pkmn.level = int(values[2])
-    
+        pkmn.name = tree.find(Tags.nameTag).text
+        pkmn.species = tree.find(Tags.speciesTag).text
+        pkmn.level = int(tree.find(Tags.levelTag).text)
+        
         pkmn.id = ""
-        pkmn.ability = AbilityFactory.loadFromPkmnXML(file)
-        pkmn.battleDelegate = PokemonBattleDelegateFactory.loadFromTrainerFile(pkmn, file)
+        pkmn.ability = AbilityFactory.loadFromPkmnXML(tree.find(Tags.abilityTag).text)
+        pkmn.battleDelegate = PokemonBattleDelegateFactory.loadFromXML(pkmn, tree)
     
         return pkmn
                 

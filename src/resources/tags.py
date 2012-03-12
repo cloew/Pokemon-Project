@@ -8,6 +8,7 @@ class Tags:
     nameTag = "name"
     typeTag = "type"
     ppTag = "PP"
+    currPPTag = "currPP"
     
     hitDelegateTag = "hitDelegate"
     hitTag = "hit"
@@ -47,6 +48,14 @@ class Tags:
     statusTag = "status"
     
     pokemonTag =  "pokemon"
+    levelTag = "level"
+    currHPTag = "currHP"
+    attacksTag = "attacks"
     speciesTag = "species"
     typesTag = "types"
     baseStatsTag = "baseStats"
+    
+    trainersTag = "trainers"
+    trainerTag = "trainer"
+    titleTag = "title"
+    beltTag = "belt"

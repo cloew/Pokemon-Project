@@ -1,0 +1,85 @@
+<trainers>
+    <trainer>
+        <name>Chris</name>
+        <title>Pkmn Trainer</title>
+        <belt>
+            <pokemon>
+                <name>Charmander</name>
+                <species>CHARMANDER</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>COMPOUNDEYES</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>ROLLOUT</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                    
+                    <attack>
+                        <name>EMBER</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                    
+                    <attack>
+                        <name>SCRATCH</name>
+                        <currPP>30</currPP>
+                        <PP>30</PP>
+                    </attack>
+                    
+                    <attack>
+                        <name>THUNDER WAVE</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                </attacks>
+                
+            </pokemon>
+        </belt>
+    </trainer>
+    
+    <trainer>
+        <name>Eric</name>
+        <title>Badass</title>
+        <belt>
+            <pokemon>
+                <name>Squirtle</name>
+                <species>SQUIRTLE</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>SHED SKIN</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>GROWL</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>Bulbasaur</name>
+                <species>BULBASAUR</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>SHED SKIN</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>TACKLE</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                    <attack>
+                        <name>GROWL</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+        </belt>
+    </trainer>
+</trainers>

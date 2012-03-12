@@ -17,16 +17,14 @@ class AbilityFactory:
     """ Builds Abilities """
     
     @staticmethod
-    def loadFromPkmnXML(file):
-        """ Load an attack as saved within a Pokemon instance in an XML file """
+    def loadFromPkmnXML(name):
+        """ Load an ability with the given name from an XML file """
         # Get Ability XML
-        name = file.readline().strip()
         tree = AbilityFactory.getAbilitydexTree()
         tree = AbilityFactory.getAbilityXML(tree, name)
         
         # Build the Ability
         ability = AbilityFactory.buildAbilityFromXML(tree)
-    
         return ability
     
     @staticmethod

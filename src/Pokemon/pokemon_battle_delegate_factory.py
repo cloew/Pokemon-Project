@@ -34,7 +34,7 @@ class PokemonBattleDelegateFactory:
         return delegate
     
     @staticmethod
-    def loadFromTrainerFile(parent, file):
+    def loadFromXML(parent, tree):
         """  Build a Pokemon's Battle Information """
         delegate = PokemonBattleDelegate()
         
@@ -45,13 +45,13 @@ class PokemonBattleDelegateFactory:
         PokemonBattleDelegateFactory.loadPokedexBattleInfo(delegate, parent.species)
     
         # Get current HP
-        delegate.currHP = int(file.readline())
+        delegate.currHP = int(tree.find(Tags.currHPTag).text)
     
         # Read attacks
-        numAttacks = int(file.readline())
         delegate.attacks = []
-        for x in range(numAttacks):
-            delegate.attacks.append(AttackFactory.loadFromPkmnXML(file))
+        attacksTree = tree.find(Tags.attacksTag)
+        for attack in attacksTree.getiterator(Tags.attackTag):
+             delegate.attacks.append(AttackFactory.loadFromPkmnXML(attack))
         
         # Status
         delegate.status = Status()

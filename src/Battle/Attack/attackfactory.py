@@ -50,31 +50,24 @@ class AttackFactory:
         return attack
         
     @staticmethod
-    def loadFromPkmnXML(file):
+    def loadFromPkmnXML(tree):
         """ Load an attack as saved within a Pokemon instance in an XML file """
         # Get Attack XML
-        name = file.readline().strip()
-        tree = AttackFactory.getAttackdexTree()
-        tree = AttackFactory.getAttackXML(tree, name)
-        
-        # Build the Attack
-        attack = AttackFactory.buildAttackFromXML(tree)
+        name = tree.find(Tags.nameTag).text
+        attack = AttackFactory.loadFromXML(name)
     
         # Get currPP and PP from file
-        values = file.readline().strip().split(" ")
-        attack.powerPoints = int(values[0])
-        attack.currPowerPoints = int(values[1])
+        attack.powerPoints = int(tree.find(Tags.ppTag).text)
+        attack.currPowerPoints = int(tree.find(Tags.currPPTag).text)
     
         return attack
         
     @staticmethod
     def getAttackAsNew(name):
         """ Build an attack entirely from attackdex """
-        # Get Attack XML
+        # Build the Attack
         tree = AttackFactory.getAttackdexTree()
         tree = AttackFactory.getAttackXML(tree, name)
-        
-        # Build the Attack
         attack = AttackFactory.buildAttackFromXML(tree)
     
         # Get currPP and PP from attackdex
@@ -82,6 +75,15 @@ class AttackFactory:
         attack.currPowerPoints = attack.powerPoints
     
         return attack
+        
+    @staticmethod
+    def loadFromXML(name):
+        """ Loads an Attack from Attackdex XML """
+        tree = AttackFactory.getAttackdexTree()
+        tree = AttackFactory.getAttackXML(tree, name)
+        
+        # Build the Attack
+        return AttackFactory.buildAttackFromXML(tree)
         
     @staticmethod
     def getAttackdexTree():
