@@ -1,23 +1,22 @@
-from Pokemon.pokemon import Pokemon
-
 import unittest
+from Test.test_helper import BuildPokemon
 
 class isFainted(unittest.TestCase):
     """ Tests logic for determining if a Pokemon is fainted or not """
     
     def  setUp(self):
         """ Build the Pokemon for use in the tests """
-        self.poke = Pokemon("BULBASAUR")
+        self.pkmn = BuildPokemon()
         
     def isNotFainted(self):
         """ Test a Pokemon with health is not fainted """
-        self.poke.battleDelegate.currHP = 1
-        assert not self.poke.isFainted(), "A Pokemon with HP > 0 should not be fainted"
+        self.pkmn.battleDelegate.currHP = 1
+        assert not self.pkmn.isFainted(), "A Pokemon with HP > 0 should not be fainted"
         
     def isFainted(self):
         """ Test a Pokemon is fainted when it has no health """
-        self.poke.battleDelegate.currHP = 0
-        assert self.poke.isFainted(), "A Pokemon with 0 HP should be fainted"
+        self.pkmn.battleDelegate.currHP = 0
+        assert self.pkmn.isFainted(), "A Pokemon with 0 HP should be fainted"
 
 # Collect all test cases in this file
 testcasesIsFainted = ["isNotFainted", "isFainted"]
@@ -30,7 +29,7 @@ class getRatioOfHealth(unittest.TestCase):
     
     def  setUp(self):
         """ Build the Pokemon for use in the test """
-        self.pkmn = Pokemon("BULBASAUR")
+        self.pkmn = BuildPokemon()
         self.ratio = 2
         self.hp1 = 50
         self.hp2 = 51
@@ -48,6 +47,7 @@ class getRatioOfHealth(unittest.TestCase):
         self.setHP(self.pkmn, self.hp1)
         ratio = self.pkmn.getRatioOfHealth(self.ratio)
         ratioForDamage = self.pkmn.getRatioOfHealth(self.ratio, forDamage = True)
+        
         assert ratio == self.half, "getRatio result should be hp/ratio"
         assert ratioForDamage == self.half, "getRatio for Damage result should be hp/ratio"
         
@@ -56,6 +56,7 @@ class getRatioOfHealth(unittest.TestCase):
         self.setHP(self.pkmn, self.hp2)
         ratio = self.pkmn.getRatioOfHealth(self.ratio)
         ratioForDamage = self.pkmn.getRatioOfHealth(self.ratio, forDamage = True)
+        
         assert ratio == self.half, "getRatio result should be hp/ratio truncated"
         assert ratioForDamage == self.half, "getRatio for Damage result should be hp/ratio"
         
@@ -65,6 +66,7 @@ class getRatioOfHealth(unittest.TestCase):
         self.pkmn.setCurrHP(self.hp3)
         ratio = self.pkmn.getRatioOfHealth(self.ratio)
         ratioForDamage = self.pkmn.getRatioOfHealth(self.ratio, forDamage = True)
+        
         assert ratio == self.half, "getRatio result should be Current HP"
         assert ratioForDamage == self.hp3, "getRatio for Damage result should be hp/ratio"
         
@@ -73,6 +75,7 @@ class getRatioOfHealth(unittest.TestCase):
         self.setHP(self.pkmn, self.hp4)
         ratio = self.pkmn.getRatioOfHealth(self.ratio)
         ratioForDamage = self.pkmn.getRatioOfHealth(self.ratio, forDamage = True)
+        
         assert ratio == 1, "getRatio result should be 1 if hp/ratio would be under 1"
         assert ratioForDamage == 1, "getRatio for Damage result should be 1 if hp/ratio would be under 1"
 

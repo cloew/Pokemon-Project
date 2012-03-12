@@ -1,12 +1,8 @@
+import unittest
+from Test.test_helper import BuildPokemonBattleWrapper
+
 from Battle.Status.poison import Poison
 from Battle.Status.toxic_poison import ToxicPoison
-
-from Battle.battle_side import BattleSide
-from Battle.pkmn_battle_wrapper import PkmnBattleWrapper
-from Pokemon.pokemon import Pokemon
-from Trainer.trainer import Trainer
-
-import unittest
 
 class init(unittest.TestCase):
     """ Test that init initializes correctly """
@@ -31,17 +27,12 @@ class afterTurn(unittest.TestCase):
     def setUp(self):
         """ Builds the ToxicPoison status"""
         self.status = ToxicPoison()
-        trainer = Trainer()
-        pokemon = Pokemon("BULBASAUR")
-        trainer.beltPokemon = [pokemon]
-        side = BattleSide(trainer)
-        self.pkmnWrapper = PkmnBattleWrapper(side)
-        self.pkmnWrapper.sendOutPkmn(pokemon)
+        self.pkmn = BuildPokemonBattleWrapper()
     
     def counterIsUpped(self):
         """ Test if the counter is increased """
         self.status.counter = 1
-        self.status.afterTurn(self.pkmnWrapper)
+        self.status.afterTurn(self.pkmn)
         
         assert self.status.counter == 2, "Counter should be 2"
         
@@ -56,21 +47,21 @@ class getDamage(unittest.TestCase):
     def setUp(self):
         """ Builds the ToxicPoison status"""
         self.status = ToxicPoison()
-        self.pokemon = Pokemon("BULBASAUR")
+        self.pkmn = BuildPokemonBattleWrapper() #Pokemon("BULBASAUR")
         self.hp = 64.0
-        self.pokemon.battleDelegate.stats["HP"] = self.hp
+        self.pkmn.setStat("HP", self.hp)
     
     def damage1stTurn(self):
         """ Test if 1st turn damage is correct"""
         self.status.counter = 1
-        damage = self.status.getDamage(self.pokemon)
+        damage = self.status.getDamage(self.pkmn)
         
         assert damage == self.hp/ToxicPoison.ratio, "Damage should be hp/ratio"
             
     def damage2ndTurn(self):
         """ Test if it can correctly identify when the target is immune """
         self.status.counter = 2
-        damage = self.status.getDamage(self.pokemon)
+        damage = self.status.getDamage(self.pkmn)
         
         assert damage == 2*self.hp/ToxicPoison.ratio, "Damage should be double hp/ratio"
         

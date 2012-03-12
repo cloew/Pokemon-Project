@@ -1,5 +1,5 @@
 import unittest
-from Test.test_helper import BuildPokemonBattleWrapper, BuildAttackAction, BuildActionLock
+from Test.test_helper import BuildPokemon, BuildPokemonBattleWrapper, BuildAttackAction, BuildActionLock
 
 from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
@@ -44,22 +44,22 @@ class getPokemon(unittest.TestCase):
     def  setUp(self):
         """ Build the Trainer and Pokemon lists for use in tests """
         self.trainer = Trainer()
-        self.pokeWithHealth = Pokemon("BULBASAUR")
-        self.pokeWithoutHealth = Pokemon("CHARMANDER")
-        self.pokeWithoutHealth.battleDelegate.currHP = 0
+        self.pkmnWithHealth = BuildPokemon(pkmn = "BULBASAUR")
+        self.pkmnWithoutHealth = BuildPokemon(pkmn = "CHARMANDER")
+        self.pkmnWithoutHealth.battleDelegate.currHP = 0
         
     def firstIsValid(self):
         """ Test if it actually correctly aquires the first Pkmn """
-        self.trainer.beltPokemon = [self.pokeWithHealth, self.pokeWithoutHealth]
+        self.trainer.beltPokemon = [self.pkmnWithHealth, self.pkmnWithoutHealth]
         
-        assert self.trainer.getPokemon(0) is self.pokeWithHealth, "Should get the first Pkmn"
+        assert self.trainer.getPokemon(0) is self.pkmnWithHealth, "Should get the first Pkmn"
 
         
     def firstIsFainted(self):
         """ Test if accurately skips a Pokemon with no HP """
-        self.trainer.beltPokemon = [self.pokeWithoutHealth, self.pokeWithHealth]
+        self.trainer.beltPokemon = [self.pkmnWithoutHealth, self.pkmnWithHealth]
         
-        assert self.trainer.getPokemon(0) is self.pokeWithHealth, "Should skip Pkmn w/out health"
+        assert self.trainer.getPokemon(0) is self.pkmnWithHealth, "Should skip Pkmn w/out health"
 
 # Collect all test cases in this class
 testcasesGetPokemon = ["firstIsValid", "firstIsFainted"]
@@ -73,20 +73,20 @@ class hasMorePokemon(unittest.TestCase):
     def  setUp(self):
         """ Build the Trainer and Pokemon lists for use in tests """
         self.trainer = Trainer()
-        self.pokeWithHealth = Pokemon("BULBASAUR")
-        self.pokeWithoutHealth = Pokemon("CHARMANDER")
-        self.pokeWithoutHealth.battleDelegate.currHP = 0
+        self.pkmnWithHealth = BuildPokemon(pkmn = "BULBASAUR")
+        self.pkmnWithoutHealth = BuildPokemon(pkmn = "CHARMANDER")
+        self.pkmnWithoutHealth.battleDelegate.currHP = 0
         
     def hasMorePokemon(self):
         """ Test the trainer actually has more Pokemon """
-        self.trainer.beltPokemon = [self.pokeWithHealth]
+        self.trainer.beltPokemon = [self.pkmnWithHealth]
         
         assert self.trainer.hasMorePokemon() is True, "Should have more Pokemon"
 
         
     def noMorePokemon(self):
         """ Test the trainer has no more Pokemon """
-        self.trainer.beltPokemon = [self.pokeWithoutHealth]
+        self.trainer.beltPokemon = [self.pkmnWithoutHealth]
         
         assert self.trainer.hasMorePokemon() is False, "Should not have more Pokemon"
 

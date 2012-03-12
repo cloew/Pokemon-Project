@@ -5,12 +5,16 @@ from Battle.Actions.attack_action import AttackAction
 from Battle.Actions.action_lock import ActionLock
 from Battle.Attack.attackfactory import AttackFactory
 from Trainer.trainer import Trainer
-from Pokemon.pokemon import Pokemon
+from Pokemon.pokemon_factory import PokemonFactory
 
+
+def BuildPokemon(pkmn = "BULBASAUR"):
+    """ Builds a Pokemon """
+    return PokemonFactory.buildStarter(pkmn)
 
 def BuildPokemonBattleWrapper(pkmn = "BULBASAUR",  trainer = Trainer()):
     """  Builds a Pokemon Battle Wrapper """
-    pokemon = Pokemon(pkmn)
+    pokemon = BuildPokemon(pkmn = pkmn)
     trainer.beltPokemon = [pokemon]
     
     side = BattleSide(trainer)

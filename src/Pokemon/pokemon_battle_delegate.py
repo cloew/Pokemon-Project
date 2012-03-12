@@ -5,24 +5,6 @@ class PokemonBattleDelegate:
     Holds stats attacks and statuses """
   
     statKeys = ["HP", "ATK", "DEF", "SPD", "SATK", "SDEF"]
-            
-    def buildStarter(self, parent):
-        """ Builds a BattleDelegate for a Starter Pokemon """
-        # Set parent
-        self.parent = parent
-    
-        # Get common info from Pokedex 
-        self.getPokedexBattleInfo()
-    
-        # Set currHP to full
-        self.currHP = self.stats["HP"]
-    
-        # Load attacks
-        self.attacks = []
-        
-        self.status = Status()
-    
-        return self
         
     def heal(self, heal):
         """ Has the Pokemon heal itself """

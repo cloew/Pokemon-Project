@@ -9,8 +9,6 @@ class Pokemon:
   
     def __init__(self, species=None):
         """ Builds a Pkmn """
-        if species:
-            self.buildStarter(species)
         
     def buildStarter(self, species):
         """ Creates a Pokemon with Starter stats """
