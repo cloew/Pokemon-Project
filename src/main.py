@@ -4,10 +4,8 @@ from Trainer.human_trainer import HumanTrainer
 
 from Trainer.trainer_factory import TrainerFactory
 
-trainer = HumanTrainer()
-TrainerFactory.loadFromXML(trainer, "Chris")
-trainer2 = ComputerTrainer()
-TrainerFactory.loadFromXML(trainer2, "Eric")
+trainer = TrainerFactory.loadFromXML("Chris", TrainerFactory.HUMAN)
+trainer2 = TrainerFactory.loadFromXML("Eric", TrainerFactory.COMPUTER)
 
 BattleViewController().begin(trainer, trainer2)
 

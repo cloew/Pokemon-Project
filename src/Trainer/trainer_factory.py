@@ -2,17 +2,30 @@ import xml.etree.ElementTree
 
 from Pokemon.pokemon_factory import PokemonFactory
 from resources.tags import Tags
+from Trainer.computer_trainer import ComputerTrainer
+from Trainer.human_trainer import HumanTrainer
 
 class TrainerFactory:
     """ Builds a Trainer """
+    HUMAN = 1
+    COMPUTER = 2
+    trainers = {HUMAN:HumanTrainer,
+                          COMPUTER:ComputerTrainer}
     
     @staticmethod
-    def loadFromXML(trainer, name):
+    def loadFromXML(name, trainerType):
         """ Loads a Trainer from an XML file """
         tree = TrainerFactory.getTrainerdexTree()
         tree = TrainerFactory.getTrainerXML(tree, name)
         
+        trainer = TrainerFactory.buildTrainerFromType(trainerType)
         TrainerFactory.buildTrainerFromXML(trainer, tree)
+        return trainer
+        
+    @staticmethod
+    def buildTrainerFromType(type):
+        """ Builds a Pokemon as a certain Trainer Type """
+        return TrainerFactory.trainers[type]()
         
     @staticmethod
     def buildTrainerFromXML(trainer, tree):
