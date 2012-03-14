@@ -10,7 +10,7 @@ class TrainerFactory:
     HUMAN = 1
     COMPUTER = 2
     trainers = {HUMAN:HumanTrainer,
-                          COMPUTER:ComputerTrainer}
+                   COMPUTER:ComputerTrainer}
     
     @staticmethod
     def loadFromXML(name, trainerType):

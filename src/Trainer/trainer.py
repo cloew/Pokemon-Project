@@ -31,7 +31,7 @@ class Trainer:
             return None
         
         for pkmn in self.beltPokemon[i:]:
-            if not pkmn.isFainted():
+            if not pkmn.fainted():
                 return pkmn
                 
     def choosePokemon(self):
@@ -41,7 +41,7 @@ class Trainer:
     def hasMorePokemon(self):
         """ Returns whether the trainer has more Pokemon """
         for poke in self.beltPokemon:
-            if not poke.isFainted():
+            if not poke.fainted():
                 return True
                 
         return False

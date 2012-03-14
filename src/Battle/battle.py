@@ -55,7 +55,7 @@ class Battle:
         """ Checks if a Pkmn on a side has fainted """
         messages = []
         
-        if (side.pkmnInPlay[0].isFainted()):
+        if (side.pkmnInPlay[0].fainted()):
             messages.append(side.pkmnInPlay[0].getHeader() + " fainted.")
             messages += self.checkOver(side)
             

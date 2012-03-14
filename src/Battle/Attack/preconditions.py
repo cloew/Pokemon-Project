@@ -9,8 +9,8 @@ class PreconditionChecker:
         self.target = target
         self.attack = attack
         
-        self.conditionsToCheck = [self.checkLock, self.checkFlinch, self.checkCharging,
-                                                 self.checkEncore, self.checkStatus, self.checkSecondaries]
+        self.conditionsToCheck = [self.checkFaint, self.checkLock, self.checkFlinch, self.checkCharging,
+                                           self.checkEncore, self.checkStatus, self.checkSecondaries]
         
     def checkPreConditions(self):
         """ Checks all pre-conditions to the Battle """
@@ -22,6 +22,12 @@ class PreconditionChecker:
                 return stop, messages
         
         return False, messages
+        
+    def checkFaint(self):
+        """ Checks if the using Pkmn had fainted """
+        if self.user.fainted():
+            return True, []
+        return False, []
         
     def checkLock(self):
         """ Checks if the user has acquired a lock during this turn

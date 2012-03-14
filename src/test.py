@@ -9,6 +9,7 @@ import Battle.Attack.CritDelegates.Test.suite
 import Battle.Attack.DamageDelegates.Test.suite
 import Battle.Attack.EffectDelegates.Test.suite
 import Battle.Attack.HitDelegates.Test.suite
+import Battle.Exceptions.Test.suite
 import Battle.SecondaryEffects.Test.suite
 import Battle.Status.Test.suite
 
@@ -21,6 +22,7 @@ suites = [Pokemon.Test.suite.suite, Pokemon.Abilities.Test.suite.suite,
               Battle.Attack.DamageDelegates.Test.suite.suite,
               Battle.Attack.EffectDelegates.Test.suite.suite,
               Battle.Attack.HitDelegates.Test.suite.suite,
+              Battle.Exceptions.Test.suite.suite,
               Battle.SecondaryEffects.Test.suite.suite,
               Battle.Status.Test.suite.suite]
 

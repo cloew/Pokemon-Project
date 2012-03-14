@@ -22,7 +22,7 @@ class takeDamage(unittest.TestCase):
         assert self.pkmn.battleDelegate.currHP == 0, \
                 "When taking damage equivalent to the Pokemon's health the \
                 Pokemon should have no health"
-        assert self.pkmn.isFainted(), "A Pokemon with 0 HP should be fainted"
+        assert self.pkmn.fainted(), "A Pokemon with 0 HP should be fainted"
         
     def faintOver(self):
         """ Test a Pokemon has zero health when taking more damage than it has health """
@@ -31,7 +31,7 @@ class takeDamage(unittest.TestCase):
         assert self.pkmn.battleDelegate.currHP == 0, \
                 "When taking damage greater than the Pokemon's health the \
                 Pokemon should have no health"
-        assert self.pkmn.isFainted(), "A Pokemon with 0 HP should be fainted"
+        assert self.pkmn.fainted(), "A Pokemon with 0 HP should be fainted"
 
 # Collect all test cases in this class
 testcasesTakeDamage = ["noFaint", "faintPerfect", "faintOver"]

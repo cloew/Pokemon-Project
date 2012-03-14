@@ -24,7 +24,7 @@ class Pokemon:
         """ Returns the Pokemon's Attacks """
         return self.battleDelegate.attacks
 
-    def isFainted(self):
+    def fainted(self):
         """ Returns if the Pkmn is fainted or not """
         return self.battleDelegate.currHP is 0
         

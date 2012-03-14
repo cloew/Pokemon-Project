@@ -4,6 +4,40 @@ from Test.test_helper import BuildPokemonBattleWrapper, BuildActionLock
 from Battle.Attack.attackfactory import AttackFactory
 from Battle.Attack.preconditions import PreconditionChecker
 
+class checkFaint(unittest.TestCase):
+    """ Test cases of checkFaint """
+    
+    def  setUp(self):
+        """ Build the Pkmn, Lock, and Precondition Checker for the test """
+        self.user = BuildPokemonBattleWrapper()
+        self.target = BuildPokemonBattleWrapper()
+        
+        self.actionLock = BuildActionLock(user = self.user)
+        self.attack = AttackFactory.getAttackAsNew("TACKLE")
+        self.preconditionChecker = PreconditionChecker(self.user, self.target, self.attack)
+        
+    def fainted(self):
+        """ Test that check faint returns correctly when the user has fainted  """
+        self.user.faint()
+        stop, messages = self.preconditionChecker.checkFaint()
+        
+        assert stop, "Should stop if the user is fainted"
+        assert messages == [],  "Should receive the messages for the actual attack"
+        
+    def notFainted(self):
+        """ Test that check faint returns correctly when the user has not fainted  """
+        stop, messages = self.preconditionChecker.checkFaint()
+        
+        assert not stop, "Should not stop if the user is using its lock"
+        assert messages == [], "Should not receive any messages"
+        
+
+# Collect all test cases in this class
+testcasesCheckFaint = ["fainted", "notFainted"]
+suiteCheckFaint = unittest.TestSuite(map(checkFaint, testcasesCheckFaint))
+
+##########################################################
+
 class checkLock(unittest.TestCase):
     """ Test cases of checkLock """
     
@@ -170,7 +204,7 @@ suiteCheckEncore = unittest.TestSuite(map(checkEncore, testcasesCheckEncore))
 ##########################################################
 
 # Collect all test cases in this file
-suites = [suiteCheckLock, suiteCheckFlinch, suiteCheckCharging, suiteCheckEncore]
+suites = [suiteCheckFaint, suiteCheckLock, suiteCheckFlinch, suiteCheckCharging, suiteCheckEncore]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
+from Battle.Status.statusfactory import StatusFactory
 
 class PkmnBattleWrapper:
     """ Represents one Pkmn's slot in a battle """
@@ -70,11 +71,28 @@ class PkmnBattleWrapper:
         
     def takeDamage(self, damage):
         """ Has the Pkmn take the given amount of damage """
+        messages = []
         self.pkmn.takeDamage(damage)
         
-    def isFainted(self):
+        if self.pkmn.getCurrHP() == 0:
+            messages = self.faint()
+            
+        return messages
+        
+    def faint(self):
+        """ Makes the Pkmn faint """
+        messages = []
+        
+        self.pkmn.setCurrHP(0)
+        status, msg = StatusFactory.buildStatusFromAbbr("FNT")
+        self.setStatus(status)
+        
+        messages.append(self.getHeader() + msg)
+        return messages
+        
+    def fainted(self):
         """ Return whether the Wrapper's Pokemon is fainted """
-        return self.pkmn.isFainted()
+        return self.pkmn.fainted()
         
     def getLevel(self):
         """ Returns the Wrapper's Pokemon's Level """

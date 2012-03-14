@@ -1,6 +1,8 @@
 import unittest
 from Test.test_helper import BuildPokemonBattleWrapper
 
+from Battle.Status.faint import Faint
+
 class resetStatMods(unittest.TestCase):
     """ Test cases of resetStatMods """
     
@@ -49,8 +51,31 @@ suiteBetweenTurns = unittest.TestSuite(map(betweenTurns, testcasesBetweenTurns))
 
 ##########################################################
 
+class takeDamage(unittest.TestCase):
+    """ Test cases of takeDamage """
+    
+    def  setUp(self):
+        """ Build the Pkmn """
+        self.pkmn = BuildPokemonBattleWrapper()
+    
+    def faints(self):
+        """ Test that Faint Exception is thrown """
+        messages = self.pkmn.takeDamage(self.pkmn.getCurrHP())
+        assert messages == [self.pkmn.getHeader() + Faint.start], "The Pkmn should have fainted"
+        
+    def noFaint(self):
+        """ Test that Faint Exception is not thrown if the pkmn doesn't faint """
+        messages = self.pkmn.takeDamage(self.pkmn.getCurrHP()-1)
+        assert messages == [], "Should receive any empty list when the Pkmn has not fainted"
+
+# Collect all test cases in this class
+testcasesTakeDamage= ["faints", "noFaint"]
+suiteTakeDamage = unittest.TestSuite(map(takeDamage, testcasesTakeDamage))
+
+##########################################################
+
 # Collect all test cases in this file
-suites = [suiteResetStatMods, suiteBetweenTurns]
+suites = [suiteResetStatMods, suiteBetweenTurns, suiteTakeDamage]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

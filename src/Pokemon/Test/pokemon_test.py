@@ -11,12 +11,12 @@ class isFainted(unittest.TestCase):
     def isNotFainted(self):
         """ Test a Pokemon with health is not fainted """
         self.pkmn.battleDelegate.currHP = 1
-        assert not self.pkmn.isFainted(), "A Pokemon with HP > 0 should not be fainted"
+        assert not self.pkmn.fainted(), "A Pokemon with HP > 0 should not be fainted"
         
     def isFainted(self):
         """ Test a Pokemon is fainted when it has no health """
         self.pkmn.battleDelegate.currHP = 0
-        assert self.pkmn.isFainted(), "A Pokemon with 0 HP should be fainted"
+        assert self.pkmn.fainted(), "A Pokemon with 0 HP should be fainted"
 
 # Collect all test cases in this file
 testcasesIsFainted = ["isNotFainted", "isFainted"]
