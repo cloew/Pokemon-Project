@@ -9,7 +9,8 @@ class SelfDestructDelegate:
         
     def applyEffect(self, user, target):
         """ Apply the recoil effect """
+        messages = [user.getHeader() + SelfDestructDelegate.message]
         totake = user.getCurrHP()
-        user.takeDamage(totake)
+        messages += user.takeDamage(totake)
         
-        return [user.getHeader() + SelfDestructDelegate.message]
+        return messages
