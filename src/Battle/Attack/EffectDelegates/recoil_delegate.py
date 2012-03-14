@@ -13,11 +13,13 @@ class RecoilDelegate:
         
     def applyEffect(self, user, target):
         """ Apply the recoil effect """
+        messages = [user.getHeader() + RecoilDelegate.message]
+        
         totake = self.damage/self.recoilRatio
         totake = self.normalize(totake)
-        user.takeDamage(totake)
+        messages += user.takeDamage(totake)
         
-        return [user.getHeader() + RecoilDelegate.message]
+        return messages
         
     def normalize(self, damage):
         if damage < 1:

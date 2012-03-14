@@ -2,6 +2,7 @@ import unittest
 from Test.test_helper import BuildPokemonBattleWrapper
 
 from Battle.Attack.EffectDelegates.recoil_delegate  import RecoilDelegate
+from Battle.Status.faint import Faint
 
 class applyEffect(unittest.TestCase):
     """ Test cases of applyEffect """
@@ -33,9 +34,19 @@ class applyEffect(unittest.TestCase):
         message = self.pkmn.getHeader() + RecoilDelegate.message
         assert len(messages) == 1, "Should get one message"
         assert messages[0] == message, "Message should be Pkmn's header and the Delegate's message"
+        
+    def faints(self):
+        """ Test that the message is correct when the Pkmn faints """
+        self.pkmn.setCurrHP(1)
+        self.delegate.damage = self.damage
+        messages = self.delegate.applyEffect(self.pkmn, None)
+
+        faintMessage = self.pkmn.getHeader() + Faint.start
+        assert len(messages) == 2, "Should get 2 messages"
+        assert messages[1] == faintMessage, "Message should be that the Pkmn Fainted"
 
 # Collect all test cases in this class
-testcasesApplyEffect = ["recoil", "message"]
+testcasesApplyEffect = ["recoil", "message", "faints"]
 suiteApplyEffect = unittest.TestSuite(map(applyEffect, testcasesApplyEffect))
 
 ##########################################################
