@@ -9,15 +9,17 @@ class Leech(SecondaryEffect):
         self.source = source
         self.message = message
         
-    def afterTurn(self, user):
-        """ Leech health from the user and give it to the source """
-        self.damage(user)
-        self.leech(user)
-        return [user.getHeader() + self.message]
+    def afterTurn(self, pkmn):
+        """ Leech health from the pkmn and give it to the source """
+        messages = [pkmn.getHeader() + self.message]
+        
+        messages += self.damage(pkmn)
+        self.leech(pkmn)
+        return messages
         
     def damage(self, pkmn):
-        """ Damages the user """
-        pkmn.takeDamage(self.getAmount(pkmn))
+        """ Damages the pkmn """
+        return pkmn.takeDamage(self.getAmount(pkmn))
 
     def leech(self, pkmn):
         """ Leech Health from the pkmn and heal the source """

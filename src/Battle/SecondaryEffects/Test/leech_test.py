@@ -2,7 +2,7 @@ import unittest
 from Test.test_helper import BuildPokemonBattleWrapper
 
 from Battle.SecondaryEffects.leech import Leech
-from Pokemon.pokemon import Pokemon
+from Battle.Status.faint import Faint
 
 class afterTurn(unittest.TestCase):
     """ Test that afterTurn returns correctly """
@@ -20,7 +20,15 @@ class afterTurn(unittest.TestCase):
         message = self.leech.afterTurn(self.pkmn)
         assert message == [self.pkmn.getHeader() + self.message], "Message should be the pokemon's name and the message given to the Leech."
         
-testcasesAfterTurn = ["message"]
+    def faint(self):
+        """ Test that the messsages returned when the target faints """
+        self.pkmn.setCurrHP(self.leech.getAmount(self.pkmn))
+        messages = self.leech.afterTurn(self.pkmn)
+        assert len(messages) == 2, "Should have 2 messages"
+        assert messages[1] == self.pkmn.getHeader() + Faint.start, "Should have a faint message."
+        
+        
+testcasesAfterTurn = ["message", "faint"]
 suiteAfterTurn = unittest.TestSuite(map(afterTurn, testcasesAfterTurn))
 
 ##########################################################
