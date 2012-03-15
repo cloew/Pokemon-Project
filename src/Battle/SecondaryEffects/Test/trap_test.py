@@ -2,6 +2,7 @@ import unittest
 from Test.test_helper import BuildPokemonBattleWrapper
 
 from Battle.SecondaryEffects.trap import Trap
+from Battle.Status.faint import Faint
 
 class afterTurn(unittest.TestCase):
     """ Test that afterTurn returns correctly """
@@ -44,7 +45,29 @@ class afterTurn(unittest.TestCase):
         assert len(messages) == 2, "Should have two messages"
         assert messages[1] == self.pkmn.getHeader() + self.doneMessage, "Done message should be returned."
         
-testcasesAfterTurn = ["turnDecreases", "effectIsRemoved", "message", "doneMessage"]
+    def faintMessage(self):
+        """ Test the faint message appears if the Pkmn faints """
+        self.trap.turns = 3
+        self.pkmn.setCurrHP(self.trap.getDamage(self.pkmn))
+        
+        self.pkmn.secondaryEffects.append(self.trap)
+        messages = self.trap.afterTurn(self.pkmn)
+        
+        assert len(messages) == 2, "Should have two messages"
+        assert messages[1] == self.pkmn.getHeader() + Faint.start, "Pkmn should have fainted."
+    
+    def faintAndDoneMessage(self):
+        """ Test the done message is correct """
+        self.trap.turns = 1
+        self.pkmn.setCurrHP(self.trap.getDamage(self.pkmn))
+        
+        self.pkmn.secondaryEffects.append(self.trap)
+        messages = self.trap.afterTurn(self.pkmn)
+        
+        assert len(messages) == 2, "Should have two messages"
+        assert messages[1] == self.pkmn.getHeader() + Faint.start, "Pkmn should have fainted."
+        
+testcasesAfterTurn = ["turnDecreases", "effectIsRemoved", "message", "doneMessage", "faintMessage", "faintAndDoneMessage"]
 suiteAfterTurn = unittest.TestSuite(map(afterTurn, testcasesAfterTurn))
 
 ##########################################################

@@ -12,28 +12,37 @@ class Trap(SecondaryEffect):
         self.message = message
         self.doneMessage = doneMessage
         self.turns = self.getTurns()
+        # May need to hold source Pkmn as well
         
     def getTurns(self):
         """ Returns the 4-5 turns """
         return Trap.minTurns + random.randint(0, 1)
         
-    def afterTurn(self, user):
+    def afterTurn(self, pkmn):
         """ Does the damage of the Trap """
-        self.damage(user)
+        messages = [pkmn.getHeader() + self.message]
+        messages += self.damage(pkmn)
         
-        messages = [user.getHeader() + self.message]
-        self.turns = self.turns - 1
-        
-        if self.turns == 0:
-            user.secondaryEffects.remove(self)
-            messages.append(user.getHeader() + self.doneMessage)
+        if len(messages) is not 2:
+            messages += self.decrementTurns(pkmn)
         
         return messages
         
-    def damage(self, user):
+    def damage(self, pkmn):
         """ Damages the user """
-        user.takeDamage(self.getDamage(user))
+        return pkmn.takeDamage(self.getDamage(pkmn))
         
-    def getDamage(self, user):
+    def getDamage(self, pkmn):
         """ Returns the damage the Trap causes """
-        return user.getRatioOfHealth(Trap.ratio)
+        return pkmn.getRatioOfHealth(Trap.ratio)
+        
+    def decrementTurns(self, pkmn):
+        """ Decrement turns left for the Trap """
+        messages = []
+        self.turns = self.turns - 1
+        
+        if self.turns == 0:
+            pkmn.secondaryEffects.remove(self)
+            messages.append(pkmn.getHeader() + self.doneMessage)
+        
+        return messages
