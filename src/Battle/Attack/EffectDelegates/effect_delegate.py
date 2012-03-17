@@ -1,6 +1,6 @@
 
 
-class EffectDelegate:
+class EffectDelegate(object):
     """ Represents an Effect on an Attack """
     message = ""
     
