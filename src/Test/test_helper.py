@@ -4,6 +4,7 @@ from Battle.Actions.battle_action import BattleAction
 from Battle.Actions.attack_action import AttackAction
 from Battle.Actions.action_lock import ActionLock
 from Battle.Attack.attackfactory import AttackFactory
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 from Trainer.trainer import Trainer
 from Pokemon.pokemon_factory import PokemonFactory
 
@@ -22,6 +23,10 @@ def BuildPokemonBattleWrapper(pkmn = "BULBASAUR",  trainer = Trainer()):
     wrapper.pkmn = pokemon
     
     return wrapper
+    
+def BuildEffectDelegate():
+    """ Builds an Effect Delegate """
+    return EffectDelegate()
     
 def BuildBattleAction(user = BuildPokemonBattleWrapper(), priority = 0):
     """ Builds a Battle Action """
