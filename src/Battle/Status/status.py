@@ -1,5 +1,6 @@
+from Battle.AfterTurnEffect.after_turn_effect import AfterTurnEffect
 
-class Status:
+class Status(AfterTurnEffect):
     """ Represents a Status on a Pokemon """
     
     def __init__(self):

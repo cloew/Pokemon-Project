@@ -1,5 +1,6 @@
+from Battle.AfterTurnEffect.after_turn_effect import AfterTurnEffect
 
-class SecondaryEffect:
+class SecondaryEffect(AfterTurnEffect):
     """ Represents a Secondary EFfect that is perpetuated """
     
     message = ""

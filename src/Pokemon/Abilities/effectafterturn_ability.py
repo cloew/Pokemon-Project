@@ -8,7 +8,7 @@ class EffectAfterTurnAbility(Ability):
         self.name = name
         self.effects = effects
         
-    def afterTurn(self, user, target):
+    def afterTurn(self, pkmn):
         """ Call the effects """
-        messages = self.callEffects(user, target)
+        messages = self.callEffects(pkmn)
         return messages

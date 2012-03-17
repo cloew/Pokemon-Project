@@ -1,6 +1,6 @@
-from Pokemon.Abilities.ability import Ability
-
 import unittest
+
+from Pokemon.Abilities.ability import Ability
 
 class afterTurn(unittest.TestCase):
     """ Test that afterTurn returns the correct default values """
@@ -11,7 +11,7 @@ class afterTurn(unittest.TestCase):
         
     def properReturnValues(self):
         """ Check that afterTurn returns the proper default values """
-        messages = self.ability.afterTurn(None, None)
+        messages = self.ability.afterTurn(None)
         assert len(messages) == 0, "Messages should have no elements"
         
 testcasesAfterTurn = ["properReturnValues"]

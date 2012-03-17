@@ -1,14 +1,14 @@
+from Battle.AfterTurnEffect.after_turn_effect import AfterTurnEffect
 
-
-class Ability:
+class Ability(AfterTurnEffect):
     """ Represents a Pokemon's ability """
     stabMod = 1.5
     
-    def afterTurn(self, user, target):
+    def afterTurn(self, pkmn):
         """ Perform after a turn  """
         return []
         
-    def effectiveness(self, side):
+    def effectiveness(self, pkmn):
         """ Return effectiveness mods """
         
     def canUseEffects(self):
@@ -29,30 +29,30 @@ class Ability:
         """ Perform on accuracy """
         return accuracy
         
-    def onContact(self, side):
+    def onContact(self, pkmn):
         """ Perform on attack that makes contact """
         
-    def onDamage(self, side, damage):
+    def onDamage(self, pkmn, damage):
         """ Perform on damage """
         
     def onEntry(self):
         """ Perform when a Pkmn arrives in the battle """
         
-    def onFlinch(self, side):
+    def onFlinch(self, pkmn):
         """ Perform on Flinch """
         
-    def onLowHealth(self, side, status):
+    def onLowHealth(self, pkmn, status):
         """ Perform on low health """
         
     def onStab(self):
         """ Return the STAB mod """
         return self.stabMod
         
-    def onStatMod(self, side, stat, degree, selfInflicted):
+    def onStatMod(self, pkmn, stat, degree, selfInflicted):
         """ Perform when a stat is modded """
         return degree, [] #  Returns a modified degree and any messages related to that
     
-    def onStatus(self, side, status):
+    def onStatus(self, pkmn, status):
         """ Perform on application of status """
         return []
     
@@ -60,11 +60,11 @@ class Ability:
         """ Perform on switch """
         
     
-    def callEffects(self, user, target):
+    def callEffects(self, user):
         """ Call the effects the ability has """
         messages = []
         for effect in self.effects:
-            effectMessages = effect.applyEffect(user, target)
+            effectMessages = effect.tryToApplyEffect(user, None)
             messages = messages + effectMessages
             
         return messages

@@ -13,9 +13,13 @@ class EffectDelegate(object):
     
     def tryToApplyEffect(self, user, target):
         """ Applies Effect as long as the Effect can handle the 
-             Faint Status of the given user and Target """
-        if user.fainted() or target.fainted():
-            return []
+        Faint Status of the given User and Target """
+        if target is None:
+            if user.fainted():      # Temporary hack so the code still works
+                return []            # Will be unnecessary when I have actual Faint Handler classes
+        else:
+            if user.fainted() or target.fainted():
+                return []
             
         return self.applyEffect(user, target)
         
