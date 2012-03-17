@@ -38,33 +38,23 @@ class BattleViewController:
         
     def gameLoop(self):
         """ Runs through one iteration if the game """
-        while (not self.battle.over):
+        while not self.battle.over:
             # Pick action
             actions = self.battle.getActionsInOrder()
             self.performActions(actions)
+            messages = self.battle.refillSides()
+            self.screen.reportAction(messages)
                     
     def performActions(self, actions):
         """ Perform all the given actions """
         for action in actions:
-                messages = self.battle.act(action)
-                if self.reportAndCheckEnd(messages):
-                    return
-                
-                messages = self.battle.afterTurn(action.user, action.target, self.reportAndCheckEnd)
-                if self.reportAndCheckEnd(messages):
-                    return
-                
-                self.battle.betweenTurns(self.reportAndCheckEnd)
-                if self.checkOver():
-                    return
-                    
-    def reportAndCheckEnd(self, messages):
-        """ Report the messages given and check if the game is over """
-        if messages:
+            messages = []
+            messages += self.battle.act(action)
+            messages += self.battle.afterTurn(action.user, action.target) # This may need to be moved into action.doAction
+            
             self.screen.reportAction(messages)
-            self.screen.reportAction(self.battle.checkFaint())
-        
-        return self.checkOver()
+            
+        self.battle.betweenTurns()
         
     def checkOver(self):
         """ Checks if the Battle is over """
