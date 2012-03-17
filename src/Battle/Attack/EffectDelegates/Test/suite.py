@@ -7,6 +7,7 @@ import confuse_test
 import critmod_test
 import curestatus_test
 import dodge_test
+import effect_delegate_test
 import encore_test
 import flinch_test
 import heal_damageratio_test
@@ -26,6 +27,7 @@ suites = [applylock_test.suite, applystatus_test.suite,
               chance_test.suite, charge_test.suite, 
               confuse_test.suite, critmod_test.suite,
               curestatus_test.suite, dodge_test.suite,
+              effect_delegate_test.suite,
               encore_test.suite, flinch_test.suite,
               heal_damageratio_test.suite,
               heal_hpratio_test.suite, heal_ratio_test.suite,
