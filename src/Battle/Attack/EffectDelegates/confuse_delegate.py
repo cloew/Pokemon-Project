@@ -1,22 +1,16 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 from Battle.SecondaryEffects.confusion import Confusion
 
-class ConfuseDelegate :
+class ConfuseDelegate(EffectDelegate):
     """ Represents an effect that confuses the opponent """
     
     def __init__(self, affectUser):
         """ Build the Confuse Delegate """
         self.affectUser = affectUser
         
-    def getTargetPkmn(self, user, target):
-        """ Returns the Pkmn that is affected """
-        if self.affectUser:
-            return user
-        else:
-            return target
-        
     def applyEffect(self, user, target):
         """ Apply the Confusion to the target """
-        pkmn = self.getTargetPkmn(user, target)
+        pkmn = self.getEffectedPokemon(user, target)
         message = pkmn.getHeader()
         
         if not self.isConfused(pkmn):

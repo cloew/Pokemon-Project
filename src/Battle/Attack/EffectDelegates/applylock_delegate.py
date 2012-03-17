@@ -1,6 +1,7 @@
 from Battle.Actions.action_lock import ActionLock
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
-class ApplyLockDelegate:
+class ApplyLockDelegate(EffectDelegate):
     """ Represents an attack that is locked for some number of future turns """
     
     def __init__(self, turns, affectUser):
@@ -10,10 +11,8 @@ class ApplyLockDelegate:
         
     def applyEffect(self, user, target):
         """ Applies the delegates effect """
-        if self.affectUser:
-            return self.affectPkmn(user)
-        else:
-            return self.affectPkmn(target)
+        pkmn = self.getEffectedPokemon(user, target)
+        self.affectPkmn(pkmn)
         
     def affectPkmn(self, pkmn):
         """ Applies the lock to the correct pkmn """

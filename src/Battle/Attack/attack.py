@@ -44,7 +44,7 @@ class Attack:
         
         # Apply effects
         for effect in self.effectDelegates:
-            effectMessages = effect.applyEffect(user, target)
+            effectMessages = effect.tryToApplyEffect(user, target)
             messages = messages + effectMessages
         
         return messages

@@ -1,10 +1,11 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
-class ResetStatModsDelegate:
+class ResetStatModsDelegate(EffectDelegate):
     """ Resets all the Stat modifiers for both sides """
     message = "Everything returned to normal."
     
-    def applyEffect(self, actingSide, otherSide):
+    def applyEffect(self, user, target):
         """ Tells both sides to reset their stat mods """
-        actingSide.resetStatMods()
-        otherSide.resetStatMods()
+        user.resetStatMods()
+        target.resetStatMods()
         return [ResetStatModsDelegate.message]

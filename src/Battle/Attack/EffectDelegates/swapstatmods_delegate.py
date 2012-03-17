@@ -1,5 +1,6 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
-class SwapStatModsDelegate:
+class SwapStatModsDelegate(EffectDelegate):
     """ Effect that swaps stat boosts between sides """
     message = " switched stat changes with the target!"
     

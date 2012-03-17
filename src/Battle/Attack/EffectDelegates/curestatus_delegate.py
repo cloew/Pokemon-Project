@@ -1,6 +1,7 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 from Battle.Status.status import Status
 
-class CureStatusDelegate(object):
+class CureStatusDelegate(EffectDelegate):
     """ Represents an effect that cures a status ailment """
     
     def __init__(self, status, affectUser):
@@ -10,10 +11,8 @@ class CureStatusDelegate(object):
         
     def applyEffect(self, user, target):
         """ Applies the delegate's effect """
-        if self.affectUser:
-            return self.checkCurable(user)
-        else:
-            return self.checkCurable(target)
+        pkmn = self.getEffectedPokemon(user, target)
+        return self.checkCurable(pkmn)
         
     def checkCurable(self, pkmn):
         """ Checks if the status is curable """

@@ -1,5 +1,6 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
-class SelfDestructDelegate:
+class SelfDestructDelegate(EffectDelegate):
     """ Represents a self-destruct effect on an Attack """
     message = " self-destructed."
     

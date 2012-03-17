@@ -1,5 +1,6 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
-class RecoilDelegate:
+class RecoilDelegate(EffectDelegate):
     """ Represents a recoil effect on an Attack """
     message = " was hit by recoil."
     

@@ -1,5 +1,6 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
-class StatModDelegate(object):
+class StatModDelegate(EffectDelegate):
     """ Handles modifying stats """
     
     max = 6
@@ -18,10 +19,8 @@ class StatModDelegate(object):
     
     def applyEffect(self, user, target):
         """ Applies the Deleagates effect """
-        if self.affectUser:
-            return self.applyMod(user)
-        else:
-            return self.applyMod(target)
+        pkmn = self.getEffectedPokemon(user, target)
+        return self.applyMod(pkmn)
             
     def applyMod(self, pkmn):
         """ Apply the modifier to the given pkmn """

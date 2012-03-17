@@ -1,6 +1,7 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 from Battle.SecondaryEffects.periodic_heal import PeriodicHeal
 
-class PeriodicHealDelegate :
+class PeriodicHealDelegate(EffectDelegate):
     """ Represents an effect that slowly heals the user """
     
     def __init__(self, startMessage, message):
@@ -21,7 +22,7 @@ class PeriodicHealDelegate :
             pkmn.secondaryEffects.remove(effect)
                 
     def hasHeal(self, pkmn):
-        """ Returns if the side receiving the heal already has a heal """
+        """ Returns if the pkmn receiving the heal already has a heal """
         for effect in pkmn.secondaryEffects:
             if isinstance(effect, PeriodicHeal):
                 return effect

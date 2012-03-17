@@ -5,7 +5,7 @@ class DodgeDelegate(ChargeDelegate):
     """ Represents an attack that dodges one turn and then attacks the next """
     
     def __init__(self, dodgeType, message):
-        """ Builds a ChanceDelegate """
+        """ Builds a DodgeDelegate """
         self.turns = 2
         self.turnToAttack = 1
         self.message = message

@@ -1,7 +1,8 @@
 from Battle.Actions.action_lock import ActionLock
 from Battle.Attack.DamageDelegates.damage_delegate import DamageDelegate
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
-class DamageScaleDelegate(DamageDelegate):
+class DamageScaleDelegate(DamageDelegate, EffectDelegate):
     """ Damage Delegate whose damage scales each turn it is used """
     
     def __init__(self, parent, power, isPhysical, factor, turns):

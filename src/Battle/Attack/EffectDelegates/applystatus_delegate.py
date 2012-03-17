@@ -1,6 +1,7 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 from Battle.Status.statusfactory import StatusFactory
 
-class ApplyStatusDelegate:
+class ApplyStatusDelegate(EffectDelegate):
     """ Represents an effect that applies a status """
     
     def __init__(self, parent, status, affectUser):
@@ -8,13 +9,6 @@ class ApplyStatusDelegate:
         self.parent = parent
         self.status = status
         self.affectUser = affectUser
-        
-    def getEffectedPokemon(self, user, target):
-        """ Returns the side that is affected """
-        if self.affectUser:
-            return user
-        else:
-            return target
         
     def applyEffect(self, user, target):
         """ Applies the status to one side based on affectUser """

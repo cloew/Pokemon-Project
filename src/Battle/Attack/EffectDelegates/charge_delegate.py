@@ -1,6 +1,7 @@
 from Battle.Actions.action_lock import ActionLock
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
-class ChargeDelegate(object):
+class ChargeDelegate(EffectDelegate):
     """ Represents an attack that takes more than one turn to finish """
     
     def __init__(self, turns, turnToAttack, message):
@@ -10,7 +11,6 @@ class ChargeDelegate(object):
         self.message = message
         
         self.turnOn = 0
-        
         
     def applyEffect(self, user, target):
         """ Applies the delegate's effect when the attack hits """

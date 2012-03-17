@@ -1,7 +1,9 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
+
 import random
 
 
-class ChanceDelegate:
+class ChanceDelegate(EffectDelegate):
     """ Represents an effect with a percent chance oif happening """
     
     def __init__(self, chance, effects):
@@ -15,7 +17,7 @@ class ChanceDelegate:
         
         if self.shouldApply(random.randint(0,99)):
             for effect in self.effects:
-                effectMessages = effect.applyEffect(user, target)
+                effectMessages = effect.tryToApplyEffect(user, target)
                 messages = messages + effectMessages
                 
         return messages

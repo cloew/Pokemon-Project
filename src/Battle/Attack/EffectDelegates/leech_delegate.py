@@ -1,6 +1,7 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 from Battle.SecondaryEffects.leech import Leech
 
-class LeechDelegate :
+class LeechDelegate(EffectDelegate):
     """ Represents an effect that slowly heals the user """
     
     def __init__(self, startMessage, message, type):

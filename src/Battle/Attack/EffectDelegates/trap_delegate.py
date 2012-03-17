@@ -1,6 +1,7 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 from Battle.SecondaryEffects.trap import Trap
 
-class TrapDelegate :
+class TrapDelegate(EffectDelegate):
     """ Represents an effect that traps the opponent """
     
     def __init__(self, startMessage, message, doneMessage):

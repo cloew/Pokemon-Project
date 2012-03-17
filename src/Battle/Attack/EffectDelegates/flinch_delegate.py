@@ -1,5 +1,6 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
-class FlinchDelegate:
+class FlinchDelegate(EffectDelegate):
     """ Handles Flinch Effects """
     
     def applyEffect(self, user, target):

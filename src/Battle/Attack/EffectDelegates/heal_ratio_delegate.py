@@ -1,5 +1,6 @@
+from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
-class HealByRatioDelegate:
+class HealByRatioDelegate(EffectDelegate):
     """ Represents an effect that heals
     Abstract: Not to be instantiated """
     message = " restored some of its HP."
