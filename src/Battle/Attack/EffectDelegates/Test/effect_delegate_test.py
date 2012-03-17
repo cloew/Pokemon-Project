@@ -3,6 +3,34 @@ from Test.test_helper import BuildPokemonBattleWrapper
 
 from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
+class getEffectedPokemon(unittest.TestCase):
+    """ Test cases of getEffectedPokemon """
+    
+    def  setUp(self):
+        """ Build the Pkmn and Effect for the test """
+        self.delegate = EffectDelegate()
+        
+        self.user = BuildPokemonBattleWrapper()
+        self.target = BuildPokemonBattleWrapper()
+        
+    def user(self):
+        """ Test that if affectUser is True, the Pkmn returned is the user """
+        self.delegate.affectUser = True
+        pkmn = self.delegate.getEffectedPokemon(self.user, self.target)
+        assert pkmn is  self.user, "Pkmn should be the user"
+        
+    def target(self):
+        """ Test that if the target is fainted the effect does nothing """
+        self.delegate.affectUser = False
+        pkmn = self.delegate.getEffectedPokemon(self.user, self.target)
+        assert pkmn is  self.target, "Pkmn should be the target"
+
+# Collect all test cases in this class
+testcasesGetEffectedPokemon = ["user", "target"]
+suiteGetEffectedPokemon = unittest.TestSuite(map(getEffectedPokemon, testcasesGetEffectedPokemon))
+
+##########################################################
+
 class tryToApplyEffect(unittest.TestCase):
     """ Test cases of tryToApplyEffect """
     
@@ -37,7 +65,7 @@ suiteTryToApplyEffect = unittest.TestSuite(map(tryToApplyEffect, testcasesTryToA
 ##########################################################
 
 # Collect all test cases in this file
-suites = [suiteTryToApplyEffect]
+suites = [suiteGetEffectedPokemon, suiteTryToApplyEffect]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
