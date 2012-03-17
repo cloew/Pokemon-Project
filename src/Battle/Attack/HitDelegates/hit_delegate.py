@@ -14,7 +14,7 @@ class HitDelegate(object):
     
     def hit(self, user, target):
         """ Returns whether or not an attack hit its target """
-        return not self.dodging(target) and self.core(user, target), [self.message]
+        return not target.fainted() and not self.dodging(target) and self.core(user, target), [self.message]
         
     def core(self, user, target):
         """ Calculates a random #, compares to chanceToHit to determine if it
@@ -49,5 +49,6 @@ class HitDelegate(object):
         return rand < toHit
         
     def dodging(self, target):
-            """ Returns if the opp is dodging """
-            return target.dodge is not None 
+        """ Returns if the opp is dodging """
+        return target.dodge is not None
+        

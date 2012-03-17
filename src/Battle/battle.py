@@ -27,47 +27,40 @@ class Battle:
         action.user.lastAction = action
         return action.doAction()
         
-    def afterTurn(self, user, target, func):
+    def afterTurn(self, user, target):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
-        return user.afterTurn(target, func)
+        return user.afterTurn(target)
         
-    def betweenTurns(self, func):
+    def betweenTurns(self):
         """ Perform between turns """
         self.playerSide.betweenTurns()
         self.oppSide.betweenTurns()
         return []
         
-    def checkFaint(self):
-        """ Check if a Pokemon has fainted """
-        messages = []
-        
-        messages += self.checkFaintOnSide(self.playerSide)
-        if (self.over):
+    def refillSides(self):
+        """ Refills fainted Pkmn on each side """
+        messages =  self.checkOver()
+        if self.over:
             return messages
             
-        messages += self.checkFaintOnSide(self.oppSide)
-        if (self.over):
+        messages += self.playerSide.refill()
+        messages += self.oppSide.refill()
+        return messages
+        
+    def checkOver(self):
+        """ Checks if the game is Over """
+        messages = self.checkOverForSide(self.playerSide)
+        if self.over:
             return messages
             
+        messages = self.checkOverForSide(self.oppSide)
         return messages
         
-    def checkFaintOnSide(self, side):
-        """ Checks if a Pkmn on a side has fainted """
+    def checkOverForSide(self, side):
+        """ Checks if the game is over because the side has no Pkmn """
         messages = []
         
-        if (side.pkmnInPlay[0].fainted()):
-            messages.append(side.pkmnInPlay[0].getHeader() + " fainted.")
-            messages += self.checkOver(side)
-            
-        return messages
-        
-    def checkOver(self, side):
-        """ Checks if the game is over """
-        messages = []
-        
-        if (side.hasMorePokemon()):
-            messages += side.sendOutPkmn()
-        else:
+        if not side.hasMorePokemon():
             self.over = True
             messages.append(side.trainer.beaten())
         return messages

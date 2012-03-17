@@ -31,20 +31,16 @@ class PkmnBattleWrapper:
         for key in self.statMods:
             self.statMods[key] = 0
             
-    def afterTurn(self, target, func):
+    def afterTurn(self, target):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
-        messages = self.pkmn.ability.afterTurn(self, target)
-        if func(messages):
-            return
-            
-        messages = self.pkmn.getStatus().afterTurn(self)
-        if func(messages):
-            return
+        messages = []
+        messages += self.pkmn.ability.afterTurn(self, target)
+        messages += self.pkmn.getStatus().afterTurn(self)
         
         for effect in  self.secondaryEffects:
-            messages = effect.afterTurn(self)
-            if func(messages):
-                return
+            messages += effect.afterTurn(self)
+         
+        return messages
         
     def betweenTurns(self):
         """ Perform between turns """

@@ -3,6 +3,40 @@ from Test.test_helper import BuildPokemonBattleWrapper
 
 from Battle.Attack.HitDelegates.hit_delegate import HitDelegate
 
+class hit(unittest.TestCase):
+    """ Test cases of hit """
+    
+    def  setUp(self):
+        """ Build the Pkmn and Delegate for the test """
+        self.user = BuildPokemonBattleWrapper()
+        self.target = BuildPokemonBattleWrapper()
+        
+        self.toHit = 100.0
+        self.delegate = HitDelegate(None, self.toHit)
+        
+    def fainted(self):
+        """ Test that if the target is fainted the attack misses """
+        self.target.faint()
+        hit, message = self.delegate.hit(self.user, self.target)
+        assert not hit, "Should miss if the target is fainted"
+        
+    def dodging(self):
+        """ Test that if the target is dodging the attack misses """
+        self.target.dodge = "DIG"
+        hit, message = self.delegate.hit(self.user, self.target)
+        assert not hit, "Should miss if the target is dodging"
+        
+    def otherwise(self):
+        """ Test that the attack hits if the target is not dodging or fainted """
+        hit, message = self.delegate.hit(self.user, self.target)
+        assert hit, "Should hit otherwise"
+
+# Collect all test cases in this class
+testcasesHit = ["fainted", "dodging", "otherwise"]
+suiteHit = unittest.TestSuite(map(hit, testcasesHit))
+
+##########################################################
+
 class getChanceToHit(unittest.TestCase):
     """ Test cases of getChanceToHit """
     
@@ -144,7 +178,7 @@ suiteDodging= unittest.TestSuite(map(dodging, testcasesDodging))
 
 #########################################################
  
-suites = [suiteGetChanceToHit, suiteGetMod, suiteCheckHit, suiteDodging]
+suites = [suiteHit, suiteGetChanceToHit, suiteGetMod, suiteCheckHit, suiteDodging]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
