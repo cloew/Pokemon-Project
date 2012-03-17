@@ -4,10 +4,10 @@ class SecondaryEffect:
     
     message = ""
     
-    def immobilized(self, side):
+    def immobilized(self, pkmn):
         """ Checks if the effect won't allow the attack to continue """
         return False, []
         
-    def afterTurn(self, side):
+    def afterTurn(self, pkmn):
         """ Perform a between turns effect """
         return []
