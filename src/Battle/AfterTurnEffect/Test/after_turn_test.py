@@ -1,5 +1,5 @@
 import unittest
-from Test.test_helper import BuildPokemonBattleWrapper
+from Test.test_helper import BuildPokemonBattleWrapper, BuildFaintHandler
 
 from Battle.AfterTurnEffect.after_turn_effect import AfterTurnEffect
 
@@ -9,6 +9,7 @@ class attemptAfterTurn(unittest.TestCase):
     def  setUp(self):
         """ Build the Pkmn and AfterTurnEffect for the test """
         self.effect = AfterTurnEffect()
+        self.effect.faintHandler = BuildFaintHandler("USER")
         self.pkmn = BuildPokemonBattleWrapper()
         
     def fainted(self):
