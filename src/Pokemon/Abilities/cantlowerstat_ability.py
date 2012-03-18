@@ -6,6 +6,7 @@ class CantLowerStatAbility(Ability):
     
     def __init__(self, name, stat):
         """ Builds the Ability """
+        super(CantLowerStatAbility, self).__init__()
         self.name = name
         self.stat = stat
         

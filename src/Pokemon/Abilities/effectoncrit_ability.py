@@ -5,6 +5,7 @@ class EffectOnCritAbility(Ability):
     
     def __init__(self, name, effects):
         """ Builds the Ability """
+        super(EffectOnCritAbility, self).__init__()
         self.name = name
         self.effects = effects
         

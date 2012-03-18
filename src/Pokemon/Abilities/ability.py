@@ -1,8 +1,12 @@
 from Battle.AfterTurnEffect.after_turn_effect import AfterTurnEffect
+from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
 
 class Ability(AfterTurnEffect):
     """ Represents a Pokemon's ability """
     stabMod = 1.5
+    
+    def __init__(self):
+        self.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
     
     def afterTurn(self, pkmn):
         """ Perform after a turn  """

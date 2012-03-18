@@ -5,6 +5,7 @@ class EffectAfterTurnAbility(Ability):
     
     def __init__(self, name, effects):
         """ Builds the Ability """
+        super(EffectAfterTurnAbility, self).__init__()
         self.name = name
         self.effects = effects
         

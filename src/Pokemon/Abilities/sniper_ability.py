@@ -5,6 +5,7 @@ class SniperAbility(Ability):
     
     def __init__(self, name):
         """ Builds the Ability """
+        super(SniperAbility, self).__init__()
         self.name = name
         
     def giveCrit(self, critMod):

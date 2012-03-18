@@ -5,6 +5,7 @@ class NoCritAbility(Ability):
     
     def __init__(self, name):
         """ Builds the Ability """
+        super(NoCritAbility, self).__init__()
         self.name = name
         
     def takeCrit(self, critMod, thisSide, otherSide):

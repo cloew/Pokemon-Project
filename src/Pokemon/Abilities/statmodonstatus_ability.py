@@ -5,6 +5,7 @@ class StatModOnStatusAbility(Ability):
     
     def __init__(self, name, status, stat, mod):
         """ Builds the Ability """
+        super(StatModOnStatusAbility, self).__init__()
         self.name = name
         self.status = status
         self.stat = stat
