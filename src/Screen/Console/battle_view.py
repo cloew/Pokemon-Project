@@ -1,3 +1,6 @@
+from gui_helper import PrintOppPokemon, PrintPlayerPokemon, GetInput, CANCEL_LETTER
+from Screen.Console.switch_view import ConsoleSwitchScreen
+
 from resources.constants import Constants
 
 class ConsoleBattleScreen:
@@ -27,13 +30,11 @@ class ConsoleBattleScreen:
         print "\n"
         
         for pkmn in oppPkmn:
-            print pkmn.getCurrHP(), "/", pkmn.getStat("HP"), \
-                    "\t", pkmn.getStatus().abbr, "\t", pkmn.getName()
+            PrintOppPokemon(pkmn.pkmn)
                  
         for pkmn in playerPkmn:
-            print pkmn.getName(), "\t", pkmn.getStatus().abbr, "\t", \
-                    pkmn.getCurrHP(),  "/", pkmn.getStat("HP")
-        
+            PrintPlayerPokemon(pkmn.pkmn)
+            
     def pickAction(self):
         """ Loops until user has decided on their action """
         donePicking = False
@@ -48,7 +49,7 @@ class ConsoleBattleScreen:
         print "1. FIGHT", "\t", "2. SWITCH"
         print "3. ITEMS", "\t", "4. RUN"
         
-        i = int(ConsoleBattleScreen.getInput(ConsoleBattleScreen.oneThruFour))
+        i = int(GetInput(ConsoleBattleScreen.oneThruFour))
         
         return self.doAction[ConsoleBattleScreen.actions[i-1]]()
         
@@ -60,15 +61,16 @@ class ConsoleBattleScreen:
         for i in range(len(attacks)):
             print "%i." % (i+1), attacks[i].name
             
-        i = int(ConsoleBattleScreen.getInput(ConsoleBattleScreen.oneThruFour))
+        i = int(GetInput(ConsoleBattleScreen.oneThruFour))
         
-        if i == ConsoleBattleScreen.cancelLetter:
+        if i == CANCEL_LETTER:
             return False, None
         return True, [Constants.fightAction, attacks[i-1], self.battle.getPlayerPkmn()[0], self.battle.getOppPkmn()[0]]
         
     def switch(self):
         """ Switches Pokemon """
-        print "Not implemented"
+        screen = ConsoleSwitchScreen(self.battle.getPlayerTrainer(), self.battle.getPlayerPkmn())
+        valid, comps = screen.switch()
         return False, None
         
     def item(self):
@@ -97,16 +99,3 @@ class ConsoleBattleScreen:
         """ Report a Single message """
         print message
     
-    @staticmethod
-    def getInput(validInput):
-        """ Gets valid input from the user """
-        valid = False
-        while not valid:
-            i = raw_input().strip()
-            valid = ConsoleBattleScreen.validateInput(i, validInput)
-        return i
-        
-    @staticmethod
-    def validateInput(input, validInput):
-        """ Validates that input entered is valid """
-        return input in validInput or input == ConsoleBattleScreen.cancelLetter
