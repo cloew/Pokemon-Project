@@ -10,7 +10,7 @@ class PreconditionChecker:
         self.attack = attack
         
         self.conditionsToCheck = [self.checkFaint, self.checkLock, self.checkFlinch, self.checkCharging,
-                                           self.checkEncore, self.checkStatus, self.checkSecondaries]
+                                              self.checkAbility, self.checkEncore, self.checkStatus, self.checkSecondaries]
         
     def checkPreConditions(self):
         """ Checks all pre-conditions to the Battle """
@@ -39,7 +39,6 @@ class PreconditionChecker:
             return True, messages
         return False, []
         
-        
     def checkFlinch(self):
         """ Checks if the user is flinching """
         if self.user.flinching:
@@ -50,9 +49,14 @@ class PreconditionChecker:
         """ Checks if the user's attack requires charging on this turn """
         for effect in self.attack.effectDelegates:
             if hasattr(effect, "isCharging") and effect.isCharging(self.user):
+                self.user.getAbility().onCharge()
                 return True, [self.user.getHeader() + effect.message]
                 
         return False, []
+        
+    def checkAbility(self):
+        """ Checks if the Ability prevents the user from attacking """
+        return self.user.getAbility().stopAttack(self.user)
         
     def checkEncore(self):
         """ Checks if the user is being forced to encore """

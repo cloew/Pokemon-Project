@@ -7,6 +7,10 @@ class Ability(AfterTurnEffect):
     
     def __init__(self):
         self.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+        
+    def stopAttack(self, pkmn):
+        """ Determines if the Pkmn should fail to Attack because of an Ability """
+        return False, []
     
     def afterTurn(self, pkmn):
         """ Perform after a turn  """
@@ -35,6 +39,9 @@ class Ability(AfterTurnEffect):
         
     def onContact(self, pkmn):
         """ Perform on attack that makes contact """
+        
+    def onCharge(self):
+        """ Perform on Charge """
         
     def onDamage(self, pkmn, damage):
         """ Perform on damage """

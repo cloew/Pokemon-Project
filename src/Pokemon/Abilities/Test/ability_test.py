@@ -2,6 +2,24 @@ import unittest
 
 from Pokemon.Abilities.ability import Ability
 
+class stopAttack(unittest.TestCase):
+    """ Test that stopAttack returns the correct default values """
+    
+    def setUp(self):
+        """ Builds the ability """
+        self.ability = Ability()
+        
+    def properReturnValues(self):
+        """ Check that stopAttack returns the proper default values """
+        stop, messages = self.ability.stopAttack(None)
+        assert not stop, "Should not stop"
+        assert len(messages) == 0, "Messages should have no elements"
+        
+testcasesStopAttack = ["properReturnValues"]
+suiteStopAttack = unittest.TestSuite(map(stopAttack, testcasesStopAttack))
+
+##########################################################
+
 class afterTurn(unittest.TestCase):
     """ Test that afterTurn returns the correct default values """
     
@@ -150,7 +168,7 @@ suiteOnStatus = unittest.TestSuite(map(onStatus, testcasesOnStatus))
 ##########################################################
 
  
-suites = [suiteAfterTurn, suiteCanUseEffects, suiteGiveCrit, suiteTakeCrit,\
+suites = [suiteStopAttack, suiteAfterTurn, suiteCanUseEffects, suiteGiveCrit, suiteTakeCrit,\
              suiteOnAccuracy, suiteOnStab, suiteOnStatMod, suiteOnStatus]
 suite = unittest.TestSuite(suites)
 
