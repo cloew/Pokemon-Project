@@ -22,4 +22,4 @@ class FaintHandlerFactory:
     @staticmethod
     def buildFromType(type):
         """ Builds a Faint Handler Delegate from the Type """
-        return FaintHandlerFactory.faintHandlers[type]
+        return FaintHandlerFactory.faintHandlers[type]()

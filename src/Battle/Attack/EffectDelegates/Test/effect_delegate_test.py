@@ -1,5 +1,5 @@
 import unittest
-from Test.test_helper import BuildPokemonBattleWrapper
+from Test.test_helper import BuildPokemonBattleWrapper, BuildFaintHandler
 
 from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
@@ -37,6 +37,7 @@ class tryToApplyEffect(unittest.TestCase):
     def  setUp(self):
         """ Build the Pkmn and Effect for the test """
         self.delegate = EffectDelegate()
+        self.delegate.faintHandler = BuildFaintHandler("EITHER")
         
         self.user = BuildPokemonBattleWrapper()
         self.target = BuildPokemonBattleWrapper()

@@ -21,6 +21,7 @@ from swapstatmods_delegate import SwapStatModsDelegate
 from trap_delegate import TrapDelegate
 
 from resources.tags import Tags
+from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
 
 
 class EffectDelegateFactory:
@@ -45,7 +46,9 @@ class EffectDelegateFactory:
         if delegateType == "APPLY LOCK":
             turns = int(element.find(Tags.turnsTag).text)
             affectUser = int(element.find(Tags.affectUserTag).text)
-            return ApplyLockDelegate(turns, affectUser)
+            delegate = ApplyLockDelegate(turns, affectUser)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
             
         elif delegateType == "CHANCE":
             chance = int(element.find(Tags.chanceTag).text)
@@ -53,70 +56,99 @@ class EffectDelegateFactory:
             effectDelegates = element.find(Tags.effectDelegatesTag)
             for effectDelegate in effectDelegates.getchildren():
                 effects.append(EffectDelegateFactory.loadFromXML(effectDelegate, parent))
-            
-            return ChanceDelegate(chance, effects)
+            delegate = ChanceDelegate(chance, effects)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.REGULAR)
+            return delegate
             
         elif delegateType == "CHARGE":
             turns = int(element.find(Tags.turnsTag).text)
             hitOnTurn = int(element.find(Tags.hitOnTurnTag).text)
             message = element.find(Tags.messageTag).text
-            return ChargeDelegate(turns, hitOnTurn, message)
+            delegate = ChargeDelegate(turns, hitOnTurn, message)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
             
         elif delegateType == "CONFUSE":
             affectUser = int(element.find(Tags.affectUserTag).text)
-            return ConfuseDelegate(affectUser)
+            delegate = ConfuseDelegate(affectUser)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
+            return delegate
                 
         elif delegateType == "CRIT MOD":
             stat = element.find(Tags.statTag).text
             degree = int(element.find(Tags.degreeTag).text)
             affectUser = int(element.find(Tags.affectUserTag).text)
-            return CritModDelegate(stat, degree, affectUser)
+            delegate = CritModDelegate(stat, degree, affectUser)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
+            return delegate
             
         elif delegateType == "CURE STATUS":
             status = element.find(Tags.statusTag).text
             affectUser = int(element.find(Tags.affectUserTag).text)
-            return CureStatusDelegate(status, affectUser)
+            delegate = CureStatusDelegate(status, affectUser)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
+            return delegate
             
         elif delegateType == "DAMAGE IS EFFECT":
+            parent.damageDelegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return parent.damageDelegate
             
         elif delegateType == "DODGE":
             dodgeType = element.find(Tags.dodgeTypeTag).text
             message = element.find(Tags.messageTag).text
-            return DodgeDelegate(dodgeType, message)
+            delegate = DodgeDelegate(dodgeType, message)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
+            
             
         elif delegateType == "FLINCH":
-            return FlinchDelegate()
+            delegate = FlinchDelegate()
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.TARGET)
+            return delegate
             
         elif delegateType == "HEAL DAMAGE RATIO":
             healRatio = int(element.find(Tags.ratioTag).text)
-            return HealByDamageRatioDelegate(healRatio)
+            delegate = HealByDamageRatioDelegate(healRatio)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
             
         elif delegateType == "HEAL HP RATIO":
             healRatio = int(element.find(Tags.ratioTag).text)
-            return HealByHPRatioDelegate(healRatio)
+            delegate = HealByHPRatioDelegate(healRatio)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
             
         elif delegateType == "LEECH":
             startMessage = element.find(Tags.startMessageTag).text
             message = element.find(Tags.messageTag).text
-            return LeechDelegate(startMessage, message, parent.type)
+            delegate = LeechDelegate(startMessage, message, parent.type)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
             
         elif delegateType == "RND STAT MOD":
             degree = int(element.find(Tags.degreeTag).text)
             affectUser = int(element.find(Tags.affectUserTag).text)
-            return RandomStatModDelegate(degree, affectUser)
+            delegate = RandomStatModDelegate(degree, affectUser)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
+            return delegate
             
         elif delegateType == "RECOIL":
             recoilRatio = int(element.find(Tags.ratioTag).text)
-            return RecoilDelegate(recoilRatio)
+            delegate = RecoilDelegate(recoilRatio)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
             
         elif delegateType == "RESET STAT MODS":
-            return ResetStatModsDelegate()
+            delegate = ResetStatModsDelegate()
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.REGULAR)
+            return delegate
             
         elif delegateType == "PERIODIC HEAL":
             startMessage = element.find(Tags.startMessageTag).text
             message = element.find(Tags.messageTag).text
-            return PeriodicHealDelegate(startMessage, message)
+            delegate = PeriodicHealDelegate(startMessage, message)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
             
         elif delegateType == "SELFDESTRUCT":
             return SelfDestructDelegate()
@@ -125,18 +157,26 @@ class EffectDelegateFactory:
             stat = element.find(Tags.statTag).text
             degree = int(element.find(Tags.degreeTag).text)
             affectUser = int(element.find(Tags.affectUserTag).text)
-            return StatModDelegate(stat, degree, affectUser)
+            delegate = StatModDelegate(stat, degree, affectUser)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
+            return delegate
             
         elif delegateType == "STATUS":
             status = element.find(Tags.statusTag).text
             affectUser = int(element.find(Tags.affectUserTag).text)
-            return ApplyStatusDelegate(parent, status, affectUser)
+            delegate = ApplyStatusDelegate(parent, status, affectUser)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
+            return delegate
             
         elif delegateType == "SWAP STAT MODS":
-            return SwapStatModsDelegate()
+            delegate = SwapStatModsDelegate()
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.EITHER)
+            return delegate
             
         elif delegateType == "TRAP":    
             startMessage = element.find(Tags.startMessageTag).text
             message = element.find(Tags.messageTag).text
             doneMessage = element.find(Tags.doneMessageTag).text
-            return TrapDelegate(startMessage, message, doneMessage)
+            delegate = TrapDelegate(startMessage, message, doneMessage)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.TARGET)
+            return delegate

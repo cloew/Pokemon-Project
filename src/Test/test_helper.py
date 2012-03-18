@@ -5,9 +5,14 @@ from Battle.Actions.attack_action import AttackAction
 from Battle.Actions.action_lock import ActionLock
 from Battle.Attack.attackfactory import AttackFactory
 from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
+from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
 from Trainer.trainer import Trainer
 from Pokemon.pokemon_factory import PokemonFactory
 
+
+def BuildFaintHandler(type = "REGULAR"):
+    """ Builds a faint handler of the given type """
+    return FaintHandlerFactory.buildFromType(type)
 
 def BuildPokemon(pkmn = "BULBASAUR"):
     """ Builds a Pokemon """
