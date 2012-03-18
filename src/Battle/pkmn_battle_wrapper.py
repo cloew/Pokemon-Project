@@ -34,10 +34,10 @@ class PkmnBattleWrapper:
     def afterTurn(self, target):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
         messages = []
-        afterTurnEffects = [self.getAbility(), self.getStatus()]
-        afterTurnEffects += self.secondaryEffects
+        messages += self.getAbility().attemptAfterTurn(self)
+        messages += self.getStatus().attemptAfterTurn(self)
         
-        for effect in  afterTurnEffects:
+        for effect in  self.secondaryEffects:
             messages += effect.attemptAfterTurn(self)
          
         return messages
