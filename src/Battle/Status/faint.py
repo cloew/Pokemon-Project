@@ -7,5 +7,4 @@ class Faint(Status):
     
     def __init__(self):
         """ Build a Status """
-        self.abbr = Faint.abbr
-        self.setStatMods()
+        self.initialize()

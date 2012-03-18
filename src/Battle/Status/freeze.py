@@ -10,7 +10,7 @@ class Freeze(Status):
     done = " thawed out."
     
     def __init__(self):
-        self.setStatMods()
+        self.initialize()
         
     def thawed(self, rand):
         """ Returns whether the Status is over """

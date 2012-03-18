@@ -13,7 +13,7 @@ class Sleep(Status):
     max = 7
     
     def __init__(self):
-        self.setStatMods()
+        self.initialize()
         self.turns = self.getTurns()
         
     def getTurns(self):

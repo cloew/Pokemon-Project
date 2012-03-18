@@ -9,7 +9,7 @@ class Burn(Status):
     ratio = 8
     
     def __init__(self):
-        self.setStatMods()
+        self.initialize()
         self.statMods["ATK"] = .5
         
     def afterTurn(self, pkmn):

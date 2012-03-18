@@ -10,7 +10,7 @@ class ToxicPoison(Poison):
         self.abbr = Poison.abbr
         self.counter = 1
         
-        self.setStatMods()
+        self.initialize()
         
     def afterTurn(self, pkmn):
         """ Inflicts the damage from the Poison status """

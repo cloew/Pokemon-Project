@@ -1,4 +1,5 @@
 from Battle.AfterTurnEffect.after_turn_effect import AfterTurnEffect
+from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
 
 class Status(AfterTurnEffect):
     """ Represents a Status on a Pokemon """
@@ -6,6 +7,10 @@ class Status(AfterTurnEffect):
     def __init__(self):
         """ Build a Status """
         self.abbr = "   "
+        self.initialize()
+        
+    def initialize(self):
+        self.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
         self.setStatMods()
                                 
     def setStatMods(self):

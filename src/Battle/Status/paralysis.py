@@ -12,7 +12,7 @@ class Paralysis(Status):
     
     def __init__(self):
         """ Build a paralysis status """
-        self.setStatMods()
+        self.initialize()
         self.statMods["SPD"] = .25
         
     def immobilized(self, pkmn):

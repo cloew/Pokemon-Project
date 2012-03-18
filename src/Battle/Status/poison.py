@@ -9,7 +9,7 @@ class Poison(Status):
     ratio = 8
     
     def __init__(self):
-        self.setStatMods()
+        self.initialize()
         
     def afterTurn(self, pkmn):
         """ Inflicts the damage from the Poison status """
