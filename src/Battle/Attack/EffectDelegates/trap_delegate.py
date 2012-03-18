@@ -13,7 +13,7 @@ class TrapDelegate(EffectDelegate):
     def applyEffect(self, user, target):
         """ Apply the trap to the opponent """
         self.removePreviousTrap(target)
-        target.secondaryEffects.append(Trap(self.message, self.doneMessage))
+        target.secondaryEffects.append(Trap(user, self.message, self.doneMessage))
         return [target.getHeader() + self.startMessage]
         
     def removePreviousTrap(self, pkmn):

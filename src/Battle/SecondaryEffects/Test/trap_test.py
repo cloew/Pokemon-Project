@@ -9,11 +9,12 @@ class afterTurn(unittest.TestCase):
     
     def setUp(self):
         """ Builds the side and trap """
+        self.source = BuildPokemonBattleWrapper()
         self.pkmn = BuildPokemonBattleWrapper()
         
         self.message = " hurt."
         self.doneMessage = " done."
-        self.trap = Trap(self.message, self.doneMessage)
+        self.trap = Trap(None, self.message, self.doneMessage)
     
     def turnDecreases(self):
         """ Test the turn counter decreases """
@@ -78,7 +79,7 @@ class getDamage(unittest.TestCase):
     def setUp(self):
         """ Builds the Paralysis status"""
         self.pkmn = BuildPokemonBattleWrapper()
-        self.trap = Trap("", "")
+        self.trap = Trap(None, "", "")
         self.hp = 32.0
     
     def damage(self):

@@ -31,7 +31,7 @@ class removePreviousTrap(unittest.TestCase):
         """ Builds the delegate and side for use in the tests """
         self.pkmn = BuildPokemonBattleWrapper()
         self.delegate = TrapDelegate("", "", "")
-        self.trap = Trap("", "")
+        self.trap = Trap(None, "", "")
         
     def removeTrap(self):
         """ Tests if the trap is removed """
@@ -52,8 +52,8 @@ class hasThisTrap(unittest.TestCase):
         """ Builds the delegate and side for use in the tests """
         self.pkmn = BuildPokemonBattleWrapper()
         self.delegate = TrapDelegate("", "", "")
-        self.trap = Trap("", "")
-        self.otherTrap = Trap("other.", "")
+        self.trap = Trap(None, "", "")
+        self.otherTrap = Trap(None, "other.", "")
         
     def hasTrap(self):
         """ Tests if hasThisTrap returns true when there is an object of this trap """

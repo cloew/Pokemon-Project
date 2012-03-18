@@ -1,6 +1,7 @@
 from secondary_effect import SecondaryEffect
 
 from Battle.Attack.DamageDelegates.damage_delegatefactory import DamageDelegateFactory
+from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
 
 import random
 
@@ -18,6 +19,7 @@ class Confusion(SecondaryEffect):
     
     def __init__(self):
         self.turns = self.getTurns()
+        self.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
         
     def getTurns(self):
         """ Returns a # of turns from 1-7 """

@@ -1,5 +1,7 @@
 from secondary_effect import SecondaryEffect
 
+from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
+
 import random
 
 class Trap(SecondaryEffect):
@@ -7,12 +9,14 @@ class Trap(SecondaryEffect):
     minTurns = 4
     ratio = 16
     
-    def __init__(self, message, doneMessage):
+    def __init__(self, source, message, doneMessage):
         """ Builds a trap with the given message """
+        self.source = source
         self.message = message
         self.doneMessage = doneMessage
         self.turns = self.getTurns()
-        # May need to hold source Pkmn as well
+        
+        self.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.SOURCE)
         
     def getTurns(self):
         """ Returns the 4-5 turns """

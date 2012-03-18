@@ -1,4 +1,5 @@
 from secondary_effect import SecondaryEffect
+from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
 
 class PeriodicHeal(SecondaryEffect):
     """ Represents an effect that heals periodically after a turn """
@@ -7,6 +8,7 @@ class PeriodicHeal(SecondaryEffect):
     def __init__(self, message):
         """ Builds a Periodic Heal """
         self.message = message
+        self.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
         
     def afterTurn(self, pkmn):
         """ Heals the given pkmn"""

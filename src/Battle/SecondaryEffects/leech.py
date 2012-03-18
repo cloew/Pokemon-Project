@@ -1,5 +1,7 @@
 from secondary_effect import SecondaryEffect
 
+from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
+
 class Leech(SecondaryEffect):
     """ Represents a move that damages the side applied to, and heals a source """
     ratio = 16
@@ -8,6 +10,7 @@ class Leech(SecondaryEffect):
         """ Build a Leech effect """
         self.source = source
         self.message = message
+        self.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.SOURCE)
         
     def afterTurn(self, pkmn):
         """ Leech health from the pkmn and give it to the source """
