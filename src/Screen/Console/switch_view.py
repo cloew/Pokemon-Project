@@ -45,9 +45,14 @@ class ConsoleSwitchScreen:
         
     def validatePkmn(self, pkmn):
         """ Make sure the Pokemon is a valid choice """
-        if pkmn in self.pkmnOut:
+        if pkmn.getStatus().abbr == "FNT":
+            print pkmn.name, "has fainted."
+            raw_input("Press 'Enter' to continue")
+        
+        elif pkmn in self.pkmnOut:
             print pkmn.name, "is already out."
             raw_input("Press 'Enter' to continue")
+            
         else:
             self.done = True
             

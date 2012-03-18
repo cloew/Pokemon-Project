@@ -24,7 +24,7 @@
                     </attack>
                     
                     <attack>
-                        <name>SCRATCH</name>
+                        <name>GROWL</name>
                         <currPP>30</currPP>
                         <PP>30</PP>
                     </attack>
@@ -88,7 +88,7 @@
                 
                 <attacks>
                     <attack>
-                        <name>GROWL</name>
+                        <name>HEAD SMASH</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>

@@ -22,6 +22,11 @@ class HumanTrainer(Trainer):
         """ Announce a pkmn the trainer sends out """
         return "%s, I choose you!." % pkmn.name
         
+    def choosePokemon(self):
+        """ Returns a Pkmn chosen by the Trainer """
+        valid, params = self.screen.switch()
+        return params[2]
+        
     def getFullName(self):
         """ Return the full Name and Title of the trainer """
         return "You"
