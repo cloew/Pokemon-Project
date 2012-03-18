@@ -12,13 +12,15 @@ class DodgeDelegate(ChargeDelegate):
         
         self.turnOn = 0
         self.dodgeType = dodgeType
-        
-        self.applyOnMiss = True
     
     def applyEffect(self, user, target):
         """ Applies the delegate's effect when the attack hits """
-        user.dodge = None
         return []
+        
+    def stopCharge(self, user):
+        """ Stop Charging """
+        user.dodge = None
+        return super(DodgeDelegate, self).stopCharge(user)
     
     def isCharging(self, user):
         """ States when the attack is in the charging state """

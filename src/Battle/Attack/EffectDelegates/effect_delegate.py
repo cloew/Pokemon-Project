@@ -22,3 +22,6 @@ class EffectDelegate(object):
     def applyEffect(self, user, target):
         """ Applies effect -- Should be overridden by subclasses """
         return [EffectDelegate.message]
+        
+    def stopCharge(self, user):
+        """ Stop Charging """

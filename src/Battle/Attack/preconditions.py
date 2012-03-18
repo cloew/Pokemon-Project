@@ -15,10 +15,19 @@ class PreconditionChecker:
     def checkPreConditions(self):
         """ Checks all pre-conditions to the Battle """
         messages = []
+        afterCharge = False
+        
         for condition in self.conditionsToCheck:
             stop, message = condition()
             messages = messages + message
+            
+            if condition == self.checkAbility:
+                afterCharge = True
+                
             if stop:
+                if afterCharge:
+                    for effect in self.attack.effectDelegates:
+                        effect.stopCharge(self.user)
                 return stop, messages
         
         return False, messages

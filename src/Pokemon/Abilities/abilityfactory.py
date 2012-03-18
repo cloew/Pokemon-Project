@@ -8,6 +8,7 @@ from cantlowerstat_ability import CantLowerStatAbility
 from effectafterturn_ability import EffectAfterTurnAbility
 from effectoncrit_ability import EffectOnCritAbility
 from nocrit_ability import NoCritAbility
+from skip_turn_ability import SkipTurnAbility
 from sniper_ability import SniperAbility
 from statmodonstatus_ability import StatModOnStatusAbility
 
@@ -86,6 +87,9 @@ class AbilityFactory:
             
         elif abilityType == "NO CRIT":
             return NoCritAbility(name)
+            
+        elif abilityType == "SKIP TURN":
+            return SkipTurnAbility()
             
         elif abilityType == "SNIPER":
             return SniperAbility(name)

@@ -8,11 +8,11 @@
                 <species>CHARMANDER</species>
                 <level>20</level>
                 <currHP>60</currHP>
-                <ability>COMPOUNDEYES</ability>
+                <ability>TRUANT</ability>
                 
                 <attacks>
                     <attack>
-                        <name>ROLLOUT</name>
+                        <name>DIG</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
@@ -30,7 +30,7 @@
                     </attack>
                      
                     <attack>
-                        <name>WILL-O-WISP</name>
+                        <name>HYPER BEAM</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>
@@ -88,7 +88,7 @@
                 
                 <attacks>
                     <attack>
-                        <name>HEAD SMASH</name>
+                        <name>GROWL</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>

@@ -90,4 +90,9 @@
         <name>SNIPER</name>
         <type>SNIPER</type>
     </ability>
+    
+    <ability>
+        <name>TRUANT</name>
+        <type>SKIP TURN</type>
+    </ability>
 </abilities>

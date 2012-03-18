@@ -18,8 +18,12 @@ class ChargeDelegate(EffectDelegate):
         
     def effectOnMiss(self, user, target):
         """ Applies the deleagte's effect on a miss """
+        return self.stopCharge()
+        
+    def stopCharge(self, user):
+        """ Stop Charge """
         self.turnOn = 0
-        actingSide.trainer.actionLock = None
+        user.actionLock = None
         return []
         
     def isCharging(self, user):
