@@ -19,7 +19,7 @@ class DamageDelegate(object):
     
         # Apply the modifier, have the target take damage
         damage, messages = self.damage(user, target)
-        messages  += self.takeDamage(damage, target)
+        messages += self.takeDamage(damage, target)
         
         # Return the messages
         return messages
