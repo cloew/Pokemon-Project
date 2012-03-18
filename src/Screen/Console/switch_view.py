@@ -1,4 +1,5 @@
 from gui_helper import PrintPlayerPokemon, GetInput, CANCEL_LETTER
+from resources.constants import Constants
 
 class ConsoleSwitchScreen:
     """ Represents the Screen to switch Pkmn """
@@ -17,7 +18,7 @@ class ConsoleSwitchScreen:
         
         if i == CANCEL_LETTER:
             return False, None
-        return True, None
+        return True, [Constants.switchAction, self.pkmn[0], self.trainer.beltPokemon[int(i)-1]]
         
     def printScreen(self):
         """ Prints a list of all the Pkmn the Trainer has out """

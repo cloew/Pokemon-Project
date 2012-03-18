@@ -27,9 +27,9 @@ class Battle:
         action.user.lastAction = action
         return action.doAction()
         
-    def afterTurn(self, user, target):
+    def afterTurn(self, user):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
-        return user.afterTurn(target)
+        return user.afterTurn()
         
     def betweenTurns(self):
         """ Perform between turns """

@@ -50,7 +50,7 @@ class BattleViewController:
         for action in actions:
             messages = []
             messages += self.battle.act(action)
-            messages += self.battle.afterTurn(action.user, action.target) # This may need to be moved into action.doAction
+            messages += self.battle.afterTurn(action.user)
             
             self.screen.reportAction(messages)
             

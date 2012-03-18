@@ -70,7 +70,10 @@ class ConsoleBattleScreen:
     def switch(self):
         """ Switches Pokemon """
         screen = ConsoleSwitchScreen(self.battle.getPlayerTrainer(), self.battle.getPlayerPkmn())
-        valid, comps = screen.switch()
+        #valid, comps = screen.switch()
+        return screen.switch()
+        print valid
+        print comps
         return False, None
         
     def item(self):

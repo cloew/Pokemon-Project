@@ -18,7 +18,7 @@ class BattleSide:
             if not pkmn:
                 break
             
-            messages.append(self.pkmnInPlay[i].sendOutPkmn(pkmn))
+            messages += self.pkmnInPlay[i].sendOutPkmn(pkmn)
             
         return messages
         
@@ -26,7 +26,7 @@ class BattleSide:
         """ Send out a Pkmn  """
         messages = []
         pkmn = self.trainer.choosePokemon()
-        messages.append(self.pkmnInPlay[0].sendOutPkmn(pkmn))
+        messages += self.pkmnInPlay[0].sendOutPkmn(pkmn)
         return messages
         
     def hasMorePokemon(self):

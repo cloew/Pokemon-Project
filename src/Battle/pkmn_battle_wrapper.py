@@ -11,7 +11,17 @@ class PkmnBattleWrapper:
         
         self.statMods = {"ATK":0, "DEF":0, "SPD":0, "SATK":0, "SDEF":0, 
                                 "ACC":0, "EVAS":0, "CRT":0}
-                                
+        self.reset()
+        
+    def sendOutPkmn(self, pkmn):
+        """ Sends out the wrapper's pkmn """
+        self.reset()
+        self.pkmn = pkmn
+        return [self.side.trainer.announcePkmn(pkmn)]
+        
+    def reset(self):
+        self.resetStatMods()
+        
         self.flinching = False
         self.encore = 0
         
@@ -21,17 +31,12 @@ class PkmnBattleWrapper:
         
         self.secondaryEffects = []
         
-    def sendOutPkmn(self, pkmn):
-        """ Sends out the wrapper's pkmn """
-        self.pkmn = pkmn
-        return self.side.trainer.announcePkmn(pkmn)
-        
     def resetStatMods(self):
         """ Resets the stat mods for the side """
         for key in self.statMods:
             self.statMods[key] = 0
             
-    def afterTurn(self, target):
+    def afterTurn(self):
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
         messages = []
         messages += self.getAbility().attemptAfterTurn(self)
