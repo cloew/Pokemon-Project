@@ -37,6 +37,10 @@ class DamageScaleDelegate(DamageDelegate, EffectDelegate):
         
     def effectOnMiss(self, user, target):
         """ Applies the delegate's effect on a miss """
+        return self.stopCharge(user)
+        
+    def stopCharge(self, user):
+        """ Stop Charge """
         self.turnOn = 0
         user.actionLock = None
         return []
