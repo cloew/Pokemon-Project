@@ -13,6 +13,13 @@ class Battle:
         self.oppSide = BattleSide(oppTrainer)
         self.over = False
         
+    def sendOutPkmnToStart(self):
+        """ Sends out Pkmn on both sides """
+        messages = []
+        messages += self.oppSide.sendOutPkmnAtStart()
+        messages += self.playerSide.sendOutPkmnAtStart()
+        return messages
+        
     def getActionsInOrder(self):
         """ Returns all the Actions for this turn in the Battle """
         oppAction = self.oppSide.trainer.getAction(self.getOppPkmn()[0], self.getPlayerPkmn())

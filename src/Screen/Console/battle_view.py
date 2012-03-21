@@ -92,11 +92,13 @@ class ConsoleBattleScreen:
             return
             
         self.printScreen()
+        self.reportMessages(messages)
+        raw_input("Press 'Enter' to continue")
         
+    def reportMessages(self, messages):
+        """ Reports a sequence of messages """
         for message in messages:
             self.reportMessage(message)
-        
-        raw_input("Press 'Enter' to continue")
         
     def reportMessage(self, message):
         """ Report a Single message """
