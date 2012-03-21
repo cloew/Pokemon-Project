@@ -174,7 +174,8 @@ class EffectDelegateFactory:
             return delegate
             
         elif delegateType == "SWITCH":
-            delegate = SwitchDelegate()
+            reset = int(element.find(Tags.resetTag).text)
+            delegate = SwitchDelegate(reset)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
             

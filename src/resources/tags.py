@@ -34,6 +34,7 @@ class Tags:
     chanceTag = "chance"
     
     ratioTag = "ratio"
+    resetTag = "reset"
     
     factorTag = "factor"
     turnsTag = "turns"
