@@ -35,6 +35,7 @@
         <effectDelegates>
             <effectDelegate>
                 <type>SWITCH</type>
+                <affectUser>1</affectUser>
                 <reset>0</reset>
             </effectDelegate>
         </effectDelegates>
@@ -914,6 +915,7 @@
         <effectDelegates>
             <effectDelegate>
                 <type>RANDOM SWITCH</type>
+                <affectUser>0</affectUser>
                 <reset>1</reset>
             </effectDelegate>
         </effectDelegates>
@@ -1022,6 +1024,7 @@
         <effectDelegates>
             <effectDelegate>
                 <type>SWITCH</type>
+                <affectUser>1</affectUser>
                 <reset>1</reset>
             </effectDelegate>
         </effectDelegates>

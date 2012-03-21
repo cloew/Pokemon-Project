@@ -145,9 +145,10 @@ class EffectDelegateFactory:
             return delegate
             
         elif delegateType == "RANDOM SWITCH":
+            affectUser = int(element.find(Tags.affectUserTag).text)
             reset = int(element.find(Tags.resetTag).text)
-            delegate = RandomSwitchDelegate(reset)
-            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            delegate = RandomSwitchDelegate(affectUser, reset)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
             return delegate
             
         elif delegateType == "PERIODIC HEAL":
@@ -181,9 +182,10 @@ class EffectDelegateFactory:
             return delegate
             
         elif delegateType == "SWITCH":
+            affectUser = int(element.find(Tags.affectUserTag).text)
             reset = int(element.find(Tags.resetTag).text)
-            delegate = SwitchDelegate(reset)
-            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            delegate = SwitchDelegate(affectUser, reset)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
             return delegate
             
         elif delegateType == "TRAP":    
