@@ -20,6 +20,24 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
+    
+    <attack>
+        <name>BATON PASS</name>
+        <type>NORMAL</type>
+        <PP>40</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>SWITCH</type>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
 
     <attack>
         <name>ENCORE</name>

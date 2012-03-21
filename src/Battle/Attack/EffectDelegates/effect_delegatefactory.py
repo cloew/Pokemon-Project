@@ -18,6 +18,7 @@ from reset_statmods_delegate import ResetStatModsDelegate
 from selfdestruct_delegate import SelfDestructDelegate
 from statmod_delegate import StatModDelegate
 from swapstatmods_delegate import SwapStatModsDelegate
+from switch_delegate import SwitchDelegate
 from trap_delegate import TrapDelegate
 
 from resources.tags import Tags
@@ -100,7 +101,6 @@ class EffectDelegateFactory:
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
             
-            
         elif delegateType == "FLINCH":
             delegate = FlinchDelegate()
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.TARGET)
@@ -171,6 +171,11 @@ class EffectDelegateFactory:
         elif delegateType == "SWAP STAT MODS":
             delegate = SwapStatModsDelegate()
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.EITHER)
+            return delegate
+            
+        elif delegateType == "SWITCH":
+            delegate = SwitchDelegate()
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
             
         elif delegateType == "TRAP":    

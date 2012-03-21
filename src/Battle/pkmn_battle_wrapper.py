@@ -13,9 +13,11 @@ class PkmnBattleWrapper:
                                 "ACC":0, "EVAS":0, "CRT":0}
         self.reset()
         
-    def sendOutPkmn(self, pkmn):
+    def sendOutPkmn(self, pkmn, reset = True):
         """ Sends out the wrapper's pkmn """
-        self.reset()
+        if reset:
+            self.reset()
+            
         self.pkmn = pkmn
         return [self.side.trainer.announcePkmn(pkmn)]
         

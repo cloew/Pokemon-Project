@@ -18,9 +18,6 @@ class BattleViewController:
         # Set the Player Trainer to use the screen
         playerTrainer.screen = self.screen
         
-        # Play intro (DUNANANANANANANAAAA!)
-        
-        
         # Introduce the Battle Environment
         self.screen.introduce()
         messages = self.battle.sendOutPkmnToStart()

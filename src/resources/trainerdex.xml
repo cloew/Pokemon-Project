@@ -12,7 +12,7 @@
                 
                 <attacks>
                     <attack>
-                        <name>DIG</name>
+                        <name>BATON PASS</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
@@ -25,7 +25,7 @@
                     
                     <attack>
                         <name>GROWL</name>
-                        <currPP>30</currPP>
+                        <currPP>30</currPP>     
                         <PP>30</PP>
                     </attack>
                      
