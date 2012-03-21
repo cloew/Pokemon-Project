@@ -9,5 +9,9 @@ class SwitchDelegate(EffectDelegate):
     
     def applyEffect(self, user, target):
         """ Switches the user with another Pkmn on the side """
-        pkmn = user.side.trainer.choosePokemon()
+        pkmn = self.getReplacement(user)
         return user.sendOutPkmn(pkmn, reset = self.reset)
+        
+    def getReplacement(self, pkmn):
+        """ Returns the Pkmn to switch to """
+        return pkmn.side.trainer.choosePokemon()

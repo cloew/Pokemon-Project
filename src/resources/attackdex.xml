@@ -892,16 +892,30 @@
             <hit>100</hit>
             <pierce>FLY</pierce>
         </hitDelegate>
-        <damageDelegate>
-            <type>PIERCE DODGE 2X</type>
-            <power>100</power>
-            <physical>0</physical>
-            <pierce>FLY</pierce>
-            <critDelegate>
-                <base>0</base>
-            </critDelegate>
-        </damageDelegate>
         <effectDelegates>
+            <type>SWITCH</type>
+            <affectUser>0</affectUser>
+            <reset>1</reset>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>WHIRLWIND</name>
+        <type>FLYING</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>-6</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>RANDOM SWITCH</type>
+                <reset>1</reset>
+            </effectDelegate>
         </effectDelegates>
     </attack>
     

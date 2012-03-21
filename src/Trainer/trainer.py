@@ -37,6 +37,14 @@ class Trainer:
     def choosePokemon(self):
         """ Returns a Pkmn chosen by the Trainer """
         return self.getPokemon(0)
+        
+    def chooseRandomPokemon(self, src):
+        """ Chooses a Random Pokemon """
+        pkmn = None
+        while pkmn is src or pkmn is None:
+            pkmn = random.choice(self.beltPokemon)
+            
+        return pkmn
                 
     def hasMorePokemon(self):
         """ Returns whether the trainer has more Pokemon """

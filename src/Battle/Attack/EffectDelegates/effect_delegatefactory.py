@@ -13,6 +13,7 @@ from leech_delegate import LeechDelegate
 from null_effect_delegate import NullEffectDelegate
 from periodicheal_delegate import PeriodicHealDelegate
 from randomstatmod_delegate import RandomStatModDelegate
+from random_switch_delegate import RandomSwitchDelegate
 from recoil_delegate import RecoilDelegate
 from reset_statmods_delegate import ResetStatModsDelegate
 from selfdestruct_delegate import SelfDestructDelegate
@@ -141,6 +142,12 @@ class EffectDelegateFactory:
         elif delegateType == "RESET STAT MODS":
             delegate = ResetStatModsDelegate()
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.REGULAR)
+            return delegate
+            
+        elif delegateType == "RANDOM SWITCH":
+            reset = int(element.find(Tags.resetTag).text)
+            delegate = RandomSwitchDelegate(reset)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
             
         elif delegateType == "PERIODIC HEAL":

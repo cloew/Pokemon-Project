@@ -8,11 +8,11 @@
                 <species>CHARMANDER</species>
                 <level>20</level>
                 <currHP>60</currHP>
-                <ability>TRUANT</ability>
+                <ability>COMPOUNDEYES</ability>
                 
                 <attacks>
                     <attack>
-                        <name>U-TURN</name>
+                        <name>WHIRLWIND</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
@@ -59,7 +59,42 @@
                     </attack>
                     
                     <attack>
-                        <name>SCRATCH</name>
+                        <name>WHIRLWIND</name>
+                        <currPP>30</currPP>
+                        <PP>30</PP>
+                    </attack>
+                     
+                    <attack>
+                        <name>WILL-O-WISP</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                </attacks>
+                
+            </pokemon>
+            
+            <pokemon>
+                <name>BULBASAUR</name>
+                <species>BULBASAUR</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>COMPOUNDEYES</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>ROLLOUT</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                    
+                    <attack>
+                        <name>EMBER</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                    
+                    <attack>
+                        <name>WHIRLWIND</name>
                         <currPP>30</currPP>
                         <PP>30</PP>
                     </attack>
