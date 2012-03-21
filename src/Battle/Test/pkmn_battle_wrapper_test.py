@@ -3,6 +3,62 @@ from Test.test_helper import BuildPokemonBattleWrapper
 
 from Battle.Status.faint import Faint
 
+class reset(unittest.TestCase):
+    """ Test cases of reset """
+    
+    def  setUp(self):
+        """ Build the Pkmn """
+        self.pkmn = BuildPokemonBattleWrapper()
+        
+    def statModsAreReset(self):
+        """ Test that stats are actually reset """
+        for key in self.pkmn.statMods:
+            self.pkmn.statMods[key] = 2
+        
+        for key in self.pkmn.statMods:
+            assert self.pkmn.statMods[key] == 2, "Stat should be changed"
+            
+        self.pkmn.reset()
+        
+        for key in self.pkmn.statMods:
+            assert self.pkmn.statMods[key] == 0, "Stat should be zero"
+        
+    def flinchingIsReset(self):
+        """ Test that flinching is reset """
+        self.pkmn.flinching = True
+        self.pkmn.reset()
+        assert not self.pkmn.flinching, "Pkmn should not be flinching after reset"
+        
+    def lastActionIsReset(self):
+        """ Test that lastAction is reset """
+        self.pkmn.lastAction = 2
+        self.pkmn.reset()
+        assert self.pkmn.lastAction == None, "Pkmn should not have a lastAction after reset"
+        
+    def actionLockIsReset(self):
+        """ Test that actionLock is reset """
+        self.pkmn.actionLock = 2
+        self.pkmn.reset()
+        assert self.pkmn.actionLock == None, "Pkmn should not have a actionLock after reset"
+        
+    def dodgeIsReset(self):
+        """ Test that dodge is reset """
+        self.pkmn.dodge = 2
+        self.pkmn.reset()
+        assert self.pkmn.dodge == None, "Pkmn should not have a dodge after reset"
+        
+    def secondaryEffectsAreReset(self):
+        """ Test that dodge is reset """
+        self.pkmn.secondaryEffects = [2]
+        self.pkmn.reset()
+        assert self.pkmn.secondaryEffects == [], "Pkmn should not have any secondary effects after reset"
+
+# Collect all test cases in this class
+testcasesReset = ["statModsAreReset", "flinchingIsReset", "lastActionIsReset", "actionLockIsReset", "dodgeIsReset", "secondaryEffectsAreReset"]
+suiteReset = unittest.TestSuite(map(reset, testcasesReset))
+
+##########################################################
+
 class resetStatMods(unittest.TestCase):
     """ Test cases of resetStatMods """
     
@@ -75,7 +131,7 @@ suiteTakeDamage = unittest.TestSuite(map(takeDamage, testcasesTakeDamage))
 ##########################################################
 
 # Collect all test cases in this file
-suites = [suiteResetStatMods, suiteBetweenTurns, suiteTakeDamage]
+suites = [suiteReset, suiteResetStatMods, suiteBetweenTurns, suiteTakeDamage]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
