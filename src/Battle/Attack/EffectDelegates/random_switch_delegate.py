@@ -5,4 +5,4 @@ class RandomSwitchDelegate(SwitchDelegate):
     
     def getReplacement(self, pkmn):
         """ Returns the Pkmn to switch to  """
-        return pkmn.side.trainer.chooseRandomPokemon(pkmn.pkmn)
+        return pkmn.side.trainer.chooseRandomPokemon(pkmn.side.pkmnInPlay)

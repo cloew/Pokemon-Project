@@ -8,21 +8,6 @@ class Trainer:
     
     def __init__(self):
         self.actionLock = None
-    
-    def loadFromFile(self, file) :
-        """ Loads a Trainer from a file """
-        self.name = file.readline().strip()
-        self.title = file.readline().strip()
-        
-        self.beltPokemon = []
-        numPokemon = int(file.readline())
-        for x in range(numPokemon):
-            self.beltPokemon.append(PokemonFactory.loadFromTrainerFile(file))
-        
-        return self
-        
-    def announcePkmn(self, pkmn):
-        """ Announces the Pokemon """
         
     def getPokemon(self, i):
         """ Returns the first Battle-ready Pokemon on the Belt 
@@ -34,24 +19,38 @@ class Trainer:
             if not pkmn.fainted():
                 return pkmn
                 
-    def choosePokemon(self):
+    def choosePokemon(self, pkmnInPlay):
         """ Returns a Pkmn chosen by the Trainer """
-        return self.getPokemon(0)
+        return self.chooseRandomPokemon(pkmnInPlay)
         
-    def chooseRandomPokemon(self, src):
+    def chooseRandomPokemon(self, pkmnInPlay):
         """ Chooses a Random Pokemon """
+        pkmnOut = []
+        for pkmn in pkmnInPlay:
+            pkmnOut.append(pkmn.pkmn)
+        
         pkmn = None
-        while pkmn is src or pkmn is None:
+        while pkmn in pkmnOut or pkmn is None:
             pkmn = random.choice(self.beltPokemon)
             
         return pkmn
                 
-    def hasMorePokemon(self):
-        """ Returns whether the trainer has more Pokemon """
+    def hasPokemon(self):
+        """ Returns whether the trainer has Battle-Ready Pokemon Pokemon """
         for poke in self.beltPokemon:
             if not poke.fainted():
                 return True
-                
+        return False
+        
+    def hasMorePokemon(self, pkmnInPlay):
+        """ Returns whether the trainer has more Pokemon """
+        pkmnOut = []
+        for pkmn in pkmnInPlay:
+            pkmnOut.append(pkmn.pkmn)
+        
+        for poke in self.beltPokemon:
+            if not poke.fainted() and not poke in pkmnOut:
+                return True
         return False
                 
     def getAction(self, user, targets):

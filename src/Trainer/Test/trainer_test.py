@@ -81,14 +81,14 @@ class hasMorePokemon(unittest.TestCase):
         """ Test the trainer actually has more Pokemon """
         self.trainer.beltPokemon = [self.pkmnWithHealth]
         
-        assert self.trainer.hasMorePokemon() is True, "Should have more Pokemon"
+        assert self.trainer.hasMorePokemon([]) is True, "Should have more Pokemon"
 
         
     def noMorePokemon(self):
         """ Test the trainer has no more Pokemon """
         self.trainer.beltPokemon = [self.pkmnWithoutHealth]
         
-        assert self.trainer.hasMorePokemon() is False, "Should not have more Pokemon"
+        assert self.trainer.hasMorePokemon([]) is False, "Should not have more Pokemon"
 
 # Collect all test cases in this class
 testcasesHasMorePokemon = ["hasMorePokemon", "noMorePokemon"]

@@ -22,7 +22,7 @@ class HumanTrainer(Trainer):
         """ Announce a pkmn the trainer sends out """
         return "%s, I choose you!." % pkmn.name
         
-    def choosePokemon(self):
+    def choosePokemon(self, pkmnInPlay):
         """ Returns a Pkmn chosen by the Trainer """
         valid, params = self.screen.switch()
         return params[2]

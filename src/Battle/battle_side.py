@@ -25,13 +25,17 @@ class BattleSide:
     def sendOutPkmn(self):
         """ Send out a Pkmn  """
         messages = []
-        pkmn = self.trainer.choosePokemon()
+        pkmn = self.trainer.choosePokemon(self.pkmnInPlay)
         messages += self.pkmnInPlay[0].sendOutPkmn(pkmn)
         return messages
         
+    def hasPokemon(self):
+        """ Returns whether this side has more Pokemon """
+        return self.trainer.hasPokemon()
+        
     def hasMorePokemon(self):
         """ Returns whether this side has more Pokemon """
-        return self.trainer.hasMorePokemon() # Need to make this ignore Pkmn that are out
+        return self.trainer.hasMorePokemon(self.pkmnInPlay)
         
     def betweenTurns(self):
         """ Perform between turns """
@@ -41,10 +45,9 @@ class BattleSide:
     def refill(self):
         """ Refills the Pkmn In Play """
         messages = []
-        
-        if not self.hasMorePokemon(): # Need to rename/create new better named function for this
-            return self.trainer.beaten()
-        
+        if not self.hasMorePokemon:
+            return messages
+            
         for pkmn in self.pkmnInPlay:
             if pkmn.fainted():
                 messages += self.sendOutPkmn()

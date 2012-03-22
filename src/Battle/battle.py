@@ -67,7 +67,7 @@ class Battle:
         """ Checks if the game is over because the side has no Pkmn """
         messages = []
         
-        if not side.hasMorePokemon():
+        if not side.hasPokemon():
             self.over = True
             messages.append(side.trainer.beaten())
         return messages
