@@ -11,44 +11,63 @@ class Attack:
         
         self.effectDelegates = []
         
+        
     def use(self, user, target):
         """ Uses the current attack Object in a Battle """
         messages = []
+        stop = self.doPreconditions(user, target, messages)
         
-        # Check for pre attack factors
-        preconditionChecker = PreconditionChecker(user, target, self)
-        stop, preMessages = preconditionChecker.checkPreConditions()
-        messages = preMessages
-        if stop:
-            return preMessages
-            
-        # Lower PP
-        
-        messages = messages + ["{0} USED {1}".format(user.getHeader(), self.name)]
-        
-        # Check for hit
-        hit, hitMessages = self.hitDelegate.hit(user, target)
-        if not hit:
-            messages = messages + hitMessages
-            messages = messages + self.applyEffectsOnMiss(user, target)
-            return messages
-          
-        # Do damage
-        message = self.damageDelegate.doDamage(user, target)
-        if message and len(message) is not 0:
-            messages = messages + message  
-
-        # Check if effects should be used
-        if self.preventEffects(user, target):
-            return messages
-        
-        # Apply effects
-        for effect in self.effectDelegates:
-            effectMessages = effect.tryToApplyEffect(user, target)
-            messages = messages + effectMessages
+        if not stop:
+            messages += self.doAttack(user, target)
         
         return messages
         
+    def doAttack(self, user, target):
+        """  """
+        messages = ["%s USED %s" % (user.getHeader(), self.name)]
+        hit = self.doHit(user, target, messages)
+        
+        messages += self.doAttackLoop(user, target)
+        
+        return messages
+        
+    def doAttackLoop(self, user, target):
+        """  """
+        messages = []
+        messages += self.doDamage(user, target)
+        messages += self.doEffects(user, target)
+        return messages
+        
+    # Attack Loop Functions
+    def doPreconditions(self, user, target, messages):
+        """ Checks preconditions to make sure the user isn't prevented from working """
+        preconditionChecker = PreconditionChecker(user, target, self)
+        stop, preMessages = preconditionChecker.checkPreConditions()
+        messages += preMessages
+        return stop
+        
+    def doHit(self, user, target, messages):
+        """ Check if the user hits the target(s) """
+        hit, hitMessages = self.hitDelegate.hit(user, target)
+        if not hit:
+            messages += hitMessages
+            messages += self.applyEffectsOnMiss(user, target)
+        return hit
+        
+    def doDamage(self, user, target):
+        """ Does the attack's damage, returns that the loop should not stop """
+        return self.damageDelegate.doDamage(user, target)
+        
+    def doEffects(self, user, target):
+        """ Does the attack's effects, returns that the loop should not stop """
+        messages = []
+
+        if not self.preventEffects(user, target):
+            for effect in self.effectDelegates:
+                messages += effect.tryToApplyEffect(user, target)
+        return messages
+        
+    # Helper Methods
     def addDelegate(self, delegateCategory, delegate):
         """ Adds a delegate to an Attack Object """
         if delegateCategory == Tags.effectDelegateTag:

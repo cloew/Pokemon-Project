@@ -4,4 +4,4 @@ class NullDamageDelegate:
     isNull = True
     
     def doDamage(self, user, target):
-        return 
+        return []

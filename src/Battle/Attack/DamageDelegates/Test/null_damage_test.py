@@ -13,13 +13,13 @@ class doDamage(unittest.TestCase):
         
         self.delegate = NullDamageDelegate()
         
-    def none(self):
-        """ Test that doDamage returns None """
-        ret = self.delegate.doDamage(self.user, self.target)
-        assert ret is None, "Should return None"
+    def noMessages(self):
+        """ Test that doDamage returns no messages """
+        messages = self.delegate.doDamage(self.user, self.target)
+        assert messages == [], "Should return no messages"
 
 # Collect all test cases in this class
-testcasesDoDamage = ["none"]
+testcasesDoDamage = ["noMessages"]
 suiteDoDamage = unittest.TestSuite(map(doDamage, testcasesDoDamage))
 
 ##########################################################
