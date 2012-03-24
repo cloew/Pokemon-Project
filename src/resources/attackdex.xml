@@ -83,6 +83,28 @@
             </critDelegate>
         </damageDelegate>
     </attack>
+    
+    <attack>
+        <name>FALSE SWIPE</name>
+        <type>NORMAL</type>
+        <PP>40</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>NO FAINT</type>
+            <power>40</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
 
     <attack>
         <name>FOCUS ENERGY</name>

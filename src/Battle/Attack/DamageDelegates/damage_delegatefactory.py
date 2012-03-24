@@ -7,6 +7,7 @@ from Battle.Attack.DamageDelegates.effect_ondamage_delegate import EffectOnDamag
 from Battle.Attack.DamageDelegates.fixed_delegate import FixedDelegate
 from Battle.Attack.DamageDelegates.halfhealth_delegate import HalfHealthDelegate
 from Battle.Attack.DamageDelegates.level_delegate import LevelDelegate
+from Battle.Attack.DamageDelegates.no_faint_delegate import NoFaintDelegate
 from Battle.Attack.DamageDelegates.null_damage_delegate import NullDamageDelegate
 from Battle.Attack.DamageDelegates.onehit_delegate import OneHitDelegate
 from Battle.Attack.DamageDelegates.piercedodge_2Xdelegate import PierceDodge2XDelegate
@@ -70,6 +71,12 @@ class DamageDelegateFactory:
             isPhysical = int(element.find(Tags.physicalTag).text)
             parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             return LevelDelegate(parent, isPhysical)
+            
+        elif delegateType == "NO FAINT":
+            power = int(element.find(Tags.powerTag).text)
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
+            return NoFaintDelegate(parent, power, isPhysical)
             
         elif delegateType == "ONE HIT KO":
             isPhysical = int(element.find(Tags.physicalTag).text)
