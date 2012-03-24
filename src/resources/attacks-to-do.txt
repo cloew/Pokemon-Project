@@ -16,7 +16,7 @@ Break Barriers                                                              - Re
 Power based on health                                                   - New Damage Delegate
 Use item if item is a certain Type                                    - Need Items
 Check Gender                                                               - Need Gender
-Change type                                                                 - Need PkmnWrapper
+Change type                                                                 - Need original and copy in Pkmn Wrapper so you can change the type of the copy with no ill effects
 Change type based on environment                                - Need Environment
 Increase power on next turn for a type                            - BattleSide variable?
 Only hit Pokemon inflicted with status                              - New hit delegate
@@ -25,21 +25,20 @@ Power based on ratio of stat                                           - A diffe
 Prevent item use                                                           - Need Items
 endure move                                                                - BattleSide variable and check on taking damage
 equalize health                                                              - New effect
-set ability
-2X power is has status
+set ability                                                                     -  Need original and copy in Pkmn Wrapper so you can change the ability of the copy with no ill effects
 Only effect on first turn in battle
-Leave opp with 1 HP
+Leave opp with 1 HP                                                       - New Damage Delegate where Normalize is overriden to do less than their currHP
 Pierce Protection
-Does damage equal to HP to both
+Does damage equal to HP to both                                    - Damage Delegate or Attack...?
 Effect when used in combo with other abilities
-Ignore stat mods
+Ignore stat mods                                                            - Damage Delegate with GetStatWithMod overriden
 Change type to type of a random user move
 Change type to type resistant to random opp's move
-Use move done right before you
+Use move done right before you                                      - EffectDelegate grabs last action, alters it for your use, and uses it
 Counter physical move, 2x damage if hit by physical
 Steal opponent's item
 Power based on target's HP ratio
-Different effect based on type
+Different effect based on type                                          - Just an if statement..?
 Curse secondary status
 Remove double PP
 Clear defenses and hazards
@@ -47,7 +46,7 @@ user faints, opp faints
 Dimin returns - hit
 Prevent hit
 Prevent move from being used for X turns
-Delayed Damage
+Delayed Damage                                                          - Secondary Effect that deals damage after a certain amount of turns -- Can't be removed
 Attack through status immobilization
 Damage based on held item
 Flinch if hit

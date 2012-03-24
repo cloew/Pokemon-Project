@@ -120,34 +120,41 @@ class normalize(unittest.TestCase):
     
     def setUp(self):
         """ Build the Damage Delegate """
+        self.target = BuildPokemonBattleWrapper()
         self.delegate = DamageDelegate(None, 0, 1)
         
     def zero(self):
         """ Test that 0 is normalized correctly """
         damage = 0
-        newDamage = self.delegate.normalize(damage)
+        newDamage = self.delegate.normalize(damage, self.target)
         assert newDamage == 0, "Should return zero"
         
     def lessThanOne(self):
         """ Test that < 1 is normalized correctly """
         damage = 0.1
-        newDamage = self.delegate.normalize(damage)
+        newDamage = self.delegate.normalize(damage, self.target)
         assert newDamage == 1, "Should return one if between 0 and 1"
         
     def normalizeInt(self):
         """ Test that normalizing an int returns the int """
         damage = 3
-        newDamage = self.delegate.normalize(damage)
+        newDamage = self.delegate.normalize(damage, self.target)
         assert newDamage == damage, "Should return the number if its an int"
         
     def normalizeFloat(self):
         """ Test that normalizing a float returns the int """
         damage = 3.3
-        newDamage = self.delegate.normalize(damage)
+        newDamage = self.delegate.normalize(damage, self.target)
         assert newDamage == int(damage), "Should return the floored number if its an int"
+        
+    def greaterThanTargetHP(self):
+        """ Test that normalizing a float returns the int """
+        damage = self.target.getCurrHP()+1
+        newDamage = self.delegate.normalize(damage, self.target)
+        assert newDamage == int(self.target.getCurrHP()), "Should return the target's HP as damage"
 
 # Collect all test cases in this class      
-testcasesNormalize = ["zero", "lessThanOne", "normalizeInt", "normalizeFloat"]
+testcasesNormalize = ["zero", "lessThanOne", "normalizeInt", "normalizeFloat", "greaterThanTargetHP"]
 suiteNormalize  = unittest.TestSuite(map(normalize , testcasesNormalize ))
         
 #########################################################

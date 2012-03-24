@@ -37,7 +37,7 @@ class DamageDelegate(object):
         mod = mod*self.getStab(user)
         mod = mod*self.getCrit(messages, user, target)
         
-        return self.normalize(damage*mod), messages
+        return self.normalize(damage*mod, target), messages
         
     def calcDamage(self, user, target):
         """ Calculate the damage before modifiers """
@@ -79,12 +79,14 @@ class DamageDelegate(object):
     def applyRand(self):
         return random.randint(85, 100)/100.0
         
-    def normalize(self, damage):
+    def normalize(self, damage, target):
         """ Damage cannot be lower than 1, unless the target is immune """
         if damage == 0:
             return 0
         elif damage < 1:
             return 1
+        elif damage > target.getCurrHP():
+            return target.getCurrHP()
         return int(damage)
         
     def getEffectiveness(self, messages, target):
