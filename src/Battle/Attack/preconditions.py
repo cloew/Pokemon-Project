@@ -57,7 +57,7 @@ class PreconditionChecker:
     def checkCharging(self):
         """ Checks if the user's attack requires charging on this turn """
         for effect in self.attack.effectDelegates:
-            if hasattr(effect, "isCharging") and effect.isCharging(self.user):
+            if effect.isCharging(self.user):
                 self.user.getAbility().onCharge()
                 return True, [self.user.getHeader() + effect.message]
                 

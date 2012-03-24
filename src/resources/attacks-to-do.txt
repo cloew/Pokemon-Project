@@ -1,4 +1,4 @@
-Multi-Hit Moves                                                              - Require refactoring of attack.use
+Multi-Hit Moves                                                              - Require refactoring of attack.use -- New Delegate
 2 Hit Moves                                                                   - Particular case of the above
 Cure All Status                                                              - Cure all status in a list
 Cure All Status for Team                                                - Above but applied to all Pkmn on a side
@@ -6,7 +6,7 @@ Cure All Status for Team                                                - Above 
 Use Random Move From Self                                          - Effect that uses another attack
 Use Random Move From All Moves                                  - See Above
 Use Random Move From Teammate                                - See Above
-Infatuation                                                                    - Secondary Status and a new precondition check
+Infatuation                                                                    - Secondary Effect w/ immobilized & Need Gender
 Hit for every Pkmn in the team                                       - Just a new Damage Delegate, Need multiple Pkmn
 Cut health by ratio                                                         - New effect delegate
 Donate item                                                                  - Need Items
@@ -27,7 +27,6 @@ endure move                                                                - Bat
 equalize health                                                              - New effect
 set ability                                                                     -  Need original and copy in Pkmn Wrapper so you can change the ability of the copy with no ill effects
 Only effect on first turn in battle
-Leave opp with 1 HP                                                       - New Damage Delegate where Normalize is overriden to do less than their currHP
 Pierce Protection
 Does damage equal to HP to both                                    - Damage Delegate or Attack...?
 Effect when used in combo with other abilities

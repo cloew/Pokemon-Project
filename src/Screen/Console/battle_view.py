@@ -61,10 +61,12 @@ class ConsoleBattleScreen:
         for i in range(len(attacks)):
             print "%i." % (i+1), attacks[i].name
             
-        i = int(GetInput(ConsoleBattleScreen.oneThruFour))
+        i = GetInput(ConsoleBattleScreen.oneThruFour)
         
         if i == CANCEL_LETTER:
             return False, None
+            
+        i = int(i)
         return True, [Constants.fightAction, attacks[i-1], self.battle.getPlayerPkmn()[0], self.battle.getOppPkmn()[0]]
         
     def switch(self):
