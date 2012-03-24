@@ -1,5 +1,6 @@
 from Battle.Attack.attack import Attack
 
+from Battle.Attack.DamageDelegates.boost_on_status_delegate import BoostDamageOnStatusDelegate
 from Battle.Attack.DamageDelegates.damage_delegate import DamageDelegate
 from Battle.Attack.DamageDelegates.damagescale_delegate import DamageScaleDelegate
 from Battle.Attack.DamageDelegates.effect_ondamage_delegate import EffectOnDamageDelegate
@@ -36,7 +37,13 @@ class DamageDelegateFactory:
         """ Builds a DamageDelegate from XML """
         delegateType = element.find(Tags.typeTag).text
         
-        if delegateType == "CORE":
+        if delegateType == "BOOST ON STATUS":
+            power = int(element.find(Tags.powerTag).text)
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
+            return BoostDamageOnStatusDelegate(parent, power, isPhysical)
+        
+        elif delegateType == "CORE":
             power = int(element.find(Tags.powerTag).text)
             isPhysical = int(element.find(Tags.physicalTag).text)
             parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)

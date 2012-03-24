@@ -1110,6 +1110,28 @@
     </attack>
     
     <attack>
+        <name>HEX</name>
+        <type>GHOST</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>BOOST ON STATUS</type>
+            <power>50</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
         <name>NIGHT SHADE</name>
         <type>GHOST</type>
         <PP>15</PP>

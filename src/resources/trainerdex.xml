@@ -12,7 +12,7 @@
                 
                 <attacks>
                     <attack>
-                        <name>WHIRLWIND</name>
+                        <name>HEX</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
@@ -30,7 +30,7 @@
                     </attack>
                      
                     <attack>
-                        <name>HYPER BEAM</name>
+                        <name>THUNDER WAVE</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>

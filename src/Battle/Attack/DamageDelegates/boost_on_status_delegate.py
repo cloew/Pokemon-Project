@@ -1,6 +1,6 @@
 from Battle.Attack.DamageDelegates.damage_delegate import DamageDelegate
 
-class BoostDamageOnStatus(DamageDelegate):
+class BoostDamageOnStatusDelegate(DamageDelegate):
     """ DAmagfe Delegate where damage is boosted on status """
     
     def coreDamage(self, user, target):
@@ -10,6 +10,6 @@ class BoostDamageOnStatus(DamageDelegate):
         if target.hasStatus():
             boostMod = 2
             
-        damage = super(BoostDamageOnStatus, self).coreDamage(user, target)
+        damage = super(BoostDamageOnStatusDelegate, self).coreDamage(user, target)
             
         return boostMod*damage
