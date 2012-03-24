@@ -37,8 +37,8 @@ class BattleAction:
         """ Compares Speed to determine who has priority 
              NOTE: Never returns 0
              If the speeds are equal one is randomly chosen as greater """
-        selfSpeed = self.user.getStat("SPD")
-        otherSpeed = other.user.getStat("SPD")
+        selfSpeed = int(self.user.getStat("SPD"))
+        otherSpeed = int(other.user.getStat("SPD"))
         
         cmp =  selfSpeed.__cmp__(otherSpeed)
         if cmp == 0:
