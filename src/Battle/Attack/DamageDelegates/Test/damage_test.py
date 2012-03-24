@@ -148,7 +148,7 @@ class normalize(unittest.TestCase):
         assert newDamage == int(damage), "Should return the floored number if its an int"
         
     def greaterThanTargetHP(self):
-        """ Test that normalizing a float returns the int """
+        """ Test that damage is normalized correctly when greater than the target's HP """
         damage = self.target.getCurrHP()+1
         newDamage = self.delegate.normalize(damage, self.target)
         assert newDamage == int(self.target.getCurrHP()), "Should return the target's HP as damage"
