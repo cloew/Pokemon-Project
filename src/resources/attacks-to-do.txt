@@ -7,14 +7,11 @@ Use Random Move From Self                                          - Effect that
 Use Random Move From All Moves                                  - See Above
 Use Random Move From Teammate                                - See Above
 Infatuation                                                                    - Secondary Status and a new precondition check
-Confusion                                                                     - See Above
-Switch out, but leave side mods                                      - Need switching
-Force out                                                                      - Need Switching
 Hit for every Pkmn in the team                                       - Just a new Damage Delegate, Need multiple Pkmn
 Cut health by ratio                                                         - New effect delegate
 Donate item                                                                  - Need Items
 Store damage taken                                                      - Different setDamage  
-Trapping                                                                       - Need Swithcing
+Trapping                                                                       - Need Switching
 Break Barriers                                                              - Remove variable on BattleSide
 Power based on health                                                   - New Damage Delegate
 Use item if item is a certain Type                                    - Need Items
@@ -57,7 +54,7 @@ Flinch if hit
 Draw attention
 Remove type immunity
 Power based on happiness
-2X Dmaage is a certain move has been used
+2X Damage is a certain move has been used
 Remove ability
 Damage based on weight
 Gravity

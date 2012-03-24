@@ -133,6 +133,10 @@ class PkmnBattleWrapper:
         """ Sets the Wrapper's Pokemon's Status """
         self.pkmn.setStatus(status)
         
+    def hasStatus(self):
+        """  Returns if the pkmn has a status """
+        return not self.getStatus().abbr  == "   "
+        
     def getTypes(self):
         """ Returns the Wrapper's Pokemon's Types """
         return self.pkmn.getTypes()
