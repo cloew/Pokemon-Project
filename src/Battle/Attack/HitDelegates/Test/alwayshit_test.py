@@ -8,7 +8,7 @@ class checkHit(unittest.TestCase):
     
     def  setUp(self):
         """ Build the Pkmn and Delegate for the test """
-        self.delegate = AlwaysHitDelegate()
+        self.delegate = AlwaysHitDelegate("")
         
     def hit(self):
         """ Test that it always hits """

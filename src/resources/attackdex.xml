@@ -962,6 +962,24 @@
         </effectDelegates>
     </attack>
     
+    <attack>
+        <name>SKILL SWAP</name>
+        <type>PSYCHIC</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS ALWAYS</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>SWAP ABILITY</type>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
     <!-- Bug -->
     <attack>
         <name>SILVER WIND</name>

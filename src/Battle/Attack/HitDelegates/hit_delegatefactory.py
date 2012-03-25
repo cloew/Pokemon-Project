@@ -12,6 +12,8 @@ from resources.tags import Tags
 
 class HitDelegateFactory:
     """ Builds HitDelegates """
+    MISS = "Attack missed."
+    STATUSMISS =  "But it failed."
     
     @staticmethod
     def loadFromAttackDex(attackdex, parent):

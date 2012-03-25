@@ -18,6 +18,7 @@ from recoil_delegate import RecoilDelegate
 from reset_statmods_delegate import ResetStatModsDelegate
 from selfdestruct_delegate import SelfDestructDelegate
 from statmod_delegate import StatModDelegate
+from swap_ability_delegate import SwapAbilityDelegate
 from swapstatmods_delegate import SwapStatModsDelegate
 from switch_delegate import SwitchDelegate
 from trap_delegate import TrapDelegate
@@ -159,7 +160,9 @@ class EffectDelegateFactory:
             return delegate
             
         elif delegateType == "SELFDESTRUCT":
-            return SelfDestructDelegate()
+            delegate = SelfDestructDelegate()
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
             
         elif delegateType == "STAT MOD":
             stat = element.find(Tags.statTag).text
@@ -174,6 +177,11 @@ class EffectDelegateFactory:
             affectUser = int(element.find(Tags.affectUserTag).text)
             delegate = ApplyStatusDelegate(parent, status, affectUser)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
+            return delegate
+            
+        elif delegateType == "SWAP ABILITY":
+            delegate = SwapAbilityDelegate()
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.EITHER)
             return delegate
             
         elif delegateType == "SWAP STAT MODS":

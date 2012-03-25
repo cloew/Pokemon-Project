@@ -12,7 +12,7 @@
                 
                 <attacks>
                     <attack>
-                        <name>HEX</name>
+                        <name>SKILL SWAP</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
@@ -24,7 +24,7 @@
                     </attack>
                     
                     <attack>
-                        <name>FALSE SWIPE</name>
+                        <name>GROWL</name>
                         <currPP>30</currPP>     
                         <PP>30</PP>
                     </attack>
@@ -119,7 +119,7 @@
                 <species>SQUIRTLE</species>
                 <level>20</level>
                 <currHP>60</currHP>
-                <ability>SHED SKIN</ability>
+                <ability>HYPER CUTTER</ability>
                 
                 <attacks>
                     <attack>
