@@ -20,6 +20,8 @@ class PokemonFactory:
         pkmn.name = species
         pkmn.species = species
         pkmn.level = 5
+        pkmn.id = ""
+        
         pkmn.ability = Ability()
         pkmn.battleDelegate = PokemonBattleDelegateFactory.buildStarter(pkmn)
     
@@ -33,11 +35,23 @@ class PokemonFactory:
         pkmn.name = tree.find(Tags.nameTag).text
         pkmn.species = tree.find(Tags.speciesTag).text
         pkmn.level = int(tree.find(Tags.levelTag).text)
-        
         pkmn.id = ""
+        
         pkmn.ability = AbilityFactory.loadFromPkmnXML(tree.find(Tags.abilityTag).text)
         pkmn.battleDelegate = PokemonBattleDelegateFactory.loadFromXML(pkmn, tree)
     
         return pkmn
                 
-    
+    @staticmethod
+    def copy(toCopy):
+        """ Copies the Given Pkmn """
+        pkmn = Pokemon()
+        pkmn.name = str(toCopy.name)
+        pkmn.species = str(toCopy.species)
+        pkmn.level = toCopy.level
+        pkmn.id = toCopy.id
+        
+        pkmn.ability = toCopy.ability
+        pkmn.battleDelegate =PokemonBattleDelegateFactory.copy(toCopy, toCopy.battleDelegate)
+        
+        return pkmn

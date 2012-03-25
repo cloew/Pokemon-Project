@@ -57,6 +57,21 @@ class PokemonBattleDelegateFactory:
         delegate.status = Status()
 
         return delegate
+        
+    @staticmethod
+    def copy(parent, toCopy):
+        """ Creates a copy of the given Battle Delegate """
+        delegate = PokemonBattleDelegate()
+        
+        delegate.parent = parent
+        delegate.currHP = toCopy.currHP
+        delegate.attacks = toCopy.attacks
+        delegate.status = toCopy.status
+        
+        delegate.types = list(toCopy.types)
+        delegate.stats = dict(toCopy.stats)
+        
+        return delegate
     
     @staticmethod
     def loadPokedexBattleInfo(delegate, species):
