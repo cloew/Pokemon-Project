@@ -915,11 +915,14 @@
             <hit>100</hit>
             <pierce>FLY</pierce>
         </hitDelegate>
-        <effectDelegates>
-            <type>SWITCH</type>
-            <affectUser>0</affectUser>
-            <reset>1</reset>
-        </effectDelegates>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>40</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
     </attack>
     
     <attack>
