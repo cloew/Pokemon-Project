@@ -1,4 +1,5 @@
 from Battle.Status.statusfactory import StatusFactory
+from Pokemon.pokemon_factory import PokemonFactory
 
 class PkmnBattleWrapper:
     """ Represents one Pkmn's slot in a battle """
@@ -18,7 +19,7 @@ class PkmnBattleWrapper:
         if reset:
             self.reset()
             
-        self.pkmn = pkmn
+        self.setPkmn(pkmn)
         return [self.side.trainer.announcePkmn(pkmn)]
         
     def reset(self):
@@ -70,11 +71,13 @@ class PkmnBattleWrapper:
         
     def heal(self, amount):
         """ Heal the Wrapper's Pokemon """
+        self.original.heal(amount)
         return self.pkmn.heal(amount)
         
     def takeDamage(self, damage):
         """ Has the Pkmn take the given amount of damage """
         messages = []
+        self.original.takeDamage(damage)
         self.pkmn.takeDamage(damage)
         
         if self.pkmn.getCurrHP() == 0:
@@ -86,7 +89,7 @@ class PkmnBattleWrapper:
         """ Makes the Pkmn faint """
         messages = []
         
-        self.pkmn.setCurrHP(0)
+        self.setCurrHP(0)
         status, msg = StatusFactory.buildStatusFromAbbr("FNT")
         self.setStatus(status)
         
@@ -96,6 +99,11 @@ class PkmnBattleWrapper:
     def fainted(self):
         """ Return whether the Wrapper's Pokemon is fainted """
         return self.pkmn.fainted()
+        
+    def setPkmn(self, pkmn):
+        """ Set the PkmnBattleWrapper's Pokemon """
+        self.original = pkmn
+        self.pkmn = PokemonFactory.copy(pkmn)
         
     def getLevel(self):
         """ Returns the Wrapper's Pokemon's Level """
@@ -123,6 +131,7 @@ class PkmnBattleWrapper:
         
     def setCurrHP(self, amount):
         """ Sets the Wrapper's Pokemon's Current HP to the given amount """
+        self.original.setCurrHP(amount)
         self.pkmn.setCurrHP(amount)
         
     def getStatus(self):
@@ -131,6 +140,7 @@ class PkmnBattleWrapper:
         
     def setStatus(self, status):
         """ Sets the Wrapper's Pokemon's Status """
+        self.original.setStatus(status)
         self.pkmn.setStatus(status)
         
     def hasStatus(self):

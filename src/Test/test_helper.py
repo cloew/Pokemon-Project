@@ -25,7 +25,7 @@ def BuildPokemonBattleWrapper(pkmn = "BULBASAUR",  trainer = Trainer()):
     
     side = BattleSide(trainer)
     wrapper = PkmnBattleWrapper(side)
-    wrapper.pkmn = pokemon
+    wrapper.setPkmn(pokemon)
     
     return wrapper
     
