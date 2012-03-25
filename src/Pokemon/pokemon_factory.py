@@ -52,6 +52,6 @@ class PokemonFactory:
         pkmn.id = toCopy.id
         
         pkmn.ability = toCopy.ability
-        pkmn.battleDelegate =PokemonBattleDelegateFactory.copy(toCopy, toCopy.battleDelegate)
+        pkmn.battleDelegate =PokemonBattleDelegateFactory.copy(pkmn, toCopy.battleDelegate)
         
         return pkmn
