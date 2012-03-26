@@ -19,6 +19,7 @@ from reset_statmods_delegate import ResetStatModsDelegate
 from selfdestruct_delegate import SelfDestructDelegate
 from statmod_delegate import StatModDelegate
 from swap_ability_delegate import SwapAbilityDelegate
+from swap_stat_delegate import SwapStatDelegate
 from swapstatmods_delegate import SwapStatModsDelegate
 from switch_delegate import SwitchDelegate
 from trap_delegate import TrapDelegate
@@ -182,6 +183,13 @@ class EffectDelegateFactory:
         elif delegateType == "SWAP ABILITY":
             delegate = SwapAbilityDelegate()
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.EITHER)
+            return delegate
+            
+        elif delegateType == "SWAP STATS":
+            stat1 = element.find(Tags.stat1Tag).text
+            stat2 = element.find(Tags.stat2Tag).text
+            delegate = SwapStatDelegate(stat1, stat2)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
             
         elif delegateType == "SWAP STAT MODS":

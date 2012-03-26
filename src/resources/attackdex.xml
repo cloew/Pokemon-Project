@@ -966,6 +966,26 @@
     </attack>
     
     <attack>
+        <name>POWER TRICK</name>
+        <type>PSYCHIC</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>SWAP STATS</type>
+                <stat1>ATK</stat1>
+                <stat2>DEF</stat2>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
         <name>SKILL SWAP</name>
         <type>PSYCHIC</type>
         <PP>10</PP>

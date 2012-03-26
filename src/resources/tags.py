@@ -28,6 +28,8 @@ class Tags:
     priorityTag = "priority"
     
     statTag = "stat"
+    stat1Tag = "stat1"
+    stat2Tag = "stat2"
     degreeTag = "degree"
     affectUserTag = "affectUser"
     
