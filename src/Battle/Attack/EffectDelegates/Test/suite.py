@@ -21,6 +21,7 @@ import reset_statmods_test
 import selfdestruct_test
 import statmod_test
 import swap_ability_test
+import swap_stat_test
 import swapstatmods_test
 import trapdelegate_test
 
@@ -38,5 +39,6 @@ suites = [applylock_test.suite, applystatus_test.suite,
               reset_statmods_test.suite, selfdestruct_test.suite,
               statmod_test.suite,
               swap_ability_test.suite,
+              swap_stat_test.suite,
               swapstatmods_test.suite, trapdelegate_test.suite]
 suite = unittest.TestSuite(suites)
