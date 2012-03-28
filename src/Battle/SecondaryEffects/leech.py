@@ -12,26 +12,26 @@ class Leech(SecondaryEffect):
         self.message = message
         self.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.SOURCE)
         
-    def afterTurn(self, pkmn):
-        """ Leech health from the pkmn and give it to the source """
-        messages = [pkmn.getHeader() + self.message]
+    def afterTurn(self, owner):
+        """ Leech health from the owner and give it to the source """
+        messages = [owner.getHeader() + self.message]
         
-        messages += self.damage(pkmn)
-        self.leech(pkmn)
+        messages += self.damage(owner)
+        self.leech(owner)
         return messages
         
-    def damage(self, pkmn):
-        """ Damages the pkmn """
-        return pkmn.takeDamage(self.getAmount(pkmn))
+    def damage(self, owner):
+        """ Damages the owner """
+        return owner.takeDamage(self.getAmount(owner))
 
-    def leech(self, pkmn):
-        """ Leech Health from the pkmn and heal the source """
-        heal = self.getAmount(pkmn)
+    def leech(self, owner):
+        """ Leech Health from the owner and heal the source """
+        heal = self.getAmount(owner)
         self.source.heal(heal)
         
-    def getAmount(self, pkmn):
+    def getAmount(self, owner):
         """ Returns the amount the Leech damages/heals """
-        return pkmn.getRatioOfHealth(Leech.ratio, forDamage = True)
+        return owner.getRatioOfHealth(Leech.ratio, forDamage = True)
         
     def immune(self, targetTypes, attackType):
         """ Returns whether the given types are immune to the status """

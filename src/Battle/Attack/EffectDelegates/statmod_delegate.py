@@ -26,6 +26,9 @@ class StatModDelegate(EffectDelegate):
         """ Apply the modifier to the given pkmn """
         degree, abilityMessages = pkmn.getAbility().\
                                                 onStatMod(pkmn, self.stat, self.degree, self.affectUser)
+        
+        for effect in pkmn.secondaryEffects:
+            degree = effect.onStatMod(pkmn, degree, abilityMessages)
                                                 
         noChange, messages = self.checkNoChange(pkmn, degree, abilityMessages)
         if noChange:

@@ -10,16 +10,16 @@ class PeriodicHeal(SecondaryEffect):
         self.message = message
         self.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
         
-    def afterTurn(self, pkmn):
-        """ Heals the given pkmn"""
-        self.heal(pkmn)
-        return [pkmn.getHeader() + self.message]
+    def afterTurn(self, owner):
+        """ Heals the given owner"""
+        self.heal(owner)
+        return [owner.getHeader() + self.message]
         
-    def heal(self, pkmn):
+    def heal(self, owner):
         """ Heals the given Pokemon """
-        heal = self.getHeal(pkmn)
-        pkmn.heal(heal)
+        heal = self.getHeal(owner)
+        owner.heal(heal)
         
-    def getHeal(self, pkmn):
+    def getHeal(self, owner):
         """ Returns the amount the pokemon should be healed by """
-        return pkmn.getRatioOfHealth(PeriodicHeal.ratio)
+        return owner.getRatioOfHealth(PeriodicHeal.ratio)
