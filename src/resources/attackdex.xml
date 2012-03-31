@@ -1273,6 +1273,43 @@
     </attack>
     
     <attack>
+        <name>DEVASTATE</name>
+        <type>DARK</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>80</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>200</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHARGE</type>
+                <turns>2</turns>
+                <hitOnTurn>0</hitOnTurn>
+                <message> is recharging.</message>
+            </effectDelegate>
+            <effectDelegate>
+                <type>DIVERGE ON FAINT</type>
+                <divergeEffects>
+                </divergeEffects>
+                <normalEffects>
+                </normalEffects>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
         <name>HONE CLAWS</name>
         <type>DARK</type>
         <PP>15</PP>

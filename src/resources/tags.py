@@ -23,6 +23,9 @@ class Tags:
     
     effectDelegatesTag = "effectDelegates"
     effectDelegateTag = "effectDelegate"
+    normalEffectsTag = "normalEffects"
+    divergeEffectsTag = "divergeEffects"
+    
     
     speedDelegateTag = "speedDelegate"
     priorityTag = "priority"

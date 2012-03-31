@@ -5,6 +5,7 @@ from applystatus_delegate import ApplyStatusDelegate
 from confuse_delegate import ConfuseDelegate
 from critmod_delegate import CritModDelegate
 from curestatus_delegate import CureStatusDelegate
+from diverge_on_faint_delegate import DivergeOnFaintDelegate
 from dodge_delegate import DodgeDelegate
 from flinch_delegate import FlinchDelegate
 from heal_damageratio_delegate import HealByDamageRatioDelegate
@@ -102,6 +103,21 @@ class EffectDelegateFactory:
             message = element.find(Tags.messageTag).text
             delegate = DodgeDelegate(dodgeType, message)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
+            
+        elif delegateType == "DIVERGE ON FAINT":
+            divergeEffectsXML = element.find(Tags.divergeEffectsTag).text
+            divergeEffects = []
+            for effectDelegate in divergeEffectsXML.getchildren():
+                divergeEffects.append(EffectDelegateFactory.loadFromXML(effectDelegate, parent))
+                
+            normalEffectsXML = element.find(Tags.normalEffectsTag).text
+            normalEffects = []
+            for effectDelegate in normalEffectsXML.getchildren():
+                normalEffects.append(EffectDelegateFactory.loadFromXML(effectDelegate, parent))
+                
+            delegate = DivergeOnFaintDelegate(divergeEffects, normalEffects)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.REGULAR)
             return delegate
             
         elif delegateType == "FLINCH":
