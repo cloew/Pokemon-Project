@@ -1302,8 +1302,68 @@
             <effectDelegate>
                 <type>DIVERGE ON FAINT</type>
                 <divergeEffects>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>ATK</stat>
+                        <degree>-12</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>DEF</stat>
+                        <degree>-12</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SPD</stat>
+                        <degree>-12</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SATK</stat>
+                        <degree>-12</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SDEF</stat>
+                        <degree>-12</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
                 </divergeEffects>
                 <normalEffects>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>ATK</stat>
+                        <degree>-2</degree>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>DEF</stat>
+                        <degree>-2</degree>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SPD</stat>
+                        <degree>-2</degree>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SATK</stat>
+                        <degree>-2</degree>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SDEF</stat>
+                        <degree>-2</degree>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
                 </normalEffects>
             </effectDelegate>
         </effectDelegates>

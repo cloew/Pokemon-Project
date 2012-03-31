@@ -98,26 +98,26 @@ class EffectDelegateFactory:
             parent.damageDelegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return parent.damageDelegate
             
-        elif delegateType == "DODGE":
-            dodgeType = element.find(Tags.dodgeTypeTag).text
-            message = element.find(Tags.messageTag).text
-            delegate = DodgeDelegate(dodgeType, message)
-            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
-            return delegate
-            
         elif delegateType == "DIVERGE ON FAINT":
-            divergeEffectsXML = element.find(Tags.divergeEffectsTag).text
+            divergeEffectsXML = element.find(Tags.divergeEffectsTag)
             divergeEffects = []
             for effectDelegate in divergeEffectsXML.getchildren():
                 divergeEffects.append(EffectDelegateFactory.loadFromXML(effectDelegate, parent))
                 
-            normalEffectsXML = element.find(Tags.normalEffectsTag).text
+            normalEffectsXML = element.find(Tags.normalEffectsTag)
             normalEffects = []
             for effectDelegate in normalEffectsXML.getchildren():
                 normalEffects.append(EffectDelegateFactory.loadFromXML(effectDelegate, parent))
                 
             delegate = DivergeOnFaintDelegate(divergeEffects, normalEffects)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.REGULAR)
+            return delegate
+            
+        elif delegateType == "DODGE":
+            dodgeType = element.find(Tags.dodgeTypeTag).text
+            message = element.find(Tags.messageTag).text
+            delegate = DodgeDelegate(dodgeType, message)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
             
         elif delegateType == "FLINCH":
