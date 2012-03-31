@@ -6,22 +6,22 @@ class DivergeOnFaintDelegate(EffectDelegate):
     def __init__(self, effectsOnFaint, effectsNoFaint):
         """ Build the Diverge On Faint Effect """
         self.effectsOnFaint = effectsOnFaint
-        sel.feffectsNoFaint = effectsNoFaint
+        self.effectsNoFaint = effectsNoFaint
     
     def applyEffect(self, user, target):
         """ Apply Effect """
         messages = []
         
         if target.fainted():
-            messages += self.doEffects(self.effectsOnFaint, user, target)
+            messages += self.performEffects(self.effectsOnFaint, user, target)
         else:
-            messages += self.doEffects(self.effectsNoFaint, user, target)
+            messages += self.performEffects(self.effectsNoFaint, user, target)
         
         return messages
         
     def performEffects(self, effects, user, target):
         """ Perform the effects given """
-        mesasges = []
+        messages = []
         for effect in effects:
-            messages += effects.tryToApplyEffect(user, target)
+            messages += effect.tryToApplyEffect(user, target)
         return messages

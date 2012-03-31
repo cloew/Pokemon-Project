@@ -31,7 +31,9 @@ def BuildPokemonBattleWrapper(pkmn = "BULBASAUR",  trainer = Trainer()):
     
 def BuildEffectDelegate():
     """ Builds an Effect Delegate """
-    return EffectDelegate()
+    delegate = EffectDelegate()
+    delegate.faintHandler = BuildFaintHandler(FaintHandlerFactory.REGULAR)
+    return delegate
     
 def BuildBattleAction(user = BuildPokemonBattleWrapper(), priority = 0):
     """ Builds a Battle Action """
