@@ -292,6 +292,24 @@
     </attack>
     
     <attack>
+        <name>SPLASH</name>
+        <type>NORMAL</type>
+        <PP>40</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>USELESS</type>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
         <name>SUPER FANG</name>
         <type>NORMAL</type>
         <PP>10</PP>

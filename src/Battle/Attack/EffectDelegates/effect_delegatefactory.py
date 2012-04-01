@@ -24,6 +24,7 @@ from swap_stat_delegate import SwapStatDelegate
 from swapstatmods_delegate import SwapStatModsDelegate
 from switch_delegate import SwitchDelegate
 from trap_delegate import TrapDelegate
+from useless_delegate import UselessDelegate
 
 from resources.tags import Tags
 from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
@@ -226,4 +227,9 @@ class EffectDelegateFactory:
             doneMessage = element.find(Tags.doneMessageTag).text
             delegate = TrapDelegate(startMessage, message, doneMessage)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.TARGET)
+            return delegate
+            
+        elif delegateType == "USELESS":
+            delegate = UselessDelegate()
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate

@@ -12,7 +12,7 @@
                 
                 <attacks>
                     <attack>
-                        <name>DEVASTATE</name>
+                        <name>SPLASH</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
