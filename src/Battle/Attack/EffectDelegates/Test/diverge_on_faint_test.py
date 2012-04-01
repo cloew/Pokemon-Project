@@ -3,8 +3,8 @@ from Test.test_helper import BuildPokemonBattleWrapper, BuildEffectDelegate
 
 from Battle.Attack.EffectDelegates.diverge_on_faint_delegate import DivergeOnFaintDelegate
 
-class applyEffect(unittest.TestCase):
-    """ Test cases of applyEffect """
+class diverge(unittest.TestCase):
+    """ Test cases of diverge """
     
     def  setUp(self):
         """ Build the Pkmn and Effects for the test """
@@ -19,22 +19,22 @@ class applyEffect(unittest.TestCase):
     def fainted(self):
         """ Test that the diverge effects are called when the target has fainted """
         self.target.faint()
-        messages = self.delegate.applyEffect(self.user, self.target)
-        assert messages == [self.message, self.message], "Should get messages from all the Diverge Effects"
+        diverge = self.delegate.diverge(self.user, self.target)
+        assert diverge, "Should diverge"
         
     def notFainted(self):
         """ Test that the regular effects are called when the target is not fainted """
-        messages = self.delegate.applyEffect(self.user, self.target)
-        assert messages == [self.message], "Should get messages from all the Normal Effects"
+        diverge = self.delegate.diverge(self.user, self.target)
+        assert not diverge, "Should not diverge when the target is not fainted"
 
 # Collect all test cases in this class on 
-testcasesApplyEffect = ["fainted", "notFainted"]
-suiteApplyEffect = unittest.TestSuite(map(applyEffect, testcasesApplyEffect))
+testcasesDiverge = ["fainted", "notFainted"]
+suiteDiverge = unittest.TestSuite(map(diverge, testcasesDiverge))
 
 ##########################################################
 
 # Collect all test cases in this file
-suites = [suiteApplyEffect]
+suites = [suiteDiverge]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
