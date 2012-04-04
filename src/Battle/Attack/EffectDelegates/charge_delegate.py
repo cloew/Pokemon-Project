@@ -18,7 +18,7 @@ class ChargeDelegate(EffectDelegate):
         
     def effectOnMiss(self, user, target):
         """ Applies the deleagte's effect on a miss """
-        return self.stopCharge()
+        return self.stopCharge(user)
         
     def stopCharge(self, user):
         """ Stop Charge """

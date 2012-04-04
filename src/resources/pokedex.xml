@@ -1,6 +1,7 @@
 <pokedex>
     <pokemon>
         <species>BULBASAUR</species>
+        <dex>4</dex>
         <types>
             <type>GRASS</type>
             <type>POISON</type>
@@ -17,6 +18,7 @@
   
     <pokemon>
         <species>CHARMANDER</species>
+        <dex>4</dex>
         <types>
             <type>FIRE</type>
         </types>
@@ -32,6 +34,7 @@
   
     <pokemon>
         <species>SQUIRTLE</species>
+        <dex>7</dex>
         <types>
             <type>WATER</type>
         </types>
@@ -42,6 +45,23 @@
             <SPD>43</SPD>
             <SATK>50</SATK>
             <SDEF>64</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
+        <species>SNEASEL</species>
+        <dex>214</dex>
+        <types>
+            <type>DARK</type>
+            <type>ICE</type>
+        </types>
+        <baseStats>
+            <HP>55</HP>
+            <ATK>95</ATK>
+            <DEF>55</DEF>
+            <SPD>115</SPD>
+            <SATK>35</SATK>
+            <SDEF>75</SDEF>
         </baseStats>
     </pokemon>
 </pokedex>

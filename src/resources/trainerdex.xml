@@ -4,15 +4,15 @@
         <title>Pkmn Trainer</title>
         <belt>
             <pokemon>
-                <name>Charmander</name>
-                <species>CHARMANDER</species>
+                <name>Mr Slice</name>
+                <species>SNEASEL</species>
                 <level>20</level>
                 <currHP>60</currHP>
                 <ability>COMPOUNDEYES</ability>
                 
                 <attacks>
                     <attack>
-                        <name>SPLASH</name>
+                        <name>DEVASTATE</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
@@ -149,6 +149,47 @@
                         <PP>35</PP>
                     </attack>
                 </attacks>
+            </pokemon>
+        </belt>
+    </trainer>
+    
+    <trainer>
+        <name>Chris</name>
+        <title>Leader</title>
+        <belt>
+            <pokemon>
+                <name>Mr Slice</name>
+                <species>SNEASEL</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>COMPOUNDEYES</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                    
+                    <attack>
+                        <name>EMBER</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                    
+                    <attack>
+                        <name>GROWL</name>
+                        <currPP>30</currPP>     
+                        <PP>30</PP>
+                    </attack>
+                     
+                    <attack>
+                        <name>HYPER BEAM</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                </attacks>
+                
             </pokemon>
         </belt>
     </trainer>
