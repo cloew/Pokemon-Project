@@ -29,6 +29,7 @@ def GetTrainers(player, cpu):
 def ChooseTrainer(trainer, type):
     """ Choose a Trainer """
     while trainer == None:
+        print "\nBuild Trainer!"
         title = raw_input("Pick Trainer Title:")
         name = raw_input("Pick Trainer Name:")
         trainer = BuildTrainer(title, name, type)

@@ -30,7 +30,7 @@ class Trainer:
             pkmnOut.append(pkmn.pkmn)
         
         pkmn = None
-        while pkmn in pkmnOut or pkmn is None:
+        while pkmn in pkmnOut or pkmn is None or pkmn.fainted():
             pkmn = random.choice(self.beltPokemon)
             
         return pkmn
