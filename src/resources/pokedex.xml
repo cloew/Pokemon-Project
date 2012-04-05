@@ -39,6 +39,27 @@
             <SDEF>50</SDEF>
         </baseStats>
     </pokemon>
+    
+    <pokemon>
+        <species>CHARIZARD</species>
+        <dex>6</dex>
+        <types>
+            <type>FIRE</type>
+            <type>FLYING</type>
+        </types>
+        <abilities>
+            <ability>BLAZE</ability>
+            <dream>SOLAR POWER</dream>
+        </abilities>
+        <baseStats>
+            <HP>78</HP>
+            <ATK>84</ATK>
+            <DEF>78</DEF>
+            <SPD>100</SPD>
+            <SATK>109</SATK>
+            <SDEF>85</SDEF>
+        </baseStats>
+    </pokemon>
   
     <pokemon>
         <species>SQUIRTLE</species>
@@ -98,6 +119,28 @@
             <SPD>35</SPD>
             <SATK>65</SATK>
             <SDEF>45</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
+        <species>SCIZOR</species>
+        <dex>212</dex>
+        <types>
+            <type>BUG</type>
+            <type>STEEL</type>
+        </types>
+        <abilities>
+            <ability>SWARM</ability>
+            <ability>TECHNICIAN</ability>
+            <dream>LIGHT METAL</dream>
+        </abilities>
+        <baseStats>
+            <HP>70</HP>
+            <ATK>130</ATK>
+            <DEF>100</DEF>
+            <SPD>65</SPD>
+            <SATK>55</SATK>
+            <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
     
@@ -182,6 +225,48 @@
             <SPD>100</SPD>
             <SATK>110</SATK>
             <SDEF>80</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
+        <species>HEAT ROTOM</species>
+        <dex>479</dex>
+        <types>
+            <type>ELECTRIC</type>
+            <type>FIRE</type>
+        </types>
+        <abilities>
+            <ability>LEVITATE</ability>
+        </abilities>
+        <baseStats>
+            <HP>50</HP>
+            <ATK>50</ATK>
+            <DEF>77</DEF>
+            <SPD>91</SPD>
+            <SATK>105</SATK>
+            <SDEF>107</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
+        <species>GALVANTULA</species>
+        <dex>596</dex>
+        <types>
+            <type>BUG</type>
+            <type>ELECTRIC</type>
+        </types>
+        <abilities>
+            <ability>COMPOUNDEYES</ability>
+            <ability>UNNERVE</ability>
+            <dream>SWARM</dream>
+        </abilities>
+        <baseStats>
+            <HP>70</HP>
+            <ATK>77</ATK>
+            <DEF>60</DEF>
+            <SPD>108</SPD>
+            <SATK>97</SATK>
+            <SDEF>60</SDEF>
         </baseStats>
     </pokemon>
     
