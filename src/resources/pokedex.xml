@@ -49,6 +49,22 @@
     </pokemon>
     
     <pokemon>
+        <species>ELECTRODE</species>
+        <dex>101</dex>
+        <types>
+            <type>ELECTRIC</type>
+        </types>
+        <baseStats>
+            <HP>60</HP>
+            <ATK>50</ATK>
+            <DEF>70</DEF>
+            <SPD>140</SPD>
+            <SATK>80</SATK>
+            <SDEF>80</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
         <species>SNEASEL</species>
         <dex>214</dex>
         <types>
