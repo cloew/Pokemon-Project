@@ -213,6 +213,11 @@
                 <ability>LEVITATE</ability>
                 
                 <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
                 </attacks>
             </pokemon>
         </belt>
@@ -230,6 +235,11 @@
                 <ability>MOXIE</ability>
                 
                 <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
                 </attacks>
             </pokemon>
             
@@ -241,6 +251,11 @@
                 <ability>LEVITATE</ability>
                 
                 <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
                 </attacks>
             </pokemon>
             
@@ -252,24 +267,18 @@
                 <ability></ability>
                 
                 <attacks>
-                </attacks>
-            </pokemon>
-            
-            <pokemon>
-                <name>HYDREIGON</name>
-                <species>HYDREIGON</species>
-                <level>20</level>
-                <currHP>60</currHP>
-                <ability>LEVITATE</ability>
-                
-                <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
                 </attacks>
             </pokemon>
         </belt>
     </trainer>
     
     <trainer>
-        <name>Eric</name>
+        <name>Robby</name>
         <title>Leader</title>
         <belt>
             <pokemon>
@@ -280,6 +289,11 @@
                 <ability></ability>
                 
                 <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
                 </attacks>
             </pokemon>
             
@@ -291,6 +305,11 @@
                 <ability></ability>
                 
                 <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
                 </attacks>
             </pokemon>
             
@@ -302,6 +321,11 @@
                 <ability></ability>
                 
                 <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
                 </attacks>
             </pokemon>
         </belt>

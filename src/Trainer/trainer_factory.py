@@ -13,10 +13,10 @@ class TrainerFactory:
                    COMPUTER:ComputerTrainer}
     
     @staticmethod
-    def loadFromXML(name, trainerType):
+    def loadFromXML(name, title, trainerType):
         """ Loads a Trainer from an XML file """
         tree = TrainerFactory.getTrainerdexTree()
-        tree = TrainerFactory.getTrainerXML(tree, name)
+        tree = TrainerFactory.getTrainerXML(tree, name, title)
         
         trainer = TrainerFactory.buildTrainerFromType(trainerType)
         TrainerFactory.buildTrainerFromXML(trainer, tree)
@@ -60,8 +60,9 @@ class TrainerFactory:
         return tree
         
     @staticmethod
-    def getTrainerXML(tree, name):
+    def getTrainerXML(tree, name, title):
         """ Returns the XML tree for the trainer with the name given """
         for trainer in tree.getiterator(Tags.trainerTag):
             if trainer.find(Tags.nameTag).text == name:
-                return trainer
+                if trainer.find(Tags.titleTag).text == title:
+                    return trainer

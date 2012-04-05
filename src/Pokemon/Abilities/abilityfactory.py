@@ -2,6 +2,7 @@ import xml.etree.ElementTree
 
 from Battle.Attack.EffectDelegates.effect_delegatefactory import EffectDelegateFactory
 
+from ability import Ability
 from accmod_ability import AccModAbility
 from booststab_ability import BoostStabAbility
 from cantlowerstat_ability import CantLowerStatAbility
@@ -25,7 +26,11 @@ class AbilityFactory:
         tree = AbilityFactory.getAbilityXML(tree, name)
         
         # Build the Ability
-        ability = AbilityFactory.buildAbilityFromXML(tree)
+        if tree == None:
+            print "Could not find ability:", name
+            ability = Ability()
+        else:
+            ability = AbilityFactory.buildAbilityFromXML(tree)
         return ability
     
     @staticmethod
