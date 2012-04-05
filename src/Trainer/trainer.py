@@ -43,7 +43,7 @@ class Trainer:
         return False
         
     def hasMorePokemon(self, pkmnInPlay):
-        """ Returns whether the trainer has more Pokemon """
+        """ Returns whether the trainer has more Battle Ready Pokemon on its belt """
         pkmnOut = []
         for pkmn in pkmnInPlay:
             pkmnOut.append(pkmn.pkmn)
