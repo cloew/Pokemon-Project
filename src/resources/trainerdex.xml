@@ -158,7 +158,7 @@
         <title>Leader</title>
         <belt>
             <pokemon>
-                <name>Mr Slice</name>
+                <name>SNEASEL</name>
                 <species>SNEASEL</species>
                 <level>20</level>
                 <currHP>60</currHP>
@@ -170,26 +170,139 @@
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
-                    
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>ELECTRODE</name>
+                <species>ELECTRODE</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>AFTERMATH</ability>
+                
+                <attacks>
                     <attack>
-                        <name>EMBER</name>
-                        <currPP>35</currPP>
-                        <PP>35</PP>
-                    </attack>
-                    
-                    <attack>
-                        <name>GROWL</name>
-                        <currPP>30</currPP>     
-                        <PP>30</PP>
-                    </attack>
-                     
-                    <attack>
-                        <name>HYPER BEAM</name>
-                        <currPP>35</currPP>
-                        <PP>35</PP>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
                     </attack>
                 </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>SHARPEDO</name>
+                <species>SHARPEDO</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>SPEED BOOST</ability>
                 
+                <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>HYDREIGON</name>
+                <species>HYDREIGON</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>LEVITATE</ability>
+                
+                <attacks>
+                </attacks>
+            </pokemon>
+        </belt>
+    </trainer>
+    
+    <trainer>
+        <name>Eric</name>
+        <title>Leader</title>
+        <belt>
+            <pokemon>
+                <name>SALAMENCE</name>
+                <species>SALAMENCE</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>MOXIE</ability>
+                
+                <attacks>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>FLYGON</name>
+                <species>FLYGON</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>LEVITATE</ability>
+                
+                <attacks>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>CHARIZARD</name>
+                <species>CHARIZARD</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability></ability>
+                
+                <attacks>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>HYDREIGON</name>
+                <species>HYDREIGON</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>LEVITATE</ability>
+                
+                <attacks>
+                </attacks>
+            </pokemon>
+        </belt>
+    </trainer>
+    
+    <trainer>
+        <name>Eric</name>
+        <title>Leader</title>
+        <belt>
+            <pokemon>
+                <name>MAREEP</name>
+                <species>MAREEP</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability></ability>
+                
+                <attacks>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>GALVANTULA</name>
+                <species>GALVANTULA</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability></ability>
+                
+                <attacks>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>ROTOM</name>
+                <species>HEAT ROTOM</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability></ability>
+                
+                <attacks>
+                </attacks>
             </pokemon>
         </belt>
     </trainer>
