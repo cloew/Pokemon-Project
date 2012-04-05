@@ -6,6 +6,10 @@
             <type>GRASS</type>
             <type>POISON</type>
         </types>
+        <abilities>
+            <ability>OVERGROW</ability>
+            <dream>CHLOROPHYLL</dream>
+        </abilities>
         <baseStats>
             <HP>45</HP>
             <ATK>49</ATK>
@@ -22,6 +26,10 @@
         <types>
             <type>FIRE</type>
         </types>
+        <abilities>
+            <ability>BLAZE</ability>
+            <dream>SOLAR POWER</dream>
+        </abilities>
         <baseStats>
             <HP>39</HP>
             <ATK>52</ATK>
@@ -38,6 +46,10 @@
         <types>
             <type>WATER</type>
         </types>
+        <abilities>
+            <ability>TORRENT</ability>
+            <dream>RAIN DISH</dream>
+        </abilities>
         <baseStats>
             <HP>44</HP>
             <ATK>48</ATK>
@@ -54,6 +66,11 @@
         <types>
             <type>ELECTRIC</type>
         </types>
+        <abilities>
+            <ability>SOUNDPROOF</ability>
+            <ability>STATIC</ability>
+            <dream>AFTERMATH</dream>
+        </abilities>
         <baseStats>
             <HP>60</HP>
             <ATK>50</ATK>
@@ -65,12 +82,37 @@
     </pokemon>
     
     <pokemon>
+        <species>MAREEP</species>
+        <dex>179</dex>
+        <types>
+            <type>ELECTRIC</type>
+        </types>
+        <abilities>
+            <ability>STATIC</ability>
+            <dream>PLUS</dream>
+        </abilities>
+        <baseStats>
+            <HP>55</HP>
+            <ATK>40</ATK>
+            <DEF>40</DEF>
+            <SPD>35</SPD>
+            <SATK>65</SATK>
+            <SDEF>45</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
         <species>SNEASEL</species>
         <dex>214</dex>
         <types>
             <type>DARK</type>
             <type>ICE</type>
         </types>
+        <abilities>
+            <ability>INNER FOCUS</ability>
+            <ability>KEEN EYE</ability>
+            <dream>PICKPOCKET</dream>
+        </abilities>
         <baseStats>
             <HP>55</HP>
             <ATK>95</ATK>
@@ -78,6 +120,88 @@
             <SPD>115</SPD>
             <SATK>35</SATK>
             <SDEF>75</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
+        <species>SHARPEDO</species>
+        <dex>319</dex>
+        <types>
+            <type>WATER</type>
+            <type>DARK</type>
+        </types>
+        <abilities>
+            <ability>ROUGH SKIN</ability>
+            <dream>SPEED BOOST</dream>
+        </abilities>
+        <baseStats>
+            <HP>70</HP>
+            <ATK>120</ATK>
+            <DEF>40</DEF>
+            <SPD>95</SPD>
+            <SATK>95</SATK>
+            <SDEF>40</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
+        <species>FLYGON</species>
+        <dex>330</dex>
+        <types>
+            <type>GROUND</type>
+            <type>DRAGON</type>
+        </types>
+        <abilities>
+            <ability>LEVITATE</ability>
+        </abilities>
+        <baseStats>
+            <HP>80</HP>
+            <ATK>100</ATK>
+            <DEF>80</DEF>
+            <SPD>100</SPD>
+            <SATK>80</SATK>
+            <SDEF>80</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
+        <species>SALAMENCE</species>
+        <dex>373</dex>
+        <types>
+            <type>DRAGON</type>
+            <type>FLYING</type>
+        </types>
+        <abilities>
+            <ability>INTIMIDATE</ability>
+            <dream>MOXIE</dream>
+        </abilities>
+        <baseStats>
+            <HP>95</HP>
+            <ATK>135</ATK>
+            <DEF>80</DEF>
+            <SPD>100</SPD>
+            <SATK>110</SATK>
+            <SDEF>80</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
+        <species>HYDREIGON</species>
+        <dex>635</dex>
+        <types>
+            <type>DARK</type>
+            <type>DRAGON</type>
+        </types>
+        <abilities>
+            <ability>LEVITATE</ability>
+        </abilities>
+        <baseStats>
+            <HP>92</HP>
+            <ATK>105</ATK>
+            <DEF>90</DEF>
+            <SPD>98</SPD>
+            <SATK>125</SATK>
+            <SDEF>90</SDEF>
         </baseStats>
     </pokemon>
 </pokedex>
