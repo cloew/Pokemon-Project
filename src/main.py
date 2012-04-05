@@ -49,9 +49,36 @@ def Battle(player, cpu):
     BattleViewController().begin(player, cpu)
     
 def Loop(player, cpu):
-    player, cpu = GetTrainers(player, cpu)
-    Battle(player, cpu)
+    goAgain = True
+    
+    while goAgain:
+        player, cpu = GetTrainers(player, cpu)
+        Battle(player, cpu)
+        
+        if CheckAgain():
+            player, cpu = CheckReplaceTrainers(player, cpu)
+        else:
+            goAgain = False
+        
+        
+def CheckAgain():
+    c = raw_input("Enter y to play again:")
+    return c.lower() == "y"
 
+def CheckReplaceTrainers(player, cpu):
+    
+    player = CheckTrainer(player, "Enter y to change your trainer:")
+    cpu = CheckTrainer(cpu, "Enter y to change your opponent:")
+    return player, cpu
+    
+def CheckTrainer(trainer, msg):
+    c = raw_input(msg)
+    if c.lower() == "y":
+        return None
+    else:
+        return trainer
+    
+    
 def main(argv):
     """ Start the game """
     player, cpu = ParseArgs(argv)
