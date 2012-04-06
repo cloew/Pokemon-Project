@@ -24,19 +24,23 @@ class StatModDelegate(EffectDelegate):
             
     def applyMod(self, pkmn):
         """ Apply the modifier to the given pkmn """
+        messages = []
         degree, abilityMessages = pkmn.getAbility().\
                                                 onStatMod(pkmn, self.stat, self.degree, self.affectUser)
         
         for effect in pkmn.secondaryEffects:
             degree = effect.onStatMod(pkmn, degree, abilityMessages)
+            
+        messages += abilityMessages
                                                 
-        noChange, messages = self.checkNoChange(pkmn, degree, abilityMessages)
+        noChange, changeMessages = self.checkNoChange(pkmn, degree)
+        messages += changeMessages
         if noChange:
             return messages
             
-        return self.changeStats(pkmn, degree)
+        return self.changeStats(pkmn, degree) + messages
         
-    def checkNoChange(self, pkmn, degree, abilityMessages):
+    def checkNoChange(self, pkmn, degree):
         """ Check if anything will change """
         noChange = False
         messages = []
@@ -44,7 +48,6 @@ class StatModDelegate(EffectDelegate):
         
         if degree == 0:
             noChange = True
-            messages = abilityMessages
         elif degree > 0 and pkmn.statMods[self.stat] == self.max:
             noChange = True
             messages = [header + StatModDelegate.noChangeUp]

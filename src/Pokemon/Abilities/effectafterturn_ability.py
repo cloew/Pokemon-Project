@@ -1,7 +1,7 @@
 from ability import Ability
 
 class EffectAfterTurnAbility(Ability):
-    """ An ability that prevents any crit """
+    """ An ability that performs an effect after turn """
     
     def __init__(self, name, effects):
         """ Builds the Ability """

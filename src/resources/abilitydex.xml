@@ -29,6 +29,20 @@
     </ability>
 
     <ability>
+        <name>DEFIANT</name>
+        <type>EFFECT ON STAT MOD</type>
+        <message>%s raised its ATK in defiance. </message>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>ATK</stat>
+                <degree>2</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </ability>
+    
+    <ability>
         <name>HYPER CUTTER</name>
         <type>CANT LOWER STAT</type>
         <stat>ATK</stat>

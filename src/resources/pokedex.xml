@@ -83,6 +83,26 @@
     </pokemon>
     
     <pokemon>
+        <species>RAICHU</species>
+        <dex>26</dex>
+        <types>
+            <type>ELECTRIC</type>
+        </types>
+        <abilities>
+            <ability>STATIC</ability>
+            <dream>LIGHTNING ROD</dream>
+        </abilities>
+        <baseStats>
+            <HP>60</HP>
+            <ATK>90</ATK>
+            <DEF>55</DEF>
+            <SPD>100</SPD>
+            <SATK>90</SATK>
+            <SDEF>80</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
         <species>ELECTRODE</species>
         <dex>101</dex>
         <types>
@@ -189,6 +209,27 @@
         </baseStats>
     </pokemon>
     
+    <pokemon>
+        <species>TYRANITAR</species>
+        <dex>248</dex>
+        <types>
+            <type>ROCK</type>
+            <type>DARK</type>
+        </types>
+        <abilities>
+            <ability>SAND STREAM</ability>
+            <dream>UNNERVE</dream>
+        </abilities>
+        <baseStats>
+            <HP>100</HP>
+            <ATK>134</ATK>
+            <DEF>110</DEF>
+            <SPD>61</SPD>
+            <SATK>95</SATK>
+            <SDEF>100</SDEF>
+        </baseStats>
+    </pokemon>
+    
     <!-- Gen III -->
     <pokemon>
         <species>SHARPEDO</species>
@@ -249,6 +290,27 @@
             <SPD>100</SPD>
             <SATK>110</SATK>
             <SDEF>80</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
+        <species>METAGROSS</species>
+        <dex>376</dex>
+        <types>
+            <type>STEEL</type>
+            <type>PSYCHIC</type>
+        </types>
+        <abilities>
+            <ability>CLEAR BODY</ability>
+            <dream>LIGHT METAL</dream>
+        </abilities>
+        <baseStats>
+            <HP>80</HP>
+            <ATK>135</ATK>
+            <DEF>130</DEF>
+            <SPD>70</SPD>
+            <SATK>95</SATK>
+            <SDEF>90</SDEF>
         </baseStats>
     </pokemon>
     
@@ -315,6 +377,27 @@
     
     <!-- Gen V -->
     <pokemon>
+        <species>EMOLGA</species>
+        <dex>587</dex>
+        <types>
+            <type>ELECTRIC</type>
+            <type>FLYING</type>
+        </types>
+        <abilities>
+            <ability>STATIC</ability>
+            <dream>MOTOR DRIVE</dream>
+        </abilities>
+        <baseStats>
+            <HP>55</HP>
+            <ATK>75</ATK>
+            <DEF>60</DEF>
+            <SPD>103</SPD>
+            <SATK>75</SATK>
+            <SDEF>60</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
         <species>GALVANTULA</species>
         <dex>596</dex>
         <types>
@@ -337,6 +420,28 @@
     </pokemon>
     
     <pokemon>
+        <species>BISHARP</species>
+        <dex>625</dex>
+        <types>
+            <type>DARK</type>
+            <type>STEEL</type>
+        </types>
+        <abilities>
+            <ability>DEFIANT</ability>
+            <ability>INNER FOCUS</ability>
+            <dream>PRESSURE</dream>
+        </abilities>
+        <baseStats>
+            <HP>65</HP>
+            <ATK>125</ATK>
+            <DEF>100</DEF>
+            <SPD>70</SPD>
+            <SATK>60</SATK>
+            <SDEF>70</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
         <species>HYDREIGON</species>
         <dex>635</dex>
         <types>
@@ -353,6 +458,26 @@
             <SPD>98</SPD>
             <SATK>125</SATK>
             <SDEF>90</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
+        <species>ZEKROM</species>
+        <dex>644</dex>
+        <types>
+            <type>DRAGON</type>
+            <type>ELECTRIC</type>
+        </types>
+        <abilities>
+            <ability>TERAVOLT</ability>
+        </abilities>
+        <baseStats>
+            <HP>100</HP>
+            <ATK>150</ATK>
+            <DEF>120</DEF>
+            <SPD>90</SPD>
+            <SATK>120</SATK>
+            <SDEF>100</SDEF>
         </baseStats>
     </pokemon>
 </pokedex>

@@ -8,7 +8,7 @@
                 <species>SNEASEL</species>
                 <level>20</level>
                 <currHP>60</currHP>
-                <ability>COMPOUNDEYES</ability>
+                <ability>DEFIANT</ability>
                 
                 <attacks>
                     <attack>
@@ -123,7 +123,7 @@
                 
                 <attacks>
                     <attack>
-                        <name>GROWL</name>
+                        <name>TAIL WHIP</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>
@@ -211,6 +211,22 @@
                 <level>20</level>
                 <currHP>60</currHP>
                 <ability>LEVITATE</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>TYRANITAR</name>
+                <species>TYRANITAR</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>SAND STREAM</ability>
                 
                 <attacks>
                     <attack>
@@ -411,8 +427,56 @@
             </pokemon>
             
             <pokemon>
+                <name>RAICHU</name>
+                <species>RAICHU</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability></ability>
+                
+                <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>ZEKROM</name>
+                <species>ZEKROM</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability></ability>
+                
+                <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
                 <name>GALVANTULA</name>
                 <species>GALVANTULA</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability></ability>
+                
+                <attacks>
+                    <attack>
+                        <name>DEVASTATE</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>EMOLGA</name>
+                <species>EMOLGA</species>
                 <level>20</level>
                 <currHP>60</currHP>
                 <ability></ability>
@@ -438,6 +502,70 @@
                         <name>DEVASTATE</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+        </belt>
+    </trainer>
+    
+    <trainer>
+        <name>Alex</name>
+        <title>Leader</title>
+        <belt>
+            <pokemon>
+                <name>SCIZOR</name>
+                <species>SCIZOR</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>HYPER CUTTER</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>GROWL</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>METAGROSS</name>
+                <species>METAGROSS</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>SHED SKIN</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>TACKLE</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                    <attack>
+                        <name>GROWL</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>BISHARP</name>
+                <species>BISHARP</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>DEFIANT</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>TACKLE</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
+                    </attack>
+                    <attack>
+                        <name>GROWL</name>
+                        <currPP>35</currPP>
+                        <PP>35</PP>
                     </attack>
                 </attacks>
             </pokemon>

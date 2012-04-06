@@ -8,6 +8,7 @@ from booststab_ability import BoostStabAbility
 from cantlowerstat_ability import CantLowerStatAbility
 from effectafterturn_ability import EffectAfterTurnAbility
 from effectoncrit_ability import EffectOnCritAbility
+from effecton_statmod_ability import EffectOnStatModAbility
 from nocrit_ability import NoCritAbility
 from skip_turn_ability import SkipTurnAbility
 from sniper_ability import SniperAbility
@@ -89,6 +90,17 @@ class AbilityFactory:
                 effects.append(effect)
                 
             return EffectOnCritAbility(name, effects)
+            
+        elif abilityType == "EFFECT ON STAT MOD":
+            message  =  tree.find(Tags.messageTag).text
+            effectsTree = tree.find(Tags.effectDelegatesTag)
+            effects = []
+        
+            for effectTree in effectsTree.getchildren():
+                effect = EffectDelegateFactory.loadFromXML(effectTree, None)
+                effects.append(effect)
+                
+            return EffectOnStatModAbility(name, effects, message)
             
         elif abilityType == "NO CRIT":
             return NoCritAbility(name)
