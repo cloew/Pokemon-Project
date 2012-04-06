@@ -1,4 +1,5 @@
 <pokedex>
+    <!-- Gen I -->
     <pokemon>
         <species>BULBASAUR</species>
         <dex>4</dex>
@@ -103,6 +104,28 @@
     </pokemon>
     
     <pokemon>
+        <species>GYARADOS</species>
+        <dex>130</dex>
+        <types>
+            <type>WATER</type>
+            <type>FLYING</type>
+        </types>
+        <abilities>
+            <ability>INTIMIDATE</ability>
+            <dream>MOXIE</dream>
+        </abilities>
+        <baseStats>
+            <HP>95</HP>
+            <ATK>125</ATK>
+            <DEF>79</DEF>
+            <SPD>81</SPD>
+            <SATK>60</SATK>
+            <SDEF>100</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <!-- Gen II -->
+    <pokemon>
         <species>MAREEP</species>
         <dex>179</dex>
         <types>
@@ -166,6 +189,7 @@
         </baseStats>
     </pokemon>
     
+    <!-- Gen III -->
     <pokemon>
         <species>SHARPEDO</species>
         <dex>319</dex>
@@ -229,6 +253,47 @@
     </pokemon>
     
     <pokemon>
+        <species>LATIOS</species>
+        <dex>381</dex>
+        <types>
+            <type>DRAGON</type>
+            <type>PSYCHIC</type>
+        </types>
+        <abilities>
+            <ability>LEVITATE</ability>
+        </abilities>
+        <baseStats>
+            <HP>80</HP>
+            <ATK>90</ATK>
+            <DEF>80</DEF>
+            <SPD>110</SPD>
+            <SATK>130</SATK>
+            <SDEF>110</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <pokemon>
+        <species>RAYQUAZA</species>
+        <dex>384</dex>
+        <types>
+            <type>DRAGON</type>
+            <type>FLYING</type>
+        </types>
+        <abilities>
+            <ability>AIR LOCK</ability>
+        </abilities>
+        <baseStats>
+            <HP>105</HP>
+            <ATK>150</ATK>
+            <DEF>90</DEF>
+            <SPD>95</SPD>
+            <SATK>150</SATK>
+            <SDEF>90</SDEF>
+        </baseStats>
+    </pokemon>
+    
+    <!-- Gen IV -->
+    <pokemon>
         <species>HEAT ROTOM</species>
         <dex>479</dex>
         <types>
@@ -248,6 +313,7 @@
         </baseStats>
     </pokemon>
     
+    <!-- Gen V -->
     <pokemon>
         <species>GALVANTULA</species>
         <dex>596</dex>

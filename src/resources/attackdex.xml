@@ -310,6 +310,28 @@
     </attack>
     
     <attack>
+        <name>STRENGTH</name>
+        <type>NORMAL</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>80</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
         <name>SUPER FANG</name>
         <type>NORMAL</type>
         <PP>10</PP>
@@ -417,6 +439,86 @@
     </attack>
     
     <attack>
+        <name>FLAMETHROWER</name>
+        <type>FIRE</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>95</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>BRN</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+            <effectDelegate>
+                <type>CURE STATUS</type>
+                <status>FRZ</status>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>HEAT WAVE</name>
+        <type>FIRE</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>100</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>BRN</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+            <effectDelegate>
+                <type>CURE STATUS</type>
+                <status>FRZ</status>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
         <name>WILL-O-WISP</name>
         <type>FIRE</type>
         <PP>15</PP>
@@ -456,6 +558,28 @@
                 <message> was healed by the veil.</message>
             </effectDelegate>
         </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>SURF</name>
+        <type>WATER</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>95</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
     </attack>
     
     <attack>
@@ -506,6 +630,41 @@
                 <type>STATUS</type>
                 <status>PAR</status>
                 <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>THUNDERBOLT</name>
+        <type>ELECTRIC</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>95</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PRZ</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
             </effectDelegate>
         </effectDelegates>
     </attack>
@@ -618,6 +777,41 @@
         <effectDelegates>
             <effectDelegate>
                 <type>RESET STAT MODS</type>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>ICE BEAM</name>
+        <type>ICE</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>95</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>FRZ</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
             </effectDelegate>
         </effectDelegates>
     </attack>
@@ -921,6 +1115,35 @@
     </attack>
     
     <attack>
+        <name>FLY</name>
+        <type>FLYING</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>95</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>90</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>DODGE</type>
+                <dodgeType>FLY</dodgeType>
+                <message> flew up into the sky.</message>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
         <name>GUST</name>
         <type>FLYING</type>
         <PP>35</PP>
@@ -999,6 +1222,36 @@
                 <type>SWAP STATS</type>
                 <stat1>ATK</stat1>
                 <stat2>DEF</stat2>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>PSYCHIC</name>
+        <type>PSYCHIC</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>90</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>SDEF</stat>
+                <degree>-1</degree>
+                <affectUser>0</affectUser>
             </effectDelegate>
         </effectDelegates>
     </attack>
@@ -1235,6 +1488,80 @@
     
     <!-- Dragon -->
     <attack>
+        <name>DRACO METEOR</name>
+        <type>DRAGON</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <physical>0</physical>
+            <power>140</power>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>SATK</stat>
+                <degree>-2</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>DRAGON CLAW</name>
+        <type>DRAGON</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <physical>1</physical>
+            <power>80</power>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>DRAGON PULSE</name>
+        <type>DRAGON</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <physical>0</physical>
+            <power>90</power>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
         <name>DRAGON RAGE</name>
         <type>DRAGON</type>
         <PP>10</PP>
@@ -1254,6 +1581,35 @@
                 <base>0</base>
             </critDelegate>
         </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>DRAGON TAIL</name>
+        <type>DRAGON</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <physical>1</physical>
+            <power>60</power>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>RANDOM SWITCH</type>
+                <affectUser>0</affectUser>
+                <reset>1</reset>
+            </effectDelegate>
+        </effectDelegates>
     </attack>
     
     <!-- Dark -->
@@ -1284,6 +1640,42 @@
                 <effectDelegates>
                     <effectDelegate>
                         <type>FLINCH</type>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>CRUNCH</name>
+        <type>DARK</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>80</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>20</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>DEF</stat>
+                        <degree>-1</degree>
+                        <affectUser>0</affectUser>
                     </effectDelegate>
                 </effectDelegates>
             </effectDelegate>

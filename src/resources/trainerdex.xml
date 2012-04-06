@@ -236,7 +236,22 @@
                 
                 <attacks>
                     <attack>
-                        <name>DEVASTATE</name>
+                        <name>DRAGON TAIL</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                    <attack>
+                        <name>FLY</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                    <attack>
+                        <name>FLAMETHROWER</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                    <attack>
+                        <name>CRUNCH</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
@@ -252,7 +267,43 @@
                 
                 <attacks>
                     <attack>
-                        <name>DEVASTATE</name>
+                        <name>EARTHQUAKE</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                    <attack>
+                        <name>DRAGON CLAW</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                    <attack>
+                        <name>DIG</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>GYARADOS</name>
+                <species>GYARADOS</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>MOXIE</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>SURF</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                    <attack>
+                        <name>THUNDERBOLT</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                    <attack>
+                        <name>FLAMETHROWER</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
@@ -264,13 +315,75 @@
                 <species>CHARIZARD</species>
                 <level>20</level>
                 <currHP>60</currHP>
-                <ability></ability>
+                <ability>BLAZE</ability>
                 
                 <attacks>
                     <attack>
-                        <name>DEVASTATE</name>
+                        <name>TOXIC</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                    <attack>
+                        <name>HEAT WAVE</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                    <attack>
+                        <name>STRENGTH</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
+                    </attack>
+                    <attack>
+                        <name>DRAGON CLAW</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>LATIOS</name>
+                <species>LATIOS</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>LEVITATE</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>DRAGON PULSE</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                    <attack>
+                        <name>PSYCHIC</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                    <attack>
+                        <name>RECOVER</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                    <attack>
+                        <name>ICE BEAM</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+            
+            <pokemon>
+                <name>RAYQUAZA</name>
+                <species>RAYQUAZA</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>AIR LOCK</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>DRAGON PULSE</name>
+                        <currPP>5</currPP>
+                        <PP>5</PP>
                     </attack>
                 </attacks>
             </pokemon>
