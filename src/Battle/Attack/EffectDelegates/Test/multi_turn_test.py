@@ -96,8 +96,32 @@ suiteCheckOver = unittest.TestSuite(map(checkOver, testcasesCheckOver))
 
 ##########################################################
 
+class resetTurns(unittest.TestCase):
+    """ Test cases of resetTurns """
+    
+    def  setUp(self):
+        """ Build the Delegate for the test """
+        self.effect = BuildEffectDelegate()
+        effects = [self.effect]
+        
+        self.turns = 2
+        self.delegate = MultiTurnDelegate(effects)
+        self.delegate.turns = self.turns
+        
+    def turnOn(self):
+        """ Test that turnOn is reset """
+        self.delegate.turnOn = 1
+        self.delegate.resetTurns()
+        assert  self.delegate.turnOn == 0, "Turn On should be reset"
+
+# Collect all test cases in this class
+testcasesResetTurns = ["turnOn"]
+suiteResetTurns = unittest.TestSuite(map(resetTurns, testcasesResetTurns))
+
+##########################################################
+
 # Collect all test cases in this file
-suites = [suiteIncTurns, suiteApplyLock, suiteCheckOver]
+suites = [suiteIncTurns, suiteApplyLock, suiteCheckOver, suiteResetTurns]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
