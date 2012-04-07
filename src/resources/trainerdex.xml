@@ -293,7 +293,7 @@
                         <PP>15</PP>
                     </attack>
                     <attack>
-                        <name>DIG</name>
+                        <name>SOLAR BEAM</name>
                         <currPP>10</currPP>
                         <PP>10</PP>
                     </attack>
@@ -419,7 +419,7 @@
                 
                 <attacks>
                     <attack>
-                        <name>DEVASTATE</name>
+                        <name>IRON TAIL</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
@@ -463,13 +463,18 @@
                 <species>GALVANTULA</species>
                 <level>20</level>
                 <currHP>60</currHP>
-                <ability></ability>
+                <ability>COMPOUNDEYES</ability>
                 
                 <attacks>
                     <attack>
-                        <name>DEVASTATE</name>
-                        <currPP>15</currPP>
-                        <PP>15</PP>
+                        <name>BUG BUZZ</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                    <attack>
+                        <name>POISON JAB</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
                     </attack>
                 </attacks>
             </pokemon>

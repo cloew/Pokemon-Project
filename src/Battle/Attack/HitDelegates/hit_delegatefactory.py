@@ -49,7 +49,7 @@ class HitDelegateFactory:
         elif delegateType == "PIERCE DODGE":
             accuracy = int(element.find(Tags.hitTag).text)
             pierce = element.find(Tags.pierceTag).text
-            return PierceDodgeDelegate(parent, accuracy, HitDelegateFactory.MISS, pierce)
+            return PierceDodgeDelegate(parent, accuracy, pierce)
             
         elif delegateType == "SELF":
             return HitSelfDelegate()

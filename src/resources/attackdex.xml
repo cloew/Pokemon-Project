@@ -742,6 +742,36 @@
     </attack>
     
     <attack>
+        <name>SOLAR BEAM</name>
+        <type>GRASS</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>120</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHARGE</type>
+                <turns>2</turns>
+                <hitOnTurn>1</hitOnTurn>
+                <message> is absorbing sunlight.</message>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
         <name>SPORE</name>
         <type>GRASS</type>
         <PP>15</PP>
@@ -955,6 +985,41 @@
         <damageDelegate>
             <type>CORE</type>
             <power>120</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>30</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PSN</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
+        <name>POISON JAB</name>
+        <type>POISON</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>80</power>
             <physical>1</physical>
             <critDelegate>
                 <base>0</base>
@@ -1275,6 +1340,36 @@
     </attack>
     
     <!-- Bug -->
+     <attack>
+        <name>BUG BUZZ</name>
+        <type>BUG</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>90</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>SDEF</stat>
+                <degree>-1</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
     <attack>
         <name>SILVER WIND</name>
         <type>BUG</type>
@@ -1857,5 +1952,35 @@
                 <base>0</base>
             </critDelegate>
         </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>IRON TAIL</name>
+        <type>STEEL</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>75</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>100</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>DEF</stat>
+                <degree>-1</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
     </attack>
 </attacks>
