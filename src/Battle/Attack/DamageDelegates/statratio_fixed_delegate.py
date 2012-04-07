@@ -20,5 +20,4 @@ class StatRatioFixedDelegate(StatRatioDelegate):
         elif ratio >1/4.0:
             index = 2
            
-        print ratio, index
         return index
