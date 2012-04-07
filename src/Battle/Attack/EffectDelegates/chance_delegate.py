@@ -2,7 +2,6 @@ from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
 import random
 
-
 class ChanceDelegate(EffectDelegate):
     """ Represents an effect with a percent chance oif happening """
     

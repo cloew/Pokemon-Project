@@ -1,19 +1,15 @@
 from Battle.Actions.action_lock import ActionLock
 from Battle.Attack.DamageDelegates.damage_delegate import DamageDelegate
-from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
+from Battle.Attack.EffectDelegates.multi_turn_delegate import MultiTurnDelegate
 
-class DamageScaleDelegate(DamageDelegate, EffectDelegate):
+class DamageScaleDelegate(DamageDelegate, MultiTurnDelegate):
     """ Damage Delegate whose damage scales each turn it is used """
     
     def __init__(self, parent, power, isPhysical, factor, turns):
         """ """
-        self.parent = parent
-        self.power = power
-        self.isPhysical = isPhysical
         self.factor = factor
-        self.turns = turns
-        
-        self.turnOn = 0
+        DamageDelegate.__init__(self, parent, power, isPhysical)
+        MultiTurnDelegate.__init__(self, turns, [])
         
     def coreDamage(self, user, target):
         """ Calculate the damage before modifiers and rands """
@@ -27,13 +23,13 @@ class DamageScaleDelegate(DamageDelegate, EffectDelegate):
         """ Returns the scale based on the number of turns the attack has run """
         return self.factor**self.turnOn
         
-    def applyEffect(self, user, target):
-        """ Applies the delegate's effect when the attack hits """
-        if self.turnOn == 0:
-            self.applyLock(user)
-            
-        self.incTurns()
-        return []
+    #def applyEffect(self, user, target):
+    #    """ Applies the delegate's effect when the attack hits """
+    #    if self.turnOn == 0:
+    #        self.applyLock(user)
+    #       
+    #    self.incTurns()
+    #   return []
         
     def effectOnMiss(self, user, target):
         """ Applies the delegate's effect on a miss """
@@ -45,11 +41,11 @@ class DamageScaleDelegate(DamageDelegate, EffectDelegate):
         user.actionLock = None
         return []
         
-    def incTurns(self):
-        """ Move to the next turn """
-        self.turnOn = (self.turnOn+1)%self.turns
+    #def incTurns(self):
+    #    """ Move to the next turn """
+    #    self.turnOn = (self.turnOn+1)%self.turns
         
-    def applyLock(self, pkmn):
-        """ Locks the side to use this move """
-        pkmn.actionLock = ActionLock(pkmn,  \
-                                                        pkmn.lastAction, self.turns-1)
+    #def applyLock(self, pkmn):
+    #    """ Locks the side to use this move """
+    #    pkmn.actionLock = ActionLock(pkmn,  \
+    #                                                    pkmn.lastAction, self.turns-1)
