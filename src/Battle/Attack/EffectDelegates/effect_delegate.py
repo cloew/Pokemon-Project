@@ -30,3 +30,10 @@ class EffectDelegate(object):
         
     def stopCharge(self, user):
         """ Stop Charging """
+        
+    def performEffects(self, effects, user, target):
+        """ Perform the effects given """
+        messages = []
+        for effect in effects:
+            messages += effect.tryToApplyEffect(user, target)
+        return messages

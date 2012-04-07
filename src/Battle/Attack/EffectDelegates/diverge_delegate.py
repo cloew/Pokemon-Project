@@ -19,13 +19,6 @@ class DivergeDelegate(EffectDelegate):
         
         return messages
         
-    def performEffects(self, effects, user, target):
-        """ Perform the effects given """
-        messages = []
-        for effect in effects:
-            messages += effect.tryToApplyEffect(user, target)
-        return messages
-        
     def diverge(self, user, target):
         """ Function to determine if the diverge effects should be called
         Should be overridden in sub classes """

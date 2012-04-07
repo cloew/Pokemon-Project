@@ -16,6 +16,7 @@ import heal_damageratio_test
 import heal_hpratio_test
 import heal_ratio_test
 import leechdelegate_test
+import multi_turn_test
 import periodichealdelegate_test
 import randomstatmod_test
 import recoil_test
@@ -40,6 +41,7 @@ suites = [applylock_test.suite, applystatus_test.suite,
               heal_damageratio_test.suite,
               heal_hpratio_test.suite, heal_ratio_test.suite,
               leechdelegate_test.suite,
+              multi_turn_test.suite,
               periodichealdelegate_test.suite,
               randomstatmod_test.suite, recoil_test.suite,
               reset_statmods_test.suite, selfdestruct_test.suite,

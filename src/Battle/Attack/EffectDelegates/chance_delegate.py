@@ -16,9 +16,7 @@ class ChanceDelegate(EffectDelegate):
         messages = []
         
         if self.shouldApply(random.randint(0,99)):
-            for effect in self.effects:
-                effectMessages = effect.tryToApplyEffect(user, target)
-                messages = messages + effectMessages
+            messages += self.performEffects(self.effects)
                 
         return messages
         
