@@ -9,7 +9,8 @@ class incTurns(unittest.TestCase):
     def  setUp(self):
         """ Build the Delegate for the test """
         self.turns = 2
-        self.delegate = MultiTurnDelegate(self.turns, None)
+        self.delegate = MultiTurnDelegate(None)
+        self.delegate.turns = self.turns
         
     def inc(self):
         """ Test that the turnOn is incremented """
@@ -41,7 +42,8 @@ class applyLock(unittest.TestCase):
         self.user.lastAction = self.lastAction
         
         self.turns = 2
-        self.delegate = MultiTurnDelegate(self.turns, None)
+        self.delegate = MultiTurnDelegate(None)
+        self.delegate.turns = self.turns
         
         self.delegate.applyLock(self.user)
         self.actionLock = self.user.actionLock
@@ -71,8 +73,10 @@ class checkOver(unittest.TestCase):
         """ Build the Delegate for the test """
         self.effect = BuildEffectDelegate()
         effects = [self.effect]
+        
         self.turns = 2
-        self.delegate = MultiTurnDelegate(self.turns, effects)
+        self.delegate = MultiTurnDelegate(effects)
+        self.delegate.turns = self.turns
         
     def notOver(self):
         """ Test that the the effects are not called when the effect is not over """
