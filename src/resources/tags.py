@@ -36,6 +36,9 @@ class Tags:
     degreeTag = "degree"
     affectUserTag = "affectUser"
     
+    minTag = "min"
+    maxTag = "max"
+    
     chanceTag = "chance"
     
     ratioTag = "ratio"

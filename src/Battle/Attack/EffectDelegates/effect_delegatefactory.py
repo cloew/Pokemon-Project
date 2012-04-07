@@ -11,6 +11,8 @@ from flinch_delegate import FlinchDelegate
 from heal_damageratio_delegate import HealByDamageRatioDelegate
 from heal_hpratio_delegate import HealByHPRatioDelegate
 from leech_delegate import LeechDelegate
+from multi_turn_fixed_delegate import FixedMultiTurnDelegate
+from multi_turn_range_delegate import MultiTurnRangeDelegate
 from null_effect_delegate import NullEffectDelegate
 from periodicheal_delegate import PeriodicHealDelegate
 from randomstatmod_delegate import RandomStatModDelegate
@@ -58,10 +60,11 @@ class EffectDelegateFactory:
             
         elif delegateType == "CHANCE":
             chance = int(element.find(Tags.chanceTag).text)
-            effects = []
-            effectDelegates = element.find(Tags.effectDelegatesTag)
-            for effectDelegate in effectDelegates.getchildren():
-                effects.append(EffectDelegateFactory.loadFromXML(effectDelegate, parent))
+            effects = EffectDelegateFactory.getEffects(element, Tags.effectDelegatesTag, parent)
+            #effects = []
+            #effectDelegates = element.find(Tags.effectDelegatesTag)
+            #for effectDelegate in effectDelegates.getchildren():
+            #    effects.append(EffectDelegateFactory.loadFromXML(effectDelegate, parent))
             delegate = ChanceDelegate(chance, effects)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.REGULAR)
             return delegate
@@ -142,6 +145,14 @@ class EffectDelegateFactory:
             startMessage = element.find(Tags.startMessageTag).text
             message = element.find(Tags.messageTag).text
             delegate = LeechDelegate(startMessage, message, parent.type)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
+            
+        elif delegateType == "MULTI TURN RANGE":
+            min = int(element.find(Tags.minTag).text)
+            max = int(element.find(Tags.maxTag).text)
+            effects = EffectDelegateFactory.getEffects(element, Tags.effectDelegatesTag, parent)
+            delegate = MultiTurnRangeDelegate(min, max, effects)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
             
@@ -233,3 +244,11 @@ class EffectDelegateFactory:
             delegate = UselessDelegate()
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
+           
+    @staticmethod
+    def getEffects(element, tag, parent):
+        effects = []
+        effectDelegates = element.find(tag)
+        for effectDelegate in effectDelegates.getchildren():
+            effects.append(EffectDelegateFactory.loadFromXML(effectDelegate, parent))
+        return effects

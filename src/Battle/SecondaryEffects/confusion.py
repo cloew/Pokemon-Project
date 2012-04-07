@@ -30,7 +30,7 @@ class Confusion(SecondaryEffect):
         messages = []
         immobilized = False
         
-        if self.checkOver(user, messages):
+        if self.checkOver(owner, messages):
             immobilized = False
         
         elif self.confused(random.randint(0, 1)):
