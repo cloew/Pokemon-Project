@@ -1,5 +1,5 @@
 import unittest
-from Test.test_helper import BuildPokemonBattleWrapper
+from Test.test_helper import BuildPokemonBattleWrapper, BuildEffectDelegate
 
 from Battle.Attack.EffectDelegates.multi_turn_delegate import MultiTurnDelegate
 
@@ -64,8 +64,36 @@ suiteApplyLock = unittest.TestSuite(map(applyLock, testcasesApplyLock))
 
 ##########################################################
 
+class checkOver(unittest.TestCase):
+    """ Test cases of checkOver """
+    
+    def  setUp(self):
+        """ Build the Delegate for the test """
+        self.effect = BuildEffectDelegate()
+        effects = [self.effect]
+        self.turns = 2
+        self.delegate = MultiTurnDelegate(self.turns, effects)
+        
+    def notOver(self):
+        """ Test that the the effects are not called when the effect is not over """
+        self.delegate.turnOn = 1
+        messages = self.delegate.checkOver(None, None)
+        assert messages == [], "If the effect is not over, the effects should not be called"
+        
+    def over(self):
+        """ Test that the the effects are called when the effect is over """
+        self.delegate.turnOn = 0
+        messages = self.delegate.checkOver(None, None)
+        assert messages == [self.effect.message], "Should get the messages from the effects"
+
+# Collect all test cases in this class
+testcasesCheckOver = ["notOver", "over"]
+suiteCheckOver = unittest.TestSuite(map(checkOver, testcasesCheckOver))
+
+##########################################################
+
 # Collect all test cases in this file
-suites = [suiteIncTurns, suiteApplyLock]
+suites = [suiteIncTurns, suiteApplyLock, suiteCheckOver]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
