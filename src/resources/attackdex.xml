@@ -1,6 +1,5 @@
 <attacks>
     <!-- Normal -->
-    
     <attack>
         <name>ACUPRESSURE</name>
         <type>NORMAL</type>
@@ -397,7 +396,6 @@
     </attack>
     
     <!-- Fire -->
-    
     <attack>
         <name>EMBER</name>
         <type>FIRE</type>
@@ -614,6 +612,28 @@
     
     <!-- Electric -->
     <attack>
+        <name>ELECTRO BALL</name>
+        <type>ELECTRIC</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>STAT RATIO FIXED</type>
+            <physical>0</physical>
+            <stat>SPD</stat>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    
+    <attack>
         <name>THUNDER WAVE</name>
         <type>ELECTRIC</type>
         <PP>20</PP>
@@ -742,7 +762,7 @@
     </attack>
     
     <attack>
-        <name>SOLAR BEAM</name>
+        <name>SOLAR BEAM</name> <!-- Need hit and Damage based on weather -->
         <type>GRASS</type>
         <PP>10</PP>
         <speedDelegate>
@@ -1945,7 +1965,7 @@
             <hit>100</hit>
         </hitDelegate>
         <damageDelegate>
-            <type>STAT RATIO</type>
+            <type>STAT RATIO RANGE</type>
             <physical>1</physical>
             <stat>SPD</stat>
             <critDelegate>

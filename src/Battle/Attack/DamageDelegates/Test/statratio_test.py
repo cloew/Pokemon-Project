@@ -4,60 +4,52 @@ from Battle.Attack.DamageDelegates.statratio_delegate import StatRatioDelegate
 
 import unittest
 
-class getPower(unittest.TestCase):
-    """ Test that core damage is calculated correctly """ 
+class getStatRatio(unittest.TestCase):
+    """ Test that the ratio is calculated properly """ 
     
     def setUp(self):
         """ Setup the attack and Pokemon to use the attack """
-        self.actingPokemon = BuildPokemonBattleWrapper()
-        self.otherPokemon = BuildPokemonBattleWrapper()
+        self.user = BuildPokemonBattleWrapper()
+        self.target = BuildPokemonBattleWrapper()
         
-        self.user = self.actingPokemon.pkmn
-        self.target = self.otherPokemon.pkmn
+        self.userPkmn = self.user.pkmn
+        self.targetPkmn = self.target.pkmn
         
         self.stat = "SPD"
         self.delegate = StatRatioDelegate(None, 1, self.stat)
+        self.lvl = 50
         
-    def basePower(self):
-        """ Test that the base power is correct """
-        self.user.battleDelegate.stats[self.stat] = 25
-        self.target.battleDelegate.stats[self.stat] = 25
-        power = self.delegate.getPower(self.actingPokemon, self.otherPokemon)
+    def equalRatio(self):
+        """ Test that the ratio is 1 """
+        self.userPkmn.battleDelegate.stats[self.stat] = self.lvl
+        self.targetPkmn.battleDelegate.stats[self.stat] = self.lvl
+        ratio = self.delegate.getStatRatio(self.user, self.target)
         
-        assert power == StatRatioDelegate.base, "Power should be the base when the ratio of the stat is 0"
+        assert ratio == 1, "Ratio should be 1"
         
-    def powerIsLarger(self):
-        """ Test that the power is greater when the user's stat is lower """
-        self.user.battleDelegate.stats[self.stat] = 20
-        self.target.battleDelegate.stats[self.stat] = 25
-        power = self.delegate.getPower(self.actingPokemon, self.otherPokemon)
+    def doubleRatio(self):
+        """ Test that the ratio is 2 """
+        self.userPkmn.battleDelegate.stats[self.stat] = self.lvl
+        self.targetPkmn.battleDelegate.stats[self.stat] = self.lvl*2
+        ratio = self.delegate.getStatRatio(self.user, self.target)
         
-        assert power > StatRatioDelegate.base, "Power should be larger when user's stat decreases"
+        assert ratio == 2, "Ratio should be 2"
         
-    def powerIsSmaller(self):
-        """ Test that the power is smaller when the user's stat is higher """
-        self.user.battleDelegate.stats[self.stat] = 30
-        self.target.battleDelegate.stats[self.stat] = 25
-        power = self.delegate.getPower(self.actingPokemon, self.otherPokemon)
+    def halfRatio(self):
+        """ Test that the ratio is 1/2 """
+        self.userPkmn.battleDelegate.stats[self.stat] = self.lvl*2
+        self.targetPkmn.battleDelegate.stats[self.stat] = self.lvl
+        ratio = self.delegate.getStatRatio(self.user, self.target)
         
-        assert power < StatRatioDelegate.base, "Power should be smaller when user's stat increases"
-        
-    def powerIsMax(self):
-        """ Test that the power is not greater than the max """
-        self.user.battleDelegate.stats[self.stat] = 1
-        self.target.battleDelegate.stats[self.stat] = 300
-        power = self.delegate.getPower(self.actingPokemon, self.otherPokemon)
-        
-        assert power ==  StatRatioDelegate.max, "Power should be max at greatest"
-
+        assert ratio == 1/2.0, "Ratio should be 1/2"
 
 # Collect all test cases in this class      
-testcasesGetPower = ["basePower", "powerIsLarger", "powerIsSmaller", "powerIsMax"]
-suiteGetPower = unittest.TestSuite(map(getPower, testcasesGetPower))
+testcasesGetStatRatio = ["equalRatio", "doubleRatio", "halfRatio"]
+suiteGetStatRatio = unittest.TestSuite(map(getStatRatio, testcasesGetStatRatio))
 
 #########################################################
 
-suites = [suiteGetPower]
+suites = [suiteGetStatRatio]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

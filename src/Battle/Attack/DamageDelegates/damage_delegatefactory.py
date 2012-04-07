@@ -11,7 +11,8 @@ from Battle.Attack.DamageDelegates.no_faint_delegate import NoFaintDelegate
 from Battle.Attack.DamageDelegates.null_damage_delegate import NullDamageDelegate
 from Battle.Attack.DamageDelegates.onehit_delegate import OneHitDelegate
 from Battle.Attack.DamageDelegates.piercedodge_2Xdelegate import PierceDodge2XDelegate
-from Battle.Attack.DamageDelegates.statratio_delegate import StatRatioDelegate
+from Battle.Attack.DamageDelegates.statratio_fixed_delegate import StatRatioFixedDelegate
+from Battle.Attack.DamageDelegates.statratio_range_delegate import StatRatioRangeDelegate
 
 
 from Battle.Attack.CritDelegates.crit_delegate import CritDelegate
@@ -97,11 +98,17 @@ class DamageDelegateFactory:
             turns = int(element.find(Tags.turnsTag).text)
             return DamageScaleDelegate(parent, power, isPhysical, factor, turns)
             
-        elif delegateType == "STAT RATIO":
+        elif delegateType == "STAT RATIO FIXED":
             isPhysical = int(element.find(Tags.physicalTag).text)
             stat = element.find(Tags.statTag).text
             parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
-            return StatRatioDelegate(parent, isPhysical, stat)
+            return StatRatioFixedDelegate(parent, isPhysical, stat)
+            
+        elif delegateType == "STAT RATIO RANGE":
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            stat = element.find(Tags.statTag).text
+            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
+            return StatRatioRangeDelegate(parent, isPhysical, stat)
             
         
             

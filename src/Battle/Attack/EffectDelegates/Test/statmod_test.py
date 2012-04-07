@@ -15,8 +15,6 @@ class checkNoChange(unittest.TestCase):
         self.stat = "ATK"
         self.pkmn =  BuildPokemonBattleWrapper()
         
-        self.abilityMessages =  ["ability message"]
-        
     def buildStatModDelegate(self, degree):
         """ Returns a stat mod delegate with the given degree """
         return StatModDelegate(self.stat, degree, 1)
@@ -26,7 +24,7 @@ class checkNoChange(unittest.TestCase):
         self.pkmn.statMods[self.stat] = 0
         delegate = self.buildStatModDelegate(1)
         
-        noChange, messages = delegate.checkNoChange(self.pkmn, 1, self.abilityMessages)
+        noChange, messages = delegate.checkNoChange(self.pkmn, 1)
         
         assert not noChange, "Change when the mod can raise"
         assert len(messages) == 0, "Should return no messages"
@@ -36,7 +34,7 @@ class checkNoChange(unittest.TestCase):
         self.pkmn.statMods[self.stat] = 0
         delegate = self.buildStatModDelegate(-1)
         
-        noChange, messages = delegate.checkNoChange(self.pkmn, -1, self.abilityMessages)
+        noChange, messages = delegate.checkNoChange(self.pkmn, -1)
         
         assert not noChange, "Change when the mod can lower"
         assert len(messages) == 0, "Should return no messages"
@@ -46,17 +44,17 @@ class checkNoChange(unittest.TestCase):
         self.pkmn.statMods[self.stat] = 0
         delegate = self.buildStatModDelegate(0)
         
-        noChange, messages = delegate.checkNoChange(self.pkmn, 0, self.abilityMessages)
+        noChange, messages = delegate.checkNoChange(self.pkmn, 0)
         
         assert noChange, "No change when degree is 0"
-        assert messages == self.abilityMessages, "Should return the ability message"
+        assert messages == [], "Should return no messages"
         
     def noChange_modTooHigh(self):
         """ Test that a mod that can't raise returns as no change """
         self.pkmn.statMods[self.stat] = 6
         delegate = self.buildStatModDelegate(2)
         
-        noChange, messages = delegate.checkNoChange(self.pkmn, 2, self.abilityMessages)
+        noChange, messages = delegate.checkNoChange(self.pkmn, 2)
         
         assert noChange, "No change when degree is 0"
         find = messages[0].find(StatModDelegate.noChangeUp)
@@ -67,7 +65,7 @@ class checkNoChange(unittest.TestCase):
         self.pkmn.statMods[self.stat] = -6
         delegate = self.buildStatModDelegate(-2)
         
-        noChange, messages = delegate.checkNoChange(self.pkmn, -2, self.abilityMessages)
+        noChange, messages = delegate.checkNoChange(self.pkmn, -2)
         
         assert noChange, "No change when degree is 0"
         find = messages[0].find(StatModDelegate.noChangeDown)
