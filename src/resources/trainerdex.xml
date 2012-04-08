@@ -475,7 +475,13 @@
                 
                 <attacks>
                     <attack>
-                        <name>DEVASTATE</name>
+                        <name>VOLT SWITCH</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                    
+                    <attack>
+                        <name>SURF</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
@@ -491,9 +497,14 @@
                 
                 <attacks>
                     <attack>
-                        <name>DEVASTATE</name>
-                        <currPP>15</currPP>
-                        <PP>15</PP>
+                        <name>OUTRAGE</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                    <attack>
+                        <name>BOLT STRIKE</name>
+                        <currPP>5</currPP>
+                        <PP>5</PP>
                     </attack>
                 </attacks>
             </pokemon>
@@ -528,9 +539,14 @@
                 
                 <attacks>
                     <attack>
-                        <name>DEVASTATE</name>
-                        <currPP>15</currPP>
-                        <PP>15</PP>
+                        <name>SPARK</name>
+                        <currPP>20</currPP>
+                        <PP>20</PP>
+                    </attack>
+                    <attack>
+                        <name>ELECTRO BALL</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
                     </attack>
                 </attacks>
             </pokemon>
@@ -544,9 +560,24 @@
                 
                 <attacks>
                     <attack>
-                        <name>DEVASTATE</name>
+                        <name>OVERHEAT</name>
+                        <currPP>5</currPP>
+                        <PP>5</PP>
+                    </attack>
+                    <attack>
+                        <name>THUNDERBOLT</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
+                    </attack>
+                    <attack>
+                        <name>CONFUSE RAY</name>
+                        <currPP>10</currPP>
+                        <PP>10</PP>
+                    </attack>
+                    <attack>
+                        <name>OMINOUS WIND</name>
+                        <currPP>5</currPP>
+                        <PP>5</PP>
                     </attack>
                 </attacks>
             </pokemon>

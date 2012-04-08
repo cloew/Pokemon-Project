@@ -517,6 +517,41 @@
     </attack>
     
     <attack>
+        <name>OVERHEAT</name>
+        <type>FIRE</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>140</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>SATK</stat>
+                <degree>-2</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+            <effectDelegate>
+                <type>CURE STATUS</type>
+                <status>FRZ</status>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
         <name>WILL-O-WISP</name>
         <type>FIRE</type>
         <PP>15</PP>
@@ -612,6 +647,41 @@
     
     <!-- Electric -->
     <attack>
+        <name>BOLT STRIKE</name>
+        <type>ELECTRIC</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>85</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>130</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>20</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PRZ</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
         <name>ELECTRO BALL</name>
         <type>ELECTRIC</type>
         <PP>10</PP>
@@ -631,6 +701,41 @@
                 <base>0</base>
             </critDelegate>
         </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>SPARK</name>
+        <type>ELECTRIC</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>65</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>30</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PRZ</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
     </attack>
     
     <attack>
@@ -709,6 +814,45 @@
                 <base>0</base>
             </critDelegate>
         </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>VOLT SWITCH</name>
+        <type>ELECTRIC</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>EFFECT ON DAMAGE</type>
+            <power>120</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>RECOIL</type>
+                <ratio>3</ratio>
+            </effectDelegate>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PRZ</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
     </attack>
     
     <!-- Grass -->
@@ -1599,6 +1743,66 @@
                 <base>0</base>
             </critDelegate>
         </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>SILVER WIND</name>
+        <type>GHOST</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>60</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>ATK</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>DEF</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SPD</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SATK</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SDEF</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
     </attack>
     
     <!-- Dragon -->
