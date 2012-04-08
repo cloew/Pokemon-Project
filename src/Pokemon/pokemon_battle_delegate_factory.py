@@ -150,4 +150,4 @@ class PokemonBattleDelegateFactory:
         """ Returns the XML tree for the pokemon with the species given """
         for pkmn in tree.getiterator(Tags.pokemonTag):
             if pkmn.find(Tags.speciesTag).text == species:
-                return 
+                return pkmn
