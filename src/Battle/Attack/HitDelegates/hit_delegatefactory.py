@@ -60,6 +60,22 @@ class HitDelegateFactory:
         elif delegateType == "STATUS CORE":
             accuracy = int(element.find(Tags.hitTag).text)
             return StatusHitDelegate(parent, accuracy)
+        
+    @staticmethod
+    def loadFromDB(cursor, parent):
+        """ Builds a HitDelegate from database"""
+        type, id = HitDelegateFactory.GetTypeAndID(cursor, parent.name)
+        
+        if type == "CORE":
+            cursor.execute("SELECT accuracy from CoreHitDelegate where id = ?", (id,))
+            accuracy = cursor.fetchone()[0]
+            return HitDelegate(parent, accuracy)
+            
+    @staticmethod
+    def GetTypeAndID(cursor, name):
+        """ Returns the type and id of the Hit Delegate for the attack """
+        cursor.execute("SELECT HitDelegateVariants.type, Attack.hit_id from Attack, HitDelegateVariants where HitDelegateVariants.id = Attack.hit_type and name = ?", (name,))
+        return cursor.fetchone()
             
     @staticmethod
     def buildNull():

@@ -41,6 +41,10 @@ class PokemonFactory:
         pkmn.battleDelegate = PokemonBattleDelegateFactory.loadFromXML(pkmn, tree)
     
         return pkmn
+        
+    @staticmethod
+    def loadFromDB():
+        """ AAAAAAAAAGGGGGGGGGGGHHHHHHHHHHH!!!!!!!!!!!!!!!!!!!!!! """
                 
     @staticmethod
     def copy(toCopy):

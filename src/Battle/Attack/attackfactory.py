@@ -1,3 +1,4 @@
+import sqlite3
 import xml.etree.ElementTree
 
 from Battle.Attack.attack import Attack
@@ -6,6 +7,7 @@ from Battle.Attack.DamageDelegates.damage_delegatefactory import DamageDelegateF
 from Battle.Attack.EffectDelegates.effect_delegatefactory import EffectDelegateFactory
 from Battle.Attack.HitDelegates.hit_delegatefactory import HitDelegateFactory
 from Battle.Attack.SpeedDelegates.speed_delegatefactory import SpeedDelegateFactory
+from Battle.Attack.CritDelegates.crit_delegatefactory import CritDelegateFactory
 
 from resources.tags import Tags
 
@@ -13,7 +15,8 @@ class AttackFactory:
     """ Builds an Attack, includng Delegates """
     factories = {Tags.hitDelegateTag:HitDelegateFactory,
                       Tags.damageDelegateTag:DamageDelegateFactory,
-                      Tags.speedDelegateTag:SpeedDelegateFactory}
+                      Tags.speedDelegateTag:SpeedDelegateFactory,
+                      Tags.critDelegateTag:CritDelegateFactory}
     
     @staticmethod
     def loadFromPokemonFile(file):
@@ -86,6 +89,18 @@ class AttackFactory:
         return AttackFactory.buildAttackFromXML(tree)
         
     @staticmethod
+    def loadFromDB(name):
+        """ Loads an attack from a Database """
+        connection = sqlite3.connect('resources/sqlite/pokemon.sqlite')
+        connection.text_factory = str
+        
+        cursor = connection.cursor()
+        
+        attack = AttackFactory.buildAttackFromDB(cursor, name)
+        connection.close()
+        return attack
+        
+    @staticmethod
     def getAttackdexTree():
         """ Opens the attackdex.xml file as an element tree """
         try:
@@ -126,6 +141,32 @@ class AttackFactory:
                 attack.addDelegate(Tags.effectDelegateTag, delegate)
                 
         return attack
+        
+    @staticmethod
+    def buildAttackFromDB(cursor, name):
+        """ Build an Attack from a Database connection """
+        attack = Attack()
+        
+        
+        cursor.execute("SELECT Type.name from Attack, Type where Attack.name = ? and Attack.type_id = Type.id", (name,))
+        type = cursor.fetchone()[0]
+        
+        attack.name = name
+        attack.type = type
+        
+        # Delegates
+        for delegateCategory in AttackFactory.factories.keys():
+            delegate = AttackFactory.getDelegateDB(cursor, delegateCategory, attack)
+            attack.addDelegate(delegateCategory, delegate)
+            
+        #effects = tree.find(Tags.effectDelegatesTag)
+        
+        #if effects:
+        #    for effect in effects.getchildren():
+        #        delegate = EffectDelegateFactory.loadFromXML(effect, attack)
+        #        attack.addDelegate(Tags.effectDelegateTag, delegate)
+                
+        return attack
                 
     @staticmethod
     def getDelegate(tree, delegateCategory, attack):
@@ -135,3 +176,11 @@ class AttackFactory:
             return AttackFactory.factories[delegateCategory].loadFromXML(delegate, attack)
         else:
             return AttackFactory.factories[delegateCategory].buildNull()
+            
+    @staticmethod
+    def getDelegateDB(cursor, delegateCategory, attack):
+        """ Returns the delegate of the given category """
+        delegate = AttackFactory.factories[delegateCategory].loadFromDB(cursor, attack)
+        if delegate is None:
+            delegate = AttackFactory.factories[delegateCategory].buildNull()
+        return delegate

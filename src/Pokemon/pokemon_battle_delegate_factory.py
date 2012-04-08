@@ -1,3 +1,4 @@
+import sqlite3
 import xml.etree.ElementTree
 
 from Battle.Attack.attackfactory import AttackFactory
@@ -75,7 +76,7 @@ class PokemonBattleDelegateFactory:
     
     @staticmethod
     def loadPokedexBattleInfo(delegate, species):
-        """ Gets info from Pokedex relevanty to Battling
+        """ Gets info from Pokedex relevant to Battling
         Types, base stats """
         # Open Pokedex and set variables that require Pokedex data
         tree = PokemonBattleDelegateFactory.getPokedexTree()
@@ -101,6 +102,37 @@ class PokemonBattleDelegateFactory:
                 delegate.stats[key] = int(((2*int(baseStat))* delegate.parent.level/100.0) + 5)
                 
     @staticmethod
+    def loadPokedexBattleInfoDB(delegate, species):
+        """ Gets info from Pokedex relevant to Battling
+        Types, base stats """
+        # Open Pokedex and set variables that require Pokedex data
+        connection = sqlite3.connect('resources/sqlite/pokemon.sqlite')
+        connection.text_factory = str
+        
+        cursor = connection.cursor()
+
+        # Get type(s) -- Prolly should be its own fuunction
+        delegate.types = []
+        cursor.execute("SELECT type.name from Species, Type, SpeciesTypeJoin where Species.id = SpeciesTypeJoin.species_id and Type.id = SpeciesTypeJoin.type_id")
+        for row in cursor:
+            delegate.types.append(row[0])
+        
+        # Get stats -- Prolly should be its own function
+        delegate.stats = {}
+        for key in PokemonBattleDelegateFactory.statKeys:
+            t = (species,)
+            cursor.execute("SELECT %s from Species where Species.species = ?" % key, t) # FROWNED UPON
+            baseStat = cursor.fetchone()[0]
+            if (key is "HP"):
+                # ( (IV + 2 * BaseStat + (EV/4) ) * Level/100 ) + 10 + Level
+                delegate.stats[key] = int(((2*int(baseStat))*delegate.parent.level/100.0)+10 + delegate.parent.level )
+            else:
+                # (((IV + 2 * BaseStat + (EV/4) ) * Level/100 ) + 5) * Nature Value
+                delegate.stats[key] = int(((2*int(baseStat))* delegate.parent.level/100.0) + 5)
+        
+        connection.close()
+                
+    @staticmethod
     def getPokedexTree():
         """ Opens the pokedex.xml file as an element tree """
         try:
@@ -118,4 +150,4 @@ class PokemonBattleDelegateFactory:
         """ Returns the XML tree for the pokemon with the species given """
         for pkmn in tree.getiterator(Tags.pokemonTag):
             if pkmn.find(Tags.speciesTag).text == species:
-                return pkmn
+                return 

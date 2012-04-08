@@ -1,3 +1,5 @@
+import sqlite3
+
 from Battle.Attack.attack import Attack
 
 from Battle.Attack.DamageDelegates.boost_on_status_delegate import BoostDamageOnStatusDelegate
@@ -111,8 +113,23 @@ class DamageDelegateFactory:
             return StatRatioRangeDelegate(parent, isPhysical, stat)
             
         
-            
+    @staticmethod
+    def loadFromDB(cursor, parent):
+        """ Loads an attack Damage Delegate from a Database """
+        type, id = DamageDelegateFactory.GetTypeAndID(cursor, parent.name)
         
+        if type == "CORE":
+            cursor.execute("SELECT power, physical from CoreDamageDelegate where id=?", (id,))
+            power, physical = cursor.fetchone()
+            return DamageDelegate(None, power, physical)
+        
+        cursor.close()
+        
+    @staticmethod
+    def GetTypeAndID(cursor, name):
+        """ Returns the type and id of the Damage Delegate for the attack """
+        cursor.execute("SELECT DamageDelegateVariants.type, Attack.damage_id from Attack, DamageDelegateVariants where DamageDelegateVariants.id = Attack.damage_type and name = ?", (name,))
+        return cursor.fetchone()
             
     @staticmethod
     def buildNull():
