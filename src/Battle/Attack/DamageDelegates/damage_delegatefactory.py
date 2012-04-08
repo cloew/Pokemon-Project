@@ -23,18 +23,6 @@ from resources.tags import Tags
 
 class DamageDelegateFactory:
     """ Builds DamageDelegates """
-    
-    @staticmethod
-    def loadFromAttackDex(attackdex, parent):
-        """ Builds a DamageDelegate from a file of the designated type """
-        delegateType = attackdex.readline().strip()
-        
-        if delegateType == "CORE":
-            power = int(attackdex.readline().strip())
-            parent.critDelegate = CritDelegate(int(attackdex.readline().strip()))
-            return DamageDelegate(parent, power)
-        if delegateType == "NULL":
-            return NullDamageDelegate()
             
     @staticmethod
     def loadFromXML(element, parent):
@@ -44,41 +32,34 @@ class DamageDelegateFactory:
         if delegateType == "BOOST ON STATUS":
             power = int(element.find(Tags.powerTag).text)
             isPhysical = int(element.find(Tags.physicalTag).text)
-            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             return BoostDamageOnStatusDelegate(parent, power, isPhysical)
         
         elif delegateType == "CORE":
             power = int(element.find(Tags.powerTag).text)
             isPhysical = int(element.find(Tags.physicalTag).text)
-            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             return DamageDelegate(parent, power, isPhysical)
             
         elif delegateType == "EFFECT ON DAMAGE":
             power = int(element.find(Tags.powerTag).text)
             isPhysical = int(element.find(Tags.physicalTag).text)
-            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             return EffectOnDamageDelegate(parent, power, isPhysical)
         
         elif delegateType == "FIXED":
             isPhysical = int(element.find(Tags.physicalTag).text)
             damage = int(element.find(Tags.damageTag).text)
-            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             return FixedDelegate(parent, damage, isPhysical)
             
         elif delegateType == "HALF HEALTH":
             isPhysical = int(element.find(Tags.physicalTag).text)
-            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             return HalfHealthDelegate(parent, isPhysical)
         
         elif delegateType =="LEVEL":
             isPhysical = int(element.find(Tags.physicalTag).text)
-            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             return LevelDelegate(parent, isPhysical)
             
         elif delegateType == "NO FAINT":
             power = int(element.find(Tags.powerTag).text)
             isPhysical = int(element.find(Tags.physicalTag).text)
-            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             return NoFaintDelegate(parent, power, isPhysical)
             
         elif delegateType == "ONE HIT KO":
@@ -89,13 +70,11 @@ class DamageDelegateFactory:
             power = int(element.find(Tags.powerTag).text)
             isPhysical = int(element.find(Tags.physicalTag).text)
             pierce = element.find(Tags.pierceTag).text
-            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             return PierceDodge2XDelegate(parent, power, isPhysical, pierce)
             
         elif delegateType == "SCALE":
             power = int(element.find(Tags.powerTag).text)
             isPhysical = int(element.find(Tags.physicalTag).text)
-            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             factor = int(element.find(Tags.factorTag).text)
             turns = int(element.find(Tags.turnsTag).text)
             return DamageScaleDelegate(parent, power, isPhysical, factor, turns)
@@ -103,13 +82,11 @@ class DamageDelegateFactory:
         elif delegateType == "STAT RATIO FIXED":
             isPhysical = int(element.find(Tags.physicalTag).text)
             stat = element.find(Tags.statTag).text
-            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             return StatRatioFixedDelegate(parent, isPhysical, stat)
             
         elif delegateType == "STAT RATIO RANGE":
             isPhysical = int(element.find(Tags.physicalTag).text)
             stat = element.find(Tags.statTag).text
-            parent.critDelegate = DamageDelegateFactory.buildCritDelegate(element)
             return StatRatioRangeDelegate(parent, isPhysical, stat)
             
         
