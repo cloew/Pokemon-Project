@@ -612,6 +612,41 @@
     
     <!-- Electric -->
     <attack>
+        <name>BOLT STRIKE</name>
+        <type>ELECTRIC</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>85</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>130</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>20</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PRZ</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    
+    <attack>
         <name>ELECTRO BALL</name>
         <type>ELECTRIC</type>
         <PP>10</PP>
@@ -709,6 +744,45 @@
                 <base>0</base>
             </critDelegate>
         </damageDelegate>
+    </attack>
+    
+    <attack>
+        <name>VOLT SWITCH</name>
+        <type>ELECTRIC</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>EFFECT ON DAMAGE</type>
+            <power>120</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>RECOIL</type>
+                <ratio>3</ratio>
+            </effectDelegate>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PRZ</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
     </attack>
     
     <!-- Grass -->
