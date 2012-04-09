@@ -66,10 +66,34 @@ class HitDelegateFactory:
         """ Builds a HitDelegate from database"""
         type, id = HitDelegateFactory.GetTypeAndID(cursor, parent.name)
         
-        if type == "CORE":
+        if type == "ALWAYS":
+            return AlwaysHitDelegate(HitDelegateFactory.MISS)
+        
+        elif type == "CORE":
             cursor.execute("SELECT accuracy from CoreHitDelegate where id = ?", (id,))
             accuracy = cursor.fetchone()[0]
-            return HitDelegate(parent, accuracy)
+            return HitDelegate(parent, accuracy)    
+            
+        elif type == "CRASH":
+            accuracy = int(element.find(Tags.hitTag).text)
+            element = element.find(Tags.effectDelegateTag)
+            delegate = EffectDelegateFactory.loadFromXML(element, parent)
+            return CrashDelegate(parent, accuracy, HitDelegateFactory.MISS, delegate)
+            
+        elif type == "PIERCE DODGE":
+            accuracy = int(element.find(Tags.hitTag).text)
+            pierce = element.find(Tags.pierceTag).text
+            return PierceDodgeDelegate(parent, accuracy, pierce)
+            
+        elif type == "SELF":
+            return HitSelfDelegate()
+            
+        elif type == "STATUS ALWAYS":
+            return AlwaysHitDelegate(HitDelegateFactory.STATUSMISS)
+            
+        elif type == "STATUS CORE":
+            accuracy = int(element.find(Tags.hitTag).text)
+            return StatusHitDelegate(parent, accuracy)
             
     @staticmethod
     def GetTypeAndID(cursor, name):
