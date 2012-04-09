@@ -92,7 +92,8 @@ class HitDelegateFactory:
             return AlwaysHitDelegate(HitDelegateFactory.STATUSMISS)
             
         elif type == "STATUS CORE":
-            accuracy = int(element.find(Tags.hitTag).text)
+            cursor.execute("SELECT accuracy from CoreHitDelegate where id = ?", (id,))
+            accuracy = cursor.fetchone()[0]
             return StatusHitDelegate(parent, accuracy)
             
     @staticmethod
