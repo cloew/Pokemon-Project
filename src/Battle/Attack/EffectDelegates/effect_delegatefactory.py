@@ -69,10 +69,8 @@ class EffectDelegateFactory:
             return delegate
                 
         elif delegateType == "CRIT MOD":
-            stat = element.find(Tags.statTag).text
             degree = int(element.find(Tags.degreeTag).text)
-            affectUser = int(element.find(Tags.affectUserTag).text)
-            delegate = CritModDelegate(stat, degree, affectUser)
+            delegate = CritModDelegate(degree)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
             return delegate
             
@@ -272,10 +270,9 @@ class EffectDelegateFactory:
             return delegate
                 
         elif type == "CRIT MOD":
-            stat = element.find(Tags.statTag).text
-            degree = int(element.find(Tags.degreeTag).text)
-            affectUser = int(element.find(Tags.affectUserTag).text)
-            delegate = CritModDelegate(stat, degree, affectUser)
+            cursor.execute("SELECT degree from CritModEffect where id = ?", (id,))
+            degree = cursor.fetchone()[0]
+            delegate = CritModDelegate(degree)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
             return delegate
             

@@ -7,7 +7,7 @@ class CritModDelegate(StatModDelegate):
     def __init__(self, degree):
         """ Build the Delegate with the constants for CritMod
               Stat is always CRT | Always affects user """
-        super(CritModDelegate, self).__init__("CRT", degree, 1)
+        StatModDelegate.__init__(self, "CRT", degree, 1)
     
     def applyEffect(self, user, target):
         """ Applies the delegates effect """
