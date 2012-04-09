@@ -1746,7 +1746,7 @@
     </attack>
     
     <attack>
-        <name>SILVER WIND</name>
+        <name>OMINOUS WIND</name>
         <type>GHOST</type>
         <PP>5</PP>
         <speedDelegate>
