@@ -60,3 +60,4 @@ Remove resistance
 Deplete PP on knockout
 Average own stats with opps
 Switch stat mods for certain stats
+FLinch if first turn                                                        - Diverge on lastAction
