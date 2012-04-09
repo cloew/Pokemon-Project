@@ -349,7 +349,7 @@ class EffectDelegateFactory:
             return delegate
             
         elif type == "RND STAT MOD":
-            cursor.execute("SELECT degree, affectUser from RandomStatModEFfect where id = ?", (id,))
+            cursor.execute("SELECT degree, affectUser from RandomStatModEffect where id = ?", (id,))
             degree, affectUser = cursor.fetchone()
             delegate = RandomStatModDelegate(degree, affectUser)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
@@ -418,8 +418,8 @@ class EffectDelegateFactory:
             return delegate
             
         elif type == "SWITCH":
-            affectUser = int(element.find(Tags.affectUserTag).text)
-            reset = int(element.find(Tags.resetTag).text)
+            cursor.execute("SELECT reset, affectUser from SwitchEffect where id = ?", (id,))
+            reset, affectUser = cursor.fetchone()
             delegate = SwitchDelegate(affectUser, reset)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
             return delegate
