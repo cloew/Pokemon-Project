@@ -50,10 +50,6 @@ class EffectDelegateFactory:
         elif delegateType == "CHANCE":
             chance = int(element.find(Tags.chanceTag).text)
             effects = EffectDelegateFactory.getEffects(element, Tags.effectDelegatesTag, parent)
-            #effects = []
-            #effectDelegates = element.find(Tags.effectDelegatesTag)
-            #for effectDelegate in effectDelegates.getchildren():
-            #    effects.append(EffectDelegateFactory.loadFromXML(effectDelegate, parent))
             delegate = ChanceDelegate(chance, effects)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.REGULAR)
             return delegate
