@@ -379,9 +379,8 @@ class EffectDelegateFactory:
             return delegate
             
         elif type == "STAT MOD":
-            stat = element.find(Tags.statTag).text
-            degree = int(element.find(Tags.degreeTag).text)
-            affectUser = int(element.find(Tags.affectUserTag).text)
+            cursor.execute("SELECT stat, degree, affectUser from StatModEffect where id = ?", (id,))
+            stat, degree, affectUser = cursor.fetchone()
             delegate = StatModDelegate(stat, degree, affectUser)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
             return delegate
