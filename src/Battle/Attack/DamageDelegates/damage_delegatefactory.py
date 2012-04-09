@@ -94,11 +94,66 @@ class DamageDelegateFactory:
     def loadFromDB(cursor, parent):
         """ Loads an attack Damage Delegate from a Database """
         type, id = DamageDelegateFactory.GetTypeAndID(cursor, parent.name)
+        print type, id
+        if type == "BOOST ON STATUS":
+            power = int(element.find(Tags.powerTag).text)
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            return BoostDamageOnStatusDelegate(parent, power, isPhysical)
         
-        if type == "CORE":
+        elif type == "CORE":
             cursor.execute("SELECT power, physical from CoreDamageDelegate where id=?", (id,))
             power, physical = cursor.fetchone()
             return DamageDelegate(None, power, physical)
+            
+        elif type == "EFFECT ON DAMAGE":
+            power = int(element.find(Tags.powerTag).text)
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            return EffectOnDamageDelegate(parent, power, isPhysical)
+        
+        elif type == "FIXED":
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            damage = int(element.find(Tags.damageTag).text)
+            return FixedDelegate(parent, damage, isPhysical)
+            
+        elif type == "HALF HEALTH":
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            return HalfHealthDelegate(parent, isPhysical)
+        
+        elif type =="LEVEL":
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            return LevelDelegate(parent, isPhysical)
+            
+        elif type == "NO FAINT":
+            cursor.execute("SELECT power, physical from NoFaintDamage where id = ?", (id,))
+            power, physical = cursor.fetchone()
+            return NoFaintDelegate(parent, power, physical)
+            
+        elif type == "ONE HIT KO":
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            return OneHitDelegate(parent, isPhysical)
+            
+        elif type == "PIERCE DODGE 2X":
+            power = int(element.find(Tags.powerTag).text)
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            pierce = element.find(Tags.pierceTag).text
+            return PierceDodge2XDelegate(parent, power, isPhysical, pierce)
+            
+        elif type == "SCALE":
+            power = int(element.find(Tags.powerTag).text)
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            factor = int(element.find(Tags.factorTag).text)
+            turns = int(element.find(Tags.turnsTag).text)
+            return DamageScaleDelegate(parent, power, isPhysical, factor, turns)
+            
+        elif type == "STAT RATIO FIXED":
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            stat = element.find(Tags.statTag).text
+            return StatRatioFixedDelegate(parent, isPhysical, stat)
+            
+        elif type == "STAT RATIO RANGE":
+            isPhysical = int(element.find(Tags.physicalTag).text)
+            stat = element.find(Tags.statTag).text
+            return StatRatioRangeDelegate(parent, isPhysical, stat)
         
         cursor.close()
         

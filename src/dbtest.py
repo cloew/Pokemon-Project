@@ -18,8 +18,9 @@ print delegate.stats
 
 print "\n"
 
-attack = AttackFactory.loadFromDB("EXTREMESPEED")
+attack = AttackFactory.loadFromDB("FALSE SWIPE")
 print attack.name, attack.type
+print attack.damageDelegate
 #print attack.damageDelegate.power, attack.damageDelegate.isPhysical, attack.damageDelegate.parent
 print attack.hitDelegate
 #print attack.hitDelegate.chanceToHit, attack.hitDelegate.parent
