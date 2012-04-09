@@ -256,9 +256,8 @@ class EffectDelegateFactory:
             return delegate
             
         elif type == "CHARGE":
-            turns = int(element.find(Tags.turnsTag).text)
-            hitOnTurn = int(element.find(Tags.hitOnTurnTag).text)
-            message = element.find(Tags.messageTag).text
+            cursor.execute("SELECT turns, hitOnTurn, message from ChargeEffect where id = ?", (id,))
+            turns, hitOnTurn, message = cursor.fetchone()
             delegate = ChargeDelegate(turns, hitOnTurn, message)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
