@@ -34,17 +34,6 @@ from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
 
 class EffectDelegateFactory:
     """ Builds EffectDelegates """
-    
-    @staticmethod
-    def loadFromAttackDex(attackdex):
-        """ Builds a HitDelegate from a file of the designated type """
-        delegateType = attackdex.readline().strip()
-        
-        if delegateType == "STAT MOD":
-            effects = attackdex.readline().strip().split(" ")
-            return StatModDelegate(effects[0], int(effects[1]), int(effects[2]))
-        if delegateType == "NULL":
-            return NullEffectDelegate()
             
     @staticmethod
     def loadFromXML(element, parent):
@@ -244,6 +233,35 @@ class EffectDelegateFactory:
             delegate = UselessDelegate()
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
+            
+    @staticmethod
+    def loadAllEffectsFromDB(cursor, parent):
+        """ Loads all Effects from a DB """
+        effects = []
+        for effectInfo in EffectDelegateFactory.GetTypeAndID(cursor, parent.name):
+            effect = EffectDelegateFactory.loadFromDB(cursor, parent, effectInfo[0], effectInfo[1])
+            effects.append(effect)
+            
+        return effects
+            
+    @staticmethod
+    def loadFromDB(cursor, parent, type, id):
+        """ Loads an Effect Delegate from a database """
+        
+        if type == "FLINCH":
+            delegate = FlinchDelegate()
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.TARGET)
+            return delegate
+        
+        elif type == "SWAP ABILITY":
+            delegate = SwapAbilityDelegate()
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.EITHER)
+            return delegate
+            
+    @staticmethod
+    def GetTypeAndID(cursor, name):
+        """ Returns the type and id of the Effect Delegates for the attack """
+        return cursor.execute("SELECT EffectDelegateVariants.type, AttackEffectsJoin.effect_id from Attack, EffectDelegateVariants, AttackEffectsJoin where EffectDelegateVariants.id = AttackEffectsJoin.effect_type and Attack.id = AttackEffectsJoin.attack_id and name = ?", (name,))
            
     @staticmethod
     def getEffects(element, tag, parent):

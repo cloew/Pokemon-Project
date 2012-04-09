@@ -106,7 +106,10 @@ class DamageDelegateFactory:
     def GetTypeAndID(cursor, name):
         """ Returns the type and id of the Damage Delegate for the attack """
         cursor.execute("SELECT DamageDelegateVariants.type, Attack.damage_id from Attack, DamageDelegateVariants where DamageDelegateVariants.id = Attack.damage_type and name = ?", (name,))
-        return cursor.fetchone()
+        t = cursor.fetchone()
+        if t is None:
+            return None, None
+        return t
             
     @staticmethod
     def buildNull():

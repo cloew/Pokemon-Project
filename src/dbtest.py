@@ -18,9 +18,10 @@ print delegate.stats
 
 print "\n"
 
-attack = AttackFactory.loadFromDB("SCRATCH")
+attack = AttackFactory.loadFromDB("SKILL SWAP")
 print attack.name, attack.type
-print attack.damageDelegate.power, attack.damageDelegate.isPhysical, attack.damageDelegate.parent
+#print attack.damageDelegate.power, attack.damageDelegate.isPhysical, attack.damageDelegate.parent
 print attack.hitDelegate.chanceToHit, attack.hitDelegate.parent
 print attack.speedDelegate.priority
 print attack.critDelegate.base
+print attack.effectDelegates

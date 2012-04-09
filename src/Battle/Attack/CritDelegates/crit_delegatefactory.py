@@ -31,7 +31,10 @@ class CritDelegateFactory:
     def GetTypeAndID(cursor, name):
         """ Returns the type and id of the Crit Delegate for the attack """
         cursor.execute("SELECT CritDelegateVariants.type, Attack.crit_id from Attack, CritDelegateVariants where CritDelegateVariants.id = Attack.crit_type and name = ?", (name,))
-        return cursor.fetchone()
+        t = cursor.fetchone()
+        if t is None:
+            return None, None
+        return t
             
     @staticmethod
     def buildNull():

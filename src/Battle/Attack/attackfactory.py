@@ -147,8 +147,9 @@ class AttackFactory:
         """ Build an Attack from a Database connection """
         attack = Attack()
         
-        
+        #cursor.execute("SELECT Attack.id, ATtack.name from Attack where Attack.id = ?", (2,))
         cursor.execute("SELECT Type.name from Attack, Type where Attack.name = ? and Attack.type_id = Type.id", (name,))
+        #print cursor.fetchone()
         type = cursor.fetchone()[0]
         
         attack.name = name
@@ -158,6 +159,8 @@ class AttackFactory:
         for delegateCategory in AttackFactory.factories.keys():
             delegate = AttackFactory.getDelegateDB(cursor, delegateCategory, attack)
             attack.addDelegate(delegateCategory, delegate)
+            
+        attack.effectDelegates = EffectDelegateFactory.loadAllEffectsFromDB(cursor, attack)
             
         #effects = tree.find(Tags.effectDelegatesTag)
         
