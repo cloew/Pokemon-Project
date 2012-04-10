@@ -375,7 +375,6 @@ class EffectDelegateFactory:
         elif type == "SELFDESTRUCT":
             delegate = SelfDestructDelegate()
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
-            return delegate
             
         elif type == "STAT MOD":
             parameters = ["stat", "degree", "affectUser"]
