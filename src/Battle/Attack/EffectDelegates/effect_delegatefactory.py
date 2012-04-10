@@ -29,6 +29,8 @@ from trap_delegate import TrapDelegate
 from useless_delegate import UselessDelegate
 
 from resources.tags import Tags
+from resources.sqlite.pokemon_sqlite_helper import GetParameters
+
 from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
 
 
@@ -232,8 +234,8 @@ class EffectDelegateFactory:
     def loadAllEffectsFromDB(cursor, parent):
         """ Loads all Effects from a DB """
         effects = []
-        for effectInfo in EffectDelegateFactory.GetTypeAndID(cursor, parent.name):
-            effect = EffectDelegateFactory.loadFromDB(cursor, parent, effectInfo[0], effectInfo[1])
+        for type, id in EffectDelegateFactory.GetTypeAndID(cursor, parent.name):
+            effect = EffectDelegateFactory.loadFromDB(cursor, parent, type, id)
             effects.append(effect)
             
         return effects
@@ -241,6 +243,8 @@ class EffectDelegateFactory:
     @staticmethod
     def loadFromDB(cursor, parent, type, id):
         """ Loads an Effect Delegate from a database """
+        delegate = None
+        
         if type == "APPLY LOCK":
             turns = int(element.find(Tags.turnsTag).text)
             affectUser = int(element.find(Tags.affectUserTag).text)
@@ -256,11 +260,10 @@ class EffectDelegateFactory:
             return delegate
             
         elif type == "CHARGE":
-            cursor.execute("SELECT turns, hitOnTurn, message from ChargeEffect where id = ?", (id,))
-            turns, hitOnTurn, message = cursor.fetchone()
+            parameters = ["turns", "hitOnTurn", "message"]
+            turns, hitOnTurn, message = GetParameters(cursor, parameters, "ChargeEffect", id)
             delegate = ChargeDelegate(turns, hitOnTurn, message)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
-            return delegate
             
         elif type == "CONFUSE":
             affectUser = int(element.find(Tags.affectUserTag).text)
@@ -269,8 +272,7 @@ class EffectDelegateFactory:
             return delegate
                 
         elif type == "CRIT MOD":
-            cursor.execute("SELECT degree from CritModEffect where id = ?", (id,))
-            degree = cursor.fetchone()[0]
+            degree = GetParameters(cursor, "degree", "CritModEffect", id)
             delegate = CritModDelegate(degree)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
             return delegate
@@ -341,11 +343,10 @@ class EffectDelegateFactory:
             return delegate
             
         elif type == "RND STAT MOD":
-            cursor.execute("SELECT degree, affectUser from RandomStatModEffect where id = ?", (id,))
-            degree, affectUser = cursor.fetchone()
+            parameters = ["degree", "affectUser"]
+            degree, affectUser = GetParameters(cursor, parameters, "RandomStatModEffect", id)
             delegate = RandomStatModDelegate(degree, affectUser)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
-            return delegate
             
         elif type == "RECOIL":
             recoilRatio = int(element.find(Tags.ratioTag).text)
@@ -378,11 +379,10 @@ class EffectDelegateFactory:
             return delegate
             
         elif type == "STAT MOD":
-            cursor.execute("SELECT stat, degree, affectUser from StatModEffect where id = ?", (id,))
-            stat, degree, affectUser = cursor.fetchone()
+            parameters = ["stat", "degree", "affectUser"]
+            stat, degree, affectUser = GetParameters(cursor, parameters, "StatModEffect", id)
             delegate = StatModDelegate(stat, degree, affectUser)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
-            return delegate
             
         elif type == "STATUS":
             status = element.find(Tags.statusTag).text
@@ -409,11 +409,10 @@ class EffectDelegateFactory:
             return delegate
             
         elif type == "SWITCH":
-            cursor.execute("SELECT reset, affectUser from SwitchEffect where id = ?", (id,))
-            reset, affectUser = cursor.fetchone()
+            parameters = ["reset", "affectUser"]
+            reset, affectUser = GetParameters(cursor, parameters, "SwitchEffect", id)
             delegate = SwitchDelegate(affectUser, reset)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.AFFECT_USER)
-            return delegate
             
         elif type == "TRAP":    
             startMessage = element.find(Tags.startMessageTag).text
@@ -427,6 +426,8 @@ class EffectDelegateFactory:
             delegate = UselessDelegate()
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
+            
+        return delegate
             
     @staticmethod
     def GetTypeAndID(cursor, name):

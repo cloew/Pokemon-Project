@@ -1,5 +1,3 @@
-import sqlite3
-
 from Battle.Attack.attack import Attack
 
 from Battle.Attack.DamageDelegates.boost_on_status_delegate import BoostDamageOnStatusDelegate
@@ -20,6 +18,7 @@ from Battle.Attack.DamageDelegates.statratio_range_delegate import StatRatioRang
 from Battle.Attack.CritDelegates.crit_delegate import CritDelegate
 
 from resources.tags import Tags
+from resources.sqlite.pokemon_sqlite_helper import GetParameters
 
 class DamageDelegateFactory:
     """ Builds DamageDelegates """
@@ -94,16 +93,16 @@ class DamageDelegateFactory:
     def loadFromDB(cursor, parent):
         """ Loads an attack Damage Delegate from a Database """
         type, id = DamageDelegateFactory.GetTypeAndID(cursor, parent.name)
-        print type, id
+        
         if type == "BOOST ON STATUS":
             power = int(element.find(Tags.powerTag).text)
             isPhysical = int(element.find(Tags.physicalTag).text)
             return BoostDamageOnStatusDelegate(parent, power, isPhysical)
         
         elif type == "CORE":
-            cursor.execute("SELECT power, physical from CoreDamageDelegate where id=?", (id,))
-            power, physical = cursor.fetchone()
-            return DamageDelegate(None, power, physical)
+            parameters = ["power", "physical"]
+            power, physical = GetParameters(cursor, parameters, "CoreDamageDelegate", id)
+            return DamageDelegate(parent, power, physical)
             
         elif type == "EFFECT ON DAMAGE":
             power = int(element.find(Tags.powerTag).text)
@@ -124,8 +123,8 @@ class DamageDelegateFactory:
             return LevelDelegate(parent, isPhysical)
             
         elif type == "NO FAINT":
-            cursor.execute("SELECT power, physical from NoFaintDamage where id = ?", (id,))
-            power, physical = cursor.fetchone()
+            parameters = ["power", "physical"]
+            power, physical = GetParameters(cursor, parameters, "NoFaintDamage", id)
             return NoFaintDelegate(parent, power, physical)
             
         elif type == "ONE HIT KO":

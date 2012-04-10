@@ -1,4 +1,3 @@
-import sqlite3
 import xml.etree.ElementTree
 
 from Battle.Attack.attack import Attack
@@ -10,6 +9,7 @@ from Battle.Attack.SpeedDelegates.speed_delegatefactory import SpeedDelegateFact
 from Battle.Attack.CritDelegates.crit_delegatefactory import CritDelegateFactory
 
 from resources.tags import Tags
+from resources.sqlite.pokemon_sqlite_helper import PkmnDBConnect
 
 class AttackFactory:
     """ Builds an Attack, includng Delegates """
@@ -91,9 +91,7 @@ class AttackFactory:
     @staticmethod
     def loadFromDB(name):
         """ Loads an attack from a Database """
-        connection = sqlite3.connect('resources/sqlite/pokemon.sqlite')
-        connection.text_factory = str
-        
+        connection = PkmnDBConnect()
         cursor = connection.cursor()
         
         attack = AttackFactory.buildAttackFromDB(cursor, name)

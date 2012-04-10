@@ -9,6 +9,7 @@ from statushit_delegate import StatusHitDelegate
 from Battle.Attack.EffectDelegates.effect_delegatefactory import EffectDelegateFactory
 
 from resources.tags import Tags
+from resources.sqlite.pokemon_sqlite_helper import GetParameters
 
 class HitDelegateFactory:
     """ Builds HitDelegates """
@@ -70,8 +71,7 @@ class HitDelegateFactory:
             return AlwaysHitDelegate(HitDelegateFactory.MISS)
         
         elif type == "CORE":
-            cursor.execute("SELECT accuracy from CoreHitDelegate where id = ?", (id,))
-            accuracy = cursor.fetchone()[0]
+            accuracy = GetParameters(cursor, "accuracy", "CoreHitDelegate", id)
             return HitDelegate(parent, accuracy)    
             
         elif type == "CRASH":
@@ -92,8 +92,7 @@ class HitDelegateFactory:
             return AlwaysHitDelegate(HitDelegateFactory.STATUSMISS)
             
         elif type == "STATUS CORE":
-            cursor.execute("SELECT accuracy from CoreHitDelegate where id = ?", (id,))
-            accuracy = cursor.fetchone()[0]
+            accuracy = GetParameters(cursor, "accuracy", "CoreHitDelegate", id)
             return StatusHitDelegate(parent, accuracy)
             
     @staticmethod
