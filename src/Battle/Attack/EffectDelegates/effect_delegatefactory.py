@@ -322,10 +322,9 @@ class EffectDelegateFactory:
             return delegate
             
         elif type == "HEAL HP RATIO":
-            healRatio = int(element.find(Tags.ratioTag).text)
+            healRatio = GetParameters(cursor, "ratio", "HealByRatioEffect", id)
             delegate = HealByHPRatioDelegate(healRatio)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
-            return delegate
             
         elif type == "LEECH":
             startMessage = element.find(Tags.startMessageTag).text
