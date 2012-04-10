@@ -423,7 +423,6 @@ class EffectDelegateFactory:
         elif type == "USELESS":
             delegate = UselessDelegate()
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
-            return delegate
             
         return delegate
             

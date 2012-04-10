@@ -18,7 +18,7 @@ print delegate.stats
 
 print "\n"
 
-attack = AttackFactory.loadFromDB("SLASH")
+attack = AttackFactory.loadFromDB("SPLASH")
 print attack.name, attack.type
 print attack.damageDelegate
 #print attack.damageDelegate.power, attack.damageDelegate.isPhysical, attack.damageDelegate.parent
