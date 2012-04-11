@@ -1,8 +1,10 @@
 import sqlite3
 from resources.sqlite.pokemon_sqlite_helper import PkmnDBConnect
 
+from resources.sqlite.db_add_crit import DBAddCrit
 from resources.sqlite.db_add_damage import DBAddDamage
 from resources.sqlite.db_add_hit import DBAddHit
+from resources.sqlite.db_add_speed import DBAddSpeed
 
 class DBAddAttack:
     """ Adds an attack to the Database """
@@ -12,7 +14,9 @@ class DBAddAttack:
                                    'd':self.addDamage, 'c':self.addCrit, 's':self.addSpeed}
         self.vals = {'name':None, 'type':None,
                           'hit_type':None, 'hit_id':None,
-                          'dmg_type':None, 'dmg_id':None}
+                          'dmg_type':None, 'dmg_id':None,
+                          'crit_type':None, 'crit_id':None,
+                          'speed_type':None, 'speed_id':None}
         
         
         self.connection = PkmnDBConnect()
@@ -47,11 +51,13 @@ class DBAddAttack:
         
     def addCrit(self, vals):
         """  """
-        print vals
+        crit = DBAddCrit(self.connection, self.cursor)
+        self.vals['crit_type'], self.vals['crit_id'] = crit.execute(vals)
         
     def addSpeed(self, vals):
         """  """
-        print vals
+        speed = DBAddSpeed(self.connection, self.cursor)
+        self.vals['speed_type'], self.vals['speed_id'] = speed.execute(vals)
         
     def checkForAttackAlready(self):
         """  """

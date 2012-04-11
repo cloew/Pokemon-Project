@@ -29,3 +29,21 @@ class DBAdder:
     def getID(self, table, where, params):
         """  """
         return GetID(self.cursor, table, where, params)
+        
+    def printBuilding(self, type, vals):
+        """  """
+        t = (type,  self.delegateType) + vals
+        print "Building %s %s delegate with priority %s" %  t
+        
+    def buildDelegate(self, type, table, where, toAdd, params):
+        """  """
+        exists = self.getID(table, where, toAdd)
+         
+        if exists is None:
+            self.printBuilding(type, toAdd)
+            self.cursor.execute("INSERT INTO %s (%s) values(?)" % (table, params), toAdd )
+            self.connection.commit()
+            exists = self.getID(table, where, toAdd)
+        else:
+            print "%s Variant %s already exists! Using that!" % (self.delegateType, type)
+        return exists[0]

@@ -18,14 +18,7 @@ class DBAddHit(DBAdder):
         table = "CoreHitDelegate"
         acc = int(params[0])
         where = "accuracy = ?"
+        toAdd = (acc,)
+        params = "accuracy"
         
-        exists = self.getID(table, where, (acc,))
-         
-        if exists is None:
-            print "Building %s delegate with accuracy %s" % (type, acc)
-            self.cursor.execute("INSERT INTO %s (accuracy) values(?)" % table, (acc,) )
-            self.connection.commit()
-            exists = self.getID(table, where, (acc,))
-        else:
-            print "%s already exists! Using that!" % self.delegateType
-        return exists[0]
+        return self.buildDelegate(type, table, where, toAdd, params)
