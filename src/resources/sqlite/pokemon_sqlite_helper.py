@@ -37,3 +37,13 @@ def Execute(cursor, param, table, id):
     """ Executes a DB Query """
     cursor.execute("SELECT %s from %s where id = ?" % (param, table), (id,))
     return cursor.fetchone()
+    
+def CheckForType(cursor, type, variantTable):
+    """ Returns if the type exists in the Variant Table """
+    cursor.execute("SELECT id from %s where type = ?" % variantTable, (type,))
+    return cursor.fetchone()
+
+def GetID(cursor, table, where, params):
+        """  """
+        cursor.execute("SELECT id from %s where %s" % (table, where), params)
+        return cursor.fetchone()
