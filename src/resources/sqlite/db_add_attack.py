@@ -1,5 +1,7 @@
 import sqlite3
 from resources.sqlite.pokemon_sqlite_helper import PkmnDBConnect
+
+from resources.sqlite.db_add_damage import DBAddDamage
 from resources.sqlite.db_add_hit import DBAddHit
 
 class DBAddAttack:
@@ -9,7 +11,8 @@ class DBAddAttack:
         self.commands = {'p':self.addParameters, 'h':self.addHit,
                                    'd':self.addDamage, 'c':self.addCrit, 's':self.addSpeed}
         self.vals = {'name':None, 'type':None,
-                          'hit_type':None, 'hit_id':None}
+                          'hit_type':None, 'hit_id':None,
+                          'dmg_type':None, 'dmg_id':None}
         
         
         self.connection = PkmnDBConnect()
@@ -39,7 +42,8 @@ class DBAddAttack:
         
     def addDamage(self, vals):
         """  """
-        print vals
+        damage = DBAddDamage(self.connection, self.cursor)
+        self.vals['dmg_type'], self.vals['dmg_id'] = damage.execute(vals)
         
     def addCrit(self, vals):
         """  """
