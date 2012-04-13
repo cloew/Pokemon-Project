@@ -1,20 +1,21 @@
 import sqlite3
 from resources.sqlite.pokemon_sqlite_helper import PkmnDBConnect
 
+from resources.sqlite.db_adder import DBAdder
 from resources.sqlite.db_add_crit import DBAddCrit
 from resources.sqlite.db_add_damage import DBAddDamage
 from resources.sqlite.db_add_hit import DBAddHit
 from resources.sqlite.db_add_speed import DBAddSpeed
 
-class DBAddAttack:
+class DBAddAttack(DBAdder):
     """ Adds an attack to the Database """
     def __init__(self):
         """  """
         self.commands = {'p':self.addParameters, 'h':self.addHit,
                                    'd':self.addDamage, 'c':self.addCrit, 's':self.addSpeed}
-        self.vals = {'name':None, 'type':None,
+        self.vals = {'name':None, 'type_id':None,
                           'hit_type':None, 'hit_id':None,
-                          'dmg_type':None, 'dmg_id':None,
+                          'damage_type':None, 'damage_id':None,
                           'crit_type':None, 'crit_id':None,
                           'speed_type':None, 'speed_id':None}
         
@@ -30,12 +31,41 @@ class DBAddAttack:
             
             self.commands[cmd](cmdParams)
             
+        self.addAttack()
+            
+        self.connection.commit()
         self.connection.close()
+        
+    def addAttack(self):
+        """ Adds the attack to the database """
+        params = []
+        toAdd = []
+        
+        for key in self.vals.keys():
+            if self.vals[key] is None:
+                continue
+                
+            params += [key]
+            toAdd += [self.vals[key]]
+            
+        paramStr = self.GetStrFromList(params)
+        
+        print "Adding Attack:", self.vals['name']
+        self.insertIntoDB("Attack", paramStr, toAdd)
             
     def addParameters(self, vals):
         """ Adds Attack specific parameters """
         self.vals['name'] = vals[0]
-        self.vals['type'] = vals[1]
+        type = vals[1].strip()
+        
+        self.cursor.execute("SELECT id FROM Type where name = ?", (type,))
+        
+        val = self.cursor.fetchone()
+        if val is None:
+            print "%s type does not exist" % type
+            exit(-2)
+        
+        self.vals['type_id'] = val[0]
         
         self.checkForAttackAlready()
         
@@ -47,7 +77,7 @@ class DBAddAttack:
     def addDamage(self, vals):
         """  """
         damage = DBAddDamage(self.connection, self.cursor)
-        self.vals['dmg_type'], self.vals['dmg_id'] = damage.execute(vals)
+        self.vals['damage_type'], self.vals['damage_id'] = damage.execute(vals)
         
     def addCrit(self, vals):
         """  """

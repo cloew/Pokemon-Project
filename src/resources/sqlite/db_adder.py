@@ -30,20 +30,44 @@ class DBAdder:
         """  """
         return GetID(self.cursor, table, where, params)
         
-    def printBuilding(self, type, vals):
+    def printBuilding(self, type, params, toAdd):
         """  """
-        t = (type,  self.delegateType) + vals
-        print "Building %s %s delegate with priority %s" %  t
+        t = (type,  self.delegateType) + params + toAdd
+        print "Building %s %s delegate with %s %s" %  t
         
     def buildDelegate(self, type, table, where, toAdd, params):
         """  """
         exists = self.getID(table, where, toAdd)
          
         if exists is None:
-            self.printBuilding(type, toAdd)
-            self.cursor.execute("INSERT INTO %s (%s) values(?)" % (table, params), toAdd )
-            self.connection.commit()
+            self.printBuilding(type, params, toAdd)
+            self.insertIntoDB(table, params, toAdd)
             exists = self.getID(table, where, toAdd)
         else:
-            print "%s Variant %s already exists! Using that!" % (self.delegateType, type)
+            print "%s %s Delegate already exists! Using that!" % (type, self.delegateType)
         return exists[0]
+        
+    def insertIntoDB(self, table, params, toAdd):
+        """  """
+        qMarks = self.getQuestionMarks(len(toAdd))
+            
+        self.cursor.execute("INSERT INTO %s (%s) values(%s)" % (table, params, qMarks), toAdd )
+        
+    def getQuestionMarks(self, val):
+        """  """
+        qMarks = ""
+        for i in range(val):
+            if not qMarks == "":
+                qMarks += ", "
+            qMarks += "?"
+        return qMarks
+    
+    def GetStrFromList(self, args):
+        """ Combines the cmd list into a single string """
+        cmdStr = ""
+        for message in args:
+            if not cmdStr == "":
+                cmdStr += ", "
+            cmdStr += str(message)
+            
+        return cmdStr

@@ -6,7 +6,7 @@ class DBFront:
         self.commands = {"ADD ATTACK":DBAddAttack}
 
     def GetStrFromList(self, args):
-        """ Combines the cmd list into a sin gle string """
+        """ Combines the cmd list into a single string """
         cmdStr = ""
         for message in args:
             if not cmdStr == "":
