@@ -11,11 +11,11 @@ class DBAdder:
     def execute(self, params):
         """  """
         type = params[0]
-        type_id = self.getTypeID(type)
+        self.type_id = self.getTypeID(type)
         
         id = self.getIDForType[type](params[1:])
         
-        return type_id, id
+        return self.type_id, id
         
     def getTypeID(self, type):
         """ Checks the Type Exists before and returns its id """
