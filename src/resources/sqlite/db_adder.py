@@ -32,8 +32,8 @@ class DBAdder:
         
     def printBuilding(self, type, params, toAdd):
         """  """
-        t = (type,  self.delegateType) + params + toAdd
-        print "Building %s %s delegate with %s %s" %  t
+        t = (type,  self.delegateType, params, self.GetStrFromList(toAdd))
+        print "Building %s %s delegate with %s: %s" %  t
         
     def buildDelegate(self, type, table, where, toAdd, params):
         """  """

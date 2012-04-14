@@ -10,7 +10,16 @@ class DBAddHit(DBAdder):
     
     def __init__(self, connection, cursor):
         DBAdder.__init__(self, connection, cursor)
-        self.getIDForType = {'CORE':self.buildCore}
+        self.getIDForType = {'ALWAYS':self.buildAlways,
+                                       'CORE':self.buildCore,
+                                       'PIERCE DODGE':self.buildPierceDodge,
+                                       'SELF':self.buildSelf,
+                                       'STATUS ALWAYS':self.buildAlways,
+                                       'STATUS CORE':self.buildCore}
+        
+    def buildAlways(self, params):
+        """  """
+        return None
         
     def buildCore(self, params):
         """  """
@@ -22,3 +31,19 @@ class DBAddHit(DBAdder):
         params = "accuracy"
         
         return self.buildDelegate(type, table, where, toAdd, params)
+        
+    def buildPierceDodge(self, params):
+        """  """
+        type = "PIERCE DODGE"
+        table = "PierceDodgeHit"
+        acc = int(params[0])
+        pierce = params[1]
+        where = "accuracy = ? and pierce = ?"
+        toAdd = (acc, pierce,)
+        params = "accuracy, pierce"
+        
+        return self.buildDelegate(type, table, where, toAdd, params)
+        
+    def buildSelf(self, params):
+        """  """
+        return None
