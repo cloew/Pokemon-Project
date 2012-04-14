@@ -25,7 +25,7 @@ class DBAddEffect(DBAdder):
                                        'LEECH':self.buildLeech,
                                        'MULTI TUNR RANGE':self.buildMultiTurnRange,
                                        'RND STAT MOD':self.buildRndStatMod,
-                                       'RECOIL':self.buildRecoil
+                                       'RECOIL':self.buildRecoil,
                                        'RESET STAT MODS':self.buildResetStatMods,
                                        'RANDOM SWITCH':self.buildRandomSwitch,
                                        'PERIODIC HEAL':self.buildPeriodicHeal,
@@ -298,6 +298,18 @@ class DBAddEffect(DBAdder):
         """  """
         return None
         
+    def buildSwitch(self, params):
+        """  """
+        type = "SWITCH"
+        table = "SwitchEffect"
+        affectUser = int(params[0])
+        reset = int(params[1])
+        where = "affectUser = ? and reset = ?"
+        toAdd = (affectUser, reset,)
+        params = "affectUser, reset"
+        
+        return self.buildDelegate(type, table, where, toAdd, params)
+        
     def buildTrap(self, params):
         """  """
         type = "TRAP"
@@ -317,11 +329,12 @@ class DBAddEffect(DBAdder):
         
     def addEffects(self, id, paramStr):
         """  """
-        effects = paramStr.split('_')
+        effects = paramStr.split('_')[1:]
         table = "EffectEffectJoin"
         params = "owner_id, owner_type_id, effect_id, effect_type_id"
         
         for effect in effects:
-            effect_type_id, effect_id = self.execute(effect[2:].split('%'))
+            effectAdder = DBAddEffect(self.connection, self.cursor)
+            effect_type_id, effect_id = effectAdder.execute(effect[2:].split('%'))
             self.insertIntoDB(table, params, (id, self.type_id, effect_id, effect_type_id,))
             

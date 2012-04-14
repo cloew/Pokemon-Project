@@ -4,6 +4,7 @@ from resources.sqlite.pokemon_sqlite_helper import PkmnDBConnect
 from resources.sqlite.db_adder import DBAdder
 from resources.sqlite.db_add_crit import DBAddCrit
 from resources.sqlite.db_add_damage import DBAddDamage
+from resources.sqlite.db_add_effect import DBAddEffect
 from resources.sqlite.db_add_hit import DBAddHit
 from resources.sqlite.db_add_speed import DBAddSpeed
 
@@ -12,12 +13,14 @@ class DBAddAttack(DBAdder):
     def __init__(self):
         """  """
         self.commands = {'p':self.addParameters, 'h':self.addHit,
-                                   'd':self.addDamage, 'c':self.addCrit, 's':self.addSpeed}
+                                   'd':self.addDamage, 'c':self.addCrit, 's':self.addSpeed,
+                                   'e':self.addEffect}
         self.vals = {'name':None, 'type_id':None,
                           'hit_type':None, 'hit_id':None,
                           'damage_type':None, 'damage_id':None,
                           'crit_type':None, 'crit_id':None,
-                          'speed_type':None, 'speed_id':None}
+                          'speed_type':None, 'speed_id':None,
+                          'effects':[]}
         
         
         self.connection = PkmnDBConnect()
@@ -45,6 +48,9 @@ class DBAddAttack(DBAdder):
             if self.vals[key] is None:
                 continue
                 
+            if key == 'effects':
+                continue
+                
             params += [key]
             toAdd += [self.vals[key]]
             
@@ -52,6 +58,12 @@ class DBAddAttack(DBAdder):
         
         print "Adding Attack:", self.vals['name']
         self.insertIntoDB("Attack", paramStr, toAdd)
+        
+        self.cursor.execute("SELECT id from Attack where name = ?", (self.vals['name'],))
+        id = self.cursor.fetchone()[0]
+        
+        for effect in self.vals['effects']:
+            self.insertIntoDB("AttackEffectsJoin", "attack_id, effect_type, effect_id", (id,)+effect)
             
     def addParameters(self, vals):
         """ Adds Attack specific parameters """
@@ -88,6 +100,12 @@ class DBAddAttack(DBAdder):
         """  """
         speed = DBAddSpeed(self.connection, self.cursor)
         self.vals['speed_type'], self.vals['speed_id'] = speed.execute(vals)
+        
+    def addEffect(self, vals):
+        """  """
+        effect = DBAddEffect(self.connection, self.cursor)
+        effect_type, effect_id = effect.execute(vals)
+        self.vals['effects'].append((effect_type, effect_id,))
         
     def checkForAttackAlready(self):
         """  """
