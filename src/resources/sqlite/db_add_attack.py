@@ -26,7 +26,7 @@ class DBAddAttack(DBAdder):
         self.connection = PkmnDBConnect()
         self.cursor = self.connection.cursor()
     
-    def execute(self, params):
+    def execute(self, params, close = True):
         """  """
         for param in params:
             cmd = param[0]
@@ -37,7 +37,9 @@ class DBAddAttack(DBAdder):
         self.addAttack()
             
         self.connection.commit()
-        self.connection.close()
+        
+        if (close):
+            self.connection.close()
         
     def addAttack(self):
         """ Adds the attack to the database """
@@ -75,7 +77,7 @@ class DBAddAttack(DBAdder):
         val = self.cursor.fetchone()
         if val is None:
             print "%s type does not exist" % type
-            exit(-2)
+            raise Exception()
         
         self.vals['type_id'] = val[0]
         
@@ -114,4 +116,4 @@ class DBAddAttack(DBAdder):
         
         if not t is None:
             print "Attack %s already exists" % self.vals['name']
-            exit(-2)
+            raise Exception()

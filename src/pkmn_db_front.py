@@ -35,7 +35,10 @@ class DBFront:
 def main(args):
     """ Takes the Command args and builds accordingly """
     front = DBFront()
-    front.executeCmd(args)
+    try:
+        front.executeCmd(args)
+    except Exception:
+        print ""
     
     
     

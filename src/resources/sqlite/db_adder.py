@@ -22,7 +22,7 @@ class DBAdder:
         typeExists = CheckForType(self.cursor, type, self.variantTable)
         if typeExists is None:
             print "%s type %s does not exist." % (self.delegateType, type)
-            exit(-2)
+            raise Exception()
         
         return typeExists[0]
             

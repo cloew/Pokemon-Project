@@ -57,10 +57,12 @@ class DBAddEffect(DBAdder):
         table = "ChanceEffect"
         chance = int(params[0])
         where = "chance = ?"
-        toAdd = (chance,)
+        toAdd = (0,)
         paramStr = "chance"
         
         id = self.buildDelegate(type, table, where, toAdd, paramStr)
+        
+        self.cursor.execute("UPDATE %s set chance=? where id = ?" % table, (chance, id))
         
         self.addEffects(id, params[1])
         
@@ -140,7 +142,7 @@ class DBAddEffect(DBAdder):
         dodge = params[0]
         message = params[1]
         where = "dodge = ? and message = ?"
-        toAdd = (dodge, degree,)
+        toAdd = (dodge, message,)
         params = "dodge, message"
         
         return self.buildDelegate(type, table, where, toAdd, params)
@@ -287,7 +289,7 @@ class DBAddEffect(DBAdder):
         type = "SWAP STATS"
         table = "SwapStatsEffect"
         stat1 = params[0]
-        stat2 = int(params[1])
+        stat2 = params[1]
         where = "stat1 = ? and stat2 = ?"
         toAdd = (stat1, stat2,)
         params = "stat1, stat2"

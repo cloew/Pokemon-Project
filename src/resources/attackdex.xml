@@ -1277,8 +1277,6 @@
                 <base>0</base>
             </critDelegate>
         </damageDelegate>
-        <effectDelegates>
-        </effectDelegates>
     </attack>
     
     <!-- Flying -->
