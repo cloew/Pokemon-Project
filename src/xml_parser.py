@@ -4,6 +4,7 @@ import xml.etree.ElementTree
 import time
 
 from resources.tags import Tags
+from resources.sqlite.db_add_ability import DBAddAbility
 from resources.sqlite.db_add_attack import DBAddAttack
 
 def getAttackdexTree():
@@ -18,6 +19,17 @@ def getAttackdexTree():
     attackdex.close()
     return tree
 
+def getAbilitydexTree():
+        """ Opens the attackdex.xml file as an element tree """
+        try:
+            abilitydex = open("resources/abilitydex.xml", 'r')
+        except IOError:
+            print "Unable to open ABILITYDEX"
+            exit(-2)
+    
+        tree = xml.etree.ElementTree.ElementTree(file=abilitydex)
+        abilitydex.close()
+        return tree
 
 def addAttacksFromXML():
     """  """
@@ -27,6 +39,22 @@ def addAttacksFromXML():
         try:
             
             s = buildAttackString(attack)
+            params = s.split('@')[1:]
+            front.execute(params, close=False)
+        except Exception as e:
+            print e
+        print ""
+    front.connection.close()
+    print "Done!!!"
+    
+def addAbilitiesFromXML():
+    """  """
+    front = DBAddAbility()
+    tree = getAbilitydexTree()
+    for attack in tree.getiterator(Tags.abilityTag):
+        try:
+            
+            s = buildAbilityString(attack)
             params = s.split('@')[1:]
             front.execute(params, close=False)
         except Exception as e:
@@ -46,6 +74,43 @@ def buildAttackString(tree):
     s += getEffectDelegates(tree.find(Tags.effectDelegatesTag))
     
     return s
+    
+def buildAbilityString(tree):
+    """  """
+    s = ""
+    s += getAbilityParameterString(tree)
+    s += getAbility(tree)
+    
+    return s
+    
+def getAbilityParameterString(tree):
+    """  """
+    name = tree.find(Tags.nameTag).text.strip()
+    return " @p %s" % (name,)
+    
+def getAbility(tree):
+    """  """
+    if tree is None:
+        return ""
+    
+    s = ""
+    for i in tree.getchildren()[1:]:
+    
+        if i.text.strip() == "":
+            temp = ""
+            for effect in i.getchildren():
+                t= getInternalEffect(effect)
+                if not t == "":
+                    temp += t
+                
+            s += temp + ":" 
+        else:
+            s += i.text.strip() + ":"
+    
+    if s == "":
+        return s
+        
+    return " @a %s" % s
     
 def getParameterString(tree):
     """  """
@@ -146,7 +211,10 @@ def getInternalEffect(tree):
     
 def main(argv):
     """ Start the game """
-    addAttacksFromXML()
+    if argv[0] == "ATTACK":
+        addAttacksFromXML()
+    elif argv[0] == "ABILITY":
+        addAbilitiesFromXML()
 
 if __name__ == "__main__":
     main(sys.argv[1:])

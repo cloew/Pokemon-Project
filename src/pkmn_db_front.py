@@ -1,9 +1,11 @@
 import sys
+from resources.sqlite.db_add_ability import DBAddAbility
 from resources.sqlite.db_add_attack import DBAddAttack
 
 class DBFront:
     def __init__(self):
-        self.commands = {"ADD ATTACK":DBAddAttack}
+        self.commands = {"ADD ABILITY":DBAddAbility,
+                                   "ADD ATTACK":DBAddAttack}
 
     def GetStrFromList(self, args):
         """ Combines the cmd list into a single string """
