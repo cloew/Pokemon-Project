@@ -118,7 +118,7 @@ class DBAddDamage(DBAdder):
         table = "OneHitKODamage"
         physical = int(params[0])
         
-        toAdd = (power, physical,)
+        toAdd = (physical,)
         where = "physical = ?"
         params = "physical"
         

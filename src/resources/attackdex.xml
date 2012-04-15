@@ -119,9 +119,7 @@
         <effectDelegates>
             <effectDelegate>
                 <type>CRIT MOD</type>
-                <stat>CRT</stat>
                 <degree>2</degree>
-                <affectUser>1</affectUser>  
             </effectDelegate>
         </effectDelegates>
     </attack>

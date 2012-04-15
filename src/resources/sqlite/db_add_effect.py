@@ -47,9 +47,9 @@ class DBAddEffect(DBAdder):
         affectUser = int(params[1])
         where = "turns = ? and affectUser = ?"
         toAdd = (turns, affectUser,)
-        params = "turns, affectUser"
+        paramStr = "turns, affectUser"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildChance(self, params):
         """  """
@@ -77,9 +77,9 @@ class DBAddEffect(DBAdder):
         message = params[2]
         where = "turns = ? and hitOnTurn = ? and message = ?"
         toAdd = (turns, hitOnTurn, message,)
-        params = "turns, hitOnTurn, message"
+        paramStr = "turns, hitOnTurn, message"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildConfuse(self, params):
         """  """
@@ -88,9 +88,9 @@ class DBAddEffect(DBAdder):
         affectUser = int(params[0])
         where = "affectUser = ?"
         toAdd = (affectUser,)
-        params = "affectUser"
+        paramStr = "affectUser"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildCritMod(self, params):
         """  """
@@ -99,9 +99,9 @@ class DBAddEffect(DBAdder):
         degree = int(params[0])
         where = "degree = ?"
         toAdd = (degree,)
-        params = "degree"
+        paramStr = "degree"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildCureStatus(self, params):
         """  """
@@ -109,11 +109,11 @@ class DBAddEffect(DBAdder):
         table = "CureStatusEffect"
         status = params[0]
         affectUser = int(params[1])
-        where = "status = ? and degree = ?"
-        toAdd = (status, degree,)
-        params = "status, degree"
+        where = "status = ? and affectUser = ?"
+        toAdd = (status, affectUser,)
+        paramStr = "status, affectUser"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildDamageIsEffect(self, params):
         """  """
@@ -125,9 +125,9 @@ class DBAddEffect(DBAdder):
         table = "DivergeEffect"
         where = "diverge_owner_id = ? and normal_owner_id = ?"
         toAdd = (0,0)
-        params = "diverge_owner_id, normal_owner_id"
+        paramStr = "diverge_owner_id, normal_owner_id"
         
-        id = self.buildDelegate(type, table, where, toAdd, params)
+        id = self.buildDelegate(type, table, where, toAdd, paramStr)
         self.cursor.execute("UPDATE %s set diverge_owner_id=?, normal_owner_id=? where id = ?" % table, (id, -id, id))
         
         self.addEffects(id, params[0])
@@ -143,9 +143,9 @@ class DBAddEffect(DBAdder):
         message = params[1]
         where = "dodge = ? and message = ?"
         toAdd = (dodge, message,)
-        params = "dodge, message"
+        paramStr = "dodge, message"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildFlinch(self, params):
         """  """
@@ -158,9 +158,9 @@ class DBAddEffect(DBAdder):
         ratio = int(params[0])
         where = "ratio = ?"
         toAdd = (ratio,)
-        params = "ratio"
+        paramStr = "ratio"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildHealHPRatio(self, params):
         """  """
@@ -169,9 +169,9 @@ class DBAddEffect(DBAdder):
         ratio = int(params[0])
         where = "ratio = ?"
         toAdd = (ratio,)
-        params = "ratio"
+        paramStr = "ratio"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildLeech(self, params):
         """  """
@@ -181,9 +181,9 @@ class DBAddEffect(DBAdder):
         message = params[1]
         where = "start = ? and message = ?"
         toAdd = (start, message,)
-        params = "start, message"
+        paramStr = "start, message"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildMultiTurnRange(self, params):
         """  """
@@ -208,9 +208,9 @@ class DBAddEffect(DBAdder):
         affectUser = int(params[1])
         where = "degree = ? and affectUser = ?"
         toAdd = (degree, affectUser,)
-        params = "degree, affectUser"
+        paramStr = "degree, affectUser"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildRecoil(self, params):
         """  """
@@ -219,9 +219,9 @@ class DBAddEffect(DBAdder):
         ratio = int(params[0])
         where = "ratio = ?"
         toAdd = (ratio,)
-        params = "ratio"
+        paramStr = "ratio"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildResetStatMods(self, params):
         """  """
@@ -235,9 +235,9 @@ class DBAddEffect(DBAdder):
         reset = int(params[1])
         where = "affectUser = ? and reset = ?"
         toAdd = (affectUser, reset,)
-        params = "affectUser, reset"
+        paramStr = "affectUser, reset"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildPeriodicHeal(self, params):
         """  """
@@ -247,9 +247,9 @@ class DBAddEffect(DBAdder):
         message = params[1]
         where = "start = ? and message = ?"
         toAdd = (start, message,)
-        params = "start, message"
+        paramStr = "start, message"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildSelfdestruct(self, params):
         """  """
@@ -264,9 +264,9 @@ class DBAddEffect(DBAdder):
         affectUser = int(params[2])
         where = "stat = ? and degree = ? and affectUser = ?"
         toAdd = (stat, degree, affectUser,)
-        params = "stat, degree, affectUser"
+        paramStr = "stat, degree, affectUser"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildStatus(self, params):
         """  """
@@ -276,9 +276,9 @@ class DBAddEffect(DBAdder):
         affectUser = int(params[1])
         where = "status = ? and affectUser = ?"
         toAdd = (status, affectUser,)
-        params = "status, affectUser"
+        paramStr = "status, affectUser"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildSwapAbility(self, params):
         """  """
@@ -292,9 +292,9 @@ class DBAddEffect(DBAdder):
         stat2 = params[1]
         where = "stat1 = ? and stat2 = ?"
         toAdd = (stat1, stat2,)
-        params = "stat1, stat2"
+        paramStr = "stat1, stat2"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildSwapStatMods(self, params):
         """  """
@@ -308,9 +308,9 @@ class DBAddEffect(DBAdder):
         reset = int(params[1])
         where = "affectUser = ? and reset = ?"
         toAdd = (affectUser, reset,)
-        params = "affectUser, reset"
+        paramStr = "affectUser, reset"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildTrap(self, params):
         """  """
@@ -321,9 +321,9 @@ class DBAddEffect(DBAdder):
         done = params[2]
         where = "start = ? and message = ? and done = ?"
         toAdd = (start, message, done)
-        params = "start, message, done"
+        paramStr = "start, message, done"
         
-        return self.buildDelegate(type, table, where, toAdd, params)
+        return self.buildDelegate(type, table, where, toAdd, paramStr)
         
     def buildUseless(self, params):
         """  """

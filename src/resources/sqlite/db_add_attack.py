@@ -71,7 +71,7 @@ class DBAddAttack(DBAdder):
         """ Adds Attack specific parameters """
         self.vals['name'] = vals[0]
         type = vals[1].strip()
-        
+        print "Building Attack:", self.vals['name']
         self.cursor.execute("SELECT id FROM Type where name = ?", (type,))
         
         val = self.cursor.fetchone()

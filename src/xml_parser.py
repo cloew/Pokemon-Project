@@ -27,11 +27,11 @@ def addAttacksFromXML():
         try:
             
             s = buildAttackString(attack)
-            print s
             params = s.split('@')[1:]
             front.execute(params, close=False)
         except Exception as e:
             print e
+        print ""
     front.connection.close()
     print "Done!!!"
     
@@ -122,10 +122,9 @@ def getEffectDelegate(tree):
             for effect in i.getchildren():
                 t= getInternalEffect(effect)
                 if not t == "":
-                    temp += t + ":"
+                    temp += t
                 
-            s += temp
-            print s
+            s += temp + ":" 
         else:
             s += i.text.strip() + ":"
     
