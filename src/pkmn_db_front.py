@@ -1,11 +1,13 @@
 import sys
 from resources.sqlite.db_add_ability import DBAddAbility
 from resources.sqlite.db_add_attack import DBAddAttack
+from resources.sqlite.db_add_species import DBAddSpecies
 
 class DBFront:
     def __init__(self):
         self.commands = {"ADD ABILITY":DBAddAbility,
-                                   "ADD ATTACK":DBAddAttack}
+                                   "ADD ATTACK":DBAddAttack,
+                                   "ADD SPECIES":DBAddSpecies}
 
     def GetStrFromList(self, args):
         """ Combines the cmd list into a single string """
@@ -31,7 +33,6 @@ class DBFront:
         cmd, params = self.GetCmdAndParams(cmdStr)
         front = self.commands[cmd]()
         front.execute(params)
-        
 
 
 def main(args):
@@ -39,8 +40,8 @@ def main(args):
     front = DBFront()
     try:
         front.executeCmd(args)
-    except Exception:
-        print ""
+    except Exception as e:
+        print e
     
     
     
