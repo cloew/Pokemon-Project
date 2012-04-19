@@ -35,6 +35,7 @@ class Tags:
     stat2Tag = "stat2"
     degreeTag = "degree"
     affectUserTag = "affectUser"
+    dexTag = "dex"
     
     minTag = "min"
     maxTag = "max"
