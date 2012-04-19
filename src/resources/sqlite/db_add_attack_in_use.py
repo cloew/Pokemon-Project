@@ -5,33 +5,35 @@ from resources.sqlite.db_adder import DBAdder
 
 class DBAddAttackInUse(DBAdder):
     """ Adds an Attack In Use to the Database """
-    def __init__(self):
+    def __init__(self, id, connection = None, cursor = None):
         """  """
         self.delegateType = "Attack in Use"
         self.commands = {'p':self.addParameters}
-        self.vals = {'pkmn_id':None, 
+        self.vals = {'pkmn_id':id, 
                           'attack_id':None}
         
-        
-        self.connection = PkmnDBConnect()
-        self.cursor = self.connection.cursor()
+        #self.pkmn_id = id
+        if connection is None:
+            self.connection = PkmnDBConnect()
+            self.cursor = self.connection.cursor()
+        else:
+            self.connection = connection
+            self.cursor = cursor
     
     def execute(self, params, close = True):
         """  """
-        for param in params:
-            cmd = param[0]
-            cmdParams = param[2:].split(':')
+        self.attack = params[0]
+        self.cursor.execute("SELECT id from Attack where name = ?", (self.attack,))
+        self.vals['attack_id'] = self.cursor.fetchone()[0]
             
-            self.commands[cmd](cmdParams)
-            
-        self.addAbility()
+        self.addAttackInUse()
             
         self.connection.commit()
         
         if (close):
             self.connection.close()
         
-    def addAbility(self):
+    def addAttackInUse(self):
         """ Adds the attack to the database """
         params = []
         toAdd = []
@@ -45,27 +47,5 @@ class DBAddAttackInUse(DBAdder):
             
         paramStr = self.GetStrFromList(params)
         
-        print "Adding Attack In Use:", self.vals['']
+        print "Adding Attack In Use:", self.attack
         self.insertIntoDB("AttackInUse", paramStr, toAdd)
-            
-    def addParameters(self, vals):
-        """ Adds Attack specific parameters """
-        self.vals['pkmn_id'] = vals[0]
-        self.name = vals[1]
-        
-        self.cursor.execute("SELECT id from Attack where name = ?", (self.name,))
-        id = self.cursor.fetchone()[0]
-        
-        self.cursor.execute("SELECT name from Pokemon where id = ?", (self.vals['pkmn_id'],)
-        pkmn = self.cursor.fetchone()[0]
-        
-        print "Building Attack in Use %s for pkmn:" % self.name, pkmn
-        
-    def checkForAbilityAlready(self):
-        """  """
-        self.cursor.execute("SELECT id from Ability where name = ?", (self.vals['name'],))
-        t = self.cursor.fetchone()
-        
-        if not t is None:
-            print "Ability %s already exists" % self.vals['name']
-            raise Exception()
