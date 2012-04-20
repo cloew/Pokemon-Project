@@ -35,12 +35,17 @@ def BuildEffectDelegate():
     delegate.faintHandler = BuildFaintHandler(FaintHandlerFactory.REGULAR)
     return delegate
     
+def BuildAttack(attack = "TACKLE"):
+    """ Builds an Attack """
+    return AttackFactory.getAttackAsNew(attack)
+    
 def BuildBattleAction(user = BuildPokemonBattleWrapper(), priority = 0):
     """ Builds a Battle Action """
     return BattleAction(user, priority)
     
-def BuildAttackAction(user = BuildPokemonBattleWrapper(), target = BuildPokemonBattleWrapper(), attack = AttackFactory.getAttackAsNew("TACKLE")):
+def BuildAttackAction(user = BuildPokemonBattleWrapper(), target = BuildPokemonBattleWrapper(), attack = "TACKLE"):
     """ Builds an Attack Action """
+    attack = BuildAttack(attack = attack)
     return AttackAction(attack, user, target)
     
 def BuildActionLock(user = BuildPokemonBattleWrapper(), attackAction = BuildAttackAction(user = BuildPokemonBattleWrapper())):

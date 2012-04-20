@@ -2,7 +2,7 @@ from Battle.Attack.EffectDelegates.effect_delegate import EffectDelegate
 
 class RecoilDelegate(EffectDelegate):
     """ Represents a recoil effect on an Attack """
-    message = " was hit by recoil."
+    message = "%s was hit by recoil."
     
     def __init__(self, recoilRatio):
         """ Builds a Recoil Effect with a set ration """
@@ -14,7 +14,7 @@ class RecoilDelegate(EffectDelegate):
         
     def applyEffect(self, user, target):
         """ Apply the recoil effect """
-        messages = [user.getHeader() + RecoilDelegate.message]
+        messages = [self.message % user.getHeader()]
         
         totake = self.damage/self.recoilRatio
         totake = self.normalize(totake)

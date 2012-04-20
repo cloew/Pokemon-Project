@@ -31,7 +31,7 @@ class applyEffect(unittest.TestCase):
         self.delegate.damage = self.damage
         messages = self.delegate.applyEffect(self.pkmn, None)
 
-        message = self.pkmn.getHeader() + RecoilDelegate.message
+        message = RecoilDelegate.message % self.pkmn.getHeader()
         assert len(messages) == 1, "Should get one message"
         assert messages[0] == message, "Message should be Pkmn's header and the Delegate's message"
         

@@ -4,6 +4,7 @@ import applystatus_test
 import chance_test
 import charge_test
 import confuse_test
+import crash_test
 import critmod_test
 import curestatus_test
 import diverge_test
@@ -33,7 +34,9 @@ import useless_test
 
 suites = [applylock_test.suite, applystatus_test.suite,
               chance_test.suite, charge_test.suite, 
-              confuse_test.suite, critmod_test.suite,
+              confuse_test.suite,
+              crash_test.suite,
+              critmod_test.suite,
               curestatus_test.suite,
               diverge_test.suite,
               diverge_on_faint_test.suite,
