@@ -20,6 +20,7 @@ class PkmnBattleWrapper:
         if reset:
             self.reset()
             
+        self.lastAction = None
         self.setPkmn(pkmn)
         return [self.side.trainer.announcePkmn(pkmn)]
         
