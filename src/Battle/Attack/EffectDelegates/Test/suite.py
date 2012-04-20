@@ -9,6 +9,7 @@ import critmod_test
 import curestatus_test
 import diverge_test
 import diverge_on_faint_test
+import diverge_on_first_turn_test
 import dodge_test
 import effect_delegate_test
 import encore_test
@@ -40,6 +41,7 @@ suites = [applylock_test.suite, applystatus_test.suite,
               curestatus_test.suite,
               diverge_test.suite,
               diverge_on_faint_test.suite,
+              diverge_on_first_turn_test.suite,
               dodge_test.suite,
               effect_delegate_test.suite,
               encore_test.suite, flinch_test.suite,
