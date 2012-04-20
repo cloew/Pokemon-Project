@@ -28,7 +28,8 @@ class Attack:
         messages = ["%s USED %s" % (user.getHeader(), self.name)]
         hit = self.doHit(user, target, messages)
         
-        messages += self.doAttackLoop(user, target)
+        if hit:
+            messages += self.doAttackLoop(user, target)
         
         return messages
         

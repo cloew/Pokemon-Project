@@ -17,7 +17,9 @@ class HitDelegate(object):
     
     def hit(self, user, target):
         """ Returns whether or not an attack hit its target """
-        return not target.fainted() and not self.dodging(target) and self.core(user, target), [self.messages[self.parent.isStatus()]]
+        return not target.fainted() and not self.dodging(target)\
+                   and self.hitGhost(target) and self.core(user, target),\
+                   [self.messages[self.parent.isStatus()]]
         
     def core(self, user, target):
         """ Calculates a random #, compares to chanceToHit to determine if it
