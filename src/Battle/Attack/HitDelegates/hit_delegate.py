@@ -5,7 +5,10 @@ class HitDelegate(object):
     accMods = [1.0, 4/3.0, 5/3.0, 2.0, 7/3.0, 8/3.0, 3.0,
                     1/3.0, 3/8.0, 3/7.0, 1/2.0, 3/5.0, 3/4.0]
                     
-    message = "Attack missed."
+    MISS = "Attack missed."
+    STATUSMISS =  "But it failed."
+    
+    messages = [MISS, STATUSMISS]
   
     def __init__(self, parent, toHit):
         """ Build a core hit Delegate """
@@ -14,7 +17,7 @@ class HitDelegate(object):
     
     def hit(self, user, target):
         """ Returns whether or not an attack hit its target """
-        return not target.fainted() and not self.dodging(target) and self.core(user, target), [self.message]
+        return not target.fainted() and not self.dodging(target) and self.core(user, target), [self.messages[self.parent.isStatus()]]
         
     def core(self, user, target):
         """ Calculates a random #, compares to chanceToHit to determine if it
@@ -51,4 +54,14 @@ class HitDelegate(object):
     def dodging(self, target):
         """ Returns if the opp is dodging """
         return target.dodge is not None
+        
+    def hitGhost(self, target):
+        """ Return if the attack misses because the target is GHOST """
+        if self.parent.isStatus():
+            return True # Status moves can always hit GHOST Pkmn
+        
+        isGhost = "GHOST" in target.getTypes()
+        normalAndFighting = self.parent.type in ["NORMAL", "FIGHTING"]
+        
+        return not (isGhost and normalAndFighting)
         

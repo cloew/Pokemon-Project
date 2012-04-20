@@ -64,6 +64,10 @@ class Pokemon:
         """ Returns the Pokemon's types """
         return self.battleDelegate.types
         
+    def setTypes(self, types):
+        """ Returns the Pokemon's types """
+        self.battleDelegate.types = types
+        
     def getRatioOfHealth(self, ratio, forDamage = False):
         """ Returns the ratio of the pokemon's health """
         val = int(self.getStat("HP")/float(ratio))

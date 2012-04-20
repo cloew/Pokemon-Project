@@ -1,18 +1,20 @@
 import unittest
-from Test.test_helper import BuildPokemonBattleWrapper
+from Test.test_helper import BuildPokemonBattleWrapper, BuildAttack
 
 from Battle.Attack.HitDelegates.hit_delegate import HitDelegate
+from Battle.Attack.DamageDelegates.null_damage_delegate import NullDamageDelegate
 
 class hit(unittest.TestCase):
     """ Test cases of hit """
     
     def  setUp(self):
         """ Build the Pkmn and Delegate for the test """
+        self.attack = BuildAttack()
         self.user = BuildPokemonBattleWrapper()
         self.target = BuildPokemonBattleWrapper()
         
         self.toHit = 100.0
-        self.delegate = HitDelegate(None, self.toHit)
+        self.delegate = HitDelegate(self.attack, self.toHit)
         
     def fainted(self):
         """ Test that if the target is fainted the attack misses """
@@ -177,8 +179,53 @@ testcasesDodging= ["dodging", "notDodging"]
 suiteDodging= unittest.TestSuite(map(dodging, testcasesDodging))
 
 #########################################################
+
+class hitGhost(unittest.TestCase):
+    """ Test that hitGhost returns the correct values """
+    
+    def setUp(self):
+        """ Build Pkmn and Delegate for use in test cases """
+        self.attack = BuildAttack()
+        self.pkmn =  BuildPokemonBattleWrapper()
+        self.delegate = HitDelegate(self.attack, 100)
+        
+        self.damage = self.attack.damageDelegate
+        
+    def cantHit(self):
+        """ Test hitGhost function returns false when the opp is a Ghost and a FIGHTING or NORMAL attack is used """
+        self.pkmn.setTypes(["GHOST"])
+        
+        self.attack.type = "NORMAL"
+        assert not  self.delegate.hitGhost(self.pkmn), "Should not be able to hit a Ghost with a Normal Attack"
+        
+        self.attack.type = "FIGHTING"
+        assert not  self.delegate.hitGhost(self.pkmn), "Should not be able to hit a Ghost with a Fighting Attack"
+        
+    def status(self):
+        """ Test hitGhost function returns true correctly when the attack is a status attack """
+        self.attack.damageDelegate = NullDamageDelegate()
+        self.pkmn.setTypes(["GHOST"])
+        self.attack.type = "NORMAL"
+        assert self.delegate.hitGhost(self.pkmn), "Should hit a Ghost if it is a status move"
+        
+    def notGhost(self):
+        """ Test hitGhost function returns true when the opp is not a Ghost Type """
+        self.pkmn.setTypes(["NORMAL"])
+        assert self.delegate.hitGhost(self.pkmn), "Should be able to hit a Normal Type Pkmn"
+        
+    def notFightingOrNormal(self):
+        """ Test hitGhost function returns true when the opp is a Ghost but not hit with a type that should miss """
+        self.pkmn.setTypes(["GHOST"])
+        
+        self.attack.type = "FIRE"
+        assert self.delegate.hitGhost(self.pkmn), "Should be able to hit a Ghost with any attack that isn't Normal or Fighting Attack"
+        
+testcasesHitGhost= ["cantHit", "status", "notGhost", "notFightingOrNormal"]
+suiteHitGhost= unittest.TestSuite(map(hitGhost, testcasesHitGhost))
+
+#########################################################
  
-suites = [suiteHit, suiteGetChanceToHit, suiteGetMod, suiteCheckHit, suiteDodging]
+suites = [suiteHit, suiteGetChanceToHit, suiteGetMod, suiteCheckHit, suiteDodging, suiteHitGhost]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

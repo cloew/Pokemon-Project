@@ -1,5 +1,6 @@
 from preconditions import PreconditionChecker
 from resources.tags import Tags
+from Battle.Attack.DamageDelegates.null_damage_delegate import NullDamageDelegate
 
 class Attack:
     """ Represents an Attack """
@@ -92,4 +93,8 @@ class Attack:
                 effectMessages = effect.effectOnMiss(user, target)
                 messages = messages + effectMessages
         return messages
+        
+    def isStatus(self):
+        """ Returns if the Attack is a status attack """
+        return isinstance(self.damageDelegate, NullDamageDelegate)
         
