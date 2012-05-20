@@ -2,10 +2,10 @@ import random
 
 import pygame
 from pygame.locals import *
-from pygame.transform import scale
 
 from scrolling_map import ScrollingMap
 from logo import Logo
+from menu import Menu
 
 class MainMenu:
     """ Main Menu screen """
@@ -15,6 +15,7 @@ class MainMenu:
         self.font = pygame.font.SysFont("Times New Roman", 36)
         self.map = ScrollingMap()
         self.logo = Logo()
+        self.menu = Menu()
         
     def update(self):
         """ Update the screen """
@@ -24,13 +25,7 @@ class MainMenu:
         """ Draw the window """
         self.map.draw(window)
         self.logo.draw(window)
-        self.drawFont(window)
-        
-    def drawFont(self, window): 
-        """ Draw the menu """
-        text = self.font.render("Start Game", 1, (10, 10, 10))
-        textpos = text.get_rect(centerx = window.get_width()/2, centery= window.get_height()/2)
-        window.blit(text, textpos)
+        self.menu.draw(window)
         
     def processCommands(self):
         """ Process Commands """
@@ -42,8 +37,8 @@ class MainMenu:
                 if event.key == K_ESCAPE:
                     running = False
                 elif event.key == K_UP: 
-                    self.font.set_bold(True)                
+                    self.menu.setBold(True)
                 elif event.key == K_DOWN:
-                    self.font.set_bold(False)
+                    self.menu.setBold(False)
                     
         return running
