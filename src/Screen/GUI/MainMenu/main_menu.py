@@ -27,18 +27,10 @@ class MainMenu:
         self.logo.draw(window)
         self.menu.draw(window)
         
-    def processCommands(self):
+    def processEvent(self, event):
         """ Process Commands """
-        running = True
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                running = False
-            elif event.type == KEYDOWN:
-                if event.key == K_ESCAPE:
-                    running = False
-                elif event.key == K_UP: 
-                    self.menu.setBold(True)
-                elif event.key == K_DOWN:
-                    self.menu.setBold(False)
-                    
-        return running
+        if event.type == KEYDOWN:
+            if event.key == K_UP: 
+                self.menu.setBold(True)
+            elif event.key == K_DOWN:
+                self.menu.setBold(False)

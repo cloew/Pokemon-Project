@@ -37,9 +37,19 @@ class Screen:
             self.clock.tick(self.GAME_SPEED)
             
             self.screen.update()
-            self.running = self.screen.processCommands()
+            self.processEvents()
             self.screen.draw(self.window)
             self.redraw()
+            
+    def processEvents(self):
+        """ Process commands sent to the window """
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                self.running = False
+            elif event.type == KEYDOWN and event.key == K_ESCAPE:
+                self.running = False
+            else:
+                self.screen.processEvent(event)
             
     def redraw(self):
         pygame.display.flip()
