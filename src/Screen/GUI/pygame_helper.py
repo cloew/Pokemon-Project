@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 
 def load_image(name, colorkey=None):
-    fullname = name
+    fullname = "resources/images/" + name
     try:
         image = pygame.image.load(fullname)
     except pygame.error, message:
