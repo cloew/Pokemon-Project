@@ -29,8 +29,4 @@ class MainMenu:
         
     def processEvent(self, event):
         """ Process Commands """
-        if event.type == KEYDOWN:
-            if event.key == K_UP: 
-                self.menu.setBold(True)
-            elif event.key == K_DOWN:
-                self.menu.setBold(False)
+        self.menu.processEvent(event)
