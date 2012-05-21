@@ -1,11 +1,13 @@
+import math
 import random
-import pygame
 
+import pygame
 from pygame.locals import *
 from Screen.GUI.pygame_helper import load_image
 
 class ScrollingMap:
     """ Represents the scrolling map """
+    VELOCITY = 1
     
     def __init__(self):
         """ Builds the scrolling map and starts it at the top left corner  """
@@ -25,7 +27,7 @@ class ScrollingMap:
         
     def update(self):
         """ Updates the map Location """
-        if self.coord == self.mapLoc:
+        if self.atCoord():
             self.getNewLoc()
         else:
             self.drift()
@@ -39,18 +41,25 @@ class ScrollingMap:
         """ Have the map location drift """
         diff = [0, 0]
         diff[0] = self.coord[0] - self.mapLoc[0]
-        diff[1] = self.coord[1] - self.mapLoc[1]
         
-        denom = self.getDenominator(diff)
-        self.mapLoc[0] += diff[0]/denom
-        self.mapLoc[1] += diff[1]/denom
-    
-    def getDenominator(self, diff):
-        """ Gets the determinator """
-        if diff[0] == 0 or diff[1] == 0:
-            denom = 1
-        elif diff[0] > diff[1]:
-            denom = float(abs(diff[0]))
+        if self.willOvershoot(diff):
+            self.mapLoc = list(self.coord)
         else:
-            denom = float(abs(diff[1]))
-        return denom
+            angle = self.getAngle(diff)
+            self.mapLoc[0] += math.cos(angle)
+            self.mapLoc[1] += math.sin(angle)
+            
+    def atCoord(self):
+        """ Return if the map is at the coord """
+        sameX = self.coord[0] == int(self.mapLoc[0])
+        sameY = self.coord[1] == int(self.mapLoc[1])
+        return sameX and sameY
+        
+    def willOvershoot(self, diff):
+        """ Returns if by moving at the velocity of one the map will miss the coord """ 
+        distance = diff[0]**2 + diff[1]**2
+        return distance < 1
+        
+    def getAngle(self, diff):
+        """ Gets the angle to the coord """
+        return math.atan2(diff[1], diff[0])
