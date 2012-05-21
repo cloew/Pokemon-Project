@@ -42,16 +42,18 @@ class Menu:
     def up(self):
         """ Move the selected index up """
         if self.selected > 0:
-            self.getEntry().setBold(False)
-            self.selected -= 1
-            self.getEntry().setBold(True)
+            self.changeHighlighted(-1)
         
     def down(self):
         """ Move the selected index down """
         if self.selected < len(self.entries)-1:
-            self.getEntry().setBold(False)
-            self.selected += 1
-            self.getEntry().setBold(True)
+            self.changeHighlighted(1)
+            
+    def changeHighlighted(self, mod):
+        """ Change the highlighted menu entry """
+        self.getEntry().setBold(False)
+        self.selected += mod
+        self.getEntry().setBold(True)
         
     def getEntry(self):
         return self.entries[self.selected]
