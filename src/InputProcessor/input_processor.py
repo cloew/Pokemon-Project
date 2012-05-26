@@ -14,7 +14,8 @@ class InputProcessor:
         commands = self.convertEventToCommand()
         
         for command in commands:
-            functions[command]()
+            if command in functions:
+                functions[command]()
         
     def convertEventToCommand(self):
         """ Converts PyGame Events to Game Commands """

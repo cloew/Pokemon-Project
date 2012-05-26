@@ -39,17 +39,6 @@ class Screen:
         """ Draws the screen """
         self.screen.draw(self.window)
         self.redraw()
-        
-    def run(self):
-        """ Run the screen """
-        self.running = True
-        while self.running:
-            self.clock.tick(self.GAME_SPEED)
-            
-            self.screen.update()
-            self.processEvents()
-            self.screen.draw(self.window)
-            self.redraw()
             
     def redraw(self):
         pygame.display.flip()

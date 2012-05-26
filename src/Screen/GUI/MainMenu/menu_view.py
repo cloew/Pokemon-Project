@@ -2,17 +2,19 @@ import pygame
 from pygame.locals import *
 
 from Screen.GUI.pygame_helper import load_image
-from menu_entry import MenuEntry
+from menu_entry import MenuEntryView
 
 class MenuView:
     """ Represents the menu on the main menu screen """
     
     def __init__(self, menu):
         """ Build the menu """
-        self.entries = [MenuEntry("Start", 4), MenuEntry("Exit", 2)]
+        self.entries = []
+        for i in range(len(menu.entries)):
+            entryView = MenuEntryView(menu.entries[i], 4/(i+1))
+            self.entries.append(entryView)
+        
         self.image = load_image("menu.png")
-        self.selected = 0
-        self.getEntry().setBold(True)
         
     def draw(self, window): 
         """ Draw the menu """
@@ -30,22 +32,3 @@ class MenuView:
         
         menuPos = menuSurface.get_rect(centerx = x, centery= y)
         return menuSurface, menuPos
-        
-    def up(self):
-        """ Move the selected index up """
-        if self.selected > 0:
-            self.changeHighlighted(-1)
-        
-    def down(self):
-        """ Move the selected index down """
-        if self.selected < len(self.entries)-1:
-            self.changeHighlighted(1)
-            
-    def changeHighlighted(self, mod):
-        """ Change the highlighted menu entry """
-        self.getEntry().setBold(False)
-        self.selected += mod
-        self.getEntry().setBold(True)
-        
-    def getEntry(self):
-        return self.entries[self.selected]

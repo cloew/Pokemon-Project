@@ -10,4 +10,5 @@ keyBindings = {K_UP:commands.UP,
                        K_a:commands.LEFT,
                        K_RIGHT:commands.RIGHT,
                        K_d:commands.RIGHT,
-                       K_ESCAPE:commands.EXIT}
+                       K_ESCAPE:commands.EXIT,
+                       K_ENTER:commands.SELECT}

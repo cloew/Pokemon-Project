@@ -27,11 +27,3 @@ class MainMenuScreen:
         self.map.draw(window)
         self.logo.draw(window)
         self.menuView.draw(window)
-            
-    def up(self):
-        """  """
-        self.menuView.up()
-        
-    def down(self):
-        """  """
-        self.menuView.down()

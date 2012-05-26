@@ -18,9 +18,9 @@ class MainMenuController:
         self.screen = screen
         self.menuScreen = MainMenuScreen(self.menu)
         self.screen.setScreen(self.menuScreen)
-        self.cmds = {commands.UP:self.menuScreen.up,
-                           commands.DOWN:self.menuScreen.down,
-                           commands.EXIT:self.quit}
+        self.cmds = {commands.UP:self.menu.up,
+                           commands.DOWN:self.menu.down,
+                           commands.EXIT:self.menu.quit}
         self.inputProcessor = inputProcessor
         
     def run(self):
@@ -29,10 +29,6 @@ class MainMenuController:
             self.screen.update()
             self.inputProcessor.processInputs(self.cmds)
             self.screen.draw()
-            
-    def quit(self):
-        """ Quits the game """
-        self.menu.running = False
                 
 if __name__ == "__main__":
     screen = Screen()
