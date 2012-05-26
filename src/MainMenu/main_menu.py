@@ -14,19 +14,26 @@ class MainMenu:
         self.selectEntry()
         
     def up(self):
-        """  """
+        """ Select the previous entry """
         if self.current > 0:
             self.changeSelected(-1)
             
     def down(self):
+        """ Select the next entry """
         if self.current < len(self.entries)-1:
             self.changeSelected(1)
             
+    def enter(self):
+        """ Call the selected entry """
+        self.entries[self.current].call()
+            
     def startGame(self):
         """ Start the game """
+        print "Starting game"
         
     def options(self):
         """ Go to the options menu """
+        print "Options menu"
         
     def quit(self):
         """ Quits the game """
