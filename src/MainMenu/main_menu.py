@@ -7,7 +7,9 @@ class MainMenu:
         """ Build the main menu """
         self.running = True
         
-        self.entries = [MenuEntry("Start", self.startGame), MenuEntry("Exit", self.quit)]
+        self.entries = [MenuEntry("Start", self.startGame), 
+                             MenuEntry("Options", self.options),
+                             MenuEntry("Exit", self.quit)]
         self.current = 0
         self.selectEntry()
         
@@ -22,6 +24,9 @@ class MainMenu:
             
     def startGame(self):
         """ Start the game """
+        
+    def options(self):
+        """ Go to the options menu """
         
     def quit(self):
         """ Quits the game """
