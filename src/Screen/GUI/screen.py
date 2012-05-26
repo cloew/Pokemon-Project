@@ -5,8 +5,6 @@ import pygame
 from pygame.locals import *
 from Screen.GUI.pygame_helper import load_image
 
-from Screen.GUI.MainMenu.main_menu import MainMenu
-
 class Screen:
     """ Represents the screen """
     GAME_SPEED = 60
@@ -15,7 +13,10 @@ class Screen:
         """ Build the window """
         self.window = self.getWindow()
         self.clock = pygame.time.Clock()
-        self.screen = MainMenu()
+        
+    def setScreen(self, screen):
+        """ Sets the current Screen Display """
+        self.screen = screen
         
     def getWindow(self):
         """ Gets the GUI Window """
@@ -29,6 +30,15 @@ class Screen:
         """ Gets the icon """
         image = load_image("pokeball.png")
         return image
+        
+    def update(self):
+        """ Update the screen """
+        self.screen.update()
+        
+    def draw(self):
+        """ Draws the screen """
+        self.screen.draw(self.window)
+        self.redraw()
         
     def run(self):
         """ Run the screen """
@@ -44,12 +54,7 @@ class Screen:
     def processEvents(self):
         """ Process commands sent to the window """
         for event in pygame.event.get():
-            if event.type == QUIT:
-                self.running = False
-            elif event.type == KEYDOWN and event.key == K_ESCAPE:
-                self.running = False
-            else:
-                self.screen.processEvent(event)
+            self.screen.processEvent(event)
             
     def redraw(self):
         pygame.display.flip()
