@@ -1,11 +1,6 @@
-import sys
-sys.path.append("C:\\cygwin\\home\\Programming\\Pokemon-Python\\src")
-
 from InputProcessor import commands
 
-from InputProcessor.input_processor import InputProcessor
 from MainMenu.main_menu import MainMenu
-from Screen.GUI.screen import Screen
 from Screen.GUI.MainMenu.main_menu_view import MainMenuScreen
 
 
@@ -30,9 +25,3 @@ class MainMenuController:
             self.screen.update()
             self.inputProcessor.processInputs(self.cmds)
             self.screen.draw()
-                
-if __name__ == "__main__":
-    screen = Screen()
-    inputProcessor = InputProcessor()
-    main_controller = MainMenuController(screen, inputProcessor)
-    main_controller.run()
