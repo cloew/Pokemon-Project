@@ -1,6 +1,12 @@
 from distutils.core import setup
 import py2exe
 import os
+import sys
+
+
+if len(sys.argv) == 1:
+    sys.argv.append("py2exe")
+    sys.argv.append("-q")
 
 origIsSystemDLL = py2exe.build_exe.isSystemDLL # save the orginal before we edit it
 def isSystemDLL(pathname):
@@ -10,4 +16,25 @@ def isSystemDLL(pathname):
     return origIsSystemDLL(pathname) # return the orginal function
 py2exe.build_exe.isSystemDLL = isSystemDLL # override the default function with this one
 
-setup(console=['MainMenu/main_menu_controller.py'])
+class Target:
+    def __init__(self, **kw):
+        self.__dict__.update(kw)
+        # for the versioninfo resources
+        self.version = "0.6.1"
+        self.company_name = "No Company"
+        self.copyright = "no copyright"
+        self.name = "py2exe sample files"
+        
+        
+pkmn = Target(
+    # used for the versioninfo resource
+    description = "A sample GUI app",
+
+    # what to build
+    script = "main.py",
+##    icon_resources = [(1, "resources/images/pokeball.png")],
+    dest_base = "Pokemon")
+
+setup(zipfile = None,
+         windows=[pkmn],
+         )
