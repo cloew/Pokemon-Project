@@ -51,11 +51,6 @@ class Screen:
             self.screen.draw(self.window)
             self.redraw()
             
-    def processEvents(self):
-        """ Process commands sent to the window """
-        for event in pygame.event.get():
-            self.screen.processEvent(event)
-            
     def redraw(self):
         pygame.display.flip()
         

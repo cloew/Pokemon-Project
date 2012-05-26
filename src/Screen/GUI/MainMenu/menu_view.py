@@ -4,10 +4,10 @@ from pygame.locals import *
 from Screen.GUI.pygame_helper import load_image
 from menu_entry import MenuEntry
 
-class Menu:
+class MenuView:
     """ Represents the menu on the main menu screen """
     
-    def __init__(self):
+    def __init__(self, menu):
         """ Build the menu """
         self.entries = [MenuEntry("Start", 4), MenuEntry("Exit", 2)]
         self.image = load_image("menu.png")
@@ -30,14 +30,6 @@ class Menu:
         
         menuPos = menuSurface.get_rect(centerx = x, centery= y)
         return menuSurface, menuPos
-        
-    def processEvent(self, event):
-        """ Process event """
-        if event.type == KEYDOWN:
-            if event.key == K_UP: 
-                self.up()
-            elif event.key == K_DOWN:
-                self.down()
         
     def up(self):
         """ Move the selected index up """

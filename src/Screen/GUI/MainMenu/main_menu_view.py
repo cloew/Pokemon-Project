@@ -5,18 +5,18 @@ from pygame.locals import *
 
 from scrolling_map import ScrollingMap
 from logo import Logo
-from menu import Menu
+from menu_view import MenuView
 
 class MainMenuScreen:
     """ Main Menu screen """
     
     def __init__(self, menu):
         """  """
-        self.model = menu
+        self.menu = menu
         self.font = pygame.font.SysFont("Times New Roman", 36)
         self.map = ScrollingMap()
         self.logo = Logo()
-        self.menu = Menu()
+        self.menuView = MenuView(menu)
         
     def update(self):
         """ Update the screen """
@@ -26,21 +26,12 @@ class MainMenuScreen:
         """ Draw the window """
         self.map.draw(window)
         self.logo.draw(window)
-        self.menu.draw(window)
-        
-    def processEvent(self, event):
-        """ Process Commands """
-        if event.type == QUIT:
-            self.model.running = False
-        elif event.type == KEYDOWN and event.key == K_ESCAPE:
-            self.model.running = False
-        else:
-            self.menu.processEvent(event)
+        self.menuView.draw(window)
             
     def up(self):
         """  """
-        self.menu.up()
+        self.menuView.up()
         
     def down(self):
         """  """
-        self.menu.down()
+        self.menuView.down()

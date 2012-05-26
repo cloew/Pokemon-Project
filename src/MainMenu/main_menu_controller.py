@@ -27,7 +27,6 @@ class MainMenuController:
         """ Runs the game loop """
         while self.menu.running:
             self.screen.update()
-            #self.screen.processEvents()
             self.inputProcessor.processInputs(self.cmds)
             self.screen.draw()
             
