@@ -36,3 +36,11 @@ class MainMenuScreen:
             self.model.running = False
         else:
             self.menu.processEvent(event)
+            
+    def up(self):
+        """  """
+        self.menu.up()
+        
+    def down(self):
+        """  """
+        self.menu.down()
