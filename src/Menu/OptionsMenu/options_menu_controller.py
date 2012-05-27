@@ -2,7 +2,7 @@ from InputProcessor import commands
 from InputProcessor.input_processor import inputProcessor
 from Screen.GUI.screen import screen
 
-from OptionsMenu.options_menu import OptionsMenu
+from Menu.OptionsMenu.options_menu import OptionsMenu
 from Screen.GUI.OptionsMenu.options_menu_view import OptionsMenuScreen
 
 

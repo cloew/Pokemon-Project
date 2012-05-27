@@ -1,19 +1,17 @@
-from menu_entry import MenuEntry
 
-from OptionsMenu.options_menu_controller import OptionsMenuController
-
-class MainMenu:
-    """ Class to represent the main menu """
+class Menu:
+    """ Represents a menu in the game """
     
     def __init__(self):
-        """ Build the main menu """
+        """ Build the menu """
         self.running = True
-        
-        self.entries = [MenuEntry("Start", self.startGame), 
-                             MenuEntry("Options", self.options),
-                             MenuEntry("Exit", self.quit)]
+        self.addEntries()
         self.current = 0
         self.selectEntry()
+        
+    def addEntries(self):
+        """ Add Entries to the menu """
+        self.entries = []
         
     def up(self):
         """ Select the previous entry """
@@ -27,17 +25,8 @@ class MainMenu:
             
     def enter(self):
         """ Call the selected entry """
-        self.entries[self.current].call()
-            
-    def startGame(self):
-        """ Start the game """
-        print "Starting game"
-        
-    def options(self):
-        """ Go to the options menu """
-        print "Options menu"
-        options = OptionsMenuController()
-        options.run()
+        if self.entries != []:
+            self.entries[self.current].call()
         
     def quit(self):
         """ Quits the game """
@@ -51,8 +40,10 @@ class MainMenu:
         
     def selectEntry(self):
         """ Select the current entry """
-        self.entries[self.current].select()
+        if self.entries != []:
+            self.entries[self.current].select()
         
     def deselectEntry(self):
         """ Deselect the current entry """
-        self.entries[self.current].deselect()
+        if self.entries != []:
+            self.entries[self.current].deselect()

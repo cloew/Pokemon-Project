@@ -6,7 +6,7 @@ from Trainer.human_trainer import HumanTrainer
 
 from Trainer.trainer_factory import TrainerFactory
 
-from MainMenu.main_menu_controller import MainMenuController
+from Menu.MainMenu.main_menu_controller import MainMenuController
 
 def ParseArgs(args):
     """ Parse the Command Line Arguments """
