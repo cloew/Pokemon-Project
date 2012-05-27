@@ -1,5 +1,7 @@
 from menu_entry import MenuEntry
 
+from OptionsMenu.options_menu_controller import OptionsMenuController
+
 class MainMenu:
     """ Class to represent the main menu """
     
@@ -34,6 +36,8 @@ class MainMenu:
     def options(self):
         """ Go to the options menu """
         print "Options menu"
+        options = OptionsMenuController()
+        options.run()
         
     def quit(self):
         """ Quits the game """

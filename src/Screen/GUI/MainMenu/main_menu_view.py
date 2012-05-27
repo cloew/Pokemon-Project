@@ -3,7 +3,7 @@ import random
 import pygame
 from pygame.locals import *
 
-from scrolling_map import ScrollingMap
+from scrolling_map import map
 from logo import Logo
 from menu_view import MenuView
 
@@ -14,16 +14,16 @@ class MainMenuScreen:
         """  """
         self.menu = menu
         self.font = pygame.font.SysFont("Times New Roman", 36)
-        self.map = ScrollingMap()
+        #self.map = ScrollingMap()
         self.logo = Logo()
         self.menuView = MenuView(menu)
         
     def update(self):
         """ Update the screen """
-        self.map.update()
+        map.update()
         
     def draw(self, window):
         """ Draw the window """
-        self.map.draw(window)
+        map.draw(window)
         self.logo.draw(window)
         self.menuView.draw(window)

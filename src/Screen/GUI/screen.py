@@ -33,6 +33,7 @@ class Screen:
         
     def update(self):
         """ Update the screen """
+        self.clock.tick(self.GAME_SPEED)
         self.screen.update()
         
     def draw(self):
