@@ -43,6 +43,4 @@ class Screen:
     def redraw(self):
         pygame.display.flip()
         
-if __name__ == "__main__":
-    screen = Screen()
-    screen.run()
+screen = Screen()

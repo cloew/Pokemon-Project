@@ -6,8 +6,6 @@ from Trainer.human_trainer import HumanTrainer
 
 from Trainer.trainer_factory import TrainerFactory
 
-from InputProcessor.input_processor import InputProcessor
-from Screen.GUI.screen import Screen
 from MainMenu.main_menu_controller import MainMenuController
 
 def ParseArgs(args):
@@ -87,9 +85,7 @@ def main(argv):
     """ Start the game """
     try:
         import pygame
-        screen = Screen()
-        inputProcessor = InputProcessor()
-        main_controller = MainMenuController(screen, inputProcessor)
+        main_controller = MainMenuController()
         main_controller.run()
     except ImportError:
         player, cpu = ParseArgs(argv)

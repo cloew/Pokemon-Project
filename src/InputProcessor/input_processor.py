@@ -29,3 +29,5 @@ class InputProcessor:
                     commands.append(bindings.keyBindings[event.key])
         
         return commands
+        
+inputProcessor = InputProcessor()
