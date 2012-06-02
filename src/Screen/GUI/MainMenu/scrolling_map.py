@@ -41,6 +41,7 @@ class ScrollingMap:
         """ Have the map location drift """
         diff = [0, 0]
         diff[0] = self.coord[0] - self.mapLoc[0]
+        diff[1] = self.coord[1] - self.mapLoc[1]
         
         if self.willOvershoot(diff):
             self.mapLoc = list(self.coord)
