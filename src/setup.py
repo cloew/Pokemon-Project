@@ -32,7 +32,7 @@ pkmn = Target(
 
     # what to build
     script = "main.py",
-##    icon_resources = [(1, "resources/images/pokeball.png")],
+    icon_resources = [(1, "resources/images/pokeball.ico")],
     dest_base = "Pokemon")
 
 setup(zipfile = None,
