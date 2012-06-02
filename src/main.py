@@ -6,6 +6,7 @@ from Trainer.human_trainer import HumanTrainer
 
 from Trainer.trainer_factory import TrainerFactory
 
+from Menu.MainMenu.main_menu_controller import MainMenuController
 
 def ParseArgs(args):
     """ Parse the Command Line Arguments """
@@ -82,8 +83,13 @@ def CheckTrainer(trainer, msg):
     
 def main(argv):
     """ Start the game """
-    player, cpu = ParseArgs(argv)
-    Loop(player, cpu)
+    try:
+        import pygame
+        main_controller = MainMenuController()
+        main_controller.run()
+    except ImportError:
+        player, cpu = ParseArgs(argv)
+        Loop(player, cpu)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

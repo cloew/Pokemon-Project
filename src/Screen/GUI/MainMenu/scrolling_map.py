@@ -64,3 +64,5 @@ class ScrollingMap:
     def getAngle(self, diff):
         """ Gets the angle to the coord """
         return math.atan2(diff[1], diff[0])
+        
+map = ScrollingMap()

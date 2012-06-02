@@ -3,30 +3,27 @@ import random
 import pygame
 from pygame.locals import *
 
-from scrolling_map import ScrollingMap
+from scrolling_map import map
 from logo import Logo
-from menu import Menu
+from menu_view import MenuView
 
-class MainMenu:
+class MainMenuScreen:
     """ Main Menu screen """
     
-    def __init__(self):
+    def __init__(self, menu):
         """  """
+        self.menu = menu
         self.font = pygame.font.SysFont("Times New Roman", 36)
-        self.map = ScrollingMap()
+        #self.map = ScrollingMap()
         self.logo = Logo()
-        self.menu = Menu()
+        self.menuView = MenuView(menu)
         
     def update(self):
         """ Update the screen """
-        self.map.update()
+        map.update()
         
     def draw(self, window):
         """ Draw the window """
-        self.map.draw(window)
+        map.draw(window)
         self.logo.draw(window)
-        self.menu.draw(window)
-        
-    def processEvent(self, event):
-        """ Process Commands """
-        self.menu.processEvent(event)
+        self.menuView.draw(window)
