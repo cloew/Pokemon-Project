@@ -21,6 +21,7 @@ class OptionsMenu():
                          
     def __init__(self):
         """  """
+        self.running = True
         self.heading = "Key Bindings"
         self.back = MenuEntry("Back", self.quit)
         self.back.select()
@@ -43,10 +44,15 @@ class OptionsMenu():
         commandKeys = []
         for cmd in boundKeys:
             s = ""
-            for key in cmd:
-                s += key
-                if key == cmd[-1]:
+            for binding in boundKeys[cmd]:
+                s += binding
+                if not binding == boundKeys[cmd][-1]:
                     s += ", "
             commandKeys.append(s)
-                
+            
         return commandKeys
+        
+    def quit(self):
+        """ Quits the Open Menu """
+        self.running = False
+        
