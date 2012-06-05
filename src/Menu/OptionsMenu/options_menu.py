@@ -19,6 +19,15 @@ class OptionsMenu():
                          K_ESCAPE:"ESCAPE",
                          K_RETURN:"ENTER"}
                          
+    cmdStrings = {commands.EXIT:"Exit",
+                          commands.UP:"Up",
+                          commands.DOWN:"Down",
+                          commands.LEFT:"Left",
+                          commands.RIGHT:"Right",
+                          commands.SELECT:"Select",
+                          commands.CANCEL:"Cancel"}
+    
+                         
     def __init__(self):
         """  """
         self.running = True
