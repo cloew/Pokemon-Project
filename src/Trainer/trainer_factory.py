@@ -11,6 +11,19 @@ class TrainerFactory:
     COMPUTER = 2
     trainers = {HUMAN:HumanTrainer,
                    COMPUTER:ComputerTrainer}
+                   
+    @staticmethod
+    def getPlayableTrainers():
+        """ Returns a list of the playable trainers """
+        playableTrainers = []
+        
+        tree = TrainerFactory.getTrainerdexTree()
+        for trainerXML in tree.getiterator(Tags.trainerTag):
+            if trainerXML.find(Tags.playableTag) != None:
+                trainer = HumanTrainer() # May want to use the dict up top
+                TrainerFactory.buildTrainerFromXML(trainer, trainerXML)
+                playableTrainers.append(trainer)
+        return  playableTrainers
     
     @staticmethod
     def loadFromXML(title, name, trainerType):

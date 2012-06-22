@@ -2,6 +2,7 @@
     <trainer>
         <name>Chris</name>
         <title>Pkmn Trainer</title>
+        <playable/>
         <belt>
             <pokemon>
                 <name>Mr Slice</name>

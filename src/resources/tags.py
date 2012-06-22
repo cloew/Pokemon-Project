@@ -69,3 +69,4 @@ class Tags:
     trainerTag = "trainer"
     titleTag = "title"
     beltTag = "belt"
+    playableTag = "playable"
