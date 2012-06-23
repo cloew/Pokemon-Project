@@ -38,7 +38,7 @@ class Battle:
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
         return user.afterTurn()
         
-    def betweenTurns(self):
+    def betweenTurns(self): # Should be betweenRounds()
         """ Perform between turns """
         self.playerSide.betweenTurns()
         self.oppSide.betweenTurns()

@@ -11,7 +11,7 @@ class Controller:
         
     def run(self):
         """ Runs the game loop """
-        while self.menu.running:
+        while self.running():
             screen.setScreen(self.getCurrentScreen())
             screen.update()
             inputProcessor.processInputs(self.cmds)
@@ -20,3 +20,7 @@ class Controller:
     def getCurrentScreen(self):
         """ Returns the current screen """
         return None 
+        
+    def running(self):
+        """ Return if the controller is still running """
+        return False 

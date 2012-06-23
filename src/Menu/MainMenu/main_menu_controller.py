@@ -22,3 +22,7 @@ class MainMenuController(Controller):
     def getCurrentScreen(self):
         """ Returns the current screen """
         return self.menuScreen
+        
+    def running(self):
+        """ Return if the controller is still running """
+        return self.menu.running
