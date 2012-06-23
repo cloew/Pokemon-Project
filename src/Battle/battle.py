@@ -38,10 +38,10 @@ class Battle:
         """ Perform affects of items/status/field hazards after the acting side performs its turn """
         return user.afterTurn()
         
-    def betweenTurns(self): # Should be betweenRounds()
-        """ Perform between turns """
-        self.playerSide.betweenTurns()
-        self.oppSide.betweenTurns()
+    def betweenRounds(self):
+        """ Perform between rounds """
+        self.playerSide.betweenRounds()
+        self.oppSide.betweenRounds()
         return []
         
     def refillSides(self):

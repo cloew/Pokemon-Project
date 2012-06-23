@@ -52,7 +52,7 @@ class PkmnBattleWrapper:
          
         return messages
         
-    def betweenTurns(self):
+    def betweenRounds(self):
         """ Perform between turns """
         self.flinching = False
         

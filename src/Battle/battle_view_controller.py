@@ -44,7 +44,7 @@ class BattleViewController:
             
             self.screen.reportAction(messages)
             
-        self.battle.betweenTurns()
+        self.battle.betweenRounds()
         
     def checkOver(self):
         """ Checks if the Battle is over """

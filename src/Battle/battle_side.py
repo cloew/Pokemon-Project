@@ -37,10 +37,10 @@ class BattleSide:
         """ Returns whether this side has more Pokemon """
         return self.trainer.hasMorePokemon(self.pkmnInPlay)
         
-    def betweenTurns(self):
+    def betweenRounds(self):
         """ Perform between turns """
         for pkmn in self.pkmnInPlay:
-            pkmn.betweenTurns()
+            pkmn.betweenRounds()
             
     def refill(self):
         """ Refills the Pkmn In Play """

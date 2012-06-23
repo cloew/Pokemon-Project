@@ -85,8 +85,8 @@ suiteResetStatMods = unittest.TestSuite(map(resetStatMods, testcasesResetStatMod
 
 ##########################################################
 
-class betweenTurns(unittest.TestCase):
-    """ Test cases of betweenTurns """
+class betweenRounds(unittest.TestCase):
+    """ Test cases of betweenRounds """
     
     def  setUp(self):
         """ Build the Pkmn """
@@ -96,14 +96,14 @@ class betweenTurns(unittest.TestCase):
         """ Test that flinch is reset between turns """
         self.battlePkmn.flinching = True
         
-        self.battlePkmn.betweenTurns()
+        self.battlePkmn.betweenRounds()
         
         assert self.battlePkmn.flinching == False, "Flinching should be reset to false"
         
 
 # Collect all test cases in this class
-testcasesBetweenTurns= ["resetFlinch"]
-suiteBetweenTurns = unittest.TestSuite(map(betweenTurns, testcasesBetweenTurns))
+testcasesBetweenRounds = ["resetFlinch"]
+suiteBetweenRounds = unittest.TestSuite(map(betweenRounds, testcasesBetweenRounds))
 
 ##########################################################
 
@@ -131,7 +131,7 @@ suiteTakeDamage = unittest.TestSuite(map(takeDamage, testcasesTakeDamage))
 ##########################################################
 
 # Collect all test cases in this file
-suites = [suiteReset, suiteResetStatMods, suiteBetweenTurns, suiteTakeDamage]
+suites = [suiteReset, suiteResetStatMods, suiteBetweenRounds, suiteTakeDamage]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
