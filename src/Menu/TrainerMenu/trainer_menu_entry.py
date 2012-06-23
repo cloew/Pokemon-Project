@@ -10,6 +10,7 @@ class TrainerMenuEntry(MenuEntry):
         
     def call(self):
         """ Trainer Entry has no function to call """
+        print "{0} {1}'s first Pkmn is {2}".format(self.trainer.title, self.trainer.name, self.trainer.beltPokemon[0].name)
         
     def getTrainer(self):
         """ Returns the entry's trainer """

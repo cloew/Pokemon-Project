@@ -17,4 +17,4 @@ class TrainerMenu(Menu):
     def enter(self):
         """ Call the selected entry """
         if self.entries != []:
-            """ Get Trainer and and start the actual game with it """
+            self.entries[self.current].call()
