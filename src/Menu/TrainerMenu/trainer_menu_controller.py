@@ -1,7 +1,5 @@
 from Controller.controller import Controller
 from InputProcessor import commands
-from InputProcessor.input_processor import inputProcessor
-from Screen.GUI.screen import screen
 
 from Menu.TrainerMenu.trainer_menu import TrainerMenu
 from Screen.GUI.TrainerMenu.trainer_menu_view import TrainerMenuScreen
