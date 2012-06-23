@@ -13,6 +13,8 @@ class TrainerFactory:
     COMPUTER = 2
     trainers = {HUMAN:HumanTrainer,
                    COMPUTER:ComputerTrainer}
+    tree = None
+                   
                    
     @staticmethod
     def getPlayableTrainers():
@@ -69,15 +71,18 @@ class TrainerFactory:
     @staticmethod
     def getTrainerdexTree():
         """ Opens the trainerdex.xml file as an element tree """
+        if TrainerFactory.tree is not None:
+            return TrainerFactory.tree
+        
         try:
             trainerdex = open("resources/trainerdex.xml", 'r')
         except IOError:
             print "Unable to open TRAINERDEX"
             exit(-2)
     
-        tree = xml.etree.ElementTree.ElementTree(file=trainerdex)
+        TrainerFactory.tree = xml.etree.ElementTree.ElementTree(file=trainerdex)
         trainerdex.close()
-        return tree
+        return TrainerFactory.tree
         
     @staticmethod
     def getTrainerXML(tree, title, name):

@@ -18,6 +18,7 @@ from resources.tags import Tags
 
 class AbilityFactory:
     """ Builds Abilities """
+    tree = None
     
     @staticmethod
     def loadFromPkmnXML(name):
@@ -37,15 +38,18 @@ class AbilityFactory:
     @staticmethod
     def getAbilitydexTree():
         """ Opens the attackdex.xml file as an element tree """
+        if AbilityFactory.tree is not None:
+            return AbilityFactory.tree
+        
         try:
             abilitydex = open("resources/abilitydex.xml", 'r')
         except IOError:
             print "Unable to open ABILITYDEX"
             exit(-2)
     
-        tree = xml.etree.ElementTree.ElementTree(file=abilitydex)
+        AbilityFactory.tree = xml.etree.ElementTree.ElementTree(file=abilitydex)
         abilitydex.close()
-        return tree
+        return AbilityFactory.tree
         
     @staticmethod
     def getAbilityXML(tree, name):

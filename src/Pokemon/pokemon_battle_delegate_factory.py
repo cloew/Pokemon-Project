@@ -11,6 +11,7 @@ class PokemonBattleDelegateFactory:
     """ Factory to build Pokemon """
     
     statKeys = ["HP", "ATK", "DEF", "SPD", "SATK", "SDEF"]
+    tree = None
     
     @staticmethod
     def buildStarter(parent):
@@ -135,15 +136,18 @@ class PokemonBattleDelegateFactory:
     @staticmethod
     def getPokedexTree():
         """ Opens the pokedex.xml file as an element tree """
+        if PokemonBattleDelegateFactory.tree is not None:
+            return PokemonBattleDelegateFactory.tree
+        
         try:
             pokedex = open("resources/pokedex.xml", 'r')
         except IOError:
             print "Unable to open POKEDEX"
             exit(-2)
     
-        tree = xml.etree.ElementTree.ElementTree(file=pokedex)
+        PokemonBattleDelegateFactory.tree = xml.etree.ElementTree.ElementTree(file=pokedex)
         pokedex.close()
-        return tree
+        return PokemonBattleDelegateFactory.tree
         
     @staticmethod
     def getPkmnXML(tree, species):

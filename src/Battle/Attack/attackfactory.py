@@ -13,6 +13,7 @@ from resources.sqlite.pokemon_sqlite_helper import PkmnDBConnect
 
 class AttackFactory:
     """ Builds an Attack, includng Delegates """
+    tree = None
     factories = {Tags.hitDelegateTag:HitDelegateFactory,
                       Tags.damageDelegateTag:DamageDelegateFactory,
                       Tags.speedDelegateTag:SpeedDelegateFactory,
@@ -101,15 +102,18 @@ class AttackFactory:
     @staticmethod
     def getAttackdexTree():
         """ Opens the attackdex.xml file as an element tree """
+        if AttackFactory.tree is not None:
+            return AttackFactory.tree
+        
         try:
             attackdex = open("resources/attackdex.xml", 'r')
         except IOError:
             print "Unable to open ATTACKDEX"
             exit(-2)
     
-        tree = xml.etree.ElementTree.ElementTree(file=attackdex)
+        AttackFactory.tree = xml.etree.ElementTree.ElementTree(file=attackdex)
         attackdex.close()
-        return tree
+        return AttackFactory.tree
         
     @staticmethod
     def getAttackXML(tree, name):
