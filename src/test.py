@@ -1,4 +1,5 @@
 import unittest
+import Menu.TrainerMenu.Test.trainer_menu_test
 import Pokemon.Test.suite
 import Pokemon.Abilities.Test.suite
 import Trainer.Test.suite
@@ -15,9 +16,12 @@ import Battle.SecondaryEffects.Test.suite
 import Battle.Status.Test.suite
 
 # Collect all the test suites
-suites = [Pokemon.Test.suite.suite, Pokemon.Abilities.Test.suite.suite,
+suites = [Menu.TrainerMenu.Test.trainer_menu_test.suite,
+              Pokemon.Test.suite.suite,
+              Pokemon.Abilities.Test.suite.suite,
               Trainer.Test.suite.suite,
-              Battle.Test.suite.suite, Battle.Actions.Test.suite.suite,
+              Battle.Test.suite.suite,
+              Battle.Actions.Test.suite.suite,
               Battle.AfterTurnEffect.Test.suite.suite,
               Battle.Attack.Test.suite.suite,
               Battle.Attack.CritDelegates.Test.suite.suite,
