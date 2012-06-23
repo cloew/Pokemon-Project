@@ -19,4 +19,4 @@ class Controller:
             
     def getCurrentScreen(self):
         """ Returns the current screen """
-        return None
+        return None 

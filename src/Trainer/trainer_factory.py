@@ -5,6 +5,8 @@ from resources.tags import Tags
 from Trainer.computer_trainer import ComputerTrainer
 from Trainer.human_trainer import HumanTrainer
 
+from datetime import datetime
+
 class TrainerFactory:
     """ Builds a Trainer """
     HUMAN = 1
@@ -21,8 +23,9 @@ class TrainerFactory:
         for trainerXML in tree.getiterator(Tags.trainerTag):
             if trainerXML.find(Tags.playableTag) != None:
                 trainer = HumanTrainer() # May want to use the dict up top
-                TrainerFactory.buildTrainerFromXML(trainer, trainerXML)
+                TrainerFactory.buildTrainerFromXML(trainer, trainerXML) # Really slow for whatever reason
                 playableTrainers.append(trainer)
+        
         return  playableTrainers
     
     @staticmethod

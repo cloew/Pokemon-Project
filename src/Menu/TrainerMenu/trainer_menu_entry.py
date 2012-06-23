@@ -11,7 +11,7 @@ class TrainerMenuEntry(MenuEntry):
     def call(self):
         """ Trainer Entry has no function to call """
         
-    def getTrianer(self):
+    def getTrainer(self):
         """ Returns the entry's trainer """
         return self.trainer
         

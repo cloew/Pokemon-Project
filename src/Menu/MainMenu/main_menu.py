@@ -2,6 +2,7 @@ from Menu.menu import Menu
 from Menu.menu_entry import MenuEntry
 
 from Menu.OptionsMenu.options_menu_controller import OptionsMenuController
+from Menu.TrainerMenu.trainer_menu_controller import TrainerMenuController
 
 class MainMenu(Menu):
     """ Class to represent the main menu """
@@ -14,7 +15,8 @@ class MainMenu(Menu):
             
     def startGame(self):
         """ Start the game """
-        print "Starting game"
+        trainerSelect = TrainerMenuController()
+        trainerSelect.run()
         
     def options(self):
         """ Go to the options menu """

@@ -13,8 +13,6 @@ class MainMenuScreen:
     def __init__(self, menu):
         """  """
         self.menu = menu
-        self.font = pygame.font.SysFont("Times New Roman", 36)
-        #self.map = ScrollingMap()
         self.logo = Logo()
         self.menuView = MenuView(menu)
         
