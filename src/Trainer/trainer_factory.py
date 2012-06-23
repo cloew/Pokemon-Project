@@ -15,7 +15,6 @@ class TrainerFactory:
                    COMPUTER:ComputerTrainer}
     tree = None
                    
-                   
     @staticmethod
     def getPlayableTrainers():
         """ Returns a list of the playable trainers """
