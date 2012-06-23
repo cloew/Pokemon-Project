@@ -1,7 +1,8 @@
 import pygame
 
-class MenuEntryView:
-    """ Represents an entry in the menu """
+class TrainerMenuEntryView:
+    """ Represents an entry in the trainer menu """
+    HEIGHT_RATIO = 10.0
     
     def __init__(self, entry, ratioInY):
         """ Sets the entry's text """
@@ -9,11 +10,12 @@ class MenuEntryView:
         self.entry = entry
         self.yRatio = ratioInY
         
-    def draw(self, window): # Need to clean this up... like a lot
+    def draw(self, window):
         """ Draws the menu entry on the window """
         self.font.set_bold(self.entry.selected)
-        text = self.font.render(self.entry.text, 1, (10, 10, 10))
-        textpos = text.get_rect(centerx = window.get_width()/2, centery= window.get_height()/self.yRatio)
+        text = self.font.render(self.entry.getText(), 1, (10, 10, 10))
+        height = window.get_height()/self.HEIGHT_RATIO
+        textpos = text.get_rect(centerx = window.get_width()/2, centery= height*(self.yRatio+.5))
         window.blit(text, textpos)
         
     def setBold(self, bold):

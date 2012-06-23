@@ -15,3 +15,7 @@ class TrainerMenuEntry(MenuEntry):
         """ Returns the entry's trainer """
         return self.trainer
         
+    def getText(self):
+        """ Return text to display for the Entry """
+        return "{0} {1}".format(self.trainer.title, self.trainer.name)
+        
