@@ -9,7 +9,7 @@ class TrainerMenuEntry(MenuEntry):
         self.selected = False
         
     def call(self):
-        """ Trainer Entry ahs no function to call """
+        """ Trainer Entry has no function to call """
         
     def getTrianer(self):
         """ Returns the entry's trainer """
