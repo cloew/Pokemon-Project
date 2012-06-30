@@ -6,8 +6,6 @@ from Trainer.human_trainer import HumanTrainer
 
 from Trainer.trainer_factory import TrainerFactory
 
-from Menu.MainMenu.main_menu_controller import MainMenuController
-
 def ParseArgs(args):
     """ Parse the Command Line Arguments """
     player = None
@@ -85,6 +83,7 @@ def main(argv):
     """ Start the game """
     try:
         import pygame
+        from Menu.MainMenu.main_menu_controller import MainMenuController
         main_controller = MainMenuController()
         main_controller.run()
     except ImportError:
