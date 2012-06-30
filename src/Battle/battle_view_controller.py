@@ -30,8 +30,15 @@ class BattleViewController:
         """ Runs through one iteration if the game """
         while not self.battle.over:
             # Pick action
-            actions = self.battle.getActionsInOrder()
-            self.performActions(actions)
+            #actions = self.battle.getActionsInOrder()
+            #self.performActions(actions)
+            #messages = self.battle.refillSides()
+            #self.screen.reportAction(messages)
+            messageQueue = self.battle.performRound()
+            while len(messageQueue) > 0:
+                messages = messageQueue.popleft()
+                self.screen.reportAction(messages)
+                
             messages = self.battle.refillSides()
             self.screen.reportAction(messages)
                     

@@ -15,8 +15,8 @@ class BattleController(Controller):
             
     def getCurrentScreen(self):
         """ Returns the current screen """
-        #return self.menuScreen
+        #return self.battleScreen
         
     def running(self):
         """ Return if the controller is still running """
-        return not self.battle.over
+        return not self.battle.over # not quite since I need to show the aftermath of the battle, whiting out, or rewards

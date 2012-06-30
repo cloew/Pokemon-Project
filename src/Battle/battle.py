@@ -1,6 +1,6 @@
 from Battle.battle_side import BattleSide
 from Battle.Attack.attack import Attack
-from Battle.sideandaction import SideAndAction
+from Battle.battle_round import BattleRound
 
 import random
 
@@ -12,6 +12,7 @@ class Battle:
         self.playerSide = BattleSide(playerTrainer)
         self.oppSide = BattleSide(oppTrainer)
         self.over = False
+        self.round = BattleRound(self.playerSide, self.oppSide, None)
         
     def sendOutPkmnToStart(self):
         """ Sends out Pkmn on both sides """
@@ -20,23 +21,13 @@ class Battle:
         messages += self.playerSide.sendOutPkmnAtStart()
         return messages
         
-    def getActionsInOrder(self):
-        """ Returns all the Actions for this turn in the Battle """
-        oppAction = self.oppSide.trainer.getAction(self.getOppPkmn()[0], self.getPlayerPkmn())
-        playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn()[0], self.getOppPkmn())
-        
-        actions = [oppAction] + [playerAction]
-        actions.sort(reverse = True)
-        return actions
-                               
-    def act(self, action):
-        """ Performs the action """
-        action.user.lastAction = action
-        return action.doAction()
-        
-    def afterTurn(self, user):
-        """ Perform affects of items/status/field hazards after the acting side performs its turn """
-        return user.afterTurn()
+    def performRound(self):
+        """  Performs a single round """
+        self.round.run()
+        self.betweenRounds()
+        return self.round.messageQueue
+        #messages += self.refillSides()
+        return messages
         
     def betweenRounds(self):
         """ Perform between rounds """
