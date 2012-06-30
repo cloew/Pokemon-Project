@@ -21,13 +21,18 @@ class Battle:
         messages += self.playerSide.sendOutPkmnAtStart()
         return messages
         
+    def select(self):
+        """ Handles a select command based on the state of the battle
+             ... very very icky... """
+        if len(self.messageQueue) > 0:
+            if self.messageQueue[0].fullyDisplayed:
+                self.messageQueue.popleft()
+        
     def performRound(self):
         """  Performs a single round """
         self.round.run()
         self.betweenRounds()
         return self.round.messageQueue
-        #messages += self.refillSides()
-        return messages
         
     def betweenRounds(self):
         """ Perform between rounds """

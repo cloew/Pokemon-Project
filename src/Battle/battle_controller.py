@@ -11,7 +11,7 @@ class BattleController(Controller):
         """ Builds the Battle Controller """
         self.battle = Battle(playerTrainer, oppTrainer)
         #self.battleScreen = BattleScreen(self.battle)
-        self.cmds = {}
+        self.cmds = {commands.SELECT:self.battle.select}
             
     def getCurrentScreen(self):
         """ Returns the current screen """
