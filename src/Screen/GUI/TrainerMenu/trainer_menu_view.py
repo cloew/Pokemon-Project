@@ -23,21 +23,15 @@ class TrainerMenuScreen:
             
         
         self.selectedIndex = 0
-        battleMessage = BattleMessage("{0}'s first Pkmn is {1}".format(self.entries[self.selectedIndex].entry.trainer.name, self.entries[self.selectedIndex].entry.trainer.beltPokemon[0].name))
-        self.messageBox = MessageBox(battleMessage)
+        self.buildMessageBox()
         
     def update(self):
         """ Update the screen """
         map.update()
         
         if not self.entries[self.selectedIndex].entry.selected:
-            for entry in self.entries:
-                if entry.entry.selected:
-                    self.selectedIndex = self.entries.index(entry)
-                    break
-            
-            battleMessage = BattleMessage("{0}'s first Pkmn is {1}".format(self.entries[self.selectedIndex].entry.trainer.name, self.entries[self.selectedIndex].entry.trainer.beltPokemon[0].name))
-            self.messageBox = MessageBox(battleMessage)
+            self.findNewSelectedIndex()
+            self.buildMessageBox()
         
         self.messageBox.update()
         
@@ -49,3 +43,16 @@ class TrainerMenuScreen:
             entry.draw(window)
             
         self.messageBox.draw(window)
+        
+    # Unnecessary MessageBox stuff
+    def findNewSelectedIndex(self):
+        """ Set the new Selected Index """
+        for entry in self.entries:
+            if entry.entry.selected:
+                self.selectedIndex = self.entries.index(entry)
+                break
+    
+    def buildMessageBox(self):
+        """ Builds a Message Box """
+        battleMessage = BattleMessage("{0}'s first Pkmn is {1}".format(self.entries[self.selectedIndex].entry.trainer.name, self.entries[self.selectedIndex].entry.trainer.beltPokemon[0].name))
+        self.messageBox = MessageBox(battleMessage)
