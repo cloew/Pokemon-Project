@@ -3,11 +3,10 @@ from collections import deque
 class BattleRound:
     """ Represents a single round of a battle """
     
-    def __init__(self, playerSide, oppSide, screen):
+    def __init__(self, playerSide, oppSide):
         """ Build the Battle Round from its trainers """
         self.playerSide = playerSide
         self.oppSide = oppSide
-        self.screen = screen
         self.messageQueue = deque()
         
     def run(self):
@@ -25,7 +24,6 @@ class BattleRound:
             self.messageQueue.append(messages)
             #map(self.messageQueue.append, messages)
             self.messages = messages
-            #self.screen.reportAction(messages)
         
     def getActions(self):
         """ Get all actions in the round """

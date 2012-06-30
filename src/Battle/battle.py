@@ -12,7 +12,7 @@ class Battle:
         self.playerSide = BattleSide(playerTrainer)
         self.oppSide = BattleSide(oppTrainer)
         self.over = False
-        self.round = BattleRound(self.playerSide, self.oppSide, None)
+        self.round = BattleRound(self.playerSide, self.oppSide)
         
     def sendOutPkmnToStart(self):
         """ Sends out Pkmn on both sides """
