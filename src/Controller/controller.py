@@ -13,6 +13,7 @@ class Controller:
         """ Runs the game loop """
         while self.running():
             screen.setScreen(self.getCurrentScreen())
+            self.update()
             screen.update()
             inputProcessor.processInputs(self.cmds)
             screen.draw()
@@ -24,3 +25,6 @@ class Controller:
     def running(self):
         """ Return if the controller is still running """
         return False 
+        
+    def update(self): # MAy remove in favor of a threaded application
+        """ Function to be overridden to perform periodic updates for the model/controller """

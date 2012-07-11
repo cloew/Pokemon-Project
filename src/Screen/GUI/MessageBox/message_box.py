@@ -20,5 +20,6 @@ class MessageBox:
     def draw(self, window):
         """ Draws the message box on the window """
         text = self.font.render(self.stringToDisplay, 1, (10, 10, 10))
+        return text
         textpos = text.get_rect(centerx = window.get_width()/2, centery= 3*window.get_height()/4)
         window.blit(text, textpos)

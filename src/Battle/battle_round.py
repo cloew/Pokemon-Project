@@ -21,7 +21,7 @@ class BattleRound:
             messages += self.act(action)
             messages += self.afterTurn(action.user)
             
-            self.messageQueue.append(messages)
+            self.messageQueue += deque(messages)
             #map(self.messageQueue.append, messages)
             self.messages = messages
         

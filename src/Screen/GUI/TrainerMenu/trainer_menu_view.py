@@ -21,7 +21,6 @@ class TrainerMenuScreen:
             self.entries.append(TrainerMenuEntryView(entry, i))
             i += 1
             
-        
         self.selectedIndex = 0
         self.buildMessageBox()
         
@@ -42,7 +41,9 @@ class TrainerMenuScreen:
         for entry in self.entries:
             entry.draw(window)
             
-        self.messageBox.draw(window)
+        text = self.messageBox.draw(window)
+        textpos = text.get_rect(centerx = window.get_width()/2, centery= 3*window.get_height()/4)
+        window.blit(text, textpos)
         
     # Unnecessary MessageBox stuff
     def findNewSelectedIndex(self):

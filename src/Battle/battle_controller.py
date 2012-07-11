@@ -20,3 +20,7 @@ class BattleController(Controller):
     def running(self):
         """ Return if the controller is still running """
         return not self.battle.over # not quite since I need to show the aftermath of the battle, whiting out, or rewards
+        
+    def update(self):
+        """ Tells the battle object what to perform """
+        self.battle.update()

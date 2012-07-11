@@ -1,3 +1,4 @@
+from collections import deque
 from Battle.battle_side import BattleSide
 from Battle.Attack.attack import Attack
 from Battle.battle_round import BattleRound
@@ -11,8 +12,12 @@ class Battle:
         """ Builds the two participating sides of the battle """
         self.playerSide = BattleSide(playerTrainer)
         self.oppSide = BattleSide(oppTrainer)
+        self.introduced = False
         self.over = False
         self.round = BattleRound(self.playerSide, self.oppSide)
+        self.battleFuncs = [self.performRound, self.refillSides]
+        self.funcIndex = 0 # Ewww....
+        self.messageQueue = deque()
         
     def sendOutPkmnToStart(self):
         """ Sends out Pkmn on both sides """
@@ -27,12 +32,33 @@ class Battle:
         if len(self.messageQueue) > 0:
             if self.messageQueue[0].fullyDisplayed:
                 self.messageQueue.popleft()
+                
+    def introduce(self):
+        """ Introduces the battle """
+        messages = []
+        messages += ["%s challenges you to a Pokemon Battle!" % self.getOppTrainer().getFullName()]
+        messages += self.sendOutPkmnToStart()
+        self.addMessages(deque(messages))
+                
+    def update(self):
+        """ Updates the Battle Object """
+        if self.introduced:
+            if self.noMessages():
+                self.battleFuncs[self.funcIndex]()
+                self.funcIndex +=1
+                self.funcIndex %= 2
+        else:
+            self.introduce()
+            
+    def noMessages(self):
+        """ Returns if there are no messages in the message queue """
+        return len(self.messageQueue) == 0
         
     def performRound(self):
         """  Performs a single round """
         self.round.run()
         self.betweenRounds()
-        return self.round.messageQueue
+        self.messageQueue += self.round.messageQueue
         
     def betweenRounds(self):
         """ Perform between rounds """
@@ -48,6 +74,8 @@ class Battle:
             
         messages += self.playerSide.refill()
         messages += self.oppSide.refill()
+        
+        self.addMessages(deque(messages))
         return messages
         
     def checkOver(self):
@@ -68,10 +96,14 @@ class Battle:
             messages.append(side.trainer.beaten())
         return messages
         
+    def addMessages(self, messages):
+        """ Adds the given messages to the message queue """
+        self.messageQueue += deque(messages)
+        
     def getPlayerTrainer(self):
-        """ Returns the Playing Trainer """
+        """ Returns the Player Trainer """
         return self.playerSide.trainer
-    
+        
     def getOppTrainer(self):
         """ Returns the Opposing Trainer """
         return self.oppSide.trainer
