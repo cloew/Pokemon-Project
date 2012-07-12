@@ -20,6 +20,12 @@ class Battle:
         self.messageQueue = deque()
         self.introduce()
         
+    def introduce(self):
+        """ Introduces the battle """
+        messages = ["%s challenges you to a Pokemon Battle!" % self.getOppTrainer().getFullName()]
+        messages += self.sendOutPkmnToStart()
+        self.addMessages(messages)
+        
     def sendOutPkmnToStart(self):
         """ Sends out Pkmn on both sides """
         messages = []
@@ -28,17 +34,10 @@ class Battle:
         return messages
         
     def select(self):
-        """ Handles a select command based on the state of the battle
-             ... very very icky... """
+        """ Pops a message from the message queue if it has been fully displayed """
         if len(self.messageQueue) > 0:
             if self.messageQueue[0].fullyDisplayed:
                 self.messageQueue.popleft()
-                
-    def introduce(self):
-        """ Introduces the battle """
-        messages = ["%s challenges you to a Pokemon Battle!" % self.getOppTrainer().getFullName()]
-        messages += self.sendOutPkmnToStart()
-        self.addMessages(messages)
                 
     def update(self):
         """ Updates the Battle Object """
@@ -46,10 +45,6 @@ class Battle:
             self.battleFuncs[self.funcIndex]()
             self.funcIndex +=1
             self.funcIndex %= 2
-            
-    def noMessages(self):
-        """ Returns if there are no messages in the message queue """
-        return len(self.messageQueue) == 0
         
     def performRound(self):
         """  Performs a single round """
@@ -67,8 +62,7 @@ class Battle:
         """ Refills fainted Pkmn on each side """
         self.checkOver()
         if not self.over:
-            messages = []
-            messages += self.playerSide.refill()
+            messages = self.playerSide.refill()
             messages += self.oppSide.refill()
             self.addMessages(messages)
         
@@ -91,6 +85,10 @@ class Battle:
             battleMessages.append(BattleMessage(message))
         
         self.messageQueue += deque(battleMessages)
+        
+    def noMessages(self):
+        """ Returns if there are no messages in the message queue """
+        return len(self.messageQueue) == 0
         
     def getPlayerTrainer(self):
         """ Returns the Player Trainer """
