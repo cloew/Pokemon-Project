@@ -36,8 +36,7 @@ class Battle:
                 
     def introduce(self):
         """ Introduces the battle """
-        messages = []
-        messages += ["%s challenges you to a Pokemon Battle!" % self.getOppTrainer().getFullName()]
+        messages = ["%s challenges you to a Pokemon Battle!" % self.getOppTrainer().getFullName()]
         messages += self.sendOutPkmnToStart()
         self.addMessages(messages)
                 
@@ -66,33 +65,24 @@ class Battle:
         
     def refillSides(self):
         """ Refills fainted Pkmn on each side """
-        messages =  self.checkOver()
-        if self.over:
-            return messages
-            
-        messages += self.playerSide.refill()
-        messages += self.oppSide.refill()
-        
-        self.addMessages(messages)
-        return messages
+        self.checkOver()
+        if not self.over:
+            messages = []
+            messages += self.playerSide.refill()
+            messages += self.oppSide.refill()
+            self.addMessages(messages)
         
     def checkOver(self):
         """ Checks if the game is Over """
-        messages = self.checkOverForSide(self.playerSide)
-        if self.over:
-            return messages
-            
-        messages = self.checkOverForSide(self.oppSide)
-        return messages
+        self.checkOverForSide(self.playerSide)
+        if not self.over:
+            self.checkOverForSide(self.oppSide)
         
     def checkOverForSide(self, side):
         """ Checks if the game is over because the side has no Pkmn """
-        messages = []
-        
         if not side.hasPokemon():
             self.over = True
-            messages.append(side.trainer.beaten())
-        return messages
+            self.addMessages([side.trainer.beaten()])
         
     def addMessages(self, messages):
         """ Adds the given messages to the message queue """
