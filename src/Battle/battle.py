@@ -13,12 +13,12 @@ class Battle:
         """ Builds the two participating sides of the battle """
         self.playerSide = BattleSide(playerTrainer)
         self.oppSide = BattleSide(oppTrainer)
-        self.introduced = False
         self.over = False
         self.round = BattleRound(self.playerSide, self.oppSide)
         self.battleFuncs = [self.performRound, self.refillSides]
         self.funcIndex = 0 # Ewww....
         self.messageQueue = deque()
+        self.introduce()
         
     def sendOutPkmnToStart(self):
         """ Sends out Pkmn on both sides """
@@ -40,17 +40,13 @@ class Battle:
         messages += ["%s challenges you to a Pokemon Battle!" % self.getOppTrainer().getFullName()]
         messages += self.sendOutPkmnToStart()
         self.addMessages(messages)
-        self.introduced = True
                 
     def update(self):
         """ Updates the Battle Object """
-        if self.introduced:
-            if self.noMessages():
-                self.battleFuncs[self.funcIndex]()
-                self.funcIndex +=1
-                self.funcIndex %= 2
-        else:
-            self.introduce()
+        if self.noMessages():
+            self.battleFuncs[self.funcIndex]()
+            self.funcIndex +=1
+            self.funcIndex %= 2
             
     def noMessages(self):
         """ Returns if there are no messages in the message queue """
