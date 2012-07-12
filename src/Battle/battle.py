@@ -2,6 +2,7 @@ from collections import deque
 from Battle.battle_side import BattleSide
 from Battle.Attack.attack import Attack
 from Battle.battle_round import BattleRound
+from Battle.battle_message import BattleMessage
 
 import random
 
@@ -38,7 +39,8 @@ class Battle:
         messages = []
         messages += ["%s challenges you to a Pokemon Battle!" % self.getOppTrainer().getFullName()]
         messages += self.sendOutPkmnToStart()
-        self.addMessages(deque(messages))
+        self.addMessages(messages)
+        self.introduced = True
                 
     def update(self):
         """ Updates the Battle Object """
@@ -75,7 +77,7 @@ class Battle:
         messages += self.playerSide.refill()
         messages += self.oppSide.refill()
         
-        self.addMessages(deque(messages))
+        self.addMessages(messages)
         return messages
         
     def checkOver(self):
@@ -98,7 +100,11 @@ class Battle:
         
     def addMessages(self, messages):
         """ Adds the given messages to the message queue """
-        self.messageQueue += deque(messages)
+        battleMessages = []
+        for message in messages:
+            battleMessages.append(BattleMessage(message))
+        
+        self.messageQueue += deque(battleMessages)
         
     def getPlayerTrainer(self):
         """ Returns the Player Trainer """

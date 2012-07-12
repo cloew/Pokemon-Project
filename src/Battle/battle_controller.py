@@ -2,7 +2,7 @@ from Controller.controller import Controller
 from InputProcessor import commands
 
 from Battle.battle import Battle
-#from Screen.GUI.Battle.battle_screen import BattleScreen
+from Screen.GUI.Battle.battle_view import BattleView
 
 class BattleController(Controller):
     """ Controller for a pokemon battle """
@@ -10,12 +10,12 @@ class BattleController(Controller):
     def __init__(self, playerTrainer, oppTrainer):
         """ Builds the Battle Controller """
         self.battle = Battle(playerTrainer, oppTrainer)
-        #self.battleScreen = BattleScreen(self.battle)
+        self.battleScreen = BattleView(self.battle)
         self.cmds = {commands.SELECT:self.battle.select}
             
     def getCurrentScreen(self):
         """ Returns the current screen """
-        #return self.battleScreen
+        return self.battleScreen
         
     def running(self):
         """ Return if the controller is still running """
