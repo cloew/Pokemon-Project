@@ -1,5 +1,4 @@
 import sys
-sys.path.append("C:\\cygwin\\home\\Programming\\Pokemon-Python\\src")
 
 import pygame
 from pygame.locals import *
@@ -43,5 +42,9 @@ class Screen:
             
     def redraw(self):
         pygame.display.flip()
+        
+    def clearWindow(self):
+        """ Clears the window """
+        self.window.fill((0,0,0))
         
 screen = Screen()
