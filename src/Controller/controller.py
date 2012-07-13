@@ -1,6 +1,6 @@
 from InputProcessor import commands
 from InputProcessor.input_processor import inputProcessor
-from Screen.GUI.screen import screen
+from Screen.GUI.window import window
 
 class Controller:
     """ Controller base class """
@@ -12,7 +12,7 @@ class Controller:
     def run(self):
         """ Runs the game loop """
         while self.running():
-            screen.setScreen(self.getCurrentScreen())
+            window.setScreen(self.getCurrentScreen())
             self.update()
             screen.update()
             inputProcessor.processInputs(self.cmds)
