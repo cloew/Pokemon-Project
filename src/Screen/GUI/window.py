@@ -13,6 +13,11 @@ class Window:
         self.window = self.getWindow()
         self.clock = pygame.time.Clock()
         
+        self.width = 640
+        self.height = 480
+        
+        self.dimensions = (640, 480)
+        
     def setScreen(self, screen):
         """ Sets the current Screen Display """
         self.screen = screen
@@ -28,17 +33,19 @@ class Window:
     def getIcon(self):
         """ Gets the icon """
         image = load_image("pokeball.png")
+        image.set_colorkey((0,0,0))
         return image
         
     def update(self):
         """ Update the screen """
         self.clock.tick(self.GAME_SPEED)
         self.screen.update()
-        
-    def draw(self):
-        """ Draws the screen """
         self.screen.draw(self)
         self.redraw()
+        
+    def draw(self, surface, pos):
+        """ Draws the surface to the window """
+        self.window.blit(surface, pos)
             
     def redraw(self):
         pygame.display.flip()

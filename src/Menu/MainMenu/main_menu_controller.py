@@ -1,10 +1,9 @@
 from Controller.controller import Controller
 from InputProcessor import commands
 from InputProcessor.input_processor import inputProcessor
-from Screen.GUI.screen import screen
 
 from Menu.MainMenu.main_menu import MainMenu
-from Screen.GUI.MainMenu.main_menu_view import MainMenuScreen
+from Screen.GUI.MainMenu.main_menu_screen import MainMenuScreen
 
 
 class MainMenuController(Controller):

@@ -18,12 +18,11 @@ class ScrollingMap:
         self.xRange = range(1100-640)
         self.yRange = range(850-480)
     
-    def draw(self, window):
+    def draw(self):
         """ Draws the portion of the map from the mapLocation as the top left corner """
         x, y = int(self.mapLoc[0]), int(self.mapLoc[1])
         rect = Rect(x, y, 640, 480)
-        imgPiece = self.image.subsurface(rect)
-        window.blit(imgPiece, (0, 0))
+        return self.image.subsurface(rect)
         
     def update(self):
         """ Updates the map Location """

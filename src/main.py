@@ -81,14 +81,14 @@ def CheckTrainer(trainer, msg):
     
 def main(argv):
     """ Start the game """
-    try:
-        import pygame
-        from Menu.MainMenu.main_menu_controller import MainMenuController
-        main_controller = MainMenuController()
-        main_controller.run()
-    except ImportError:
-        player, cpu = ParseArgs(argv)
-        Loop(player, cpu)
+    # try:
+    import pygame
+    from Menu.MainMenu.main_menu_controller import MainMenuController
+    main_controller = MainMenuController()
+    main_controller.run()
+    # except ImportError:
+        # player, cpu = ParseArgs(argv)
+        # Loop(player, cpu)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

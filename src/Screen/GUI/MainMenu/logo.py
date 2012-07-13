@@ -10,7 +10,8 @@ class Logo:
         """ Builds the logo """
         self.image = load_image("PkmnLogo.png")
         
-    def draw(self, background):
+    def draw(self):
         """ Draws the logo """
+        return self.image
         imgPos = self.image.get_rect(centerx = background.get_width()/2, centery = background.get_height()/4)
         background.blit(self.image, imgPos)

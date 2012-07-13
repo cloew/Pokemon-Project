@@ -1,7 +1,6 @@
 from Controller.controller import Controller
 from InputProcessor import commands
 from InputProcessor.input_processor import inputProcessor
-from Screen.GUI.screen import screen
 
 from Menu.OptionsMenu.options_menu import OptionsMenu
 from Screen.GUI.OptionsMenu.options_menu_view import OptionsMenuScreen
