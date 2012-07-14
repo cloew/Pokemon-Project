@@ -1,6 +1,7 @@
 import sys
 
 import pygame
+from pygame import Color
 from pygame.locals import *
 from Screen.GUI.pygame_helper import load_image
 
@@ -32,9 +33,13 @@ class Window:
         
     def getIcon(self):
         """ Gets the icon """
-        image = load_image("pokeball.png")
-        image.set_colorkey((0,0,0))
-        return image
+        icon=pygame.Surface((32,32))
+        rawicon=load_image("pokeball3.bmp")#must be 32x32, black is transparant
+        icon.set_colorkey(rawicon.get_at((0,0)))
+        for i in range(0,32):
+            for j in range(0,32):
+                icon.set_at((i,j), rawicon.get_at((i,j)))
+        return icon
         
     def update(self):
         """ Update the screen """
