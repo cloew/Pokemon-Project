@@ -21,7 +21,7 @@ class MenuView:
         menuSurface, menuPos = self.getMenu(window)
         for entry in self.entries:
             entry.draw(menuSurface)
-        window.blit(menuSurface, menuPos)
+        return menuSurface
         
     def getMenu(self, window):
         """ Build the Surface for the menu """

@@ -27,8 +27,6 @@ class MainMenuScreen(Screen):
         self.drawLogo(window)
         self.drawMenu(window)
         
-        
-        
     def drawMap(self, window):
         """ Draws the map to the window """
         mapSurf = map.draw()
@@ -37,12 +35,12 @@ class MainMenuScreen(Screen):
     def drawLogo(self, window):
         """ Draws the Logo to the window """
         logoSurf = self.logo.draw()
-        logoPos = logoSurf.get_rect(centerx = window.width/2, centery = window.height/4)
+        logoPos = self.getCenteredRect(window, logoSurf, .5, .25) 
         window.draw(logoSurf, logoPos)
         
     def drawMenu(self, window):
         """ Draws the Menu to the window """
         menuSurf = self.menuView.draw(window.window)
-        # menuPos = ????
-        # window.draw(menuSurf, menuPos)
+        menuPos = self.getCenteredRect(window, menuSurf, .5, 11.0/16) 
+        window.draw(menuSurf, menuPos)
         
