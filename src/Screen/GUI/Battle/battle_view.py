@@ -16,7 +16,7 @@ class BattleView:
         
     def draw(self, window):
         """ Draw the window """
-        window.fill((255,255,255))
+        window.clear()
         text = self.messageBox.draw(window)
-        textpos = text.get_rect(left = window.get_width()/20, centery= 3*window.get_height()/4)
-        window.blit(text, textpos)
+        textpos = text.get_rect(left = window.width/20, centery= 3*window.height/4)
+        window.draw(text, textpos)

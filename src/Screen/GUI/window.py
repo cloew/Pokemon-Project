@@ -57,6 +57,6 @@ class Window:
         
     def clear(self):
         """ Clears the window """
-        self.window.fill((0,0,0))
+        self.window.fill((255,255,255))
         
 window = Window()
