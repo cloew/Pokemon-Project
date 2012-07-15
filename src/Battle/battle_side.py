@@ -19,7 +19,7 @@ class BattleSide:
                 break
             
             messages += self.pkmnInPlay[i].sendOutPkmn(pkmn)
-            
+        
         return messages
         
     def sendOutPkmn(self):
