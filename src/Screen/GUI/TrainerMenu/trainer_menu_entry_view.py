@@ -14,9 +14,9 @@ class TrainerMenuEntryView:
         """ Draws the menu entry on the window """
         self.font.set_bold(self.entry.selected)
         text = self.font.render(self.entry.getText(), 1, (10, 10, 10))
-        height = window.get_height()/self.HEIGHT_RATIO
-        textpos = text.get_rect(centerx = window.get_width()/2, centery= height*(self.yRatio+.5))
-        window.blit(text, textpos)
+        height = window.height/self.HEIGHT_RATIO
+        textpos = text.get_rect(centerx = window.width/2, centery= height*(self.yRatio+.5))
+        window.draw(text, textpos)
         
     def setBold(self, bold):
         """ Sets the Boldness of the entry """

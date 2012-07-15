@@ -2,12 +2,13 @@ from InputProcessor import commands
 from Screen.GUI.MainMenu.scrolling_map import map
 from Screen.GUI.TrainerMenu.trainer_menu_entry_view import TrainerMenuEntryView
 
+from Screen.GUI.screen import Screen
 from Screen.GUI.MessageBox.message_box import MessageBox
 from Battle.battle_message import BattleMessage
 
 import pygame
 
-class TrainerMenuScreen:
+class TrainerMenuScreen(Screen):
     """ Trainer Menu screen """
     
     def __init__(self, menu):
@@ -36,14 +37,20 @@ class TrainerMenuScreen:
         
     def draw(self, window):
         """ Draw the window """
-        map.draw(window)
+        self.drawMap(window)
         
         for entry in self.entries:
             entry.draw(window)
             
         text = self.messageBox.draw(window)
-        textpos = text.get_rect(centerx = window.get_width()/2, centery= 3*window.get_height()/4)
-        window.blit(text, textpos)
+        textpos = self.getCenteredRect(window, text, .5, .75)
+        # textpos = text.get_rect(centerx = window.get_width()/2, centery= 3*window.get_height()/4)
+        window.draw(text, textpos)
+        
+    def drawMap(self, window):
+        """ Draws the map to the window """
+        mapSurf = map.draw()
+        window.draw(mapSurf, (0,0))
         
     # Unnecessary MessageBox stuff
     def findNewSelectedIndex(self):

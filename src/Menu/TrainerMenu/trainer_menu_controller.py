@@ -2,7 +2,7 @@ from Controller.controller import Controller
 from InputProcessor import commands
 
 from Menu.TrainerMenu.trainer_menu import TrainerMenu
-from Screen.GUI.TrainerMenu.trainer_menu_view import TrainerMenuScreen
+from Screen.GUI.TrainerMenu.trainer_menu_screen import TrainerMenuScreen
 
 class TrainerMenuController(Controller):
     """ Controller for the trainer select menu """
