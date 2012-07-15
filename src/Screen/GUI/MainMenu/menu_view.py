@@ -18,17 +18,11 @@ class MenuView:
         
     def draw(self, window): 
         """ Draw the menu """
-        menuSurface, menuPos = self.getMenu(window)
+        menuSurface = self.getMenu()
         for entry in self.entries:
             entry.draw(menuSurface)
         return menuSurface
         
-    def getMenu(self, window):
+    def getMenu(self):
         """ Build the Surface for the menu """
-        menuSurface = load_image("menu.png")
-        
-        x = window.get_width()/2
-        y = 11*window.get_height()/16
-        
-        menuPos = menuSurface.get_rect(centerx = x, centery= y)
-        return menuSurface, menuPos
+        return load_image("menu.png")
