@@ -42,7 +42,6 @@ class OptionsMenuScreen(Screen):
         
         self.font.set_bold(True)
         text = self.font.render(self.menu.cmdStrings[cmd], 1, (10, 10, 10))
-        # textpos = self.getCenteredRect(window, text, cmdXRatio, yRatio/32)
         textpos = text.get_rect(right = window.width*cmdXRatio, centery= window.height*(yRatio/32))
         window.draw(text, textpos)
         
@@ -52,6 +51,5 @@ class OptionsMenuScreen(Screen):
         
         self.font.set_bold(False)
         text = self.font.render(self.menu.keyBindings[cmd], 1, (10, 10, 10))
-        # textpos = self.getCenteredRect(window, text, bindingXRatio, yRatio/32)
         textpos = text.get_rect(left = window.width*bindingXRatio, centery= window.height*(yRatio/32))
         window.draw(text, textpos)
