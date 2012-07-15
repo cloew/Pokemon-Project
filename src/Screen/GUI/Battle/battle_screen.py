@@ -1,6 +1,7 @@
+from Screen.GUI.screen import Screen
 from Screen.GUI.MessageBox.message_box import MessageBox
 
-class BattleView:
+class BattleScreen(Screen):
     """ View for the Battle """
     
     def __init__(self, battle):
