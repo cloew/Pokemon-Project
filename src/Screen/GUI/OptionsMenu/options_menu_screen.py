@@ -1,9 +1,10 @@
 from InputProcessor import commands
+from Screen.GUI.screen import Screen
 from Screen.GUI.MainMenu.scrolling_map import map
 
 import pygame
 
-class OptionsMenuScreen:
+class OptionsMenuScreen(Screen):
     """ Options Menu screen """
     bindingsOrder = [commands.EXIT, commands.UP, commands.DOWN, commands.LEFT, commands.RIGHT, commands.SELECT, commands.CANCEL]
     
@@ -18,21 +19,21 @@ class OptionsMenuScreen:
         
     def draw(self, window):
         """ Draw the window """
-        map.draw(window)
-        
+        self.drawMap(window)
         self.drawBindings(window)
         
+    def drawMap(self, window):
+        """ Draws the map to the window """
+        mapSurf = map.draw()
+        window.draw(mapSurf, (0,0))
         
     def drawBindings(self, window):
         """ Draw Bindings Text """
         yRatio = 5.0
-        cmdXRatio = 5.0/16
-        
         
         for cmd in self.bindingsOrder:
             self.drawCommand(window, cmd, yRatio)
             self.drawKeys(window, cmd, yRatio)
-            
             yRatio += 3
             
     def drawCommand(self, window, cmd, yRatio):
@@ -41,8 +42,9 @@ class OptionsMenuScreen:
         
         self.font.set_bold(True)
         text = self.font.render(self.menu.cmdStrings[cmd], 1, (10, 10, 10))
-        textpos = text.get_rect(right = window.get_width()*cmdXRatio, centery= window.get_height()*(yRatio/32))
-        window.blit(text, textpos)
+        # textpos = self.getCenteredRect(window, text, cmdXRatio, yRatio/32)
+        textpos = text.get_rect(right = window.width*cmdXRatio, centery= window.height*(yRatio/32))
+        window.draw(text, textpos)
         
     def drawKeys(self, window, cmd, yRatio):
         """ Draws the binding """
@@ -50,5 +52,6 @@ class OptionsMenuScreen:
         
         self.font.set_bold(False)
         text = self.font.render(self.menu.keyBindings[cmd], 1, (10, 10, 10))
-        textpos = text.get_rect(left = window.get_width()*bindingXRatio, centery= window.get_height()*(yRatio/32))
-        window.blit(text, textpos)
+        # textpos = self.getCenteredRect(window, text, bindingXRatio, yRatio/32)
+        textpos = text.get_rect(left = window.width*bindingXRatio, centery= window.height*(yRatio/32))
+        window.draw(text, textpos)
