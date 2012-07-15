@@ -17,7 +17,6 @@ class BattleSide:
             pkmn = self.trainer.getPokemon(i)
             if not pkmn:
                 break
-            
             messages += self.pkmnInPlay[i].sendOutPkmn(pkmn)
         
         return messages

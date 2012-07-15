@@ -40,7 +40,7 @@ class MainMenuScreen(Screen):
         
     def drawMenu(self, window):
         """ Draws the Menu to the window """
-        menuSurf = self.menuView.draw(window.window)
+        menuSurf = self.menuView.draw()
         menuPos = self.getCenteredRect(window, menuSurf, .5, 11.0/16) 
         window.draw(menuSurf, menuPos)
         

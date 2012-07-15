@@ -17,7 +17,7 @@ class MenuView(View):
         
         self.image = load_image("menu.png")
         
-    def draw(self, window): 
+    def draw(self): 
         """ Draw the menu """
         menuSurface = self.getMenu()
         for entry in self.entries:
