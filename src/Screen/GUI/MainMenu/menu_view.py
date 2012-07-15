@@ -1,10 +1,11 @@
 import pygame
 from pygame.locals import *
 
+from Screen.GUI.view import View
 from Screen.GUI.pygame_helper import load_image
 from menu_entry_view import MenuEntryView
 
-class MenuView:
+class MenuView(View):
     """ Represents the menu on the main menu screen """
     
     def __init__(self, menu):

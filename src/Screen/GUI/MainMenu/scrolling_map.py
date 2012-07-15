@@ -3,9 +3,10 @@ import random
 
 import pygame
 from pygame.locals import *
+from Screen.GUI.view import View
 from Screen.GUI.pygame_helper import load_image
 
-class ScrollingMap:
+class ScrollingMap(View):
     """ Represents the scrolling map """
     VELOCITY = 1
     

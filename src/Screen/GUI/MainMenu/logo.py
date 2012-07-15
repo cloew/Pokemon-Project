@@ -1,9 +1,10 @@
 import pygame
 
 from pygame.locals import *
+from Screen.GUI.view import View
 from Screen.GUI.pygame_helper import load_image
 
-class Logo:
+class Logo(View):
     """ Represents the Logo on the screen """
     
     def __init__(self):
@@ -13,5 +14,3 @@ class Logo:
     def draw(self):
         """ Draws the logo """
         return self.image
-        imgPos = self.image.get_rect(centerx = background.get_width()/2, centery = background.get_height()/4)
-        background.blit(self.image, imgPos)
