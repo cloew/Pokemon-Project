@@ -20,12 +20,16 @@ class MenuView(View):
     def draw(self): 
         """ Draw the menu """
         menuSurface = self.getMenu()
-        for entry in self.entries:
-            entrySurface = entry.draw(menuSurface)
-            yRatio = (self.entries.index(entry) + 1)/4.0
-            entryPos = entrySurface.get_rect(centerx = menuSurface.get_width()/2, centery= menuSurface.get_height()*yRatio)
-            menuSurface.blit(entrySurface, entryPos)
+        self.drawEntries(menuSurface)
         return menuSurface
+        
+    def drawEntries(self, menuSurf):
+        """ Draws the menu entries on the Menu Surface """
+        for entry in self.entries:
+            entrySurface = entry.draw()
+            yRatio = (self.entries.index(entry) + 1)/4.0
+            entryPos = entrySurface.get_rect(centerx = menuSurf.get_width()/2, centery= menuSurf.get_height()*yRatio)
+            menuSurf.blit(entrySurface, entryPos)
         
     def getMenu(self):
         """ Build the Surface for the menu """

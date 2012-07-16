@@ -9,8 +9,8 @@ class MenuEntryView:
         self.entry = entry
         self.yRatio = ratioInY
         
-    def draw(self, window): # Need to clean this up... like a lot
-        """ Draws the menu entry on the window """
+    def draw(self):
+        """ Draws the menu entry """
         self.font.set_bold(self.entry.selected)
         text = self.font.render(self.entry.text, 1, (10, 10, 10))
         return text
