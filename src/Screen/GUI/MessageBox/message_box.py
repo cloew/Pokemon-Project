@@ -19,7 +19,15 @@ class MessageBox:
         
     def draw(self, window):
         """ Draws the message box on the window """
+        surface = self.getBackgroundSurface()
         text = self.font.render(self.stringToDisplay, 1, (10, 10, 10))
-        return text
-        textpos = text.get_rect(centerx = window.get_width()/2, centery= 3*window.get_height()/4)
-        window.blit(text, textpos)
+        surface.blit(text, (0,0))
+        surface.blit(text, (0, 42))
+        return surface
+        
+    def getBackgroundSurface(self):
+        """ Returns the background surface """
+        surface = pygame.Surface((576, 82))
+        surface.set_colorkey((0, 0, 0))
+        surface.fill((0, 0, 0))
+        return surface
