@@ -18,6 +18,6 @@ class BattleScreen(Screen):
     def draw(self, window):
         """ Draw the window """
         window.clear()
-        text = self.messageBox.draw(window)
+        text = self.messageBox.draw()
         textpos = text.get_rect(left = window.width/20, centery= 3*window.height/4)
         window.draw(text, textpos)

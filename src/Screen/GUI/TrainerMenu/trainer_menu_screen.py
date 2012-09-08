@@ -42,7 +42,7 @@ class TrainerMenuScreen(Screen):
         for entry in self.entries:
             entry.draw(window)
             
-        text = self.messageBox.draw(window)
+        text = self.messageBox.draw()
         textpos = self.getCenteredRect(window, text, .5, .75)
         # textpos = text.get_rect(centerx = window.get_width()/2, centery= 3*window.get_height()/4)
         window.draw(text, textpos)

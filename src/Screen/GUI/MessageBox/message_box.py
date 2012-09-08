@@ -1,6 +1,8 @@
+from Screen.GUI.view import View
+
 import pygame
 
-class MessageBox:
+class MessageBox(View):
     """ Represents a message box on the screen """
     maxChars = 35
     
@@ -18,8 +20,8 @@ class MessageBox:
             
         self.stringToDisplay = self.message.getMessageSlice(self.charsShown)
         
-    def draw(self, window):
-        """ Draws the message box on the window """
+    def draw(self):
+        """ Draws the message box """
         surface = self.getBackgroundSurface()
         line1 = self.font.render(self.stringToDisplay[:self.maxChars], 1, (10, 10, 10)) # Logic to split string to display may belong better in model
         line2 = self.font.render(self.stringToDisplay[self.maxChars:], 1, (10, 10, 10))
