@@ -21,7 +21,7 @@ class MessageBox:
     def draw(self, window):
         """ Draws the message box on the window """
         surface = self.getBackgroundSurface()
-        line1 = self.font.render(self.stringToDisplay[:self.maxChars], 1, (10, 10, 10))
+        line1 = self.font.render(self.stringToDisplay[:self.maxChars], 1, (10, 10, 10)) # Logic to split string to display may belong better in model
         line2 = self.font.render(self.stringToDisplay[self.maxChars:], 1, (10, 10, 10))
         
         surface.blit(line1, (0,0))
