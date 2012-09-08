@@ -2,6 +2,7 @@ import pygame
 
 class MessageBox:
     """ Represents a message box on the screen """
+    maxChars = 35
     
     def __init__(self, message):
         """ Builds the Message Box with the given message box """
@@ -20,9 +21,11 @@ class MessageBox:
     def draw(self, window):
         """ Draws the message box on the window """
         surface = self.getBackgroundSurface()
-        text = self.font.render(self.stringToDisplay, 1, (10, 10, 10))
-        surface.blit(text, (0,0))
-        surface.blit(text, (0, 42))
+        line1 = self.font.render(self.stringToDisplay[:self.maxChars], 1, (10, 10, 10))
+        line2 = self.font.render(self.stringToDisplay[self.maxChars:], 1, (10, 10, 10))
+        
+        surface.blit(line1, (0,0))
+        surface.blit(line2, (0, 42))
         return surface
         
     def getBackgroundSurface(self):
