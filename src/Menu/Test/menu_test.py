@@ -37,7 +37,7 @@ class changeSelected(unittest.TestCase):
         assert not self.firstEntry.selected, "First Entry should be deselected"
         assert self.thirdEntry.selected, "Third Entry should be selected"
         
-    def fullRotation(self):
+    def fullRotationBackwards(self):
         """ Test that the selection can be fully rotated through all possible actions and return to the start """
         current = self.menu.current
         assert self.firstEntry.selected, "First Entry should be selected"
@@ -46,9 +46,17 @@ class changeSelected(unittest.TestCase):
         assert self.menu.current == current, "Current Entry should have be the same"
         assert self.firstEntry.selected, "First Entry should be selected"
         
+    def fullRotationForwards(self):
+        """ Test that the selection can be fully rotated through all possible actions and return to the start """
+        current = self.menu.current
+        assert self.firstEntry.selected, "First Entry should be selected"
+        self.menu.changeSelected(len(self.menu.entries))
+        
+        assert self.menu.current == current, "Current Entry should have be the same"
+        assert self.firstEntry.selected, "First Entry should be selected"
 
 # Collect all test cases in this class
-testcasesChangeSelected = ["selectedChanged", "wrapAround", "fullRotation"]
+testcasesChangeSelected = ["selectedChanged", "wrapAround", "fullRotationForwards", "fullRotationForwards"]
 suiteChangeSelected = unittest.TestSuite(map(changeSelected, testcasesChangeSelected))
 
 ##########################################################
