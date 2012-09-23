@@ -36,6 +36,7 @@ class Menu:
         """ Change the highlighted menu entry """
         self.deselectEntry()
         self.current += mod
+        self.current %= len(self.entries)
         self.selectEntry()
         
     def selectEntry(self):

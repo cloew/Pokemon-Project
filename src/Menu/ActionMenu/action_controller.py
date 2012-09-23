@@ -11,8 +11,8 @@ class ActionController(Controller):
         """ Builds the Action Controller """
         self.battle = battle
         #self.actionScreen = ActionScreen(self.battle)
-        self.actionMenu = ActionMenu()
-        self.cmds = {commands.SELECT:self.actionMenu.select,
+        self.menu = ActionMenu()
+        self.cmds = {commands.SELECT:self.actionMenu.enter,
                            commands.UP:self.actionMenu.up,
                            commands.DOWN:self.actionMenu.down,
                            commands.RIGHT:self.actionMenu.right,
@@ -25,4 +25,4 @@ class ActionController(Controller):
         
     def running(self):
         """ Return if the controller is still running """
-        return self.action is None 
+        return self.menu.action is None 
