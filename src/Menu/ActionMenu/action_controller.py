@@ -1,6 +1,7 @@
 from Controller.controller import Controller
 from InputProcessor import commands
 
+from action_menu import ActionMenu
 #from Screen.GUI.Battle.action_screen import ActionScreen
 
 class ActionController(Controller):
@@ -10,12 +11,17 @@ class ActionController(Controller):
         """ Builds the Action Controller """
         self.battle = battle
         #self.actionScreen = ActionScreen(self.battle)
-        self.action = None
-        self.cmds = {commands.SELECT:self.battle.select}
+        self.actionMenu = ActionMenu()
+        self.cmds = {commands.SELECT:self.actionMenu.select,
+                           commands.UP:self.actionMenu.up,
+                           commands.DOWN:self.actionMenu.down,
+                           commands.RIGHT:self.actionMenu.right,
+                           commands.LEFT:self.actionMenu.left}
             
     def getCurrentScreen(self):
         """ Returns the current screen """
-        return self.battleScreen
+        #return self.actionScreen
+        return None
         
     def running(self):
         """ Return if the controller is still running """
