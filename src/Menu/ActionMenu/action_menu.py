@@ -8,7 +8,7 @@ class ActionMenu:
     ITEM = 2
     RUN = 3
     
-    def addEntried(self):
+    def addEntries(self):
         """  """
         self.action = None
         self.entries = [MenuEntry("FIGHT", None),
