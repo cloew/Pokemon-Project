@@ -34,9 +34,9 @@ class ActionMenu(Menu):
     def left(self):
         """ Selects the entry one left from the one highlighted """
         if self.isOdd(self.current):
-            self.changeSelected(1)
-        else:
             self.changeSelected(-1)
+        else:
+            self.changeSelected(1)
         
     def isOdd(self, num):
         """ Returns if the number is odd """
