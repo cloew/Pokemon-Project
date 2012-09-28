@@ -1,7 +1,7 @@
 from Menu.menu import Menu
 from Menu.menu_entry import MenuEntry
 
-class ActionMenu:
+class ActionMenu(Menu):
     """ Represents the Battle's Action Menu """
     FIGHT = 0
     SWITCH = 1
