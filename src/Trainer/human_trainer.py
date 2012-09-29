@@ -1,3 +1,4 @@
+from Menu.ActionMenu.action_controller import ActionController
 from Battle.Actions.action_factory import ActionFactory
 from Battle.Actions.attack_action import AttackAction
 from Pokemon.pokemon import Pokemon
@@ -11,8 +12,10 @@ class HumanTrainer(Trainer):
             
     def pickAction(self, user, targets):
         """ Has the trainer pick its action via the screen """
-        actionParams = self.screen.pickAction()
-        return ActionFactory.buildActionFromType(actionParams)
+        #actionParams = self.screen.pickAction()
+        #return ActionFactory.buildActionFromType(actionParams)
+        controller = ActionController(None)
+        controller.run()
 
     def getHeader(self):
         """ Return the header based on the type of trainer """

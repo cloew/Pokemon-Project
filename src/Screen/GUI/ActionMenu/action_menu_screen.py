@@ -20,6 +20,8 @@ class ActionMenuScreen(Screen):
         
     def draw(self, window):
         """ Draw the window """
+        window.clear()
+        
         for entry in self.entries:
             entrySurface = entry.draw()
             index = self.entries.index(entry)
@@ -30,8 +32,8 @@ class ActionMenuScreen(Screen):
             
     def getXRatio(self, i):
         """ Returns the xRatio of the entry at i """
-        return (i%2)+ 1)/3.0
+        return ((i%2)+ 1)/3.0
         
     def getYRatio(self, i):
         """ Returns the yRatio of the entry at i """
-        return (i/2)+ 3)/5.0
+        return ((i/2)+ 3)/5.0
