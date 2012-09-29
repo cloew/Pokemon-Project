@@ -1,5 +1,5 @@
 from InputProcessor import commands
-from Screen.GUI.TrainerMenu.trainer_menu_entry_view import TrainerMenuEntryView
+from Screen.GUI.MainMenu.menu_entry_view import MenuEntryView
 
 from Screen.GUI.screen import Screen
 
@@ -14,12 +14,24 @@ class ActionMenuScreen(Screen):
         self.font = pygame.font.SysFont("Times New Roman", 36)
 
         self.entries = []
-        i = 0
+        
         for entry in self.menu.entries:
-            self.entries.append(TrainerMenuEntryView(entry, i))
-            i += 1
+            self.entries.append(MenuEntryView(entry, 0))
         
     def draw(self, window):
         """ Draw the window """
         for entry in self.entries:
-            entry.draw(window)
+            entrySurface = entry.draw()
+            index = self.entries.index(entry)
+            xRatio  = self.getXRatio(index)
+            yRatio = self.getYRatio(index)
+            entryPos = entrySurface.get_rect(centerx = window.width*xRatio, centery= window.height*yRatio)
+            window.draw(entrySurface, entryPos)
+            
+    def getXRatio(self, i):
+        """ Returns the xRatio of the entry at i """
+        return (i%2)+ 1)/3.0
+        
+    def getYRatio(self, i):
+        """ Returns the yRatio of the entry at i """
+        return (i/2)+ 3)/5.0

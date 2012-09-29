@@ -2,7 +2,7 @@ from Controller.controller import Controller
 from InputProcessor import commands
 
 from action_menu import ActionMenu
-#from Screen.GUI.Battle.action_screen import ActionScreen
+from Screen.GUI.ActionMenu.action_menu_screen import ActionMeuScreen
 
 class ActionController(Controller):
     """ Controller for selection a Battle Action """
@@ -10,7 +10,7 @@ class ActionController(Controller):
     def __init__(self, battle):
         """ Builds the Action Controller """
         self.battle = battle
-        #self.actionScreen = ActionScreen(self.battle)
+        self.actionScreen = ActionMenuScreen(self.battle)
         self.menu = ActionMenu()
         self.cmds = {commands.SELECT:self.actionMenu.enter,
                            commands.UP:self.actionMenu.up,
@@ -20,8 +20,7 @@ class ActionController(Controller):
             
     def getCurrentScreen(self):
         """ Returns the current screen """
-        #return self.actionScreen
-        return None
+        return self.actionScreen
         
     def running(self):
         """ Return if the controller is still running """
