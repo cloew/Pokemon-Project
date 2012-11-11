@@ -13,9 +13,9 @@ class Controller:
         """ Runs the game loop """
         while self.running():
             window.setScreen(self.getCurrentScreen())
-            inputProcessor.processInputs(self.cmds)
             self.update()
             window.update()
+            inputProcessor.processInputs(self.cmds)
             
     def getCurrentScreen(self):
         """ Returns the current screen """
