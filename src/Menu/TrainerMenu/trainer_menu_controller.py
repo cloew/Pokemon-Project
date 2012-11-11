@@ -2,7 +2,7 @@ from Controller.controller import Controller
 from InputProcessor import commands
 
 from Menu.TrainerMenu.trainer_menu import TrainerMenu
-from Screen.GUI.TrainerMenu.trainer_menu_screen import TrainerMenuScreen
+#from Screen.GUI.TrainerMenu.trainer_menu_screen import TrainerMenuScreen
 
 class TrainerMenuController(Controller):
     """ Controller for the trainer select menu """
@@ -10,7 +10,7 @@ class TrainerMenuController(Controller):
     def __init__(self):
         """ Builds the Main Menu Controller """
         self.menu = TrainerMenu()
-        self.menuScreen = TrainerMenuScreen(self.menu)
+        self.menuScreen = None#TrainerMenuScreen(self.menu)
         self.cmds = {commands.UP:self.menu.up,
                            commands.DOWN:self.menu.down,
                            commands.EXIT:self.menu.quit,

@@ -2,7 +2,7 @@ from Controller.controller import Controller
 from InputProcessor import commands
 
 from action_menu import ActionMenu
-from Screen.GUI.ActionMenu.action_menu_screen import ActionMenuScreen
+#from Screen.GUI.ActionMenu.action_menu_screen import ActionMenuScreen
 
 class ActionController(Controller):
     """ Controller for selection a Battle Action """
@@ -11,7 +11,7 @@ class ActionController(Controller):
         """ Builds the Action Controller """
         self.battle = battle
         self.menu = ActionMenu()
-        self.actionScreen = ActionMenuScreen(self.menu)
+        self.actionScreen = None#ActionMenuScreen(self.menu)
         self.cmds = {commands.SELECT:self.menu.enter,
                            commands.UP:self.menu.up,
                            commands.DOWN:self.menu.down,

@@ -1,6 +1,6 @@
 from InputProcessor import commands
 from InputProcessor.input_processor import inputProcessor
-from Screen.GUI.window import window
+from Screen.Console.window import window
 
 class Controller:
     """ Controller base class """

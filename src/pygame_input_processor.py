@@ -1,7 +1,7 @@
 from InputProcessor import bindings
 
-from kao_console import getch
-from kao_console.ascii import *
+import pygame
+from pygame.locals import *
 
 class InputProcessor:
     """ Class to process input from pygame event queue and convert them to game commands """
@@ -18,11 +18,15 @@ class InputProcessor:
                 functions[command]()
         
     def convertEventToCommand(self):
-        """ Converts Console Key Events to Game Commands """
+        """ Converts PyGame Events to Game Commands """
         commands = []
-        event = getch()
-        if event in bindings.keyBindings:
-            commands.append(bindings.keyBindings[event])
+        
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                raise Exception()
+            elif event.type == KEYDOWN:
+                if event.key in bindings.keyBindings:
+                    commands.append(bindings.keyBindings[event.key])
         
         return commands
         

@@ -1,23 +1,20 @@
 from InputProcessor import bindings
 from InputProcessor import commands
 
-import pygame
-from pygame.locals import *
-
 from Menu.menu_entry import MenuEntry
 
 class OptionsMenu():
     """ Class to represent the options menu """
-    keyStrings = {K_UP:"UP ARROW",
-                         K_w:"W",
-                         K_DOWN:"DOWN ARROW",
-                         K_s:"S",
-                         K_LEFT:"LEFT ARROW",
-                         K_a:"A",
-                         K_RIGHT:"RIGHT ARROW",
-                         K_d:"D",
-                         K_ESCAPE:"ESCAPE",
-                         K_RETURN:"ENTER"}
+    # keyStrings = {K_UP:"UP ARROW",
+                         # K_w:"W",
+                         # K_DOWN:"DOWN ARROW",
+                         # K_s:"S",
+                         # K_LEFT:"LEFT ARROW",
+                         # K_a:"A",
+                         # K_RIGHT:"RIGHT ARROW",
+                         # K_d:"D",
+                         # K_ESCAPE:"ESCAPE",
+                         # K_RETURN:"ENTER"}
                          
     cmdStrings = {commands.EXIT:"Exit",
                           commands.UP:"Up",

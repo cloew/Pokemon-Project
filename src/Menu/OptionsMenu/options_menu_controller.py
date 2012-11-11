@@ -3,7 +3,7 @@ from InputProcessor import commands
 from InputProcessor.input_processor import inputProcessor
 
 from Menu.OptionsMenu.options_menu import OptionsMenu
-from Screen.GUI.OptionsMenu.options_menu_screen import OptionsMenuScreen
+#from Screen.GUI.OptionsMenu.options_menu_screen import OptionsMenuScreen
 
 
 class OptionsMenuController(Controller):
@@ -12,7 +12,7 @@ class OptionsMenuController(Controller):
     def __init__(self):
         """ Builds the Options Menu Controller """
         self.menu = OptionsMenu()
-        self.optionsScreen = OptionsMenuScreen(self.menu)
+        self.optionsScreen = None#OptionsMenuScreen(self.menu)
         self.cmds = {commands.EXIT:self.menu.quit}
             
     def getCurrentScreen(self):
