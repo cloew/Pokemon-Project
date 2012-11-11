@@ -16,6 +16,7 @@ class OptionsMenuScreen(Screen):
     def drawBindings(self, window):
         """ Draw Bindings Text """
         self.drawCommands(window)
+        self.drawKeys(window)
             
     def drawCommands(self, window):
         """ Draws the command """
@@ -33,15 +34,24 @@ class OptionsMenuScreen(Screen):
             cmdText = "{0}{t.bold}{1}{t.normal}".format(" "*diff, self.menu.cmdStrings[cmd], t=window.terminal)
             cmdsText.append(cmdText)
             
-        cmdCenter = self.getCenteredRect(window, (max, len(cmdsText)), 5.0/16, 14.0/32)
+        cmdCenter = self.getCenteredRect(window, (max, len(cmdsText)), cmdXRatio, 14.0/32)
         window.draw(cmdsText, cmdCenter)
         
-    def drawKeys(self, window, cmd, yRatio):
+    def drawKeys(self, window):
         """ Draws the binding """
+        keysText = []
         bindingXRatio = 8.0/16
-        yRatio = 5.0
-        
-        self.font.set_bold(False)
-        text = self.font.render(self.menu.keyBindings[cmd], 1, (10, 10, 10))
-        textpos = text.get_rect(left = window.width*bindingXRatio, centery= window.height*(yRatio/32))
-        window.draw(text, textpos)
+        yRato = 5.0
+        max = 0
+        for cmd in self.bindingsOrder:
+            length = len(self.menu.keyBindings[cmd])
+            if length > max:
+                max = length
+                
+        for cmd in self.bindingsOrder:
+            diff = max - len(self.menu.keyBindings[cmd])
+            keyText = "{0}{1}".format(self.menu.keyBindings[cmd], " "*diff, t=window.terminal)
+            keysText.append(keyText)
+            
+        keyCenter = self.getCenteredRect(window, (max, len(keysText)), bindingXRatio, 14.0/32)
+        window.draw(keysText, keyCenter)
