@@ -5,7 +5,7 @@ class Logo(View):
     
     def __init__(self):
         """ Builds the logo """
-        self.logo = ['                                 .::.                          ''',
+        self.logo = ['                                 .::.                             ',
                          '                              .;:**\'            AMC           ',
                          '                              `                  0            ',
                          '  .:XHHHHk.              db.   .;;.     dH  MX   0            ',
@@ -24,4 +24,4 @@ class Logo(View):
         lines = []
         for line in self.logo:
             lines.append(window.terminal.yellow(line))
-        return lines
+        return lines, (len(lines[0]), len(lines))

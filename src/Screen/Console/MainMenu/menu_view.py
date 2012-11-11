@@ -23,7 +23,7 @@ class MenuView(View):
             diff = max - len(entry.entry.text)
             entryText = "{0}{1}{0}".format(" "*(diff/2), entry.draw(window))
             menuText.append(entryText)
-        return menuText
+        return menuText, (max, len(menuText))
         
     def getMaxLength(self):
         """ Returns the max length """

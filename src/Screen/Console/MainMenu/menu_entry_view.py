@@ -17,4 +17,4 @@ class MenuEntryView:
         if selected:
             return terminal.reverse
         else:
-            return terminal.normal
+            return ""
