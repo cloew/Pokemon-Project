@@ -5,7 +5,7 @@ class Logo(View):
     
     def __init__(self):
         """ Builds the logo """
-        self.logo = ['                                 .::.                             ',
+        self.logo = ['                                 .::.                         ',
                          '                              .;:**\'            AMC           ',
                          '                              `                  0            ',
                          '  .:XHHHHk.              db.   .;;.     dH  MX   0            ',
@@ -22,6 +22,11 @@ class Logo(View):
     def draw(self, window):
         """ Draws the logo """
         lines = []
+        lineLength = len(self.logo[0])
         for line in self.logo:
+            if not len(line) == lineLength:
+                print len(line), lineLength
+                raise Exception("{0} is not {1}\r\n{2}".format(len(line), lineLength, line))
+        
             lines.append(window.terminal.yellow(line))
-        return lines, (len(lines[0]), len(lines))
+        return lines, (len(self.logo[0]), len(lines))

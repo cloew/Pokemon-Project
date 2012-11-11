@@ -17,11 +17,8 @@ class Screen:
         width = window.terminal.width
         height = window.terminal.height
         
-        #print width, size[0]
-        
         centerWidth = xRatio*width
         centerHeight = yRatio*height
         centerWidth -= size[0]/2
         centerHeight -= size[1]/2
-        #print centerWidth, centerHeight
         return centerWidth, centerHeight
