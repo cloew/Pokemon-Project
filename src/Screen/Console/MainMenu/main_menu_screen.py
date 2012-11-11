@@ -1,5 +1,3 @@
-import blessings
-
 from Screen.Console.screen import Screen
 from logo import Logo
 from menu_view import MenuView
