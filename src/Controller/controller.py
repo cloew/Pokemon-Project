@@ -7,19 +7,20 @@ class Controller:
     
     def __init__(self):
         """ Builds the Controller with no commands"""
-        self.cmds = {}
         
     def run(self):
         """ Runs the game loop """
         while self.running():
-            window.setScreen(self.getCurrentScreen())
+            self.checkScreen()
+            #window.setScreen(self.getCurrentScreen())
             self.update()
             window.update()
             inputProcessor.processInputs(self.cmds)
             
-    def getCurrentScreen(self):
-        """ Returns the current screen """
-        return None 
+    def checkScreen(self):
+        """ Checks if the screen should be reset """
+        if not window.screen == self.screen:
+            window.setScreen(self.screen)
         
     def running(self):
         """ Return if the controller is still running """

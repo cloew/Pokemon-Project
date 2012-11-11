@@ -8,7 +8,9 @@ class ConsoleWindow(object):
     
     def __init__(self):
         """ Build the window """
+        self.screen = None
         self.terminal = Terminal()
+        
         print self.terminal.enter_fullscreen()
         print self.terminal.hide_cursor()
         
@@ -19,6 +21,7 @@ class ConsoleWindow(object):
     def setScreen(self, screen):
         """ Sets the current Screen Display """
         self.screen = screen
+        window.clear()
         
     def update(self):
         """ Update the screen """
