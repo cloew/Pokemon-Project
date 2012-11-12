@@ -8,10 +8,24 @@ class OptionsMenuScreen(Screen):
     def __init__(self, menu):
         """  """
         self.menu = menu
+        self.title = ["____  __.             __________.__            .___.__                       ",
+                        "|    |/ _|____ ___.__. \______   \__| ____    __| _/|__| ____    ____  ______",
+                        "|      <_/ __ <   |  |  |    |  _/  |/    \  / __ | |  |/    \  / ___\/  ___/",
+                        "|    |  \  ___/\___  |  |    |   \  |   |  \/ /_/ | |  |   |  \/ /_/  >___ \ ",
+                        "|____|__ \___  > ____|  |______  /__|___|  /\____ | |__|___|  /\___  /____  >",
+                        "        \/   \/\/              \/        \/      \/         \//_____/     \/ "]
         
     def draw(self, window):
         """ Draw the window """
+        self.drawTitle(window)
         self.drawBindings(window)
+        
+    def drawTitle(self, window):
+        """ Draws the title """
+        titleLines = []
+        for line in self.title:
+            titleLines.append(window.terminal.yellow(line))
+        window.draw(titleLines, (1, 0))
         
     def drawBindings(self, window):
         """ Draw Bindings Text """
