@@ -2,7 +2,7 @@ from InputProcessor import commands
 from Screen.Console.TrainerMenu.trainer_menu_entry_view import TrainerMenuEntryView
 
 from Screen.Console.screen import Screen
-#from Screen.GUI.MessageBox.message_box import MessageBox
+from Screen.Console.MessageBox.message_box import MessageBox
 from Battle.battle_message import BattleMessage
 
 class TrainerMenuScreen(Screen):
@@ -16,11 +16,14 @@ class TrainerMenuScreen(Screen):
             self.entries.append(TrainerMenuEntryView(entry))
             
         self.selectedIndex = 0
-        #self.buildMessageBox()
+        self.buildMessageBox()
         
     def draw(self, window):
         """ Draw the window """
         self.drawMenuEntries(window)
+        
+        messageBox, messageBoxSize = self.messageBox.draw(window)
+        window.draw(messageBox, (0,window.terminal.height-3))
             
     def drawMenuEntries(self, window):
         """ Draws all Menu Entries """
