@@ -23,7 +23,7 @@ class TrainerMenuScreen(Screen):
         self.drawMenuEntries(window)
         
         messageBox, messageBoxSize = self.messageBox.draw(window)
-        window.draw(messageBox, (0,window.terminal.height-3))
+        window.draw(messageBox, (0,window.terminal.height-5))
             
     def drawMenuEntries(self, window):
         """ Draws all Menu Entries """
