@@ -21,6 +21,8 @@ class TrainerMenuScreen(Screen):
     def draw(self, window):
         """ Draw the window """
         self.drawMenuEntries(window)
+        self.findNewSelectedIndex()
+        self.buildMessageBox()
         
         messageBox, messageBoxSize = self.messageBox.draw(window)
         window.draw(messageBox, (0,window.terminal.height-5))
@@ -57,5 +59,5 @@ class TrainerMenuScreen(Screen):
     
     def buildMessageBox(self):
         """ Builds a Message Box """
-        battleMessage = BattleMessage("{0}'s first Pkmn is {1}".format(self.entries[self.selectedIndex].entry.trainer.name, self.entries[self.selectedIndex].entry.trainer.beltPokemon[0].name))
+        battleMessage = BattleMessage("{0}'s first Pkmn is {1}.".format(self.entries[self.selectedIndex].entry.trainer.name, self.entries[self.selectedIndex].entry.trainer.beltPokemon[0].name))
         self.messageBox = MessageBox(battleMessage)
