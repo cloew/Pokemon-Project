@@ -2,21 +2,20 @@ from Screen.GUI.view import View
 
 class MessageBox(View):
     """ Represents a message box on the screen """
-    maxChars = 35
+    maxChars = 78
     
     def __init__(self, message):
         """ Builds the Message Box with the given message box """
         self.message = message
         self.charsShown = 0
-        #self.stringToDisplay = ""
         self.stringToDisplay = self.message.getMessageSlice(self.message.length())
     
     def update(self):
         """ Updates the message box """
-        if self.charsShown < self.message.length():
-            self.charsShown += 1
+        #if self.charsShown < self.message.length():
+        #    self.charsShown += 1
             
-        self.stringToDisplay = self.message.getMessageSlice(self.charsShown)
+        #self.stringToDisplay = self.message.getMessageSlice(self.charsShown)
         
     def draw(self, window):
         """ Draws the message box """
