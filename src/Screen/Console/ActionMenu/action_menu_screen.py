@@ -36,15 +36,18 @@ class ActionMenuScreen(Screen):
     def drawMenuEntries(self, window):
         """ Draws all Menu Entries """
         menuText = []
+        rows = [window.terminal.height-4, window.terminal.height-3]
+        cols = [.33, .66]
         max = self.getMaxLength()
         for entry in self.entries:
-            diff = max - len(entry.entry.text)
-            entryText = "{0}{1}{0}".format(" "*(diff/2), entry.draw(window))
-            menuText.append(entryText)
-        menuSize = (max, len(menuText))
-        
-        menuPos = self.getCenteredRect(window, menuSize, .5, .5) 
-        window.draw(menuText, menuPos)
+            index = self.entries.index(entry)
+            col = cols[index%2]
+            row = rows[index > 1]
+            length = len(entry.entry.text)
+            
+            entryText = entry.draw(window)
+            entryPos = self.getCenteredRect(window, (length, 1), col, .5)
+            window.draw([entryText], (entryPos[0], row))
 
     def getMaxLength(self):
         """ Returns the max length """
