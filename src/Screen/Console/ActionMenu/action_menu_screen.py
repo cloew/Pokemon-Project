@@ -18,7 +18,20 @@ class ActionMenuScreen(Screen):
         
     def draw(self, window):
         """ Draw the window """
+        self.drawMenuBox(window)
         self.drawMenuEntries(window)
+
+    def drawMenuBox(self, window):
+        """ Draws the Menu Box """
+        lines = []
+        hdrLine ="-"*window.terminal.width
+        line = "|{0}|".format(" "*(window.terminal.width-2))
+        
+        lines.append(hdrLine)
+        lines.append(line)
+        lines.append(line)
+        lines.append(hdrLine)
+        window.draw(lines, (0,window.terminal.height-5))
 
     def drawMenuEntries(self, window):
         """ Draws all Menu Entries """

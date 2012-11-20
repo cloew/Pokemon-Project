@@ -85,11 +85,10 @@ def main(argv):
     """ Start the game """
     from Menu.MainMenu.main_menu_controller import MainMenuController
     main_controller = MainMenuController()
-    main_controller.run()
-    window.close()
-    # except ImportError:
-        # player, cpu = ParseArgs(argv)
-        # Loop(player, cpu)
+    try:
+        main_controller.run()
+    finally:
+        window.close()
 
 if __name__ == "__main__":
     main(sys.argv[1:])
