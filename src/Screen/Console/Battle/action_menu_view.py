@@ -35,6 +35,7 @@ class ActionMenuView(View):
         """ Draws all Menu Entries """
         menuText = []
         cols = [.33, .66]
+        rows = [box[0], box[1], box[2], box[3]]
 
         for entry in self.entries:
             index = self.entries.index(entry)
@@ -49,6 +50,7 @@ class ActionMenuView(View):
     def addEntryText(self, entry, position, window, line):
         """ Adds the entry text to a line given and returns it """
         newLine  = line[:position]
+        print position
         newLine += entry.draw(window)
         newLine += line[position+len(entry.entry.text):]
         return newLine 

@@ -15,6 +15,7 @@ class BattleRound:
         
     def performActions(self):
         """ Perform all the Round actions """
+        self.messages = []
         actions = self.getActions()
         for action in actions:
             messages = []
@@ -23,7 +24,7 @@ class BattleRound:
             
             self.messageQueue += deque(messages)
             #map(self.messageQueue.append, messages)
-            self.messages = messages
+            self.messages += messages
         
     def getActions(self):
         """ Get all actions in the round """

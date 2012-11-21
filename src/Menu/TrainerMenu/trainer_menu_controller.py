@@ -12,9 +12,9 @@ class TrainerMenuController(Controller):
         self.menu = TrainerMenu()
         self.screen = TrainerMenuScreen(self.menu)
         self.cmds = {commands.UP:self.menu.up,
-                           commands.DOWN:self.menu.down,
-                           commands.EXIT:self.menu.quit,
-                           commands.SELECT:self.menu.enter}
+                     commands.DOWN:self.menu.down,
+                     commands.EXIT:self.menu.quit,
+                     commands.SELECT:self.menu.enter}
         
     def running(self):
         """ Return if the controller is still running """

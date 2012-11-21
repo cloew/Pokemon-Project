@@ -50,7 +50,8 @@ class Battle:
         """  Performs a single round """
         self.round.run()
         self.betweenRounds()
-        self.messageQueue += self.round.messageQueue
+        self.addMessages(self.round.messages)
+        #self.messageQueue += self.round.messageQueue
         
     def betweenRounds(self):
         """ Perform between rounds """

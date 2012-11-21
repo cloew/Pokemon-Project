@@ -13,7 +13,7 @@ class BattleScreen(Screen):
         
     def update(self):
         """ Update the screen """
-        if not self.battle.messageQueue[0] == self.messageBox.message:
+        if self.hasMessages() and self.newMessage():
             self.messageBox = MessageBox(self.battle.messageQueue[0])
         self.messageBox.update()
         
@@ -21,3 +21,12 @@ class BattleScreen(Screen):
         """ Draw the window """
         messageBox, messageBoxSize = self.messageBox.draw(window)
         window.draw(messageBox, (0,window.terminal.height-5))
+
+    def hasMessages(self):
+        """ Returns if there are messages in the battle's queue """
+        return len(self.battle.messageQueue) > 0
+
+    def newMessage(self):
+        """ Returns if the message on the top of the queue 
+        is different than the current message """
+        return not self.battle.messageQueue[0] == self.messageBox.message
