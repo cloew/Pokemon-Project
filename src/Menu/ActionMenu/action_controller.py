@@ -5,7 +5,7 @@ from action_menu import ActionMenu
 from Screen.Console.ActionMenu.action_menu_screen import ActionMenuScreen
 
 class ActionController(Controller):
-    """ Controller for selection a Battle Action """
+    """ Controller for selecting a Battle Action """
     
     def __init__(self, battle):
         """ Builds the Action Controller """
