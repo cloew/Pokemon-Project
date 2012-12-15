@@ -7,6 +7,11 @@ class ActionMenu(Menu):
     SWITCH = 1
     ITEM = 2
     RUN = 3
+
+    def __init__(self, userPkmn):
+        """ Create the Action Menu for the given Pokemon """
+        self.pkmn = userPkmn
+        Menu.__init__(self)
     
     def addEntries(self):
         """  """
@@ -18,6 +23,9 @@ class ActionMenu(Menu):
                              
     def tempEntryCallback(self):
         """ Temporary Call back function for Action menu Entries """
+
+    def chooseAttack(self):
+        """ Choose an Attack """
         
     def up(self):
         """ Selects the entry one up from the one highlighted """

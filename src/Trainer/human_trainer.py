@@ -14,7 +14,7 @@ class HumanTrainer(Trainer):
         """ Has the trainer pick its action via the screen """
         #actionParams = self.screen.pickAction()
         #return ActionFactory.buildActionFromType(actionParams)
-        controller = ActionController(None)
+        controller = ActionController(user)
         controller.run()
 
     def getHeader(self):
