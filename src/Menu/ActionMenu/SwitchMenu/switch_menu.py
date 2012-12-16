@@ -16,8 +16,8 @@ class SwitchMenu(BoxMenu):
     def addEntries(self):
         """ Add Menu Entries """
         self.entries = []
-        for pkmn in self.pkmn.getTrainer().beltPokemon[:4]:
-            self.entries.append(PokemonMenuEntry(pkmn, self.tempEntryCallback))
+        for pkmn in self.pkmn.getTrainer().beltPokemon:
+            self.entries.append(PokemonMenuEntry(pkmn, self.setSwitchAction))
                              
     def tempEntryCallback(self, entry):
         """ Temporary Call back function for Action menu Entries """
