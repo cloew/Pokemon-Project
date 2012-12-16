@@ -1,12 +1,8 @@
-from action_menu import ActionMenu
+from Menu.box_menu import BoxMenu
 from Menu.menu_entry import MenuEntry
 
-class AttackMenu(ActionMenu):
+class AttackMenu(BoxMenu):
     """ Represents the Battle's Attack Menu """
-    FIGHT = 0
-    SWITCH = 1
-    ITEM = 2
-    RUN = 3
     
     def addEntries(self):
         """ Add entries to the Menu """
@@ -15,3 +11,7 @@ class AttackMenu(ActionMenu):
                         MenuEntry("Attack 2", self.tempEntryCallback),
                         MenuEntry("Attack 3", self.tempEntryCallback),
                         MenuEntry("Attack 4", self.tempEntryCallback)]
+
+
+    def tempEntryCallback(self):
+        """ Temporary Call back function for Action menu Entries """
