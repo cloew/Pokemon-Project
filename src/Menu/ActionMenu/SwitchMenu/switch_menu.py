@@ -23,8 +23,6 @@ class SwitchMenu(BoxMenu):
     def tempEntryCallback(self, entry):
         """ Temporary Call back function for Action menu Entries """
 
-    def chooseAttack(self, entry):
-        """ Choose an Attack """
-        attackController = AttackController(self.pkmn, self.targets)
-        attackController.run()
-        self.action = attackController.menu.action
+    def setSwitchAction(self, entry):
+        """ Set the Switch Action """
+        self.action = SwitchAction(self.pkmn, entry.getPokemon())
