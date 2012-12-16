@@ -23,7 +23,7 @@ class PokemonMenuEntryView(MenuEntryView):
         lines.append(self.getPokemonNameLine(window))
         lines.append(self.getHealthLine(window))
         for i in range(entrySize[1]-4):
-            lines.append("")
+            lines.append(self.getLine("", window))
         lines.append(self.getHeaderLine(window))
         return lines
         

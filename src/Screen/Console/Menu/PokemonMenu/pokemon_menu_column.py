@@ -20,16 +20,4 @@ class PokemonMenuColumn(View):
             entryLines, entrySize = entry.draw(window)
             width = entrySize[0]
             menuText += entryLines
-            # diff = max - entry.entry.getTextLength()
-            # entryText = "{0}{1}{0}".format(" "*(diff/2), entry.draw(window))
-            # menuText.append(entryText)
         return menuText, (width, len(menuText))
-        
-    # def getMaxLength(self):
-    #     """ Returns the max length """
-    #     max = 0
-    #     for entry in self.entries:
-    #         length = entry.entry.getTextLength()
-    #         if length > max:
-    #             max = length
-    #     return max
