@@ -27,3 +27,4 @@ class ActionMenu(BoxMenu):
         """ Choose an Attack """
         attackController = AttackController(self.pkmn, self.targets)
         attackController.run()
+        self.action = attackController.menu.action

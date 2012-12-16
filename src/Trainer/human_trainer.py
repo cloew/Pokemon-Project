@@ -16,6 +16,7 @@ class HumanTrainer(Trainer):
         #return ActionFactory.buildActionFromType(actionParams)
         controller = ActionController(user, targets)
         controller.run()
+        return controller.menu.action
 
     def getHeader(self):
         """ Return the header based on the type of trainer """
