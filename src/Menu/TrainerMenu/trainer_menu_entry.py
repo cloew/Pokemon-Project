@@ -12,7 +12,7 @@ class TrainerMenuEntry(MenuEntry):
         self.selected = False
         
     def call(self):
-        """ Trainer Entry has no function to call """
+        """ Battle as the selected trainer """
         #print "{0} {1}'s first Pkmn is {2}".format(self.trainer.title, self.trainer.name, self.trainer.beltPokemon[0].name)
         enemy = TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER)
         controller = BattleController(self.trainer, enemy)

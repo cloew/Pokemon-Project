@@ -1,5 +1,5 @@
 from Menu.menu import Menu
-from Menu.menu_entry import MenuEntry
+from Menu.text_menu_entry import TextMenuEntry
 
 from Menu.OptionsMenu.options_menu_controller import OptionsMenuController
 from Menu.TrainerMenu.trainer_menu_controller import TrainerMenuController
@@ -9,9 +9,9 @@ class MainMenu(Menu):
     
     def addEntries(self):
         """ Add Entries to the menu """
-        self.entries = [MenuEntry("Start", self.startGame), 
-                             MenuEntry("Options", self.options),
-                             MenuEntry("Exit", self.quit)]
+        self.entries = [TextMenuEntry("Start", self.startGame), 
+                        TextMenuEntry("Options", self.options),
+                        TextMenuEntry("Exit", self.quit)]
             
     def startGame(self):
         """ Start the game """

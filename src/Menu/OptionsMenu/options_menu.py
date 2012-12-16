@@ -1,7 +1,7 @@
 from InputProcessor import bindings
 from InputProcessor import commands
 
-from Menu.menu_entry import MenuEntry
+from Menu.text_menu_entry import TextMenuEntry
 
 from kao_console.ascii import *
 
@@ -35,7 +35,7 @@ class OptionsMenu():
         """  """
         self.running = True
         self.heading = "Key Bindings"
-        self.back = MenuEntry("Back", self.quit)
+        self.back = TextMenuEntry("Back", self.quit)
         self.back.select()
         
         self.keyBindings = self.getBoundKeyStrings()

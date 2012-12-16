@@ -1,5 +1,5 @@
 from Menu.box_menu import BoxMenu
-from Menu.menu_entry import MenuEntry
+from Menu.text_menu_entry import TextMenuEntry
 
 from attack_controller import AttackController
 
@@ -14,10 +14,10 @@ class ActionMenu(BoxMenu):
     def addEntries(self):
         """  """
         self.action = None
-        self.entries = [MenuEntry("FIGHT", self.chooseAttack),
-                        MenuEntry("SWITCH", self.tempEntryCallback),
-                        MenuEntry("ITEM", self.tempEntryCallback),
-                        MenuEntry("RUN", self.tempEntryCallback)]
+        self.entries = [TextMenuEntry("FIGHT", self.chooseAttack),
+                        TextMenuEntry("SWITCH", self.tempEntryCallback),
+                        TextMenuEntry("ITEM", self.tempEntryCallback),
+                        TextMenuEntry("RUN", self.tempEntryCallback)]
                              
     def tempEntryCallback(self):
         """ Temporary Call back function for Action menu Entries """
