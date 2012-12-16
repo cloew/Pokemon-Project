@@ -19,6 +19,6 @@ class AttackMenu(BoxMenu):
         for attack in self.pkmn.getAttacks():
             self.entries.append(AttackMenuEntry(attack, self.setAction))
 
-    def setAction(self):
+    def setAction(self, entry):
         """ Set the Attack Action """
-        return AttackAction(None, self.pkmn, self.targets)
+        return AttackAction(entry.getAttack(), self.pkmn, self.targets)

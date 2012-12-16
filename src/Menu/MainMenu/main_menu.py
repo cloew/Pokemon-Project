@@ -13,12 +13,12 @@ class MainMenu(Menu):
                         TextMenuEntry("Options", self.options),
                         TextMenuEntry("Exit", self.quit)]
             
-    def startGame(self):
+    def startGame(self, entry):
         """ Start the game """
         trainerSelect = TrainerMenuController()
         trainerSelect.run()
         
-    def options(self):
+    def options(self, entry):
         """ Go to the options menu """
         options = OptionsMenuController()
         options.run()

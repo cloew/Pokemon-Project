@@ -20,10 +20,10 @@ class ActionMenu(BoxMenu):
                         TextMenuEntry("ITEM", self.tempEntryCallback),
                         TextMenuEntry("RUN", self.tempEntryCallback)]
                              
-    def tempEntryCallback(self):
+    def tempEntryCallback(self, entry):
         """ Temporary Call back function for Action menu Entries """
 
-    def chooseAttack(self):
+    def chooseAttack(self, entry):
         """ Choose an Attack """
         attackController = AttackController(self.pkmn, self.targets)
         attackController.run()

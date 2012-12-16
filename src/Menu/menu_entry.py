@@ -10,7 +10,7 @@ class MenuEntry:
         
     def call(self):
         """ Calls the function """
-        self.callback()
+        self.callback(self)
         
     def select(self):
         """ Select this entry """

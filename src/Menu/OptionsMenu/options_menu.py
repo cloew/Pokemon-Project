@@ -8,27 +8,27 @@ from kao_console.ascii import *
 class OptionsMenu():
     """ Class to represent the options menu """
     keyStrings = {KAO_UP:"UP ARROW",
-                         ord('W'):"W",
-                         ord('w'):"w",
-                         KAO_DOWN:"DOWN ARROW",
-                         ord('S'):"S",
-                         ord('s'):"s",
-                         KAO_LEFT:"LEFT ARROW",
-                         ord('A'):"A",
-                         ord('a'):"a",
-                         KAO_RIGHT:"RIGHT ARROW",
-                         ord('D'):"D",
-                         ord('d'):"d",
-                         ESCAPE:"ESCAPE",
-                         ENDL:"ENTER"}
+                  ord('W'):"W",
+                  ord('w'):"w",
+                  KAO_DOWN:"DOWN ARROW",
+                  ord('S'):"S",
+                  ord('s'):"s",
+                  KAO_LEFT:"LEFT ARROW",
+                  ord('A'):"A",
+                  ord('a'):"a",
+                  KAO_RIGHT:"RIGHT ARROW",
+                  ord('D'):"D",
+                  ord('d'):"d",
+                  ESCAPE:"ESCAPE",
+                  ENDL:"ENTER"}
                          
     cmdStrings = {commands.EXIT:"Exit",
-                          commands.UP:"Up",
-                          commands.DOWN:"Down",
-                          commands.LEFT:"Left",
-                          commands.RIGHT:"Right",
-                          commands.SELECT:"Select",
-                          commands.CANCEL:"Cancel"}
+                  commands.UP:"Up",
+                  commands.DOWN:"Down",
+                  commands.LEFT:"Left",
+                  commands.RIGHT:"Right",
+                  commands.SELECT:"Select",
+                  commands.CANCEL:"Cancel"}
     
                          
     def __init__(self):
@@ -43,12 +43,12 @@ class OptionsMenu():
     def getBoundKeyStrings(self):
         """ Strings for Bound Keys """
         boundKeys = {commands.EXIT:[],
-                             commands.UP:[],
-                             commands.DOWN:[],
-                             commands.LEFT:[],
-                             commands.RIGHT:[],
-                             commands.SELECT:[],
-                             commands.CANCEL:[]}
+                     commands.UP:[],
+                     commands.DOWN:[],
+                     commands.LEFT:[],
+                     commands.RIGHT:[],
+                     commands.SELECT:[],
+                     commands.CANCEL:[]}
         
         for key in bindings.keyBindings:
             boundKeys[bindings.keyBindings[key]].append(self.keyStrings[key])
@@ -64,7 +64,7 @@ class OptionsMenu():
             
         return commandKeys
         
-    def quit(self):
+    def quit(self, entry):
         """ Quits the Open Menu """
         self.running = False
         
