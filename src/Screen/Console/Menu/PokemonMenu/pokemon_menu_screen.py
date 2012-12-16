@@ -12,9 +12,11 @@ class PokemonMenuScreen(Screen):
         rightEntries = []
 
         for entry in self.menu.entries:
-            if self.menu.entries.index(entry):
+            if self.menu.entries.index(entry)%2:
+                print "Right:", entry.getText()
                 rightEntries.append(PokemonMenuEntryView(entry))
             else:
+                print "Left:", entry.getText()
                 leftEntries.append(PokemonMenuEntryView(entry))
 
         self.leftColumn = PokemonMenuColumn(leftEntries)
