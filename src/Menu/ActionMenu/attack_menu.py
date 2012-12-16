@@ -12,10 +12,9 @@ class AttackMenu(BoxMenu):
     def addEntries(self):
         """ Add entries to the Menu """
         self.action = None
-        self.entries = [MenuEntry("Attack 1", self.tempEntryCallback),
-                        MenuEntry("Attack 2", self.tempEntryCallback),
-                        MenuEntry("Attack 3", self.tempEntryCallback),
-                        MenuEntry("Attack 4", self.tempEntryCallback)]
+        self.entries = []
+        for attack in self.pkmn.getAttacks():
+            self.entries.append(MenuEntry(attack.name, self.tempEntryCallback))
 
 
     def tempEntryCallback(self):
