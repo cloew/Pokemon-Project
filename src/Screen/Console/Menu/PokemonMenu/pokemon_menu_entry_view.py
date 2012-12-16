@@ -6,7 +6,8 @@ class PokemonMenuEntryView(MenuEntryView):
     def draw(self, window):
         """ Draws the menu entry """
         format = self.getTerminalFormatting(self.entry.selected, window.terminal)
-        return "{0}{1}{t.normal}".format(format, self.entry.getText(), t=window.terminal)
+        pkmn = self.entry.getPokemon()
+        return "{0}{1}--{2}{t.normal}".format(format, pkmn.name, pkmn.species, t=window.terminal)
         
     def getTerminalFormatting(self, selected, terminal):
         """ Sets the Boldness of the entry """
