@@ -1,5 +1,5 @@
 from InputProcessor import commands
-from Screen.Console.TrainerMenu.trainer_menu_entry_view import TrainerMenuEntryView
+from Screen.Console.Menu.TrainerMenu.trainer_menu_entry_view import TrainerMenuEntryView
 
 from Screen.Console.screen import Screen
 from Screen.Console.MessageBox.message_box import MessageBox

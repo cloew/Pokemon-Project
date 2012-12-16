@@ -2,7 +2,7 @@ from Controller.controller import Controller
 from InputProcessor import commands
 
 from switch_menu import SwitchMenu
-from Screen.Console.ActionMenu.action_menu_screen import ActionMenuScreen # Need differnet screen
+from Screen.Console.Menu.ActionMenu.action_menu_screen import ActionMenuScreen # Need differnet screen
 
 class SwitchController(Controller):
     """ Controller for selecting a Battle Switch Action """

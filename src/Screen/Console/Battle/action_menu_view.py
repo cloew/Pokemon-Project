@@ -1,4 +1,4 @@
-from Screen.Console.MainMenu.menu_entry_view import MenuEntryView
+from Screen.Console.Menu.MainMenu.menu_entry_view import MenuEntryView
 
 from Screen.Console.view import View
 from Screen.Console.screen import Screen
@@ -49,7 +49,6 @@ class ActionMenuView(View):
     def addEntryText(self, entry, position, window, line):
         """ Adds the entry text to a line given and returns it """
         newLine  = line[:position]
-        #print position
         newLine += entry.draw(window)
         newLine += line[position+entry.entry.getTextLength():]
         return newLine 

@@ -3,7 +3,7 @@ from InputProcessor import commands
 from InputProcessor.input_processor import inputProcessor
 
 from Menu.MainMenu.main_menu import MainMenu
-from Screen.Console.MainMenu.main_menu_screen import MainMenuScreen
+from Screen.Console.Menu.MainMenu.main_menu_screen import MainMenuScreen
 
 class MainMenuController(Controller):
     """ Controller for the main menu """

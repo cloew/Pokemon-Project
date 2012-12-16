@@ -3,7 +3,7 @@ from InputProcessor import commands
 from InputProcessor.input_processor import inputProcessor
 
 from Menu.OptionsMenu.options_menu import OptionsMenu
-from Screen.Console.OptionsMenu.options_menu_screen import OptionsMenuScreen
+from Screen.Console.Menu.OptionsMenu.options_menu_screen import OptionsMenuScreen
 
 
 class OptionsMenuController(Controller):

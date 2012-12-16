@@ -2,7 +2,7 @@ from Controller.controller import Controller
 from InputProcessor import commands
 
 from action_menu import ActionMenu
-from Screen.Console.ActionMenu.action_menu_screen import ActionMenuScreen
+from Screen.Console.Menu.ActionMenu.action_menu_screen import ActionMenuScreen
 
 class ActionController(Controller):
     """ Controller for selecting a Battle Action """
