@@ -18,10 +18,6 @@ class AttackController(Controller):
                      commands.RIGHT:self.menu.right,
                      commands.LEFT:self.menu.left,
                      commands.EXIT:self.back}
-            
-    def getCurrentScreen(self):
-        """ Returns the current screen """
-        return self.actionScreen
         
     def running(self):
         """ Return if the controller is still running """
