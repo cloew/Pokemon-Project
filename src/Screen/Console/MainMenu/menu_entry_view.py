@@ -9,7 +9,7 @@ class MenuEntryView:
     def draw(self, window):
         """ Draws the menu entry """
         format = self.getTerminalFormatting(self.entry.selected, window.terminal)
-        return "{0}{1}{t.normal}".format(format, self.entry.text, t=window.terminal)
+        return "{0}{1}{t.normal}".format(format, self.entry.getText(), t=window.terminal)
         
     def getTerminalFormatting(self, selected, terminal):
         """ Sets the Boldness of the entry """

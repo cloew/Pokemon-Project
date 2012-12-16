@@ -21,6 +21,10 @@ class TrainerMenuEntry(MenuEntry):
     def getTrainer(self):
         """ Returns the entry's trainer """
         return self.trainer
+
+    def getTextLength(self):
+        """ Return the printable length of the Entry's Text """
+        return len(self.getText())
         
     def getText(self):
         """ Return text to display for the Entry """

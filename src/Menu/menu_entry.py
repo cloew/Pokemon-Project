@@ -20,6 +20,10 @@ class MenuEntry:
         """ Deselect this entry """
         self.selected = False
         
+    def getTextLength(self):
+        """ Return the printable length of the Entry's Text """
+        return 0
+
     def getText(self):
         """ Return the text of the Menu Entry """
         return ""

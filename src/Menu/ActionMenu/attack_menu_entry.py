@@ -12,6 +12,10 @@ class AttackMenuEntry(MenuEntry):
         """ Returns the entry's attack """
         return self.attack
         
+    def getTextLength(self):
+        """ Return the printable length of the Entry's Text """
+        return len(self.attack.name)
+
     def getText(self):
         """ Return text to display for the Entry """
         return self.attack.name

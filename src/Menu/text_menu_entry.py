@@ -7,6 +7,10 @@ class TextMenuEntry(MenuEntry):
         """ Builds a menu entry with its text and callback function to call when finished """
         self.text = text
         MenuEntry.__init__(self, callback)
+
+    def getTextLength(self):
+        """ Return the printable length of the Entry's Text """
+        return len(self.text)
         
     def getText(self):
         """ Return the text of the Menu Entry """

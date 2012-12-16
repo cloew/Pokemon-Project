@@ -40,7 +40,7 @@ class ActionMenuView(View):
             index = self.entries.index(entry)
             col = cols[index%2]
             rowIndex = (index > 1) + 1
-            length = len(entry.entry.text)
+            length = entry.entry.getTextLength()
             
             entryPosition = self.getEntryPosition(length, col, window.terminal.width)
             box[rowIndex] = self.addEntryText(entry, int(entryPosition), window, box[rowIndex])
@@ -51,7 +51,7 @@ class ActionMenuView(View):
         newLine  = line[:position]
         #print position
         newLine += entry.draw(window)
-        newLine += line[position+len(entry.entry.text):]
+        newLine += line[position+entry.entry.getTextLength():]
         return newLine 
 
     def getEntryPosition(self, entryLength, xRatio, terminalWidth):

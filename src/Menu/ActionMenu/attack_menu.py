@@ -1,5 +1,5 @@
 from Menu.box_menu import BoxMenu
-from Menu.text_menu_entry import TextMenuEntry
+from attack_menu_entry import AttackMenuEntry
 
 class AttackMenu(BoxMenu):
     """ Represents the Battle's Attack Menu """
@@ -14,7 +14,7 @@ class AttackMenu(BoxMenu):
         self.action = None
         self.entries = []
         for attack in self.pkmn.getAttacks():
-            self.entries.append(TextMenuEntry(attack.name, self.tempEntryCallback))
+            self.entries.append(AttackMenuEntry(attack, self.tempEntryCallback))
 
     def tempEntryCallback(self):
         """ Temporary Call back function for Action menu Entries """
