@@ -23,8 +23,8 @@ class ActionController(Controller):
         return self.actionScreen
         
     def running(self):
-        """ Return if the controller is still running """
-        return self.menu.action is None 
+        """ Return whether the controller is still running """
+        return self.menu.action is None
 
     def exit(self):
         """ Exits the program """
