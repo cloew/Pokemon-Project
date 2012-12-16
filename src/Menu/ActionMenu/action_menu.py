@@ -1,7 +1,7 @@
 from Menu.box_menu import BoxMenu
 from Menu.text_menu_entry import TextMenuEntry
 
-from attack_controller import AttackController
+from Menu.ActionMenu.AttackMenu.attack_controller import AttackController
 
 class ActionMenu(BoxMenu):
     """ Represents the Battle's Action Menu """
