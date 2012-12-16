@@ -7,27 +7,29 @@ class PokemonMenuEntryView(MenuEntryView):
         """ Draws the menu entry """
         format = self.getTerminalFormatting(self.entry.selected, window.terminal)
         pkmn = self.entry.getPokemon()
-        return "{0}{1}--{2}{t.normal}".format(format, pkmn.name, pkmn.species, t=window.terminal)
+        #return "{0}{1}--{2}{t.normal}".format(format, pkmn.name, pkmn.species, t=window.terminal)
+        return self.getEntryLines(window), self.getEntrySize(window)
 
     def getEntrySize(self, window):
         """ Return the entry size """
-        return (window.width/2 - 2, window.height/3 - 2)
+        return (window.getWidth()/2 - 2, window.getHeight()/3 - 2)
 
     def getEntryLines(self, window):
         """ Return entry lines """
         lines = []
         entrySize = self.getEntrySize(window)
 
-        lines.append(self.getHeaderLine())
-        lines.append(self.getPokemonNameLine())
-        lines.append(self.getHealthLine())
+        lines.append(self.getHeaderLine(window))
+        lines.append(self.getPokemonNameLine(window))
+        lines.append(self.getHealthLine(window))
         for i in range(entrySize[1]-4):
             lines.append("")
-        lines.append(self.getHeaderLine())
+        lines.append(self.getHeaderLine(window))
         return lines
         
-    def getHeaderLine(self, entrySize):
+    def getHeaderLine(self, window):
         """ Returns the line for the header and footer of the entry """
+        entrySize = self.getEntrySize(window)
         return "|{0}|".format("-"*(entrySize[0]-2))
 
     def getLine(self, text, window):
@@ -35,18 +37,18 @@ class PokemonMenuEntryView(MenuEntryView):
         entrySize = self.getEntrySize(window)
         spacer = " "*(entrySize[0]-2-len(text))
         format = self.getTerminalFormatting(self.entry.selected, window.terminal)
-        return "|{0}{1}{2}{t.normal}|".format(format, text, spacer t=window.terminal)
+        return "|{0}{1}{2}{t.normal}|".format(format, text, spacer, t=window.terminal)
 
-    def getPokemonNameLine(self):
+    def getPokemonNameLine(self, window):
         """ Returns the Pokemon Name and Species as a string """
         pkmn = self.entry.getPokemon()
         nameString = "{0} --- {1}".format(self.getFullString(pkmn.name), self.getFullString(pkmn.species))
-        return self.getLine(nameString)
+        return self.getLine(nameString, window)
 
-    def getHealthLine(self):
+    def getHealthLine(self, window):
         """ Return the line with health stats """
         pkmn = self.entry.getPokemon()
-        return self.getLine("{0}/{1}".format(pkmn.getCurrHP(), pkmn.getStat("HP")))
+        return self.getLine("{0}/{1}".format(pkmn.getCurrHP(), pkmn.getStat("HP")), window)
 
     def getFullString(self, string):
         """ Returns a string with the full 10 char limit """

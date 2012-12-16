@@ -17,6 +17,14 @@ class ConsoleWindow(object):
     def close(self):
         print self.terminal.exit_fullscreen()
         print self.terminal.normal_cursor()
+
+    def getWidth(self):
+        """ Return the width of the window """
+        return self.terminal.width
+
+    def getHeight(self):
+        """ Return the height of the window """
+        return self.terminal.height
         
     def setScreen(self, screen):
         """ Sets the current Screen Display """
