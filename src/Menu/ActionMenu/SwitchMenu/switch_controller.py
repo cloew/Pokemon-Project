@@ -8,10 +8,10 @@ from Screen.Console.Menu.PokemonMenu.pokemon_menu_screen import PokemonMenuScree
 class SwitchController(Controller):
     """ Controller for selecting a Battle Switch Action """
     
-    def __init__(self, user, targets):
-        """ Builds the Action Controller """
+    def __init__(self, user):
+        """ Builds the Switch Controller """
         self.goBack = False
-        self.menu = SwitchMenu(user, targets)
+        self.menu = SwitchMenu(user)
         self.screen = PokemonMenuScreen(self.menu) # Need different screen
         self.cmds = {commands.SELECT:self.menu.enter,
                      commands.UP:self.menu.up,

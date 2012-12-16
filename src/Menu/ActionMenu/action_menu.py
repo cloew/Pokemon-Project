@@ -32,6 +32,6 @@ class ActionMenu(BoxMenu):
 
     def choosePokemonToSwitchTo(self, entry):
         """ Choose an Attack """
-        switchController = SwitchController(self.pkmn, self.targets)
+        switchController = SwitchController(self.pkmn)
         switchController.run()
         self.action = switchController.menu.action

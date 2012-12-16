@@ -6,7 +6,7 @@ class SwitchAction(BattleAction):
     def __init__(self, user, pkmnToSwitchTo):
         """ Build an attack action """
         self.user = user
-        self.switchPkmn = pkmnToSwitchTo
+        self.pkmnToSwitchTo = pkmnToSwitchTo
     
     def getPriority(self):
         """ Returns the Speed Priority of the Action """
@@ -14,4 +14,4 @@ class SwitchAction(BattleAction):
         
     def doAction(self):
         """ Performs the action """
-        return self.user.sendOutPkmn(self.switchPkmn)
+        return self.user.sendOutPkmn(self.pkmnToSwitchTo)

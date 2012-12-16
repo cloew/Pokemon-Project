@@ -1,4 +1,5 @@
 from Menu.ActionMenu.action_controller import ActionController
+from Menu.ActionMenu.SwitchMenu.switch_controller import SwitchController
 from Battle.Actions.action_factory import ActionFactory
 from Battle.Actions.attack_action import AttackAction
 from Pokemon.pokemon import Pokemon
@@ -28,8 +29,9 @@ class HumanTrainer(Trainer):
         
     def choosePokemon(self, pkmnInPlay):
         """ Returns a Pkmn chosen by the Trainer """
-        valid, params = self.screen.switch()
-        return params[2]
+        controller = SwitchController(pkmnInPlay[0])
+        controller.run()
+        return controller.menu.action.pkmnToSwitchTo
         
     def getFullName(self):
         """ Return the full Name and Title of the trainer """

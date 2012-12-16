@@ -6,10 +6,9 @@ from Battle.Actions.switch_action import SwitchAction
 class SwitchMenu(BoxMenu):
     """ Represents the Battle's Switch Menu """
 
-    def __init__(self, userPkmn, targets):
+    def __init__(self, userPkmn):
         """ Create the Action Menu for the given Pokemon """
         self.pkmn = userPkmn
-        self.targets = targets
         self.action = None
         BoxMenu.__init__(self)
     
@@ -18,9 +17,6 @@ class SwitchMenu(BoxMenu):
         self.entries = []
         for pkmn in self.pkmn.getTrainer().beltPokemon:
             self.entries.append(PokemonMenuEntry(pkmn, self.setSwitchAction))
-                             
-    def tempEntryCallback(self, entry):
-        """ Temporary Call back function for Action menu Entries """
 
     def setSwitchAction(self, entry):
         """ Set the Switch Action """
