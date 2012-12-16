@@ -30,10 +30,10 @@ class PokemonMenuScreen(Screen):
     def drawLeftColumn(self, window):
         """ Draw the left column """
         menuText, menuSize = self.leftColumn.draw(window)
-        window.draw(menuText, (1, 1))
+        window.draw(menuText, (1, 0))
         
     def drawRightColumn(self, window):
         """ Draw the right column """
         menuText, menuSize = self.rightColumn.draw(window)
         menuPos = self.getCenteredRect(window, menuSize, .66, .5) 
-        window.draw(menuText, (1+window.getWidth()/2, 1))
+        window.draw(menuText, (1+window.getWidth()/2, 0))
