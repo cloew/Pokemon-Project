@@ -38,13 +38,17 @@ class Battle:
         if len(self.messageQueue) > 0:
             if self.messageQueue[0].fullyDisplayed:
                 self.messageQueue.popleft()
+        self.performBattle()
                 
-    def update(self):
+    def performBattle(self):
         """ Updates the Battle Object """
-        if self.noMessages():
+        while self.noMessages():
             self.battleFuncs[self.funcIndex]()
-            self.funcIndex +=1
+            self.funcIndex += 1
             self.funcIndex %= 2
+
+    def update(self):
+        """ Update the Battle object """
         
     def performRound(self):
         """  Performs a single round """
