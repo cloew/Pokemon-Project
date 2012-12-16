@@ -9,6 +9,7 @@ class AttackController(Controller):
     
     def __init__(self, user, targets):
         """ Builds the Attack Controller """
+        self.goBack = False
         self.menu = AttackMenu(user, targets)
         self.screen = ActionMenuScreen(self.menu)
         self.cmds = {commands.SELECT:self.menu.enter,
@@ -16,7 +17,7 @@ class AttackController(Controller):
                      commands.DOWN:self.menu.down,
                      commands.RIGHT:self.menu.right,
                      commands.LEFT:self.menu.left,
-                     commands.EXIT:self.exit}
+                     commands.EXIT:self.back}
             
     def getCurrentScreen(self):
         """ Returns the current screen """
@@ -24,9 +25,8 @@ class AttackController(Controller):
         
     def running(self):
         """ Return if the controller is still running """
-        return self.menu.action is None 
+        return (self.menu.action is None) and (not self.goBack)
 
-    def exit(self):
-        """ Exits the program """
-        print "Exploding!!!"
-        raise Exception("My Exception")
+    def back(self):
+        """ Return to the Action Menu """
+        self.goBack = True

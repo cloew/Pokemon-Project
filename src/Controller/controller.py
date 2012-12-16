@@ -12,7 +12,6 @@ class Controller:
         """ Runs the game loop """
         while self.running():
             self.checkScreen()
-            #window.setScreen(self.getCurrentScreen())
             self.update()
             window.update()
             inputProcessor.processInputs(self.cmds)
