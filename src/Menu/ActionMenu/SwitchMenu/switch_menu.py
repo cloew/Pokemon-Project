@@ -1,7 +1,7 @@
 from Menu.box_menu import BoxMenu
-from Menu.text_menu_entry import TextMenuEntry
+from pokemon_menu_entry import PokemonMenuEntry
 
-from Menu.ActionMenu.AttackMenu.attack_controller import AttackController
+from Battle.Actions.switch_action import SwitchAction
 
 class SwitchMenu(BoxMenu):
     """ Represents the Battle's Switch Menu """
@@ -15,14 +15,14 @@ class SwitchMenu(BoxMenu):
     
     def addEntries(self):
         """ Add Menu Entries """
-        self.entries = [TextMenuEntry("Pokemon 1", self.tempEntryCallback),
-                        TextMenuEntry("Pokemon 2", self.tempEntryCallback),
-                        TextMenuEntry("Pokemon 3", self.tempEntryCallback),
-                        TextMenuEntry("Pokemon 4", self.tempEntryCallback)]
+        self.entries = []
+        for pkmn in self.pkmn.getTrainer().beltPokemon[:4]:
+            self.entries.append(PokemonMenuEntry(pkmn, self.tempEntryCallback))
                              
     def tempEntryCallback(self, entry):
         """ Temporary Call back function for Action menu Entries """
 
     def setSwitchAction(self, entry):
         """ Set the Switch Action """
-        self.action = SwitchAction(self.pkmn, entry.getPokemon())
+        if not self.pkmn.isPokemon(entry.getPokemon()):
+            self.action = SwitchAction(self.pkmn, entry.getPokemon())

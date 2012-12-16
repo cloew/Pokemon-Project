@@ -118,6 +118,14 @@ class PkmnBattleWrapper:
     def getName(self):
         """ Returns the Wrapper's Pokemon's name """
         return self.pkmn.name
+
+    def getTrainer(self):
+        """ Returns the Current Pokemon's Trainer """
+        return self.side.trainer
+
+    def isPokemon(self, pokemon):
+        """ Return if this wrapper wraps the Pokemon gven """
+        return self.original is pokemon
         
     def getRatioOfHealth(self, ratio, forDamage = False):
         """ Returns the given ratio of the Wrapper's Pokemon's Health """
