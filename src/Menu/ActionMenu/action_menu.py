@@ -6,14 +6,15 @@ from attack_controller import AttackController
 class ActionMenu(BoxMenu):
     """ Represents the Battle's Action Menu """
 
-    def __init__(self, userPkmn):
+    def __init__(self, userPkmn, targets):
         """ Create the Action Menu for the given Pokemon """
         self.pkmn = userPkmn
+        self.targets = targets
+        self.action = None
         BoxMenu.__init__(self)
     
     def addEntries(self):
-        """  """
-        self.action = None
+        """ Add Menu Entries """
         self.entries = [TextMenuEntry("FIGHT", self.chooseAttack),
                         TextMenuEntry("SWITCH", self.tempEntryCallback),
                         TextMenuEntry("ITEM", self.tempEntryCallback),
@@ -24,5 +25,5 @@ class ActionMenu(BoxMenu):
 
     def chooseAttack(self):
         """ Choose an Attack """
-        attackController = AttackController(self.pkmn)
+        attackController = AttackController(self.pkmn, self.targets)
         attackController.run()

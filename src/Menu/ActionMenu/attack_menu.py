@@ -1,20 +1,24 @@
 from Menu.box_menu import BoxMenu
 from attack_menu_entry import AttackMenuEntry
 
+from Battle.Actions.attack_action import AttackAction
+
 class AttackMenu(BoxMenu):
     """ Represents the Battle's Attack Menu """
 
-    def __init__(self, userPkmn):
+    def __init__(self, userPkmn, targets):
         """ Create the Action Menu for the given Pokemon """
         self.pkmn = userPkmn
+        self.targets = targets
+        self.action = None
         BoxMenu.__init__(self)
     
     def addEntries(self):
         """ Add entries to the Menu """
-        self.action = None
         self.entries = []
         for attack in self.pkmn.getAttacks():
-            self.entries.append(AttackMenuEntry(attack, self.tempEntryCallback))
+            self.entries.append(AttackMenuEntry(attack, self.setAction))
 
-    def tempEntryCallback(self):
-        """ Temporary Call back function for Action menu Entries """
+    def setAction(self):
+        """ Set the Attack Action """
+        return AttackAction(None, self.pkmn, self.targets)
