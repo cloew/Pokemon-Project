@@ -9,7 +9,7 @@ class ActionMenu(BoxMenu):
     def __init__(self, userPkmn):
         """ Create the Action Menu for the given Pokemon """
         self.pkmn = userPkmn
-        Menu.__init__(self)
+        BoxMenu.__init__(self)
     
     def addEntries(self):
         """  """

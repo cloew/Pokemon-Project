@@ -3,6 +3,11 @@ from Menu.menu_entry import MenuEntry
 
 class AttackMenu(BoxMenu):
     """ Represents the Battle's Attack Menu """
+
+    def __init__(self, userPkmn):
+        """ Create the Action Menu for the given Pokemon """
+        self.pkmn = userPkmn
+        BoxMenu.__init__(self)
     
     def addEntries(self):
         """ Add entries to the Menu """
