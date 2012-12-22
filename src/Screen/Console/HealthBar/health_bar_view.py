@@ -9,16 +9,20 @@ class HealthBarView(View):
 
     def draw(self, window, size):
         """ Returns the health bar as a console line """
-        return "{0}{1}{2}".format(self.getHealthBarColor(window), "="*size, window.terminal.normal)
+        return "{t.reverse}{0}{1}{t.normal}".format(self.getHealthBarColor(window), " "*size, t=window.terminal)
 
     def getHealthBarColor(self, window):
         """ Returns the Health Bar's color """
         healthPercentage = self.pokemon.getCurrHP()*100/self.pokemon.getStat("HP")
+        colors = [window.terminal.green,
+                  window.terminal.yellow,
+                  window.terminal.red]
+
         color = ""
         if healthPercentage > 50:
-            color = window.terminal.green
+            color = colors[0]
         elif healthPercentage > 25:
-            color = window.terminal.yellow
+            color = colors[1]
         else:
-            color = window.terminal.red
+            color = colors[2]
         return color
