@@ -1,13 +1,17 @@
 from Screen.Console.Menu.MainMenu.menu_entry_view import MenuEntryView
+from Screen.Console.HealthBar.health_bar_view import HealthBarView
 
 class PokemonMenuEntryView(MenuEntryView):
     """ Represents an entry of a Pokemon in the menu """
+
+    def __init__(self, entry):
+        self.healthBar = HealthBarView(entry.getPokemon())
+        MenuEntryView.__init__(self, entry)
         
     def draw(self, window):
         """ Draws the menu entry """
         format = self.getTerminalFormatting(self.entry.selected, window.terminal)
         pkmn = self.entry.getPokemon()
-        #return "{0}{1}--{2}{t.normal}".format(format, pkmn.name, pkmn.species, t=window.terminal)
         return self.getEntryLines(window), self.getEntrySize(window)
 
     def getEntrySize(self, window):
@@ -23,7 +27,8 @@ class PokemonMenuEntryView(MenuEntryView):
         lines.append(self.getHeaderLine(window))
         lines.append(self.getPokemonNameLine(window))
         lines.append(self.getHealthLine(window))
-        for i in range(entrySize[1]-4):
+        lines.append(self.getHealthBarLine(window))
+        for i in range(entrySize[1]-5):
             lines.append(self.getLine("", window))
         lines.append(self.getHeaderLine(window))
         lines.append("")
@@ -51,6 +56,12 @@ class PokemonMenuEntryView(MenuEntryView):
         """ Return the line with health stats """
         pkmn = self.entry.getPokemon()
         return self.getLine("{0}/{1}".format(pkmn.getCurrHP(), pkmn.getStat("HP")), window)
+
+    def getHealthBarLine(self, window):
+        """ Return the line with health bar """
+        entrySize = self.getEntrySize(window)
+        healthBarText = self.healthBar.draw(window, entrySize[0]-2)
+        return self.getLine(healthBarText, window)
 
     def getFullString(self, string):
         """ Returns a string with the full 10 char limit """
