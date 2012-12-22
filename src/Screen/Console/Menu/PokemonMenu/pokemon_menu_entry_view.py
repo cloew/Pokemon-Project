@@ -60,7 +60,7 @@ class PokemonMenuEntryView(MenuEntryView):
     def getHealthBarLine(self, window):
         """ Return the line with health bar """
         entrySize = self.getEntrySize(window)
-        healthBarText = self.healthBar.draw(window, entrySize[0]-2)
+        healthBarText = self.healthBar.draw(window, entrySize[0]-2, self.entry.selected)
         return "|{0}|".format(healthBarText)
 
     def getFullString(self, string):
