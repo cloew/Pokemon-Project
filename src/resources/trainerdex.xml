@@ -8,7 +8,7 @@
                 <name>Mr Slice</name>
                 <species>SNEASEL</species>
                 <level>20</level>
-                <currHP>60</currHP>
+                <currHP>52</currHP>
                 <ability>DEFIANT</ability>
                 
                 <attacks>
@@ -36,77 +36,64 @@
                         <PP>35</PP>
                     </attack>
                 </attacks>
-                
             </pokemon>
-            
             <pokemon>
                 <name>CBOBJOE</name>
                 <species>CHARMANDER</species>
                 <level>20</level>
-                <currHP>60</currHP>
+                <currHP>45</currHP>
                 <ability>COMPOUNDEYES</ability>
-                
                 <attacks>
                     <attack>
                         <name>ROLLOUT</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
-                    
                     <attack>
                         <name>EMBER</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>
-                    
                     <attack>
                         <name>WHIRLWIND</name>
                         <currPP>30</currPP>
                         <PP>30</PP>
                     </attack>
-                     
                     <attack>
                         <name>WILL-O-WISP</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>
                 </attacks>
-                
             </pokemon>
-            
             <pokemon>
                 <name>BULBASAUR</name>
                 <species>BULBASAUR</species>
                 <level>20</level>
-                <currHP>60</currHP>
+                <currHP>48</currHP>
                 <ability>COMPOUNDEYES</ability>
-                
                 <attacks>
                     <attack>
                         <name>ROLLOUT</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
-                    
                     <attack>
                         <name>EMBER</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>
-                    
                     <attack>
                         <name>WHIRLWIND</name>
                         <currPP>30</currPP>
                         <PP>30</PP>
                     </attack>
-                     
                     <attack>
                         <name>WILL-O-WISP</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>
                 </attacks>
-                
             </pokemon>
         </belt>
     </trainer>

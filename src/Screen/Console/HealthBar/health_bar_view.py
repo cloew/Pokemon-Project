@@ -9,11 +9,18 @@ class HealthBarView(View):
 
     def draw(self, window, size):
         """ Returns the health bar as a console line """
-        return "{t.reverse}{0}{1}{t.normal}".format(self.getHealthBarColor(window), " "*size, t=window.terminal)
+        return self.getHealthBarText(size).format(self.getHealthBarColor(window), t=window.terminal)
+
+    def getHealthBarText(self, size):
+        """ Returns the health bar string """
+        healthPercentage = self.getHealthPercentage()
+        healthBarSpaces = " "*int(size*healthPercentage/100)
+        healthSpaces = " "*(size-len(healthBarSpaces))
+        return "{t.reverse}{0}" + healthBarSpaces + "{t.normal}" + healthSpaces
 
     def getHealthBarColor(self, window):
         """ Returns the Health Bar's color """
-        healthPercentage = self.pokemon.getCurrHP()*100/self.pokemon.getStat("HP")
+        healthPercentage = self.getHealthPercentage()
         colors = [window.terminal.green,
                   window.terminal.yellow,
                   window.terminal.red]
@@ -26,3 +33,7 @@ class HealthBarView(View):
         else:
             color = colors[2]
         return color
+
+    def getHealthPercentage(self):
+        """ Returns the percentage of the Pokemon's health """
+        return (self.pokemon.getCurrHP()*100)/self.pokemon.getStat("HP")
