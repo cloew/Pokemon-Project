@@ -1,5 +1,6 @@
 from Screen.Console.screen import Screen
 from Screen.Console.MessageBox.message_box import MessageBox
+from Screen.Console.Battle.player_side_view import PlayerSideView
 
 from Battle.battle_message import BattleMessage
 
@@ -10,6 +11,7 @@ class BattleScreen(Screen):
         """ Builds the Battle View with the Battle """
         self.messageBox = MessageBox(BattleMessage(""))
         self.battle = battle
+        self.playerSideView = PlayerSideView(battle.playerSide)
         
     def update(self):
         """ Update the screen """
@@ -19,6 +21,16 @@ class BattleScreen(Screen):
         
     def draw(self, window):
         """ Draw the window """
+        self.drawPlayerSide(window)
+        self.drawMessageBox(window)
+
+    def drawPlayerSide(self, window):
+        """ Draws the Player Side """
+        playerSideLines = self.playerSideView.draw(window)
+        window.draw(playerSideLines, (0, window.terminal.height-5-len(playerSideLines)))
+
+    def drawMessageBox(self, window):
+        """ Draws the Message Box """
         messageBox, messageBoxSize = self.messageBox.draw(window)
         window.draw(messageBox, (0,window.terminal.height-5))
 
