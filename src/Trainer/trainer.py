@@ -53,16 +53,16 @@ class Trainer:
                 return True
         return False
                 
-    def getAction(self, user, targets):
+    def getAction(self, user, targets, playerSide):
         """ Get Trainer's action """
         if user.actionLock:
             action = user.actionLock.useAction()
         else:
-            action = self.pickAction(user, targets)
+            action = self.pickAction(user, targets, playerSide)
             
         return action
             
-    def pickAction(self, user, targets):
+    def pickAction(self, user, targets, playerSide):
         """ Has the trainer pick its action via the screen
              Should be overwritten in subclasses """
         return AttackAction(None, None, None)

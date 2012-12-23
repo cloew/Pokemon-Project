@@ -8,7 +8,7 @@ class ComputerTrainer(Trainer):
     """ Represents a Pokemon Trainer """
     header = "Enemy "
         
-    def pickAction(self, user, targets):
+    def pickAction(self, user, targets, playerSide):
         """ Has the computer pick its action """
         attacks = user.getAttacks()
         attack = random.choice(attacks)

@@ -119,6 +119,10 @@ class PkmnBattleWrapper:
         """ Returns the Wrapper's Pokemon's name """
         return self.pkmn.name
 
+    def getSpecies(self):
+        """ Returns the Wrapper's Pokemon's species """
+        return self.pkmn.species
+
     def getTrainer(self):
         """ Returns the Current Pokemon's Trainer """
         return self.side.trainer

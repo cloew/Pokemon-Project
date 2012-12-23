@@ -32,7 +32,7 @@ class HealthBarView(View):
         color = ""
         if healthPercentage > 50:
             color = colors[0]
-        elif healthPercentage > 25:
+        elif healthPercentage > 10:
             color = colors[1]
         else:
             color = colors[2]
