@@ -11,6 +11,7 @@ class PlayerPokemonDetailView(View):
 
     def draw(self, window):
         """ Returns the health bar as a console line """
+        self.healthBar = HealthBarView(self.pokemon.original)
         return self.getEntryLines(window)
 
     def getEntryLines(self, window):
