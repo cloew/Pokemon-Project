@@ -9,7 +9,7 @@ class ActionController(Controller):
     
     def __init__(self, user, targets, playerSide):
         """ Builds the Action Controller """
-        self.menu = ActionMenu(user, targets)
+        self.menu = ActionMenu(user, targets, playerSide)
         self.screen = ActionMenuScreen(self.menu, playerSide)
         self.cmds = {commands.SELECT:self.menu.enter,
                      commands.UP:self.menu.up,

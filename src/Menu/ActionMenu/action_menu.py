@@ -7,10 +7,11 @@ from Menu.ActionMenu.SwitchMenu.switch_controller import SwitchController
 class ActionMenu(BoxMenu):
     """ Represents the Battle's Action Menu """
 
-    def __init__(self, userPkmn, targets):
+    def __init__(self, userPkmn, targets, playerSide):
         """ Create the Action Menu for the given Pokemon """
         self.pkmn = userPkmn
         self.targets = targets
+        self.playerSide = playerSide
         self.action = None
         BoxMenu.__init__(self)
     
@@ -26,7 +27,7 @@ class ActionMenu(BoxMenu):
 
     def chooseAttack(self, entry):
         """ Choose an Attack """
-        attackController = AttackController(self.pkmn, self.targets)
+        attackController = AttackController(self.pkmn, self.targets, self.playerSide)
         attackController.run()
         self.action = attackController.menu.action
 
