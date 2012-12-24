@@ -11,7 +11,7 @@ class Attack:
         self.speedDelegate = None
         
         self.effectDelegates = []
-        
+        makes_contact = False
         
     def use(self, user, target):
         """ Uses the current attack Object in a Battle """
