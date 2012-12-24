@@ -129,6 +129,7 @@ class AttackFactory:
         
         attack.name = tree.find(Tags.nameTag).text
         attack.type = tree.find(Tags.typeTag).text
+        attack.contact = Tags.contactAttribute in tree.attrib
         
         # Delegates
         for delegateCategory in AttackFactory.factories.keys():

@@ -7,6 +7,7 @@ class Tags:
     
     nameTag = "name"
     typeTag = "type"
+    contactAttribute = "contact"
     ppTag = "PP"
     currPPTag = "currPP"
     
