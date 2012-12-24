@@ -12,6 +12,7 @@ class BattleScreen(Screen):
         self.messageBox = MessageBox(BattleMessage(""))
         self.battle = battle
         self.playerSideView = PlayerSideView(battle.playerSide)
+        self.oppSideView = PlayerSideView(battle.oppSide)
         
     def update(self):
         """ Update the screen """
@@ -21,8 +22,14 @@ class BattleScreen(Screen):
         
     def draw(self, window):
         """ Draw the window """
+        self.drawOpponentSide(window)
         self.drawPlayerSide(window)
         self.drawMessageBox(window)
+
+    def drawOpponentSide(self, window):
+        """ Draws the Player Side """
+        opponentSideLines = self.oppSideView.draw(window)
+        window.draw(opponentSideLines, (0, 0))
 
     def drawPlayerSide(self, window):
         """ Draws the Player Side """

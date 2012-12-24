@@ -107,7 +107,7 @@
                 <name>Squirtle</name>
                 <species>SQUIRTLE</species>
                 <level>20</level>
-                <currHP>60</currHP>
+                <currHP>47</currHP>
                 <ability>HYPER CUTTER</ability>
                 
                 <attacks>
@@ -123,7 +123,7 @@
                 <name>Bulbasaur</name>
                 <species>BULBASAUR</species>
                 <level>20</level>
-                <currHP>60</currHP>
+                <currHP>48</currHP>
                 <ability>SHED SKIN</ability>
                 
                 <attacks>
@@ -143,7 +143,7 @@
                 <name>Bulbasaur</name>
                 <species>BULBASAUR</species>
                 <level>20</level>
-                <currHP>60</currHP>
+                <currHP>48</currHP>
                 <ability>SHED SKIN</ability>
                 
                 <attacks>
@@ -163,7 +163,7 @@
                 <name>Bulbasaur</name>
                 <species>BULBASAUR</species>
                 <level>20</level>
-                <currHP>60</currHP>
+                <currHP>48</currHP>
                 <ability>SHED SKIN</ability>
                 
                 <attacks>
