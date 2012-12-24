@@ -28,8 +28,8 @@ class BattleRound:
         
     def getActions(self):
         """ Get all actions in the round """
-        oppAction = self.oppSide.trainer.getAction(self.getOppPkmn()[0], self.getPlayerPkmn(), self.playerSide)
-        playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn()[0], self.getOppPkmn(), self.playerSide)
+        oppAction = self.oppSide.trainer.getAction(self.getOppPkmn()[0], self.getPlayerPkmn(), self.playerSide, self.oppSide)
+        playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn()[0], self.getOppPkmn(), self.playerSide, self.oppSide)
         
         actions = [oppAction] + [playerAction]
         actions.sort(reverse = True)

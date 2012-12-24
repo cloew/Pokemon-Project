@@ -5,15 +5,22 @@ from Screen.Console.Battle.player_side_view import PlayerSideView
 class ActionMenuScreen(Screen):
     """ Action Menu screen """
     
-    def __init__(self, menu, playerSide):
+    def __init__(self, menu, playerSide, oppSide):
         """ Set up the Action Menu Screen """
         self.menuView = ActionMenuView(menu)
         self.playerSideView = PlayerSideView(playerSide)
+        self.oppSideView = PlayerSideView(oppSide)
         
     def draw(self, window):
         """ Draw the window """
+        self.drawOpponentSide(window)
         self.drawPlayerSide(window)
         self.drawMenuBox(window)
+
+    def drawOpponentSide(self, window):
+        """ Draws the Player Side """
+        opponentSideLines = self.oppSideView.draw(window)
+        window.draw(opponentSideLines, (0, 0))
 
     def drawPlayerSide(self, window):
         """ Draws the Player Side """
