@@ -16,6 +16,8 @@ import Battle.FaintHandlers.Test.suite
 import Battle.SecondaryEffects.Test.suite
 import Battle.Status.Test.suite
 
+from Screen.Console.window import window
+
 # Collect all the test suites
 suites = [Menu.Test.suite.suite,
               Menu.TrainerMenu.Test.trainer_menu_test.suite,
@@ -34,7 +36,10 @@ suites = [Menu.Test.suite.suite,
               Battle.SecondaryEffects.Test.suite.suite,
               Battle.Status.Test.suite.suite]
 
-alltests = unittest.TestSuite(suites)
+try:
+    alltests = unittest.TestSuite(suites)
+finally:
+    window.close()
 
 # Run all the tests
 if __name__ == "__main__":
