@@ -39,6 +39,7 @@ class Ability(AfterTurnEffect):
         
     def onContact(self, pkmn, attacker):
         """ Perform on attack that makes contact """
+        return []
         
     def onCharge(self):
         """ Perform on Charge """

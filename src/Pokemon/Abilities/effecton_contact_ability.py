@@ -13,9 +13,5 @@ class EffectOnContactAbility(Ability):
         
     def onContact(self, pkmn, attacker):
         """ Perform an effect when a stat is modded """
-        messages = []
-        if not selfInflicted:
-            self.callEffects(pkmn)
-            messages.append(self.message % pkmn.getHeader())
-            
-        return degree, messages #  Returns a modified degree and any messages related to that
+        messages = self.callEffects(pkmn)
+        return messages

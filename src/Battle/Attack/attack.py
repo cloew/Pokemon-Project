@@ -38,6 +38,8 @@ class Attack:
         messages = []
         messages += self.doDamage(user, target)
         messages += self.doEffects(user, target)
+        if self.makes_contact:
+            messages += target.getAbility().onContact(target, user)
         return messages
         
     # Attack Loop Functions
