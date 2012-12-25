@@ -9,7 +9,7 @@
                 <species>SNEASEL</species>
                 <level>20</level>
                 <currHP>52</currHP>
-                <ability>DEFIANT</ability>
+                <ability>POISON POINT</ability>
                 
                 <attacks>
                     <attack>
@@ -97,7 +97,6 @@
             </pokemon>
         </belt>
     </trainer>
-    
     <trainer>
         <name>Eric</name>
         <title>Badass</title>
@@ -109,23 +108,20 @@
                 <level>20</level>
                 <currHP>47</currHP>
                 <ability>HYPER CUTTER</ability>
-                
                 <attacks>
                     <attack>
-                        <name>TAIL WHIP</name>
+                        <name>TACKLE</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>
                 </attacks>
             </pokemon>
-            
             <pokemon>
                 <name>Bulbasaur</name>
                 <species>BULBASAUR</species>
                 <level>20</level>
                 <currHP>48</currHP>
                 <ability>SHED SKIN</ability>
-                
                 <attacks>
                     <attack>
                         <name>TACKLE</name>
@@ -181,7 +177,6 @@
             </pokemon>
         </belt>
     </trainer>
-    
     <trainer>
         <name>Chris</name>
         <title>Leader</title>
@@ -267,7 +262,6 @@
             </pokemon>
         </belt>
     </trainer>
-    
     <trainer>
         <name>Eric</name>
         <title>Leader</title>
@@ -434,7 +428,6 @@
             </pokemon>
         </belt>
     </trainer>
-    
     <trainer>
         <name>Robby</name>
         <title>Leader</title>
@@ -572,7 +565,6 @@
             </pokemon>
         </belt>
     </trainer>
-    
     <trainer>
         <name>Alex</name>
         <title>Leader</title>

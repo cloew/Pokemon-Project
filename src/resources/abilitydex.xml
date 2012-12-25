@@ -53,7 +53,23 @@
         <type>CANT LOWER STAT</type>
         <stat>ACC</stat>
     </ability>
-
+    <ability>
+        <name>POISON POINT</name>
+        <type>EFFECT ON CONTACT</type>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>30</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PSN</status>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </ability>
     <ability>
         <name>QUICK FEET</name>
         <type>STAT MOD ON STATUS</type>
