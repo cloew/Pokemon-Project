@@ -37,7 +37,7 @@ class Ability(AfterTurnEffect):
         """ Perform on accuracy """
         return accuracy
         
-    def onContact(self, pkmn):
+    def onContact(self, pkmn, attacker):
         """ Perform on attack that makes contact """
         
     def onCharge(self):
