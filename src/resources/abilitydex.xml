@@ -64,7 +64,7 @@
                     <effectDelegate>
                         <type>STATUS</type>
                         <status>PSN</status>
-                        <affectUser>1</affectUser>
+                        <affectUser>0</affectUser>
                     </effectDelegate>
                 </effectDelegates>
             </effectDelegate>

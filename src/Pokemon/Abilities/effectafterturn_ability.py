@@ -11,5 +11,5 @@ class EffectAfterTurnAbility(Ability):
         
     def afterTurn(self, pkmn):
         """ Call the effects """
-        messages = self.callEffects(pkmn)
+        messages = self.callEffects(user=pkmn)
         return messages

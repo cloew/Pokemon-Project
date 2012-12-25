@@ -10,7 +10,7 @@ class EffectOnContactAbility(Ability):
         self.name = name
         self.effects = effects
         
-    def onContact(self, pkmn, attacker):
+    def onContact(self, receiver, attacker):
         """ Perform an effect when a stat is modded """
-        messages = self.callEffects(pkmn)
+        messages = self.callEffects(user=receiver, target=attacker)
         return messages

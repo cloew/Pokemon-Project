@@ -28,7 +28,7 @@ class Ability(AfterTurnEffect):
         """ Perform on a critical hit """
         return critMod
         
-    def takeCrit(self, critMod, thisSide, otherSide):
+    def takeCrit(self, critMod, receiver, attacker):
         """ Perform on a critical hit """
         return critMod, []
         
@@ -72,11 +72,11 @@ class Ability(AfterTurnEffect):
         """ Perform on switch """
         
     
-    def callEffects(self, user):
+    def callEffects(self, user=None, target=None):
         """ Call the effects the ability has """
         messages = []
         for effect in self.effects:
-            effectMessages = effect.tryToApplyEffect(user, None)
+            effectMessages = effect.tryToApplyEffect(user, target)
             messages = messages + effectMessages
             
         return messages

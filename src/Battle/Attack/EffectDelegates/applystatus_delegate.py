@@ -43,7 +43,10 @@ class ApplyStatusDelegate(EffectDelegate):
         
     def checkImmune(self, status, pkmn):
         """ Returns if the target is immune to the status effect """
-        return status.immune(pkmn.getTypes(), self.parent.type)
+        if self.parent is None:
+            return status.immune(pkmn.getTypes(), None)
+        else:
+            return status.immune(pkmn.getTypes(), self.parent.type)
         
     def checkStatusAlready(self, pkmn):
         """ Returns if the pokemon already has a status """

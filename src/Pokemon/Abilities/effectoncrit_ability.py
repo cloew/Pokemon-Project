@@ -9,7 +9,7 @@ class EffectOnCritAbility(Ability):
         self.name = name
         self.effects = effects
         
-    def takeCrit(self, critMod, thisSide, otherSide):
+    def takeCrit(self, critMod, receiver, attacker):
         """ Prevent the crit """
-        messages = self.callEffects(thisSide, otherSide)
+        messages = self.callEffects(user=receiver, target=attacker)
         return critMod, messages

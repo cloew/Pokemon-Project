@@ -14,7 +14,7 @@ class EffectOnStatModAbility(Ability):
         """ Perform when a stat is modded """
         messages = []
         if not selfInflicted:
-            self.callEffects(pkmn)
+            self.callEffects(user=pkmn)
             messages.append(self.message % pkmn.getHeader())
             
         return degree, messages #  Returns a modified degree and any messages related to that
