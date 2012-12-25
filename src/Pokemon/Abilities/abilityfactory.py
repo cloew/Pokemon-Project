@@ -7,6 +7,7 @@ from accmod_ability import AccModAbility
 from booststab_ability import BoostStabAbility
 from cantlowerstat_ability import CantLowerStatAbility
 from effectafterturn_ability import EffectAfterTurnAbility
+from effecton_contact_ability import EffectOnContactAbility
 from effectoncrit_ability import EffectOnCritAbility
 from effecton_statmod_ability import EffectOnStatModAbility
 from nocrit_ability import NoCritAbility
@@ -84,7 +85,17 @@ class AbilityFactory:
                 effects.append(effect)
                 
             return EffectAfterTurnAbility(name, effects)
-            
+        
+        elif abilityType == "EFFECT ON CONTACT":
+            effectsTree = tree.find(Tags.effectDelegatesTag)
+            effects = []
+        
+            for effectTree in effectsTree.getchildren():
+                effect = EffectDelegateFactory.loadFromXML(effectTree, None)
+                effects.append(effect)
+                
+            return EffectOnContactAbility(name, effects)
+        
         elif abilityType == "EFFECT ON CRIT":
             effectsTree = tree.find(Tags.effectDelegatesTag)
             effects = []
