@@ -8,7 +8,9 @@ class menuMovement(unittest.TestCase):
     
     def  setUp(self):
         """ Build the Action Menu for the test """
-        self.menu = ActionMenu()
+        self.userPkmn = BuildPokemonBattleWrapper()
+        self.targetPkmn  = BuildPokemonBattleWrapper()
+        self.menu = ActionMenu(self.userPkmn, self.targetPkmn, None, None)
         
     def up(self):
         """ Test that up works properly """

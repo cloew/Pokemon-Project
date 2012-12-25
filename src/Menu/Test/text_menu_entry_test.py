@@ -2,7 +2,7 @@ import unittest
 from Test.test_helper import *
 
 from Menu.menu import Menu
-from Menu.menu_entry import MenuEntry
+from Menu.text_menu_entry import TextMenuEntry
 
 
 class changeSelected(unittest.TestCase):
@@ -11,9 +11,9 @@ class changeSelected(unittest.TestCase):
     def  setUp(self):
         """ Build the Menu and Entries for the test """
         self.menu = Menu()
-        self.firstEntry = MenuEntry(None)
-        self.secondEntry = MenuEntry(None)
-        self.thirdEntry = MenuEntry(None)
+        self.firstEntry = TextMenuEntry("1", None)
+        self.secondEntry = TextMenuEntry("2", None)
+        self.thirdEntry = TextMenuEntry("3", None)
         self.menu.entries = [self.firstEntry, self.secondEntry, self.thirdEntry]
         self.menu.selectEntry()
         
