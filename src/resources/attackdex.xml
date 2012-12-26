@@ -1441,6 +1441,27 @@
             </critDelegate>
         </damageDelegate>
     </attack>
+    <attack contact="true">
+        <name>PECK</name>
+        <type>FLYING</type>
+        <PP>35</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>35</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
     <attack>
         <name>WHIRLWIND</name>
         <type>FLYING</type>
@@ -1574,7 +1595,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    <attack>
+    <attack contact="true">
         <name>MEGAHORN</name>
         <type>BUG</type>
         <PP>10</PP>
