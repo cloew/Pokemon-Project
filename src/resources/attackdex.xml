@@ -296,6 +296,27 @@
         </damageDelegate>
     </attack>
 	<attack>
+        <name>SONIC BOOM</name>
+        <type>NORMAL</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>FIXED</type>
+            <physical>0</physical>
+            <damage>20</damage>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
+    <attack>
         <name>SPLASH</name>
         <type>NORMAL</type>
         <PP>40</PP>
