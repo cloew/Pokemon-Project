@@ -6,3 +6,4 @@ Secondary Effect to prevent hit                 --      Detect
 Secondary Effect that prevents a status         --      Uproar
 Double damage against target switching          --      Pursuit
 Pierce Secondary Effects that prevent damage    --      Feint
+Power based on whether the Pkmn has been hit    --      Assurance
