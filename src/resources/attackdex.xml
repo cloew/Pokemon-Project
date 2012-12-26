@@ -457,6 +457,33 @@
         </effectDelegates>
     </attack>    
     <attack contact="true">
+        <name>TAKE DOWN</name>
+        <type>NORMAL</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>85</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>EFFECT ON DAMAGE</type>
+            <power>90</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>RECOIL</type>
+                <ratio>4</ratio>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack contact="true">
         <name>THRASH</name>
         <type>NORMAL</type>
         <PP>10</PP>
