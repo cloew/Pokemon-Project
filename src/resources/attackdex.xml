@@ -1545,7 +1545,7 @@
         </effectDelegates>
     </attack>
     <!-- Bug -->
-     <attack>
+    <attack>
         <name>BUG BUZZ</name>
         <type>BUG</type>
         <PP>10</PP>
@@ -1573,6 +1573,27 @@
                 <affectUser>0</affectUser>
             </effectDelegate>
         </effectDelegates>
+    </attack>
+    <attack>
+        <name>MEGAHORN</name>
+        <type>BUG</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>85</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>120</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
     </attack>
     <attack>
         <name>SILVER WIND</name>
