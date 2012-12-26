@@ -15,8 +15,7 @@ class StatModOnStatusAbility(Ability):
         """ Alter the statMods of the Status to reflect the abilities effect """
         messages = []
         
-        if status.abbr == self.status:
-            status.statMods[self.stat] = self.mod
-            messages = [pkmn.getHeader() + " raised it's " + self.stat + "."]
+        status.statMods[self.stat] = self.mod
+        messages = [pkmn.getHeader() + " raised it's " + self.stat + "."]
             
         return messages
