@@ -9,27 +9,23 @@
                 <species>SNEASEL</species>
                 <level>20</level>
                 <currHP>52</currHP>
-                <ability>POISON POINT</ability>
-                
+                <ability>SPEED BOOST</ability>
                 <attacks>
                     <attack>
                         <name>OUTRAGE</name>
                         <currPP>15</currPP>
                         <PP>15</PP>
                     </attack>
-                    
                     <attack>
                         <name>EMBER</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>
-                    
                     <attack>
                         <name>GROWL</name>
                         <currPP>30</currPP>     
                         <PP>30</PP>
                     </attack>
-                     
                     <attack>
                         <name>HYPER BEAM</name>
                         <currPP>35</currPP>

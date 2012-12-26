@@ -2245,6 +2245,27 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
+    <attack contact="true">
+        <name>NIGHT SLASH</name>
+        <type>DARK</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>70</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>1</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
     <attack>
         <name>SNARL</name>
         <type>DARK</type>
