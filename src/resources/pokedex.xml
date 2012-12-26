@@ -242,6 +242,26 @@
     </pokemon>
     <!-- Gen III -->
     <pokemon>
+        <species>POOCHYENA</species>
+        <dex>261</dex>
+        <types>
+            <type>DARK</type>
+        </types>
+        <abilities>
+            <ability>RUN AWAY</ability>
+            <ability>QUICK FEET</ability>
+            <dream>RATTLED</dream>
+        </abilities>
+        <baseStats>
+            <HP>35</HP>
+            <ATK>55</ATK>
+            <DEF>35</DEF>
+            <SPD>35</SPD>
+            <SATK>30</SATK>
+            <SDEF>30</SDEF>
+        </baseStats>
+    </pokemon>
+    <pokemon>
         <species>SHARPEDO</species>
         <dex>319</dex>
         <types>
