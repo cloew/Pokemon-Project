@@ -249,6 +249,27 @@
         </damageDelegate>
     </attack>
 	<attack>
+        <name>SCREECH</name>
+        <type>NORMAL</type>
+        <PP>40</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>85</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>DEF</stat>
+                <degree>-2</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>    
+    <attack>
         <name>SELFDESTRUCT</name>
         <type>NORMAL</type>
         <PP>5</PP>
