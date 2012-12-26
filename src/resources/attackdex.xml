@@ -1433,6 +1433,38 @@
             </critDelegate>
         </damageDelegate>
     </attack>
+    <attack>
+        <name>AIR SLASH</name>
+        <type>FLYING</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>95</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>75</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectdelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>30</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>FLINCH</type>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <attack contact="true">
         <name>BOUNCE</name>
         <type>FLYING</type>
