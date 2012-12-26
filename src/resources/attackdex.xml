@@ -1296,6 +1296,41 @@
             </critDelegate>
         </damageDelegate>
     </attack>
+    <attack>
+        <name>EARTH POWER</name>
+        <type>GROUND</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>90</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SDEF</stat>
+                        <degree>-1</degree>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <!-- Flying -->
     <attack contact="true">
         <name>AERIAL ACE</name>
