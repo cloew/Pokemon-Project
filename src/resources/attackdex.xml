@@ -454,6 +454,31 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
+    <attack>
+        <name>SWAGGER</name>
+        <type>NORMAL</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CONFUSE</type>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>ATK</stat>
+                <degree>2</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <attack contact="true">
         <name>TACKLE</name>
         <type>NORMAL</type>
