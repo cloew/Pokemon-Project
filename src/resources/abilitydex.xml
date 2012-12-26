@@ -113,6 +113,18 @@
         <type>SNIPER</type>
     </ability>
     <ability>
+        <name>SPEED BOOST</name>
+        <type>EFFECT AFTER TURN</type>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>SPD</stat>
+                <degree>1</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </ability>
+    <ability>
         <name>TRUANT</name>
         <type>SKIP TURN</type>
     </ability>

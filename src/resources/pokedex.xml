@@ -360,6 +360,27 @@
     </pokemon>
     <!-- Gen IV -->
     <pokemon>
+        <species>YANMEGA</species>
+        <dex>469</dex>
+        <types>
+            <type>BUG</type>
+            <type>FLYING</type>
+        </types>
+        <abilities>
+            <ability>SPEED BOOST</ability>
+            <ability>TINTED LENSE</ability>
+            <dream>FRISK</dream>
+        </abilities>
+        <baseStats>
+            <HP>86</HP>
+            <ATK>76</ATK>
+            <DEF>86</DEF>
+            <SPD>95</SPD>
+            <SATK>116</SATK>
+            <SDEF>56</SDEF>
+        </baseStats>
+    </pokemon>
+    <pokemon>
         <species>HEAT ROTOM</species>
         <dex>479</dex>
         <types>
