@@ -20,7 +20,6 @@
             <SDEF>65</SDEF>
         </baseStats>
     </pokemon>
-  
     <pokemon>
         <species>CHARMANDER</species>
         <dex>4</dex>
@@ -40,7 +39,6 @@
             <SDEF>50</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>CHARIZARD</species>
         <dex>6</dex>
@@ -61,7 +59,6 @@
             <SDEF>85</SDEF>
         </baseStats>
     </pokemon>
-  
     <pokemon>
         <species>SQUIRTLE</species>
         <dex>7</dex>
@@ -81,7 +78,6 @@
             <SDEF>64</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>RAICHU</species>
         <dex>26</dex>
@@ -101,7 +97,27 @@
             <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
-    
+    <pokemon>
+        <species>NIDOKING</species>
+        <dex>34</dex>
+        <types>
+            <type>POISON</type>
+            <type>GROUND</type>
+        </types>
+        <abilities>
+            <ability>POISON POINT</ability>
+            <ability>RIVALRY</ability>
+            <dream>SHEER FORCE</dream>
+        </abilities>
+        <baseStats>
+            <HP>60</HP>
+            <ATK>90</ATK>
+            <DEF>55</DEF>
+            <SPD>100</SPD>
+            <SATK>90</SATK>
+            <SDEF>80</SDEF>
+        </baseStats>
+    </pokemon>
     <pokemon>
         <species>ELECTRODE</species>
         <dex>101</dex>
@@ -122,7 +138,6 @@
             <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>GYARADOS</species>
         <dex>130</dex>
@@ -143,7 +158,6 @@
             <SDEF>100</SDEF>
         </baseStats>
     </pokemon>
-    
     <!-- Gen II -->
     <pokemon>
         <species>MAREEP</species>
@@ -164,7 +178,6 @@
             <SDEF>45</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>SCIZOR</species>
         <dex>212</dex>
@@ -186,7 +199,6 @@
             <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>SNEASEL</species>
         <dex>214</dex>
@@ -208,7 +220,6 @@
             <SDEF>75</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>TYRANITAR</species>
         <dex>248</dex>
@@ -229,7 +240,6 @@
             <SDEF>100</SDEF>
         </baseStats>
     </pokemon>
-    
     <!-- Gen III -->
     <pokemon>
         <species>SHARPEDO</species>
@@ -251,7 +261,6 @@
             <SDEF>40</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>FLYGON</species>
         <dex>330</dex>
@@ -271,7 +280,6 @@
             <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>SALAMENCE</species>
         <dex>373</dex>
@@ -292,7 +300,6 @@
             <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>METAGROSS</species>
         <dex>376</dex>
@@ -313,7 +320,6 @@
             <SDEF>90</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>LATIOS</species>
         <dex>381</dex>
@@ -333,7 +339,6 @@
             <SDEF>110</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>RAYQUAZA</species>
         <dex>384</dex>
@@ -353,7 +358,6 @@
             <SDEF>90</SDEF>
         </baseStats>
     </pokemon>
-    
     <!-- Gen IV -->
     <pokemon>
         <species>HEAT ROTOM</species>
@@ -374,7 +378,6 @@
             <SDEF>107</SDEF>
         </baseStats>
     </pokemon>
-    
     <!-- Gen V -->
     <pokemon>
         <species>EMOLGA</species>
@@ -396,7 +399,6 @@
             <SDEF>60</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>GALVANTULA</species>
         <dex>596</dex>
@@ -418,7 +420,6 @@
             <SDEF>60</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>BISHARP</species>
         <dex>625</dex>
@@ -440,7 +441,6 @@
             <SDEF>70</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>HYDREIGON</species>
         <dex>635</dex>
@@ -460,7 +460,6 @@
             <SDEF>90</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>ZEKROM</species>
         <dex>644</dex>
