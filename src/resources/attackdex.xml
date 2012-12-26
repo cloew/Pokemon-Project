@@ -247,6 +247,26 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
+    <attack>
+        <name>ROAR</name>
+        <type>NORMAL</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>-6</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>RANDOM SWITCH</type>
+                <affectUser>0</affectUser>
+                <reset>1</reset>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <attack contact="true">
         <name>SCRATCH</name>
         <type>NORMAL</type>
