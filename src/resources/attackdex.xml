@@ -1735,7 +1735,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-     <attack>
+    <attack>
         <name>STRING SHOT</name>
         <type>BUG</type>
         <PP>40</PP>
@@ -1785,6 +1785,65 @@
         </effectDelegates>
     </attack>
     <!-- Rock -->
+    <attack>
+        <name>ANCIENTPOWER</name>
+        <type>ROCK</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>60</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>ATK</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>DEF</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SPD</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SATK</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SDEF</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <attack contact="true">
         <name>HEAD SMASH</name>
         <type>ROCK</type>
