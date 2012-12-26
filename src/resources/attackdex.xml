@@ -374,7 +374,26 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-	<attack contact="true">
+	<attack>
+        <name>SUPERSONIC</name>
+        <type>NORMAL</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>55</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CONFUSE</type>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack contact="true">
         <name>TACKLE</name>
         <type>NORMAL</type>
         <PP>35</PP>
