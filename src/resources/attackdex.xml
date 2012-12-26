@@ -158,7 +158,27 @@
                 <affectUser>0</affectUser>
             </effectDelegate>
         </effectDelegates>
-    </attack>   
+    </attack>
+    <attack>
+        <name>HOWL</name>
+        <type>NORMAL</type>
+        <PP>40</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>ATK</stat>
+                <degree>1</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <attack>
         <name>HYPER BEAM</name>
         <type>NORMAL</type>
