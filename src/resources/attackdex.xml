@@ -375,6 +375,40 @@
             </effectDelegate>
         </effectDelegates>
     </attack>    
+    <attack contact="true">
+        <name>THRASH</name>
+        <type>NORMAL</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <physical>1</physical>
+            <power>120</power>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>MULTI TURN RANGE</type>
+                <min>2</min>
+                <max>3</max>
+                 <effectDelegates>
+                    <effectDelegate>
+                        <type>CONFUSE</type>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <!-- Fire -->
     <attack>
         <name>EMBER</name>
