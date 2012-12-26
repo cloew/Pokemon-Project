@@ -1157,6 +1157,40 @@
         </effectDelegates>
     </attack>
     <attack>
+        <name>POISON SHOT</name>
+        <type>POISON</type>
+        <PP>35</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>15</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>30</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PSN</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack>
         <name>TOXIC</name>
         <type>POISON</type>
         <PP>10</PP>
