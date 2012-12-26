@@ -39,6 +39,26 @@
         </effectDelegates>
     </attack>
     <attack>
+        <name>DOUBLE TEAM</name>
+        <type>NORMAL</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>EVAS</stat>
+                <degree>1</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack>
         <name>ENCORE</name>
         <type>NORMAL</type>
         <PP>5</PP>
