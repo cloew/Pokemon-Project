@@ -7,3 +7,6 @@ Secondary Effect that prevents a status         --      Uproar
 Double damage against target switching          --      Pursuit
 Pierce Secondary Effects that prevent damage    --      Feint
 Power based on whether the Pkmn has been hit    --      Assurance
+Prevent attacks with no damage                  --      Taunt
+Secondary Effect to prevent items               --      Embargo
+Fails to hit if opponent isn't attacking        --      Sucker Punch
