@@ -127,7 +127,6 @@ class AbilityFactory:
             return SniperAbility(name)
         
         elif abilityType == "STAT MOD ON STATUS":
-            status = tree.find(Tags.statusTag).text
             stat = tree.find(Tags.statTag).text
             mod = float(tree.find(Tags.degreeTag).text)
-            return StatModOnStatusAbility(name, status, stat, mod)
+            return StatModOnStatusAbility(name, stat, mod)

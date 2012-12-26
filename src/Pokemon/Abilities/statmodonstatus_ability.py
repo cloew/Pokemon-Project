@@ -3,11 +3,10 @@ from ability import Ability
 class StatModOnStatusAbility(Ability):
     """ An ability that modifies a stat when the parent receives a status """
     
-    def __init__(self, name, status, stat, mod):
+    def __init__(self, name, stat, mod):
         """ Builds the Ability """
         super(StatModOnStatusAbility, self).__init__()
         self.name = name
-        self.status = status
         self.stat = stat
         self.mod = mod
         

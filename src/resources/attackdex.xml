@@ -1480,7 +1480,7 @@
                 <base>0</base>
             </critDelegate>
         </damageDelegate>
-        <effectdelegates>
+        <effectDelegates>
             <effectDelegate>
                 <type>CHANCE</type>
                 <chance>30</chance>

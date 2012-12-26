@@ -67,7 +67,6 @@
     <ability>
         <name>QUICK FEET</name>
         <type>STAT MOD ON STATUS</type>
-        <status>PAR</status>
         <stat>SPD</stat>
         <degree>1.5</degree>
     </ability>
