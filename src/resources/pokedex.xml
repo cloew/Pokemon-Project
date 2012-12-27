@@ -462,6 +462,24 @@
         </baseStats>
     </pokemon>
     <pokemon>
+        <species>TYNAMO</species>
+        <dex>602</dex>
+        <types>
+            <type>ELECTRIC</type>
+        </types>
+        <abilities>
+            <ability>LEVITATE</ability>
+        </abilities>
+        <baseStats>
+            <HP>35</HP>
+            <ATK>55</ATK>
+            <DEF>40</DEF>
+            <SPD>60</SPD>
+            <SATK>45</SATK>
+            <SDEF>40</SDEF>
+        </baseStats>
+    </pokemon>
+    <pokemon>
         <species>BISHARP</species>
         <dex>625</dex>
         <types>

@@ -881,6 +881,41 @@
         </effectDelegates>
     </attack>
     <attack>
+        <name>CHARGE BEAM</name>
+        <type>ELECTRIC</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>50</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>70</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SATK</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack>
         <name>ELECTRO BALL</name>
         <type>ELECTRIC</type>
         <PP>10</PP>
