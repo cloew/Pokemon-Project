@@ -8,8 +8,8 @@ class ConfusionImmunityAbility(Ability):
         self.name = name
         Ability.__init__(self)
     
-    def canBeConfused(self, messages):
+    def canBeConfused(self, pkmn, messages):
         """ Return if the pokemon can be confused """
-        message = "{0} prevented confusion.".format(self.name)
+        message = "{0}'s {1} prevented confusion.".format(pkmn.getName(), self.name)
         messages.append(message)
         return False 
