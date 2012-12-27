@@ -133,6 +133,25 @@ suiteOnAccuracy = unittest.TestSuite(map(onAccuracy, testcasesOnAccuracy))
 
 ##########################################################
 
+class onContact(unittest.TestCase):
+    """ Test that onContact returns the values """
+    
+    def setUp(self):
+        """ Builds the delegate and side for use in the tests """
+        self.pkmn = BuildPokemonBattleWrapper()
+        self.attacker = BuildPokemonBattleWrapper()
+        self.ability = Ability()
+        
+    def properReturnValues(self):
+        """ Check that onContact returns the proper default values """
+        messages = self.ability.onContact(self.pkmn, self.attacker)
+        assert messages == [], "Should have no messages."
+        
+testcasesOnContact = ["properReturnValues"]
+suiteOnContact = unittest.TestSuite(map(onContact, testcasesOnContact))
+
+##########################################################
+
 class onStab(unittest.TestCase):
     """ Test that onStab returns the correct mods """
     
@@ -191,7 +210,7 @@ suiteOnStatus = unittest.TestSuite(map(onStatus, testcasesOnStatus))
 
  
 suites = [suiteStopAttack, suiteAfterTurn, suiteCanUseEffects, suiteGiveCrit, suiteTakeCrit,\
-             suiteOnAccuracy, suiteOnStab, suiteOnStatMod, suiteOnStatus, suiteCanBeConfused]
+             suiteOnAccuracy, suiteOnContact, suiteOnStab, suiteOnStatMod, suiteOnStatus, suiteCanBeConfused]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
