@@ -14,11 +14,10 @@ class onStatus(unittest.TestCase):
         self.battlePkmn = BuildPokemonBattleWrapper()
         self.status = Paralysis()
         self.status2 = Status()
-        self.statusAbbr = "PAR"
         self.stat = "ATK"
         self.mod = 1.5
         
-        self.ability = StatModOnStatusAbility("", self.statusAbbr, self.stat, self.mod)
+        self.ability = StatModOnStatusAbility("", self.stat, self.mod)
         
     def statChange(self):
         """ Check that the stat is actually changed """
@@ -27,14 +26,7 @@ class onStatus(unittest.TestCase):
         assert self.status.statMods[self.stat] == self.mod, "Stat Mod should be the modified stat."
         assert len(messages) == 1, "Messages should have one element"
         
-    def noStatChange(self):
-        """ Check that the stat is not changed when the status is not the one the ability affects """
-        messages = self.ability.onStatus(self.battlePkmn, self.status2)
-        
-        assert not self.status2.statMods[self.stat] == self.mod, "Stat Mod should not be modified."
-        assert len(messages) == 0, "Messages should have no elements"
-        
-testcasesOnStatus = ["statChange", "noStatChange"]
+testcasesOnStatus = ["statChange"]
 suiteOnStatus = unittest.TestSuite(map(onStatus, testcasesOnStatus))
 
 ##########################################################
