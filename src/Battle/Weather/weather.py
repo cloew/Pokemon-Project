@@ -1,6 +1,7 @@
 
 class Weather:
     """ Represents a Weather Effect in a Pokemon Battle """
+    type = None
     
     def __init__(self, betweenTurnsMessage):
         """ Build the Weather effect """
