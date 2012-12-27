@@ -6,6 +6,7 @@ from ability import Ability
 from accmod_ability import AccModAbility
 from booststab_ability import BoostStabAbility
 from cantlowerstat_ability import CantLowerStatAbility
+from confusion_immunity_ability import ConfusionImmunityAbility
 from effectafterturn_ability import EffectAfterTurnAbility
 from effecton_contact_ability import EffectOnContactAbility
 from effectoncrit_ability import EffectOnCritAbility
@@ -75,6 +76,9 @@ class AbilityFactory:
         elif abilityType == "CANT LOWER STAT":
             stat = tree.find(Tags.statTag).text
             return CantLowerStatAbility(name, stat)
+            
+        elif abilityType == "CONFUSION IMMUNITY":
+            return ConfusionImmunityAbility(name)
             
         elif abilityType == "EFFECT AFTER TURN":
             effectsTree = tree.find(Tags.effectDelegatesTag)
