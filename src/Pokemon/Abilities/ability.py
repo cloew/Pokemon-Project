@@ -19,6 +19,10 @@ class Ability(AfterTurnEffect):
     def effectiveness(self, pkmn):
         """ Return effectiveness mods """
         
+    def canBeConfused(self, messages):
+        """ Return if the pokemon can be confused """
+        return True
+        
     def canUseEffects(self):
         """ Return whether effects on damaging attacks can be used """
         return True

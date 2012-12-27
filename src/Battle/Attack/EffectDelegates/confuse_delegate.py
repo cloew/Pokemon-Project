@@ -11,15 +11,18 @@ class ConfuseDelegate(EffectDelegate):
     def applyEffect(self, user, target):
         """ Apply the Confusion to the target """
         pkmn = self.getEffectedPokemon(user, target)
+        messages = []
         message = pkmn.getHeader()
         
         if not self.isConfused(pkmn):
             pkmn.secondaryEffects.append(Confusion())
-            message = message + Confusion.start
+            messages.append(message + Confusion.start)
+        elif pkmn.getAbility().canBeConfused(messages):
+            """ No need to do anything extra """
         else:
-            message = message + Confusion.already
+            messages.append(message + Confusion.already)
             
-        return [message]
+        return messages
                 
     def isConfused(self, pkmn):
         """ Returns if the Pkmn is already confused """
