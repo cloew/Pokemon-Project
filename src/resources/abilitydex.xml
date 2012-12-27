@@ -65,6 +65,10 @@
         </effectDelegates>
     </ability>
     <ability>
+        <name>OWN TEMPO</name>
+        <type>CONFUSION IMMUNITY</type>
+    </ability>
+    <ability>
         <name>QUICK FEET</name>
         <type>STAT MOD ON STATUS</type>
         <stat>SPD</stat>
