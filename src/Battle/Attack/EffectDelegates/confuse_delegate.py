@@ -14,11 +14,11 @@ class ConfuseDelegate(EffectDelegate):
         messages = []
         message = pkmn.getHeader()
         
-        if not self.isConfused(pkmn):
+        if not pkmn.getAbility().canBeConfused(messages):
+            """ No need to do anything extra """
+        elif not self.isConfused(pkmn):
             pkmn.secondaryEffects.append(Confusion())
             messages.append(message + Confusion.start)
-        elif pkmn.getAbility().canBeConfused(messages):
-            """ No need to do anything extra """
         else:
             messages.append(message + Confusion.already)
             
