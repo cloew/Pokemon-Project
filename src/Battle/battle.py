@@ -1,6 +1,7 @@
 from collections import deque
 from Battle.battle_side import BattleSide
 from Battle.Attack.attack import Attack
+from Battle.battle_environment import BattleEnvironment
 from Battle.battle_round import BattleRound
 from Battle.battle_message import BattleMessage
 
@@ -13,6 +14,7 @@ class Battle:
         """ Builds the two participating sides of the battle """
         self.playerSide = BattleSide(playerTrainer)
         self.oppSide = BattleSide(oppTrainer)
+        self.environment = BattleEnvironment()
         self.over = False
         self.round = BattleRound(self.playerSide, self.oppSide)
         self.battleFuncs = [self.performRound, self.refillSides]

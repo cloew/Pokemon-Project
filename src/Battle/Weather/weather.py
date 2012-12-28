@@ -3,18 +3,18 @@ class Weather:
     """ Represents a Weather Effect in a Pokemon Battle """
     type = None
     
-    def __init__(self, betweenTurnsMessage):
+    def __init__(self, betweenRoundsMessage):
         """ Build the Weather effect """
-        self.betweenTurnsMessage = betweenTurnsMessage
+        self.betweenRoundsMessage = betweenRoundsMessage
         
-    def betweenTurns(self, playerSide, opponentSide):
+    def betweenRounds(self, playerSide, opponentSide):
         """ Function to handle events Between Turns """
         messages = []
         
         for pokemon in playerSide.pkmnInPlay + opponentSide.pkmnInPlay:
             messages += self.performWeatherEffectOnPokemon(pokemon)
         
-        messages.append(self.betweenTurnsMessage)
+        messages.append(self.betweenRoundsMessage)
         return messages
         
     def performWeatherEffectOnPokemon(self, pokemon):

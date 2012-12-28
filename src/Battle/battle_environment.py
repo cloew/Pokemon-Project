@@ -8,6 +8,6 @@ class BattleEnvironment:
         # Eventually, this will need to receive the tile-type
         self.weather = Weather()
         
-    def betweenTurns(self, playerSide, opponentSide):
+    def betweenRounds(self, playerSide, opponentSide):
         """ Function to handle events Between Turns """
         return self.weather.betweenTurns(playerSide, opponentSide)
