@@ -17,6 +17,18 @@ def BuildFaintHandler(type = "REGULAR"):
 def BuildPokemon(pkmn = "BULBASAUR"):
     """ Builds a Pokemon """
     return PokemonFactory.buildStarter(pkmn)
+    
+def BuildTrainer(pkmn="BULBASAUR", count=1):
+    """Builds a trainer with count pokmen of type pkmn """
+    trainer = Trainer()
+    pokemon = BuildPokemon(pkmn = pkmn)
+    trainer.beltPokemon = [pokemon]
+    return trainer
+    
+def BuildBattleSide():
+    """ Builds a Battle Side """
+    trainer = BuildTrainer()
+    return BattleSide(trainer)
 
 def BuildPokemonBattleWrapper(pkmn = "BULBASAUR",  trainer = Trainer()):
     """  Builds a Pokemon Battle Wrapper """

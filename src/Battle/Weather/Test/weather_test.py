@@ -10,10 +10,12 @@ class betweenTurns(unittest.TestCase):
         """ Build the *** for the test """
         self.message = "Some Message"
         self.weather = Weather(self.message)
+        self.playerSide = BuildBattleSide()
+        self.opponentSide = BuildBattleSide()
         
     def betweenTurnsMessage(self):
         """ Test that betweenTurns returns the Weather's between turns message """
-        messages = self.weather.betweenTurns(None, None)
+        messages = self.weather.betweenTurns(self.playerSide, self.opponentSide)
         assert messages == [self.message], "Should receive the weather's between turn message"
 
 # Collect all test cases in this class
