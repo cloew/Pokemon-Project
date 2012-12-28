@@ -14,7 +14,8 @@ class Weather:
         for pokemon in playerSide.pkmnInPlay + opponentSide.pkmnInPlay:
             messages += self.performWeatherEffectOnPokemon(pokemon)
         
-        messages.append(self.betweenRoundsMessage)
+        if not self.betweenRoundsMessage is None:
+            messages.append(self.betweenRoundsMessage)
         return messages
         
     def performWeatherEffectOnPokemon(self, pokemon):

@@ -63,7 +63,7 @@ class Battle:
         """ Perform between rounds """
         self.playerSide.betweenRounds()
         self.oppSide.betweenRounds()
-        return []
+        return self.environment.betweenRounds(self.playerSide, self.oppSide)
         
     def refillSides(self):
         """ Refills fainted Pkmn on each side """

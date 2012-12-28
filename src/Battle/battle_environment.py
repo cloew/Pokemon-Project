@@ -6,8 +6,8 @@ class BattleEnvironment:
     def __init__(self):
         """ Build the Battle Environment default """
         # Eventually, this will need to receive the tile-type
-        self.weather = Weather()
+        self.weather = Weather(None)
         
     def betweenRounds(self, playerSide, opponentSide):
         """ Function to handle events Between Turns """
-        return self.weather.betweenTurns(playerSide, opponentSide)
+        return self.weather.betweenRounds(playerSide, opponentSide)
