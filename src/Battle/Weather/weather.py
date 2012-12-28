@@ -8,7 +8,7 @@ class Weather:
         self.betweenRoundsMessage = betweenRoundsMessage
         
     def betweenRounds(self, playerSide, opponentSide):
-        """ Function to handle events Between Turns """
+        """ Function to handle events Between Rounds """
         messages = []
         
         for pokemon in playerSide.pkmnInPlay + opponentSide.pkmnInPlay:

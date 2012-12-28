@@ -9,5 +9,5 @@ class BattleEnvironment:
         self.weather = Weather(None)
         
     def betweenRounds(self, playerSide, opponentSide):
-        """ Function to handle events Between Turns """
+        """ Function to handle events Between Rounds """
         return self.weather.betweenRounds(playerSide, opponentSide)
