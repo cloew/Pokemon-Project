@@ -1,0 +1,15 @@
+from Battle.Weather.weather import Weather
+
+class Hail(Weather):
+    """ Represents Hail weather """
+    type = "HAIL"
+    
+    def __init__(self):
+        """ Build the Hail Weather """
+        Weather.__init__(self, "It's hailing.")
+    
+    def performWeatherEffectOnPokemon(self, pokemon):
+        """ Performs the weather's effect on the Pokemon """
+        # Do damage in sub-classes
+        # Should call Pokemon's ability
+        return [] # Should return a list of messages
