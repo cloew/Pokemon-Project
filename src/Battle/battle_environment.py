@@ -14,4 +14,4 @@ class BattleEnvironment:
         
     def clearWeather(self):
         """ Clears the weather """
-        self.weather = Weather(None)
+        self.weather = Weather()

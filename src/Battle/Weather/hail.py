@@ -3,10 +3,11 @@ from Battle.Weather.weather import Weather
 class Hail(Weather):
     """ Represents Hail weather """
     type = "HAIL"
+    betweenRoundsMessage = "It's hailing."
     
     def __init__(self):
         """ Build the Hail Weather """
-        Weather.__init__(self, "It's hailing.")
+        Weather.__init__(self)
     
     def performWeatherEffectOnPokemon(self, pokemon):
         """ Performs the weather's effect on the Pokemon """

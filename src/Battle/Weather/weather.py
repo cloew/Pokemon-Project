@@ -2,10 +2,10 @@
 class Weather:
     """ Represents a Weather Effect in a Pokemon Battle """
     type = None
+    betweenRoundsMessage = None
     
-    def __init__(self, betweenRoundsMessage):
+    def __init__(self):
         """ Build the Weather effect """
-        self.betweenRoundsMessage = betweenRoundsMessage
         
     def betweenRounds(self, playerSide, opponentSide):
         """ Function to handle events Between Rounds """
