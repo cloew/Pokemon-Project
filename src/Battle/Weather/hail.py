@@ -12,8 +12,9 @@ class Hail(Weather):
         """ Performs the weather's effect on the Pokemon """
         messages = []
         if not self.immune(pokemon):
+            messages.append("{0} was buffeted by the hail.".format(pokemon.getName()))
             messages += pokemon.takeRatioOfHealthAsDamage(16)
-        messages += Weather.performWeatherEffectOnPokemon(pokemon)
+        messages += Weather.performWeatherEffectOnPokemon(self, pokemon)
         return messages
         
     def immune(self, pokemon):

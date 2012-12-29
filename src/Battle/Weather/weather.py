@@ -10,12 +10,12 @@ class Weather:
     def betweenRounds(self, playerSide, opponentSide):
         """ Function to handle events Between Rounds """
         messages = []
-        
-        for pokemon in playerSide.pkmnInPlay + opponentSide.pkmnInPlay:
-            messages += self.performWeatherEffectOnPokemon(pokemon)
-        
         if not self.betweenRoundsMessage is None:
             messages.append(self.betweenRoundsMessage)
+        
+        allPkmn = playerSide.pkmnInPlay + opponentSide.pkmnInPlay
+        for pokemon in allPkmn:
+            messages += self.performWeatherEffectOnPokemon(pokemon)
         return messages
         
     def performWeatherEffectOnPokemon(self, pokemon):
