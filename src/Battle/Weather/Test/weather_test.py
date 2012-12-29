@@ -9,7 +9,8 @@ class betweenRounds(unittest.TestCase):
     def  setUp(self):
         """ Build the BattleSides and weather for the test """
         self.message = "Some Message"
-        self.weather = Weather(self.message)
+        self.weather = Weather()
+        self.weather.betweenRoundsMessage = self.message
         self.playerSide = BuildBattleSide()
         self.opponentSide = BuildBattleSide()
         
@@ -24,13 +25,40 @@ suiteBetweenRounds = unittest.TestSuite(map(betweenRounds, testcasesBetweenRound
 
 ##########################################################
 
+class addRoundMessage(unittest.TestCase):
+    """ Test cases of addRoundMessage """
+    
+    def  setUp(self):
+        """ no setup for the test """
+        
+    def withMessage(self):
+        """ Test that addRoundMessage adds the Weather's between rounds message """
+        messages = []
+        message = "Some Message"
+        weather = Weather()
+        weather.betweenRoundsMessage = message
+        weather.addRoundMessage(messages)
+        assert messages == [message], "Should receive the weather's betweenRoundsMessage"
+        
+    def noMessage(self):
+        """ Test that addRoundMessage does not add a message when the Weather has no between rounds message """
+        messages = []
+        weather = Weather()
+        weather.addRoundMessage(messages)
+        assert messages == [], "Should receive no message when the Weather object has no message"
+
+# Collect all test cases in this class
+testcasesAddRoundMessage = ["withMessage", "noMessage"]
+suiteAddRoundMessage = unittest.TestSuite(map(addRoundMessage, testcasesAddRoundMessage))
+
+##########################################################
+
 class performWeatherEffectOnPokemon(unittest.TestCase):
     """ Test cases of performWeatherEffectOnPokemon """
     
     def  setUp(self):
         """ Build the Pokemon Battle Wrapper and weather for the test """
-        self.message = "Some Message"
-        self.weather = Weather(self.message)
+        self.weather = Weather()
         self.pkmn = BuildPokemonBattleWrapper()
         
     def performWeatherEffectOnPokemonMessage(self):
@@ -45,7 +73,7 @@ suitePerformWeatherEffectOnPokemon = unittest.TestSuite(map(performWeatherEffect
 ##########################################################
 
 # Collect all test cases in this file
-suites = [suiteBetweenRounds, suitePerformWeatherEffectOnPokemon]
+suites = [suiteBetweenRounds, suiteAddRoundMessage, suitePerformWeatherEffectOnPokemon]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
