@@ -11,5 +11,4 @@ class Hail(Weather):
     def performWeatherEffectOnPokemon(self, pokemon):
         """ Performs the weather's effect on the Pokemon """
         # Do damage in sub-classes
-        # Should call Pokemon's ability
-        return [] # Should return a list of messages
+        return Weather.performWeatherEffectOnPokemon(pokemon)
