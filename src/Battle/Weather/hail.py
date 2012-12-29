@@ -12,3 +12,7 @@ class Hail(Weather):
         """ Performs the weather's effect on the Pokemon """
         # Do damage in sub-classes
         return Weather.performWeatherEffectOnPokemon(pokemon)
+        
+    def immune(self, pokemon):
+        """ Returns if the pokemon is immune to Hail Damage """
+        return "ICE" in pokemon.getTypes()
