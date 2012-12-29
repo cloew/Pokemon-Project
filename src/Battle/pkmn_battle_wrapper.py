@@ -91,6 +91,11 @@ class PkmnBattleWrapper:
             
         return messages
         
+    def takeRatioOfHealthAsDamage(self, ratio):
+        """ Has the Pokemon take some ratio of their health as damage """
+        healthRatio = self.getRatioOfHealth(ratio, forDamage=True)
+        return self.takeDamage(healthRatio)
+        
     def faint(self):
         """ Makes the Pkmn faint """
         messages = []
