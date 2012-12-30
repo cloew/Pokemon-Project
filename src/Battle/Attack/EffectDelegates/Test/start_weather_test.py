@@ -18,9 +18,14 @@ class applyEffect(unittest.TestCase):
         assert self.environment.weather.type is None, "Should have No Weather at first"
         self.effect.applyEffect(None, None, self.environment)
         assert self.environment.weather.type == Hail.type, "Should have Hail Weather at first"
+        
+    def weatherMessage(self):
+        """ Test that the weather changes when the effect is applied """
+        messages = self.effect.applyEffect(None, None, self.environment)
+        assert messages == [Hail.startMessage], "Should have the Hail Start Message"
 
 # Collect all test cases in this class
-testcasesApplyEffect = ["weatherChanges"]
+testcasesApplyEffect = ["weatherChanges", "weatherMessage"]
 suiteApplyEffect = unittest.TestSuite(map(applyEffect, testcasesApplyEffect))
 
 ##########################################################
