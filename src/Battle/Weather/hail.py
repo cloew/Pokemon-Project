@@ -3,6 +3,7 @@ from Battle.Weather.weather import Weather
 class Hail(Weather):
     """ Represents Hail weather """
     type = "HAIL"
+    start = "It started to hail."
     betweenRoundsMessage = "It's hailing."
     overMessage = "The hailstorm subsided."
     

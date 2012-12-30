@@ -20,3 +20,4 @@ class BattleEnvironment:
     def setWeather(self, type):
         """ Set teh weather to a weather of the given tyoe """
         self.weather = WeatherFactory.buildWeatherFromType(type, self)
+        return self.weather.getStartMessage()

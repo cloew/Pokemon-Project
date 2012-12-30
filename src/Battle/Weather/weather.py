@@ -2,6 +2,7 @@
 class Weather:
     """ Represents a Weather Effect in a Pokemon Battle """
     type = None
+    startMessage = None
     betweenRoundsMessage = None
     overMessage = None
     
@@ -27,6 +28,13 @@ class Weather:
         if self.turnsLeft > 0:
             self.turnsLeft -= 1
         return self.turnsLeft == 0 and not self.forever
+        
+    def getStartMessage(self):
+        """ Return the start message """
+        messages = []
+        if not self.startMessage is None:
+            messages.append(self.startMessage)
+        return messages
         
     def addRoundMessage(self, messages):
         """ Adds the Round Message to the messages list """
