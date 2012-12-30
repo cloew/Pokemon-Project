@@ -53,6 +53,34 @@ suiteAddRoundMessage = unittest.TestSuite(map(addRoundMessage, testcasesAddRound
 
 ##########################################################
 
+class addOverMessage(unittest.TestCase):
+    """ Test cases of addOverMessage """
+    
+    def  setUp(self):
+        """ no setup for the test """
+        
+    def withMessage(self):
+        """ Test that addOverMessage adds the Weather's between rounds message """
+        messages = []
+        message = "Some Message"
+        weather = Weather()
+        weather.overMessage = message
+        weather.addOverMessage(messages)
+        assert messages == [message], "Should receive the weather's betweenRoundsMessage"
+        
+    def noMessage(self):
+        """ Test that addOverMessage does not add a message when the Weather has no between rounds message """
+        messages = []
+        weather = Weather()
+        weather.addOverMessage(messages)
+        assert messages == [], "Should receive no message when the Weather object has no message"
+
+# Collect all test cases in this class
+testcasesAddOverMessage = ["withMessage", "noMessage"]
+suiteAddOverMessage = unittest.TestSuite(map(addOverMessage, testcasesAddOverMessage))
+
+##########################################################
+
 class performWeatherEffectOnPokemon(unittest.TestCase):
     """ Test cases of performWeatherEffectOnPokemon """
     
@@ -73,7 +101,7 @@ suitePerformWeatherEffectOnPokemon = unittest.TestSuite(map(performWeatherEffect
 ##########################################################
 
 # Collect all test cases in this file
-suites = [suiteBetweenRounds, suiteAddRoundMessage, suitePerformWeatherEffectOnPokemon]
+suites = [suiteBetweenRounds, suiteAddRoundMessage, suiteAddOverMessage, suitePerformWeatherEffectOnPokemon]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

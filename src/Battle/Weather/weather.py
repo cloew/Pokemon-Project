@@ -7,7 +7,7 @@ class Weather:
     
     def __init__(self, turns=-1, forever=True):
         """ Build the Weather effect """
-        self.turns = 5
+        self.turnsLeft = 5
         self.forever = forever
         
     def betweenRounds(self, playerSide, opponentSide):
@@ -22,9 +22,9 @@ class Weather:
         
     def over(self):
         """ Retuns if the round is over """
-        if round > 0:
-            round -= 1
-        return round == 0 and not self.forever
+        if self.turnsLeft > 0:
+            self.turnsLeft -= 1
+        return self.turnsLeft == 0 and not self.forever
         
     def addRoundMessage(self, messages):
         """ Adds the Round Message to the messages list """
