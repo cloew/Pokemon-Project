@@ -1182,6 +1182,24 @@
     </attack>
     <!-- Ice -->
     <attack>
+        <name>HAIL</name>
+        <type>ICE</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>START WEATHER</type>
+                <weather>HAIL</weather>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack>
         <name>HAZE</name>
         <type>ICE</type>
         <PP>30</PP>
