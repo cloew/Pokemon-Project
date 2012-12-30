@@ -9,4 +9,4 @@ class StartWeatherDelegate(EffectDelegate):
         
     def applyEffect(self, user, target, environment):
         """ Applies the delegates effect """
-        return environment.setWeather(self.weatherType)
+        return environment.setWeather(self.weatherType, turns=5, forever=False)

@@ -17,8 +17,8 @@ class BattleEnvironment:
         """ Clears the weather """
         self.setWeather(Weather.type)
         
-    def setWeather(self, type):
+    def setWeather(self, type, turns=-1, forever=True):
         """ Set teh weather to a weather of the given tyoe """
-        self.weather = WeatherFactory.buildWeatherFromType(type, self)
+        self.weather = WeatherFactory.buildWeatherFromType(type, self, turns=turns, forever=forever)
         messages = self.weather.getStartMessage()
         return messages

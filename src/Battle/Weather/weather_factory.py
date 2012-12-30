@@ -7,7 +7,7 @@ class WeatherFactory:
                              Hail.type:Hail}
     
     @staticmethod
-    def buildWeatherFromType(type, environment):
+    def buildWeatherFromType(type, environment, turns=-1, forever=True):
         """ Build a Weather object from a type """
         weatherClass = WeatherFactory.weatherTypeDictionary[type]
-        return weatherClass(overCallbackFunction=environment.clearWeather)
+        return weatherClass(overCallbackFunction=environment.clearWeather, turns=turns, forever=forever)
