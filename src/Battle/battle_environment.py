@@ -15,4 +15,8 @@ class BattleEnvironment:
         
     def clearWeather(self):
         """ Clears the weather """
-        self.weather = WeatherFactory.buildWeatherFromType(Weather.type, self)
+        self.setWeather(Weather.type)
+        
+    def setWeather(self, type):
+        """ Set teh weather to a weather of the given tyoe """
+        self.weather = WeatherFactory.buildWeatherFromType(type, self)
