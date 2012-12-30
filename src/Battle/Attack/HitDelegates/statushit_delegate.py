@@ -22,7 +22,6 @@ class StatusHitDelegate(HitDelegate):
         
         return super(StatusHitDelegate, self).hit(user, target, environment)
         
-        
     def immune(self, user, target):
         """ Check if the target is immune to the effect """
         immune = False
