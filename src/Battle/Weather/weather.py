@@ -49,7 +49,8 @@ class Weather:
     def affectEachPokemon(self, allPokemon, messages):
         """ Have the weather affect each Pokemon """
         for pokemon in allPokemon:
-            messages += self.performWeatherEffectOnPokemon(pokemon)
+            if not pokemon.fainted():
+                messages += self.performWeatherEffectOnPokemon(pokemon)
         
     def performWeatherEffectOnPokemon(self, pokemon):
         """ Performs the weather's effect on the Pokemon """
