@@ -15,7 +15,7 @@ class betweenRounds(unittest.TestCase):
         self.opponentSide = BuildBattleSide()
         
     def betweenRoundsMessage(self):
-        """ Test that betweenRounds returns the Weather's between turns message """
+        """ Test that betweenRounds returns the Weather's between rounds message """
         messages = self.weather.betweenRounds(self.playerSide, self.opponentSide)
         assert messages == [self.message], "Should receive the weather's betweenRounds message"
 

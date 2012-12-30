@@ -52,7 +52,7 @@ class Attack:
         
     def doHit(self, user, target, environment, messages):
         """ Check if the user hits the target(s) """
-        hit, hitMessages = self.hitDelegate.hit(user, target)
+        hit, hitMessages = self.hitDelegate.hit(user, target, environment)
         if not hit:
             messages += hitMessages
             messages += self.applyEffectsOnMiss(user, target, environment)

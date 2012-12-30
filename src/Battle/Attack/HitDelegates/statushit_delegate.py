@@ -15,12 +15,12 @@ class StatusHitDelegate(HitDelegate):
         self.chanceToHit = toHit
     
     
-    def hit(self, user, target):
+    def hit(self, user, target, environment):
         """ Returns whether or not an attack hit its target """
         if self.immune(user, target):
             return False, [self.message]
         
-        return super(StatusHitDelegate, self).hit(user, target)
+        return super(StatusHitDelegate, self).hit(user, target, environment)
         
         
     def immune(self, user, target):

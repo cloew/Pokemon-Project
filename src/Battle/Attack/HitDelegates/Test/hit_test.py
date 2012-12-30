@@ -1,6 +1,7 @@
 import unittest
 from Test.test_helper import BuildPokemonBattleWrapper, BuildAttack
 
+from Battle.battle_environment import BattleEnvironment
 from Battle.Attack.HitDelegates.hit_delegate import HitDelegate
 from Battle.Attack.DamageDelegates.null_damage_delegate import NullDamageDelegate
 
@@ -12,6 +13,7 @@ class hit(unittest.TestCase):
         self.attack = BuildAttack()
         self.user = BuildPokemonBattleWrapper()
         self.target = BuildPokemonBattleWrapper()
+        self.environment = BattleEnvironment()
         
         self.toHit = 100.0
         self.delegate = HitDelegate(self.attack, self.toHit)
@@ -19,18 +21,18 @@ class hit(unittest.TestCase):
     def fainted(self):
         """ Test that if the target is fainted the attack misses """
         self.target.faint()
-        hit, message = self.delegate.hit(self.user, self.target)
+        hit, message = self.delegate.hit(self.user, self.target, self.environment)
         assert not hit, "Should miss if the target is fainted"
         
     def dodging(self):
         """ Test that if the target is dodging the attack misses """
         self.target.dodge = "DIG"
-        hit, message = self.delegate.hit(self.user, self.target)
+        hit, message = self.delegate.hit(self.user, self.target, self.environment)
         assert not hit, "Should miss if the target is dodging"
         
     def otherwise(self):
         """ Test that the attack hits if the target is not dodging or fainted """
-        hit, message = self.delegate.hit(self.user, self.target)
+        hit, message = self.delegate.hit(self.user, self.target, self.environment)
         assert hit, "Should hit otherwise"
 
 # Collect all test cases in this class

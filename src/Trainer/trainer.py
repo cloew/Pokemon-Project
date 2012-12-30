@@ -76,3 +76,7 @@ class Trainer:
         
     def beaten(self):
         """ Returns a string that tells that the Trainer was beaten in Battle """
+        
+    def announcePkmn(self, pkmn):
+        """ Announce a pkmn the trainer sends out """
+        return ""

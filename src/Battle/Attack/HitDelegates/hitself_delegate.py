@@ -9,6 +9,6 @@ class HitSelfDelegate(HitDelegate):
     
     # Will incorporate into the default hit
     # When user is target, automatically hits
-    def hit(self, user, target):
+    def hit(self, user, target, environment):
         """ Returns true, always hits, period """
         return True, []

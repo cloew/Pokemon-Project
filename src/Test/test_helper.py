@@ -29,7 +29,9 @@ def BuildTrainer(pkmn="BULBASAUR", count=1):
 def BuildBattleSide():
     """ Builds a Battle Side """
     trainer = BuildTrainer()
-    return BattleSide(trainer)
+    side = BattleSide(trainer)
+    side.sendOutPkmn()
+    return side
 
 def BuildPokemonBattleWrapper(pkmn = "BULBASAUR",  trainer = Trainer()):
     """  Builds a Pokemon Battle Wrapper """
