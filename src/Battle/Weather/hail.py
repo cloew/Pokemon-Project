@@ -7,7 +7,7 @@ class Hail(Weather):
     betweenRoundsMessage = "It's hailing."
     overMessage = "The hailstorm subsided."
     
-    def __init__(self):
+    def __init__(self, overCallbackFunction=None):
         """ Build the Hail Weather """
         Weather.__init__(self)
     
