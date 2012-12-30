@@ -20,6 +20,7 @@ from random_switch_delegate import RandomSwitchDelegate
 from recoil_delegate import RecoilDelegate
 from reset_statmods_delegate import ResetStatModsDelegate
 from selfdestruct_delegate import SelfDestructDelegate
+from start_weather_delegate import StartWeatherDelegate
 from statmod_delegate import StatModDelegate
 from swap_ability_delegate import SwapAbilityDelegate
 from swap_stat_delegate import SwapStatDelegate
@@ -175,6 +176,12 @@ class EffectDelegateFactory:
             
         elif delegateType == "SELFDESTRUCT":
             delegate = SelfDestructDelegate()
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
+            
+        elif delegateType == "START WEATHER":
+            weatherType = element.find(Tags.weatherTag).text
+            delegate = StartWeatherDelegate(weatherType)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
             

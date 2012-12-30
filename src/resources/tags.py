@@ -27,7 +27,7 @@ class Tags:
     normalEffectsTag = "normalEffects"
     divergeEffectsTag = "divergeEffects"
     
-    
+    weatherTag = "weather"
     speedDelegateTag = "speedDelegate"
     priorityTag = "priority"
     
