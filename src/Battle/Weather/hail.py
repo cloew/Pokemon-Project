@@ -4,6 +4,7 @@ class Hail(Weather):
     """ Represents Hail weather """
     type = "HAIL"
     betweenRoundsMessage = "It's hailing."
+    overMessage = "The hailstorm subsided"
     
     def __init__(self):
         """ Build the Hail Weather """
