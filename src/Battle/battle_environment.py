@@ -1,4 +1,5 @@
 from Battle.Weather.weather import Weather
+from Battle.Weather.weather_factory import WeatherFactory
 
 class BattleEnvironment:
     """ Represents the Environemnt a Battle is taking place in """
@@ -14,4 +15,4 @@ class BattleEnvironment:
         
     def clearWeather(self):
         """ Clears the weather """
-        self.weather = Weather(overCallbackFunction=self.clearWeather)
+        self.weather = WeatherFactory.buildWeatherFromType(Weather.type, self)
