@@ -19,7 +19,7 @@ class applyEffect(unittest.TestCase):
         """ Test that recoil damage is done """
         self.pkmn.setCurrHP(self.damage)
         self.delegate.damage = self.damage
-        self.delegate.applyEffect(self.pkmn, None)
+        self.delegate.applyEffect(self.pkmn, None, None)
         
         damageDone = self.damage - self.pkmn.getCurrHP()
         damage = self.damage/self.ratio
@@ -29,7 +29,7 @@ class applyEffect(unittest.TestCase):
         """ Test that the message returned is correct """
         self.pkmn.setCurrHP(self.damage)
         self.delegate.damage = self.damage
-        messages = self.delegate.applyEffect(self.pkmn, None)
+        messages = self.delegate.applyEffect(self.pkmn, None, None)
 
         message = RecoilDelegate.message % self.pkmn.getHeader()
         assert len(messages) == 1, "Should get one message"
@@ -39,7 +39,7 @@ class applyEffect(unittest.TestCase):
         """ Test that the message is correct when the Pkmn faints """
         self.pkmn.setCurrHP(1)
         self.delegate.damage = self.damage
-        messages = self.delegate.applyEffect(self.pkmn, None)
+        messages = self.delegate.applyEffect(self.pkmn, None, None)
 
         faintMessage = self.pkmn.getHeader() + Faint.start
         assert len(messages) == 2, "Should get 2 messages"

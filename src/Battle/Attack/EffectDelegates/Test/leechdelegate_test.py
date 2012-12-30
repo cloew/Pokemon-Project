@@ -21,7 +21,7 @@ class applyEffect(unittest.TestCase):
     def appliesLeech(self):
         """ Tests if applyEffect applies the leech """
         self.target.secondaryEffects = []
-        self.delegate.applyEffect(self.user, self.target)
+        self.delegate.applyEffect(self.user, self.target, None)
         
         assert isinstance(self.target.secondaryEffects[0], Leech), "Target should have a Leech effect"
         assert self.target.secondaryEffects[0].source is self.user, "Leech should have the Pkmn as the Leech's Source"
@@ -29,7 +29,7 @@ class applyEffect(unittest.TestCase):
     def immune(self):
         """ Tests if applyEffect applies the leech """
         self.target2.secondaryEffects = []
-        self.delegate.applyEffect(self.user, self.target2)
+        self.delegate.applyEffect(self.user, self.target2, None)
         
         assert len(self.target2.secondaryEffects) == 0, "Should have no Leech effects when the target is immune"
         

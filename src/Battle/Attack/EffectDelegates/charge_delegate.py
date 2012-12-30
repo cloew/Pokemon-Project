@@ -12,7 +12,7 @@ class ChargeDelegate(EffectDelegate):
         
         self.turnOn = 0
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Applies the delegate's effect when the attack hits """
         return []
         

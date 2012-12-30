@@ -13,7 +13,7 @@ class DodgeDelegate(ChargeDelegate):
         self.turnOn = 0
         self.dodgeType = dodgeType
     
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Applies the delegate's effect when the attack hits """
         return []
         

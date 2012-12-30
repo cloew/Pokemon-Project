@@ -10,12 +10,12 @@ class ChanceDelegate(EffectDelegate):
         self.chance = chance
         self.effects = effects
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Applies the delegates effect """
         messages = []
         
         if self.shouldApply(random.randint(0,99)):
-            messages += self.performEffects(self.effects, user, target)
+            messages += self.performEffects(self.effects, user, target, environment)
                 
         return messages
         

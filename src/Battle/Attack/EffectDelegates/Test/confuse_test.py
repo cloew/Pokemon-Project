@@ -17,7 +17,7 @@ class applyEffect(unittest.TestCase):
         """ Test that confusion is not applied when the target is already confused """
         self.user.secondaryEffects = [Confusion()]
         message = self.user.getHeader() + Confusion.already
-        messages = self.delegate.applyEffect(self.user, self.target)
+        messages = self.delegate.applyEffect(self.user, self.target, None)
         
         assert len(messages) == 1, "Should get one message"
         assert messages[0]  == message, "Should say that the Pkmn is already confused"
@@ -28,7 +28,7 @@ class applyEffect(unittest.TestCase):
         """ Test that confusion is applied when the target is not confused """
         self.user.secondaryEffects = []
         message = self.user.getHeader() + Confusion.start
-        messages = self.delegate.applyEffect(self.user, self.target)
+        messages = self.delegate.applyEffect(self.user, self.target, None)
         
         assert len(messages) == 1, "Should get one message"
         assert messages[0]  == message, "Should say that the Pkmn is now confused"

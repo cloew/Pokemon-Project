@@ -18,7 +18,7 @@ class applyEffect(unittest.TestCase):
     def appliesPeriodicHeal(self):
         """ Tests if applyEffect applies the heal """
         self.pkmn.secondaryEffects = []
-        self.delegate.applyEffect(self.pkmn, None)
+        self.delegate.applyEffect(self.pkmn, None, None)
         
         assert isinstance(self.pkmn.secondaryEffects[0], PeriodicHeal), "Should have a periodic heal effect"
         

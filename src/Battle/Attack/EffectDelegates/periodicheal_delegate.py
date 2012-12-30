@@ -9,7 +9,7 @@ class PeriodicHealDelegate(EffectDelegate):
         self.startMessage = startMessage
         self.message = message
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Apply the heal to the user """
         self.removePreviousHeal(user)
         user.secondaryEffects.append(PeriodicHeal(self.message))

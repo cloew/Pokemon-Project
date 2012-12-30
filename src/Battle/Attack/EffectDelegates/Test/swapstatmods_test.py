@@ -22,13 +22,13 @@ class applyEffect(unittest.TestCase):
         
     def statModsSwitched(self):
         """ Tests if ithe stat mods are swapped """
-        self.delegate.applyEffect(self.user, self.target)
+        self.delegate.applyEffect(self.user, self.target, None)
         assert self.user.statMods == self.statMods2, "Pkmn 1 should have stats from Pkmn 2"
         assert self.target.statMods == self.statMods1, "Pkmn 2 should have stats from Pkmn 1"
         
     def message(self):
         """ Test the message returned is correct """
-        messages = self.delegate.applyEffect(self.user, self.target)
+        messages = self.delegate.applyEffect(self.user, self.target, None)
         message = self.user.getHeader() + SwapStatModsDelegate.message
         assert len(messages) == 1, "Should get 1 message"
         assert messages[0] == message, "Should be Pkmn's header and the Delegate's message"

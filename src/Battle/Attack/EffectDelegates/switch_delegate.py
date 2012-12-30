@@ -8,7 +8,7 @@ class SwitchDelegate(EffectDelegate):
         self.affectUser = affectUser
         self.reset = reset
     
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Switches the user with another Pkmn on the side """
         messages = []
         pkmnWrapper = self.getEffectedPokemon(user, target)

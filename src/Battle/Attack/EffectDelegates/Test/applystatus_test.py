@@ -22,7 +22,7 @@ class applyEffect(unittest.TestCase):
     def appliesStatusUser(self):
         """ Tests if applyEffect applies the status to the user's pkmn """
         self.delegate.affectUser = 1
-        message = self.delegate.applyEffect(self.pkmn, None)
+        message = self.delegate.applyEffect(self.pkmn, None, None)
         
         assert self.pkmn.getStatus().abbr == self.status, "Status should be PAR on the user pkmn"
         

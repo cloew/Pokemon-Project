@@ -8,7 +8,7 @@ class ConfuseDelegate(EffectDelegate):
         """ Build the Confuse Delegate """
         self.affectUser = affectUser
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Apply the Confusion to the target """
         pkmn = self.getEffectedPokemon(user, target)
         messages = []

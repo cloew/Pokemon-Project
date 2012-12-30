@@ -8,14 +8,14 @@ class DivergeDelegate(EffectDelegate):
         self.effectsOnDiverge = effectsOnDiverge
         self.effectsNormal = effectsNormal
     
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Apply Effect """
         messages = []
         
         if self.diverge(user, target):
-            messages += self.performEffects(self.effectsOnDiverge, user, target)
+            messages += self.performEffects(self.effectsOnDiverge, user, target, environment)
         else:
-            messages += self.performEffects(self.effectsNormal, user, target)
+            messages += self.performEffects(self.effectsNormal, user, target, environment)
         
         return messages
         

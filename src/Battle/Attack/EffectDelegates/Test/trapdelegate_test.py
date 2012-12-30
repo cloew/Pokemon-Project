@@ -15,7 +15,7 @@ class applyEffect(unittest.TestCase):
     def appliesTrap(self):
         """ Tests if applyEffect applies the trap """
         self.pkmn.secondaryEffects = []
-        self.delegate.applyEffect(None, self.pkmn)
+        self.delegate.applyEffect(None, self.pkmn, None)
         
         assert isinstance(self.pkmn.secondaryEffects[0], Trap), "Should have a trap effect"
         

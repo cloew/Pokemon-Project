@@ -82,7 +82,7 @@ class applyEffect(unittest.TestCase):
         """ Test that applyEffect operates correctly on turn 0 """
         self.delegate.turnOn = 0
         self.pkmn.actionLock = None
-        self.delegate.applyEffect(self.pkmn, None)
+        self.delegate.applyEffect(self.pkmn, None, None)
         
         assert self.pkmn.actionLock is not None, "Should have an action Lock"
         assert self.delegate.turnOn == 1, "Turns should be incremented"
@@ -91,7 +91,7 @@ class applyEffect(unittest.TestCase):
         """ Test that applyEffect does not do anything except increment turns if the turn is not zero """
         self.delegate.turnOn = 1
         self.pkmn.actionLock = None
-        self.delegate.applyEffect(self.pkmn, None)
+        self.delegate.applyEffect(self.pkmn, None, None)
         
         assert self.pkmn.actionLock is None, "Should not have an actionLock"
         assert self.delegate.turnOn == 2, "Turns should be incremented"

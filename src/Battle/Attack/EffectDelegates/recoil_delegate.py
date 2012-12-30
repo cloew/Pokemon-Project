@@ -12,7 +12,7 @@ class RecoilDelegate(EffectDelegate):
         """ Set the damage that the recoil will be based on """
         self.damage = damage
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Apply the recoil effect """
         messages = [self.message % user.getHeader()]
         

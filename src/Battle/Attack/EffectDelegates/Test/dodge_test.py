@@ -14,7 +14,7 @@ class applyEffect(unittest.TestCase):
         
     def dodgeRemoved(self):
         """ Test that the dodge is removed when the attack's effect is applied """
-        self.delegate.applyEffect(self.user, self.target)
+        self.delegate.applyEffect(self.user, self.target, None)
         assert self.user.dodge == None, "User should no longer be dodging"
 
 # Collect all test cases in this class

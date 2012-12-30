@@ -16,7 +16,7 @@ class applyEffect(unittest.TestCase):
         
     def message(self):
         """ Test that the message returned is the CritMode Message """
-        messages = self.delegate.applyEffect(self.user, self.target)
+        messages = self.delegate.applyEffect(self.user, self.target, None)
         
         assert len(messages) == 1, "Should have one message"
         assert messages[0] == CritModDelegate.message, "Should be the CritMod message"

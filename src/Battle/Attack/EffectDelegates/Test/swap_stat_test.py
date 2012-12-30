@@ -21,14 +21,14 @@ class applyEffect(unittest.TestCase):
         """ Test that the stats are swapped """
         self.user.setStat(self.stat1, self.val1)
         self.user.setStat(self.stat2, self.val2)
-        self.delegate.applyEffect(self.user, None)
+        self.delegate.applyEffect(self.user, None, None)
         
         assert self.user.getStat(self.stat1) == self.val2, "Stat 1 should get Stat 2's value"
         assert self.user.getStat(self.stat2) == self.val1, "Stat 2 should get Stat 1's value"
         
     def message(self):
         """ Test that the message is returned correctly """
-        messages = self.delegate.applyEffect(self.user, None)
+        messages = self.delegate.applyEffect(self.user, None, None)
         
         message = SwapStatDelegate.message % (self.user.getHeader(), self.stat1, self.stat2)
         assert messages == [message], "Message should say the user had its two stats swapped"

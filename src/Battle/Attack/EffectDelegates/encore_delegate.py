@@ -9,7 +9,7 @@ class EncoreDelegate(EffectDelegate):
         self.turns = turns
         self.affectUser = affectUser
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Applies the delegates effect """
         messages = []
         pkmn = self.getEffectedPokemon(user, target)
