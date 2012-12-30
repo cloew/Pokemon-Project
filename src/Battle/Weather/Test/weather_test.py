@@ -25,6 +25,49 @@ suiteBetweenRounds = unittest.TestSuite(map(betweenRounds, testcasesBetweenRound
 
 ##########################################################
 
+class over(unittest.TestCase):
+    """ Test cases of over """
+    
+    def  setUp(self):
+        """ Build the BattleSides and weather for the test """
+        self.weather = Weather()
+    
+    def noTurnsLeft(self):
+        """ Test that over returns true when there are no turns left """
+        self.weather.forever = False
+        self.weather.turnsLeft = 0
+        assert self.weather.over(), "Weather should be over when there are no turns left"
+    
+    def noTurnsLeftAfterDecrement(self):
+        """ Test that over returns true when there are no turns left """
+        self.weather.forever = False
+        self.weather.turnsLeft = 1
+        assert self.weather.over(), "Weather should be over when there are no turns left"
+    
+    def turnsLeft(self):
+        """ Test that over returns false when there are turns left """
+        self.weather.forever = False
+        self.weather.turnsLeft = 3
+        assert not self.weather.over(), "Weather should not be over when there are turns left"
+        
+    def foreverAndTurnsLeft(self):
+        """ Test that over returns false when forever is set and there are still turns left """
+        self.weather.forever = True
+        self.weather.turnsLeft = 4
+        assert not self.weather.over(), "Weather should not be over when it is set to last forever"
+    
+    def foreverAndNoTurnsLeft(self):
+        """ Test that over returns false when forever is set and there are no turns left """
+        self.weather.forever = True
+        self.weather.turnsLeft = 0
+        assert not self.weather.over(), "Weather should not be over when it is set to last forever"
+
+# Collect all test cases in this class
+testcasesOver = ["noTurnsLeft", "noTurnsLeftAfterDecrement", "turnsLeft", "foreverAndTurnsLeft", "foreverAndNoTurnsLeft"]
+suiteOver = unittest.TestSuite(map(over, testcasesOver))
+
+##########################################################
+
 class addRoundMessage(unittest.TestCase):
     """ Test cases of addRoundMessage """
     
@@ -101,7 +144,7 @@ suitePerformWeatherEffectOnPokemon = unittest.TestSuite(map(performWeatherEffect
 ##########################################################
 
 # Collect all test cases in this file
-suites = [suiteBetweenRounds, suiteAddRoundMessage, suiteAddOverMessage, suitePerformWeatherEffectOnPokemon]
+suites = [suiteBetweenRounds, suiteOver, suiteAddRoundMessage, suiteAddOverMessage, suitePerformWeatherEffectOnPokemon]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
