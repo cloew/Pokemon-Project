@@ -1,3 +1,4 @@
+from Battle.battle_environment import BattleEnvironment
 from Battle.battle_side import BattleSide
 from Battle.pkmn_battle_wrapper import PkmnBattleWrapper
 from Battle.Actions.battle_action import BattleAction
@@ -58,7 +59,8 @@ def BuildBattleAction(user = BuildPokemonBattleWrapper(), priority = 0):
 def BuildAttackAction(user = BuildPokemonBattleWrapper(), target = BuildPokemonBattleWrapper(), attack = "TACKLE"):
     """ Builds an Attack Action """
     attack = BuildAttack(attack = attack)
-    return AttackAction(attack, user, target)
+    environment = BattleEnvironment()
+    return AttackAction(attack, user, target, environment)
     
 def BuildActionLock(user = BuildPokemonBattleWrapper(), attackAction = BuildAttackAction(user = BuildPokemonBattleWrapper())):
     """ Builds an Action Lock """

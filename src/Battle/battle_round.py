@@ -3,10 +3,11 @@ from collections import deque
 class BattleRound:
     """ Represents a single round of a battle """
     
-    def __init__(self, playerSide, oppSide):
+    def __init__(self, playerSide, oppSide, environment):
         """ Build the Battle Round from its trainers """
         self.playerSide = playerSide
         self.oppSide = oppSide
+        self.environment = environment
         self.messageQueue = deque()
         
     def run(self):
@@ -23,13 +24,12 @@ class BattleRound:
             messages += self.afterTurn(action.user)
             
             self.messageQueue += deque(messages)
-            #map(self.messageQueue.append, messages)
             self.messages += messages
         
     def getActions(self):
         """ Get all actions in the round """
-        oppAction = self.oppSide.trainer.getAction(self.getOppPkmn()[0], self.getPlayerPkmn(), self.playerSide, self.oppSide)
-        playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn()[0], self.getOppPkmn(), self.playerSide, self.oppSide)
+        oppAction = self.oppSide.trainer.getAction(self.getOppPkmn()[0], self.getPlayerPkmn(), self.playerSide, self.oppSide, self.environment)
+        playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn()[0], self.getOppPkmn(), self.playerSide, self.oppSide, self.environment)
         
         actions = [oppAction] + [playerAction]
         actions.sort(reverse = True)

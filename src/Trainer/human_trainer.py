@@ -11,9 +11,9 @@ class HumanTrainer(Trainer):
     """ Represents a Pokemon Trainer """
     header = ""
             
-    def pickAction(self, user, targets, playerSide, oppSide):
+    def pickAction(self, user, targets, playerSide, oppSide, environment):
         """ Has the trainer pick its action via the screen """
-        controller = ActionController(user, targets, playerSide, oppSide)
+        controller = ActionController(user, targets, playerSide, oppSide, environment)
         controller.run()
         return controller.menu.action
 

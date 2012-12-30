@@ -8,12 +8,12 @@ class ComputerTrainer(Trainer):
     """ Represents a Pokemon Trainer """
     header = "Enemy "
         
-    def pickAction(self, user, targets, playerSide, oppSide):
+    def pickAction(self, user, targets, playerSide, oppSide, environment):
         """ Has the computer pick its action """
         attacks = user.getAttacks()
         attack = random.choice(attacks)
         target = random.choice(targets)
-        return  AttackAction(attack, user, target)
+        return  AttackAction(attack, user, target, environment)
         
     def getHeader(self):
         """ Return the header based on the type of trainer """

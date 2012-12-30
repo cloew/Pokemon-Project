@@ -16,7 +16,7 @@ class Battle:
         self.oppSide = BattleSide(oppTrainer)
         self.environment = BattleEnvironment()
         self.over = False
-        self.round = BattleRound(self.playerSide, self.oppSide)
+        self.round = BattleRound(self.playerSide, self.oppSide, self.environment)
         self.battleFuncs = [self.performRound, self.refillSides]
         self.funcIndex = 0 # Ewww....
         self.messageQueue = deque()

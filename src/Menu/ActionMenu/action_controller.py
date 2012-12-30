@@ -7,9 +7,9 @@ from Screen.Console.Menu.ActionMenu.action_menu_screen import ActionMenuScreen
 class ActionController(Controller):
     """ Controller for selecting a Battle Action """
     
-    def __init__(self, user, targets, playerSide, oppSide):
+    def __init__(self, user, targets, playerSide, oppSide, environment):
         """ Builds the Action Controller """
-        self.menu = ActionMenu(user, targets, playerSide, oppSide)
+        self.menu = ActionMenu(user, targets, playerSide, oppSide, environment)
         self.screen = ActionMenuScreen(self.menu, playerSide, oppSide)
         self.cmds = {commands.SELECT:self.menu.enter,
                      commands.UP:self.menu.up,
