@@ -76,11 +76,11 @@ class Ability(AfterTurnEffect):
         """ Perform on switch """
         
     
-    def callEffects(self, user=None, target=None):
+    def callEffects(self, user=None, target=None, environment=None):
         """ Call the effects the ability has """
         messages = []
         for effect in self.effects:
-            effectMessages = effect.tryToApplyEffect(user, target)
+            effectMessages = effect.tryToApplyEffect(user, target, environment)
             messages = messages + effectMessages
             
         return messages
