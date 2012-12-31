@@ -16,7 +16,7 @@ class Attack:
     def use(self, user, target, environment):
         """ Uses the current attack Object in a Battle """
         messages = []
-        stop = self.doPreconditions(user, target, messages)
+        stop = self.doPreconditions(user, target, environment, messages)
         
         if not stop:
             messages += self.doAttack(user, target, environment)
@@ -43,9 +43,9 @@ class Attack:
         return messages
         
     # Attack Loop Functions
-    def doPreconditions(self, user, target, messages):
+    def doPreconditions(self, user, target, environment, messages):
         """ Checks preconditions to make sure the user isn't prevented from working """
-        preconditionChecker = PreconditionChecker(user, target, self)
+        preconditionChecker = PreconditionChecker(user, target, environment, self)
         stop, preMessages = preconditionChecker.checkPreConditions()
         messages += preMessages
         return stop

@@ -3,14 +3,15 @@ class PreconditionChecker:
     """ Class that checks all preconditions """
     
     
-    def __init__(self, user, target, attack):
+    def __init__(self, user, target, environment, attack):
         """ Builds an object to check preconditions """
         self.user = user
         self.target = target
+        self.environment = environment
         self.attack = attack
         
         self.conditionsToCheck = [self.checkFaint, self.checkLock, self.checkFlinch, self.checkCharging,
-                                              self.checkAbility, self.checkEncore, self.checkStatus, self.checkSecondaries]
+                                  self.checkAbility, self.checkEncore, self.checkStatus, self.checkSecondaries]
         
     def checkPreConditions(self):
         """ Checks all pre-conditions to the Battle """
