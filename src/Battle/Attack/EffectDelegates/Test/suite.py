@@ -33,6 +33,7 @@ import swap_stat_test
 import swapstatmods_test
 import trapdelegate_test
 import useless_test
+import weather_charge_test
 
 suites = [applylock_test.suite,
           applystatus_test.suite,
@@ -67,5 +68,6 @@ suites = [applylock_test.suite,
           swap_stat_test.suite,
           swapstatmods_test.suite,
           trapdelegate_test.suite,
-          useless_test.suite]
+          useless_test.suite,
+          weather_charge_test.suite]
 suite = unittest.TestSuite(suites)
