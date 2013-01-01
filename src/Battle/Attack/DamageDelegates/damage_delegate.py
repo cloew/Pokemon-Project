@@ -12,7 +12,7 @@ class DamageDelegate(object):
         self.power = power
         self.isPhysical = isPhysical
     
-    def doDamage(self, user, target):
+    def doDamage(self, user, target, environment):
         """ Calculates the damage the attack does
         Returns the damage done """
         messages = []

@@ -60,7 +60,7 @@ class Attack:
         
     def doDamage(self, user, target, environment):
         """ Does the attack's damage, returns that the loop should not stop """
-        return self.damageDelegate.doDamage(user, target)
+        return self.damageDelegate.doDamage(user, target, environment)
         
     def doEffects(self, user, target, environment):
         """ Does the attack's effects, returns that the loop should not stop """
