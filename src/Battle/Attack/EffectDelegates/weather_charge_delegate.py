@@ -10,7 +10,16 @@ class WeatherChargeDelegate(ChargeDelegate):
     
     def isCharging(self, user, environment):
         """ Determines if the attack should not be completed because it is charging """
+        self.getTurns(environment)
         if environment.weather.type == self.weatherType:
             self.turnOn = self.turnToAttack
         return ChargeDelegate.isCharging(self, user, environment)
-    
+        
+    def getTurns(self, environment):
+        """ Get the number of turns to charge for """
+        if environment.weather.type == "RAIN": # Hard-coded for Solar Beam currently
+            self.turns = 3
+            self.turnToAttack = 2
+        else:
+            self.turns = 2
+            self.turnToAttack = 1
