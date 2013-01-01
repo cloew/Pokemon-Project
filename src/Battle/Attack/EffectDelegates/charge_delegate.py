@@ -26,7 +26,7 @@ class ChargeDelegate(EffectDelegate):
         user.actionLock = None
         return []
         
-    def isCharging(self, user):
+    def isCharging(self, user, environment):
         """ Determines if the attack should not be completed because it is charging """
         # Check if the user is charging
         # AKA no damage should be calculated

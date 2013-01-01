@@ -1,6 +1,7 @@
 import unittest
 from Test.test_helper import BuildPokemonBattleWrapper
 
+from Battle.battle_environment import BattleEnvironment
 from Battle.Attack.EffectDelegates.dodge_delegate import DodgeDelegate
 
 class applyEffect(unittest.TestCase):
@@ -29,12 +30,14 @@ class isCharging(unittest.TestCase):
     def  setUp(self):
         """ Build the Pkmn and Delegate for the test """
         self.user = BuildPokemonBattleWrapper()
+        self.environment = BattleEnvironment()
         self.dodgeType = "DIG"
         self.delegate = DodgeDelegate(self.dodgeType, "")
         
     def dodging(self):
         """ Test that the dodge is set to the delegate's dodge type """
-        self.delegate.isCharging(self.user)
+        assert self.user.dodge is None, "User should not be dodging"
+        self.delegate.isCharging(self.user, self.environment)
         assert self.user.dodge == self.dodgeType, "User should get the delegate's dodge type"
 
 # Collect all test cases in this class

@@ -12,5 +12,5 @@ class WeatherChargeDelegate(ChargeDelegate):
         """ Determines if the attack should not be completed because it is charging """
         if environment.weather.type == self.weatherType:
             self.turnOn = self.turnToAttack
-        return ChargeDelegate.isCharging(self, user)
+        return ChargeDelegate.isCharging(self, user, environment)
     
