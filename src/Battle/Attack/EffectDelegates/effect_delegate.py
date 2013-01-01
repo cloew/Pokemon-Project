@@ -23,7 +23,7 @@ class EffectDelegate(object):
         """ Applies effect -- Should be overridden by subclasses """
         return [EffectDelegate.message]
         
-    def isCharging(self, user):
+    def isCharging(self, user, environment):
         """ Performs any charging the attack needs this turn in battle
         Returns if the attack should not complete becauser of charging """
         return False
