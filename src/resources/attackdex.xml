@@ -1132,7 +1132,7 @@
         </effectDelegates>
     </attack>
     <attack>
-        <name>SOLAR BEAM</name> <!-- Need hit and Damage based on weather -->
+        <name>SOLAR BEAM</name> <!-- Need Damage based on weather -->
         <type>GRASS</type>
         <PP>10</PP>
         <speedDelegate>
@@ -1153,10 +1153,11 @@
         </damageDelegate>
         <effectDelegates>
             <effectDelegate>
-                <type>CHARGE</type>
+                <type>WEATHER CHARGE</type>
                 <turns>2</turns>
                 <hitOnTurn>1</hitOnTurn>
                 <message> is absorbing sunlight.</message>
+                <weather>SUN</weather>
             </effectDelegate>
         </effectDelegates>
     </attack>
