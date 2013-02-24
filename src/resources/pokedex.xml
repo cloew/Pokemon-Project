@@ -101,7 +101,26 @@
             <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
-    
+    <pokemon>
+        <species>NIDOKING</species>
+        <dex>33</dex>
+        <types>
+            <type>POISON</type>
+            <type>GROUND</type>
+        </types>
+        <abilities>
+            <ability>STATIC</ability>
+            <dream>LIGHTNING ROD</dream>
+        </abilities>
+        <baseStats>
+            <HP>81</HP>
+            <ATK>92</ATK>
+            <DEF>77</DEF>
+            <SPD>85</SPD>
+            <SATK>85</SATK>
+            <SDEF>75</SDEF>
+        </baseStats>
+    </pokemon>
     <pokemon>
         <species>ELECTRODE</species>
         <dex>101</dex>
