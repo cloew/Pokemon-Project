@@ -3,7 +3,6 @@
         <name>ADAPTABILITY</name>
         <type>BOOST STAB</type>
     </ability>
-    
     <ability>
         <name>ANGER POINT</name>
         <type>EFFECT ON CRIT</type>
@@ -16,18 +15,15 @@
             </effectDelegate>
         </effectDelegates>
     </ability>
-
     <ability>
         <name>BATTLE ARMOR</name>
         <type>NO CRIT</type>
     </ability>
-    
     <ability>
         <name>COMPOUNDEYES</name>
         <type>ACC MOD</type>
         <degree>1.3</degree>
     </ability>
-
     <ability>
         <name>DEFIANT</name>
         <type>EFFECT ON STAT MOD</type>
@@ -41,27 +37,43 @@
             </effectDelegate>
         </effectDelegates>
     </ability>
-    
     <ability>
         <name>HYPER CUTTER</name>
         <type>CANT LOWER STAT</type>
         <stat>ATK</stat>
     </ability>
-
     <ability>
         <name>KEEN EYE</name>
         <type>CANT LOWER STAT</type>
         <stat>ACC</stat>
     </ability>
-
+    <ability>
+        <name>POISON POINT</name>
+        <type>EFFECT ON CONTACT</type>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>30</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PSN</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </ability>
+    <ability>
+        <name>OWN TEMPO</name>
+        <type>CONFUSION IMMUNITY</type>
+    </ability>
     <ability>
         <name>QUICK FEET</name>
         <type>STAT MOD ON STATUS</type>
-        <status>PAR</status>
         <stat>SPD</stat>
         <degree>1.5</degree>
     </ability>
-    
     <ability>
         <name>SHED SKIN</name>
         <type>EFFECT AFTER TURN</type>
@@ -99,12 +111,22 @@
             </effectDelegate>
         </effectDelegates>
     </ability>
-    
     <ability>
         <name>SNIPER</name>
         <type>SNIPER</type>
     </ability>
-    
+    <ability>
+        <name>SPEED BOOST</name>
+        <type>EFFECT AFTER TURN</type>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>SPD</stat>
+                <degree>1</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </ability>
     <ability>
         <name>TRUANT</name>
         <type>SKIP TURN</type>

@@ -11,11 +11,10 @@ class Poison(Status):
     def __init__(self):
         self.initialize()
         
-    def afterTurn(self, pkmn):
+    def afterTurn(self, owner):
         """ Inflicts the damage from the Poison status """
-        user = pkmn.currPokemon
-        message = pkmn.getHeader() + Poison.intermittent
-        user.takeDamage(user.getRatioOfHealth(Poison.ratio))
+        message = owner.getHeader() + Poison.intermittent
+        owner.takeDamage(owner.getRatioOfHealth(Poison.ratio))
         return [message]
         
     def immune(self, targetTypes, attackType):

@@ -20,6 +20,7 @@ from random_switch_delegate import RandomSwitchDelegate
 from recoil_delegate import RecoilDelegate
 from reset_statmods_delegate import ResetStatModsDelegate
 from selfdestruct_delegate import SelfDestructDelegate
+from start_weather_delegate import StartWeatherDelegate
 from statmod_delegate import StatModDelegate
 from swap_ability_delegate import SwapAbilityDelegate
 from swap_stat_delegate import SwapStatDelegate
@@ -27,6 +28,7 @@ from swapstatmods_delegate import SwapStatModsDelegate
 from switch_delegate import SwitchDelegate
 from trap_delegate import TrapDelegate
 from useless_delegate import UselessDelegate
+from weather_charge_delegate import WeatherChargeDelegate
 
 from resources.tags import Tags
 from resources.sqlite.pokemon_sqlite_helper import GetParameters
@@ -178,6 +180,12 @@ class EffectDelegateFactory:
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
             
+        elif delegateType == "START WEATHER":
+            weatherType = element.find(Tags.weatherTag).text
+            delegate = StartWeatherDelegate(weatherType)
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
+            
         elif delegateType == "STAT MOD":
             stat = element.find(Tags.statTag).text
             degree = int(element.find(Tags.degreeTag).text)
@@ -227,6 +235,15 @@ class EffectDelegateFactory:
             
         elif delegateType == "USELESS":
             delegate = UselessDelegate()
+            delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+            return delegate
+            
+        elif delegateType == "WEATHER CHARGE":
+            turns = int(element.find(Tags.turnsTag).text)
+            hitOnTurn = int(element.find(Tags.hitOnTurnTag).text)
+            message = element.find(Tags.messageTag).text
+            weatherType = element.find(Tags.weatherTag).text
+            delegate = WeatherChargeDelegate(turns, hitOnTurn, message, weatherType)
             delegate.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
             return delegate
             

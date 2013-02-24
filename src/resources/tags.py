@@ -7,6 +7,7 @@ class Tags:
     
     nameTag = "name"
     typeTag = "type"
+    contactAttribute = "contact"
     ppTag = "PP"
     currPPTag = "currPP"
     
@@ -26,7 +27,7 @@ class Tags:
     normalEffectsTag = "normalEffects"
     divergeEffectsTag = "divergeEffects"
     
-    
+    weatherTag = "weather"
     speedDelegateTag = "speedDelegate"
     priorityTag = "priority"
     

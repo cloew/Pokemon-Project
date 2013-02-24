@@ -8,7 +8,7 @@ class SelfDestructDelegate(EffectDelegate):
         """ Builds a self-destruct delegate """
         self.applyOnMiss = 1
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Apply the recoil effect """
         messages = [user.getHeader() + SelfDestructDelegate.message]
         totake = user.getCurrHP()

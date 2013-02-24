@@ -137,27 +137,27 @@ class applyEffect(unittest.TestCase):
     def modIncrease(self):
         """ test that modifiers can increase """
         delegate = self.buildStatModDelegate(1)
-        message = delegate.applyEffect(self.pkmn, self.pkmn)
+        message = delegate.applyEffect(self.pkmn, self.pkmn, None)
         assert self.pkmn.statMods[self.stat] == 1, "ATK should be 1"
         
     def modDecrease(self):
         """ test that modifiers can decrease """
         delegate = self.buildStatModDelegate(-1)
-        message = delegate.applyEffect(self.pkmn, self.pkmn)
+        message = delegate.applyEffect(self.pkmn, self.pkmn, None)
         assert self.pkmn.statMods[self.stat] == -1, "ATK should be -1"
         
     def modStack(self):
         """ test that modifiers stack on the preceding value """
         self.pkmn.statMods[self.stat] = 1
         delegate = self.buildStatModDelegate(-2)
-        message = delegate.applyEffect(self.pkmn, self.pkmn)
+        message = delegate.applyEffect(self.pkmn, self.pkmn, None)
         assert self.pkmn.statMods[self.stat] == -1, "ATK should be -1"
         
     def modTooHigh(self):
         """ test that modifiers stack on the preceding value """
         self.pkmn.statMods[self.stat] = 6
         delegate = self.buildStatModDelegate(2)
-        message = delegate.applyEffect(self.pkmn, self.pkmn)[0]
+        message = delegate.applyEffect(self.pkmn, self.pkmn, None)[0]
         
         assert self.pkmn.statMods[self.stat] == 6, "ATK should be 6"
         find = message.find(StatModDelegate.noChangeUp)
@@ -167,7 +167,7 @@ class applyEffect(unittest.TestCase):
         """ test that modifiers stack on the preceding value """
         self.pkmn.statMods[self.stat] = -6
         delegate = self.buildStatModDelegate(-2)
-        message = delegate.applyEffect(self.pkmn, self.pkmn)[0]
+        message = delegate.applyEffect(self.pkmn, self.pkmn, None)[0]
         
         assert self.pkmn.statMods[self.stat] == -6, "ATK should be -6"
         find = message.find(StatModDelegate.noChangeDown)

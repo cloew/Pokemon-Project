@@ -11,62 +11,64 @@ class Attack:
         self.speedDelegate = None
         
         self.effectDelegates = []
+        makes_contact = False
         
-        
-    def use(self, user, target):
+    def use(self, user, target, environment):
         """ Uses the current attack Object in a Battle """
         messages = []
-        stop = self.doPreconditions(user, target, messages)
+        stop = self.doPreconditions(user, target, environment, messages)
         
         if not stop:
-            messages += self.doAttack(user, target)
+            messages += self.doAttack(user, target, environment)
         
         return messages
         
-    def doAttack(self, user, target):
+    def doAttack(self, user, target, environment):
         """  """
         messages = ["%s USED %s" % (user.getHeader(), self.name)]
-        hit = self.doHit(user, target, messages)
+        hit = self.doHit(user, target, environment, messages)
         
         if hit:
-            messages += self.doAttackLoop(user, target)
+            messages += self.doAttackLoop(user, target, environment)
         
         return messages
         
-    def doAttackLoop(self, user, target):
+    def doAttackLoop(self, user, target, environment):
         """  """
         messages = []
-        messages += self.doDamage(user, target)
-        messages += self.doEffects(user, target)
+        messages += self.doDamage(user, target, environment)
+        messages += self.doEffects(user, target, environment)
+        if self.makes_contact:
+            messages += target.getAbility().onContact(target, user)
         return messages
         
     # Attack Loop Functions
-    def doPreconditions(self, user, target, messages):
+    def doPreconditions(self, user, target, environment, messages):
         """ Checks preconditions to make sure the user isn't prevented from working """
-        preconditionChecker = PreconditionChecker(user, target, self)
+        preconditionChecker = PreconditionChecker(user, target, environment, self)
         stop, preMessages = preconditionChecker.checkPreConditions()
         messages += preMessages
         return stop
         
-    def doHit(self, user, target, messages):
+    def doHit(self, user, target, environment, messages):
         """ Check if the user hits the target(s) """
-        hit, hitMessages = self.hitDelegate.hit(user, target)
+        hit, hitMessages = self.hitDelegate.hit(user, target, environment)
         if not hit:
             messages += hitMessages
-            messages += self.applyEffectsOnMiss(user, target)
+            messages += self.applyEffectsOnMiss(user, target, environment)
         return hit
         
-    def doDamage(self, user, target):
+    def doDamage(self, user, target, environment):
         """ Does the attack's damage, returns that the loop should not stop """
-        return self.damageDelegate.doDamage(user, target)
+        return self.damageDelegate.doDamage(user, target, environment)
         
-    def doEffects(self, user, target):
+    def doEffects(self, user, target, environment):
         """ Does the attack's effects, returns that the loop should not stop """
         messages = []
 
         if not self.preventEffects(user, target):
             for effect in self.effectDelegates:
-                messages += effect.tryToApplyEffect(user, target)
+                messages += effect.tryToApplyEffect(user, target, environment)
         return messages
         
     # Helper Methods
@@ -83,15 +85,15 @@ class Attack:
         canUse = user.getAbility().canUseEffects() and target.getAbility().canUseEffects()
         return not nullDamage and not canUse
         
-    def applyEffectsOnMiss(self, user, target):
+    def applyEffectsOnMiss(self, user, target, environment):
         """ Apply effects on miss """
         messages = []
         for effect in self.effectDelegates:
             if hasattr(effect, "applyOnMiss"):
-                effectMessages = effect.applyEffect(user, target)
+                effectMessages = effect.applyEffect(user, target, environment)
                 messages = messages + effectMessages
             if hasattr(effect, "effectOnMiss"):
-                effectMessages = effect.effectOnMiss(user, target)
+                effectMessages = effect.effectOnMiss(user, target, environment)
                 messages = messages + effectMessages
         return messages
         

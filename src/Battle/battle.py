@@ -1,6 +1,7 @@
 from collections import deque
 from Battle.battle_side import BattleSide
 from Battle.Attack.attack import Attack
+from Battle.battle_environment import BattleEnvironment
 from Battle.battle_round import BattleRound
 from Battle.battle_message import BattleMessage
 
@@ -13,8 +14,9 @@ class Battle:
         """ Builds the two participating sides of the battle """
         self.playerSide = BattleSide(playerTrainer)
         self.oppSide = BattleSide(oppTrainer)
+        self.environment = BattleEnvironment()
         self.over = False
-        self.round = BattleRound(self.playerSide, self.oppSide)
+        self.round = BattleRound(self.playerSide, self.oppSide, self.environment)
         self.battleFuncs = [self.performRound, self.refillSides]
         self.funcIndex = 0 # Ewww....
         self.messageQueue = deque()
@@ -53,15 +55,15 @@ class Battle:
     def performRound(self):
         """  Performs a single round """
         self.round.run()
-        self.betweenRounds()
         self.addMessages(self.round.messages)
+        self.addMessages(self.betweenRounds())
         #self.messageQueue += self.round.messageQueue
         
     def betweenRounds(self):
         """ Perform between rounds """
         self.playerSide.betweenRounds()
         self.oppSide.betweenRounds()
-        return []
+        return self.environment.betweenRounds(self.playerSide, self.oppSide)
         
     def refillSides(self):
         """ Refills fainted Pkmn on each side """

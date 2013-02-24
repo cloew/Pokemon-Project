@@ -19,6 +19,10 @@ class Ability(AfterTurnEffect):
     def effectiveness(self, pkmn):
         """ Return effectiveness mods """
         
+    def canBeConfused(self, pkmn, messages):
+        """ Return if the pokemon can be confused """
+        return True
+        
     def canUseEffects(self):
         """ Return whether effects on damaging attacks can be used """
         return True
@@ -28,7 +32,7 @@ class Ability(AfterTurnEffect):
         """ Perform on a critical hit """
         return critMod
         
-    def takeCrit(self, critMod, thisSide, otherSide):
+    def takeCrit(self, critMod, receiver, attacker):
         """ Perform on a critical hit """
         return critMod, []
         
@@ -37,8 +41,9 @@ class Ability(AfterTurnEffect):
         """ Perform on accuracy """
         return accuracy
         
-    def onContact(self, pkmn):
+    def onContact(self, pkmn, attacker):
         """ Perform on attack that makes contact """
+        return []
         
     def onCharge(self):
         """ Perform on Charge """
@@ -71,11 +76,11 @@ class Ability(AfterTurnEffect):
         """ Perform on switch """
         
     
-    def callEffects(self, user):
+    def callEffects(self, user=None, target=None, environment=None):
         """ Call the effects the ability has """
         messages = []
         for effect in self.effects:
-            effectMessages = effect.tryToApplyEffect(user, None)
+            effectMessages = effect.tryToApplyEffect(user, target, environment)
             messages = messages + effectMessages
             
         return messages

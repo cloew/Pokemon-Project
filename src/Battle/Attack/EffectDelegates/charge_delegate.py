@@ -5,14 +5,14 @@ class ChargeDelegate(EffectDelegate):
     """ Represents an attack that takes more than one turn to finish """
     
     def __init__(self, turns, turnToAttack, message):
-        """ Builds a ChanceDelegate """
+        """ Builds a Charge Delegate """
         self.turns = turns
         self.turnToAttack = turnToAttack
         self.message = message
         
         self.turnOn = 0
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Applies the delegate's effect when the attack hits """
         return []
         
@@ -26,8 +26,8 @@ class ChargeDelegate(EffectDelegate):
         user.actionLock = None
         return []
         
-    def isCharging(self, user):
-        """ Modifies how the attack hits """
+    def isCharging(self, user, environment):
+        """ Determines if the attack should not be completed because it is charging """
         # Check if the user is charging
         # AKA no damage should be calculated
         charging = True

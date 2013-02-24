@@ -10,7 +10,7 @@ class LeechDelegate(EffectDelegate):
         self.message = message
         self.type = type
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Apply the Leech to the target """
         leech = Leech(user, self.message)
         

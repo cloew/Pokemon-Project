@@ -6,7 +6,9 @@ from ability import Ability
 from accmod_ability import AccModAbility
 from booststab_ability import BoostStabAbility
 from cantlowerstat_ability import CantLowerStatAbility
+from confusion_immunity_ability import ConfusionImmunityAbility
 from effectafterturn_ability import EffectAfterTurnAbility
+from effecton_contact_ability import EffectOnContactAbility
 from effectoncrit_ability import EffectOnCritAbility
 from effecton_statmod_ability import EffectOnStatModAbility
 from nocrit_ability import NoCritAbility
@@ -75,6 +77,9 @@ class AbilityFactory:
             stat = tree.find(Tags.statTag).text
             return CantLowerStatAbility(name, stat)
             
+        elif abilityType == "CONFUSION IMMUNITY":
+            return ConfusionImmunityAbility(name)
+            
         elif abilityType == "EFFECT AFTER TURN":
             effectsTree = tree.find(Tags.effectDelegatesTag)
             effects = []
@@ -84,7 +89,17 @@ class AbilityFactory:
                 effects.append(effect)
                 
             return EffectAfterTurnAbility(name, effects)
-            
+        
+        elif abilityType == "EFFECT ON CONTACT":
+            effectsTree = tree.find(Tags.effectDelegatesTag)
+            effects = []
+        
+            for effectTree in effectsTree.getchildren():
+                effect = EffectDelegateFactory.loadFromXML(effectTree, None)
+                effects.append(effect)
+                
+            return EffectOnContactAbility(name, effects)
+        
         elif abilityType == "EFFECT ON CRIT":
             effectsTree = tree.find(Tags.effectDelegatesTag)
             effects = []
@@ -116,7 +131,6 @@ class AbilityFactory:
             return SniperAbility(name)
         
         elif abilityType == "STAT MOD ON STATUS":
-            status = tree.find(Tags.statusTag).text
             stat = tree.find(Tags.statTag).text
             mod = float(tree.find(Tags.degreeTag).text)
-            return StatModOnStatusAbility(name, status, stat, mod)
+            return StatModOnStatusAbility(name, stat, mod)

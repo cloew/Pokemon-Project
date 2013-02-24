@@ -4,7 +4,7 @@ class ResetStatModsDelegate(EffectDelegate):
     """ Resets all the Stat modifiers for both sides """
     message = "Everything returned to normal."
     
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Tells both sides to reset their stat mods """
         user.resetStatMods()
         target.resetStatMods()

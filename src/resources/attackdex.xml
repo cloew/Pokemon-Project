@@ -19,7 +19,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>BATON PASS</name>
         <type>NORMAL</type>
@@ -39,7 +38,26 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-
+    <attack>
+        <name>DOUBLE TEAM</name>
+        <type>NORMAL</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>EVAS</stat>
+                <degree>1</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <attack>
         <name>ENCORE</name>
         <type>NORMAL</type>
@@ -60,8 +78,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-
-    <attack>
+    <attack contact="true">
         <name>EXTREMESPEED</name>
         <type>NORMAL</type>
         <PP>5</PP>
@@ -81,9 +98,8 @@
                 <base>0</base>
             </critDelegate>
         </damageDelegate>
-    </attack>
-    
-    <attack>
+    </attack>    
+    <attack contact="true">
         <name>FALSE SWIPE</name>
         <type>NORMAL</type>
         <PP>40</PP>
@@ -104,7 +120,6 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-
     <attack>
         <name>FOCUS ENERGY</name>
         <type>NORMAL</type>
@@ -123,7 +138,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-
     <attack>
         <name>GROWL</name>
         <type>NORMAL</type>
@@ -145,7 +159,26 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
+    <attack>
+        <name>HOWL</name>
+        <type>NORMAL</type>
+        <PP>40</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>ATK</stat>
+                <degree>1</degree>
+                <affectUser>1</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <attack>
         <name>HYPER BEAM</name>
         <type>NORMAL</type>
@@ -174,9 +207,8 @@
                 <message> is recharging.</message>
             </effectDelegate>
         </effectDelegates>
-    </attack>
-    
-    <attack>
+    </attack>    
+    <attack contact="true">
         <name>QUICK ATTACK</name>
         <type>NORMAL</type>
         <PP>30</PP>
@@ -196,8 +228,7 @@
                 <base>0</base>
             </critDelegate>
         </damageDelegate>
-    </attack>
-    
+    </attack>    
     <attack>
         <name>RECOVER</name>
         <type>NORMAL</type>
@@ -216,8 +247,48 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
+        <name>ROAR</name>
+        <type>NORMAL</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>-6</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>RANDOM SWITCH</type>
+                <affectUser>0</affectUser>
+                <reset>1</reset>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack>
+        <name>SCARY FACE</name>
+        <type>NORMAL</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>SPD</stat>
+                <degree>-2</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>    
+    <attack contact="true">
         <name>SCRATCH</name>
         <type>NORMAL</type>
         <PP>25</PP>
@@ -238,7 +309,27 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-        
+	<attack>
+        <name>SCREECH</name>
+        <type>NORMAL</type>
+        <PP>40</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>85</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>DEF</stat>
+                <degree>-2</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>    
     <attack>
         <name>SELFDESTRUCT</name>
         <type>NORMAL</type>
@@ -265,8 +356,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-
-    <attack>
+	<attack contact="true">
         <name>SLASH</name>
         <type>NORMAL</type>
         <PP>20</PP>
@@ -287,7 +377,27 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
+	<attack>
+        <name>SONIC BOOM</name>
+        <type>NORMAL</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>FIXED</type>
+            <physical>0</physical>
+            <damage>20</damage>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
     <attack>
         <name>SPLASH</name>
         <type>NORMAL</type>
@@ -305,8 +415,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+	<attack contact="true">
         <name>STRENGTH</name>
         <type>NORMAL</type>
         <PP>15</PP>
@@ -327,8 +436,7 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
-    <attack>
+	<attack contact="true">
         <name>SUPER FANG</name>
         <type>NORMAL</type>
         <PP>10</PP>
@@ -348,8 +456,51 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
+	<attack>
+        <name>SUPERSONIC</name>
+        <type>NORMAL</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>55</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CONFUSE</type>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <attack>
+        <name>SWAGGER</name>
+        <type>NORMAL</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CONFUSE</type>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>ATK</stat>
+                <degree>2</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack contact="true">
         <name>TACKLE</name>
         <type>NORMAL</type>
         <PP>35</PP>
@@ -370,8 +521,7 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
-    <attack>
+	<attack>
         <name>TAIL WHIP</name>
         <type>NORMAL</type>
         <PP>30</PP>
@@ -391,8 +541,68 @@
                 <affectUser>0</affectUser>
             </effectDelegate>
         </effectDelegates>
+    </attack>    
+    <attack contact="true">
+        <name>TAKE DOWN</name>
+        <type>NORMAL</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>85</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>EFFECT ON DAMAGE</type>
+            <power>90</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>RECOIL</type>
+                <ratio>4</ratio>
+            </effectDelegate>
+        </effectDelegates>
     </attack>
-    
+    <attack contact="true">
+        <name>THRASH</name>
+        <type>NORMAL</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <physical>1</physical>
+            <power>120</power>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>MULTI TURN RANGE</type>
+                <min>2</min>
+                <max>3</max>
+                 <effectDelegates>
+                    <effectDelegate>
+                        <type>CONFUSE</type>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <!-- Fire -->
     <attack>
         <name>EMBER</name>
@@ -433,8 +643,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+	<attack>
         <name>FLAMETHROWER</name>
         <type>FIRE</type>
         <PP>15</PP>
@@ -473,8 +682,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+	<attack>
         <name>HEAT WAVE</name>
         <type>FIRE</type>
         <PP>10</PP>
@@ -513,8 +721,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+	<attack>
         <name>OVERHEAT</name>
         <type>FIRE</type>
         <PP>5</PP>
@@ -548,8 +755,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+	<attack>
         <name>WILL-O-WISP</name>
         <type>FIRE</type>
         <PP>15</PP>
@@ -569,8 +775,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <!-- Water -->
+	<!-- Water -->
     <attack>
         <name>AQUA RING</name>
         <type>WATER</type>
@@ -590,8 +795,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+	<attack>
         <name>SURF</name>
         <type>WATER</type>
         <PP>15</PP>
@@ -612,8 +816,7 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
-    <attack>
+	<attack>
         <name>WHIRLPOOL</name>
         <type>WATER</type>
         <PP>15</PP>
@@ -642,9 +845,8 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <!-- Electric -->
-    <attack>
+    <attack contact="true">
         <name>BOLT STRIKE</name>
         <type>ELECTRIC</type>
         <PP>5</PP>
@@ -678,7 +880,41 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
+    <attack>
+        <name>CHARGE BEAM</name>
+        <type>ELECTRIC</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>90</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>50</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>70</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SATK</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <attack>
         <name>ELECTRO BALL</name>
         <type>ELECTRIC</type>
@@ -700,8 +936,7 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>SPARK</name>
         <type>ELECTRIC</type>
         <PP>20</PP>
@@ -735,7 +970,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>THUNDER WAVE</name>
         <type>ELECTRIC</type>
@@ -756,7 +990,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>THUNDERBOLT</name>
         <type>ELECTRIC</type>
@@ -791,7 +1024,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>THUNDERSHOCK</name>
         <type>ELECTRIC</type>
@@ -813,7 +1045,6 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
     <attack>
         <name>VOLT SWITCH</name>
         <type>ELECTRIC</type>
@@ -852,7 +1083,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <!-- Grass -->
     <attack>
         <name>LEECH SEED</name>
@@ -874,7 +1104,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>MEGA DRAIN</name>
         <type>GRASS</type>
@@ -902,9 +1131,8 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
-        <name>SOLAR BEAM</name> <!-- Need hit and Damage based on weather -->
+        <name>SOLAR BEAM</name> <!-- Need Damage based on weather -->
         <type>GRASS</type>
         <PP>10</PP>
         <speedDelegate>
@@ -925,14 +1153,14 @@
         </damageDelegate>
         <effectDelegates>
             <effectDelegate>
-                <type>CHARGE</type>
+                <type>WEATHER CHARGE</type>
                 <turns>2</turns>
                 <hitOnTurn>1</hitOnTurn>
                 <message> is absorbing sunlight.</message>
+                <weather>SUN</weather>
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>SPORE</name>
         <type>GRASS</type>
@@ -953,8 +1181,25 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <!-- Ice -->
+    <attack>
+        <name>HAIL</name>
+        <type>ICE</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>SELF</type>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>START WEATHER</type>
+                <weather>HAIL</weather>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <attack>
         <name>HAZE</name>
         <type>ICE</type>
@@ -972,7 +1217,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>ICE BEAM</name>
         <type>ICE</type>
@@ -1007,7 +1251,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>POWDER SNOW</name>
         <type>ICE</type>
@@ -1042,7 +1285,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>SHEER COLD</name>
         <type>ICE</type>
@@ -1060,9 +1302,8 @@
             <physical>0</physical>
         </damageDelegate>
     </attack>
-    
     <!-- Fighting -->
-    <attack>
+    <attack contact="true">
         <name>HI JUMP KICK</name>
         <type>FIGHTING</type>
         <PP>10</PP>
@@ -1087,8 +1328,7 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>STORM THROW</name>
         <type>FIGHTING</type>
         <PP>10</PP>
@@ -1109,8 +1349,7 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>VITAL THROW</name>
         <type>FIGHTING</type>
         <PP>10</PP>
@@ -1130,7 +1369,6 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
     <!-- Poison -->
     <attack>
         <name>GUNK SHOT</name>
@@ -1166,8 +1404,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>POISON JAB</name>
         <type>POISON</type>
         <PP>20</PP>
@@ -1201,7 +1438,40 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
+    <attack>
+        <name>POISON SHOT</name>
+        <type>POISON</type>
+        <PP>35</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>15</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>30</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STATUS</type>
+                        <status>PSN</status>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
     <attack>
         <name>TOXIC</name>
         <type>POISON</type>
@@ -1222,9 +1492,8 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <!-- Ground -->
-    <attack>
+    <attack contact="true">
         <name>DIG</name>
         <type>GROUND</type>
         <PP>10</PP>
@@ -1252,7 +1521,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>EARTHQUAKE</name>
         <type>GROUND</type>
@@ -1276,9 +1544,64 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
-    <!-- Flying -->
     <attack>
+        <name>EARTH POWER</name>
+        <type>GROUND</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>90</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SDEF</stat>
+                        <degree>-1</degree>
+                        <affectUser>0</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack>
+        <name>SAND-ATTACK</name>
+        <type>GROUND</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>ACC</stat>
+                <degree>-1</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <!-- Flying -->
+    <attack contact="true">
         <name>AERIAL ACE</name>
         <type>FLYING</type>
         <PP>20</PP>
@@ -1298,8 +1621,39 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
     <attack>
+        <name>AIR SLASH</name>
+        <type>FLYING</type>
+        <PP>20</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>95</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>75</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>30</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>FLINCH</type>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack contact="true">
         <name>BOUNCE</name>
         <type>FLYING</type>
         <PP>5</PP>
@@ -1338,8 +1692,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>FLY</name>
         <type>FLYING</type>
         <PP>15</PP>
@@ -1367,7 +1720,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>GUST</name>
         <type>FLYING</type>
@@ -1390,7 +1742,27 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
+    <attack contact="true">
+        <name>PECK</name>
+        <type>FLYING</type>
+        <PP>35</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>35</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
     <attack>
         <name>WHIRLWIND</name>
         <type>FLYING</type>
@@ -1411,7 +1783,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <!-- Psychic -->
     <attack>
         <name>HEART SWAP</name>
@@ -1430,7 +1801,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>POWER TRICK</name>
         <type>PSYCHIC</type>
@@ -1450,7 +1820,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>PSYCHIC</name>
         <type>PSYCHIC</type>
@@ -1480,7 +1849,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>SKILL SWAP</name>
         <type>PSYCHIC</type>
@@ -1498,9 +1866,8 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <!-- Bug -->
-     <attack>
+    <attack>
         <name>BUG BUZZ</name>
         <type>BUG</type>
         <PP>10</PP>
@@ -1529,7 +1896,27 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
+    <attack contact="true">
+        <name>MEGAHORN</name>
+        <type>BUG</type>
+        <PP>10</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>85</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>120</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
     <attack>
         <name>SILVER WIND</name>
         <type>BUG</type>
@@ -1589,8 +1976,28 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
+        <name>STRING SHOT</name>
+        <type>BUG</type>
+        <PP>40</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>STATUS CORE</type>
+            <hit>95</hit>
+        </hitDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>STAT MOD</type>
+                <stat>SPD</stat>
+                <degree>-1</degree>
+                <affectUser>0</affectUser>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack contact="true">
         <name>U-TURN</name>
         <type>BUG</type>
         <PP>20</PP>
@@ -1618,9 +2025,67 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <!-- Rock -->
     <attack>
+        <name>ANCIENTPOWER</name>
+        <type>ROCK</type>
+        <PP>5</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>60</power>
+            <physical>0</physical>
+            <critDelegate>
+                <base>0</base>
+            </critDelegate>
+        </damageDelegate>
+        <effectDelegates>
+            <effectDelegate>
+                <type>CHANCE</type>
+                <chance>10</chance>
+                <effectDelegates>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>ATK</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>DEF</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SPD</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SATK</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                    <effectDelegate>
+                        <type>STAT MOD</type>
+                        <stat>SDEF</stat>
+                        <degree>1</degree>
+                        <affectUser>1</affectUser>
+                    </effectDelegate>
+                </effectDelegates>
+            </effectDelegate>
+        </effectDelegates>
+    </attack>
+    <attack contact="true">
         <name>HEAD SMASH</name>
         <type>ROCK</type>
         <PP>5</PP>
@@ -1647,8 +2112,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>ROLLOUT</name>
         <type>ROCK</type>
         <PP>20</PP>
@@ -1676,7 +2140,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <!-- Ghost -->
     <attack>
         <name>CONFUSE RAY</name>
@@ -1697,7 +2160,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>HEX</name>
         <type>GHOST</type>
@@ -1719,7 +2181,6 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
     <attack>
         <name>NIGHT SHADE</name>
         <type>GHOST</type>
@@ -1740,7 +2201,6 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
     <attack>
         <name>OMINOUS WIND</name>
         <type>GHOST</type>
@@ -1800,7 +2260,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <!-- Dragon -->
     <attack>
         <name>DRACO METEOR</name>
@@ -1831,8 +2290,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>DRAGON CLAW</name>
         <type>DRAGON</type>
         <PP>15</PP>
@@ -1853,7 +2311,6 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
     <attack>
         <name>DRAGON PULSE</name>
         <type>DRAGON</type>
@@ -1875,7 +2332,6 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
     <attack>
         <name>DRAGON RAGE</name>
         <type>DRAGON</type>
@@ -1897,8 +2353,7 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>DRAGON TAIL</name>
         <type>DRAGON</type>
         <PP>10</PP>
@@ -1926,8 +2381,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>OUTRAGE</name>
         <type>DRAGON</type>
         <PP>10</PP>
@@ -1961,9 +2415,8 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <!-- Dark -->
-    <attack>
+    <attack contact="true">
         <name>BITE</name>
         <type>DARK</type>
         <PP>25</PP>
@@ -1995,8 +2448,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>CRUNCH</name>
         <type>DARK</type>
         <PP>15</PP>
@@ -2031,8 +2483,7 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>DEVASTATE</name>
         <type>DARK</type>
         <PP>5</PP>
@@ -2128,7 +2579,6 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <attack>
         <name>HONE CLAWS</name>
         <type>DARK</type>
@@ -2155,7 +2605,27 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
+    <attack contact="true">
+        <name>NIGHT SLASH</name>
+        <type>DARK</type>
+        <PP>15</PP>
+        <speedDelegate>
+            <type>CORE</type>
+            <priority>0</priority>
+        </speedDelegate>
+        <hitDelegate>
+            <type>CORE</type>
+            <hit>100</hit>
+        </hitDelegate>
+        <damageDelegate>
+            <type>CORE</type>
+            <power>70</power>
+            <physical>1</physical>
+            <critDelegate>
+                <base>1</base>
+            </critDelegate>
+        </damageDelegate>
+    </attack>
     <attack>
         <name>SNARL</name>
         <type>DARK</type>
@@ -2185,9 +2655,8 @@
             </effectDelegate>
         </effectDelegates>
     </attack>
-    
     <!-- Steel -->
-    <attack>
+    <attack contact="true">
         <name>GYRO BALL</name>
         <type>STEEL</type>
         <PP>5</PP>
@@ -2208,8 +2677,7 @@
             </critDelegate>
         </damageDelegate>
     </attack>
-    
-    <attack>
+    <attack contact="true">
         <name>IRON TAIL</name>
         <type>STEEL</type>
         <PP>15</PP>

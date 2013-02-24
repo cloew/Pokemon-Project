@@ -20,7 +20,6 @@
             <SDEF>65</SDEF>
         </baseStats>
     </pokemon>
-  
     <pokemon>
         <species>CHARMANDER</species>
         <dex>4</dex>
@@ -40,7 +39,6 @@
             <SDEF>50</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>CHARIZARD</species>
         <dex>6</dex>
@@ -61,7 +59,6 @@
             <SDEF>85</SDEF>
         </baseStats>
     </pokemon>
-  
     <pokemon>
         <species>SQUIRTLE</species>
         <dex>7</dex>
@@ -81,7 +78,6 @@
             <SDEF>64</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>RAICHU</species>
         <dex>26</dex>
@@ -103,22 +99,23 @@
     </pokemon>
     <pokemon>
         <species>NIDOKING</species>
-        <dex>33</dex>
+        <dex>34</dex>
         <types>
             <type>POISON</type>
             <type>GROUND</type>
         </types>
         <abilities>
-            <ability>STATIC</ability>
-            <dream>LIGHTNING ROD</dream>
+            <ability>POISON POINT</ability>
+            <ability>RIVALRY</ability>
+            <dream>SHEER FORCE</dream>
         </abilities>
         <baseStats>
-            <HP>81</HP>
-            <ATK>92</ATK>
-            <DEF>77</DEF>
-            <SPD>85</SPD>
-            <SATK>85</SATK>
-            <SDEF>75</SDEF>
+            <HP>60</HP>
+            <ATK>90</ATK>
+            <DEF>55</DEF>
+            <SPD>100</SPD>
+            <SATK>90</SATK>
+            <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
     <pokemon>
@@ -141,7 +138,6 @@
             <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>GYARADOS</species>
         <dex>130</dex>
@@ -162,7 +158,6 @@
             <SDEF>100</SDEF>
         </baseStats>
     </pokemon>
-    
     <!-- Gen II -->
     <pokemon>
         <species>MAREEP</species>
@@ -183,7 +178,6 @@
             <SDEF>45</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>SCIZOR</species>
         <dex>212</dex>
@@ -205,7 +199,6 @@
             <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>SNEASEL</species>
         <dex>214</dex>
@@ -227,7 +220,6 @@
             <SDEF>75</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>TYRANITAR</species>
         <dex>248</dex>
@@ -248,8 +240,27 @@
             <SDEF>100</SDEF>
         </baseStats>
     </pokemon>
-    
     <!-- Gen III -->
+    <pokemon>
+        <species>POOCHYENA</species>
+        <dex>261</dex>
+        <types>
+            <type>DARK</type>
+        </types>
+        <abilities>
+            <ability>RUN AWAY</ability>
+            <ability>QUICK FEET</ability>
+            <dream>RATTLED</dream>
+        </abilities>
+        <baseStats>
+            <HP>35</HP>
+            <ATK>55</ATK>
+            <DEF>35</DEF>
+            <SPD>35</SPD>
+            <SATK>30</SATK>
+            <SDEF>30</SDEF>
+        </baseStats>
+    </pokemon>
     <pokemon>
         <species>SHARPEDO</species>
         <dex>319</dex>
@@ -270,7 +281,6 @@
             <SDEF>40</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>FLYGON</species>
         <dex>330</dex>
@@ -290,7 +300,6 @@
             <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>SALAMENCE</species>
         <dex>373</dex>
@@ -311,7 +320,6 @@
             <SDEF>80</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>METAGROSS</species>
         <dex>376</dex>
@@ -332,7 +340,6 @@
             <SDEF>90</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>LATIOS</species>
         <dex>381</dex>
@@ -352,7 +359,6 @@
             <SDEF>110</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>RAYQUAZA</species>
         <dex>384</dex>
@@ -372,8 +378,28 @@
             <SDEF>90</SDEF>
         </baseStats>
     </pokemon>
-    
     <!-- Gen IV -->
+    <pokemon>
+        <species>YANMEGA</species>
+        <dex>469</dex>
+        <types>
+            <type>BUG</type>
+            <type>FLYING</type>
+        </types>
+        <abilities>
+            <ability>SPEED BOOST</ability>
+            <ability>TINTED LENSE</ability>
+            <dream>FRISK</dream>
+        </abilities>
+        <baseStats>
+            <HP>86</HP>
+            <ATK>76</ATK>
+            <DEF>86</DEF>
+            <SPD>95</SPD>
+            <SATK>116</SATK>
+            <SDEF>56</SDEF>
+        </baseStats>
+    </pokemon>
     <pokemon>
         <species>HEAT ROTOM</species>
         <dex>479</dex>
@@ -393,7 +419,6 @@
             <SDEF>107</SDEF>
         </baseStats>
     </pokemon>
-    
     <!-- Gen V -->
     <pokemon>
         <species>EMOLGA</species>
@@ -415,7 +440,6 @@
             <SDEF>60</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>GALVANTULA</species>
         <dex>596</dex>
@@ -437,7 +461,24 @@
             <SDEF>60</SDEF>
         </baseStats>
     </pokemon>
-    
+    <pokemon>
+        <species>TYNAMO</species>
+        <dex>602</dex>
+        <types>
+            <type>ELECTRIC</type>
+        </types>
+        <abilities>
+            <ability>LEVITATE</ability>
+        </abilities>
+        <baseStats>
+            <HP>35</HP>
+            <ATK>55</ATK>
+            <DEF>40</DEF>
+            <SPD>60</SPD>
+            <SATK>45</SATK>
+            <SDEF>40</SDEF>
+        </baseStats>
+    </pokemon>
     <pokemon>
         <species>BISHARP</species>
         <dex>625</dex>
@@ -459,7 +500,6 @@
             <SDEF>70</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>HYDREIGON</species>
         <dex>635</dex>
@@ -479,7 +519,6 @@
             <SDEF>90</SDEF>
         </baseStats>
     </pokemon>
-    
     <pokemon>
         <species>ZEKROM</species>
         <dex>644</dex>

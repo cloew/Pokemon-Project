@@ -9,7 +9,7 @@ class CureStatusDelegate(EffectDelegate):
         self.status = status
         self.affectUser = affectUser
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Applies the delegate's effect """
         pkmn = self.getEffectedPokemon(user, target)
         return self.checkCurable(pkmn)

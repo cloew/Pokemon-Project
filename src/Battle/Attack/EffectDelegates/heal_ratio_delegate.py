@@ -9,7 +9,7 @@ class HealByRatioDelegate(EffectDelegate):
         """ Build a HealDelegate by ratio """
         self.healRatio = healRatio
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Applies the Delegates effect """
         self.heal(user)
         return [user.getHeader() + HealByRatioDelegate.message]

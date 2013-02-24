@@ -10,7 +10,7 @@ class MultiTurnDelegate(EffectDelegate):
         self.effects = effects
         self.resetTurns()
     
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Lock Attack if this is the first time, Call Effects if lock is over """
         if self.turnOn == 0:
             self.applyLock(user)
@@ -37,6 +37,6 @@ class MultiTurnDelegate(EffectDelegate):
         messages = []
         over = (self.turnOn == 0)
         if over:
-            messages += self.performEffects(self.effects, user, target)
+            messages += self.performEffects(self.effects, user, target, None)
         
         return messages

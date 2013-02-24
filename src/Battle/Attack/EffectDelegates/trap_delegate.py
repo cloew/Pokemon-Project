@@ -10,7 +10,7 @@ class TrapDelegate(EffectDelegate):
         self.message = message
         self.doneMessage = doneMessage
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Apply the trap to the opponent """
         self.removePreviousTrap(target)
         target.secondaryEffects.append(Trap(user, self.message, self.doneMessage))

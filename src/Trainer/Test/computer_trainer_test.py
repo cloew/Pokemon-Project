@@ -19,17 +19,17 @@ class pickAction(unittest.TestCase):
         
     def actionIsAttack(self):
         """ Check that the attack returned by getAction is an attack the Pokemon has """
-        attackAction = self.trainer.pickAction(self.battlePkmn, [self.targetPkmn])
+        attackAction = self.trainer.pickAction(self.battlePkmn, [self.targetPkmn], None, None, None)
         assert attackAction.attack is self.attack, "Should be the attack"
         
     def userIsBattlePkmn(self):
         """ Check the user is the Battle Pkmn """
-        attackAction = self.trainer.pickAction(self.battlePkmn, [self.targetPkmn])
+        attackAction = self.trainer.pickAction(self.battlePkmn, [self.targetPkmn], None, None, None)
         assert attackAction.user is self.battlePkmn, "Should be the Battle Pkmn"
 
     def targetIsTargetPkmn(self):
         """ Check the target is the Target Pkmn """
-        attackAction = self.trainer.pickAction(self.battlePkmn, [self.targetPkmn])
+        attackAction = self.trainer.pickAction(self.battlePkmn, [self.targetPkmn], None, None, None)
         assert attackAction.target is self.targetPkmn, "Should be the Target Pkmn"
 
 # Collect all test cases in this class

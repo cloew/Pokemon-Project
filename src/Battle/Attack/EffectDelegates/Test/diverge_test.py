@@ -19,13 +19,13 @@ class applyEffect(unittest.TestCase):
     def diverge(self):
         """ Test that the diverge effects are called when the effect should diverge """
         self.delegate.diverging = True
-        messages = self.delegate.applyEffect(self.user, self.target)
+        messages = self.delegate.applyEffect(self.user, self.target, None)
         assert messages == [self.message, self.message], "Should get messages from all the Diverge Effects"
         
     def normal(self):
         """ Test that the regular effects are called when the effect should not diverge """
         self.delegate.diverging = False
-        messages = self.delegate.applyEffect(self.user, self.target)
+        messages = self.delegate.applyEffect(self.user, self.target, None)
         assert messages == [self.message], "Should get messages from all the Normal Effects"
 
 # Collect all test cases in this class on 

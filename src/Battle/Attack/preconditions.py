@@ -3,14 +3,15 @@ class PreconditionChecker:
     """ Class that checks all preconditions """
     
     
-    def __init__(self, user, target, attack):
+    def __init__(self, user, target, environment, attack):
         """ Builds an object to check preconditions """
         self.user = user
         self.target = target
+        self.environment = environment
         self.attack = attack
         
         self.conditionsToCheck = [self.checkFaint, self.checkLock, self.checkFlinch, self.checkCharging,
-                                              self.checkAbility, self.checkEncore, self.checkStatus, self.checkSecondaries]
+                                  self.checkAbility, self.checkEncore, self.checkStatus, self.checkSecondaries]
         
     def checkPreConditions(self):
         """ Checks all pre-conditions to the Battle """
@@ -57,7 +58,7 @@ class PreconditionChecker:
     def checkCharging(self):
         """ Checks if the user's attack requires charging on this turn """
         for effect in self.attack.effectDelegates:
-            if effect.isCharging(self.user):
+            if effect.isCharging(self.user, self.environment):
                 self.user.getAbility().onCharge()
                 return True, [self.user.getHeader() + effect.message]
                 

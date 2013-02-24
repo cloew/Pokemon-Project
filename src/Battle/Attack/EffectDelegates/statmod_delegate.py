@@ -17,7 +17,7 @@ class StatModDelegate(EffectDelegate):
         self.degree = degree
         self.affectUser = side
     
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Applies the Deleagates effect """
         pkmn = self.getEffectedPokemon(user, target)
         return self.applyMod(pkmn)

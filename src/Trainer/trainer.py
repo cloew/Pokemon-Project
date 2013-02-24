@@ -53,19 +53,19 @@ class Trainer:
                 return True
         return False
                 
-    def getAction(self, user, targets, playerSide, oppSide):
+    def getAction(self, user, targets, playerSide, oppSide, environment):
         """ Get Trainer's action """
         if user.actionLock:
             action = user.actionLock.useAction()
         else:
-            action = self.pickAction(user, targets, playerSide, oppSide)
+            action = self.pickAction(user, targets, playerSide, oppSide, environment)
             
         return action
             
-    def pickAction(self, user, targets, playerSide, oppSide):
+    def pickAction(self, user, targets, playerSide, oppSide, environment):
         """ Has the trainer pick its action via the screen
              Should be overwritten in subclasses """
-        return AttackAction(None, None, None)
+        return AttackAction(None, None, None, None)
         
     def getFullName(self):
         """ Return the full Name and Title of the trainer """
@@ -76,3 +76,7 @@ class Trainer:
         
     def beaten(self):
         """ Returns a string that tells that the Trainer was beaten in Battle """
+        
+    def announcePkmn(self, pkmn):
+        """ Announce a pkmn the trainer sends out """
+        return ""

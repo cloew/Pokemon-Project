@@ -13,7 +13,7 @@ class applyEffect(unittest.TestCase):
         
     def flinch(self):
         """ Test that the target is set to flinch """
-        messages = self.delegate.applyEffect(None, self.target)
+        messages = self.delegate.applyEffect(None, self.target, None)
         assert messages == [], "Should not receive any messages"
         assert self.target.flinching, "Target should be flinching"
 

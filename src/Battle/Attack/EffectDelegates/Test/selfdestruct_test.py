@@ -14,12 +14,12 @@ class applyEffect(unittest.TestCase):
         
     def selfDestructed(self):
         """ Test that the user self destructs (aka dies) """
-        self.delegate.applyEffect(self.user, None)
+        self.delegate.applyEffect(self.user, None, None)
         assert self.user.getCurrHP() == 0, "Pkmn should have fainted"
     
     def message(self):
         """ Test that the user self destructs (aka dies) """
-        messages = self.delegate.applyEffect(self.user, None)
+        messages = self.delegate.applyEffect(self.user, None, None)
         message = self.user.getHeader() + SelfDestructDelegate.message
         faintMessage = self.user.getHeader() + Faint.start
         assert len(messages) == 2, "Should get 1 message"

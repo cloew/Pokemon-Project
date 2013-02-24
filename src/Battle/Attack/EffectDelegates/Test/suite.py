@@ -26,37 +26,48 @@ import randomstatmod_test
 import recoil_test
 import reset_statmods_test
 import selfdestruct_test
+import start_weather_test
 import statmod_test
 import swap_ability_test
 import swap_stat_test
 import swapstatmods_test
 import trapdelegate_test
 import useless_test
+import weather_charge_test
 
-suites = [applylock_test.suite, applystatus_test.suite,
-              chance_test.suite, charge_test.suite, 
-              confuse_test.suite,
-              crash_test.suite,
-              critmod_test.suite,
-              curestatus_test.suite,
-              diverge_test.suite,
-              diverge_on_faint_test.suite,
-              diverge_on_first_turn_test.suite,
-              dodge_test.suite,
-              effect_delegate_test.suite,
-              encore_test.suite, flinch_test.suite,
-              heal_damageratio_test.suite,
-              heal_hpratio_test.suite, heal_ratio_test.suite,
-              leechdelegate_test.suite,
-              multi_turn_test.suite,
-              multi_turn_fixed_test.suite,
-              multi_turn_range_test.suite,
-              periodichealdelegate_test.suite,
-              randomstatmod_test.suite, recoil_test.suite,
-              reset_statmods_test.suite, selfdestruct_test.suite,
-              statmod_test.suite,
-              swap_ability_test.suite,
-              swap_stat_test.suite,
-              swapstatmods_test.suite, trapdelegate_test.suite,
-              useless_test.suite]
+suites = [applylock_test.suite,
+          applystatus_test.suite,
+          chance_test.suite,
+          charge_test.suite, 
+          confuse_test.suite,
+          crash_test.suite,
+          critmod_test.suite,
+          curestatus_test.suite,
+          diverge_test.suite,
+          diverge_on_faint_test.suite,
+          diverge_on_first_turn_test.suite,
+          dodge_test.suite,
+          effect_delegate_test.suite,
+          encore_test.suite,
+          flinch_test.suite,
+          heal_damageratio_test.suite,
+          heal_hpratio_test.suite,
+          heal_ratio_test.suite,
+          leechdelegate_test.suite,
+          multi_turn_test.suite,
+          multi_turn_fixed_test.suite,
+          multi_turn_range_test.suite,
+          periodichealdelegate_test.suite,
+          randomstatmod_test.suite,
+          recoil_test.suite,
+          reset_statmods_test.suite,
+          selfdestruct_test.suite,
+          start_weather_test.suite,
+          statmod_test.suite,
+          swap_ability_test.suite,
+          swap_stat_test.suite,
+          swapstatmods_test.suite,
+          trapdelegate_test.suite,
+          useless_test.suite,
+          weather_charge_test.suite]
 suite = unittest.TestSuite(suites)

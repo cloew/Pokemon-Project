@@ -18,7 +18,7 @@ class applyEffect(unittest.TestCase):
         self.pkmn.lastAction = None
         self.pkmn.encore = None
         
-        messages = self.delegate.applyEffect(self.pkmn, None)
+        messages = self.delegate.applyEffect(self.pkmn, None, None)
         assert len(messages) == 0, "Should get no messages"
         assert self.pkmn.encore is None, "Should not have an encore effect"
         
@@ -27,7 +27,7 @@ class applyEffect(unittest.TestCase):
         self.pkmn.lastAction = self.action
         self.pkmn.encore = None
         
-        messages = self.delegate.applyEffect(self.pkmn, None)
+        messages = self.delegate.applyEffect(self.pkmn, None, None)
         assert len(messages) == 0, "Should get no messages"
         
         encore = self.pkmn.encore

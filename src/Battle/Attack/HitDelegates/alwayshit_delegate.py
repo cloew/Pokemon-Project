@@ -8,7 +8,7 @@ class AlwaysHitDelegate(HitDelegate):
     self.message = message
     self.chanceToHit = 100
     
-  def checkHit(self, user, target):
+  def checkHit(self, user, target, environment):
     """ Returns true, always hits """
     return True
     

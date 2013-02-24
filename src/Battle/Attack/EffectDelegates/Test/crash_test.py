@@ -20,7 +20,7 @@ class effectOnMiss(unittest.TestCase):
     def recoil(self):
         """ Test that recoil damage is done """
         self.pkmn.setCurrHP(self.damage*2)
-        self.delegate.effectOnMiss(self.pkmn, self.pkmn)
+        self.delegate.effectOnMiss(self.pkmn, self.pkmn, None)
         
         damageDone = self.damage*2 - self.pkmn.getCurrHP()
         damage = self.damage/self.ratio
@@ -30,7 +30,7 @@ class effectOnMiss(unittest.TestCase):
         """ Test that the message returned is correct """
         self.pkmn.setCurrHP(self.damage)
         self.delegate.damage = self.damage
-        messages = self.delegate.effectOnMiss(self.pkmn, self.pkmn)
+        messages = self.delegate.effectOnMiss(self.pkmn, self.pkmn, None)
 
         message = CrashDelegate.message % self.pkmn.getHeader()
         assert len(messages) == 1, "Should get one message"
@@ -40,7 +40,7 @@ class effectOnMiss(unittest.TestCase):
         """ Test that the message is correct when the Pkmn faints """
         self.pkmn.setCurrHP(1)
         self.delegate.damage = self.damage
-        messages = self.delegate.effectOnMiss(self.pkmn, self.pkmn)
+        messages = self.delegate.effectOnMiss(self.pkmn, self.pkmn, None)
 
         faintMessage = self.pkmn.getHeader() + Faint.start
         assert len(messages) == 2, "Should get 2 messages"

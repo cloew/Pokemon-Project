@@ -9,7 +9,7 @@ class SwapStatDelegate(EffectDelegate):
         self.stat1 = stat1
         self.stat2 = stat2
     
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Swap abilities with the target """
         val1 = user.getStat(self.stat1)
         val2 = user.getStat(self.stat2)

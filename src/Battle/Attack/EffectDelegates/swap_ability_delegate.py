@@ -4,7 +4,7 @@ class SwapAbilityDelegate(EffectDelegate):
     """ Effect that swaps abilities with target """
     message = "%s swapped abilities with %s."
     
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Swap abilities with the target """
         userAbility = user.getAbility()
         targetAbility = target.getAbility()

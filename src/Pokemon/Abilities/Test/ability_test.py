@@ -1,6 +1,7 @@
 import unittest
 
 from Pokemon.Abilities.ability import Ability
+from Test.test_helper import BuildPokemonBattleWrapper
 
 class stopAttack(unittest.TestCase):
     """ Test that stopAttack returns the correct default values """
@@ -51,6 +52,27 @@ class canUseEffects(unittest.TestCase):
         
 testcasesCanUseEffects = ["properReturnValues"]
 suiteCanUseEffects = unittest.TestSuite(map(canUseEffects, testcasesCanUseEffects))
+
+##########################################################
+
+class canBeConfused(unittest.TestCase):
+    """ Test that canBeConfused returns the correct default values """
+    
+    def setUp(self):
+        """ Builds the ability """
+        self.pkmn = BuildPokemonBattleWrapper()
+        self.ability = Ability()
+        
+    def properReturnValues(self):
+        """ Check that canBeConfused returns the proper default values """
+        assert self.ability.canBeConfused(None, []), "Should be able to be Confused"
+        
+    def properReturnValues_NoMessagesObject(self):
+        """ Check that canBeConfused returns the proper default values """
+        assert self.ability.canBeConfused(None, None), "Should be able to be Confused"
+        
+testcasesCanBeConfused = ["properReturnValues", "properReturnValues_NoMessagesObject"]
+suiteCanBeConfused = unittest.TestSuite(map(canBeConfused, testcasesCanBeConfused))
 
 ##########################################################
 
@@ -108,6 +130,25 @@ class onAccuracy(unittest.TestCase):
         
 testcasesOnAccuracy = ["properReturnValues"]
 suiteOnAccuracy = unittest.TestSuite(map(onAccuracy, testcasesOnAccuracy))
+
+##########################################################
+
+class onContact(unittest.TestCase):
+    """ Test that onContact returns the values """
+    
+    def setUp(self):
+        """ Builds the delegate and side for use in the tests """
+        self.pkmn = BuildPokemonBattleWrapper()
+        self.attacker = BuildPokemonBattleWrapper()
+        self.ability = Ability()
+        
+    def properReturnValues(self):
+        """ Check that onContact returns the proper default values """
+        messages = self.ability.onContact(self.pkmn, self.attacker)
+        assert messages == [], "Should have no messages."
+        
+testcasesOnContact = ["properReturnValues"]
+suiteOnContact = unittest.TestSuite(map(onContact, testcasesOnContact))
 
 ##########################################################
 
@@ -169,7 +210,7 @@ suiteOnStatus = unittest.TestSuite(map(onStatus, testcasesOnStatus))
 
  
 suites = [suiteStopAttack, suiteAfterTurn, suiteCanUseEffects, suiteGiveCrit, suiteTakeCrit,\
-             suiteOnAccuracy, suiteOnStab, suiteOnStatMod, suiteOnStatus]
+             suiteOnAccuracy, suiteOnContact, suiteOnStab, suiteOnStatMod, suiteOnStatus, suiteCanBeConfused]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 import unittest
 from Test.test_helper import BuildPokemonBattleWrapper, BuildActionLock
 
+from Battle.battle_environment import BattleEnvironment
 from Battle.Attack.attackfactory import AttackFactory
 from Battle.Attack.preconditions import PreconditionChecker
 
@@ -11,10 +12,11 @@ class checkFaint(unittest.TestCase):
         """ Build the Pkmn, Lock, and Precondition Checker for the test """
         self.user = BuildPokemonBattleWrapper()
         self.target = BuildPokemonBattleWrapper()
+        self.environment = BattleEnvironment()
         
         self.actionLock = BuildActionLock(user = self.user)
         self.attack = AttackFactory.getAttackAsNew("TACKLE")
-        self.preconditionChecker = PreconditionChecker(self.user, self.target, self.attack)
+        self.preconditionChecker = PreconditionChecker(self.user, self.target, self.environment, self.attack)
         
     def fainted(self):
         """ Test that check faint returns correctly when the user has fainted  """
@@ -45,10 +47,11 @@ class checkLock(unittest.TestCase):
         """ Build the Pkmn, Lock, and Precondition Checker for the test """
         self.user = BuildPokemonBattleWrapper()
         self.target = BuildPokemonBattleWrapper()
+        self.environment = BattleEnvironment()
         
         self.actionLock = BuildActionLock(user = self.user)
         self.attack = AttackFactory.getAttackAsNew("TACKLE")
-        self.preconditionChecker = PreconditionChecker(self.user, self.target, self.attack)
+        self.preconditionChecker = PreconditionChecker(self.user, self.target, self.environment, self.attack)
         
     def hasLock(self):
         """ Test that check lock returns correctly when the user has a lock  """
@@ -94,9 +97,10 @@ class checkFlinch(unittest.TestCase):
         """ Build the Pkmn and Precondition Checker for the test """
         self.user = BuildPokemonBattleWrapper()
         self.target = BuildPokemonBattleWrapper()
+        self.environment = BattleEnvironment()
         
         attack = AttackFactory.getAttackAsNew("TACKLE")
-        self.preconditionChecker = PreconditionChecker(self.user, self.target, attack)
+        self.preconditionChecker = PreconditionChecker(self.user, self.target, self.environment, attack)
         
     def flinching(self):
         """ Test that check flinch returns correctly when the user has is flinching """
@@ -130,12 +134,13 @@ class checkCharging(unittest.TestCase):
         """ Build the Pkmn and Precondition Checker for the test """
         self.user = BuildPokemonBattleWrapper()
         self.target = BuildPokemonBattleWrapper()
+        self.environment = BattleEnvironment()
         
         self.attack = AttackFactory.getAttackAsNew("DIG")
-        self.preconditionChecker = PreconditionChecker(self.user, self.target, self.attack)
+        self.preconditionChecker = PreconditionChecker(self.user, self.target, self.environment, self.attack)
         
         attack2 = AttackFactory.getAttackAsNew("TACKLE")
-        self.preconditionChecker2 = PreconditionChecker(self.user, self.target, attack2)
+        self.preconditionChecker2 = PreconditionChecker(self.user, self.target, self.environment, attack2)
         
     def charging(self):
         """ Test that check charging returns correctly when the user is charging  """
@@ -167,12 +172,13 @@ class checkEncore(unittest.TestCase):
         """ Build the Pkmn and Precondition Checker for the test """
         self.user = BuildPokemonBattleWrapper()
         self.target = BuildPokemonBattleWrapper()
+        self.environment = BattleEnvironment()
         
         self.attack = AttackFactory.getAttackAsNew("DIG")
-        self.preconditionChecker = PreconditionChecker(self.user, self.target, self.attack)
+        self.preconditionChecker = PreconditionChecker(self.user, self.target, self.environment, self.attack)
         
         attack2 = AttackFactory.getAttackAsNew("TACKLE")
-        self.preconditionChecker2 = PreconditionChecker(self.user, self.target, attack2)
+        self.preconditionChecker2 = PreconditionChecker(self.user, self.target, self.environment, attack2)
         
     def encore(self):
         """ Test that check encore returns correctly when the user has an encore  """

@@ -22,14 +22,14 @@ class applyEffect(unittest.TestCase):
         
     def swapped(self):
         """ Test that the abilities are swapped """
-        self.delegate.applyEffect(self.user, self.target)
+        self.delegate.applyEffect(self.user, self.target, None)
         
         assert self.user.getAbility() is self.targetAbility, "User should have target's ability"
         assert self.target.getAbility() is self.userAbility, "Target should have user's ability"
         
     def message(self):
         """ Test message is returned correctly """
-        messages = self.delegate.applyEffect(self.user, self.target)
+        messages = self.delegate.applyEffect(self.user, self.target, None)
         
         assert messages == [SwapAbilityDelegate.message % (self.user.getHeader(), self.target.getHeader())], "Should have the Effect's message"
 

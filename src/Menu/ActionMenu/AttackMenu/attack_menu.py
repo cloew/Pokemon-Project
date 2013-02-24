@@ -6,10 +6,11 @@ from Battle.Actions.attack_action import AttackAction
 class AttackMenu(BoxMenu):
     """ Represents the Battle's Attack Menu """
 
-    def __init__(self, userPkmn, targets):
+    def __init__(self, userPkmn, targets, environment):
         """ Create the Action Menu for the given Pokemon """
         self.pkmn = userPkmn
         self.targets = targets
+        self.environment = environment
         self.action = None
         BoxMenu.__init__(self)
     
@@ -21,4 +22,4 @@ class AttackMenu(BoxMenu):
 
     def setAction(self, entry):
         """ Set the Attack Action """
-        self.action = AttackAction(entry.getAttack(), self.pkmn, self.targets[0])
+        self.action = AttackAction(entry.getAttack(), self.pkmn, self.targets[0], self.environment)

@@ -18,7 +18,7 @@ class applyEffect(unittest.TestCase):
         for stat in self.user.statMods:
             self.user.statMods[stat] = 3
             
-        self.delegate.applyEffect(self.user, self.target)
+        self.delegate.applyEffect(self.user, self.target, None)
         
         for stat in self.user.statMods:
             assert self.user.statMods[stat] == 0, "Stat Mod should be reset to zero"
@@ -28,14 +28,14 @@ class applyEffect(unittest.TestCase):
         for stat in self.target.statMods:
             self.target.statMods[stat] = 3
             
-        self.delegate.applyEffect(self.user, self.target)
+        self.delegate.applyEffect(self.user, self.target, None)
         
         for stat in self.target.statMods:
             assert self.target.statMods[stat] == 0, "Stat Mod should be reset to zero"
         
     def message(self):
         """ Test that the proper message is returned """
-        messages = self.delegate.applyEffect(self.user, self.target)
+        messages = self.delegate.applyEffect(self.user, self.target, None)
         
         assert messages == [ResetStatModsDelegate.message], "Should get the delegate's message"
 

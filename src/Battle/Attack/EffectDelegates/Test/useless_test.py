@@ -12,7 +12,7 @@ class applyEffect(unittest.TestCase):
         
     def message(self):
         """ Test that the message is correct """
-        messages = self.delegate.applyEffect(None, None)
+        messages = self.delegate.applyEffect(None, None, None)
         assert messages == [UselessDelegate.message], "Should have a message saying the attack was useless"
 
 # Collect all test cases in this class

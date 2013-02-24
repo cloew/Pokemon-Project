@@ -12,7 +12,7 @@ class PkmnBattleWrapper:
         #self.trainer = trainer # May add back later if I decide to have mulitple trainers on the same side in a battle
         
         self.statMods = {"ATK":0, "DEF":0, "SPD":0, "SATK":0, "SDEF":0, 
-                                "ACC":0, "EVAS":0, "CRT":0}
+                         "ACC":0, "EVAS":0, "CRT":0}
         self.reset()
         
     def sendOutPkmn(self, pkmn, reset = True):
@@ -90,6 +90,11 @@ class PkmnBattleWrapper:
             messages = self.faint()
             
         return messages
+        
+    def takeRatioOfHealthAsDamage(self, ratio):
+        """ Has the Pokemon take some ratio of their health as damage """
+        healthRatio = self.getRatioOfHealth(ratio, forDamage=True)
+        return self.takeDamage(healthRatio)
         
     def faint(self):
         """ Makes the Pkmn faint """

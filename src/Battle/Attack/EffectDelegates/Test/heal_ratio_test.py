@@ -13,7 +13,7 @@ class applyEffect(unittest.TestCase):
         
     def message(self):
         """ Test that the message is returned properly """
-        messages = self.delegate.applyEffect(self.pkmn, None) 
+        messages = self.delegate.applyEffect(self.pkmn, None, None) 
         
         message = self.pkmn.getHeader() + HealByRatioDelegate.message
         assert len(messages) == 1, "Should receive one message"

@@ -9,7 +9,7 @@ class CritModDelegate(StatModDelegate):
               Stat is always CRT | Always affects user """
         StatModDelegate.__init__(self, "CRT", degree, 1)
     
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Applies the delegates effect """
         self.applyMod(user)
         return [CritModDelegate.message]

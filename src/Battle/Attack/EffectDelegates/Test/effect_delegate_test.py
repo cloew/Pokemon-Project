@@ -45,18 +45,18 @@ class tryToApplyEffect(unittest.TestCase):
     def userFainted(self):
         """ Test that if the user is fainted the effect does nothing """
         self.user.faint()
-        messages = self.delegate.tryToApplyEffect(self.user, self.target)
+        messages = self.delegate.tryToApplyEffect(self.user, self.target, None)
         assert messages == [], "Effect should do nothing if the user has fainted"
         
     def targetFainted(self):
         """ Test that if the target is fainted the effect does nothing """
         self.target.faint()
-        messages = self.delegate.tryToApplyEffect(self.user, self.target)
+        messages = self.delegate.tryToApplyEffect(self.user, self.target, None)
         assert messages == [], "Effect should do nothing if the target has fainted"
         
     def applyEffectCalled(self):
         """ Test that applyEffect is called otherwise """
-        messages = self.delegate.tryToApplyEffect(self.user, self.target)
+        messages = self.delegate.tryToApplyEffect(self.user, self.target, None)
         assert messages == [EffectDelegate.message], "Effect should call applyEffect"
 
 # Collect all test cases in this class

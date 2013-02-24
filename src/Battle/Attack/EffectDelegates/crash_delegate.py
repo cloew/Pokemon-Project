@@ -9,11 +9,11 @@ class CrashDelegate(RecoilDelegate):
         self.parent = parent
         RecoilDelegate.__init__(self, recoilRatio)
         
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ No effect normally"""
         return []
         
-    def effectOnMiss(self, user, target):
+    def effectOnMiss(self, user, target, environment):
         """ Applies the Recoil on Miss """
         self.damage, messages = self.parent.damageDelegate.damage(user, target)
-        return RecoilDelegate.applyEffect(self, user, target)
+        return RecoilDelegate.applyEffect(self, user, target, environment)

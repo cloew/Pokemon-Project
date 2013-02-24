@@ -15,7 +15,7 @@ class HitDelegate(object):
         self.parent = parent
         self.chanceToHit = toHit
     
-    def hit(self, user, target):
+    def hit(self, user, target, environment):
         """ Returns whether or not an attack hit its target """
         return not target.fainted() and not self.dodging(target)\
                    and self.hitGhost(target) and self.core(user, target),\

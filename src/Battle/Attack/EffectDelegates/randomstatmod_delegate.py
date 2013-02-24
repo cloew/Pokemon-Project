@@ -12,11 +12,10 @@ class RandomStatModDelegate(StatModDelegate):
         self.degree = degree
         self.affectUser = side
     
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Applies the Deleagates effect """
         self.stat = self.pickRandStat()
-        
-        return super(RandomStatModDelegate, self).applyEffect(user, target)
+        return super(RandomStatModDelegate, self).applyEffect(user, target, environment)
         
     def pickRandStat(self):
         """ Returns a random stat """

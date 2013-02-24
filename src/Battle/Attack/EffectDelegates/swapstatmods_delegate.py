@@ -4,7 +4,7 @@ class SwapStatModsDelegate(EffectDelegate):
     """ Effect that swaps stat boosts between sides """
     message = " switched stat changes with the target!"
     
-    def applyEffect(self, user, target):
+    def applyEffect(self, user, target, environment):
         """ Applies the delegate's effect when the attack hits """
         temp = target.statMods
         target.statMods = user.statMods
