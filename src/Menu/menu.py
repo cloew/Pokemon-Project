@@ -28,7 +28,7 @@ class Menu:
         if self.entries != []:
             self.entries[self.current].call()
         
-    def quit(self, entry):
+    def quit(self):
         """ Quits the game """
         self.running = False
         
