@@ -61,5 +61,5 @@ class Confusion(SecondaryEffect):
         
     def doDamage(self, owner, messages):
         """ Do Damage to the confused owner """
-        self.damageDelegate.doDamage(owner, owner)
+        self.damageDelegate.doDamage(owner, owner, None)
         messages.append(self.hurtItself)
