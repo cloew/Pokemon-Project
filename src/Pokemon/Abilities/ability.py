@@ -1,4 +1,5 @@
 from Battle.AfterTurnEffect.after_turn_effect import AfterTurnEffect
+from Battle.Attack.DamageDelegates.effectiveness import Effectiveness
 from Battle.FaintHandlers.faint_handler_factory import FaintHandlerFactory
 
 class Ability(AfterTurnEffect):
@@ -7,6 +8,7 @@ class Ability(AfterTurnEffect):
     
     def __init__(self):
         self.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
+        self.effectivenessTable = Effectiveness()
         
     def stopAttack(self, pkmn):
         """ Determines if the Pkmn should fail to Attack because of an Ability """
@@ -16,8 +18,9 @@ class Ability(AfterTurnEffect):
         """ Perform after a turn  """
         return []
         
-    def effectiveness(self, pkmn):
+    def effectiveness(self, attackType, target):
         """ Return effectiveness mods """
+        return self.effectivenessTable.getEffectiveness(attackType, target.getTypes())
         
     def canBeConfused(self, pkmn, messages):
         """ Return if the pokemon can be confused """
