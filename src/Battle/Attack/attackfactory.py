@@ -138,7 +138,7 @@ class AttackFactory:
             
         effects = tree.find(Tags.effectDelegatesTag)
         
-        if effects:
+        if effects is not None:
             for effect in effects.getchildren():
                 delegate = EffectDelegateFactory.loadFromXML(effect, attack)
                 attack.addDelegate(Tags.effectDelegateTag, delegate)
@@ -169,7 +169,7 @@ class AttackFactory:
     def getDelegate(tree, delegateCategory, attack):
         """ Returns the delegate of the given category """
         delegate = tree.find(delegateCategory)
-        if delegate:
+        if delegate is not None:
             return AttackFactory.factories[delegateCategory].loadFromXML(delegate, attack)
         else:
             return AttackFactory.factories[delegateCategory].buildNull()
