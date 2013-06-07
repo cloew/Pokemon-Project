@@ -33,6 +33,14 @@ class Ability(AfterTurnEffect):
         """ Perform on a critical hit """
         return critMod, []
         
+    # Effectiveness of attacks
+    def effectivenessOnAttack(self, attackType, target):
+        """ Returns the effectiveness of the attack when the Pokemon with this ability is attacking """
+        return 1
+    
+    def effectivenessOnDefense(self, attackType, target):
+        """ Returns the effectiveness of the attack when the Pokemon with this ability is defending """
+        return 1
         
     def onAccuracy(self, accuracy):
         """ Perform on accuracy """
