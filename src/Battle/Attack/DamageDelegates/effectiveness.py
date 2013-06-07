@@ -35,31 +35,34 @@ class Effectiveness:
     effectiveResponse = None
     superEffectiveResponse = "It's super-effective."
                             
-    def getMod(self, attackType, pokeType):
+    @staticmethod
+    def getMod(attackType, pokeType):
         """ Returns the modifier bonus of the Effectiveness of an attack against a Pokemon's Type """
-        modForTypeDict = self.modByType[attackType]
+        modForTypeDict = Effectiveness.modByType[attackType]
         if pokeType in modForTypeDict:
             return modForTypeDict[pokeType]
         else:
             return 1
-            
-    def getEffectiveness(self, attackType, pokeTypes):
+    
+    @staticmethod    
+    def getEffectiveness(attackType, pokeTypes):
         """ Returns the effectiveness of an attack against a pokemon """
         mod = 1
         if not attackType == "":
             for type in pokeTypes:
-                mod = mod*self.getMod(attackType, type)
+                mod = mod*Effectiveness.getMod(attackType, type)
             
-        return mod, self.respond(mod)
+        return mod, Effectiveness.respond(mod)
     
-    def respond(self, mod):
+    @staticmethod
+    def respond(mod):
         """ Chooses the response message based on modifiers """
         if mod is 0:
-            return self.immuneResponse
+            return Effectiveness.immuneResponse
         elif mod is 1:
-            return self.effectiveResponse
+            return Effectiveness.effectiveResponse
         elif mod < 1:
-            return self.ineffectiveResponse
+            return Effectiveness.ineffectiveResponse
         elif mod > 1:
-            return self.superEffectiveResponse
+            return Effectiveness.superEffectiveResponse
         

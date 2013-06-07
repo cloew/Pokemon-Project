@@ -92,7 +92,7 @@ class DamageDelegate(object):
     def getEffectiveness(self, messages, target):
         """ Returns the modifier returned based on effectiveness
         and adds the message to the list of messages """
-        mod, message = target.getAbility().effectiveness(self.parent.type, target)
+        mod, message = Effectiveness.getEffectiveness(self.parent.type, target.getTypes())
     
         if message:
             messages.append(message)
