@@ -12,5 +12,5 @@ class ResistTypeAbility(Ability):
     def effectivenessOnDefense(self, attackType, target):
         """ Returns the effectiveness of the attack when the Pokemon with this ability is defending """
         if attackType in self.types:
-            return self.types[attackType], "{header} is levitating.".format(header=target.getHeader())
+            return self.types[attackType]['effectiveness'], self.types[attackType]['message'].format(header=target.getHeader())
         return 1, None 

@@ -82,7 +82,7 @@ class AbilityFactory:
             return ConfusionImmunityAbility(name)
           
         elif abilityType == "DEFENSE EFFECTIVENESS":
-            return ResistTypeAbility(name, {"GROUND":0})
+            return ResistTypeAbility(name, {"GROUND":{'effectiveness':0, 'message':"{header} is levitating."}})
           
         elif abilityType == "EFFECT AFTER TURN":
             effectsTree = tree.find(Tags.effectDelegatesTag)
