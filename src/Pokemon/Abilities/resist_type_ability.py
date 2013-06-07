@@ -9,7 +9,7 @@ class ResistTypeAbility(Ability):
         self.name = name
         self.types = types
                         
-    def effectivenessOnDefense(self, attackType, target):
+    def effectivenessOnDefense(self, attackType, pkmnTypes):
         """ Returns the effectiveness of the attack when the Pokemon with this ability is defending """
         if attackType in self.types:
             return self.types[attackType], None
