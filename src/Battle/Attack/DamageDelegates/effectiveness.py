@@ -45,11 +45,11 @@ class Effectiveness:
             return 1
     
     @staticmethod    
-    def getEffectiveness(attackType, pokeTypes):
+    def getEffectiveness(attackType, pokemon):
         """ Returns the effectiveness of an attack against a pokemon """
         mod = 1
         if not attackType == "":
-            for type in pokeTypes:
+            for type in pokemon.getTypes():
                 mod = mod*Effectiveness.getMod(attackType, type)
             
         return mod, Effectiveness.respond(mod)

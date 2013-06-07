@@ -93,14 +93,20 @@ class DamageDelegate(object):
         """ Returns the modifier returned based on effectiveness
         and adds the message to the list of messages """
         attackType = self.parent.type
-        abilityAttackMod = target.getAbility().effectivenessOnAttack(attackType, target)
-        abilityDefenseMod = target.getAbility().effectivenessOnDefense(attackType, target)
-        mod, message = Effectiveness.getEffectiveness(attackType, target.getTypes())
-    
-        if message:
-            messages.append(message)
+        mod = 1
+        functions = [target.getAbility().effectivenessOnAttack, target.getAbility().effectivenessOnDefense, Effectiveness.getEffectiveness]
+        
+        for function in functions:
+            newMod, message = function(attackType, target)
+            if message:
+                messages.append(message)
+                
+            mod *= newMod
             
-        return abilityAttackMod*abilityDefenseMod*mod
+            if mod == 0:
+                break
+                
+        return mod
         
     def getStab(self, user):
         """ Returns the modifier for STAB """

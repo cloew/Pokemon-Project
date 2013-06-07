@@ -36,11 +36,11 @@ class Ability(AfterTurnEffect):
     # Effectiveness of attacks
     def effectivenessOnAttack(self, attackType, target):
         """ Returns the effectiveness of the attack when the Pokemon with this ability is attacking """
-        return 1
+        return 1, None
     
     def effectivenessOnDefense(self, attackType, target):
         """ Returns the effectiveness of the attack when the Pokemon with this ability is defending """
-        return 1
+        return 1, None
         
     def onAccuracy(self, accuracy):
         """ Perform on accuracy """
