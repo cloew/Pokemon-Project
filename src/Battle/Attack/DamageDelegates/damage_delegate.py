@@ -92,12 +92,15 @@ class DamageDelegate(object):
     def getEffectiveness(self, messages, target):
         """ Returns the modifier returned based on effectiveness
         and adds the message to the list of messages """
-        mod, message = Effectiveness.getEffectiveness(self.parent.type, target.getTypes())
+        attackType = self.parent.type
+        abilityAttackMod = target.getAbility().effectivenessOnAttack(attackType, target)
+        abilityDefenseMod = target.getAbility().effectivenessOnDefense(attackType, target)
+        mod, message = Effectiveness.getEffectiveness(attackType, target.getTypes())
     
         if message:
             messages.append(message)
             
-        return mod
+        return abilityAttackMod*abilityDefenseMod*mod
         
     def getStab(self, user):
         """ Returns the modifier for STAB """
