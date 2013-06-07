@@ -9,7 +9,7 @@
                 <species>SNEASEL</species>
                 <level>20</level>
                 <currHP>52</currHP>
-                <ability>OWN TEMPO</ability>
+                <ability>LEVITATE</ability>
                 <attacks>
                     <attack>
                         <name>OUTRAGE</name>
@@ -106,7 +106,7 @@
                 <ability>HYPER CUTTER</ability>
                 <attacks>
                     <attack>
-                        <name>CONFUSE RAY</name>
+                        <name>EARTHQUAKE</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>

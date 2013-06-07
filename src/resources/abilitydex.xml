@@ -48,6 +48,10 @@
         <stat>ACC</stat>
     </ability>
     <ability>
+        <name>LEVITATE</name>
+        <type>DEFENSE EFFECTIVENESS</type>
+    </ability>
+    <ability>
         <name>POISON POINT</name>
         <type>EFFECT ON CONTACT</type>
         <effectDelegates>

@@ -8,6 +8,7 @@ from booststab_ability import BoostStabAbility
 from cantlowerstat_ability import CantLowerStatAbility
 from confusion_immunity_ability import ConfusionImmunityAbility
 from effectafterturn_ability import EffectAfterTurnAbility
+from effectiveness_ability import EffectivenessAbility
 from effecton_contact_ability import EffectOnContactAbility
 from effectoncrit_ability import EffectOnCritAbility
 from effecton_statmod_ability import EffectOnStatModAbility
@@ -79,7 +80,10 @@ class AbilityFactory:
             
         elif abilityType == "CONFUSION IMMUNITY":
             return ConfusionImmunityAbility(name)
-            
+          
+        elif abilityType == "DEFENSE EFFECTIVENESS":
+            return EffectivenessAbility()
+          
         elif abilityType == "EFFECT AFTER TURN":
             effectsTree = tree.find(Tags.effectDelegatesTag)
             effects = []
