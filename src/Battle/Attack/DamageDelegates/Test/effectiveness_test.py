@@ -1,4 +1,5 @@
 from Battle.Attack.DamageDelegates.effectiveness import Effectiveness
+from Test.test_helper import BuildPokemonBattleWrapper
 
 import unittest
 
@@ -89,13 +90,19 @@ suiteRespond = unittest.TestSuite(map(respond, testcasesRespond))
 class getEffectiveness(unittest.TestCase):
     """ Test the getMod function """
     def setUp(self):
-        self.typeImmune = ["GHOST", "NORMAL"]
-        self.typeIneffective = ["FIRE"]
-        self.typeIneffective2 = ["FIRE", "ROCK"]
-        self.typeEffective = ["NORMAL"]
-        self.typeSuperEffective = ["ICE"]
-        self.typeSuperEffective2 = ["ICE", "GRASS"]
+        self.typeImmune = self.getPkmnWithTypes(["GHOST", "NORMAL"])
+        self.typeIneffective = self.getPkmnWithTypes(["FIRE"])
+        self.typeIneffective2 = self.getPkmnWithTypes(["FIRE", "ROCK"])
+        self.typeEffective = self.getPkmnWithTypes(["NORMAL"])
+        self.typeSuperEffective = self.getPkmnWithTypes(["ICE"])
+        self.typeSuperEffective2 = self.getPkmnWithTypes(["ICE", "GRASS"])
         self.effectivenessTable = Effectiveness()
+        
+    def getPkmnWithTypes(self, types):
+        """ Returns a Pokemon Battle Wrapper with the given types """
+        pkmn = BuildPokemonBattleWrapper()
+        pkmn.setTypes(types)
+        return pkmn
     
     def immune(self):
         """ Test that the correct values are returned when the 

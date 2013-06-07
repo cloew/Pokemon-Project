@@ -176,5 +176,4 @@ class PkmnBattleWrapper:
         
     def setTypes(self, types):
         """ Sets the Wrapper's Pokemon's Types """
-        self.original.setTypes(types)
         self.pkmn.setTypes(types)

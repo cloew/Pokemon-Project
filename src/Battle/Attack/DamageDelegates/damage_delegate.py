@@ -97,7 +97,7 @@ class DamageDelegate(object):
         functions = [target.getAbility().effectivenessOnAttack, target.getAbility().effectivenessOnDefense, Effectiveness.getEffectiveness]
         
         for function in functions:
-            newMod, message = function(attackType, target.getTypes())
+            newMod, message = function(attackType, target)
             if message is not None:
                 messages.append(message)
                 

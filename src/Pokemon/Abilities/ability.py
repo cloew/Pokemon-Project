@@ -34,11 +34,11 @@ class Ability(AfterTurnEffect):
         return critMod, []
         
     # Effectiveness of attacks
-    def effectivenessOnAttack(self, attackType, pkmnTypes):
+    def effectivenessOnAttack(self, attackType, target):
         """ Returns the effectiveness of the attack when the Pokemon with this ability is attacking """
         return 1, None
     
-    def effectivenessOnDefense(self, attackType, pkmnTypes):
+    def effectivenessOnDefense(self, attackType, target):
         """ Returns the effectiveness of the attack when the Pokemon with this ability is defending """
         return 1, None
         
