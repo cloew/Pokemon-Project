@@ -6,8 +6,7 @@ class CantLowerStatAbility(Ability):
     
     def __init__(self, name, stat):
         """ Builds the Ability """
-        super(CantLowerStatAbility, self).__init__()
-        self.name = name
+        super(CantLowerStatAbility, self).__init__(name)
         self.stat = stat
         
     def onStatMod(self, pkmn, stat, degree, selfInflicted):

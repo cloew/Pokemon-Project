@@ -8,7 +8,7 @@ class stopAttack(unittest.TestCase):
     
     def setUp(self):
         """ Builds the ability """
-        self.ability = Ability()
+        self.ability = Ability(None)
         
     def properReturnValues(self):
         """ Check that stopAttack returns the proper default values """
@@ -26,7 +26,7 @@ class afterTurn(unittest.TestCase):
     
     def setUp(self):
         """ Builds the ability """
-        self.ability = Ability()
+        self.ability = Ability(None)
         
     def properReturnValues(self):
         """ Check that afterTurn returns the proper default values """
@@ -43,7 +43,7 @@ class canUseEffects(unittest.TestCase):
     
     def setUp(self):
         """ Builds the ability """
-        self.ability = Ability()
+        self.ability = Ability(None)
         
     def properReturnValues(self):
         """ Check that afterTurn returns the proper default values """
@@ -61,7 +61,7 @@ class canBeConfused(unittest.TestCase):
     def setUp(self):
         """ Builds the ability """
         self.pkmn = BuildPokemonBattleWrapper()
-        self.ability = Ability()
+        self.ability = Ability(None)
         
     def properReturnValues(self):
         """ Check that canBeConfused returns the proper default values """
@@ -81,7 +81,7 @@ class giveCrit(unittest.TestCase):
     
     def setUp(self):
         """ Builds the delegate and side for use in the tests """
-        self.ability = Ability()
+        self.ability = Ability(None)
         self.mod = 2
         
     def properReturnValues(self):
@@ -100,7 +100,7 @@ class takeCrit(unittest.TestCase):
     
     def setUp(self):
         """ Builds the delegate and side for use in the tests """
-        self.ability = Ability()
+        self.ability = Ability(None)
         self.mod = 2
         
     def properReturnValues(self):
@@ -120,7 +120,7 @@ class onAccuracy(unittest.TestCase):
     
     def setUp(self):
         """ Builds the ability """
-        self.ability = Ability()
+        self.ability = Ability(None)
         self.accuracy = 90
         
     def properReturnValues(self):
@@ -140,7 +140,7 @@ class onContact(unittest.TestCase):
         """ Builds the delegate and side for use in the tests """
         self.pkmn = BuildPokemonBattleWrapper()
         self.attacker = BuildPokemonBattleWrapper()
-        self.ability = Ability()
+        self.ability = Ability(None)
         
     def properReturnValues(self):
         """ Check that onContact returns the proper default values """
@@ -157,7 +157,7 @@ class onStab(unittest.TestCase):
     
     def setUp(self):
         """ Builds the delegate and side for use in the tests """
-        self.ability = Ability()
+        self.ability = Ability(None)
         
     def properReturnValues(self):
         """ Check that onStatMod returns the proper default values """
@@ -175,7 +175,7 @@ class onStatMod(unittest.TestCase):
     
     def setUp(self):
         """ Builds the delegate and side for use in the tests """
-        self.ability = Ability()
+        self.ability = Ability(None)
         self.degree = 1
         
     def properReturnValues(self):
@@ -195,7 +195,7 @@ class onStatus(unittest.TestCase):
     
     def setUp(self):
         """ Builds the delegate and side for use in the tests """
-        self.ability = Ability()
+        self.ability = Ability(None)
         
     def properReturnValues(self):
         """ Check that onStatus returns the proper default values """

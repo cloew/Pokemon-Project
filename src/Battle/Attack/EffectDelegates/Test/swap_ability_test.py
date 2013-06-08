@@ -12,8 +12,8 @@ class applyEffect(unittest.TestCase):
         self.user = BuildPokemonBattleWrapper()
         self.target = BuildPokemonBattleWrapper()
         
-        self.userAbility = Ability()
-        self.targetAbility = Ability()
+        self.userAbility = Ability(None)
+        self.targetAbility = Ability(None)
         
         self.user.setAbility(self.userAbility)
         self.target.setAbility(self.targetAbility)

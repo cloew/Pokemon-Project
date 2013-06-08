@@ -5,7 +5,8 @@ class Ability(AfterTurnEffect):
     """ Represents a Pokemon's ability """
     stabMod = 1.5
     
-    def __init__(self):
+    def __init__(self, name):
+        self.name = name
         self.faintHandler = FaintHandlerFactory.buildFromType(FaintHandlerFactory.USER)
         
     def stopAttack(self, pkmn):

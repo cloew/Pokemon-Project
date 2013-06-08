@@ -5,9 +5,9 @@ class SkipTurnAbility(Ability):
     """ An ability that cause the Pkmn to only attack every other turn """
     message = " is loafing around."
     
-    def __init__(self):
+    def __init__(self, name):
         """  """
-        super(SkipTurnAbility, self).__init__()
+        super(SkipTurnAbility, self).__init__(name)
         self.stop = 1
         
     def stopAttack(self, pkmn):

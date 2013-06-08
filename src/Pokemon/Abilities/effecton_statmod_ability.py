@@ -5,8 +5,7 @@ class EffectOnStatModAbility(Ability):
     
     def __init__(self, name, effects, message):
         """ Builds the Ability """
-        super(EffectOnStatModAbility, self).__init__()
-        self.name = name
+        super(EffectOnStatModAbility, self).__init__(name)
         self.effects = effects
         self.message = message
         

@@ -22,7 +22,7 @@ class PokemonFactory:
         pkmn.level = 5
         pkmn.id = ""
         
-        pkmn.ability = Ability()
+        pkmn.ability = Ability(None)
         pkmn.battleDelegate = PokemonBattleDelegateFactory.buildStarter(pkmn)
     
         return pkmn

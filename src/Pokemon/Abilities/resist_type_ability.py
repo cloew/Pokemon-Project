@@ -5,8 +5,7 @@ class ResistTypeAbility(Ability):
     
     def __init__(self, name, types):
         """  """
-        Ability.__init__(self)
-        self.name = name
+        Ability.__init__(self, name)
         self.types = types
                         
     def effectivenessOnDefense(self, attackType, target):

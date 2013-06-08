@@ -5,8 +5,7 @@ class ConfusionImmunityAbility(Ability):
     
     def __init__(self, name):
         """ Builds the Confuse """
-        self.name = name
-        Ability.__init__(self)
+        Ability.__init__(self, name)
     
     def canBeConfused(self, pkmn, messages):
         """ Return if the pokemon can be confused """

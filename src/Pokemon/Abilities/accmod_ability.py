@@ -5,8 +5,7 @@ class AccModAbility(Ability):
     
     def __init__(self, name, mod):
         """ Builds the Ability """
-        super(AccModAbility, self).__init__()
-        self.name = name
+        super(AccModAbility, self).__init__(name)
         self.mod = mod
         
     def onAccuracy(self, accuracy):

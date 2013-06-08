@@ -8,7 +8,7 @@ class stopAttack(unittest.TestCase):
     
     def  setUp(self):
         """ Build the Ability and Pkmn for the test """
-        self.ability = SkipTurnAbility()
+        self.ability = SkipTurnAbility(None)
         self.pkmn = BuildPokemonBattleWrapper()
         
     def stop(self):
@@ -38,7 +38,7 @@ class toggleStop(unittest.TestCase):
     
     def  setUp(self):
         """ Build the Ability and Pkmn for the test """
-        self.ability = SkipTurnAbility()
+        self.ability = SkipTurnAbility(None)
         self.pkmn = BuildPokemonBattleWrapper()
         
     def stop(self):

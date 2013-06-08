@@ -6,8 +6,7 @@ class EffectOnContactAbility(Ability):
     
     def __init__(self, name, effects):
         """ Builds the Ability """
-        Ability.__init__(self)
-        self.name = name
+        Ability.__init__(self, name)
         self.effects = effects
         
     def onContact(self, receiver, attacker):

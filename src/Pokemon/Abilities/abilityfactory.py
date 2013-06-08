@@ -138,7 +138,7 @@ class AbilityFactory:
             return NoCritAbility(name)
             
         elif abilityType == "SKIP TURN":
-            return SkipTurnAbility()
+            return SkipTurnAbility(name)
             
         elif abilityType == "SNIPER":
             return SniperAbility(name)
