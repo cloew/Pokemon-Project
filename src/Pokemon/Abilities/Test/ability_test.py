@@ -115,6 +115,46 @@ suiteTakeCrit = unittest.TestSuite(map(takeCrit, testcasesTakeCrit))
 
 ##########################################################
 
+class effectivenessOnAttack(unittest.TestCase):
+    """ Test that effectivenessOnAttack returns the correct mods """
+    
+    def setUp(self):
+        """ Builds the delegate and side for use in the tests """
+        self.ability = Ability(None)
+        self.mod = 1
+        
+    def properReturnValues(self):
+        """ Check that effectivenessOnAttack returns the proper default values """
+        mod, message = self.ability.effectivenessOnAttack(None, None)
+        
+        assert mod == self.mod, "Mod should not be altered."
+        assert message is None, "Should have no special message."
+        
+testcasesEffectivenessOnAttack = ["properReturnValues"]
+suiteEffectivenessOnAttack = unittest.TestSuite(map(effectivenessOnAttack, testcasesEffectivenessOnAttack))
+
+##########################################################
+
+class effectivenessOnDefense(unittest.TestCase):
+    """ Test that effectivenessOnDefense returns the correct mods """
+    
+    def setUp(self):
+        """ Builds the delegate and side for use in the tests """
+        self.ability = Ability(None)
+        self.mod = 1
+        
+    def properReturnValues(self):
+        """ Check that effectivenessOnDefense returns the proper default values """
+        mod, message = self.ability.effectivenessOnDefense(None, None)
+        
+        assert mod == self.mod, "Mod should not be altered."
+        assert message is None, "Should have no special message."
+        
+testcasesEffectivenessOnDefense = ["properReturnValues"]
+suiteEffectivenessOnDefense = unittest.TestSuite(map(effectivenessOnDefense, testcasesEffectivenessOnDefense))
+
+##########################################################
+
 class onAccuracy(unittest.TestCase):
     """ Test that onAccuracy returns the correct default values """
     
@@ -210,7 +250,8 @@ suiteOnStatus = unittest.TestSuite(map(onStatus, testcasesOnStatus))
 
  
 suites = [suiteStopAttack, suiteAfterTurn, suiteCanUseEffects, suiteGiveCrit, suiteTakeCrit,\
-             suiteOnAccuracy, suiteOnContact, suiteOnStab, suiteOnStatMod, suiteOnStatus, suiteCanBeConfused]
+          suiteEffectivenessOnAttack, suiteEffectivenessOnDefense, suiteOnAccuracy, suiteOnContact,
+          suiteOnStab, suiteOnStatMod, suiteOnStatus, suiteCanBeConfused]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
