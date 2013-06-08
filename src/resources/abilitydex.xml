@@ -50,6 +50,13 @@
     <ability>
         <name>LEVITATE</name>
         <type>DEFENSE EFFECTIVENESS</type>
+        <effectivenesses>
+            <entry>
+                <type>GROUND</type>
+                <effectiveness>0</effectiveness>
+                <message>{header} is levitating.</message>
+            </entry>
+        </effectivenesses>
     </ability>
     <ability>
         <name>POISON POINT</name>

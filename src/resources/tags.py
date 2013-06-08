@@ -24,6 +24,8 @@ class Tags:
     
     effectDelegatesTag = "effectDelegates"
     effectDelegateTag = "effectDelegate"
+    effectivenessTag = "effectiveness"
+    effectivenessesTag = "effectivenesses"
     normalEffectsTag = "normalEffects"
     divergeEffectsTag = "divergeEffects"
     
