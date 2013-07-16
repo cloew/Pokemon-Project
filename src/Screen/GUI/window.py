@@ -59,4 +59,7 @@ class Window:
         """ Clears the window """
         self.window.fill((255,255,255))
         
+    def close(self):
+        """ Close the window...? """
+        
 window = Window()

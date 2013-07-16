@@ -6,8 +6,6 @@ from Trainer.human_trainer import HumanTrainer
 
 from Trainer.trainer_factory import TrainerFactory
 
-from Screen.Console.window import window
-
 def ParseArgs(args):
     """ Parse the Command Line Arguments """
     player = None
@@ -80,13 +78,28 @@ def CheckTrainer(trainer, msg):
     else:
         return trainer
     
+def GetStartController():
+    """ Return the controller to start the game """
+    try:
+        raise ImportError
+    except ImportError:
+        from Menu.MainMenu.main_menu_controller import MainMenuController
+        return MainMenuController()
+    
+def GetWindow():
+    """ Return the proper window for the game """
+    try:
+        from Screen.GUI.window import window
+    except ImportError:
+        from Screen.Console.window import window
+        return window
     
 def main(argv):
     """ Start the game """
-    from Menu.MainMenu.main_menu_controller import MainMenuController
-    main_controller = MainMenuController()
+    startController = GetStartController()
+    window = GetWindow()
     try:
-        main_controller.run()
+        startController.run()
     finally:
         window.close()
 
