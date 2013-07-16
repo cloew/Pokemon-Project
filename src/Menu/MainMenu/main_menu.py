@@ -1,8 +1,8 @@
 from Menu.menu import Menu
 from Menu.text_menu_entry import TextMenuEntry
 
-from Menu.OptionsMenu.options_menu_controller import OptionsMenuController
-from Menu.TrainerMenu.trainer_menu_controller import TrainerMenuController
+#from Menu.OptionsMenu.options_menu_controller import OptionsMenuController
+#from Menu.TrainerMenu.trainer_menu_controller import TrainerMenuController
 
 class MainMenu(Menu):
     """ Class to represent the main menu """

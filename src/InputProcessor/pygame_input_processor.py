@@ -1,4 +1,4 @@
-from InputProcessor import bindings
+from InputProcessor import pygame_bindings as bindings
 
 import pygame
 from pygame.locals import *

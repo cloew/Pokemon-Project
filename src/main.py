@@ -80,19 +80,19 @@ def CheckTrainer(trainer, msg):
     
 def GetStartController():
     """ Return the controller to start the game """
-    try:
-        raise ImportError
-    except ImportError:
-        from Menu.MainMenu.main_menu_controller import MainMenuController
-        return MainMenuController()
+    #try:
+    from Screen.Pygame.Menu.MainMenu.main_menu_controller import MainMenuController
+    #except ImportError:
+    #    from Menu.MainMenu.main_menu_controller import MainMenuController
+    return MainMenuController()
     
 def GetWindow():
     """ Return the proper window for the game """
     try:
-        from Screen.GUI.window import window
+        from Screen.Pygame.window import window
     except ImportError:
         from Screen.Console.window import window
-        return window
+    return window
     
 def main(argv):
     """ Start the game """
