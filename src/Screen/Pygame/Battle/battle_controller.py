@@ -3,6 +3,7 @@ from InputProcessor import commands
 
 from Screen.Pygame.Battle.battle_screen import BattleScreen
 from Screen.Pygame.Battle.battle_introduction_controller import BattleIntroductionController
+from Screen.Pygame.Battle.battle_round_controller import BattleRoundController
 from Screen.Pygame.Controller.controller import Controller
 
 class BattleController(Controller):
@@ -19,6 +20,9 @@ class BattleController(Controller):
         """ Tells the battle object what to perform """
         introductionController = BattleIntroductionController(self.battle, self.screen)
         introductionController.run()
+        
+        battleController = BattleRoundController(self.battle, self.screen)
+        battleController.run()
         
         #if self.battle.over:
         self.stopRunning()
