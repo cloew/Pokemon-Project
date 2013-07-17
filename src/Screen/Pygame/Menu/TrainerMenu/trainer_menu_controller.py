@@ -9,13 +9,18 @@ class TrainerMenuController(Controller):
     
     def __init__(self):
         """ Builds the Main Menu Controller """
+        Controller.__init__(self)
         self.menu = TrainerMenu()
         self.screen = TrainerMenuScreen(self.menu)
         self.cmds = {commands.UP:self.menu.up,
                      commands.DOWN:self.menu.down,
-                     commands.EXIT:self.menu.quit,
-                     commands.SELECT:self.menu.enter}
+                     commands.EXIT:self.exit,
+                     commands.SELECT:self.performBattle}
+                     
+    def performBattle(self):
+        """ Perform a Battle """
         
-    def running(self):
+        
+    def exit(self):
         """ Return if the controller is still running """
-        return self.menu.running
+        return self.stopRunning()
