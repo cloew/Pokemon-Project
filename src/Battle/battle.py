@@ -5,8 +5,6 @@ from Battle.battle_environment import BattleEnvironment
 from Battle.battle_round import BattleRound
 from Battle.battle_message import BattleMessage
 
-import random
-
 class Battle:
     """ Represents a Battle between two Trainers """
     
@@ -35,12 +33,12 @@ class Battle:
         messages += self.playerSide.sendOutPkmnAtStart()
         return messages
         
-    def select(self):
+    def removeMessageFromQueue(self):
         """ Pops a message from the message queue if it has been fully displayed """
         if len(self.messageQueue) > 0:
             if self.messageQueue[0].fullyDisplayed:
                 self.messageQueue.popleft()
-        self.performBattle()
+        #self.performBattle()
                 
     def performBattle(self):
         """ Updates the Battle Object """
