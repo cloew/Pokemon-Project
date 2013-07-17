@@ -4,7 +4,7 @@ from Screen.Pygame.screen import Screen
 from Screen.Pygame.Menu.MainMenu.scrolling_map import map
 from Screen.Pygame.Menu.TrainerMenu.trainer_menu_entry_view import TrainerMenuEntryView
 
-from Screen.GUI.MessageBox.message_box import MessageBox
+from Screen.Pygame.MessageBox.message_box import MessageBox
 
 import pygame
 
