@@ -2,16 +2,23 @@
 class Menu:
     """ Represents a menu in the game """
     
-    def __init__(self):
+    def __init__(self, entries=None):
         """ Build the menu """
         self.running = True
-        self.addEntries()
+        if entries is None:
+            self.addEntries()
+        else:
+            self.entries = entries
         self.current = 0
         self.selectEntry()
         
     def addEntries(self):
         """ Add Entries to the menu """
         self.entries = []
+        
+    def addEntry(self, entry):
+        """ Add an entry to the window """
+        self.entries.append(entry)
         
     def up(self):
         """ Select the previous entry """

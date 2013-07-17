@@ -1,5 +1,6 @@
 from InputProcessor import commands
-from Menu.MainMenu.main_menu import MainMenu
+from Menu.menu import Menu
+from Menu.text_menu_entry import TextMenuEntry
 from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Menu.MainMenu.main_menu_screen import MainMenuScreen
 
@@ -8,7 +9,11 @@ class MainMenuController(Controller):
     
     def __init__(self):
         """ Initialize the Main Menu Controller """
-        self.menu = MainMenu()
+        entries = [TextMenuEntry("Start", self.startGame),
+                   TextMenuEntry("Options", self.runOptions),
+                   TextMenuEntry("Exit", self.exit)]
+        self.menu = Menu(entries)
+        
         self.screen = MainMenuScreen(self.menu)
         self.cmds = {commands.UP:self.menu.up,
                      commands.DOWN:self.menu.down,
@@ -18,3 +23,13 @@ class MainMenuController(Controller):
     def running(self):
         """ Return if the controller is still running """
         return self.menu.running
+        
+    def startGame(self, entry):
+        """ Start the Game """
+        
+    def runOptions(self, entry):
+        """ Run Options Controller """
+        
+    def exit(self, entry):
+        """ Exit the controller """
+        self.menu.quit()
