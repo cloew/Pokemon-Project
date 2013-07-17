@@ -57,7 +57,6 @@ class Battle:
         self.round.run()
         self.addMessages(self.round.messages)
         self.addMessages(self.betweenRounds())
-        #self.messageQueue += self.round.messageQueue
         
     def betweenRounds(self):
         """ Perform between rounds """
