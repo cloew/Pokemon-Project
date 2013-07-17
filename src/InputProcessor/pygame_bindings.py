@@ -12,3 +12,14 @@ keyBindings = {K_UP:commands.UP,
                K_d:commands.RIGHT,
                K_ESCAPE:commands.EXIT,
                K_RETURN:commands.SELECT}
+               
+keyStrings = {K_UP:"UP ARROW",
+              K_w:"w",
+              K_DOWN:"DOWN ARROW",
+              K_s:"s",
+              K_LEFT:"LEFT ARROW",
+              K_a:"a",
+              K_RIGHT:"RIGHT ARROW",
+              K_d:"d",
+              K_ESCAPE:"ESCAPE",
+              K_RETURN:"ENTER"}

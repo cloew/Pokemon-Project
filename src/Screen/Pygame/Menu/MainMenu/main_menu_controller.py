@@ -3,12 +3,14 @@ from Menu.menu import Menu
 from Menu.text_menu_entry import TextMenuEntry
 from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Menu.MainMenu.main_menu_screen import MainMenuScreen
+from Screen.Pygame.Menu.OptionsMenu.options_menu_controller import OptionsMenuController
 
 class MainMenuController(Controller):
     """ Controller for the Pygame Main Menu """
     
     def __init__(self):
         """ Initialize the Main Menu Controller """
+        Controller.__init__(self)
         entries = [TextMenuEntry("Start", self.startGame),
                    TextMenuEntry("Options", self.runOptions),
                    TextMenuEntry("Exit", self.exit)]
@@ -29,7 +31,9 @@ class MainMenuController(Controller):
         
     def runOptions(self, entry):
         """ Run Options Controller """
+        options = OptionsMenuController()
+        options.run()
         
     def exit(self, entry):
         """ Exit the controller """
-        self.menu.quit()
+        self.stopRunning()

@@ -3,25 +3,8 @@ from InputProcessor import commands
 
 from Menu.text_menu_entry import TextMenuEntry
 
-from kao_console.ascii import *
-
 class OptionsMenu():
     """ Class to represent the options menu """
-    keyStrings = {KAO_UP:"UP ARROW",
-                  ord('W'):"W",
-                  ord('w'):"w",
-                  KAO_DOWN:"DOWN ARROW",
-                  ord('S'):"S",
-                  ord('s'):"s",
-                  KAO_LEFT:"LEFT ARROW",
-                  ord('A'):"A",
-                  ord('a'):"a",
-                  KAO_RIGHT:"RIGHT ARROW",
-                  ord('D'):"D",
-                  ord('d'):"d",
-                  ESCAPE:"ESCAPE",
-                  ENDL:"ENTER"}
-                         
     cmdStrings = {commands.EXIT:"Exit",
                   commands.UP:"Up",
                   commands.DOWN:"Down",
@@ -51,7 +34,7 @@ class OptionsMenu():
                      commands.CANCEL:[]}
         
         for key in bindings.keyBindings:
-            boundKeys[bindings.keyBindings[key]].append(self.keyStrings[key])
+            boundKeys[bindings.keyBindings[key]].append(bindings.keyStrings[key])
             
         commandKeys = []
         for cmd in boundKeys:
@@ -66,5 +49,4 @@ class OptionsMenu():
         
     def quit(self, entry):
         """ Quits the Open Menu """
-        self.running = False
-        
+        self.running = False 

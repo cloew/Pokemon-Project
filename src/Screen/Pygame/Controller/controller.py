@@ -7,10 +7,11 @@ class Controller:
     
     def __init__(self):
         """ Builds the Controller with no commands"""
+        self.running = True
         
     def run(self):
         """ Runs the game loop """
-        while self.running():
+        while self.isRunning():
             self.checkScreen()
             self.update()
             window.update()
@@ -21,9 +22,13 @@ class Controller:
         if not window.screen == self.screen:
             window.setScreen(self.screen)
         
-    def running(self):
+    def isRunning(self):
         """ Return if the controller is still running """
-        return False 
+        return self.running 
         
     def update(self): # May remove in favor of a threaded application
         """ Function to be overridden to perform periodic updates for the model/controller """
+        
+    def stopRunning(self):
+        """ Stop running the controller """
+        self.running = False 
