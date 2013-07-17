@@ -4,6 +4,7 @@ from Menu.text_menu_entry import TextMenuEntry
 from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Menu.MainMenu.main_menu_screen import MainMenuScreen
 from Screen.Pygame.Menu.OptionsMenu.options_menu_controller import OptionsMenuController
+from Screen.Pygame.Menu.TrainerMenu.trainer_menu_controller import TrainerMenuController
 
 class MainMenuController(Controller):
     """ Controller for the Pygame Main Menu """
@@ -28,6 +29,8 @@ class MainMenuController(Controller):
         
     def startGame(self, entry):
         """ Start the Game """
+        trainerSelect = TrainerMenuController()
+        trainerSelect.run()
         
     def runOptions(self, entry):
         """ Run Options Controller """

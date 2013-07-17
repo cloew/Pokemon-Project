@@ -1,6 +1,6 @@
 from InputProcessor import commands
-from Screen.GUI.screen import Screen
-from Screen.GUI.MainMenu.scrolling_map import map
+from Screen.Pygame.screen import Screen
+from Screen.Pygame.Menu.MainMenu.scrolling_map import map
 
 import pygame
 

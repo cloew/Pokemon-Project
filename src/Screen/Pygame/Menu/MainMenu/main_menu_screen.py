@@ -3,7 +3,7 @@ import random
 import pygame
 from pygame.locals import *
 
-from Screen.GUI.screen import Screen
+from Screen.Pygame.screen import Screen
 from scrolling_map import map
 from logo import Logo
 from menu_view import MenuView
