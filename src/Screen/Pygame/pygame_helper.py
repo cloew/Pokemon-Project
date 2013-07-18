@@ -17,5 +17,4 @@ def load_image(name, colorkey=None):
 def GetTransparentSurface(width, height):
     """ Constructs a transparent pygame surface """
     surface = pygame.Surface((width, height), flags=pygame.SRCALPHA)
-    surface.fill((0,0,0,0))
     return surface
