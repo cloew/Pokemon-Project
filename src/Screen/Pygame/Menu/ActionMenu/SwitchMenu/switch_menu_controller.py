@@ -3,7 +3,7 @@ from InputProcessor import commands
 from Menu.menu import Menu
 from Menu.ActionMenu.SwitchMenu.pokemon_menu_entry import PokemonMenuEntry
 from Screen.Pygame.Controller.controller import Controller
-from Screen.Pygame.Menu.SwitchMenu.switch_menu_screen import SwitchMenuScreen
+from Screen.Pygame.Menu.ActionMenu.SwitchMenu.switch_menu_screen import SwitchMenuScreen
 
 class SwitchMenuController(Controller):
     """ Controller for Switch Menu """

@@ -4,7 +4,7 @@ from Screen.Pygame.Menu.two_column_menu_view import TwoColumnMenuView
 class SwitchMenuScreen(Screen):
     """ View for the Switch Menu Screen """
     
-     def __init__(self, menu):
+    def __init__(self, menu):
         """ Builds the Battle View with the Battle """
         self.menuView = TwoColumnMenuView(menu)
         

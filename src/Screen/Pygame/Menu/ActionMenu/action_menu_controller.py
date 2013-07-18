@@ -4,6 +4,7 @@ from Menu.text_menu_entry import TextMenuEntry
 from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Menu.two_column_menu_view import TwoColumnMenuView
 from Screen.Pygame.Menu.ActionMenu.AttackMenu.attack_menu_controller import AttackMenuController
+from Screen.Pygame.Menu.ActionMenu.SwitchMenu.switch_menu_controller import SwitchMenuController
 
 class ActionMenuController(Controller):
     """ Controller for Battle Rounds """
@@ -16,7 +17,7 @@ class ActionMenuController(Controller):
         self.screen = screen
         
         entries = [TextMenuEntry("Fight", self.chooseAttack),
-                   TextMenuEntry("Switch", None),
+                   TextMenuEntry("Switch", self.switch),
                    TextMenuEntry("Item", None),
                    TextMenuEntry("Run", None)]
         self.menu = Menu(entries, columns=2)
@@ -33,6 +34,11 @@ class ActionMenuController(Controller):
         """ Run the Attack Menu Controller """
         attackMenuController = AttackMenuController(self.pokemon, self.battle.oppSide.pkmnInPlay, self.battle.environment, self.screen)
         self.runController(attackMenuController)
+    
+    def switch(self, entry):
+        """ Run the Switch Menu Controller """
+        switchMenuController = SwitchMenuController(self.pokemon)
+        self.runController(switchMenuController)
         
     def runController(self, controller):
         """ Runs the given controller """
