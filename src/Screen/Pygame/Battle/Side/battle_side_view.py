@@ -15,6 +15,8 @@ class BattleSideView:
         self.height = height
         self.width = width
         
+        self.pokemonStatsView.setSize(self.width*.4, self.height*.9)
+        
     def update(self):
         """ Update the Battle Side View """
         self.pokemonStatsView.update()
