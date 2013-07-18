@@ -15,10 +15,8 @@ class PokemonDisplayDelegateFactory:
     def loadFromXML(tree, pkmn):
         """ Loads a Pokemon object from a file """
         if tree is None:
-            print "Returning default Display Delegate for", pkmn.name
             return PokemonDisplayDelegate(pkmn.species)
         else:
-            print "Returning alternate Display Delegate for", pkmn.name
             return AlternateDisplayDelegate(tree.text)
         
     @staticmethod

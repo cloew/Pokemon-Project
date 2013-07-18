@@ -24,7 +24,7 @@ class PokemonStatsView:
     
     def setPokemonMenuEntryView(self):
         """ Sets the Pokemon Menu Entry """
-        menuEntry = PokemonMenuEntry(self.getPokemon(), None)
+        menuEntry = PokemonMenuEntry(self.pokemon, None)
         self.pkmnEntryView = MenuEntryView(menuEntry, self.FONT_SIZE)
         self.setLevelMenuEntryView()
         
@@ -53,7 +53,3 @@ class PokemonStatsView:
     def update(self):
         """ Update the Pokemon Stats View """
         self.setPokemonMenuEntryView()
-        
-    def getPokemon(self):
-        """ Return the pokemon """
-        return self.pokemon.pkmn
