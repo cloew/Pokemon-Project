@@ -1,5 +1,5 @@
-from Screen.GUI.screen import Screen
-from Screen.GUI.MessageBox.message_box import MessageBox
+from Screen.Pygame.screen import Screen
+from Screen.Pygame.MessageBox.message_box import MessageBox
 
 class BattleScreen(Screen):
     """ View for the Battle """

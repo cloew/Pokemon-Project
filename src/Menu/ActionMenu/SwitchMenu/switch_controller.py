@@ -2,7 +2,6 @@ from Controller.controller import Controller
 from InputProcessor import commands
 
 from switch_menu import SwitchMenu
-#from Screen.Console.Menu.ActionMenu.action_menu_screen import ActionMenuScreen # Need differnet screen
 from Screen.Console.Menu.PokemonMenu.pokemon_menu_screen import PokemonMenuScreen
 
 class SwitchController(Controller):
