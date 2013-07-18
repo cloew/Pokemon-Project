@@ -34,4 +34,8 @@ class BattleSideView:
         
     def setPokemonImage(self):
         """ Set the pokemon Image """
-        self.pokemonImage = load_image("bulbasaur.png")
+        self.pokemonImage = load_image("{0}.png".format(self.getBasePokemonImageName()))
+        
+    def getBasePokemonImageName(self):
+        """ Returns the base Pokemon Image Name """
+        return "bulbasaur"

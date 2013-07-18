@@ -13,3 +13,7 @@ class PlayerSideView(BattleSideView):
         surface.blit(self.pokemonImage, (self.width*.05, self.height*.05))
         
         return surface
+        
+    def getBasePokemonImageName(self):
+        """ Returns the base Pokemon Image Name """
+        return "{0}_back".format(BattleSideView.getBasePokemonImageName(self))
