@@ -3,11 +3,11 @@ from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
 import pygame
 
-class ActionMenuView:
-    """ Action Menu View """
+class BattleMenuView:
+    """ Represents a Battle Menu View """
     
-    def __init__(self,menu):
-        """  """
+    def __init__(self, menu):
+        """ Initialize the Battle Menu View """
         self.menu = menu
         self.font = pygame.font.SysFont("Times New Roman", 36)
         
@@ -21,7 +21,7 @@ class ActionMenuView:
         self.height = height
         
     def draw(self):
-        """ Draw the Action Menu View """
+        """ Draw the Battle Menu View """
         menuSurface = GetTransparentSurface(self.width, self.height)
         
         for entry in self.entries:
