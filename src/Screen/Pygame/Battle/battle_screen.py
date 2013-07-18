@@ -18,8 +18,9 @@ class BattleScreen(Screen):
         """ Draw the window """
         window.clear()
         if self.hasBottomView():
+            self.bottomView.setSize(window.width*.9, window.height*.3)
             bottomSurface = self.bottomView.draw()
-            bottomSurfacePosition = bottomSurface.get_rect(left=self.getBottomWidgetLeftCoordinate(window), centery=self.getBottomWidgetYCoordinate(window))
+            bottomSurfacePosition = bottomSurface.get_rect(left=window.width/20, top=window.height*.7)
             window.draw(bottomSurface, bottomSurfacePosition)
             
     def setBottomView(self, view):

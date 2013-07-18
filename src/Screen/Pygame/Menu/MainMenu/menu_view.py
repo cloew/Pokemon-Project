@@ -28,7 +28,7 @@ class MenuView(View):
         for entry in self.entries:
             entrySurface = entry.draw()
             yRatio = (self.entries.index(entry) + 1)/4.0
-            entryPos = entrySurface.get_rect(centerx = menuSurf.get_width()/2, centery= menuSurf.get_height()*yRatio)
+            entryPos = entrySurface.get_rect(centerx =menuSurf.get_width()/2, centery=menuSurf.get_height()*yRatio)
             menuSurf.blit(entrySurface, entryPos)
         
     def getMenu(self):
