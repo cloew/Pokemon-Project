@@ -12,19 +12,12 @@ class SwitchMenuScreen(Screen):
         
         self.statViews = []
         for entry in menu.entries:
-            self.statViews.append(PokemonStatsView(entry.getPokemon()))
+            self.statViews.append(PokemonStatsView(pokemonMenuEntry=entry))
         self.menuView.entries = self.statViews    
         
     def update(self):
         """ Update the screen """
         self.menuView.update()
-        
-        for entry, statView in zip(self.menu.entries, self.statViews):
-            if entry.selected:
-                statView.select()
-            else:
-                statView.deselect()
-            
         
     def draw(self, window):
         """ Draw the window """

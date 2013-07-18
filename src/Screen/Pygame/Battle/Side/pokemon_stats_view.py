@@ -9,10 +9,13 @@ class PokemonStatsView:
     """ View for a Pokemon's Stats in a Battle """
     FONT_SIZE = 24
     
-    def __init__(self, pokemon):
+    def __init__(self, pokemon=None, pokemonMenuEntry=None):
         """ Initialize the Pokemon Stats View """
-        self.pokemon = pokemon
-        self.setPokemonMenuEntryView()
+        if pokemon is not None:
+            self.pokemon = pokemon
+        else:
+            self.pokemon = pokemonMenuEntry.getPokemon()
+        self.setPokemonMenuEntryView(pokemonMenuEntry)
         self.healthBarView = HealthBarView(self.pokemon)
         
     def setSize(self, width, height):
@@ -22,10 +25,11 @@ class PokemonStatsView:
         
         self.healthBarView.setSize(self.width, self.height*.1)
     
-    def setPokemonMenuEntryView(self):
+    def setPokemonMenuEntryView(self, pokemonMenuEntry):
         """ Sets the Pokemon Menu Entry """
-        self.menuEntry = PokemonMenuEntry(self.pokemon, None)
-        self.pkmnEntryView = MenuEntryView(self.menuEntry, self.FONT_SIZE)
+        if pokemonMenuEntry is None:
+            pokemonMenuEntry = PokemonMenuEntry(self.pokemon, None)
+        self.pkmnEntryView = MenuEntryView(pokemonMenuEntry, self.FONT_SIZE)
         self.setLevelMenuEntryView()
         
     def setLevelMenuEntryView(self):
@@ -52,12 +56,4 @@ class PokemonStatsView:
         
     def update(self):
         """ Update the Pokemon Stats View """
-        self.setPokemonMenuEntryView()
-        
-    def select(self):
-        """  """
-        self.menuEntry.select()
-        
-    def deselect(self):
-        """  """
-        self.menuEntry.deselect()
+        self.setLevelMenuEntryView()
