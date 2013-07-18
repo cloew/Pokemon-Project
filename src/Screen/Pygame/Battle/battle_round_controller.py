@@ -18,9 +18,10 @@ class BattleRoundController(Controller):
         if self.battle.noMessages():
             pokemonActions = {}
             for pokemon in self.battle.playerSide.pkmnInPlay:
-                actionMenuController = ActionMenuController(pokemon, self.battle, self.screen)
-                actionMenuController.run()
-                pokemonActions[pokemon] = actionMenuController.action
+                if not pokemon.actionLock:
+                    actionMenuController = ActionMenuController(pokemon, self.battle, self.screen)
+                    actionMenuController.run()
+                    pokemonActions[pokemon] = actionMenuController.action
             
             self.screen.setBottomView(BattleMessageBox(self.battle))
             self.battle.performRound(pokemonActions)
