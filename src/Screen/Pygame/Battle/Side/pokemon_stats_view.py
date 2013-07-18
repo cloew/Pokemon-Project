@@ -6,6 +6,7 @@ from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
 class PokemonStatsView:
     """ View for a Pokemon's Stats in a Battle """
+    FONT_SIZE = 24
     
     def __init__(self, pokemon):
         """ Initialize the Pokemon Stats View """
@@ -20,13 +21,13 @@ class PokemonStatsView:
     def setPokemonMenuEntryView(self):
         """ Sets the Pokemon Menu Entry """
         menuEntry = PokemonMenuEntry(self.getPokemon(), None)
-        self.pkmnEntryView = MenuEntryView(menuEntry)
+        self.pkmnEntryView = MenuEntryView(menuEntry, self.FONT_SIZE)
         self.setLevelMenuEntryView()
         
     def setLevelMenuEntryView(self):
         """ Set the Level Menu Entry view """
         menuEntry = TextMenuEntry("Lv. {0}".format(self.pokemon.getLevel()), None)
-        self.levelEntryView = MenuEntryView(menuEntry)
+        self.levelEntryView = MenuEntryView(menuEntry, self.FONT_SIZE)
         
     def draw(self):
         """ Draw the Pokemon Stats View """
