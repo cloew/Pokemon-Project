@@ -14,7 +14,7 @@ class BattleRoundController(Controller):
         
     def update(self):
         """ Tells the battle object what to perform """
-        actionMenuController = ActionMenuController(self.battle, self.screen)
+        actionMenuController = ActionMenuController(self.battle.playerSide.pkmnInPlay[0], self.battle, self.screen)
         actionMenuController.run()
         
         self.battle.update()

@@ -12,7 +12,7 @@ class MenuEntryView:
     def draw(self):
         """ Draws the menu entry """
         self.font.set_bold(self.entry.selected)
-        text = self.font.render(self.entry.text, 1, (10, 10, 10))
+        text = self.font.render(self.entry.getText(), 1, (10, 10, 10))
         return text
         
     def setBold(self, bold):
