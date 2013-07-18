@@ -75,4 +75,7 @@ class Menu:
     @property
     def rows(self):
         """ Return the number of rows """
-        return len(self.entries)/self.columns
+        rows = len(self.entries)/self.columns
+        if len(self.entries)%self.columns > 0:
+            rows += 1
+        return rows
