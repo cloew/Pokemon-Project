@@ -31,10 +31,14 @@ class ActionMenuController(Controller):
                      
     def chooseAttack(self, entry):
         """ Run the Attack Menu Controller """
-        attackMenuController = AttackMenuController(self.pokemon, self.screen)
+        attackMenuController = AttackMenuController(self.pokemon, self.battle.oppSide.pkmnInPlay, self.battle.environment, self.screen)
         self.runController(attackMenuController)
         
     def runController(self, controller):
         """ Runs the given controller """
         controller.run()
-        self.screen.setBottomView(self.view)
+        if controller.action is None:
+            self.screen.setBottomView(self.view)
+        else:
+            self.action = controller.action
+            self.stopRunning()
