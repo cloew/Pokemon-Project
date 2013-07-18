@@ -7,8 +7,8 @@ class PlayerSideView(BattleSideView):
         """ Draw the Player Side View Surface and return it """
         surface = self.getBackgroundSurface()
         
-        entrySurface = self.menuEntryView.draw()
-        surface.blit(entrySurface, (self.width*.55,self.height*.1))
+        statsSurface = self.pokemonStatsView.draw()
+        surface.blit(statsSurface, (self.width*.55,self.height*.1))
         
         surface.blit(self.pokemonImage, (self.width*.05, self.height*.05))
         
