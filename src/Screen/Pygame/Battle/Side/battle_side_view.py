@@ -29,7 +29,7 @@ class BattleSideView:
         
     def setPokemonMenuEntryView(self):
         """ Sets the Pokemon Menu Entry """
-        menuEntry = PokemonMenuEntry(self.side.pkmnInPlay[0].pkmn, None)
+        menuEntry = PokemonMenuEntry(self.getPokemon(), None)
         self.menuEntryView = MenuEntryView(menuEntry, None)
         
     def setPokemonImage(self):
@@ -38,4 +38,8 @@ class BattleSideView:
         
     def getBasePokemonImageName(self):
         """ Returns the base Pokemon Image Name """
-        return "bulbasaur"
+        return "Pokemon/{0}".format(self.getPokemon().species.lower())
+        
+    def getPokemon(self):
+        """ Returns the current Pokemon object """
+        return self.side.pkmnInPlay[0].pkmn
