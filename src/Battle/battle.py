@@ -62,12 +62,12 @@ class Battle:
         self.oppSide.betweenRounds()
         return self.environment.betweenRounds(self.playerSide, self.oppSide)
         
-    def refillSides(self):
+    def refillSides(self, pokemonReplacements):
         """ Refills fainted Pkmn on each side """
         self.checkOver()
         if not self.over:
-            messages = self.playerSide.refill()
-            messages += self.oppSide.refill()
+            messages = self.playerSide.refill(pokemonReplacements)
+            messages += self.oppSide.refill(pokemonReplacements)
             self.addMessages(messages)
         
     def checkOver(self):

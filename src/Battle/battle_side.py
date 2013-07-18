@@ -21,11 +21,14 @@ class BattleSide:
         
         return messages
         
-    def sendOutPkmn(self):
-        """ Send out a Pkmn  """
+    def sendOutPkmn(self, pokemonToReplace, pokemonReplacements):
+        """ Send out a Pokemon  """
         messages = []
-        pkmn = self.trainer.choosePokemon(self.pkmnInPlay)
-        messages += self.pkmnInPlay[0].sendOutPkmn(pkmn)
+        if pokemonToReplace in pokemonReplacements:
+            pkmn = pokemonReplacements[pokemonToReplace]
+        else:
+            pkmn = self.trainer.choosePokemon(self.pkmnInPlay)
+        messages += pokemonToReplace.sendOutPkmn(pkmn)
         return messages
         
     def hasPokemon(self):
@@ -41,15 +44,15 @@ class BattleSide:
         for pkmn in self.pkmnInPlay:
             pkmn.betweenRounds()
             
-    def refill(self):
+    def refill(self, pokemonReplacements):
         """ Refills the Pkmn In Play """
         messages = []
-        if not self.hasMorePokemon:
+        if not self.hasMorePokemon():
             return messages
             
         for pkmn in self.pkmnInPlay:
             if pkmn.fainted():
-                messages += self.sendOutPkmn()
+                messages += self.sendOutPkmn(pkmn, pokemonReplacements)
                 
         return messages
         
