@@ -9,7 +9,6 @@ class PkmnBattleWrapper:
         self.side = side
         self.pkmn = None
         self.original = None # The original Pkmn from the Trainer's belt, kept so the Trainer is aware of exactly how the Pkmn is
-        #self.trainer = trainer # May add back later if I decide to have mulitple trainers on the same side in a battle
         
         self.statMods = {"ATK":0, "DEF":0, "SPD":0, "SATK":0, "SDEF":0, 
                          "ACC":0, "EVAS":0, "CRT":0}

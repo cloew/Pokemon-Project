@@ -1,6 +1,5 @@
 from Screen.Pygame.pygame_helper import GetTransparentSurface
 from Screen.Pygame.MessageBox.message_box import MessageBox
-import pygame
 
 class BattleMessageBox:
     """ Represents the Message Box for a Battle """
