@@ -1,5 +1,6 @@
 from InputProcessor import commands
 from Screen.Pygame.Controller.controller import Controller
+from Screen.Pygame.Menu.ActionMenu.action_menu_controller import ActionMenuController
 
 class BattleRoundController(Controller):
     """ Controller for Battle Rounds """
@@ -13,7 +14,8 @@ class BattleRoundController(Controller):
         
     def update(self):
         """ Tells the battle object what to perform """
-        # Get Action
+        actionMenuController = ActionMenuController(self.battle, self.screen)
+        actionMenuController.run()
         
         self.battle.update()
         if self.battle.noMessages():

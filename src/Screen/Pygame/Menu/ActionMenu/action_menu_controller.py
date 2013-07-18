@@ -1,7 +1,8 @@
 from InputProcessor import commands
 from Screen.Pygame.Controller.controller import Controller
+from Screen.Pygame.Menu.ActionMenu.action_menu_view import ActionMenuView
 
-class ActionController(Controller):
+class ActionMenuController(Controller):
     """ Controller for Battle Rounds """
     
     def __init__(self, pokemon, screen):
@@ -9,4 +10,5 @@ class ActionController(Controller):
         Controller.__init__(self)
         self.pokemon = pokemon
         self.screen = screen
-        #self.cmds = {commands.SELECT:self.}
+        self.screen.setBottomView(ActionMenuView())
+        self.cmds = {}
