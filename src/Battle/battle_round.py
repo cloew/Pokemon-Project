@@ -10,14 +10,14 @@ class BattleRound:
         self.environment = environment
         self.messageQueue = deque()
         
-    def run(self):
+    def run(self, alreadySelectedActions):
         """ Runs the Round """
-        self.performActions()
+        self.performActions(alreadySelectedActions)
         
-    def performActions(self):
+    def performActions(self, alreadySelectedActions):
         """ Perform all the Round actions """
         self.messages = []
-        actions = self.getActions()
+        actions = self.getActions(alreadySelectedActions)
         for action in actions:
             messages = []
             messages += self.act(action)
@@ -26,14 +26,26 @@ class BattleRound:
             self.messageQueue += deque(messages)
             self.messages += messages
         
-    def getActions(self):
+    def getActions(self, alreadySelectedActions):
         """ Get all actions in the round """
-        oppAction = self.oppSide.trainer.getAction(self.getOppPkmn()[0], self.getPlayerPkmn(), self.playerSide, self.oppSide, self.environment)
-        playerAction = self.playerSide.trainer.getAction(self.getPlayerPkmn()[0], self.getOppPkmn(), self.playerSide, self.oppSide, self.environment)
+        print "Getting Opponent Action"
+        oppAction = self.getActionForPokemon(self.getOppPkmn()[0], self.oppSide.trainer, self.getPlayerPkmn(), alreadySelectedActions)
+        print "Getting Player Action"
+        playerAction = self.getActionForPokemon(self.getPlayerPkmn()[0], self.playerSide.trainer, self.getOppPkmn(), alreadySelectedActions)
         
         actions = [oppAction] + [playerAction]
         actions.sort(reverse = True)
         return actions
+        
+    def getActionForPokemon(self, pokemon, trainer, targets, alreadySelectedActions):
+        """ Return the action for the given pokemon """
+        print pokemon
+        print alreadySelectedActions
+        if pokemon in alreadySelectedActions:
+            action = alreadySelectedActions[pokemon]
+        else:
+            action = trainer.getAction(pokemon, targets, self.playerSide, self.oppSide, self.environment)
+        return action
         
     def act(self, action):
         """ Performs the action """

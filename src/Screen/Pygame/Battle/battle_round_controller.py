@@ -1,4 +1,5 @@
 from InputProcessor import commands
+from Screen.Pygame.Battle.battle_message_box import BattleMessageBox
 from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Menu.ActionMenu.action_menu_controller import ActionMenuController
 
@@ -14,12 +15,14 @@ class BattleRoundController(Controller):
         
     def update(self):
         """ Tells the battle object what to perform """
-        actionMenuController = ActionMenuController(self.battle.playerSide.pkmnInPlay[0], self.battle, self.screen)
-        actionMenuController.run()
-        
-        self.battle.update()
         if self.battle.noMessages():
-            self.battle.performRound()
+            pokemonActions = {}
+            for pokemon in self.battle.playerSide.pkmnInPlay:
+                actionMenuController = ActionMenuController(pokemon, self.battle, self.screen)
+                actionMenuController.run()
+                pokemonActions[pokemon] = actionMenuController.action
             
-        if self.battle.over:
-            self.stopRunning()
+            self.screen.setBottomView(BattleMessageBox(self.battle))
+            self.battle.performRound(pokemonActions)
+            if self.battle.over:
+                self.stopRunning()

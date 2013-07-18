@@ -50,9 +50,9 @@ class Battle:
     def update(self):
         """ Update the Battle object """
         
-    def performRound(self):
+    def performRound(self, alreadySelectedActions):
         """  Performs a single round """
-        self.round.run()
+        self.round.run(alreadySelectedActions)
         self.addMessages(self.round.messages)
         self.addMessages(self.betweenRounds())
         

@@ -5,6 +5,8 @@ from Menu.TrainerMenu.trainer_menu import TrainerMenu
 from Screen.Pygame.Battle.battle_controller import BattleController
 from Screen.Pygame.Menu.TrainerMenu.trainer_menu_screen import TrainerMenuScreen
 
+from Trainer.trainer_factory import TrainerFactory
+
 class TrainerMenuController(Controller):
     """ Controller for the trainer select menu """
     
@@ -20,8 +22,8 @@ class TrainerMenuController(Controller):
                      
     def performBattle(self, entry):
         """ Perform a Battle """
-        print entry.trainer
-        battleController = BattleController(entry.trainer, entry.trainer)
+        enemy = TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER)
+        battleController = BattleController(entry.trainer, enemy)
         battleController.run()
         
     def exit(self):
