@@ -28,23 +28,19 @@ class BattleRound:
         
     def getActions(self, alreadySelectedActions):
         """ Get all actions in the round """
-        print "Getting Opponent Action"
-        oppAction = self.getActionForPokemon(self.getOppPkmn()[0], self.oppSide.trainer, self.getPlayerPkmn(), alreadySelectedActions)
-        print "Getting Player Action"
-        playerAction = self.getActionForPokemon(self.getPlayerPkmn()[0], self.playerSide.trainer, self.getOppPkmn(), alreadySelectedActions)
+        oppAction = self.getActionForPokemon(self.getOppPkmn()[0], self.getPlayerPkmn(), alreadySelectedActions)
+        playerAction = self.getActionForPokemon(self.getPlayerPkmn()[0], self.getOppPkmn(), alreadySelectedActions)
         
         actions = [oppAction] + [playerAction]
         actions.sort(reverse = True)
         return actions
         
-    def getActionForPokemon(self, pokemon, trainer, targets, alreadySelectedActions):
+    def getActionForPokemon(self, pokemon, targets, alreadySelectedActions):
         """ Return the action for the given pokemon """
-        print pokemon
-        print alreadySelectedActions
         if pokemon in alreadySelectedActions:
             action = alreadySelectedActions[pokemon]
         else:
-            action = trainer.getAction(pokemon, targets, self.playerSide, self.oppSide, self.environment)
+            action = pokemon.getTrainer().getAction(pokemon, targets, self.playerSide, self.oppSide, self.environment)
         return action
         
     def act(self, action):
