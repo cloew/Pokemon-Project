@@ -8,6 +8,11 @@ class MenuEntryView:
         self.font = pygame.font.SysFont("Times New Roman", fontSize)
         self.entry = entry
         
+    def setSize(self, width, height):
+        """ Set the surface size """
+        self.width = width
+        self.height = height
+        
     def draw(self):
         """ Draws the menu entry """
         self.font.set_bold(self.entry.selected)

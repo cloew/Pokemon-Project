@@ -17,6 +17,9 @@ class TwoColumnMenuView:
         self.width = width
         self.height = height
         
+        for entry in self.entries:
+            entry.setSize((width*.9)/self.menu.columns, (height*.9)/self.menu.columns)
+        
     def draw(self):
         """ Draw the Battle Menu View """
         menuSurface = GetTransparentSurface(self.width, self.height)

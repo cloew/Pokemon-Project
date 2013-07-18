@@ -21,6 +21,10 @@ class Pokemon:
         self.displayDelegate = PokemonDisplayDelegate(self.species)
     
         return self
+        
+    def getLevel(self):
+        """ Return the level """
+        return self.level
     
     def getAttacks(self):
         """ Returns the Pokemon's Attacks """
