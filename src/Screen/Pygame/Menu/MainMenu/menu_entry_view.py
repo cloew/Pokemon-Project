@@ -3,11 +3,10 @@ import pygame
 class MenuEntryView:
     """ Represents an entry in the menu """
     
-    def __init__(self, entry, ratioInY):
+    def __init__(self, entry, fontSize=36):
         """ Sets the entry's text """
-        self.font = pygame.font.SysFont("Times New Roman", 36)
+        self.font = pygame.font.SysFont("Times New Roman", fontSize)
         self.entry = entry
-        self.yRatio = ratioInY
         
     def draw(self):
         """ Draws the menu entry """

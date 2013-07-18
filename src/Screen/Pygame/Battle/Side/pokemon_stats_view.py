@@ -20,13 +20,13 @@ class PokemonStatsView:
     def setPokemonMenuEntryView(self):
         """ Sets the Pokemon Menu Entry """
         menuEntry = PokemonMenuEntry(self.getPokemon(), None)
-        self.pkmnEntryView = MenuEntryView(menuEntry, None)
+        self.pkmnEntryView = MenuEntryView(menuEntry)
         self.setLevelMenuEntryView()
         
     def setLevelMenuEntryView(self):
         """ Set the Level Menu Entry view """
         menuEntry = TextMenuEntry("Lv. {0}".format(self.pokemon.getLevel()), None)
-        self.levelEntryView = MenuEntryView(menuEntry, None)
+        self.levelEntryView = MenuEntryView(menuEntry)
         
     def draw(self):
         """ Draw the Pokemon Stats View """

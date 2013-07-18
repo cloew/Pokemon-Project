@@ -12,7 +12,7 @@ class MenuView(View):
         """ Build the menu """
         self.entries = []
         for i in range(len(menu.entries)):
-            entryView = MenuEntryView(menu.entries[i], 4.0/(i+1))
+            entryView = MenuEntryView(menu.entries[i])
             self.entries.append(entryView)
         
         self.image = load_image("menu.png")

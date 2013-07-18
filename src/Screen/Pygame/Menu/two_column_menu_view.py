@@ -1,19 +1,16 @@
 from Screen.Pygame.pygame_helper import GetTransparentSurface
 from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
-import pygame
-
 class TwoColumnMenuView:
     """ Represents a Two Column Menu View """
     
     def __init__(self, menu):
         """ Initialize the Two Column Menu View """
         self.menu = menu
-        self.font = pygame.font.SysFont("Times New Roman", 36)
         
         self.entries = []
         for entry in self.menu.entries:
-            self.entries.append(MenuEntryView(entry, 0))
+            self.entries.append(MenuEntryView(entry))
             
     def setSize(self, width, height):
         """ Set the surface size """
