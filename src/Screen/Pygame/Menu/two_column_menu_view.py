@@ -3,11 +3,11 @@ from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
 import pygame
 
-class BattleMenuView:
-    """ Represents a Battle Menu View """
+class TwoColumnMenuView:
+    """ Represents a Two Column Menu View """
     
     def __init__(self, menu):
-        """ Initialize the Battle Menu View """
+        """ Initialize the Two Column Menu View """
         self.menu = menu
         self.font = pygame.font.SysFont("Times New Roman", 36)
         
