@@ -18,4 +18,8 @@ class ActionMenuController(Controller):
                    TextMenuEntry("Run", None)]
         self.menu = Menu(entries, columns=2)
         self.screen.setBottomView(ActionMenuView(self.menu))
-        self.cmds = {}
+        self.cmds = {commands.UP:self.menu.up,
+                     commands.DOWN:self.menu.down,
+                     commands.LEFT:self.menu.left,
+                     commands.RIGHT:self.menu.right,
+                     commands.SELECT:self.menu.enter}
