@@ -116,21 +116,22 @@
                         <PP>35</PP>
                     </attack>
                 </attacks>
+                <display>squirtle_sunglasses</display>
             </pokemon>
             <pokemon>
-                <name>Bulbasaur</name>
-                <species>BULBASAUR</species>
+                <name>Squirtle</name>
+                <species>SQUIRTLE</species>
                 <level>20</level>
-                <currHP>48</currHP>
-                <ability>SHED SKIN</ability>
+                <currHP>47</currHP>
+                <ability>LEVITATE</ability>
                 <attacks>
                     <attack>
-                        <name>TACKLE</name>
+                        <name>EARTHQUAKE</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>
                     <attack>
-                        <name>GROWL</name>
+                        <name>SCRATCH</name>
                         <currPP>35</currPP>
                         <PP>35</PP>
                     </attack>

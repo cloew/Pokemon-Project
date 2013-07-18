@@ -1,4 +1,4 @@
-import xml.etree.ElementTree
+from Pokemon.DisplayDelegate.alternate_display_delegate import AlternateDisplayDelegate
 from Pokemon.DisplayDelegate.pokemon_display_delegate import PokemonDisplayDelegate
 
 from resources.tags import Tags
@@ -14,7 +14,12 @@ class PokemonDisplayDelegateFactory:
     @staticmethod
     def loadFromXML(tree, pkmn):
         """ Loads a Pokemon object from a file """
-        return PokemonDisplayDelegate(pkmn.species)
+        if tree is None:
+            print "Returning default Display Delegate for", pkmn.name
+            return PokemonDisplayDelegate(pkmn.species)
+        else:
+            print "Returning alternate Display Delegate for", pkmn.name
+            return AlternateDisplayDelegate(tree.text)
         
     @staticmethod
     def loadFromDB():
@@ -23,4 +28,4 @@ class PokemonDisplayDelegateFactory:
     @staticmethod
     def copy(toCopy):
         """ Copies the Given Pkmn """
-        return PokemonDisplayDelegate(toCopy.species)
+        return toCopy.displayDelegate

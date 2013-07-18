@@ -60,6 +60,6 @@ class PokemonFactory:
         
         pkmn.ability = toCopy.ability
         pkmn.battleDelegate = PokemonBattleDelegateFactory.copy(pkmn, toCopy.battleDelegate)
-        pkmn.displayDelegate = PokemonDisplayDelegateFactory.copy(pkmn)
+        pkmn.displayDelegate = PokemonDisplayDelegateFactory.copy(toCopy)
         
         return pkmn
