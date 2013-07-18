@@ -8,4 +8,7 @@ class OpponentSideView(BattleSideView):
         surface = self.getBackgroundSurface()
         entrySurface = self.menuEntryView.draw()
         surface.blit(entrySurface, (self.width*.05,self.height*.1))
+        
+        surface.blit(self.pokemonImage, (self.width*.55, self.height*.05))
+        
         return surface
