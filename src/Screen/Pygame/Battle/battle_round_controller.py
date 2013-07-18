@@ -14,18 +14,24 @@ class BattleRoundController(Controller):
         self.screen = screen
         self.cmds = {commands.SELECT:self.battle.removeMessageFromQueue}
         
-        self.roundFunctions = [self.performRound, self.refillSides]
-        self.index = 0
+        self.coroutine = self.performEntireRound()
+        self.coroutine.next()
         
     def update(self):
         """ Tells the battle object what to perform """
         if self.battle.noMessages():
-            self.roundFunctions[self.index]()
-            self.index += 1
-            self.index %= len(self.roundFunctions)
+            self.coroutine.send(None)
                     
             if self.battle.over:
                 self.stopRunning()
+                
+    def performEntireRound(self):
+        """ Perform an Entire Round """
+        while not self.battle.over:
+            self.performRound()
+            yield
+            self.refillSides()
+            yield
                 
     def performRound(self):
         """ Perform a Single Round """
