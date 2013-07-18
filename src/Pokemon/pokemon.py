@@ -1,6 +1,7 @@
 from Pokemon.Abilities.abilityfactory import AbilityFactory
 from Pokemon.Abilities.ability import Ability
 from Pokemon.pokemon_battle_delegate import PokemonBattleDelegate
+from Pokemon.DisplayDelegate.pokemon_display_delegate import PokemonDisplayDelegate
 
 import sys
 
@@ -17,6 +18,7 @@ class Pokemon:
         self.level = 5
         self.ability = Ability()
         self.battleDelegate = PokemonBattleDelegate().buildStarter(self)
+        self.displayDelegate = PokemonDisplayDelegate(self.species)
     
         return self
     
@@ -76,3 +78,7 @@ class Pokemon:
         elif val == 0:
             return 1
         return val
+        
+    def getDisplayImageBaseName(self):
+        """ Return the Display Base Name """
+        return self.displayDelegate.getDisplayImageBaseName()

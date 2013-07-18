@@ -33,7 +33,7 @@ class BattleSideView:
         
     def getBasePokemonImageName(self):
         """ Returns the base Pokemon Image Name """
-        return "Pokemon/{0}".format(self.getPokemon().species.lower())
+        return "Pokemon/{0}".format(self.getPokemon().getDisplayImageBaseName())
         
     def getPokemon(self):
         """ Returns the current Pokemon object """

@@ -6,6 +6,7 @@ from pokemon import Pokemon
 from pokemon_battle_delegate_factory import PokemonBattleDelegateFactory
 from Pokemon.Abilities.ability import Ability
 from Pokemon.Abilities.abilityfactory import AbilityFactory
+from Pokemon.DisplayDelegate.pokemon_display_delegate_factory import PokemonDisplayDelegateFactory
 
 from resources.tags import Tags
 
@@ -24,6 +25,7 @@ class PokemonFactory:
         
         pkmn.ability = Ability(None)
         pkmn.battleDelegate = PokemonBattleDelegateFactory.buildStarter(pkmn)
+        pkmn.displayDelegate = PokemonDisplayDelegateFactory.buildStarter(species)
     
         return pkmn
     
@@ -39,6 +41,7 @@ class PokemonFactory:
         
         pkmn.ability = AbilityFactory.loadFromPkmnXML(tree.find(Tags.abilityTag).text)
         pkmn.battleDelegate = PokemonBattleDelegateFactory.loadFromXML(pkmn, tree)
+        pkmn.displayDelegate = PokemonDisplayDelegateFactory.loadFromXML(tree.find(Tags.displayTag), pkmn)
     
         return pkmn
         
@@ -56,6 +59,7 @@ class PokemonFactory:
         pkmn.id = toCopy.id
         
         pkmn.ability = toCopy.ability
-        pkmn.battleDelegate =PokemonBattleDelegateFactory.copy(pkmn, toCopy.battleDelegate)
+        pkmn.battleDelegate = PokemonBattleDelegateFactory.copy(pkmn, toCopy.battleDelegate)
+        pkmn.displayDelegate = PokemonDisplayDelegateFactory.copy(pkmn)
         
         return pkmn

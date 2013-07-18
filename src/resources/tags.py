@@ -4,6 +4,7 @@ class Tags:
     abilityTag = "ability"
     attackTag = "attack"
     
+    displayTag = "display"
     
     nameTag = "name"
     typeTag = "type"
