@@ -32,9 +32,13 @@ class Menu:
             
     def left(self):
         """ Select the entry to the left """
+        if self.currentColumn > 0:
+            self.changeSelected(-1)
         
     def right(self):
         """ Select the entry to the right """
+        if self.currentColumn < self.columns-1:
+            self.changeSelected(1)
             
     def enter(self):
         """ Call the selected entry """

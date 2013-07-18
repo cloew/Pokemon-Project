@@ -1,4 +1,3 @@
-from Menu.text_menu_entry import TextMenuEntry
 from Screen.Pygame.pygame_helper import GetTransparentSurface
 from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
@@ -7,18 +6,13 @@ import pygame
 class ActionMenuView:
     """ Action Menu View """
     
-    def __init__(self):
+    def __init__(self,menu):
         """  """
-        #self.menu = menu
+        self.menu = menu
         self.font = pygame.font.SysFont("Times New Roman", 36)
         
-        entries = [TextMenuEntry("Fight", None),
-                   TextMenuEntry("Switch", None),
-                   TextMenuEntry("Item", None),
-                   TextMenuEntry("Run", None)]
         self.entries = []
-        
-        for entry in entries:
+        for entry in self.menu.entries:
             self.entries.append(MenuEntryView(entry, 0))
             
     def setSize(self, width, height):

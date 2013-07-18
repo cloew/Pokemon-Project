@@ -1,4 +1,6 @@
 from InputProcessor import commands
+from Menu.menu import Menu
+from Menu.text_menu_entry import TextMenuEntry
 from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Menu.ActionMenu.action_menu_view import ActionMenuView
 
@@ -10,5 +12,10 @@ class ActionMenuController(Controller):
         Controller.__init__(self)
         self.pokemon = pokemon
         self.screen = screen
-        self.screen.setBottomView(ActionMenuView())
+        entries = [TextMenuEntry("Fight", None),
+                   TextMenuEntry("Switch", None),
+                   TextMenuEntry("Item", None),
+                   TextMenuEntry("Run", None)]
+        self.menu = Menu(entries, columns=2)
+        self.screen.setBottomView(ActionMenuView(self.menu))
         self.cmds = {}
