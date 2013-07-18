@@ -15,8 +15,6 @@ class Battle:
         self.environment = BattleEnvironment()
         self.over = False
         self.round = BattleRound(self.playerSide, self.oppSide, self.environment)
-        self.battleFuncs = [self.performRound, self.refillSides]
-        self.funcIndex = 0 # Ewww....
         self.messageQueue = deque()
         self.introduce()
         
@@ -38,14 +36,6 @@ class Battle:
         if len(self.messageQueue) > 0:
             if self.messageQueue[0].fullyDisplayed:
                 self.messageQueue.popleft()
-        #self.performBattle()
-                
-    def performBattle(self):
-        """ Updates the Battle Object """
-        while self.noMessages():
-            self.battleFuncs[self.funcIndex]()
-            self.funcIndex += 1
-            self.funcIndex %= 2
 
     def update(self):
         """ Update the Battle object """
