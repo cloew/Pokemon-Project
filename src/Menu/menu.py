@@ -2,9 +2,9 @@
 class Menu:
     """ Represents a menu in the game """
     
-    def __init__(self, entries=None):
+    def __init__(self, entries=None, columns=1):
         """ Build the menu """
-        self.running = True
+        self.columns = columns
         if entries is None:
             self.addEntries()
         else:
@@ -21,23 +21,25 @@ class Menu:
         self.entries.append(entry)
         
     def up(self):
-        """ Select the previous entry """
-        if self.current > 0:
-            self.changeSelected(-1)
+        """ Select the entry up one row"""
+        if self.currentRow > 0:
+            self.changeSelected(-1*self.columns)
             
     def down(self):
-        """ Select the next entry """
-        if self.current < len(self.entries)-1:
-            self.changeSelected(1)
+        """ Select the entry down one row """
+        if self.currentRow < self.rows-1:
+            self.changeSelected(self.columns)
+            
+    def left(self):
+        """ Select the entry to the left """
+        
+    def right(self):
+        """ Select the entry to the right """
             
     def enter(self):
         """ Call the selected entry """
         if self.entries != []:
             self.entries[self.current].call()
-        
-    def quit(self):
-        """ Quits the game """
-        self.running = False
         
     def changeSelected(self, mod):
         """ Change the highlighted menu entry """
@@ -55,3 +57,18 @@ class Menu:
         """ Deselect the current entry """
         if self.entries != []:
             self.entries[self.current].deselect()
+            
+    @property
+    def currentRow(self):
+        """ Return the current row """
+        return self.current/self.columns
+        
+    @property
+    def currentColumn(self):
+        """ Return the current column """
+        return self.current % self.columns
+        
+    @property
+    def rows(self):
+        """ Return the number of rows """
+        return len(self.entries)/self.columns

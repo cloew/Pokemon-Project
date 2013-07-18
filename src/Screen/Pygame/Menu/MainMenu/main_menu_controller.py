@@ -20,7 +20,7 @@ class MainMenuController(Controller):
         self.screen = MainMenuScreen(self.menu)
         self.cmds = {commands.UP:self.menu.up,
                      commands.DOWN:self.menu.down,
-                     commands.EXIT:self.menu.quit,
+                     commands.EXIT:self.stopRunning,
                      commands.SELECT:self.menu.enter}
         
     def running(self):
