@@ -38,7 +38,7 @@ class BattleMenuView:
             
     def getXRatio(self, i):
         """ Returns the xRatio of the entry at i """
-        return ((i%2)+ 1)/3.0
+        return ((i%2)*2+ 1)/4.0
         
     def getYRatio(self, i):
         """ Returns the yRatio of the entry at i """
