@@ -5,7 +5,7 @@ class OpponentSideView(BattleSideView):
         
     def draw(self):
         """ Draw the Opponent Side View Surface and return it """
-        return self.getBackgroundSurface()
-    
-    def update(self):
-        """ Update the Opponent Side """
+        surface = self.getBackgroundSurface()
+        entrySurface = self.menuEntryView.draw()
+        surface.blit(entrySurface, (self.width*.05,self.height*.1))
+        return surface

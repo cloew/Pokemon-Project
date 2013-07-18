@@ -14,6 +14,8 @@ class BattleScreen(Screen):
         
     def update(self):
         """ Update the screen """
+        self.opponentView.update()
+        self.playerView.update()
         if self.hasBottomView():
             self.bottomView.update()
         

@@ -9,17 +9,23 @@ class BattleSideView:
     def __init__(self, side):
         """ Initialize the Battle Side View """
         self.side = side
-        menuEntry = PokemonMenuEntry(self.side.pkmnInPlay[0].pkmn, None)
-        self.menuEntryView = MenuEntryView(menuEntry, None)
+        self.setPokemonMenuEntryView()
         
-    def setSize(self, height, width):
+    def setSize(self, width, height):
         """ Set the size of the widget """
         self.height = height
         self.width = width
         
+    def update(self):
+        """ Update the Battle Side View """
+        self.setPokemonMenuEntryView()
+        
     def getBackgroundSurface(self):
         """ Returns the Background surface """
         surface = GetTransparentSurface(self.width, self.height)
-        entrySurface = self.menuEntryView.draw()
-        surface.blit(entrySurface, (0,0))
         return surface
+        
+    def setPokemonMenuEntryView(self):
+        """ Sets the Pokemon Menu Entry """
+        menuEntry = PokemonMenuEntry(self.side.pkmnInPlay[0].pkmn, None)
+        self.menuEntryView = MenuEntryView(menuEntry, None)
