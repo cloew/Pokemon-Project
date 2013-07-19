@@ -45,7 +45,7 @@ class ZoneController(Controller):
         
     def interactWithTrainer(self, trainer, message):
         """ Interact with the given trainer """
-        messageBoxController = MessageBoxController(BattleMessage(message))
+        messageBoxController = MessageBoxController(BattleMessage(message), self.screen)
         messageBoxController.run()
         
         if trainer.isBattleable():

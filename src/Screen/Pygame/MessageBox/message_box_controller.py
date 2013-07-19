@@ -5,11 +5,11 @@ from Screen.Pygame.MessageBox.message_box_screen import MessageBoxScreen
 class MessageBoxController(Controller):
     """ Controller for a Message Box """
     
-    def __init__(self, message):
+    def __init__(self, message, lastScreen):
         """ Initialize the Message Box Controller """
         Controller.__init__(self)
         self.message = message
-        self.screen = MessageBoxScreen(message)
+        self.screen = MessageBoxScreen(message, lastScreen)
         self.cmds = {commands.SELECT:self.closeMessageBox}
         
     def closeMessageBox(self):
