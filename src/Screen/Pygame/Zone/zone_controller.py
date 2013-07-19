@@ -38,7 +38,8 @@ class ZoneController(Controller):
     def interactWithTrainer(self, trainer, message):
         """ Interact with the given trainer """
         self.screen.showMessage(BattleMessage(message))
-        self.trainerToBattle = trainer
+        if trainer.isBattleable():
+            self.trainerToBattle = trainer.trainer
         
     def update(self):
         """ Try to battle if necessary """

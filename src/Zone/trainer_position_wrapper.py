@@ -50,7 +50,7 @@ class TrainerPositionWrapper:
         """ Interact with the trainer """
         self.direction = GetOppositeDirection(direction)
         if self.interactionCallback is not None:
-            self.interactionCallback(self.trainer, self.message)
+            self.interactionCallback(self, self.message)
         
     def tryToMove(self, direction):
         """ Try to Move in the given direction """
@@ -72,3 +72,7 @@ class TrainerPositionWrapper:
             return self.tile.connections[direction]
         else:
             return None 
+            
+    def isBattleable(self):
+        """ Return if the trainer is Battleable """
+        return self.trainer.hasPokemon()
