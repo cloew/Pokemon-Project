@@ -3,12 +3,15 @@ from Zone.direction import UP, DOWN, LEFT, RIGHT, GetTextFromDirection
 class TrainerPositionWrapper:
     """ Wrapper for a Trainer that includes it's position in a zone """
     
-    def __init__(self, trainer, tile):
+    def __init__(self, trainer, tile, interactionCallback=None, message=None):
         """ Initialize the Trainer Position Wrapper """
         self.trainer = trainer
         self.tile = None
         self.setTile(tile)
         self.direction = DOWN
+        
+        self.message = message
+        self.interactionCallback = interactionCallback
         
     def getImageBaseName(self):
         """ Return the base image name for the Trainer Position Wrapper """
@@ -36,6 +39,17 @@ class TrainerPositionWrapper:
     def right(self):
         """ Move the Trainer right """
         self.tryToMove(RIGHT)
+        
+    def interactWithAdjacentTile(self):
+        """ Interact with an adjacent city """
+        destination = self.getAdjacentTile(self.direction)
+        if destination.contents is not None:
+            destination.contents.interact()
+            
+    def interact(self):
+        """ Interact with the trainer """
+        if self.interactionCallback is not None:
+            self.interactionCallback(self.trainer, self.message)
         
     def tryToMove(self, direction):
         """ Try to Move in the given direction """

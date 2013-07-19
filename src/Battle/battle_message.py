@@ -1,4 +1,4 @@
-
+# TODO: Should really be a Game Message
 class BattleMessage:
     """ Represents a message created during a battle """
     

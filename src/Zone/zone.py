@@ -25,4 +25,4 @@ class Zone:
                 row.append(tile)
             self.tiles.append(row)
             
-        enemyTrainer = TrainerPositionWrapper(TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER), self.tiles[rows-2][columns/2])
+        self.enemyTrainer = TrainerPositionWrapper(TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER), self.tiles[rows-2][columns/2])

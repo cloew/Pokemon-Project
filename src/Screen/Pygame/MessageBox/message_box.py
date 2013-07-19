@@ -15,7 +15,7 @@ class MessageBox(View):
     
     def update(self):
         """ Updates the message box """
-        if self.charsShown < self.message.length():
+        if not self.isFullyShown():
             self.charsShown += 1
             
         self.stringToDisplay = self.message.getMessageSlice(self.charsShown)
@@ -36,3 +36,7 @@ class MessageBox(View):
         surface.set_colorkey((0, 0, 0))
         surface.fill((0, 0, 0))
         return surface
+        
+    def isFullyShown(self):
+        """ Returns if the current message string is fully shown """
+        return self.charsShown >= self.message.length()

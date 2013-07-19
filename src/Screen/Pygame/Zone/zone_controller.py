@@ -1,3 +1,4 @@
+from Battle.battle_message import BattleMessage
 from InputProcessor import commands
 from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Zone.zone_screen import ZoneScreen
@@ -13,10 +14,24 @@ class ZoneController(Controller):
         Controller.__init__(self)
         self.zone = Zone()
         self.trainer = TrainerPositionWrapper(trainer, self.zone.tiles[1][1])
+        self.zone.enemyTrainer.message = "Hi! I'm Eric!"
+        self.zone.enemyTrainer.interactionCallback = self.interactWithTrainer
         self.screen = ZoneScreen(self.zone)
         
         self.cmds = {commands.UP:self.trainer.up,
                      commands.DOWN:self.trainer.down,
                      commands.LEFT:self.trainer.left,
                      commands.RIGHT:self.trainer.right,
+                     commands.SELECT:self.select,
                      commands.EXIT:self.stopRunning}
+                     
+    def select(self):
+        """ Performs a Select """
+        if self.screen.isShowingMessage() and self.screen.messageBox.isFullyShown():
+            self.screen.stopShowingMessage()
+        else:
+            self.trainer.interactWithAdjacentTile()
+        
+    def interactWithTrainer(self, trainer, message):
+        """ Interact with the given trainer """
+        self.screen.showMessage(BattleMessage(message))
