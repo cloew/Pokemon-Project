@@ -24,13 +24,13 @@ class ZoneController(Controller):
         self.trainerToBattle = None
         
         self.cmds = {commands.UP:self.trainer.up,
-                     (commands.UP, RELEASED):self.trainer.stopMoving,
+                     (commands.UP, RELEASED):self.trainer.stopMovingUp,
                      commands.DOWN:self.trainer.down,
-                     (commands.DOWN, RELEASED):self.trainer.stopMoving,
+                     (commands.DOWN, RELEASED):self.trainer.stopMovingDown,
                      commands.LEFT:self.trainer.left,
-                     (commands.LEFT, RELEASED):self.trainer.stopMoving,
+                     (commands.LEFT, RELEASED):self.trainer.stopMovingLeft,
                      commands.RIGHT:self.trainer.right,
-                     (commands.RIGHT, RELEASED):self.trainer.stopMoving,
+                     (commands.RIGHT, RELEASED):self.trainer.stopMovingRight,
                      commands.SELECT:self.select,
                      commands.EXIT:self.stopRunning}
                      

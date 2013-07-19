@@ -10,7 +10,7 @@ class TrainerPositionWrapper:
         self.setTile(tile)
         self.direction = DOWN
         
-        self.stopMoving()
+        self.moving = False
         self.moveTick = self.moveCoroutine()
         self.moveTick.next()
         
@@ -44,9 +44,25 @@ class TrainerPositionWrapper:
         """ Move the Trainer right """
         self.tryToMove(RIGHT)
         
-    def stopMoving(self):
+    def stopMovingUp(self):
         """ Stop the Trainer from moving """
-        self.moving = False
+        if self.direction is UP:
+            self.moving = False
+        
+    def stopMovingDown(self):
+        """ Stop the Trainer from moving """
+        if self.direction is DOWN:
+            self.moving = False
+        
+    def stopMovingLeft(self):
+        """ Stop the Trainer from moving """
+        if self.direction is LEFT:
+            self.moving = False
+        
+    def stopMovingRight(self):
+        """ Stop the Trainer from moving """
+        if self.direction is RIGHT:
+            self.moving = False
         
     def interactWithAdjacentTile(self):
         """ Interact with an adjacent city """
@@ -65,8 +81,6 @@ class TrainerPositionWrapper:
         self.moving = True
         if direction is not self.direction:
             self.direction = direction
-        else:
-            self.move(direction)
             
     def move(self, direction):
         """ Move in the given direction if possible """
@@ -83,7 +97,7 @@ class TrainerPositionWrapper:
     def moveCoroutine(self):
         """ Coroutine for moving """
         while True:
-            for i in range(15):
+            for i in range(12):
                 yield
             self.move(self.direction)
                 
