@@ -18,7 +18,7 @@ class ZoneController(Controller):
         Controller.__init__(self)
         self.zone = Zone()
         self.trainer = TrainerPositionWrapper(trainer, self.zone.tiles[1][1])
-        self.zone.enemyTrainer.message = "Hi! I'm Eric!"
+        self.zone.enemyTrainer.message = "Hi! I'm Eric! Let's battle!"
         self.zone.enemyTrainer.interactionCallback = self.interactWithTrainer
         self.screen = ZoneScreen(self.zone)
         
@@ -37,17 +37,13 @@ class ZoneController(Controller):
                      
     def select(self):
         """ Performs a Select """
-        if self.screen.isShowingMessage() and self.screen.messageBox.isFullyShown():
-            self.screen.stopShowingMessage()
-        else:
-            self.trainer.interactWithAdjacentTile()
+        self.trainer.interactWithAdjacentTile()
         
     def interactWithTrainer(self, trainer, message):
         """ Interact with the given trainer """
         messageBoxController = MessageBoxController(BattleMessage(message))
         messageBoxController.run()
         
-        #self.screen.showMessage(BattleMessage(message))
         if trainer.isBattleable():
             battleController = BattleController(self.trainer.trainer, trainer.trainer)
             battleController.run()
@@ -55,9 +51,4 @@ class ZoneController(Controller):
     def update(self):
         """ Try to battle if necessary """
         self.trainer.performGameTick()
-        
-        # if not self.screen.isShowingMessage() and self.trainerToBattle is not None:
-            # battleController = BattleController(self.trainer.trainer, self.trainerToBattle)
-            # battleController.run()
-            # self.trainerToBattle = None
         
