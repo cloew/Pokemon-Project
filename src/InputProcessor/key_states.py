@@ -1,2 +1,2 @@
-DOWN = 1
-UP = 2
+PRESSED = 1
+RELEASED = 2

@@ -1,5 +1,5 @@
 from InputProcessor import pygame_bindings as bindings
-from InputProcessor.key_states import UP, DOWN
+from InputProcessor.key_states import PRESSED, RELEASED
 
 import pygame
 from pygame.locals import *
@@ -18,7 +18,7 @@ class InputProcessor:
         for command in commands:
             if command in functions:
                 functions[command]()
-            elif command[0] in functions and command[1] is DOWN:
+            elif command[0] in functions and command[1] is PRESSED:
                 functions[command[0]]()
         
     def convertEventToCommand(self):
@@ -30,10 +30,10 @@ class InputProcessor:
                 raise Exception()
             elif event.type == KEYDOWN:
                 if event.key in bindings.keyBindings:
-                    commands.append((bindings.keyBindings[event.key], DOWN))
+                    commands.append((bindings.keyBindings[event.key], PRESSED))
             elif event.type == KEYUP:
                 if event.key in bindings.keyBindings:
-                    commands.append((bindings.keyBindings[event.key], UP))
+                    commands.append((bindings.keyBindings[event.key], RELEASED))
         
         return commands
         
