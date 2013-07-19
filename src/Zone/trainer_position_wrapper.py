@@ -1,4 +1,4 @@
-from Zone.direction import UP, DOWN, LEFT, RIGHT, GetTextFromDirection
+from Zone.direction import UP, DOWN, LEFT, RIGHT, GetTextFromDirection, GetOppositeDirection
 
 class TrainerPositionWrapper:
     """ Wrapper for a Trainer that includes it's position in a zone """
@@ -44,10 +44,11 @@ class TrainerPositionWrapper:
         """ Interact with an adjacent city """
         destination = self.getAdjacentTile(self.direction)
         if destination.contents is not None:
-            destination.contents.interact()
+            destination.contents.interact(self.direction)
             
-    def interact(self):
+    def interact(self, direction):
         """ Interact with the trainer """
+        self.direction = GetOppositeDirection(direction)
         if self.interactionCallback is not None:
             self.interactionCallback(self.trainer, self.message)
         
