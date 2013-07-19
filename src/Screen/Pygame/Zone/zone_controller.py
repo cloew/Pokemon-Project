@@ -12,7 +12,7 @@ class ZoneController(Controller):
         """ Initialize the Zone Controller """
         Controller.__init__(self)
         self.zone = Zone()
-        self.trainer = TrainerPositionWrapper(trainer, self.zone.tiles[0][0])
+        self.trainer = TrainerPositionWrapper(trainer, self.zone.tiles[1][1])
         self.screen = ZoneScreen(self.zone, self.trainer)
         
         self.cmds = {commands.EXIT:self.stopRunning}
