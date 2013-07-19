@@ -4,6 +4,7 @@ from InputProcessor.key_states import PRESSED, RELEASED
 
 from Screen.Pygame.Battle.battle_controller import BattleController
 from Screen.Pygame.Controller.controller import Controller
+from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 from Screen.Pygame.Zone.zone_screen import ZoneScreen
 
 from Zone.trainer_position_wrapper import TrainerPositionWrapper
@@ -43,16 +44,20 @@ class ZoneController(Controller):
         
     def interactWithTrainer(self, trainer, message):
         """ Interact with the given trainer """
-        self.screen.showMessage(BattleMessage(message))
+        messageBoxController = MessageBoxController(BattleMessage(message))
+        messageBoxController.run()
+        
+        #self.screen.showMessage(BattleMessage(message))
         if trainer.isBattleable():
-            self.trainerToBattle = trainer.trainer
+            battleController = BattleController(self.trainer.trainer, trainer.trainer)
+            battleController.run()
         
     def update(self):
         """ Try to battle if necessary """
         self.trainer.performGameTick()
         
-        if not self.screen.isShowingMessage() and self.trainerToBattle is not None:
-            battleController = BattleController(self.trainer.trainer, self.trainerToBattle)
-            battleController.run()
-            self.trainerToBattle = None
+        # if not self.screen.isShowingMessage() and self.trainerToBattle is not None:
+            # battleController = BattleController(self.trainer.trainer, self.trainerToBattle)
+            # battleController.run()
+            # self.trainerToBattle = None
         
