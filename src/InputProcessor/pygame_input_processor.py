@@ -1,5 +1,6 @@
 from InputProcessor import pygame_bindings as bindings
 from InputProcessor.key_states import PRESSED, RELEASED
+from InputProcessor.quit_manager import QuitManager
 
 import pygame
 from pygame.locals import *
@@ -27,7 +28,7 @@ class InputProcessor:
         
         for event in pygame.event.get():
             if event.type == QUIT:
-                raise Exception()
+                QuitManager.quitToDesktop()
             elif event.type == KEYUP:
                 if event.key in bindings.keyBindings:
                     commands.append((bindings.keyBindings[event.key], RELEASED))

@@ -1,5 +1,6 @@
 from InputProcessor import commands
 from InputProcessor.pygame_input_processor import inputProcessor
+from InputProcessor.quit_manager import QuitManager
 from Screen.Pygame.window import window
 
 class Controller:
@@ -24,7 +25,7 @@ class Controller:
         
     def isRunning(self):
         """ Return if the controller is still running """
-        return self.running 
+        return self.running and not QuitManager.quit
         
     def update(self): # May remove in favor of a threaded application
         """ Function to be overridden to perform periodic updates for the model/controller """
