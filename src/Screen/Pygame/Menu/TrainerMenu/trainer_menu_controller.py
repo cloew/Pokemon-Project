@@ -4,6 +4,7 @@ from InputProcessor import commands
 from Menu.TrainerMenu.trainer_menu import TrainerMenu
 from Screen.Pygame.Battle.battle_controller import BattleController
 from Screen.Pygame.Menu.TrainerMenu.trainer_menu_screen import TrainerMenuScreen
+from Screen.Pygame.Zone.zone_controller import ZoneController
 
 from Trainer.trainer_factory import TrainerFactory
 
@@ -22,9 +23,11 @@ class TrainerMenuController(Controller):
                      
     def performBattle(self, entry):
         """ Perform a Battle """
-        enemy = TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER)
-        battleController = BattleController(entry.trainer, enemy)
-        battleController.run()
+        # enemy = TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER)
+        # battleController = BattleController(entry.trainer, enemy)
+        # battleController.run()
+        zoneController = ZoneController(entry.trainer)
+        zoneController.run()
         
     def exit(self):
         """ Return if the controller is still running """
