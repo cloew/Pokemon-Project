@@ -15,4 +15,8 @@ class ZoneController(Controller):
         self.trainer = TrainerPositionWrapper(trainer, self.zone.tiles[1][1])
         self.screen = ZoneScreen(self.zone, self.trainer)
         
-        self.cmds = {commands.EXIT:self.stopRunning}
+        self.cmds = {commands.UP:self.trainer.up,
+                     commands.DOWN:self.trainer.down,
+                     commands.LEFT:self.trainer.left,
+                     commands.RIGHT:self.trainer.right,
+                     commands.EXIT:self.stopRunning}
