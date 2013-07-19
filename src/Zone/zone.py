@@ -2,6 +2,7 @@ from Trainer.trainer_factory import TrainerFactory
 
 from Zone.direction import UP, LEFT
 from Zone.tile import Tile
+from Zone.Person.person import Person
 from Zone.Person.trainer_person import TrainerPerson
 
 class Zone:
@@ -26,3 +27,4 @@ class Zone:
             self.tiles.append(row)
             
         self.enemyTrainer = TrainerPerson(self.tiles[rows-2][columns/2], TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER))
+        self.npc = Person(self.tiles[rows-3][columns/2-2])

@@ -20,6 +20,10 @@ class ZoneController(Controller):
         self.trainer = TrainerPerson(self.zone.tiles[1][1], trainer)
         self.zone.enemyTrainer.message = "Hi! I'm Eric! Let's battle!"
         self.zone.enemyTrainer.interactionCallback = self.interactWithTrainer
+        
+        self.zone.npc.message = "Hi! I'm an NPC! I don't do much."
+        self.zone.npc.interactionCallback = self.interactWithTrainer
+        
         self.screen = ZoneScreen(self.zone)
         
         self.trainerToBattle = None
