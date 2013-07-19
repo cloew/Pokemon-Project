@@ -1,8 +1,8 @@
 from Trainer.trainer_factory import TrainerFactory
 
 from Zone.direction import UP, LEFT
-from Zone.trainer_position_wrapper import TrainerPositionWrapper
 from Zone.tile import Tile
+from Zone.Person.trainer_person import TrainerPerson
 
 class Zone:
     """ Represents a Zone in the Game """
@@ -25,4 +25,4 @@ class Zone:
                 row.append(tile)
             self.tiles.append(row)
             
-        self.enemyTrainer = TrainerPositionWrapper(TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER), self.tiles[rows-2][columns/2])
+        self.enemyTrainer = TrainerPerson(self.tiles[rows-2][columns/2], TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER))

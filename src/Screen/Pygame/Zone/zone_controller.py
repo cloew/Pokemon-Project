@@ -7,8 +7,8 @@ from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 from Screen.Pygame.Zone.zone_screen import ZoneScreen
 
-from Zone.trainer_position_wrapper import TrainerPositionWrapper
 from Zone.zone import Zone
+from Zone.Person.trainer_person import TrainerPerson
 
 class ZoneController(Controller):
     """ Controller for a Zone """
@@ -17,7 +17,7 @@ class ZoneController(Controller):
         """ Initialize the Zone Controller """
         Controller.__init__(self)
         self.zone = Zone()
-        self.trainer = TrainerPositionWrapper(trainer, self.zone.tiles[1][1])
+        self.trainer = TrainerPerson(self.zone.tiles[1][1], trainer)
         self.zone.enemyTrainer.message = "Hi! I'm Eric! Let's battle!"
         self.zone.enemyTrainer.interactionCallback = self.interactWithTrainer
         self.screen = ZoneScreen(self.zone)

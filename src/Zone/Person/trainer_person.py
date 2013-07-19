@@ -1,9 +1,9 @@
 from Zone.direction import UP, DOWN, LEFT, RIGHT, GetTextFromDirection, GetOppositeDirection
 
-class TrainerPositionWrapper:
-    """ Wrapper for a Trainer that includes it's position in a zone """
+class TrainerPerson:
+    """ A person that also acts as a trainer """
     
-    def __init__(self, trainer, tile, interactionCallback=None, message=None):
+    def __init__(self, tile, trainer, interactionCallback=None, message=None):
         """ Initialize the Trainer Position Wrapper """
         self.trainer = trainer
         self.tile = None
