@@ -1,5 +1,6 @@
 from Battle.battle_message import BattleMessage
 from InputProcessor import commands
+from Screen.Pygame.Battle.battle_controller import BattleController
 from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Zone.zone_screen import ZoneScreen
 
@@ -18,6 +19,8 @@ class ZoneController(Controller):
         self.zone.enemyTrainer.interactionCallback = self.interactWithTrainer
         self.screen = ZoneScreen(self.zone)
         
+        self.trainerToBattle = None
+        
         self.cmds = {commands.UP:self.trainer.up,
                      commands.DOWN:self.trainer.down,
                      commands.LEFT:self.trainer.left,
@@ -35,3 +38,12 @@ class ZoneController(Controller):
     def interactWithTrainer(self, trainer, message):
         """ Interact with the given trainer """
         self.screen.showMessage(BattleMessage(message))
+        self.trainerToBattle = trainer
+        
+    def update(self):
+        """ Try to battle if necessary """
+        if not self.screen.isShowingMessage() and self.trainerToBattle is not None:
+            battleController = BattleController(self.trainer.trainer, self.trainerToBattle)
+            battleController.run()
+            self.trainerToBattle = None
+        
