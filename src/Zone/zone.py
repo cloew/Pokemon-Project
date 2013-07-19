@@ -26,5 +26,5 @@ class Zone:
                 row.append(tile)
             self.tiles.append(row)
             
-        self.enemyTrainer = TrainerPerson(self.tiles[rows-2][columns/2], TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER))
-        self.npc = Person(self.tiles[rows-3][columns/2-2])
+        self.enemyTrainer = TrainerPerson(self.tiles[rows-2][columns/2], "trainer2", TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER))
+        self.npc = Person(self.tiles[rows-3][columns/2-2], "npc")

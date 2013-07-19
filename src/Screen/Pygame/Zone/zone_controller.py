@@ -17,7 +17,7 @@ class ZoneController(Controller):
         """ Initialize the Zone Controller """
         Controller.__init__(self)
         self.zone = Zone()
-        self.trainer = TrainerPerson(self.zone.tiles[1][1], trainer)
+        self.trainer = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer)
         self.zone.enemyTrainer.message = "Hi! I'm Eric! Let's battle!"
         self.zone.enemyTrainer.interactionCallback = self.interactWithTrainer
         
