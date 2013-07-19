@@ -9,12 +9,14 @@ class PokemonStatsView:
     """ View for a Pokemon's Stats in a Battle """
     FONT_SIZE = 24
     
-    def __init__(self, pokemon=None, pokemonMenuEntry=None):
+    def __init__(self, pokemon=None, pokemonMenuEntry=None, showHP=True):
         """ Initialize the Pokemon Stats View """
         if pokemon is not None:
             self.pokemon = pokemon
         else:
             self.pokemon = pokemonMenuEntry.getPokemon()
+            
+        self.showHP = showHP
         self.setPokemonMenuEntryView(pokemonMenuEntry)
         self.healthBarView = HealthBarView(self.pokemon)
         
@@ -58,10 +60,11 @@ class PokemonStatsView:
         healthBarSurfacePosition = healthBarSurface.get_rect(top=pkmnSurface.get_height()+10, left=0)
         surface.blit(healthBarSurface, healthBarSurfacePosition)
         
-        healthSurface = self.healthEntryView.draw()
-        healthSurfacePosition = healthSurface.get_rect(top=pkmnSurface.get_height()+healthBarSurface.get_height()+15, right=self.width)
-        surface.blit(healthSurface, healthSurfacePosition)
-        
+        if self.showHP:
+            healthSurface = self.healthEntryView.draw()
+            healthSurfacePosition = healthSurface.get_rect(top=pkmnSurface.get_height()+healthBarSurface.get_height()+15, right=self.width)
+            surface.blit(healthSurface, healthSurfacePosition)
+            
         return surface
         
     def update(self):

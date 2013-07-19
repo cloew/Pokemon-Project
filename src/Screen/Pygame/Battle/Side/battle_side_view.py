@@ -7,7 +7,7 @@ class BattleSideView:
     def __init__(self, side):
         """ Initialize the Battle Side View """
         self.side = side
-        self.pokemonStatsView = PokemonStatsView(self.side.pkmnInPlay[0])
+        self.pokemonStatsView = PokemonStatsView(self.side.pkmnInPlay[0], showHP=self.shouldShowHP())
         self.setPokemonImage()
         
     def setSize(self, width, height):
@@ -38,3 +38,7 @@ class BattleSideView:
     def getPokemon(self):
         """ Returns the current Pokemon object """
         return self.side.pkmnInPlay[0].pkmn
+        
+    def shouldShowHP(self):
+        """ Return if the Battle View should show the HP """
+        return True 

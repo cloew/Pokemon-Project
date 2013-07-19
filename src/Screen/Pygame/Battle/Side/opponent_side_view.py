@@ -12,3 +12,7 @@ class OpponentSideView(BattleSideView):
         surface.blit(self.pokemonImage, (self.width*.55, self.height*.05))
         
         return surface
+        
+    def shouldShowHP(self):
+        """ Return if the Battle View should show the HP """
+        return False
