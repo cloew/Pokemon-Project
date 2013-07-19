@@ -15,16 +15,21 @@ class TrainerPositionWrapper:
         
     def up(self):
         """ Move the Trainer up """
-        self.direction = UP
+        self.tryToMove(UP)
         
     def down(self):
         """ Move the Trainer down """
-        self.direction = DOWN
+        self.tryToMove(DOWN)
         
     def left(self):
         """ Move the Trainer left """
-        self.direction = LEFT
+        self.tryToMove(LEFT)
         
     def right(self):
         """ Move the Trainer right """
-        self.direction = RIGHT
+        self.tryToMove(RIGHT)
+        
+    def tryToMove(self, direction):
+        """ Try to Move in the given direction """
+        if direction is not self.direction:
+            self.direction = direction
