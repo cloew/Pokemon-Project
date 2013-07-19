@@ -21,7 +21,7 @@ class ZoneController(Controller):
         self.zone.enemyTrainer.message = "Hi! I'm Eric! Let's battle!"
         self.zone.enemyTrainer.interactionCallback = self.interactWithTrainer
         
-        self.zone.npc.message = "Hi! I'm an NPC! I don't do much."
+        self.zone.npc.message = "Hi! I'm an NPC! I'm like a platypus. They don't do much you know."
         self.zone.npc.interactionCallback = self.interactWithTrainer
         
         self.screen = ZoneScreen(self.zone)
