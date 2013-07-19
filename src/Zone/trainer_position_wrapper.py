@@ -10,6 +10,10 @@ class TrainerPositionWrapper:
         self.setTile(tile)
         self.direction = DOWN
         
+        self.stopMoving()
+        self.moveTick = self.moveCoroutine()
+        self.moveTick.next()
+        
         self.message = message
         self.interactionCallback = interactionCallback
         
@@ -40,6 +44,10 @@ class TrainerPositionWrapper:
         """ Move the Trainer right """
         self.tryToMove(RIGHT)
         
+    def stopMoving(self):
+        """ Stop the Trainer from moving """
+        self.moving = False
+        
     def interactWithAdjacentTile(self):
         """ Interact with an adjacent city """
         destination = self.getAdjacentTile(self.direction)
@@ -54,6 +62,7 @@ class TrainerPositionWrapper:
         
     def tryToMove(self, direction):
         """ Try to Move in the given direction """
+        self.moving = True
         if direction is not self.direction:
             self.direction = direction
         else:
@@ -65,6 +74,18 @@ class TrainerPositionWrapper:
         if destination is not None:
             if destination.isEnterable():
                 self.setTile(destination)
+                
+    def performGameTick(self):
+        """ Perform a single game tick """
+        if self.moving:
+            self.moveTick.next()
+        
+    def moveCoroutine(self):
+        """ Coroutine for moving """
+        while True:
+            for i in range(15):
+                yield
+            self.move(self.direction)
                 
     def getAdjacentTile(self, direction):
         """ Returns the adjacent tile in the given direction """

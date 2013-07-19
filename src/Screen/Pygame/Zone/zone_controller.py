@@ -1,5 +1,7 @@
 from Battle.battle_message import BattleMessage
 from InputProcessor import commands
+from InputProcessor.key_states import PRESSED, RELEASED
+
 from Screen.Pygame.Battle.battle_controller import BattleController
 from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Zone.zone_screen import ZoneScreen
@@ -22,9 +24,13 @@ class ZoneController(Controller):
         self.trainerToBattle = None
         
         self.cmds = {commands.UP:self.trainer.up,
+                     (commands.UP, RELEASED):self.trainer.stopMoving,
                      commands.DOWN:self.trainer.down,
+                     (commands.DOWN, RELEASED):self.trainer.stopMoving,
                      commands.LEFT:self.trainer.left,
+                     (commands.LEFT, RELEASED):self.trainer.stopMoving,
                      commands.RIGHT:self.trainer.right,
+                     (commands.RIGHT, RELEASED):self.trainer.stopMoving,
                      commands.SELECT:self.select,
                      commands.EXIT:self.stopRunning}
                      
@@ -43,6 +49,8 @@ class ZoneController(Controller):
         
     def update(self):
         """ Try to battle if necessary """
+        self.trainer.performGameTick()
+        
         if not self.screen.isShowingMessage() and self.trainerToBattle is not None:
             battleController = BattleController(self.trainer.trainer, self.trainerToBattle)
             battleController.run()
