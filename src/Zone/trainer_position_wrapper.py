@@ -11,8 +11,7 @@ class TrainerPositionWrapper:
         self.direction = DOWN
         
         self.moving = False
-        self.moveTick = self.moveCoroutine()
-        self.moveTick.next()
+        self.moveTick = None
         
         self.message = message
         self.interactionCallback = interactionCallback
@@ -30,39 +29,41 @@ class TrainerPositionWrapper:
         
     def up(self):
         """ Move the Trainer up """
-        self.tryToMove(UP)
+        self.prepareToMove(UP)
         
     def down(self):
         """ Move the Trainer down """
-        self.tryToMove(DOWN)
+        self.prepareToMove(DOWN)
         
     def left(self):
         """ Move the Trainer left """
-        self.tryToMove(LEFT)
+        self.prepareToMove(LEFT)
         
     def right(self):
         """ Move the Trainer right """
-        self.tryToMove(RIGHT)
+        self.prepareToMove(RIGHT)
         
     def stopMovingUp(self):
         """ Stop the Trainer from moving """
-        if self.direction is UP:
-            self.moving = False
+        self.stopMoving(UP)
         
     def stopMovingDown(self):
         """ Stop the Trainer from moving """
-        if self.direction is DOWN:
-            self.moving = False
+        self.stopMoving(DOWN)
         
     def stopMovingLeft(self):
         """ Stop the Trainer from moving """
-        if self.direction is LEFT:
-            self.moving = False
+        self.stopMoving(LEFT)
         
     def stopMovingRight(self):
         """ Stop the Trainer from moving """
-        if self.direction is RIGHT:
+        self.stopMoving(RIGHT)
+            
+    def stopMoving(self, direction):
+        """ Stop Moving in the given direction """
+        if self.direction is direction:
             self.moving = False
+            self.moveTick = None
         
     def interactWithAdjacentTile(self):
         """ Interact with an adjacent city """
@@ -76,9 +77,10 @@ class TrainerPositionWrapper:
         if self.interactionCallback is not None:
             self.interactionCallback(self, self.message)
         
-    def tryToMove(self, direction):
+    def prepareToMove(self, direction):
         """ Try to Move in the given direction """
         self.moving = True
+        self.setMoveCoroutine()
         if direction is not self.direction:
             self.direction = direction
             
@@ -92,6 +94,12 @@ class TrainerPositionWrapper:
     def performGameTick(self):
         """ Perform a single game tick """
         if self.moving:
+            self.moveTick.next()
+            
+    def setMoveCoroutine(self):
+        """ Set the Move Coroutine """
+        if self.moveTick is None:
+            self.moveTick = self.moveCoroutine()
             self.moveTick.next()
         
     def moveCoroutine(self):

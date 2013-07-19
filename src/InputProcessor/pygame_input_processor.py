@@ -28,12 +28,12 @@ class InputProcessor:
         for event in pygame.event.get():
             if event.type == QUIT:
                 raise Exception()
-            elif event.type == KEYDOWN:
-                if event.key in bindings.keyBindings:
-                    commands.append((bindings.keyBindings[event.key], PRESSED))
             elif event.type == KEYUP:
                 if event.key in bindings.keyBindings:
                     commands.append((bindings.keyBindings[event.key], RELEASED))
+            elif event.type == KEYDOWN:
+                if event.key in bindings.keyBindings:
+                    commands.append((bindings.keyBindings[event.key], PRESSED))
         
         return commands
         
