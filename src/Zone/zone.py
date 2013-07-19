@@ -1,4 +1,7 @@
+from Trainer.trainer_factory import TrainerFactory
+
 from Zone.direction import UP, LEFT
+from Zone.trainer_position_wrapper import TrainerPositionWrapper
 from Zone.tile import Tile
 
 class Zone:
@@ -21,3 +24,5 @@ class Zone:
                     tile.connectToTile(self.tiles[i-1][j], UP)
                 row.append(tile)
             self.tiles.append(row)
+            
+        enemyTrainer = TrainerPositionWrapper(TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER), self.tiles[rows-2][columns/2])
