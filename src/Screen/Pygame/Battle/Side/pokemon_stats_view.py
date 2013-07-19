@@ -31,11 +31,17 @@ class PokemonStatsView:
             pokemonMenuEntry = PokemonMenuEntry(self.pokemon, None)
         self.pkmnEntryView = MenuEntryView(pokemonMenuEntry, self.FONT_SIZE)
         self.setLevelMenuEntryView()
+        self.setHealthMenuEntryView()
         
     def setLevelMenuEntryView(self):
         """ Set the Level Menu Entry view """
         menuEntry = TextMenuEntry("Lv. {0}".format(self.pokemon.getLevel()), None)
         self.levelEntryView = MenuEntryView(menuEntry, self.FONT_SIZE)
+        
+    def setHealthMenuEntryView(self):
+        """ Set the Level Menu Entry view """
+        menuEntry = TextMenuEntry("{0}/{1}".format(self.pokemon.getCurrHP(), self.pokemon.getStat("HP")), None)
+        self.healthEntryView = MenuEntryView(menuEntry, self.FONT_SIZE)
         
     def draw(self):
         """ Draw the Pokemon Stats View """
@@ -52,8 +58,13 @@ class PokemonStatsView:
         healthBarSurfacePosition = healthBarSurface.get_rect(top=pkmnSurface.get_height()+10, left=0)
         surface.blit(healthBarSurface, healthBarSurfacePosition)
         
+        healthSurface = self.healthEntryView.draw()
+        healthSurfacePosition = healthSurface.get_rect(top=pkmnSurface.get_height()+healthBarSurface.get_height()+15, right=self.width)
+        surface.blit(healthSurface, healthSurfacePosition)
+        
         return surface
         
     def update(self):
         """ Update the Pokemon Stats View """
         self.setLevelMenuEntryView()
+        self.setHealthMenuEntryView()
