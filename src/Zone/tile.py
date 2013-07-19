@@ -15,6 +15,10 @@ class Tile:
         if twoWay:
             tile.connectToTile(self, GetOppositeDirection(direction), twoWay=False)
             
+    def isEnterable(self):
+        """ Return if the tile can be entered """
+        return self.contents is None
+            
     def setContents(self, contents):
         """ Sets the tile's contents """
         self.contents = contents

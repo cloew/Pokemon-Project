@@ -47,4 +47,6 @@ class TrainerPositionWrapper:
     def move(self, direction):
         """ Move in the given direction if possible """
         if direction in self.tile.connections:
-            self.setTile(self.tile.connections[direction])
+            destination = self.tile.connections[direction]
+            if destination.isEnterable():
+                self.setTile(destination)
