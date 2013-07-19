@@ -4,11 +4,12 @@ from Zone.direction import UP, LEFT
 from Zone.tile import Tile
 from Zone.Person.person import Person
 from Zone.Person.trainer_person import TrainerPerson
+from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 
 class Zone:
     """ Represents a Zone in the Game """
     
-    def __init__(self):
+    def __init__(self, callback):
         """ Initialize the Zone """
         self.tiles = []
         
@@ -26,5 +27,5 @@ class Zone:
                 row.append(tile)
             self.tiles.append(row)
             
-        self.enemyTrainer = TrainerPerson(self.tiles[rows-2][columns/2], "trainer2", TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER))
-        self.npc = Person(self.tiles[rows-3][columns/2-2], "npc")
+        self.enemyTrainer = TrainerPerson(self.tiles[rows-2][columns/2], "trainer2", TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER), InteractionDelegate("Hi! I'm Eric! Let's battle!", callback))
+        self.npc = Person(self.tiles[rows-3][columns/2-2], "npc", InteractionDelegate("Hi! I'm an NPC! I'm like a platypus. They don't do much you know.", callback))

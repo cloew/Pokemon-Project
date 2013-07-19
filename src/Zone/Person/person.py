@@ -3,7 +3,7 @@ from Zone.direction import UP, DOWN, LEFT, RIGHT, GetTextFromDirection, GetOppos
 class Person:   
     """ Represents a person in a game zone """
     
-    def __init__(self, tile, imageBaseName, interactionCallback=None, message=None):
+    def __init__(self, tile, imageBaseName, interactionDelegate):
         """ Initialize the Person """
         self.tile = None
         self.setTile(tile)
@@ -14,8 +14,8 @@ class Person:
         self.moving = False
         self.moveTick = None
         
-        self.message = message
-        self.interactionCallback = interactionCallback
+        self.interactionDelegate = interactionDelegate
+        self.interactionDelegate.setTrainer(self)
         
     def getImageBaseName(self):
         """ Return the base image name for the Trainer Position Wrapper """
@@ -74,9 +74,7 @@ class Person:
             
     def interact(self, direction):
         """ Interact with the trainer """
-        self.direction = GetOppositeDirection(direction)
-        if self.interactionCallback is not None:
-            self.interactionCallback(self, self.message)
+        self.interactionDelegate.interact(direction)
         
     def prepareToMove(self, direction):
         """ Try to Move in the given direction """

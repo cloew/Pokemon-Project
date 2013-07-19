@@ -9,6 +9,7 @@ from Screen.Pygame.Zone.zone_screen import ZoneScreen
 
 from Zone.zone import Zone
 from Zone.Person.trainer_person import TrainerPerson
+from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 
 class ZoneController(Controller):
     """ Controller for a Zone """
@@ -16,8 +17,8 @@ class ZoneController(Controller):
     def __init__(self, trainer):
         """ Initialize the Zone Controller """
         Controller.__init__(self)
-        self.zone = Zone()
-        self.trainer = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer)
+        self.zone = Zone(self.interactWithTrainer)
+        self.trainer = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer, InteractionDelegate("", self.interactWithTrainer))
         self.zone.enemyTrainer.message = "Hi! I'm Eric! Let's battle!"
         self.zone.enemyTrainer.interactionCallback = self.interactWithTrainer
         
