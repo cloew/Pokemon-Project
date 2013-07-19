@@ -33,3 +33,10 @@ class TrainerPositionWrapper:
         """ Try to Move in the given direction """
         if direction is not self.direction:
             self.direction = direction
+        else:
+            self.move(direction)
+            
+    def move(self, direction):
+        """ Move in the given direction if possible """
+        if direction in self.tile.connections:
+            self.tile = self.tile.connections[direction]

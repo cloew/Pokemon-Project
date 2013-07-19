@@ -1,3 +1,4 @@
+from Zone.direction import UP, LEFT
 from Zone.tile import Tile
 
 class Zone:
@@ -7,8 +8,16 @@ class Zone:
         """ Initialize the Zone """
         self.tiles = []
         
-        for i in range(20):
+        rows = 5
+        columns = 20
+        
+        for i in range(rows):
             row = []
-            for j in range(20):
-                row.append(Tile())
+            for j in range(columns):
+                tile = Tile()
+                if j > 0:
+                    tile.connectToTile(row[j-1], LEFT)
+                if i > 0:
+                    tile.connectToTile(self.tiles[i-1][j], UP)
+                row.append(tile)
             self.tiles.append(row)
