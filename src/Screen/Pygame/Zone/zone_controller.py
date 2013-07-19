@@ -13,7 +13,7 @@ class ZoneController(Controller):
         Controller.__init__(self)
         self.zone = Zone()
         self.trainer = TrainerPositionWrapper(trainer, self.zone.tiles[1][1])
-        self.screen = ZoneScreen(self.zone, self.trainer)
+        self.screen = ZoneScreen(self.zone)
         
         self.cmds = {commands.UP:self.trainer.up,
                      commands.DOWN:self.trainer.down,

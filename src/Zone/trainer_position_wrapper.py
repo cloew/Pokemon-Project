@@ -6,12 +6,20 @@ class TrainerPositionWrapper:
     def __init__(self, trainer, tile):
         """ Initialize the Trainer Position Wrapper """
         self.trainer = trainer
-        self.tile = tile
+        self.tile = None
+        self.setTile(tile)
         self.direction = DOWN
         
     def getImageBaseName(self):
-        """ Return the abse image name for the Trainer Position Wrapper """
+        """ Return the base image name for the Trainer Position Wrapper """
         return "trainer_{0}".format(GetTextFromDirection(self.direction))
+        
+    def setTile(self, tile):
+        """ Set the Trainer's current tile """
+        if self.tile is not None:
+            self.tile.setContents(None)
+        self.tile = tile
+        tile.setContents(self)
         
     def up(self):
         """ Move the Trainer up """
@@ -39,4 +47,4 @@ class TrainerPositionWrapper:
     def move(self, direction):
         """ Move in the given direction if possible """
         if direction in self.tile.connections:
-            self.tile = self.tile.connections[direction]
+            self.setTile(self.tile.connections[direction])

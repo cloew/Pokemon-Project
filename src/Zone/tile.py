@@ -6,6 +6,7 @@ class Tile:
     def __init__(self):
         """ Initialize the Zone Tile """
         self.connections = {}
+        self.contents = None
         
     def connectToTile(self, tile, direction, twoWay=True):
         """ Connect this tile and the given tile """
@@ -13,3 +14,7 @@ class Tile:
         
         if twoWay:
             tile.connectToTile(self, GetOppositeDirection(direction), twoWay=False)
+            
+    def setContents(self, contents):
+        """ Sets the tile's contents """
+        self.contents = contents
