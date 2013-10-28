@@ -1,5 +1,6 @@
 from Zone.direction import UP, DOWN, LEFT, RIGHT, GetTextFromDirection, GetOppositeDirection
 from Zone.Person.Movement.movement_delegate import MovementDelegate
+from Zone.Person.Movement.movement_helper import MakeMoveFunction, MakeStopMovingFunction
 
 class Person:   
     """ Represents a person in a game zone """
@@ -15,15 +16,15 @@ class Person:
         self.interactionDelegate.setTrainer(self)
         
         self.movementDelegate = MovementDelegate(self)
-        self.up = self.makeMoveFunction(UP)
-        self.down = self.makeMoveFunction(DOWN)
-        self.left = self.makeMoveFunction(LEFT)
-        self.right = self.makeMoveFunction(RIGHT)
+        self.up = MakeMoveFunction(self, UP)
+        self.down = MakeMoveFunction(self, DOWN)
+        self.left = MakeMoveFunction(self, LEFT)
+        self.right = MakeMoveFunction(self, RIGHT)
         
-        self.stopMovingUp = self.makeStopMovingFunction(UP)
-        self.stopMovingDown = self.makeStopMovingFunction(DOWN)
-        self.stopMovingLeft = self.makeStopMovingFunction(LEFT)
-        self.stopMovingRight = self.makeStopMovingFunction(RIGHT)
+        self.stopMovingUp = MakeStopMovingFunction(self, UP)
+        self.stopMovingDown = MakeStopMovingFunction(self, DOWN)
+        self.stopMovingLeft = MakeStopMovingFunction(self, LEFT)
+        self.stopMovingRight = MakeStopMovingFunction(self, RIGHT)
         
     def getImageBaseName(self):
         """ Return the base image name for the Trainer Position Wrapper """
@@ -35,18 +36,6 @@ class Person:
             self.tile.setContents(None)
         self.tile = tile
         tile.setContents(self)
-        
-    def makeMoveFunction(self, direction):
-        def moveFunction():
-            """ Move in the specified direction """
-            self.movementDelegate.prepareToMove(direction)
-        return moveFunction
-        
-    def makeStopMovingFunction(self, direction):
-        def stopMovingFunction():
-            """ Stop moving in the specified direction """
-            self.movementDelegate.stopMoving(direction)
-        return stopMovingFunction
         
     def interactWithAdjacentTile(self):
         """ Interact with an adjacent city """
