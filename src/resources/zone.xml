@@ -1,0 +1,7 @@
+<zones>
+    <zone>
+        <name>Test</name>
+        <rows>5</rows>
+        <columns>20</columns>
+    </zone>
+</zones>

@@ -74,3 +74,8 @@ class Tags:
     titleTag = "title"
     beltTag = "belt"
     playableTag = "playable"
+    
+    zonesTag = "zones"
+    zoneTag = "zone"
+    rowsTag = "rows"
+    columnsTag = "columns"

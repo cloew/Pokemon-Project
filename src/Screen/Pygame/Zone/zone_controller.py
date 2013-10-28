@@ -8,6 +8,7 @@ from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 from Screen.Pygame.Zone.zone_screen import ZoneScreen
 
 from Zone.zone import Zone
+from Zone.zone_factory import ZoneFactory
 from Zone.Person.trainer_person import TrainerPerson
 from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 
@@ -17,7 +18,8 @@ class ZoneController(Controller):
     def __init__(self, trainer):
         """ Initialize the Zone Controller """
         Controller.__init__(self)
-        self.zone = Zone(5, 20, self.interactWithTrainer)
+        # self.zone = Zone(5, 20, self.interactWithTrainer)
+        self.zone = ZoneFactory.getZone("Test", self.interactWithTrainer)
         self.trainer = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer, InteractionDelegate("", self.interactWithTrainer))
         
         self.screen = ZoneScreen(self.zone)
