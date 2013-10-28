@@ -15,6 +15,15 @@ class Person:
         self.interactionDelegate.setTrainer(self)
         
         self.movementDelegate = MovementDelegate(self)
+        self.up = self.makeMoveFunction(UP)
+        self.down = self.makeMoveFunction(DOWN)
+        self.left = self.makeMoveFunction(LEFT)
+        self.right = self.makeMoveFunction(RIGHT)
+        
+        self.stopMovingUp = self.makeStopMovingFunction(UP)
+        self.stopMovingDown = self.makeStopMovingFunction(DOWN)
+        self.stopMovingLeft = self.makeStopMovingFunction(LEFT)
+        self.stopMovingRight = self.makeStopMovingFunction(RIGHT)
         
     def getImageBaseName(self):
         """ Return the base image name for the Trainer Position Wrapper """
@@ -27,37 +36,17 @@ class Person:
         self.tile = tile
         tile.setContents(self)
         
-    def up(self):
-        """ Move the Trainer up """
-        self.movementDelegate.prepareToMove(UP)
+    def makeMoveFunction(self, direction):
+        def moveFunction():
+            """ Move in the specified direction """
+            self.movementDelegate.prepareToMove(direction)
+        return moveFunction
         
-    def down(self):
-        """ Move the Trainer down """
-        self.movementDelegate.prepareToMove(DOWN)
-        
-    def left(self):
-        """ Move the Trainer left """
-        self.movementDelegate.prepareToMove(LEFT)
-        
-    def right(self):
-        """ Move the Trainer right """
-        self.movementDelegate.prepareToMove(RIGHT)
-        
-    def stopMovingUp(self):
-        """ Stop the Trainer from moving """
-        self.movementDelegate.stopMoving(UP)
-        
-    def stopMovingDown(self):
-        """ Stop the Trainer from moving """
-        self.movementDelegate.stopMoving(DOWN)
-        
-    def stopMovingLeft(self):
-        """ Stop the Trainer from moving """
-        self.movementDelegate.stopMoving(LEFT)
-        
-    def stopMovingRight(self):
-        """ Stop the Trainer from moving """
-        self.movementDelegate.stopMoving(RIGHT)
+    def makeStopMovingFunction(self, direction):
+        def stopMovingFunction():
+            """ Stop moving in the specified direction """
+            self.movementDelegate.stopMoving(direction)
+        return stopMovingFunction
         
     def interactWithAdjacentTile(self):
         """ Interact with an adjacent city """
