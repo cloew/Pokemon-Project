@@ -8,11 +8,13 @@ class Person:
         self.tile = None
         self.setTile(tile)
         self.direction = DOWN
+        self.newDirection = DOWN
         
         self.imageBaseName = imageBaseName
         
         self.moving = False
         self.moveTick = None
+        self.setMoveCoroutine()
         
         self.interactionDelegate = interactionDelegate
         self.interactionDelegate.setTrainer(self)
@@ -64,7 +66,6 @@ class Person:
         """ Stop Moving in the given direction """
         if self.direction is direction:
             self.moving = False
-            self.moveTick = None
         
     def interactWithAdjacentTile(self):
         """ Interact with an adjacent city """
@@ -79,20 +80,23 @@ class Person:
     def prepareToMove(self, direction):
         """ Try to Move in the given direction """
         self.moving = True
-        self.setMoveCoroutine()
-        if direction is not self.direction:
-            self.direction = direction
+        #self.setMoveCoroutine()
+        self.newDirection = direction
             
     def move(self, direction):
         """ Move in the given direction if possible """
-        destination = self.getAdjacentTile(direction)
-        if destination is not None:
-            if destination.isEnterable():
-                self.setTile(destination)
+        if self.direction != self.newDirection:
+            self.direction = self.newDirection
+        else:
+            destination = self.getAdjacentTile(self.direction)
+            if destination is not None:
+                if destination.isEnterable():
+                    self.setTile(destination)
                 
     def performGameTick(self):
         """ Perform a single game tick """
-        if self.moving:
+        #if self.moving:
+        if self.moveTick is not None:
             self.moveTick.next()
             
     def setMoveCoroutine(self):
@@ -104,9 +108,12 @@ class Person:
     def moveCoroutine(self):
         """ Coroutine for moving """
         while True:
-            for i in range(12):
+            if self.moving:
+                self.move(self.direction)
+                for i in range(12):
+                    yield
+            else:
                 yield
-            self.move(self.direction)
                 
     def getAdjacentTile(self, direction):
         """ Returns the adjacent tile in the given direction """
