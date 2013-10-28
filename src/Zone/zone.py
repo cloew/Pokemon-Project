@@ -9,12 +9,9 @@ from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 class Zone:
     """ Represents a Zone in the Game """
     
-    def __init__(self, callback):
+    def __init__(self, rows, columns, callback=None):
         """ Initialize the Zone """
         self.tiles = []
-        
-        rows = 5
-        columns = 20
         
         for i in range(rows):
             row = []

@@ -17,7 +17,7 @@ class ZoneController(Controller):
     def __init__(self, trainer):
         """ Initialize the Zone Controller """
         Controller.__init__(self)
-        self.zone = Zone(self.interactWithTrainer)
+        self.zone = Zone(5, 20, self.interactWithTrainer)
         self.trainer = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer, InteractionDelegate("", self.interactWithTrainer))
         
         self.screen = ZoneScreen(self.zone)
