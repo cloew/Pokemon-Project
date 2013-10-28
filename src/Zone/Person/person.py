@@ -36,12 +36,19 @@ class Person:
             self.tile.setContents(None)
         self.tile = tile
         tile.setContents(self)
+                
+    def getAdjacentTile(self, direction):
+        """ Returns the adjacent tile in the given direction """
+        if direction in self.tile.connections:
+            return self.tile.connections[self.movementDelegate.direction]
+        else:
+            return None 
         
     def interactWithAdjacentTile(self):
         """ Interact with an adjacent city """
-        destination = self.getAdjacentTile(self.direction)
+        destination = self.getAdjacentTile(self.movementDelegate.direction)
         if destination.contents is not None:
-            destination.contents.interact(self.direction)
+            destination.contents.interact(self.movementDelegate.direction)
             
     def interact(self, direction):
         """ Interact with the trainer """

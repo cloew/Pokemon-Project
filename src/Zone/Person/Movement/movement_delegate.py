@@ -23,7 +23,7 @@ class MovementDelegate:
         if self.direction != self.newDirection:
             self.direction = self.newDirection
         else:
-            destination = self.getAdjacentTile(self.direction)
+            destination = self.parent.getAdjacentTile(self.direction)
             if destination is not None:
                 if destination.isEnterable():
                     self.parent.setTile(destination)
@@ -48,13 +48,6 @@ class MovementDelegate:
                     yield
             else:
                 yield
-                
-    def getAdjacentTile(self, direction):
-        """ Returns the adjacent tile in the given direction """
-        if direction in self.parent.tile.connections:
-            return self.parent.tile.connections[direction]
-        else:
-            return None 
                 
     def performGameTick(self):
         """ Perform a single game tick """
