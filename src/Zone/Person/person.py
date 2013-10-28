@@ -1,4 +1,5 @@
 from Zone.direction import UP, DOWN, LEFT, RIGHT, GetTextFromDirection, GetOppositeDirection
+from Zone.Person.Movement.movement_delegate import MovementDelegate
 
 class Person:   
     """ Represents a person in a game zone """
@@ -7,21 +8,17 @@ class Person:
         """ Initialize the Person """
         self.tile = None
         self.setTile(tile)
-        self.direction = DOWN
-        self.newDirection = DOWN
         
         self.imageBaseName = imageBaseName
-        
-        self.moving = False
-        self.moveTick = None
-        self.setMoveCoroutine()
         
         self.interactionDelegate = interactionDelegate
         self.interactionDelegate.setTrainer(self)
         
+        self.movementDelegate = MovementDelegate(self)
+        
     def getImageBaseName(self):
         """ Return the base image name for the Trainer Position Wrapper """
-        return "{0}_{1}".format(self.imageBaseName, GetTextFromDirection(self.direction))
+        return "{0}_{1}".format(self.imageBaseName, GetTextFromDirection(self.movementDelegate.direction))
         
     def setTile(self, tile):
         """ Set the Trainer's current tile """
@@ -32,40 +29,35 @@ class Person:
         
     def up(self):
         """ Move the Trainer up """
-        self.prepareToMove(UP)
+        self.movementDelegate.prepareToMove(UP)
         
     def down(self):
         """ Move the Trainer down """
-        self.prepareToMove(DOWN)
+        self.movementDelegate.prepareToMove(DOWN)
         
     def left(self):
         """ Move the Trainer left """
-        self.prepareToMove(LEFT)
+        self.movementDelegate.prepareToMove(LEFT)
         
     def right(self):
         """ Move the Trainer right """
-        self.prepareToMove(RIGHT)
+        self.movementDelegate.prepareToMove(RIGHT)
         
     def stopMovingUp(self):
         """ Stop the Trainer from moving """
-        self.stopMoving(UP)
+        self.movementDelegate.stopMoving(UP)
         
     def stopMovingDown(self):
         """ Stop the Trainer from moving """
-        self.stopMoving(DOWN)
+        self.movementDelegate.stopMoving(DOWN)
         
     def stopMovingLeft(self):
         """ Stop the Trainer from moving """
-        self.stopMoving(LEFT)
+        self.movementDelegate.stopMoving(LEFT)
         
     def stopMovingRight(self):
         """ Stop the Trainer from moving """
-        self.stopMoving(RIGHT)
-            
-    def stopMoving(self, direction):
-        """ Stop Moving in the given direction """
-        if self.direction is direction:
-            self.moving = False
+        self.movementDelegate.stopMoving(RIGHT)
         
     def interactWithAdjacentTile(self):
         """ Interact with an adjacent city """
@@ -76,51 +68,10 @@ class Person:
     def interact(self, direction):
         """ Interact with the trainer """
         self.interactionDelegate.interact(direction)
-        
-    def prepareToMove(self, direction):
-        """ Try to Move in the given direction """
-        self.moving = True
-        #self.setMoveCoroutine()
-        self.newDirection = direction
-            
-    def move(self, direction):
-        """ Move in the given direction if possible """
-        if self.direction != self.newDirection:
-            self.direction = self.newDirection
-        else:
-            destination = self.getAdjacentTile(self.direction)
-            if destination is not None:
-                if destination.isEnterable():
-                    self.setTile(destination)
                 
     def performGameTick(self):
         """ Perform a single game tick """
-        #if self.moving:
-        if self.moveTick is not None:
-            self.moveTick.next()
-            
-    def setMoveCoroutine(self):
-        """ Set the Move Coroutine """
-        if self.moveTick is None:
-            self.moveTick = self.moveCoroutine()
-            self.moveTick.next()
-        
-    def moveCoroutine(self):
-        """ Coroutine for moving """
-        while True:
-            if self.moving:
-                self.move(self.direction)
-                for i in range(12):
-                    yield
-            else:
-                yield
-                
-    def getAdjacentTile(self, direction):
-        """ Returns the adjacent tile in the given direction """
-        if direction in self.tile.connections:
-            return self.tile.connections[direction]
-        else:
-            return None 
+        self.movementDelegate.performGameTick()
             
     def isBattleable(self):
         """ Return if the person is Battleable """
