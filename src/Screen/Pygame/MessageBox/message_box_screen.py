@@ -1,3 +1,4 @@
+from Screen.Pygame.pygame_helper import GetTransparentSurface
 from Screen.Pygame.MessageBox.message_box import MessageBox
 from Screen.Pygame.screen import Screen
 
@@ -13,9 +14,17 @@ class MessageBoxScreen(Screen):
         """ Draw the Screen """
         self.lastScreen.draw(window)
         
-        text = self.messageBox.draw()
-        textpos = self.getCenteredRect(window, text, .5, .75)
-        window.draw(text, textpos)
+        width = window.width*.9
+        height = window.height*.3
+        
+        surface = GetTransparentSurface(width, height)
+        messageBoxSurface = self.messageBox.draw()
+        messageBoxPosition = messageBoxSurface.get_rect(centerx=width*.5, centery=height*.5)
+        surface.blit(messageBoxSurface, messageBoxPosition)
+        
+        surfacePosition = surface.get_rect(left=window.width/20, top=window.height*.7)
+        window.draw(surface, surfacePosition)
+        
         
     def update(self):
         """ Update the Screen """
