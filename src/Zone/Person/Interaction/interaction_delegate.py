@@ -14,6 +14,6 @@ class InteractionDelegate:
         
     def interact(self, direction):
         """ Interact with the trainer """
-        self.trainer.direction = GetOppositeDirection(direction)
+        self.trainer.movementDelegate.direction = GetOppositeDirection(direction)
         if self.callback is not None:
             self.callback(self.trainer, self.message)

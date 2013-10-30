@@ -1,7 +1,7 @@
 <zones>
     <zone>
         <name>Test</name>
-        <rows>20</rows>
+        <rows>22</rows>
         <columns>40</columns>
     </zone>
 </zones>
