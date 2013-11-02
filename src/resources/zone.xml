@@ -4,4 +4,9 @@
         <rows>22</rows>
         <columns>40</columns>
     </zone>
+    <zone>
+        <name>Kanto Gym Leaders Marathon</name>
+        <rows>22</rows>
+        <columns>40</columns>
+    </zone>
 </zones>

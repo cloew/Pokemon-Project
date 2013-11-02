@@ -12,7 +12,7 @@ class TrainerFactory:
     HUMAN = 1
     COMPUTER = 2
     trainers = {HUMAN:HumanTrainer,
-                   COMPUTER:ComputerTrainer}
+                COMPUTER:ComputerTrainer}
     tree = None
                    
     @staticmethod
@@ -30,7 +30,7 @@ class TrainerFactory:
         return  playableTrainers
     
     @staticmethod
-    def loadFromXML(title, name, trainerType):
+    def loadFromXML(title, name, trainerType=COMPUTER):
         """ Loads a Trainer from an XML file """
         tree = TrainerFactory.getTrainerdexTree()
         tree = TrainerFactory.getTrainerXML(tree, title, name)
