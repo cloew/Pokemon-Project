@@ -80,26 +80,32 @@ def CheckTrainer(trainer, msg):
     
 def GetStartController():
     """ Return the controller to start the game """
-    #try:
-    from Screen.Pygame.Menu.MainMenu.main_menu_controller import MainMenuController
-    #except ImportError:
-    #    from Menu.MainMenu.main_menu_controller import MainMenuController
+    try:
+        from Screen.Pygame.Menu.MainMenu.main_menu_controller import MainMenuController
+    except ImportError as error:
+        print error
+        from Menu.MainMenu.main_menu_controller import MainMenuController
     return MainMenuController()
     
 def GetWindow():
     """ Return the proper window for the game """
     try:
-        from Screen.Pygame.window import window
-    except ImportError:
+        from kao_gui.pygame.window import Window as window
+        # from Screen.Pygame.window import window
+    except ImportError as error:
+        print error
         from Screen.Console.window import window
     return window
     
 def main(argv):
     """ Start the game """
-    startController = GetStartController()
+    # startController = GetStartController()
     window = GetWindow()
     try:
-        startController.run()
+        while True:
+            pass
+        # startController.run()
+        pass
     finally:
         window.close()
 
