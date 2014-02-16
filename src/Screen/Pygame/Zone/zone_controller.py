@@ -15,15 +15,13 @@ from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 class ZoneController(Controller):
     """ Controller for a Zone """
     
-    def __init__(self, trainer):
+    def __init__(self, trainer, zone="Test"):
         """ Initialize the Zone Controller """
         Controller.__init__(self)
-        self.zone = ZoneFactory.getZone("Test", self.interactWithTrainer)
+        self.zone = ZoneFactory.getZone(zone, self.interactWithTrainer)
         self.trainer = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer, InteractionDelegate("", self.interactWithTrainer))
         
         self.screen = ZoneScreen(self.zone)
-        
-        self.trainerToBattle = None
         
         self.cmds = {commands.UP:self.trainer.up,
                      (commands.UP, RELEASED):self.trainer.stopMovingUp,
