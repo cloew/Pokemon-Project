@@ -1,25 +1,23 @@
+from kao_gui.pygame.widgets.image import Image
+from pygame.locals import *
+
 import math
 import random
 
-import pygame
-from pygame.locals import *
-from Screen.GUI.view import View
-from Screen.GUI.pygame_helper import load_image
-
-class ScrollingMap(View):
+class ScrollingMap(Image):
     """ Represents the scrolling map """
     VELOCITY = 1
     
     def __init__(self):
         """ Builds the scrolling map and starts it at the top left corner  """
-        self.image = load_image("pokearth.png")
+        Image.__init__(self, "resources/images/pokearth.png")
         self.mapLoc = [0, 0]
         self.coord = [0, 0]
         
         self.xRange = range(1100-640)
         self.yRange = range(850-480)
     
-    def draw(self):
+    def buildSurface(self):
         """ Draws the portion of the map from the mapLocation as the top left corner """
         x, y = int(self.mapLoc[0]), int(self.mapLoc[1])
         rect = Rect(x, y, 640, 480)
