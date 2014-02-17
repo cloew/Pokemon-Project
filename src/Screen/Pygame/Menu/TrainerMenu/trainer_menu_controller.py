@@ -9,18 +9,20 @@ from Screen.Pygame.Zone.zone_controller import ZoneController
 
 from Trainer.trainer_factory import TrainerFactory
 
-class TrainerMenuController(Controller):
+from kao_gui.pygame.pygame_controller import PygameController
+
+class TrainerMenuController(PygameController):
     """ Controller for the trainer select menu """
     
     def __init__(self):
         """ Builds the Main Menu Controller """
-        Controller.__init__(self)
         self.menu = TrainerMenu(self.performBattle)
-        self.screen = TrainerMenuScreen(self.menu)
-        self.cmds = {commands.UP:self.menu.up,
-                     commands.DOWN:self.menu.down,
-                     commands.EXIT:self.exit,
-                     commands.SELECT:self.menu.enter}
+        screen = TrainerMenuScreen(self.menu)
+        cmds = {commands.UP:self.menu.up,
+                commands.DOWN:self.menu.down,
+                commands.EXIT:self.stopRunning,
+                commands.SELECT:self.menu.enter}
+        PygameController.__init__(self, screen, commands=cmds)
                      
     def performBattle(self, entry):
         """ Perform a Battle """
@@ -29,9 +31,10 @@ class TrainerMenuController(Controller):
         # battleController.run()
         # zoneController = ZoneController(entry.trainer)
         # zoneController.run()
-        marathonController = MarathonController(entry.trainer)
-        marathonController.run()
+        self.runController(MarathonController(entry.trainer))
+        # marathonController = MarathonController(entry.trainer)
+        # marathonController.run()
         
-    def exit(self):
-        """ Return if the controller is still running """
-        return self.stopRunning()
+    # def exit(self):
+        # """ Return if the controller is still running """
+        # return self.stopRunning()

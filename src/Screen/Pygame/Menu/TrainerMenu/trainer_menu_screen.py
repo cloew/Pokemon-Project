@@ -6,9 +6,11 @@ from Screen.Pygame.Menu.TrainerMenu.trainer_menu_entry_view import TrainerMenuEn
 
 from Screen.Pygame.MessageBox.message_box import MessageBox
 
+from kao_gui.pygame.pygame_screen import PygameScreen
+
 import pygame
 
-class TrainerMenuScreen(Screen):
+class TrainerMenuScreen(PygameScreen):
     """ Trainer Menu screen """
     
     def __init__(self, menu):
@@ -35,21 +37,21 @@ class TrainerMenuScreen(Screen):
         
         self.messageBox.update()
         
-    def draw(self, window):
-        """ Draw the window """
-        self.drawMap(window)
+    def drawSurface(self, surface):
+        """ Draw the surface """
+        self.drawMap(surface)
         
         for entry in self.entries:
-            entry.draw(window)
+            entrySurface = entry.draw()
+            self.drawOnSurface(entrySurface, centerx=.5, centery=(entry.yRatio+.5)/TrainerMenuEntryView.HEIGHT_RATIO)
             
         text = self.messageBox.draw()
-        textpos = self.getCenteredRect(window, text, .5, .75)
-        window.draw(text, textpos)
+        self.drawOnSurface(text, centerx=.5, centery=.75)
         
-    def drawMap(self, window):
+    def drawMap(self, surface):
         """ Draws the map to the window """
-        mapSurf = map.draw()
-        window.draw(mapSurf, (0,0))
+        mapSurface = map.draw()
+        self.drawOnSurface(mapSurface, left=0, top=0)
         
     # Unnecessary MessageBox stuff
     def findNewSelectedIndex(self):
