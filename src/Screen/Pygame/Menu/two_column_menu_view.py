@@ -1,6 +1,6 @@
-from Screen.Pygame.pygame_helper import GetTransparentSurface
 from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
+from kao_gui.pygame.pygame_helper import GetTransparentSurface
 from kao_gui.pygame.pygame_widget import PygameWidget
 
 class TwoColumnMenuView(PygameWidget):

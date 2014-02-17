@@ -1,10 +1,10 @@
 from Menu.text_menu_entry import TextMenuEntry
 from Menu.ActionMenu.SwitchMenu.pokemon_menu_entry import PokemonMenuEntry
 
-from Screen.Pygame.pygame_helper import GetTransparentSurface
 from Screen.Pygame.HealthBar.health_bar_view import HealthBarView
 from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
+from kao_gui.pygame.pygame_helper import GetTransparentSurface
 from kao_gui.pygame.pygame_widget import PygameWidget
 from kao_gui.pygame.widgets.label import Label
 
