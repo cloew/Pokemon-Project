@@ -1,11 +1,9 @@
-import pygame
-from pygame.locals import *
-
-from Screen.GUI.view import View
-from Screen.GUI.pygame_helper import load_image
 from menu_entry_view import MenuEntryView
 
-class MenuView(View):
+from kao_gui.pygame.pygame_helper import load_image
+from kao_gui.pygame.pygame_widget import PygameWidget
+
+class MenuView(PygameWidget):
     """ Represents the menu on the main menu screen """
     
     def __init__(self, menu):
@@ -15,22 +13,21 @@ class MenuView(View):
             entryView = MenuEntryView(menu.entries[i])
             self.entries.append(entryView)
         
-        self.image = load_image("menu.png")
+    def buildSurface(self):
+        """ Build the Men Surface """
+        return self.getMenu()
         
-    def draw(self): 
+    def drawSurface(self): 
         """ Draw the menu """
-        menuSurface = self.getMenu()
-        self.drawEntries(menuSurface)
-        return menuSurface
+        self.drawEntries()
         
-    def drawEntries(self, menuSurf):
+    def drawEntries(self):
         """ Draws the menu entries on the Menu Surface """
         for entry in self.entries:
             entrySurface = entry.draw()
             yRatio = (self.entries.index(entry) + 1)/4.0
-            entryPos = entrySurface.get_rect(centerx =menuSurf.get_width()/2, centery=menuSurf.get_height()*yRatio)
-            menuSurf.blit(entrySurface, entryPos)
+            self.drawOnSurface(entrySurface, centerx=.5, centery=yRatio)
         
     def getMenu(self):
         """ Build the Surface for the menu """
-        return load_image("menu.png")
+        return load_image("resources/images/menu.png")
