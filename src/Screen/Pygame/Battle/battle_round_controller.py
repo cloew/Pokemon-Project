@@ -15,7 +15,6 @@ class BattleRoundController(PygameController):
         PygameController.__init__(self, screen, commands=cmds)
         
         self.coroutine = self.performEntireRound()
-        self.coroutine.next()
         
     def performGameCycle(self):
         """ Tells the battle object what to perform """
@@ -38,7 +37,8 @@ class BattleRoundController(PygameController):
         pokemonActions = {}
         for pokemon in self.battle.playerSide.pkmnInPlay:
             if not pokemon.actionLock:
-                self.runController(ActionMenuController(pokemon, self.battle, self.screen))
+                actionMenuController = ActionMenuController(pokemon, self.battle, self.screen)
+                self.runController(actionMenuController)
                 pokemonActions[pokemon] = actionMenuController.action
         
         self.screen.setBottomView(BattleMessageBox(self.battle))
@@ -50,7 +50,8 @@ class BattleRoundController(PygameController):
         if self.battle.playerSide.hasMorePokemon():
             for pokemon in self.battle.playerSide.pkmnInPlay:
                 if pokemon.fainted():
-                    self.runController(SwitchMenuController(pokemon))
+                    switchMenuController = SwitchMenuController(pokemon)
+                    self.runController(switchMenuController)
                     pokemonReplacements[pokemon] = switchMenuController.action.pkmnToSwitchTo
                     
         self.battle.refillSides(pokemonReplacements)
