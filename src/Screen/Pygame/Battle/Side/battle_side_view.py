@@ -1,7 +1,9 @@
-from Screen.Pygame.pygame_helper import GetTransparentSurface, load_image
 from Screen.Pygame.Battle.Side.pokemon_stats_view import PokemonStatsView
 
-class BattleSideView:
+from kao_gui.pygame.pygame_helper import GetTransparentSurface, load_image
+from kao_gui.pygame.pygame_widget import PygameWidget
+
+class BattleSideView(PygameWidget):
     """ View for a battle side in a Pokemon Battle """
     
     def __init__(self, side):
@@ -12,20 +14,18 @@ class BattleSideView:
         
     def setSize(self, width, height):
         """ Set the size of the widget """
-        self.height = height
-        self.width = width
+        self.__height = height
+        self.__width = width
         
-        self.pokemonStatsView.setSize(self.width*.4, self.height*.9)
+        self.pokemonStatsView.setSize(self.__width*.4, self.__height*.9)
+        
+    def buildSurface(self):
+        """ Return the surface for the widget """
+        return GetTransparentSurface(self.__width, self.__height)
         
     def update(self):
         """ Update the Battle Side View """
-        self.pokemonStatsView.update()
         self.setPokemonImage()
-        
-    def getBackgroundSurface(self):
-        """ Returns the Background surface """
-        surface = GetTransparentSurface(self.width, self.height)
-        return surface
         
     def setPokemonImage(self):
         """ Set the pokemon Image """
@@ -33,7 +33,7 @@ class BattleSideView:
         
     def getBasePokemonImageName(self):
         """ Returns the base Pokemon Image Name """
-        return "Pokemon/{0}".format(self.getPokemon().getDisplayImageBaseName())
+        return "resources/images/Pokemon/{0}".format(self.getPokemon().getDisplayImageBaseName())
         
     def getPokemon(self):
         """ Returns the current Pokemon object """
