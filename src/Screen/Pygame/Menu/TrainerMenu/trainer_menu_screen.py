@@ -3,7 +3,6 @@ from Screen.Pygame.screen import Screen
 
 from Screen.Pygame.Menu.MainMenu.scrolling_map import map
 from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
-# from Screen.Pygame.Menu.TrainerMenu.trainer_menu_entry_view import TrainerMenuEntryView
 
 from Screen.Pygame.MessageBox.message_box import MessageBox
 
@@ -21,11 +20,8 @@ class TrainerMenuScreen(PygameScreen):
         self.font = pygame.font.SysFont("Times New Roman", 36)
 
         self.entries = []
-        # i = 0
         for entry in self.menu.entries:
             self.entries.append(MenuEntryView(entry))
-            # self.entries.append(TrainerMenuEntryView(entry, i))
-            # i += 1
             
         self.selectedIndex = 0
         self.buildMessageBox()
