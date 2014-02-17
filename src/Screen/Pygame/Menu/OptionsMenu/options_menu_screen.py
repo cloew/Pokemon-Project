@@ -46,8 +46,7 @@ class OptionsMenuScreen(PygameScreen):
         
         self.font.set_bold(True)
         text = self.font.render(self.menu.cmdStrings[cmd], 1, (10, 10, 10))
-        textpos = text.get_rect(right = surface.get_width()*cmdXRatio, centery = surface.get_height()*(yRatio/32))
-        surface.blit(text, textpos)
+        self.drawOnSurface(text, right=cmdXRatio, centery=yRatio/32)
         
     def drawKeys(self, surface, cmd, yRatio):
         """ Draws the binding """
@@ -55,5 +54,4 @@ class OptionsMenuScreen(PygameScreen):
         
         self.font.set_bold(False)
         text = self.font.render(self.menu.keyBindings[cmd], 1, (10, 10, 10))
-        textpos = text.get_rect(left = surface.get_width()*bindingXRatio, centery = surface.get_height()*(yRatio/32))
-        surface.blit(text, textpos)
+        self.drawOnSurface(text, left=bindingXRatio, centery=yRatio/32)

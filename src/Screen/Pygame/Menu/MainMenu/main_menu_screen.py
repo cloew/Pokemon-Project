@@ -26,17 +26,15 @@ class MainMenuScreen(PygameScreen):
     def drawMap(self, surface):
         """ Draws the map to the window """
         mapSurface = map.draw()
-        surface.blit(mapSurface, (0, 0))
+        self.drawOnSurface(mapSurface, left=0, top=0)
         
     def drawLogo(self, surface):
         """ Draws the Logo to the window """
         logoSurface = self.logo.draw()
-        logoPosition = self.getCenteredPostition(logoSurface, .5, .25) 
-        surface.blit(logoSurface, logoPosition)
+        self.drawOnSurface(logoSurface, centerx=.5, centery=.25)
         
     def drawMenu(self, surface):
         """ Draws the Menu to the window """
         menuSurface = self.menuView.draw()
-        menuPosition = self.getCenteredPostition(menuSurface, .5, 11.0/16)
-        surface.blit(menuSurface, menuPosition)
+        self.drawOnSurface(menuSurface, centerx=.5, centery=11.0/16)
         
