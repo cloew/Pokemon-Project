@@ -9,11 +9,11 @@ class MarathonScreen(PygameScreen):
     def __init__(self, marathon):
         """ Initialize the Marathon Screen """
         self.marathon = marathon
+        self.backgroundImage = load_image("Marathons/Kanto_Gym_Leaders.jpg")
         
     def drawSurface(self, surface):
         """ Draw the screen """
-        backgroundImage = load_image("Marathons/Kanto_Gym_Leaders.jpg")
-        self.drawOnSurface(backgroundImage, left=0, top=0)
+        self.drawOnSurface(self.backgroundImage, left=0, top=0)
                     
     def update(self):
         """ Do Nothing """
