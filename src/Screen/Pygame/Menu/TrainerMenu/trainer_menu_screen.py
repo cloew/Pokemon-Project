@@ -1,14 +1,12 @@
 from Battle.battle_message import BattleMessage
 from Screen.Pygame.screen import Screen
 
-from Screen.Pygame.Menu.MainMenu.scrolling_map import map
 from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
+from Screen.Pygame.Menu.MainMenu.scrolling_map import map
 
 from Screen.Pygame.MessageBox.message_box import MessageBox
 
 from kao_gui.pygame.pygame_screen import PygameScreen
-
-import pygame
 
 class TrainerMenuScreen(PygameScreen):
     """ Trainer Menu screen """
@@ -17,7 +15,6 @@ class TrainerMenuScreen(PygameScreen):
     def __init__(self, menu):
         """  """
         self.menu = menu
-        self.font = pygame.font.SysFont("Times New Roman", 36)
 
         self.entries = []
         for entry in self.menu.entries:
