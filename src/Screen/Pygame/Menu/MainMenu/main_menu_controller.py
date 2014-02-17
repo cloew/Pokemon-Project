@@ -4,7 +4,6 @@ from Menu.text_menu_entry import TextMenuEntry
 
 from kao_gui.pygame.pygame_controller import PygameController
 
-from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Menu.MainMenu.main_menu_screen import MainMenuScreen
 from Screen.Pygame.Menu.OptionsMenu.options_menu_controller import OptionsMenuController
 from Screen.Pygame.Menu.TrainerMenu.trainer_menu_controller import TrainerMenuController
