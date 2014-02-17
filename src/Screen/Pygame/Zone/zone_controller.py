@@ -3,7 +3,6 @@ from InputProcessor import commands
 from InputProcessor.key_states import PRESSED, RELEASED
 
 from Screen.Pygame.Battle.battle_controller import BattleController
-from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 from Screen.Pygame.Zone.zone_screen import ZoneScreen
 
@@ -12,27 +11,31 @@ from Zone.zone_factory import ZoneFactory
 from Zone.Person.trainer_person import TrainerPerson
 from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 
-class ZoneController(Controller):
+from kao_gui.pygame.pygame_controller import PygameController
+
+class ZoneController(PygameController):
     """ Controller for a Zone """
     
     def __init__(self, trainer, zone="Test"):
         """ Initialize the Zone Controller """
-        Controller.__init__(self)
         self.zone = ZoneFactory.getZone(zone, self.interactWithTrainer)
-        self.trainer = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer, InteractionDelegate("", self.interactWithTrainer))
+        self.trainer = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer, 
+                                     InteractionDelegate("", self.interactWithTrainer))
         
-        self.screen = ZoneScreen(self.zone)
+        screen = ZoneScreen(self.zone)
         
-        self.cmds = {commands.UP:self.trainer.up,
-                     (commands.UP, RELEASED):self.trainer.stopMovingUp,
-                     commands.DOWN:self.trainer.down,
-                     (commands.DOWN, RELEASED):self.trainer.stopMovingDown,
-                     commands.LEFT:self.trainer.left,
-                     (commands.LEFT, RELEASED):self.trainer.stopMovingLeft,
-                     commands.RIGHT:self.trainer.right,
-                     (commands.RIGHT, RELEASED):self.trainer.stopMovingRight,
-                     commands.SELECT:self.select,
-                     commands.EXIT:self.stopRunning}
+        cmds = {commands.UP:self.trainer.up,
+                (commands.UP, RELEASED):self.trainer.stopMovingUp,
+                commands.DOWN:self.trainer.down,
+                (commands.DOWN, RELEASED):self.trainer.stopMovingDown,
+                commands.LEFT:self.trainer.left,
+                (commands.LEFT, RELEASED):self.trainer.stopMovingLeft,
+                commands.RIGHT:self.trainer.right,
+                (commands.RIGHT, RELEASED):self.trainer.stopMovingRight,
+                commands.SELECT:self.select,
+                commands.EXIT:self.stopRunning}
+        
+        PygameController.__init__(self, screen, commands=cmds)
                      
     def select(self):
         """ Performs a Select """
@@ -40,14 +43,12 @@ class ZoneController(Controller):
         
     def interactWithTrainer(self, trainer, message):
         """ Interact with the given trainer """
-        messageBoxController = MessageBoxController(BattleMessage(message), self.screen)
-        messageBoxController.run()
+        self.runController(MessageBoxController(BattleMessage(message), self.screen))
         
         if trainer.isBattleable():
-            battleController = BattleController(self.trainer.trainer, trainer.trainer)
-            battleController.run()
+            self.runController(BattleController(self.trainer.trainer, trainer.trainer))
         
-    def update(self):
-        """ Try to battle if necessary """
+    def performGameCycle(self):
+        """ Move the Trainer if needed in this tick """
         self.trainer.performGameTick()
         

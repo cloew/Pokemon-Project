@@ -1,26 +1,27 @@
 from Screen.Pygame.pygame_helper import load_image
-from Screen.Pygame.screen import Screen
+from kao_gui.pygame.pygame_screen import PygameScreen
 
-class ZoneScreen(Screen):
+class ZoneScreen(PygameScreen):
     """ Screen for a Pokemon Zone """
     
     def __init__(self, zone):
         """ Initialize the Zone Screen """
         self.zone = zone
         
-    def draw(self, window):
+    def drawSurface(self, surface):
         """ Draw the screen """
-        window.clear()
         tileImage = load_image("Tiles/tile.png")
         
         for rowIndex in range(len(self.zone.tiles)):
             row = self.zone.tiles[rowIndex]
             for columnIndex in range(len(row)):
                 tile = row[columnIndex]
-                window.draw(tileImage, (columnIndex*16, rowIndex*16))
+                self.drawOnSurface(tileImage, left=columnIndex*16.0/surface.get_width(), 
+                                              top=rowIndex*16.0/surface.get_height())
                 if tile.contents is not None:
                     trainerImage = load_image("Trainers/{0}.png".format(tile.contents.getImageBaseName()))
-                    window.draw(trainerImage, (columnIndex*16, rowIndex*16-8))
+                    self.drawOnSurface(trainerImage, left=columnIndex*16.0/surface.get_width(),
+                                                     top=(rowIndex*16.0-8)/surface.get_height())
                     
     def update(self):
         """ Do Nothing """
