@@ -2,7 +2,6 @@ from Battle.Actions.attack_action import AttackAction
 from InputProcessor import commands
 from Menu.menu import Menu
 from Menu.ActionMenu.AttackMenu.attack_menu_entry import AttackMenuEntry
-from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Menu.two_column_menu_view import TwoColumnMenuView
 
 from kao_gui.pygame.pygame_controller import PygameController

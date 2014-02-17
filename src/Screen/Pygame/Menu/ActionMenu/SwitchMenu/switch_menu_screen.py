@@ -1,12 +1,13 @@
-from Screen.Pygame.screen import Screen
 from Screen.Pygame.Battle.Side.pokemon_stats_view import PokemonStatsView
 from Screen.Pygame.Menu.two_column_menu_view import TwoColumnMenuView
 
-class SwitchMenuScreen(Screen):
+from kao_gui.pygame.pygame_screen import PygameScreen
+
+class SwitchMenuScreen(PygameScreen):
     """ View for the Switch Menu Screen """
     
     def __init__(self, menu):
-        """ Builds the Battle View with the Battle """
+        """ Builds the Switch Menu with all Pokemon """
         self.menu = menu
         self.menuView = TwoColumnMenuView(menu)
         
@@ -19,10 +20,8 @@ class SwitchMenuScreen(Screen):
         """ Update the screen """
         self.menuView.update()
         
-    def draw(self, window):
+    def drawSurface(self, surface):
         """ Draw the window """
-        window.clear()
-        
-        self.menuView.setSize(window.width, window.height)
+        self.menuView.setSize(surface.get_width(), surface.get_height())
         bottomSurface = self.menuView.draw()
-        window.draw(bottomSurface, (0,0))
+        self.drawOnSurface(bottomSurface, left=0, top=0)
