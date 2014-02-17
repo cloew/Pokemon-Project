@@ -5,7 +5,9 @@ from Screen.Pygame.pygame_helper import GetTransparentSurface
 from Screen.Pygame.HealthBar.health_bar_view import HealthBarView
 from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
-class PokemonStatsView:
+from kao_gui.pygame.pygame_widget import PygameWidget
+
+class PokemonStatsView(PygameWidget):
     """ View for a Pokemon's Stats in a Battle """
     FONT_SIZE = 24
     
@@ -22,10 +24,14 @@ class PokemonStatsView:
         
     def setSize(self, width, height):
         """ Set the size of the widget """
-        self.height = height
-        self.width = width
+        self.__height = height
+        self.__width = width
         
-        self.healthBarView.setSize(self.width, self.height*.1)
+        self.healthBarView.setSize(self.__width, self.__height*.1)
+        
+    def buildSurface(self):
+        """ Return the surface for the widget """
+        return GetTransparentSurface(self.__width, self.__height)
     
     def setPokemonMenuEntryView(self, pokemonMenuEntry):
         """ Sets the Pokemon Menu Entry """
@@ -45,27 +51,21 @@ class PokemonStatsView:
         menuEntry = TextMenuEntry("{0}/{1}".format(self.pokemon.getCurrHP(), self.pokemon.getStat("HP")), None)
         self.healthEntryView = MenuEntryView(menuEntry, self.FONT_SIZE)
         
-    def draw(self):
+    def drawSurface(self):
         """ Draw the Pokemon Stats View """
-        surface = GetTransparentSurface(self.width, self.height)
-        
         pkmnSurface = self.pkmnEntryView.draw()
-        surface.blit(pkmnSurface, (0,0))
+        self.drawOnSurface(pkmnSurface, left=0, top=0)
         
         levelSurface = self.levelEntryView.draw()
-        levelSurfacePosition = levelSurface.get_rect(right=self.width, top=0)
-        surface.blit(levelSurface, levelSurfacePosition)
+        self.drawOnSurface(levelSurface, right=1, top=0)
         
         healthBarSurface = self.healthBarView.draw()
-        healthBarSurfacePosition = healthBarSurface.get_rect(top=pkmnSurface.get_height()+10, left=0)
-        surface.blit(healthBarSurface, healthBarSurfacePosition)
+        self.drawOnSurface(healthBarSurface, left=0, top=(pkmnSurface.get_height()+10.0)/self.height)
         
         if self.showHP:
             healthSurface = self.healthEntryView.draw()
-            healthSurfacePosition = healthSurface.get_rect(top=pkmnSurface.get_height()+healthBarSurface.get_height()+15, right=self.width)
-            surface.blit(healthSurface, healthSurfacePosition)
-            
-        return surface
+            self.drawOnSurface(healthSurface, right=1, 
+                    top=(pkmnSurface.get_height()+healthBarSurface.get_height()+15.0)/self.height)
         
     def update(self):
         """ Update the Pokemon Stats View """
