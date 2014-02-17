@@ -5,16 +5,16 @@ from Menu.ActionMenu.AttackMenu.attack_menu_entry import AttackMenuEntry
 from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Menu.two_column_menu_view import TwoColumnMenuView
 
-class AttackMenuController(Controller):
+from kao_gui.pygame.pygame_controller import PygameController
+
+class AttackMenuController(PygameController):
     """ Controller for Attack Menu """
     
     def __init__(self, pokemon, targets, environment, screen):
         """ Initialize the Attack Menu """
-        Controller.__init__(self)
         self.pokemon = pokemon
         self.targets = targets
         self.environment = environment
-        self.screen = screen
         self.action = None
         
         entries = []
@@ -22,13 +22,14 @@ class AttackMenuController(Controller):
             entries.append(AttackMenuEntry(attack, self.setAction))
         self.menu = Menu(entries, columns=2)
         
-        self.screen.setBottomView(TwoColumnMenuView(self.menu))
-        self.cmds = {commands.UP:self.menu.up,
-                     commands.DOWN:self.menu.down,
-                     commands.LEFT:self.menu.left,
-                     commands.RIGHT:self.menu.right,
-                     commands.SELECT:self.menu.enter,
-                     commands.EXIT:self.stopRunning}
+        screen.setBottomView(TwoColumnMenuView(self.menu))
+        cmds = {commands.UP:self.menu.up,
+                commands.DOWN:self.menu.down,
+                commands.LEFT:self.menu.left,
+                commands.RIGHT:self.menu.right,
+                commands.SELECT:self.menu.enter,
+                commands.EXIT:self.stopRunning}
+        PygameController.__init__(self, screen, commands=cmds)
                      
     def setAction(self, entry):
         """ Set the Chosen Action """
