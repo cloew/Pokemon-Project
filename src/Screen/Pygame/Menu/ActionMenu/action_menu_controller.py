@@ -1,20 +1,20 @@
 from InputProcessor import commands
 from Menu.menu import Menu
 from Menu.text_menu_entry import TextMenuEntry
-from Screen.Pygame.Controller.controller import Controller
+# from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Menu.two_column_menu_view import TwoColumnMenuView
 from Screen.Pygame.Menu.ActionMenu.AttackMenu.attack_menu_controller import AttackMenuController
 from Screen.Pygame.Menu.ActionMenu.SwitchMenu.switch_menu_controller import SwitchMenuController
 
-class ActionMenuController(Controller):
+from kao_gui.pygame.pygame_controller import PygameController
+
+class ActionMenuController(PygameController):
     """ Controller for Battle Rounds """
     
     def __init__(self, pokemon, battle, screen):
         """ Initialize the Battle Round Controller """
-        Controller.__init__(self)
         self.pokemon = pokemon
         self.battle = battle
-        self.screen = screen
         
         entries = [TextMenuEntry("Fight", self.chooseAttack),
                    TextMenuEntry("Switch", self.switch),
@@ -23,12 +23,13 @@ class ActionMenuController(Controller):
         self.menu = Menu(entries, columns=2)
         
         self.view = TwoColumnMenuView(self.menu)
-        self.screen.setBottomView(self.view)
-        self.cmds = {commands.UP:self.menu.up,
-                     commands.DOWN:self.menu.down,
-                     commands.LEFT:self.menu.left,
-                     commands.RIGHT:self.menu.right,
-                     commands.SELECT:self.menu.enter}
+        screen.setBottomView(self.view)
+        cmds = {commands.UP:self.menu.up,
+                commands.DOWN:self.menu.down,
+                commands.LEFT:self.menu.left,
+                commands.RIGHT:self.menu.right,
+                commands.SELECT:self.menu.enter}
+        PygameController.__init__(self, screen, commands=cmds)
                      
     def chooseAttack(self, entry):
         """ Run the Attack Menu Controller """
@@ -42,7 +43,7 @@ class ActionMenuController(Controller):
         
     def runController(self, controller):
         """ Runs the given controller """
-        controller.run()
+        PygameController.runController(self, controller)
         if controller.action is None:
             self.screen.setBottomView(self.view)
         else:
