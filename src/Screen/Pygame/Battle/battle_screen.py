@@ -1,8 +1,9 @@
-from Screen.Pygame.screen import Screen
 from Screen.Pygame.Battle.Side.opponent_side_view import OpponentSideView
 from Screen.Pygame.Battle.Side.player_side_view import PlayerSideView
 
-class BattleScreen(Screen):
+from kao_gui.pygame.pygame_screen import PygameScreen
+
+class BattleScreen(PygameScreen):
     """ View for the Battle """
     
     def __init__(self, battle):
@@ -19,23 +20,23 @@ class BattleScreen(Screen):
         if self.hasBottomView():
             self.bottomView.update()
         
-    def draw(self, window):
+    def drawSurface(self, surface):
         """ Draw the window """
-        window.clear()
+        # window.clear()
         
-        self.opponentView.setSize(window.width, window.height*.35)
+        self.opponentView.setSize(surface.get_width(), surface.get_height()*.35)
         oppSideSurface = self.opponentView.draw()
-        window.draw(oppSideSurface, (0, 0))
+        self.drawOnSurface(oppSideSurface, left=0, top=0)
+        # window.draw(oppSideSurface, (0, 0))
         
-        self.playerView.setSize(window.width, window.height*.35)
+        self.playerView.setSize(surface.get_width(), surface.get_height()*.35)
         playerSideSurface = self.playerView.draw()
-        window.draw(playerSideSurface, (0, window.height*.35))
+        self.drawOnSurface(playerSideSurface, left=0, top=.35)
         
         if self.hasBottomView():
-            self.bottomView.setSize(window.width*.9, window.height*.3)
+            self.bottomView.setSize(wsurface.get_width()*.9, surface.get_height()*.3)
             bottomSurface = self.bottomView.draw()
-            bottomSurfacePosition = bottomSurface.get_rect(left=window.width/20, top=window.height*.7)
-            window.draw(bottomSurface, bottomSurfacePosition)
+            self.drawOnSurface(bottomSurface, left=.05, top=.7)
             
     def setBottomView(self, view):
         """ Set the Bottom View """
