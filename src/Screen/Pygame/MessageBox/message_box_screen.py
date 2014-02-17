@@ -11,13 +11,13 @@ class MessageBoxScreen(PygameScreen):
         self.messageBox = MessageBox(message)
         self.lastScreen = lastScreen
         
-    def drawSurface(self, surface):
+    def drawSurface(self):
         """ Draw the Screen """
         previousScreenSurface = self.lastScreen.draw()
         self.drawOnSurface(previousScreenSurface, left=0, top=0)
         
-        width = surface.get_width()*.9
-        height = surface.get_height()*.3
+        width = self.width*.9
+        height = self.height*.3
         
         messageBoxWindowSurface = GetTransparentSurface(width, height)
         messageBoxSurface = self.messageBox.draw()

@@ -21,26 +21,26 @@ class OptionsMenuScreen(PygameScreen):
         """ Update the screen """
         map.update()
         
-    def drawSurface(self, surface):
+    def drawSurface(self):
         """ Draw the window """
-        self.drawMap(surface)
-        self.drawBindings(surface)
+        self.drawMap()
+        self.drawBindings()
         
-    def drawMap(self, surface):
+    def drawMap(self):
         """ Draws the map to the window """
-        mapSurf = map.draw()
-        surface.blit(mapSurf, (0,0))
+        mapSurface = map.draw()
+        self.drawOnSurface(mapSurface, left=0, top=0)
         
-    def drawBindings(self, surface):
+    def drawBindings(self):
         """ Draw Bindings Text """
         yRatio = 5.0
         
         for cmd in self.bindingsOrder:
-            self.drawCommand(surface, cmd, yRatio)
-            self.drawKeys(surface, cmd, yRatio)
+            self.drawCommand(cmd, yRatio)
+            self.drawKeys(cmd, yRatio)
             yRatio += 3
             
-    def drawCommand(self, surface, cmd, yRatio):
+    def drawCommand(self, cmd, yRatio):
         """ Draws the command """
         cmdXRatio = 5.0/16
         
@@ -48,7 +48,7 @@ class OptionsMenuScreen(PygameScreen):
         text = self.font.render(self.menu.cmdStrings[cmd], 1, (10, 10, 10))
         self.drawOnSurface(text, right=cmdXRatio, centery=yRatio/32)
         
-    def drawKeys(self, surface, cmd, yRatio):
+    def drawKeys(self, cmd, yRatio):
         """ Draws the binding """
         bindingXRatio = 8.0/16
         

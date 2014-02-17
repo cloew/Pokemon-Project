@@ -37,9 +37,9 @@ class TrainerMenuScreen(PygameScreen):
         
         self.messageBox.update()
         
-    def drawSurface(self, surface):
+    def drawSurface(self):
         """ Draw the surface """
-        self.drawMap(surface)
+        self.drawMap()
         
         for entry in self.entries:
             entrySurface = entry.draw()
@@ -48,7 +48,7 @@ class TrainerMenuScreen(PygameScreen):
         text = self.messageBox.draw()
         self.drawOnSurface(text, centerx=.5, centery=.75)
         
-    def drawMap(self, surface):
+    def drawMap(self):
         """ Draws the map to the window """
         mapSurface = map.draw()
         self.drawOnSurface(mapSurface, left=0, top=0)

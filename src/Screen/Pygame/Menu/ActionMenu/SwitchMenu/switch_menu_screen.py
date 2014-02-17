@@ -20,8 +20,8 @@ class SwitchMenuScreen(PygameScreen):
         """ Update the screen """
         self.menuView.update()
         
-    def drawSurface(self, surface):
+    def drawSurface(self):
         """ Draw the window """
-        self.menuView.setSize(surface.get_width(), surface.get_height())
+        self.menuView.setSize(self.width, self.height)
         bottomSurface = self.menuView.draw()
         self.drawOnSurface(bottomSurface, left=0, top=0)

@@ -20,18 +20,18 @@ class BattleScreen(PygameScreen):
         if self.hasBottomView():
             self.bottomView.update()
         
-    def drawSurface(self, surface):
+    def drawSurface(self):
         """ Draw the window """
-        self.opponentView.setSize(surface.get_width(), surface.get_height()*.35)
+        self.opponentView.setSize(self.width, self.height*.35)
         oppSideSurface = self.opponentView.draw()
         self.drawOnSurface(oppSideSurface, left=0, top=0)
         
-        self.playerView.setSize(surface.get_width(), surface.get_height()*.35)
+        self.playerView.setSize(self.width, self.height*.35)
         playerSideSurface = self.playerView.draw()
         self.drawOnSurface(playerSideSurface, left=0, top=.35)
         
         if self.hasBottomView():
-            self.bottomView.setSize(surface.get_width()*.9, surface.get_height()*.3)
+            self.bottomView.setSize(self.width*.9, self.height*.3)
             bottomSurface = self.bottomView.draw()
             self.drawOnSurface(bottomSurface, left=.05, top=.7)
             

@@ -11,7 +11,7 @@ class MarathonScreen(PygameScreen):
         self.marathon = marathon
         self.backgroundImage = load_image("Marathons/Kanto_Gym_Leaders.jpg")
         
-    def drawSurface(self, surface):
+    def drawSurface(self):
         """ Draw the screen """
         self.drawOnSurface(self.backgroundImage, left=0, top=0)
                     
