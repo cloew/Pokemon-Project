@@ -13,10 +13,6 @@ class MainMenuScreen(PygameScreen):
         self.logo = Logo()
         self.menuView = MenuView(menu)
         
-    def update(self):
-        """ Update the screen """
-        map.update()
-        
     def drawSurface(self):
         """ Draws the screen to the provided window """
         self.drawMap()

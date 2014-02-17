@@ -1,24 +1,13 @@
-import pygame
+from kao_gui.pygame.widgets.label import Label
 
-class MenuEntryView:
+class MenuEntryView(Label):
     """ Represents an entry in the menu """
     
     def __init__(self, entry, fontSize=36):
         """ Sets the entry's text """
-        self.font = pygame.font.SysFont("Times New Roman", fontSize)
+        Label.__init__(self, entry.getText(), size=fontSize)
         self.entry = entry
         
-    def setSize(self, width, height):
-        """ Set the surface size """
-        self.width = width
-        self.height = height
-        
-    def draw(self):
-        """ Draws the menu entry """
-        self.font.set_bold(self.entry.selected)
-        text = self.font.render(self.entry.getText(), 1, (10, 10, 10))
-        return text
-        
-    def setBold(self, bold):
-        """ Sets the Boldness of the entry """
-        self.font.set_bold(bold)
+    def update(self):
+        """ Update the Entry Widget """
+        self.setBold(self.entry.selected)
