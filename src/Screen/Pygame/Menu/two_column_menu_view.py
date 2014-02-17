@@ -1,7 +1,9 @@
 from Screen.Pygame.pygame_helper import GetTransparentSurface
 from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
-class TwoColumnMenuView:
+from kao_gui.pygame.pygame_widget import PygameWidget
+
+class TwoColumnMenuView(PygameWidget):
     """ Represents a Two Column Menu View """
     
     def __init__(self, menu):
@@ -14,27 +16,24 @@ class TwoColumnMenuView:
             
     def setSize(self, width, height):
         """ Set the surface size """
-        self.width = width
-        self.height = height
+        self.__width = width
+        self.__height = height
         
         for entry in self.entries:
             entry.setSize((width*.9)/self.menu.columns, (height*.9)/self.menu.columns)
+            
+    def buildSurface(self):
+        """ Return the surface for the widget """
+        return GetTransparentSurface(self.__width, self.__height)
         
-    def draw(self):
+    def drawSurface(self):
         """ Draw the Battle Menu View """
-        menuSurface = GetTransparentSurface(self.width, self.height)
-        
         for entry in self.entries:
             entrySurface = entry.draw()
             index = self.entries.index(entry)
             xRatio  = self.getXRatio(index)
             yRatio = self.getYRatio(index)
-            entryPos = entrySurface.get_rect(centerx=self.width*xRatio, centery=self.height*yRatio)
-            menuSurface.blit(entrySurface, entryPos)
-        return menuSurface
-            
-    def update(self):
-        """ Do Nothing """
+            self.drawOnSurface(entrySurface, centerx=xRatio, centery=yRatio)
             
     def getXRatio(self, i):
         """ Returns the xRatio of the entry at i """

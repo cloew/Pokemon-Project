@@ -8,6 +8,9 @@ class MenuEntryView(Label):
         Label.__init__(self, entry.getText(), size=fontSize)
         self.entry = entry
         
+    def setSize(self, width, height):
+        """ Set the surface size """
+        
     def update(self):
         """ Update the Entry Widget """
         self.setBold(self.entry.selected)

@@ -14,11 +14,7 @@ class SwitchMenuScreen(PygameScreen):
         self.statViews = []
         for entry in menu.entries:
             self.statViews.append(PokemonStatsView(pokemonMenuEntry=entry))
-        self.menuView.entries = self.statViews    
-        
-    def update(self):
-        """ Update the screen """
-        self.menuView.update()
+        self.menuView.entries = self.statViews
         
     def drawSurface(self):
         """ Draw the window """
