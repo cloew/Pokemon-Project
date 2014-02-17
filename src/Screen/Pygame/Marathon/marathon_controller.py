@@ -5,22 +5,24 @@ from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Marathon.marathon_screen import MarathonScreen
 from Screen.Pygame.Zone.zone_controller import ZoneController
 
-class MarathonController(Controller):
+from kao_gui.pygame.pygame_controller import PygameController
+
+class MarathonController(PygameController):
     """ Controller for a Marathon """
     
     def __init__(self, trainer):
         """ Initialize the Marathon Controller """
-        Controller.__init__(self)
-        
         self.marathon = Marathon()
         self.trainer = trainer
-        self.screen = MarathonScreen(self.marathon)
+        screen = MarathonScreen(self.marathon)
         
-        self.cmds = {commands.SELECT:self.select,
-                     commands.EXIT:self.stopRunning}
+        cmds = {commands.SELECT:self.select,
+                commands.EXIT:self.stopRunning}
+        PygameController.__init__(self, screen, commands=cmds)
                      
     def select(self):
         """ Performs a Select """
-        zoneController = ZoneController(self.trainer, zone=self.marathon.zone)
-        zoneController.run()
+        self.runController(ZoneController(self.trainer, zone=self.marathon.zone))
+        # zoneController = ZoneController(self.trainer, zone=self.marathon.zone)
+        # zoneController.run()
         
