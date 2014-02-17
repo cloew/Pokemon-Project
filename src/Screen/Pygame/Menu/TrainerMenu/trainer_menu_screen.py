@@ -2,7 +2,8 @@ from Battle.battle_message import BattleMessage
 from Screen.Pygame.screen import Screen
 
 from Screen.Pygame.Menu.MainMenu.scrolling_map import map
-from Screen.Pygame.Menu.TrainerMenu.trainer_menu_entry_view import TrainerMenuEntryView
+from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
+# from Screen.Pygame.Menu.TrainerMenu.trainer_menu_entry_view import TrainerMenuEntryView
 
 from Screen.Pygame.MessageBox.message_box import MessageBox
 
@@ -12,6 +13,7 @@ import pygame
 
 class TrainerMenuScreen(PygameScreen):
     """ Trainer Menu screen """
+    HEIGHT_RATIO = 10.0
     
     def __init__(self, menu):
         """  """
@@ -19,10 +21,11 @@ class TrainerMenuScreen(PygameScreen):
         self.font = pygame.font.SysFont("Times New Roman", 36)
 
         self.entries = []
-        i = 0
+        # i = 0
         for entry in self.menu.entries:
-            self.entries.append(TrainerMenuEntryView(entry, i))
-            i += 1
+            self.entries.append(MenuEntryView(entry))
+            # self.entries.append(TrainerMenuEntryView(entry, i))
+            # i += 1
             
         self.selectedIndex = 0
         self.buildMessageBox()
@@ -43,7 +46,8 @@ class TrainerMenuScreen(PygameScreen):
         
         for entry in self.entries:
             entrySurface = entry.draw()
-            self.drawOnSurface(entrySurface, centerx=.5, centery=(entry.yRatio+.5)/TrainerMenuEntryView.HEIGHT_RATIO)
+            yRatio = self.entries.index(entry) + .5
+            self.drawOnSurface(entrySurface, centerx=.5, centery=(yRatio)/self.HEIGHT_RATIO)
             
         text = self.messageBox.draw()
         self.drawOnSurface(text, centerx=.5, centery=.75)
