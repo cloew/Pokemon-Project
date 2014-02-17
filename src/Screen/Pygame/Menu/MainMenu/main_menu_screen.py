@@ -23,24 +23,29 @@ class MainMenuScreen(Screen):
         
     def draw(self, window):
         """ Draws the screen to the provided window """
-        self.drawMap(window)
-        self.drawLogo(window)
-        self.drawMenu(window)
+        surface = pygame.Surface((window.width, window.height))
+        self.drawMap(surface)
+        self.drawLogo(surface)
+        self.drawMenu(surface)
+        return surface
         
-    def drawMap(self, window):
+    def drawMap(self, surface):
         """ Draws the map to the window """
         mapSurface = map.draw()
-        window.draw(mapSurface, (0,0))
+        surface.blit(mapSurface, (0, 0))
+        # window.draw(mapSurface, (0,0))
         
-    def drawLogo(self, window):
+    def drawLogo(self, surface):
         """ Draws the Logo to the window """
         logoSurface = self.logo.draw()
-        logoPosition = self.getCenteredRect(window, logoSurface, .5, .25) 
-        window.draw(logoSurface, logoPosition)
+        logoPosition = self.getCenteredRect(surface, logoSurface, .5, .25) 
+        surface.blit(logoSurface, logoPosition)
+        # window.draw(logoSurface, logoPosition)
         
-    def drawMenu(self, window):
+    def drawMenu(self, surface):
         """ Draws the Menu to the window """
         menuSurface = self.menuView.draw()
-        menuPosition = self.getCenteredRect(window, menuSurface, .5, 11.0/16) 
-        window.draw(menuSurface, menuPosition)
+        menuPosition = self.getCenteredRect(surface, menuSurface, .5, 11.0/16)
+        surface.blit(menuSurface, menuPosition)
+        # window.draw(menuSurface, menuPosition)
         
