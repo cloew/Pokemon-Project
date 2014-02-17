@@ -90,8 +90,11 @@ def GetStartController():
 def GetWindow():
     """ Return the proper window for the game """
     try:
-        from kao_gui.pygame.window import Window as window
-        # from Screen.Pygame.window import window
+        from kao_gui.pygame.window import BuildWindow
+        from InputProcessor import pygame_bindings
+        window = BuildWindow(width=640, height=480, caption='Pokemon', 
+                                iconFilename='resources/images/pokeball3.bmp',
+                                bindings=pygame_bindings.keyBindings)
     except ImportError as error:
         print error
         from Screen.Console.window import window
@@ -99,13 +102,10 @@ def GetWindow():
     
 def main(argv):
     """ Start the game """
-    # startController = GetStartController()
+    startController = GetStartController()
     window = GetWindow()
     try:
-        while True:
-            pass
-        # startController.run()
-        pass
+        startController.run()
     finally:
         window.close()
 
