@@ -1,23 +1,23 @@
 from InputProcessor import commands
 from Screen.Pygame.Battle.battle_message_box import BattleMessageBox
-from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Menu.ActionMenu.action_menu_controller import ActionMenuController
 from Screen.Pygame.Menu.ActionMenu.SwitchMenu.switch_menu_controller import SwitchMenuController
 
-class BattleRoundController(Controller):
+from kao_gui.pygame.pygame_controller import PygameController
+
+class BattleRoundController(PygameController):
     """ Controller for Battle Rounds """
     
     def __init__(self, battle, screen):
         """ Initialize the Battle Round Controller """
-        Controller.__init__(self)
         self.battle = battle
-        self.screen = screen
-        self.cmds = {commands.SELECT:self.battle.removeMessageFromQueue}
+        cmds = {commands.SELECT:self.battle.removeMessageFromQueue}
+        PygameController.__init__(self, screen, commands=cmds)
         
         self.coroutine = self.performEntireRound()
         self.coroutine.next()
         
-    def update(self):
+    def performGameCycle(self):
         """ Tells the battle object what to perform """
         if self.battle.noMessages():
             self.coroutine.send(None)
@@ -38,8 +38,7 @@ class BattleRoundController(Controller):
         pokemonActions = {}
         for pokemon in self.battle.playerSide.pkmnInPlay:
             if not pokemon.actionLock:
-                actionMenuController = ActionMenuController(pokemon, self.battle, self.screen)
-                actionMenuController.run()
+                self.runController(ActionMenuController(pokemon, self.battle, self.screen))
                 pokemonActions[pokemon] = actionMenuController.action
         
         self.screen.setBottomView(BattleMessageBox(self.battle))
@@ -51,8 +50,7 @@ class BattleRoundController(Controller):
         if self.battle.playerSide.hasMorePokemon():
             for pokemon in self.battle.playerSide.pkmnInPlay:
                 if pokemon.fainted():
-                    switchMenuController = SwitchMenuController(pokemon)
-                    switchMenuController.run()
+                    self.runController(SwitchMenuController(pokemon))
                     pokemonReplacements[pokemon] = switchMenuController.action.pkmnToSwitchTo
                     
         self.battle.refillSides(pokemonReplacements)
