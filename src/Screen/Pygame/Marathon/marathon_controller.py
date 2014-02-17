@@ -23,6 +23,4 @@ class MarathonController(PygameController):
     def select(self):
         """ Performs a Select """
         self.runController(ZoneController(self.trainer, zone=self.marathon.zone))
-        # zoneController = ZoneController(self.trainer, zone=self.marathon.zone)
-        # zoneController.run()
         
