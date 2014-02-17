@@ -1,8 +1,10 @@
-from Screen.GUI.view import View
+# from Screen.GUI.view import View
+from kao_gui.pygame.pygame_helper import GetTransparentSurface
+from kao_gui.pygame.pygame_widget import PygameWidget
 
 import pygame
 
-class MessageBox(View):
+class MessageBox(PygameWidget):
     """ Represents a message box on the screen """
     maxChars = 35
     
@@ -12,6 +14,10 @@ class MessageBox(View):
         self.charsShown = 0
         self.font = pygame.font.SysFont("Times New Roman", 36)
         self.stringToDisplay = ""
+        
+    def buildSurface(self):
+        """ Return the surface for the widget """
+        return GetTransparentSurface(576, 82)
     
     def update(self):
         """ Updates the message box """
@@ -20,22 +26,24 @@ class MessageBox(View):
             
         self.stringToDisplay = self.message.getMessageSlice(self.charsShown)
         
-    def draw(self):
+    def drawSurface(self):
         """ Draws the message box """
-        surface = self.getBackgroundSurface()
+        # surface = self.getBackgroundSurface()
         line1 = self.font.render(self.stringToDisplay[:self.maxChars], 1, (10, 10, 10)) # Logic to split string to display may belong better in model
         line2 = self.font.render(self.stringToDisplay[self.maxChars:], 1, (10, 10, 10))
         
-        surface.blit(line1, (0,0))
-        surface.blit(line2, (0, 42))
-        return surface
+        self.drawOnSurface(line1, left=0, top=0)
+        self.drawOnSurface(line2, left=0, top=42.0/self.height)
+        # surface.blit(line1, (0,0))
+        # surface.blit(line2, (0, 42))
+        # return surface
         
-    def getBackgroundSurface(self):
-        """ Returns the background surface """
-        surface = pygame.Surface((576, 82))
-        surface.set_colorkey((0, 0, 0))
-        surface.fill((0, 0, 0))
-        return surface
+    # def getBackgroundSurface(self):
+        # """ Returns the background surface """
+        # surface = pygame.Surface((576, 82))
+        # surface.set_colorkey((0, 0, 0))
+        # surface.fill((0, 0, 0))
+        # return surface
         
     def isFullyShown(self):
         """ Returns if the current message string is fully shown """
