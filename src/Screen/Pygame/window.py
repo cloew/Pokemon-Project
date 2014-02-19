@@ -63,4 +63,4 @@ class Window:
     def close(self):
         """ Close the window...? """
         
-window = Window()
+# window = Window()

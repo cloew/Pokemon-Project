@@ -1,9 +1,10 @@
 import sys
 
 from Battle.battle_view_controller import BattleViewController
+from resources.resource_manager import GetImagePath
+
 from Trainer.computer_trainer import ComputerTrainer
 from Trainer.human_trainer import HumanTrainer
-
 from Trainer.trainer_factory import TrainerFactory
 
 def ParseArgs(args):
@@ -80,24 +81,24 @@ def CheckTrainer(trainer, msg):
     
 def GetStartController():
     """ Return the controller to start the game """
-    try:
-        from Screen.Pygame.Menu.MainMenu.main_menu_controller import MainMenuController
-    except ImportError as error:
-        print error
-        from Menu.MainMenu.main_menu_controller import MainMenuController
+    # try:
+    from Screen.Pygame.Menu.MainMenu.main_menu_controller import MainMenuController
+    # except ImportError as error:
+        # print error
+        # from Menu.MainMenu.main_menu_controller import MainMenuController
     return MainMenuController()
     
 def GetWindow():
     """ Return the proper window for the game """
-    try:
-        from kao_gui.pygame.window import BuildWindow
-        from InputProcessor import pygame_bindings
-        window = BuildWindow(width=640, height=480, caption='Pokemon', 
-                                iconFilename='resources/images/pokeball3.bmp',
-                                bindings=pygame_bindings.keyBindings)
-    except ImportError as error:
-        print error
-        from Screen.Console.window import window
+    # try:
+    from kao_gui.pygame.window import BuildWindow
+    from InputProcessor import pygame_bindings
+    window = BuildWindow(width=640, height=480, caption='Pokemon', 
+                            iconFilename=GetImagePath('pokeball3.bmp'),
+                            bindings=pygame_bindings.keyBindings)
+    # except ImportError as error:
+        # print error
+        # from Screen.Console.window import window
     return window
     
 def main(argv):

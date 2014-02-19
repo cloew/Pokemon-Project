@@ -1,4 +1,5 @@
 from menu_entry_view import MenuEntryView
+from resources.resource_manager import GetImagePath
 
 from kao_gui.pygame.pygame_helper import load_image
 from kao_gui.pygame.pygame_widget import PygameWidget
@@ -30,4 +31,4 @@ class MenuView(PygameWidget):
         
     def getMenu(self):
         """ Build the Surface for the menu """
-        return load_image("resources/images/menu.png")
+        return load_image(GetImagePath("menu.png"))

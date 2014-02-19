@@ -1,7 +1,6 @@
 from InputProcessor import commands
 from Marathon.marathon import Marathon
 
-from Screen.Pygame.Controller.controller import Controller
 from Screen.Pygame.Marathon.marathon_screen import MarathonScreen
 from Screen.Pygame.Zone.zone_controller import ZoneController
 

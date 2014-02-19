@@ -1,4 +1,3 @@
-from Screen.Pygame.Controller.controller import Controller
 from InputProcessor import commands
 
 from Menu.TrainerMenu.trainer_menu import TrainerMenu
