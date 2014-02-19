@@ -24,16 +24,7 @@ class PokemonStatsView(SizedWidget):
         self.setPokemonMenuEntryView(pokemonMenuEntry)
         self.setLevelLabel()
         self.setHealthLabel()
-        self.healthBarView = HealthBarView(self.pokemon)
-        
-        self.setSize(width, height)
-        
-    def setSize(self, width, height):
-        """ Set the size of the widget """
-        # self.__height = height
-        # self.__width = width
-        
-        self.healthBarView.setSize(self.width, self.height*.1)
+        self.healthBarView = HealthBarView(self.pokemon, width, height*.1)
     
     def setPokemonMenuEntryView(self, pokemonMenuEntry):
         """ Sets the Pokemon Menu Entry """

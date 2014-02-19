@@ -1,21 +1,13 @@
 from kao_gui.pygame.pygame_helper import GetTransparentSurface
-from kao_gui.pygame.pygame_widget import PygameWidget
+from kao_gui.pygame.widgets.sized_widget import SizedWidget
 
-class HealthBarView(PygameWidget):
+class HealthBarView(SizedWidget):
     """ View for a Pokemon's Health Bar """
     
-    def __init__(self, pokemon):
+    def __init__(self, pokemon, width, height):
         """  Initialize the Health Bar View """
+        SizedWidget.__init__(self, width, height)
         self.pokemon = pokemon
-        
-    def setSize(self, width, height):
-        """ Set the size of the widget """
-        self.__height = height
-        self.__width = width
-        
-    def buildSurface(self):
-        """ Return the surface for the widget """
-        return GetTransparentSurface(self.__width, self.__height)
         
     def drawSurface(self):
         """ Draw the Health Bar View and return its surface """
