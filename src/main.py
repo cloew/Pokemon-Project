@@ -102,8 +102,8 @@ def GetWindow():
     
 def main(argv):
     """ Start the game """
-    startController = GetStartController()
     window = GetWindow()
+    startController = GetStartController()
     try:
         startController.run()
     finally:

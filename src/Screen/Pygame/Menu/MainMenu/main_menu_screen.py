@@ -9,6 +9,7 @@ class MainMenuScreen(PygameScreen):
     
     def __init__(self, menu):
         """  """
+        PygameScreen.__init__(self)
         self.menu = menu
         self.logo = Logo()
         self.menuView = MenuView(menu)

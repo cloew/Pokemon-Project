@@ -14,6 +14,7 @@ class TrainerMenuScreen(PygameScreen):
     
     def __init__(self, menu):
         """  """
+        PygameScreen.__init__(self)
         self.menu = menu
 
         self.entries = []

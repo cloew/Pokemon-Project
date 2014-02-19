@@ -8,6 +8,7 @@ class MarathonScreen(PygameScreen):
     
     def __init__(self, marathon):
         """ Initialize the Marathon Screen """
+        PygameScreen.__init__(self)
         self.marathon = marathon
         self.backgroundImage = load_image("Marathons/Kanto_Gym_Leaders.jpg")
         

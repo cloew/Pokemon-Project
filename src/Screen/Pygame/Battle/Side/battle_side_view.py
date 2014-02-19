@@ -1,27 +1,29 @@
 from Screen.Pygame.Battle.Side.pokemon_stats_view import PokemonStatsView
 
 from kao_gui.pygame.pygame_helper import GetTransparentSurface, load_image
-from kao_gui.pygame.pygame_widget import PygameWidget
+from kao_gui.pygame.widgets.sized_widget import SizedWidget
 
-class BattleSideView(PygameWidget):
+class BattleSideView(SizedWidget):
     """ View for a battle side in a Pokemon Battle """
     
-    def __init__(self, side):
+    def __init__(self, side, width, height):
         """ Initialize the Battle Side View """
+        SizedWidget.__init__(self, width, height)
         self.side = side
         self.pokemonStatsView = PokemonStatsView(self.side.pkmnInPlay[0], showHP=self.shouldShowHP())
         self.setPokemonImage()
+        self.setSize(width, height)
         
     def setSize(self, width, height):
         """ Set the size of the widget """
-        self.__height = height
-        self.__width = width
+        # self.__height = height
+        # self.__width = width
         
-        self.pokemonStatsView.setSize(self.__width*.4, self.__height*.9)
+        self.pokemonStatsView.setSize(self.width*.4, self.height*.9)
         
-    def buildSurface(self):
-        """ Return the surface for the widget """
-        return GetTransparentSurface(self.__width, self.__height)
+    # def buildSurface(self):
+        # """ Return the surface for the widget """
+        # return GetTransparentSurface(self.__width, self.__height)
         
     def update(self):
         """ Update the Battle Side View """

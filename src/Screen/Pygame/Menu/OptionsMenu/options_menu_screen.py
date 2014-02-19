@@ -15,6 +15,7 @@ class OptionsMenuScreen(PygameScreen):
     
     def __init__(self, menu):
         """  """
+        PygameScreen.__init__(self)
         self.menu = menu
         self.commandLabels = []
         self.keyLabels = []

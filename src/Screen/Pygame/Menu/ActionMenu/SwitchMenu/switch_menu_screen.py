@@ -8,6 +8,7 @@ class SwitchMenuScreen(PygameScreen):
     
     def __init__(self, menu):
         """ Builds the Switch Menu with all Pokemon """
+        PygameScreen.__init__(self)
         self.menu = menu
         self.menuView = TwoColumnMenuView(menu)
         

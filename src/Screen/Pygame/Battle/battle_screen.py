@@ -8,8 +8,9 @@ class BattleScreen(PygameScreen):
     
     def __init__(self, battle):
         """ Builds the Battle View with the Battle """
-        self.opponentView = OpponentSideView(battle.oppSide)
-        self.playerView = PlayerSideView(battle.playerSide)
+        PygameScreen.__init__(self)
+        self.opponentView = OpponentSideView(battle.oppSide, self.width, self.height*.35)
+        self.playerView = PlayerSideView(battle.playerSide, self.width, self.height*.35)
         self.bottomView = None
         self.battle = battle
         
@@ -22,11 +23,11 @@ class BattleScreen(PygameScreen):
         
     def drawSurface(self):
         """ Draw the window """
-        self.opponentView.setSize(self.width, self.height*.35)
+        # self.opponentView.setSize(self.width, self.height*.35)
         oppSideSurface = self.opponentView.draw()
         self.drawOnSurface(oppSideSurface, left=0, top=0)
         
-        self.playerView.setSize(self.width, self.height*.35)
+        # self.playerView.setSize(self.width, self.height*.35)
         playerSideSurface = self.playerView.draw()
         self.drawOnSurface(playerSideSurface, left=0, top=.35)
         

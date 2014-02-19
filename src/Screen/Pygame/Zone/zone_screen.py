@@ -6,6 +6,7 @@ class ZoneScreen(PygameScreen):
     
     def __init__(self, zone):
         """ Initialize the Zone Screen """
+        PygameScreen.__init__(self)
         self.zone = zone
         
     def drawSurface(self):

@@ -8,6 +8,7 @@ class MessageBoxScreen(PygameScreen):
     
     def __init__(self, message, lastScreen):
         """ Initialize the Message Box Screen """
+        PygameScreen.__init__(self)
         self.messageBox = MessageBox(message)
         self.lastScreen = lastScreen
         
