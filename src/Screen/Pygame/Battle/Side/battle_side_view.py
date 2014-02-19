@@ -10,20 +10,9 @@ class BattleSideView(SizedWidget):
         """ Initialize the Battle Side View """
         SizedWidget.__init__(self, width, height)
         self.side = side
-        self.pokemonStatsView = PokemonStatsView(self.side.pkmnInPlay[0], showHP=self.shouldShowHP())
+        self.pokemonStatsView = PokemonStatsView(self.width*.4, self.height*.9,
+                                                 self.side.pkmnInPlay[0], showHP=self.shouldShowHP())
         self.setPokemonImage()
-        self.setSize(width, height)
-        
-    def setSize(self, width, height):
-        """ Set the size of the widget """
-        # self.__height = height
-        # self.__width = width
-        
-        self.pokemonStatsView.setSize(self.width*.4, self.height*.9)
-        
-    # def buildSurface(self):
-        # """ Return the surface for the widget """
-        # return GetTransparentSurface(self.__width, self.__height)
         
     def update(self):
         """ Update the Battle Side View """

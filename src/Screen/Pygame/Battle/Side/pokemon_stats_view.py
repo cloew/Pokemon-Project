@@ -5,15 +5,16 @@ from Screen.Pygame.HealthBar.health_bar_view import HealthBarView
 from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
 from kao_gui.pygame.pygame_helper import GetTransparentSurface
-from kao_gui.pygame.pygame_widget import PygameWidget
 from kao_gui.pygame.widgets.label import Label
+from kao_gui.pygame.widgets.sized_widget import SizedWidget
 
-class PokemonStatsView(PygameWidget):
+class PokemonStatsView(SizedWidget):
     """ View for a Pokemon's Stats in a Battle """
     FONT_SIZE = 24
     
-    def __init__(self, pokemon=None, pokemonMenuEntry=None, showHP=True):
+    def __init__(self, width, height, pokemon=None, pokemonMenuEntry=None, showHP=True):
         """ Initialize the Pokemon Stats View """
+        SizedWidget.__init__(self, width, height)
         if pokemon is not None:
             self.pokemon = pokemon
         else:
@@ -25,16 +26,14 @@ class PokemonStatsView(PygameWidget):
         self.setHealthLabel()
         self.healthBarView = HealthBarView(self.pokemon)
         
+        self.setSize(width, height)
+        
     def setSize(self, width, height):
         """ Set the size of the widget """
-        self.__height = height
-        self.__width = width
+        # self.__height = height
+        # self.__width = width
         
-        self.healthBarView.setSize(self.__width, self.__height*.1)
-        
-    def buildSurface(self):
-        """ Return the surface for the widget """
-        return GetTransparentSurface(self.__width, self.__height)
+        self.healthBarView.setSize(self.width, self.height*.1)
     
     def setPokemonMenuEntryView(self, pokemonMenuEntry):
         """ Sets the Pokemon Menu Entry """
