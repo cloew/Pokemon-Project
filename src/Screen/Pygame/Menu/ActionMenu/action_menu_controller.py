@@ -22,7 +22,7 @@ class ActionMenuController(PygameController):
                    TextMenuEntry("Run", None)]
         self.menu = Menu(entries, columns=2)
         
-        self.view = TwoColumnMenuView(self.menu)
+        self.view = TwoColumnMenuView(self.menu, self.getWindow().width*.9, self.getWindow().height*.3)
         screen.setBottomView(self.view)
         cmds = {commands.UP:self.menu.up,
                 commands.DOWN:self.menu.down,

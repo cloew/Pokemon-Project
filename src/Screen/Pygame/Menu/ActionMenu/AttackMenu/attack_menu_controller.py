@@ -21,7 +21,7 @@ class AttackMenuController(PygameController):
             entries.append(AttackMenuEntry(attack, self.setAction))
         self.menu = Menu(entries, columns=2)
         
-        screen.setBottomView(TwoColumnMenuView(self.menu))
+        screen.setBottomView(TwoColumnMenuView(self.menu, self.getWindow().width*.9, self.getWindow().height*.3))
         cmds = {commands.UP:self.menu.up,
                 commands.DOWN:self.menu.down,
                 commands.LEFT:self.menu.left,

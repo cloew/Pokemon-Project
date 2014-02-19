@@ -1,13 +1,14 @@
 from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
 from kao_gui.pygame.pygame_helper import GetTransparentSurface
-from kao_gui.pygame.pygame_widget import PygameWidget
+from kao_gui.pygame.widgets.sized_widget import SizedWidget
 
-class TwoColumnMenuView(PygameWidget):
+class TwoColumnMenuView(SizedWidget):
     """ Represents a Two Column Menu View """
     
-    def __init__(self, menu):
+    def __init__(self, menu, width, height):
         """ Initialize the Two Column Menu View """
+        SizedWidget.__init__(self, width, height)
         self.menu = menu
         
         self.entries = []
@@ -16,15 +17,15 @@ class TwoColumnMenuView(PygameWidget):
             
     def setSize(self, width, height):
         """ Set the surface size """
-        self.__width = width
-        self.__height = height
+        # self.__width = width
+        # self.__height = height
         
-        for entry in self.entries:
-            entry.setSize((width*.9)/self.menu.columns, (height*.9)/self.menu.columns)
+        # for entry in self.entries:
+            # entry.setSize((width*.9)/self.menu.columns, (height*.9)/self.menu.columns)
             
-    def buildSurface(self):
-        """ Return the surface for the widget """
-        return GetTransparentSurface(self.__width, self.__height)
+    # def buildSurface(self):
+        # """ Return the surface for the widget """
+        # return GetTransparentSurface(self.__width, self.__height)
         
     def drawSurface(self):
         """ Draw the Battle Menu View """
