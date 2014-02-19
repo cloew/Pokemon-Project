@@ -1,11 +1,12 @@
 import xml.etree.ElementTree
 
 from Pokemon.pokemon_factory import PokemonFactory
+
+from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
+
 from Trainer.computer_trainer import ComputerTrainer
 from Trainer.human_trainer import HumanTrainer
-
-from datetime import datetime
 
 class TrainerFactory:
     """ Builds a Trainer """
@@ -74,7 +75,7 @@ class TrainerFactory:
             return TrainerFactory.tree
         
         try:
-            trainerdex = open("resources/trainerdex.xml", 'r')
+            trainerdex = open(GetResourcePath("trainerdex.xml"), 'r')
         except IOError:
             print "Unable to open TRAINERDEX"
             exit(-2)
