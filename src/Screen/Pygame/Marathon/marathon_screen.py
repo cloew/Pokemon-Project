@@ -1,6 +1,7 @@
-from Screen.Pygame.pygame_helper import load_image
+from resources.resource_manager import GetImagePath
 from Screen.Pygame.screen import Screen
 
+from kao_gui.pygame.pygame_helper import load_image
 from kao_gui.pygame.pygame_screen import PygameScreen
 
 class MarathonScreen(PygameScreen):
@@ -10,7 +11,7 @@ class MarathonScreen(PygameScreen):
         """ Initialize the Marathon Screen """
         PygameScreen.__init__(self)
         self.marathon = marathon
-        self.backgroundImage = load_image("Marathons/Kanto_Gym_Leaders.jpg")
+        self.backgroundImage = load_image(GetImagePath("Marathons/Kanto_Gym_Leaders.jpg"))
         
     def drawSurface(self):
         """ Draw the screen """

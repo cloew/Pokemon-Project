@@ -1,3 +1,4 @@
+from resources.resource_manager import GetImagePath
 from Screen.Pygame.Battle.Side.pokemon_stats_view import PokemonStatsView
 
 from kao_gui.pygame.pygame_helper import GetTransparentSurface, load_image
@@ -24,7 +25,7 @@ class BattleSideView(SizedWidget):
         
     def getBasePokemonImageName(self):
         """ Returns the base Pokemon Image Name """
-        return "resources/images/Pokemon/{0}".format(self.getPokemon().getDisplayImageBaseName())
+        return GetImagePath("Pokemon/{0}".format(self.getPokemon().getDisplayImageBaseName()))
         
     def getPokemon(self):
         """ Returns the current Pokemon object """

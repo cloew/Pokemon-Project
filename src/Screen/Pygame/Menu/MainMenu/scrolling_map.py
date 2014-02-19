@@ -1,3 +1,5 @@
+from resources.resource_manager import GetImagePath
+
 from kao_gui.pygame.widgets.image import Image
 from pygame.locals import *
 
@@ -10,7 +12,7 @@ class ScrollingMap(Image):
     
     def __init__(self):
         """ Builds the scrolling map and starts it at the top left corner  """
-        Image.__init__(self, "resources/images/pokearth.png")
+        Image.__init__(self, GetImagePath("pokearth.png"))
         self.mapLoc = [0, 0]
         self.coord = [0, 0]
         

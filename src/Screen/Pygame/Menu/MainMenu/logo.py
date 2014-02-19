@@ -1,3 +1,5 @@
+from resources.resource_manager import GetImagePath
+
 from kao_gui.pygame.widgets.image import Image
 
 class Logo(Image):
@@ -5,4 +7,4 @@ class Logo(Image):
     
     def __init__(self):
         """ Builds the logo """
-        Image.__init__(self, "resources/images/PkmnLogo.png")
+        Image.__init__(self, GetImagePath("PkmnLogo.png"))
