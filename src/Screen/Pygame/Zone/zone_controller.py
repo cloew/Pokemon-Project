@@ -1,6 +1,5 @@
 from Battle.battle_message import BattleMessage
 from InputProcessor import commands
-from InputProcessor.key_states import PRESSED, RELEASED
 
 from Screen.Pygame.Battle.battle_controller import BattleController
 from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
@@ -11,6 +10,7 @@ from Zone.zone_factory import ZoneFactory
 from Zone.Person.trainer_person import TrainerPerson
 from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 
+from kao_gui.pygame.key_states import PRESSED, RELEASED
 from kao_gui.pygame.pygame_controller import PygameController
 
 class ZoneController(PygameController):
