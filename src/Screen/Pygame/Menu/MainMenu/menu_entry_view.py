@@ -11,3 +11,4 @@ class MenuEntryView(Label):
     def update(self):
         """ Update the Entry Widget """
         self.setBold(self.entry.selected)
+        self.setText(self.entry.getText())
