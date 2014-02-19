@@ -1,22 +1,19 @@
 from kao_gui.pygame.pygame_helper import GetTransparentSurface
-from kao_gui.pygame.pygame_widget import PygameWidget
+from kao_gui.pygame.widgets.sized_widget import SizedWidget
 
 import pygame
 
-class MessageBox(PygameWidget):
+class MessageBox(SizedWidget):
     """ Represents a message box on the screen """
     maxChars = 35
     
     def __init__(self, message):
         """ Builds the Message Box with the given message box """
+        SizedWidget.__init__(self, 576, 82)
         self.message = message
         self.charsShown = 0
         self.font = pygame.font.SysFont("Times New Roman", 36)
         self.stringToDisplay = ""
-        
-    def buildSurface(self):
-        """ Return the surface for the widget """
-        return GetTransparentSurface(576, 82)
     
     def update(self):
         """ Updates the message box """
