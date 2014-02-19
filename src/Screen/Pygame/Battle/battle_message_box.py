@@ -1,4 +1,3 @@
-from Screen.Pygame.pygame_helper import GetTransparentSurface
 from Screen.Pygame.MessageBox.message_box import MessageBox
 
 from kao_gui.pygame.widgets.sized_widget import SizedWidget
@@ -20,6 +19,5 @@ class BattleMessageBox(SizedWidget):
         
     def drawSurface(self):
         """ Draw the child Message Box """
-        surface = GetTransparentSurface(self.width, self.height)
         messageBoxSurface = self.messageBox.draw()
         self.drawOnSurface(messageBoxSurface, centerx=.5, centery=.5)

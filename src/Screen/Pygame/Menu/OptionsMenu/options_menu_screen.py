@@ -1,11 +1,8 @@
 from InputProcessor import commands
-from Screen.Pygame.screen import Screen
 from Screen.Pygame.Menu.MainMenu.scrolling_map import map
 
 from kao_gui.pygame.pygame_screen import PygameScreen
 from kao_gui.pygame.widgets.label import Label
-
-import pygame
 
 class OptionsMenuScreen(PygameScreen):
     """ Options Menu screen """
