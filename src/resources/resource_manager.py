@@ -1,5 +1,9 @@
 import os
 
+def GetResourcePath(resourceFilename):
+    """ Returns the path to Resource directory """
+    return os.path.join(GetResourceDirectory(), resourceFilename)
+
 def GetImagePath(imageFilename):
     """ Returns the current path to the given image resource file """
     return os.path.join(GetImageDirectory(), imageFilename)

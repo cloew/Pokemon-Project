@@ -5,6 +5,7 @@ from Battle.Attack.attackfactory import AttackFactory
 from Battle.Status.status import Status
 
 from pokemon_battle_delegate import PokemonBattleDelegate
+from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
 
 class PokemonBattleDelegateFactory:
@@ -140,7 +141,7 @@ class PokemonBattleDelegateFactory:
             return PokemonBattleDelegateFactory.tree
         
         try:
-            pokedex = open("resources/pokedex.xml", 'r')
+            pokedex = open(GetResourcePath("pokedex.xml"), 'r')
         except IOError:
             print "Unable to open POKEDEX"
             exit(-2)

@@ -17,6 +17,7 @@ from skip_turn_ability import SkipTurnAbility
 from sniper_ability import SniperAbility
 from statmodonstatus_ability import StatModOnStatusAbility
 
+from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
 
 class AbilityFactory:
@@ -45,7 +46,7 @@ class AbilityFactory:
             return AbilityFactory.tree
         
         try:
-            abilitydex = open("resources/abilitydex.xml", 'r')
+            abilitydex = open(GetResourcePath("abilitydex.xml"), 'r')
         except IOError:
             print "Unable to open ABILITYDEX"
             exit(-2)

@@ -8,6 +8,7 @@ from Battle.Attack.HitDelegates.hit_delegatefactory import HitDelegateFactory
 from Battle.Attack.SpeedDelegates.speed_delegatefactory import SpeedDelegateFactory
 from Battle.Attack.CritDelegates.crit_delegatefactory import CritDelegateFactory
 
+from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
 from resources.sqlite.pokemon_sqlite_helper import PkmnDBConnect
 
@@ -23,11 +24,7 @@ class AttackFactory:
     def loadFromPokemonFile(file):
         """ Load an attack as saved within a Pokemon instance in a file """
         attack = Attack()
-        try:
-            attackdex = open("resources/ATTACKDEX.txt", 'r')
-        except IOError:
-            print "Unable to open ATTACKDEX"
-            exit(-2)
+        attackdex = AttackFactory.getAttackdexTree()
       
         attack.name = file.readline().strip()
     
@@ -106,7 +103,7 @@ class AttackFactory:
             return AttackFactory.tree
         
         try:
-            attackdex = open("resources/attackdex.xml", 'r')
+            attackdex = open(GetResourcePath("attackdex.xml"), 'r')
         except IOError:
             print "Unable to open ATTACKDEX"
             exit(-2)

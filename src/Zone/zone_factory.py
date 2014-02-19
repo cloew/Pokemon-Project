@@ -1,4 +1,6 @@
+from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
+
 from Zone.zone import Zone
 
 import xml.etree.ElementTree
@@ -21,10 +23,7 @@ class ZoneFactory:
         rows = int(tree.findtext(Tags.rowsTag))
         columns = int(tree.findtext(Tags.columnsTag))
         
-        zone = Zone(rows, columns, callback)
-        
-        
-        return zone
+        return Zone(rows, columns, callback)
         
     @staticmethod
     def loadFromDB():
@@ -43,7 +42,7 @@ class ZoneFactory:
         if ZoneFactory.tree is not None:
             return ZoneFactory.tree
         
-        with open("resources/zone.xml", 'r') as zonedex:
+        with open(GetResourcePath("zone.xml"), 'r') as zonedex:
             ZoneFactory.tree = xml.etree.ElementTree.ElementTree(file=zonedex)
         return ZoneFactory.tree
         
