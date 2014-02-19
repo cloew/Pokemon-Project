@@ -1,18 +1,16 @@
 from Screen.Pygame.pygame_helper import GetTransparentSurface
 from Screen.Pygame.MessageBox.message_box import MessageBox
 
-class BattleMessageBox:
+from kao_gui.pygame.widgets.sized_widget import SizedWidget
+
+class BattleMessageBox(SizedWidget):
     """ Represents the Message Box for a Battle """
     
-    def __init__(self, battle):
+    def __init__(self, battle, width, height):
         """ Initialize the Battle Message Box """
+        SizedWidget.__init__(self, width, height)
         self.messageBox = MessageBox("")
         self.battle = battle
-        
-    def setSize(self, width, height):
-        """ Set the surface size """
-        self.width = width
-        self.height = height
         
     def update(self):
         """ Update the screen """
@@ -20,10 +18,8 @@ class BattleMessageBox:
             self.messageBox = MessageBox(self.battle.messageQueue[0])
         self.messageBox.update()
         
-    def draw(self):
+    def drawSurface(self):
         """ Draw the child Message Box """
         surface = GetTransparentSurface(self.width, self.height)
         messageBoxSurface = self.messageBox.draw()
-        messageBoxPosition = messageBoxSurface.get_rect(centerx=self.width*.5, centery=self.height*.5)
-        surface.blit(messageBoxSurface, messageBoxPosition)
-        return surface
+        self.drawOnSurface(messageBoxSurface, centerx=.5, centery=.5)

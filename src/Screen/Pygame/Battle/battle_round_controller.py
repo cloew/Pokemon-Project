@@ -41,7 +41,7 @@ class BattleRoundController(PygameController):
                 self.runController(actionMenuController)
                 pokemonActions[pokemon] = actionMenuController.action
         
-        self.screen.setBottomView(BattleMessageBox(self.battle))
+        self.screen.setBottomView(BattleMessageBox(self.battle, self.getWindow().width*.9, self.getWindow().height*.3))
         self.battle.performRound(pokemonActions)
         
     def refillSides(self):

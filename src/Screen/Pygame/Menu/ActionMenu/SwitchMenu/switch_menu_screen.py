@@ -13,14 +13,15 @@ class SwitchMenuScreen(PygameScreen):
         self.menuView = TwoColumnMenuView(menu, self.width, self.height)
         
         self.statViews = []
+        width = self.width*.9/self.menu.columns
+        height = self.height*.9/self.menu.columns
         for entry in menu.entries:
-            statView = PokemonStatsView(self.width*.9/self.menu.columns, self.height*.9/self.menu.columns,
+            statView = PokemonStatsView(width, height,
                                         pokemonMenuEntry=entry)
             self.statViews.append(statView)
         self.menuView.entries = self.statViews
         
     def drawSurface(self):
         """ Draw the window """
-        # self.menuView.setSize(self.width, self.height)
         bottomSurface = self.menuView.draw()
         self.drawOnSurface(bottomSurface, left=0, top=0)

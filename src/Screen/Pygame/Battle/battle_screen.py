@@ -30,7 +30,6 @@ class BattleScreen(PygameScreen):
         self.drawOnSurface(playerSideSurface, left=0, top=.35)
         
         if self.hasBottomView():
-            self.bottomView.setSize(self.width*.9, self.height*.3)
             bottomSurface = self.bottomView.draw()
             self.drawOnSurface(bottomSurface, left=.05, top=.7)
             

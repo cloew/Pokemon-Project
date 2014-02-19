@@ -14,18 +14,6 @@ class TwoColumnMenuView(SizedWidget):
         self.entries = []
         for entry in self.menu.entries:
             self.entries.append(MenuEntryView(entry))
-            
-    def setSize(self, width, height):
-        """ Set the surface size """
-        # self.__width = width
-        # self.__height = height
-        
-        # for entry in self.entries:
-            # entry.setSize((width*.9)/self.menu.columns, (height*.9)/self.menu.columns)
-            
-    # def buildSurface(self):
-        # """ Return the surface for the widget """
-        # return GetTransparentSurface(self.__width, self.__height)
         
     def drawSurface(self):
         """ Draw the Battle Menu View """
