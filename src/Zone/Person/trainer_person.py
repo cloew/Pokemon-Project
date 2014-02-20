@@ -4,7 +4,7 @@ from Zone.Person.person import Person
 class TrainerPerson(Person):
     """ A person that also acts as a trainer """
     
-    def __init__(self, tile, imageBaseName, trainer, interactionDelegate,):
+    def __init__(self, tile, imageBaseName, trainer, interactionDelegate=None):
         """ Initialize the Trainer Position Wrapper """
         self.trainer = trainer
         Person.__init__(self, tile, imageBaseName, interactionDelegate)

@@ -21,8 +21,7 @@ class ZoneController(PygameController):
         self.zone = zone
         self.doneCallback = doneCallback
         self.zone.setCallbacks(self.interactWithPerson)
-        self.trainerPerson = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer, 
-                                     InteractionDelegate("", self.interactWithPerson))
+        self.trainerPerson = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer)
         
         screen = ZoneScreen(self.zone)
         

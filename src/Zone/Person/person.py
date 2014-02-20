@@ -13,7 +13,8 @@ class Person:
         self.imageBaseName = imageBaseName
         
         self.interactionDelegate = interactionDelegate
-        self.interactionDelegate.setTrainer(self)
+        if self.interactionDelegate is not None:
+            self.interactionDelegate.setTrainer(self)
         
         self.movementDelegate = MovementDelegate(self)
         self.up = MakeMoveFunction(self, UP)
