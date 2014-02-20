@@ -15,6 +15,7 @@ class ActionMenuController(PygameController):
         """ Initialize the Battle Round Controller """
         self.pokemon = pokemon
         self.battle = battle
+        self.action = None
         
         entries = [TextMenuEntry("Fight", self.chooseAttack),
                    TextMenuEntry("Switch", self.switch),

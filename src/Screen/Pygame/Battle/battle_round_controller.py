@@ -39,7 +39,10 @@ class BattleRoundController(PygameController):
             if not pokemon.actionLock:
                 actionMenuController = ActionMenuController(pokemon, self.battle, self.screen)
                 self.runController(actionMenuController)
-                pokemonActions[pokemon] = actionMenuController.action
+                if actionMenuController.action is None:
+                    return
+                else:
+                    pokemonActions[pokemon] = actionMenuController.action
         
         self.screen.setBottomView(BattleMessageBox(self.battle, self.getWindow().width*.9, self.getWindow().height*.3))
         self.battle.performRound(pokemonActions)
