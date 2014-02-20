@@ -119,6 +119,27 @@
         </baseStats>
     </pokemon>
     <pokemon>
+        <species>GEODUDE</species>
+        <dex>74</dex>
+        <types>
+            <type>ROCK</type>
+            <type>GROUND</type>
+        </types>
+        <abilities>
+            <ability>ROCK HEAD</ability>
+            <ability>STURDY</ability>
+            <dream>SAND VEIL</dream>
+        </abilities>
+        <baseStats>
+            <HP>40</HP>
+            <ATK>80</ATK>
+            <DEF>100</DEF>
+            <SPD>20</SPD>
+            <SATK>30</SATK>
+            <SDEF>30</SDEF>
+        </baseStats>
+    </pokemon>
+    <pokemon>
         <species>ELECTRODE</species>
         <dex>101</dex>
         <types>

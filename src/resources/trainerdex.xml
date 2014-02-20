@@ -99,8 +99,8 @@
         <playable/>
         <belt>
             <pokemon>
-                <name>Squirtle</name>
-                <species>SQUIRTLE</species>
+                <name>Geodude</name>
+                <species>GEODUDE</species>
                 <level>20</level>
                 <currHP>47</currHP>
                 <ability>LEVITATE</ability>
@@ -116,7 +116,6 @@
                         <PP>35</PP>
                     </attack>
                 </attacks>
-                <display>squirtle_sunglasses</display>
             </pokemon>
             <pokemon>
                 <name>Squirtle</name>
@@ -136,6 +135,7 @@
                         <PP>35</PP>
                     </attack>
                 </attacks>
+                <display>squirtle_sunglasses</display>
             </pokemon>
             <pokemon>
                 <name>Bulbasaur</name>
