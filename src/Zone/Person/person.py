@@ -7,7 +7,7 @@ class Person:
     
     def __init__(self, tile, imageBaseName, interactionDelegate):
         """ Initialize the Person """
-        self.tile = None
+        self.tile = tile
         self.setTile(tile)
         
         self.imageBaseName = imageBaseName
@@ -35,7 +35,8 @@ class Person:
         if self.tile is not None:
             self.tile.setContents(None)
         self.tile = tile
-        tile.setContents(self)
+        if self.tile is not None:
+            tile.setContents(self)
                 
     def getAdjacentTile(self, direction):
         """ Returns the adjacent tile in the given direction """

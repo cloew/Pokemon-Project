@@ -8,5 +8,15 @@
         <name>Kanto Gym Leaders Marathon</name>
         <rows>22</rows>
         <columns>40</columns>
+        <people>
+            <person>
+                <position>
+                    <row>2</row>
+                    <column>8</column>
+                </position>
+                <message>Hi! I'm an NPC! I'm like a platypus. They don't do much you know.</message>
+                <image>npc</image>
+            </person>
+        </people>
     </zone>
 </zones>

@@ -2,6 +2,7 @@ from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
 
 from Zone.zone import Zone
+from Zone.Person.person_factory import LoadPeopleFromZoneXML
 
 import xml.etree.ElementTree
 
@@ -22,8 +23,9 @@ class ZoneFactory:
         """ Loads a Zone object from a file """
         rows = int(tree.findtext(Tags.rowsTag))
         columns = int(tree.findtext(Tags.columnsTag))
-        
-        return Zone(rows, columns, callback)
+        zone = Zone(rows, columns, callback)
+        zone.people = LoadPeopleFromZoneXML(tree, zone.tiles, callback)
+        return zone
         
     @staticmethod
     def loadFromDB():
