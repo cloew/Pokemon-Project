@@ -16,9 +16,9 @@ from kao_gui.pygame.pygame_controller import PygameController
 class ZoneController(PygameController):
     """ Controller for a Zone """
     
-    def __init__(self, trainer, zone="Test"):
+    def __init__(self, trainer, zone):
         """ Initialize the Zone Controller """
-        self.zone = ZoneFactory.getZone(zone)
+        self.zone = zone
         self.zone.setCallbacks(self.interactWithTrainer)
         self.trainer = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer, 
                                      InteractionDelegate("", self.interactWithTrainer))
