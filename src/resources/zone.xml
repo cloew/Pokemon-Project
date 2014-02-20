@@ -3,11 +3,6 @@
         <name>Test</name>
         <rows>22</rows>
         <columns>40</columns>
-    </zone>
-    <zone>
-        <name>Kanto Gym Leaders Marathon</name>
-        <rows>22</rows>
-        <columns>40</columns>
         <people>
             <person>
                 <position>
@@ -27,6 +22,25 @@
                 <trainer>
                     <title>Badass</title>
                     <name>Eric</name>
+                </trainer>
+            </person>
+        </people>
+    </zone>
+    <zone>
+        <name>Kanto Gym Leaders Marathon</name>
+        <rows>22</rows>
+        <columns>40</columns>
+        <people>
+            <person>
+                <position>
+                    <row>2</row>
+                    <column>2</column>
+                </position>
+                <message>So, you want your Boulder Badge?</message>
+                <image>brock</image>
+                <trainer>
+                    <title>Gym Leader</title>
+                    <name>Brock</name>
                 </trainer>
             </person>
         </people>
