@@ -630,4 +630,25 @@
             </pokemon>
         </belt>
     </trainer>
+        <trainer>
+        <name>Brock</name>
+        <title>Gym Leader</title>
+        <belt>
+            <pokemon>
+                <name>GEODUDE</name>
+                <species>GEODUDE</species>
+                <level>20</level>
+                <currHP>60</currHP>
+                <ability>STURDY</ability>
+                
+                <attacks>
+                    <attack>
+                        <name>IRON TAIL</name>
+                        <currPP>15</currPP>
+                        <PP>15</PP>
+                    </attack>
+                </attacks>
+            </pokemon>
+        </belt>
+    </trainer>
 </trainers>
