@@ -11,20 +11,20 @@ class ZoneFactory:
     tree = None
     
     @staticmethod
-    def getZone(name, callback):
+    def getZone(name):
         """ Return the zone with the given name """
         zoneXML = ZoneFactory.getZoneXML(name)
         if zoneXML is not None:
-            return ZoneFactory.loadFromXML(zoneXML, callback)
+            return ZoneFactory.loadFromXML(zoneXML)
         return None
     
     @staticmethod
-    def loadFromXML(tree, callback):
+    def loadFromXML(tree):
         """ Loads a Zone object from a file """
         rows = int(tree.findtext(Tags.rowsTag))
         columns = int(tree.findtext(Tags.columnsTag))
-        zone = Zone(rows, columns, callback)
-        zone.people = LoadPeopleFromZoneXML(tree, zone.tiles, callback)
+        zone = Zone(rows, columns)
+        zone.people = LoadPeopleFromZoneXML(tree, zone.tiles)
         return zone
         
     @staticmethod

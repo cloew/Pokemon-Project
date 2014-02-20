@@ -9,8 +9,9 @@ from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 class Zone:
     """ Represents a Zone in the Game """
     
-    def __init__(self, rows, columns, callback=None):
+    def __init__(self, rows, columns):
         """ Initialize the Zone """
+        self.people = []
         self.tiles = []
         
         for i in range(rows):
@@ -24,5 +25,8 @@ class Zone:
                 row.append(tile)
             self.tiles.append(row)
             
-        # self.enemyTrainer = TrainerPerson(self.tiles[2][2], "trainer2", TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER), InteractionDelegate("Hi! I'm Eric! Let's battle!", callback))
-        # self.npc = Person(self.tiles[1][2], "npc", InteractionDelegate("Hi! I'm an NPC! I'm like a platypus. They don't do much you know.", callback))
+    def setCallbacks(self, callback):
+        """ Set Callbacks to allow each Person in the Zone 
+            to interact with the Window to display messages """
+        for person in self.people:
+            person.setInteractionCallback(callback)

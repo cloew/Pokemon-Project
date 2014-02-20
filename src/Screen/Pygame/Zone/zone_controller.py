@@ -18,7 +18,8 @@ class ZoneController(PygameController):
     
     def __init__(self, trainer, zone="Test"):
         """ Initialize the Zone Controller """
-        self.zone = ZoneFactory.getZone(zone, self.interactWithTrainer)
+        self.zone = ZoneFactory.getZone(zone)
+        self.zone.setCallbacks(self.interactWithTrainer)
         self.trainer = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer, 
                                      InteractionDelegate("", self.interactWithTrainer))
         

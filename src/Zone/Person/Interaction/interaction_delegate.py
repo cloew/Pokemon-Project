@@ -3,7 +3,7 @@ from Zone.direction import GetOppositeDirection
 class InteractionDelegate:
     """ Interaction Delegate for a Zone Person """
     
-    def __init__(self, message, callback):
+    def __init__(self, message, callback=None):
         """ Initialize the Interaction delegate """
         self.message = message
         self.callback = callback

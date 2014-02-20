@@ -6,15 +6,15 @@ from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 
 from resources.tags import Tags
 
-def LoadPeopleFromZoneXML(element, tiles, callback):
+def LoadPeopleFromZoneXML(element, tiles):
     """ Load a list of People form a Zone Element """
     people = []
     peopleElement = element.find(Tags.peopleTag)
     for personElement in peopleElement.findall(Tags.personTag):
-        people.append(LoadPerson(personElement, tiles, callback))
+        people.append(LoadPerson(personElement, tiles))
     return people
     
-def LoadPerson(element, tiles, callback):
+def LoadPerson(element, tiles):
     """ Load a Person from a Person XML Element """
     row, column = LoadPosition(element)
     tile = tiles[row][column]
@@ -22,9 +22,9 @@ def LoadPerson(element, tiles, callback):
     imageFilename = element.findtext(Tags.imageTag)
     if element.find(Tags.trainerTag) is not None:
         trainer = LoadTrainer(element)
-        return TrainerPerson(tile, imageFilename, trainer, InteractionDelegate(message, callback))
+        return TrainerPerson(tile, imageFilename, trainer, InteractionDelegate(message))
     else:
-        return Person(tile, imageFilename, InteractionDelegate(message, callback))
+        return Person(tile, imageFilename, InteractionDelegate(message))
         
 def LoadTrainer(element):
     """ Load trainer from a Person Element """

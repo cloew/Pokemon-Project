@@ -37,6 +37,10 @@ class Person:
         self.tile = tile
         if self.tile is not None:
             tile.setContents(self)
+            
+    def setInteractionCallback(self, callback):
+        """ Set the Person's Interaction Callback """
+        self.interactionDelegate.callback = callback
                 
     def getAdjacentTile(self, direction):
         """ Returns the adjacent tile in the given direction """
