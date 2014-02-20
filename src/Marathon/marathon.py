@@ -10,6 +10,7 @@ class Marathon:
         self.trainers = []
         self.description = "Battle the Kanto Gym Leaders"#description
         self.zoneName = "Kanto Gym Leaders Marathon"#zone
+        self.zone = None
         
     def loadZone(self):
         """ Load the marathon zone """
@@ -22,4 +23,4 @@ class Marathon:
         
     def beaten(self):
         """ Return if the marathon has been beaten """
-        return len([trainer for trainer in self.trainers if trainer.hasPokemon()]) == 0
+        return self.zone is not None and len([trainer for trainer in self.trainers if trainer.hasPokemon()]) == 0

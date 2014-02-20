@@ -21,6 +21,8 @@ class MarathonController(PygameController):
                      
     def select(self):
         """ Performs a Select """
-        zone = self.marathon.loadZone()
-        self.runController(ZoneController(self.trainer, zone, doneCallback=self.marathon.beaten))
-        
+        if self.marathon.beaten():
+            self.stopRunning()
+        else:
+            zone = self.marathon.loadZone()
+            self.runController(ZoneController(self.trainer, zone, doneCallback=self.marathon.beaten))
