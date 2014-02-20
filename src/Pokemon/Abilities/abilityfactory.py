@@ -34,7 +34,7 @@ class AbilityFactory:
         # Build the Ability
         if tree == None:
             print "Could not find ability:", name
-            ability = Ability()
+            ability = Ability(name)
         else:
             ability = AbilityFactory.buildAbilityFromXML(tree)
         return ability
