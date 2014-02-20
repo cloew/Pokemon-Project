@@ -1,4 +1,7 @@
-from person import Person
+from Trainer.trainer_factory import TrainerFactory
+
+from Zone.Person.person import Person
+from Zone.Person.trainer_person import TrainerPerson
 from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 
 from resources.tags import Tags
@@ -17,7 +20,18 @@ def LoadPerson(element, tiles, callback):
     tile = tiles[row][column]
     message = element.findtext(Tags.messageTag)
     imageFilename = element.findtext(Tags.imageTag)
-    return Person(tile, imageFilename, InteractionDelegate(message, callback))
+    if element.find(Tags.trainerTag) is not None:
+        trainer = LoadTrainer(element)
+        return TrainerPerson(tile, imageFilename, trainer, InteractionDelegate(message, callback))
+    else:
+        return Person(tile, imageFilename, InteractionDelegate(message, callback))
+        
+def LoadTrainer(element):
+    """ Load trainer from a Person Element """
+    trainerElement = element.find(Tags.trainerTag)
+    title = trainerElement.findtext(Tags.titleTag)
+    name = trainerElement.findtext(Tags.nameTag)
+    return TrainerFactory.loadFromXML(title, name, TrainerFactory.COMPUTER)
     
 def LoadPosition(element):
     """ Loads a position and returns the row and column """

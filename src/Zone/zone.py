@@ -24,5 +24,5 @@ class Zone:
                 row.append(tile)
             self.tiles.append(row)
             
-        self.enemyTrainer = TrainerPerson(self.tiles[2][2], "trainer2", TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER), InteractionDelegate("Hi! I'm Eric! Let's battle!", callback))
-        self.npc = Person(self.tiles[1][2], "npc", InteractionDelegate("Hi! I'm an NPC! I'm like a platypus. They don't do much you know.", callback))
+        # self.enemyTrainer = TrainerPerson(self.tiles[2][2], "trainer2", TrainerFactory.loadFromXML("Badass", "Eric", TrainerFactory.COMPUTER), InteractionDelegate("Hi! I'm Eric! Let's battle!", callback))
+        # self.npc = Person(self.tiles[1][2], "npc", InteractionDelegate("Hi! I'm an NPC! I'm like a platypus. They don't do much you know.", callback))

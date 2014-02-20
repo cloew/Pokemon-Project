@@ -11,11 +11,23 @@
         <people>
             <person>
                 <position>
-                    <row>2</row>
-                    <column>8</column>
+                    <row>1</row>
+                    <column>2</column>
                 </position>
                 <message>Hi! I'm an NPC! I'm like a platypus. They don't do much you know.</message>
                 <image>npc</image>
+            </person>
+            <person>
+                <position>
+                    <row>2</row>
+                    <column>2</column>
+                </position>
+                <message>Hi! I'm Eric! Let's battle!</message>
+                <image>trainer2</image>
+                <trainer>
+                    <title>Badass</title>
+                    <name>Eric</name>
+                </trainer>
             </person>
         </people>
     </zone>
