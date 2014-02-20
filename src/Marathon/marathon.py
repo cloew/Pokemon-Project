@@ -19,3 +19,7 @@ class Marathon:
                 self.trainers.append(person.trainer)
         
         return self.zone
+        
+    def beaten(self):
+        """ Return if the marathon has been beaten """
+        return len([trainer for trainer in self.trainers if trainer.hasPokemon()]) == 0

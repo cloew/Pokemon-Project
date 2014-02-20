@@ -16,9 +16,10 @@ from kao_gui.pygame.pygame_controller import PygameController
 class ZoneController(PygameController):
     """ Controller for a Zone """
     
-    def __init__(self, trainer, zone):
+    def __init__(self, trainer, zone, doneCallback=None):
         """ Initialize the Zone Controller """
         self.zone = zone
+        self.doneCallback = doneCallback
         self.zone.setCallbacks(self.interactWithTrainer)
         self.trainer = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer, 
                                      InteractionDelegate("", self.interactWithTrainer))
@@ -48,6 +49,8 @@ class ZoneController(PygameController):
         
         if trainer.isBattleable():
             self.runController(BattleController(self.trainer.trainer, trainer.trainer))
+            if self.doneCallback is not None and self.doneCallback():
+                self.stopRunning()
         
     def performGameCycle(self):
         """ Move the Trainer if needed in this tick """
