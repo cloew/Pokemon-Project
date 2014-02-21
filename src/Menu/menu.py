@@ -20,27 +20,27 @@ class Menu:
         """ Add an entry to the window """
         self.entries.append(entry)
         
-    def up(self):
+    def up(self, event=None):
         """ Select the entry up one row"""
         if self.currentRow > 0:
             self.changeSelected(-1*self.columns)
             
-    def down(self):
+    def down(self, event=None):
         """ Select the entry down one row """
         if self.currentRow < self.rows-1:
             self.changeSelected(self.columns)
             
-    def left(self):
+    def left(self, event=None):
         """ Select the entry to the left """
         if self.currentColumn > 0:
             self.changeSelected(-1)
         
-    def right(self):
+    def right(self, event=None):
         """ Select the entry to the right """
         if self.currentColumn < self.columns-1:
             self.changeSelected(1)
             
-    def enter(self):
+    def enter(self, event=None):
         """ Call the selected entry """
         if self.entries != []:
             self.entries[self.current].call()

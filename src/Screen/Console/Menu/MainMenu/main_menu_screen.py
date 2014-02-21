@@ -1,20 +1,23 @@
-from Screen.Console.screen import Screen
-from logo import Logo
-from menu_view import MenuView
+# from Screen.Console.screen import Screen
+# from logo import Logo
+# from menu_view import MenuView
 
-class MainMenuScreen(Screen):
+from kao_gui.console.console_widget import ConsoleWidget
+
+class MainMenuScreen(ConsoleWidget):
     """ Represents the Main Menu screen """
     
     def __init__(self, menu):
         """  """
         self.menu = menu
-        self.logo = Logo()
-        self.menuView = MenuView(menu)
+        # self.logo = Logo()
+        # self.menuView = MenuView(menu)
         
-    def draw(self, window):
+    def draw(self):
         """ Draws the screen to the provided window """
-        self.drawLogo(window)
-        self.drawMenu(window)
+        print "Welcome to the Pokemon Console Version"
+        # self.drawLogo(window)
+        # self.drawMenu(window)
         
     def drawLogo(self, window):
         """ Draws the Logo to the window """

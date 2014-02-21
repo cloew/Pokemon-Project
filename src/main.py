@@ -14,7 +14,7 @@ def GetPygameWindowAndController():
     
 def GetConsoleWindowAndController():
     """ Return the Console Window and Controller """
-    from Menu.MainMenu.main_menu_controller import MainMenuController
+    from Screen.Console.Menu.MainMenu.main_menu_controller import MainMenuController
     from kao_gui.console.window import Window
     return Window, MainMenuController()
     
