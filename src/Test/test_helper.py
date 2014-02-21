@@ -30,7 +30,7 @@ def BuildBattleSide():
     """ Builds a Battle Side """
     trainer = BuildTrainer()
     side = BattleSide(trainer)
-    side.sendOutPkmn()
+    side.sendOutPkmnAtStart()
     return side
 
 def BuildPokemonBattleWrapper(pkmn = "BULBASAUR",  trainer = Trainer()):

@@ -10,7 +10,7 @@ class BattleSide:
         self.pkmnInPlay = [PkmnBattleWrapper(self)]
         
     def sendOutPkmnAtStart(self):
-        """  Send out Pokemon to fill out all pkmnInPlay at the start of a battle """
+        """ Send out Pokemon to fill out all pkmnInPlay at the start of a battle """
         messages = []
         
         for i in range(0, len(self.pkmnInPlay)):
