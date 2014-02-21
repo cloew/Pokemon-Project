@@ -2,7 +2,6 @@ from logo import Logo
 from Screen.Console.Menu.menu_view import MenuView
 
 from kao_gui.console.console_screen import ConsoleScreen
-from kao_gui.console.window import Window
 
 class MainMenuScreen(ConsoleScreen):
     """ Represents the Main Menu screen """
