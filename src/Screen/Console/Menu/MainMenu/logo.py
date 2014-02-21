@@ -1,6 +1,9 @@
-from Screen.Console.view import View
+# from Screen.Console.view import View
 
-class Logo(View):
+from kao_gui.console.console_widget import ConsoleWidget
+from kao_gui.console.window import Window
+
+class Logo(ConsoleWidget):
     """ Represents the Logo on the screen """
     
     def __init__(self):
@@ -19,7 +22,7 @@ class Logo(View):
                          '      \'MMM.                                             IMX   ',
                          '       ~M!M                                             IMP   ']
         
-    def draw(self, window):
+    def draw(self):
         """ Draws the logo """
         lines = []
         lineLength = len(self.logo[0])
@@ -28,5 +31,5 @@ class Logo(View):
                 print len(line), lineLength
                 raise Exception("{0} is not {1}\r\n{2}".format(len(line), lineLength, line))
         
-            lines.append(window.terminal.yellow(line))
+            lines.append(Window.terminal.yellow(line))
         return lines, (len(self.logo[0]), len(lines))
