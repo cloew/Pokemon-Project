@@ -31,7 +31,7 @@ class Battle:
         messages += self.playerSide.sendOutPkmnAtStart()
         return messages
         
-    def removeMessageFromQueue(self):
+    def removeMessageFromQueue(self, event=None):
         """ Pops a message from the message queue if it has been fully displayed """
         if len(self.messageQueue) > 0:
             if self.messageQueue[0].fullyDisplayed:

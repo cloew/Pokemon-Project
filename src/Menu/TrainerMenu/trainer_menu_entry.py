@@ -1,5 +1,4 @@
 from Menu.menu_entry import MenuEntry
-#from Battle.battle_controller import BattleController
 
 from Trainer.trainer_factory import TrainerFactory
 
