@@ -10,12 +10,12 @@ class MenuEntryView(ConsoleWidget):
         
     def draw(self):
         """ Draws the menu entry """
-        format = self.getTerminalFormatting(self.entry.selected, Window.terminal)
-        return "{0}{1}{t.normal}".format(format, self.entry.getText(), t=Window.terminal)
+        format = self.getTerminalFormatting(self.entry.selected)
+        return "{0}{1}{t.normal}".format(format, self.entry.getText(), t=self.terminal)
         
-    def getTerminalFormatting(self, selected, terminal):
+    def getTerminalFormatting(self, selected):
         """ Sets the Boldness of the entry """
         if selected:
-            return terminal.reverse
+            return self.terminal.reverse
         else:
             return ""
