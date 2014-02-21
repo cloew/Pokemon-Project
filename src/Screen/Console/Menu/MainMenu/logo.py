@@ -1,5 +1,4 @@
 from kao_gui.console.console_widget import ConsoleWidget
-from kao_gui.console.window import Window
 
 class Logo(ConsoleWidget):
     """ Represents the Logo on the screen """
@@ -29,5 +28,5 @@ class Logo(ConsoleWidget):
                 print len(line), lineLength
                 raise Exception("{0} is not {1}\r\n{2}".format(len(line), lineLength, line))
         
-            lines.append(Window.terminal.yellow(line))
+            lines.append(self.terminal.yellow(line))
         return lines, (len(self.logo[0]), len(lines))
