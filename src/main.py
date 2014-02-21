@@ -2,32 +2,28 @@ import sys
 
 from resources.resource_manager import GetImagePath
 
-def GetStartController():
-    """ Return the controller to start the game """
-    # try:
+def GetPygameWindowAndController():
+    """ Return the Pygame Window and Controller """
     from Screen.Pygame.Menu.MainMenu.main_menu_controller import MainMenuController
-    # except ImportError as error:
-        # print error
-        # from Menu.MainMenu.main_menu_controller import MainMenuController
-    return MainMenuController()
-    
-def GetWindow():
-    """ Return the proper window for the game """
-    # try:
     from kao_gui.pygame.window import BuildWindow
     from InputProcessor import pygame_bindings
     window = BuildWindow(width=640, height=480, caption='Pokemon', 
                             iconFilename=GetImagePath('pokeball3.bmp'),
                             bindings=pygame_bindings.keyBindings)
-    # except ImportError as error:
-        # print error
-        # from Screen.Console.window import window
-    return window
+    return window, MainMenuController()
     
-def main(argv):
+def GetConsoleWindowAndController():
+    """ Return the Console Window and Controller """
+    from Menu.MainMenu.main_menu_controller import MainMenuController
+    from kao_gui.console.window import Window
+    return Window, MainMenuController()
+    
+def main(args):
     """ Start the game """
-    window = GetWindow()
-    startController = GetStartController()
+    if len(args) > 0 and args[0] == "-c":
+        window, startController = GetConsoleWindowAndController()
+    else:
+        window, startController = GetPygameWindowAndController()
     try:
         startController.run()
     finally:
