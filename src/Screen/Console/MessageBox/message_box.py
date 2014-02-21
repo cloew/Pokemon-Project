@@ -1,6 +1,6 @@
-from Screen.GUI.view import View
+from kao_gui.console.console_widget import ConsoleWidget
 
-class MessageBox(View):
+class MessageBox(ConsoleWidget):
     """ Represents a message box on the screen """
     maxChars = 78
     
@@ -9,32 +9,25 @@ class MessageBox(View):
         self.message = message
         self.charsShown = 0
         self.stringToDisplay = self.message.getMessageSlice(self.message.length())
-    
-    def update(self):
-        """ Updates the message box """
-        #if self.charsShown < self.message.length():
-        #    self.charsShown += 1
-            
-        #self.stringToDisplay = self.message.getMessageSlice(self.charsShown)
         
-    def draw(self, window):
+    def draw(self):
         """ Draws the message box """
-        max = window.terminal.width-2
+        self.max = self.terminal.width-2
         
         lines = []
-        hdrLine ="-"*window.terminal.width
+        hdrLine ="-"*self.terminal.width
         
-        line1 = self.getMessageLine(self.stringToDisplay[:self.maxChars], window.terminal.width)
-        line2 = self.getMessageLine(self.stringToDisplay[self.maxChars:], window.terminal.width)
+        line1 = self.getMessageLine(self.stringToDisplay[:self.max])
+        line2 = self.getMessageLine(self.stringToDisplay[self.max:])
         
         lines.append(hdrLine)
         lines.append(line1)
         lines.append(line2)
         lines.append(hdrLine)
         
-        return lines, (window.terminal.width, len(lines))
+        return lines, (self.terminal.width, len(lines))
         
-    def getMessageLine(self, text, terminalWidth):
+    def getMessageLine(self, text):
         """ Returns a normalize line from a message """
-        diff = terminalWidth-2-len(text)
+        diff = self.max-len(text)
         return "|{0}{1}|".format(text, " "*diff)

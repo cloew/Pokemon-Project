@@ -1,11 +1,11 @@
-from InputProcessor import commands
-from Screen.Console.Menu.TrainerMenu.trainer_menu_entry_view import TrainerMenuEntryView
+from Screen.Console.Menu.menu_entry_view import MenuEntryView
 
-from Screen.Console.screen import Screen
 from Screen.Console.MessageBox.message_box import MessageBox
 from Battle.battle_message import BattleMessage
 
-class TrainerMenuScreen(Screen):
+from kao_gui.console.console_screen import ConsoleScreen
+
+class TrainerMenuScreen(ConsoleScreen):
     """ Trainer Menu screen """
     
     def __init__(self, menu):
@@ -13,32 +13,31 @@ class TrainerMenuScreen(Screen):
         self.menu = menu
         self.entries = []
         for entry in self.menu.entries:
-            self.entries.append(TrainerMenuEntryView(entry))
+            self.entries.append(MenuEntryView(entry))
             
         self.selectedIndex = 0
         self.buildMessageBox()
         
-    def draw(self, window):
+    def draw(self):
         """ Draw the window """
-        self.drawMenuEntries(window)
+        self.drawMenuEntries()
         self.findNewSelectedIndex()
         self.buildMessageBox()
         
-        messageBox, messageBoxSize = self.messageBox.draw(window)
-        window.draw(messageBox, (0,window.terminal.height-5))
+        messageBox, messageBoxSize = self.messageBox.draw()
+        self.drawAtPosition(messageBox, (0, self.terminal.height-4))
             
-    def drawMenuEntries(self, window):
+    def drawMenuEntries(self):
         """ Draws all Menu Entries """
         menuText = []
         max = self.getMaxLength()
         for entry in self.entries:
             diff = max - len(entry.entry.getText())
-            entryText = "{0}{1}{0}".format(" "*(diff/2), entry.draw(window))
+            entryText = "{0}{1}{0}".format(" "*(diff/2), entry.draw())
             menuText.append(entryText)
         menuSize = (max, len(menuText))
         
-        menuPos = self.getCenteredRect(window, menuSize, .5, .5) 
-        window.draw(menuText, menuPos)
+        self.drawCenteredText(menuText, menuSize, .5, .5)
         
     def getMaxLength(self):
         """ Returns the max length """

@@ -1,5 +1,4 @@
 from kao_gui.console.console_widget import ConsoleWidget
-from kao_gui.console.window import Window
 
 class MenuEntryView(ConsoleWidget):
     """ Represents an entry in the menu """

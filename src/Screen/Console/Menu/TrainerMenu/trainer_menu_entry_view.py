@@ -1,5 +1,6 @@
+from kao_gui.console.console_widget import ConsoleWidget
 
-class TrainerMenuEntryView:
+class TrainerMenuEntryView(ConsoleWidget):
     """ Represents an entry in the trainer menu """
     
     def __init__(self, entry):
@@ -8,12 +9,12 @@ class TrainerMenuEntryView:
         
     def draw(self, window):
         """ Draws the menu entry """
-        format = self.getTerminalFormatting(self.entry.selected, window.terminal)
-        return "{0}{1}{t.normal}".format(format, self.entry.getText(), t=window.terminal)
+        format = self.getTerminalFormatting(self.entry.selected, self.terminal)
+        return "{0}{1}{t.normal}".format(format, self.entry.getText(), t=self.terminal)
         
-    def getTerminalFormatting(self, selected, terminal):
+    def getTerminalFormatting(self, selected):
         """ Sets the Boldness of the entry """
         if selected:
-            return terminal.reverse
+            return self.terminal.reverse
         else:
             return ""

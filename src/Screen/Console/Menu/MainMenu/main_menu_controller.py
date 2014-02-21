@@ -1,7 +1,9 @@
 from Menu.menu import Menu
 from Menu.text_menu_entry import TextMenuEntry
+
 from Screen.Console.Menu.MainMenu.main_menu_screen import MainMenuScreen
 from Screen.Console.Menu.OptionsMenu.options_menu_controller import OptionsMenuController
+from Screen.Console.Menu.TrainerMenu.trainer_menu_controller import TrainerMenuController
 
 from kao_console.ascii import KAO_UP, KAO_DOWN, ENDL
 from kao_gui.console.console_controller import ConsoleController
@@ -25,7 +27,7 @@ class MainMenuController(ConsoleController):
         
     def startGame(self, entry):
         """ Start the Game """
-        # self.runController(TrainerMenuController())
+        self.runController(TrainerMenuController())
         
     def runOptions(self, entry):
         """ Run Options Controller """
