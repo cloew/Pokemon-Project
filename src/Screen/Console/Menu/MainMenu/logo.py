@@ -1,5 +1,3 @@
-# from Screen.Console.view import View
-
 from kao_gui.console.console_widget import ConsoleWidget
 from kao_gui.console.window import Window
 

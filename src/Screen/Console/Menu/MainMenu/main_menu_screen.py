@@ -1,6 +1,5 @@
-# from Screen.Console.screen import Screen
 from logo import Logo
-# from menu_view import MenuView
+from Screen.Console.Menu.menu_view import MenuView
 
 from kao_gui.console.console_widget import ConsoleWidget
 from kao_gui.console.window import Window
@@ -12,12 +11,12 @@ class MainMenuScreen(ConsoleWidget):
         """  """
         self.menu = menu
         self.logo = Logo()
-        # self.menuView = MenuView(menu)
+        self.menuView = MenuView(menu)
         
     def draw(self):
         """ Draws the screen """
         self.drawLogo()
-        # self.drawMenu(window)
+        self.drawMenu()
         
     def drawLogo(self):
         """ Draws the Logo to the window """
@@ -25,11 +24,11 @@ class MainMenuScreen(ConsoleWidget):
         logoPos = self.getCenteredRect(logoSize, .5, .25) 
         self.drawAtPosition(logoText, logoPos)
         
-    def drawMenu(self, window):
+    def drawMenu(self):
         """ Draws the Menu to the window """
-        menuText, menuSize= self.menuView.draw(window)
-        menuPos = self.getCenteredRect(window, menuSize, .5, 11.0/16) 
-        window.draw(menuText, menuPos)
+        menuText, menuSize= self.menuView.draw()
+        menuPos = self.getCenteredRect(menuSize, .5, 11.0/16) 
+        self.drawAtPosition(menuText, menuPos)
         
     def getCenteredRect(self, size, xRatio, yRatio):
         """ Returns a position in that centers the text on the given percentage of the screen """
