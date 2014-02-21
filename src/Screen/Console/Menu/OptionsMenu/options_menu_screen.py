@@ -1,5 +1,4 @@
 from InputProcessor import commands
-# from Screen.Console.screen import Screen
 
 from kao_gui.console.console_screen import ConsoleScreen
 
@@ -50,7 +49,6 @@ class OptionsMenuScreen(ConsoleScreen):
             cmdText = "{0}{t.bold}{1}{t.normal}".format(" "*diff, self.menu.cmdStrings[cmd], t=self.terminal)
             cmdsText.append(cmdText)
             
-        # cmdCenter = self.getCenteredRect(window, (max, len(cmdsText)), cmdXRatio, 14.0/32)
         self.drawCenteredText(cmdsText, (max, len(cmdsText)), cmdXRatio, 14.0/32)
         
     def drawKeys(self):
@@ -69,6 +67,4 @@ class OptionsMenuScreen(ConsoleScreen):
             keyText = "{0}{1}".format(self.menu.keyBindings[cmd], " "*diff, t=self.terminal)
             keysText.append(keyText)
             
-        # keyCenter = self.getCenteredRect(window, (max, len(keysText)), bindingXRatio, 14.0/32)
-        # window.draw(keysText, keyCenter)
         self.drawCenteredText(keysText, (max, len(keysText)), bindingXRatio, 14.0/32)
