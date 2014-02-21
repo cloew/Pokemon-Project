@@ -18,8 +18,3 @@ class TrainerMenu(Menu):
         
         for trainer in playableTrainers:
             self.entries.append(TrainerMenuEntry(trainer, self.callback))
-            
-    def enter(self):
-        """ Call the selected entry """
-        if self.entries != []:
-            self.entries[self.current].call()
