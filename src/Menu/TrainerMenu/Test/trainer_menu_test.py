@@ -11,7 +11,7 @@ class init(unittest.TestCase):
         
     def trainerEntry(self):
         """ Test that playbale trainer is received """
-        menu = TrainerMenu()
+        menu = TrainerMenu(None)
         assert menu.entries[0].trainer.title == "Pkmn Trainer", "Didn't get correct title"
         assert menu.entries[0].trainer.name == "Chris", "Didn't get correct name"
         
