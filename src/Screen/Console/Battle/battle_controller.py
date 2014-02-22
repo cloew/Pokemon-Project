@@ -2,7 +2,7 @@ from Battle.battle import Battle
 
 from Screen.Console.Battle.battle_introduction_controller import BattleIntroductionController
 from Screen.Console.Battle.battle_round_controller import BattleRoundController
-from Screen.Console.Battle.battle_screen import BattleScreen
+from Screen.Console.Battle.battle_message_screen import BattleMessageScreen
 
 from kao_console.ascii import ENDL
 from kao_gui.console.console_controller import ConsoleController
@@ -13,7 +13,7 @@ class BattleController(ConsoleController):
     def __init__(self, playerTrainer, oppTrainer):
         """ Builds the Battle Controller """
         self.battle = Battle(playerTrainer, oppTrainer)
-        screen = BattleScreen(self.battle)
+        screen = BattleMessageScreen(self.battle)
         
         ConsoleController.__init__(self, screen)
         

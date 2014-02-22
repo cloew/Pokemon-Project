@@ -8,7 +8,6 @@ class BattleScreen(ConsoleScreen):
     
     def __init__(self, battle):
         """ Builds the Battle View with the Battle """
-        self.messageBox = None
         self.battle = battle
         self.playerSideView = PlayerSideView(battle.playerSide)
         self.oppSideView = PlayerSideView(battle.oppSide)
@@ -17,7 +16,7 @@ class BattleScreen(ConsoleScreen):
         """ Draw the window """
         self.drawOpponentSide()
         self.drawPlayerSide()
-        self.drawMessageBox()
+        self.drawBottomWidget()
 
     def drawOpponentSide(self):
         """ Draws the Player Side """
@@ -28,8 +27,12 @@ class BattleScreen(ConsoleScreen):
         """ Draws the Player Side """
         playerSideLines = self.playerSideView.draw()
         self.drawAtPosition(playerSideLines, (0, self.height-4-len(playerSideLines)))
-
-    def drawMessageBox(self):
+        
+    def drawBottomWidget(self):
         """ Draws the Message Box """
-        messageBox, messageBoxSize = self.messageBox.draw()
-        self.drawAtPosition(messageBox, (0, self.height-4))
+        bottomLines = self.getBottomLines()
+        self.drawAtPosition(bottomLines, (0, self.height-4))
+
+    def getBottomLines(self):
+        """ Draws the Message Box.
+            Override in sub class """
