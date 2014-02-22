@@ -1,7 +1,7 @@
 from Menu.menu import Menu
 from Menu.text_menu_entry import TextMenuEntry
 from Screen.Console.Menu.ActionMenu.action_menu_screen import ActionMenuScreen
-from Screen.Console.Menu.ActionMenu.attack_controller import AttackController
+from Screen.Console.Menu.ActionMenu.AttackMenu.attack_controller import AttackController
 
 from kao_console.ascii import ENDL, KAO_UP, KAO_DOWN, KAO_LEFT, KAO_RIGHT
 from kao_gui.console.console_controller import ConsoleController
@@ -43,8 +43,6 @@ class ActionController(ConsoleController):
     def runController(self, controller):
         """ Runs the given controller """
         ConsoleController.runController(self, controller)
-        if controller.action is None:
-            self.screen.setBottomView(self.view)
-        else:
+        if controller.action is not None:
             self.action = controller.action
             self.stopRunning()
