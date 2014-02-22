@@ -12,7 +12,7 @@ from kao_gui.console.console_controller import ConsoleController
 class SwitchController(ConsoleController):
     """ Controller for selecting a Battle Switch Action """
     
-    def __init__(self, pokemon):
+    def __init__(self, pokemon, cancellable=True):
         """ Builds the Switch Controller """
         self.pokemon = pokemon
         self.action = None
@@ -29,7 +29,7 @@ class SwitchController(ConsoleController):
                 KAO_RIGHT:self.menu.right,
                 KAO_LEFT:self.menu.left}
                      
-        ConsoleController.__init__(self, screen, commands=cmds, cancellable=True)
+        ConsoleController.__init__(self, screen, commands=cmds, cancellable=cancellable)
         
     def setAction(self, entry):
         """ Set the Chosen Action """

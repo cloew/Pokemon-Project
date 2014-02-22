@@ -1,5 +1,6 @@
 from Battle.battle_message import BattleMessage
 from Screen.Console.Menu.ActionMenu.action_controller import ActionController
+from Screen.Console.Menu.ActionMenu.SwitchMenu.switch_controller import SwitchController
 from Screen.Console.MessageBox.message_box import MessageBox
 
 from kao_console.ascii import ENDL
@@ -58,7 +59,7 @@ class BattleRoundController(ConsoleController):
         if self.battle.playerSide.hasMorePokemon():
             for pokemon in self.battle.playerSide.pkmnInPlay:
                 if pokemon.fainted():
-                    switchMenuController = SwitchMenuController(pokemon)
+                    switchMenuController = SwitchController(pokemon, cancellable=False)
                     self.runController(switchMenuController)
                     pokemonReplacements[pokemon] = switchMenuController.action.pkmnToSwitchTo
                     
