@@ -56,6 +56,18 @@ class BattleSide:
                 
         return messages
         
-        def beaten(self):
-            """ Returns the string saying the side was beaten """
-            return [self.trainer.beaten()]
+    def awardExperience(self, pkmnToAwardExperienceFrom):
+        """ Award experience to current pokemon from the opposing pokemon """
+        messages = []
+        
+        for oppPkmn in pkmnToAwardExperienceFrom:
+            experienceToAward = oppPkmn.experienceToAward
+            for pkmn in self.pkmnInPlay:
+                pkmn.gainExperience(experienceToAward)
+                messages += ["{0} gained {1} experience points.".format(pkmn.name, experienceToAward)]
+                
+        return messages
+        
+    def beaten(self):
+        """ Returns the string saying the side was beaten """
+        return [self.trainer.beaten()]

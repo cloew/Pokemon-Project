@@ -8,7 +8,16 @@ class ExperienceDelegate:
         self.baseExperience = baseExperience
         self.experieceRate = experienceRate
         self.parent = parent
-        
+    
+    def gainExperience(self, experience):
+        """ Gain experience """
+        self.currentExperience += experience
+    
+    @property
+    def experienceToAward(self):
+        """ Return the experince to the next level """
+        return (self.baseExperience*self.parent.level)/7
+    
     @property
     def experinceToNextLevel(self):
         """ Return the experince to the next level """

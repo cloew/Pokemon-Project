@@ -180,3 +180,12 @@ class PkmnBattleWrapper:
     def name(self):
         """ Return the Pokemon's name """
         return self.original.name
+        
+    @property
+    def experienceToAward(self):
+        """ Return the experince to the next level """
+        return self.original.experienceToAward
+        
+    def gainExperience(self, experience):
+        """ Gain experience """
+        self.original.gainExperience(experience)

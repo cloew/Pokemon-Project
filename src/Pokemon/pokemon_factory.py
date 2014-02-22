@@ -11,6 +11,8 @@ import Pokemon.Experience.experience_delegate_factory as ExperienceDelegateFacto
 
 from resources.tags import Tags
 
+import copy
+
 class PokemonFactory:
     """ Factory to build Pokemon """
     
@@ -54,6 +56,8 @@ class PokemonFactory:
     @staticmethod
     def copy(toCopy):
         """ Copies the Given Pkmn """
+        return copy.deepcopy(toCopy)
+        
         pkmn = Pokemon()
         pkmn.name = str(toCopy.name)
         pkmn.species = str(toCopy.species)
@@ -63,5 +67,6 @@ class PokemonFactory:
         pkmn.ability = toCopy.ability
         pkmn.battleDelegate = PokemonBattleDelegateFactory.copy(pkmn, toCopy.battleDelegate)
         pkmn.displayDelegate = PokemonDisplayDelegateFactory.copy(toCopy)
+        pkmn.experienceDelegate = ExperienceDelegateFactory.copy(toCopy)
         
         return pkmn

@@ -86,3 +86,12 @@ class Pokemon:
     def getDisplayImageBaseName(self):
         """ Return the Display Base Name """
         return self.displayDelegate.getDisplayImageBaseName()
+        
+    @property
+    def experienceToAward(self):
+        """ Return the experince to the next level """
+        return self.experienceDelegate.experienceToAward
+        
+    def gainExperience(self, experience):
+        """ Gain experience """
+        self.experienceDelegate.gainExperience(experience)

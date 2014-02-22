@@ -8,7 +8,6 @@ class BattleRound:
         self.playerSide = playerSide
         self.oppSide = oppSide
         self.environment = environment
-        self.messageQueue = deque()
         
     def run(self, alreadySelectedActions):
         """ Runs the Round """
@@ -18,12 +17,15 @@ class BattleRound:
         """ Perform all the Round actions """
         self.messages = []
         actions = self.getActions(alreadySelectedActions)
+        
+        pkmnWhoHaveGivenExperience = []
+        
         for action in actions:
             messages = []
             messages += self.act(action)
             messages += self.afterTurn(action.user)
+            messages += self.awardExperience(pkmnWhoHaveGivenExperience)
             
-            self.messageQueue += deque(messages)
             self.messages += messages
         
     def getActions(self, alreadySelectedActions):
@@ -51,6 +53,13 @@ class BattleRound:
     def afterTurn(self, user):
         """ Perform affects of items/status/field hazards after the user performs its turn """
         return user.afterTurn()
+        
+    def awardExperience(self, pkmnWhoHaveAwardedExperience):
+        """ Awards experience for any newly fallen enemies """
+        messages = []
+        pkmnToAwardExperienceFrom = [pkmn for pkmn in self.oppSide.pkmnInPlay if pkmn.fainted() and pkmn not in pkmnWhoHaveAwardedExperience]
+        pkmnWhoHaveAwardedExperience += pkmnToAwardExperienceFrom
+        return self.playerSide.awardExperience(pkmnToAwardExperienceFrom)
         
     def getPlayerPkmn(self):
         """ Returns the Pokemon currently out """
