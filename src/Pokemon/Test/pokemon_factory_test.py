@@ -29,7 +29,7 @@ class copy(unittest.TestCase):
         
     def ability(self):
         """ Test that ability is copied """
-        assert self.copy.ability == self.pkmn.ability, "Should have copied ability"
+        assert self.copy.ability is not self.pkmn.ability, "Should have copied ability, but it should have a new address"
         
     def battleDelegate(self):
         """ Test that battleDelegate is copied """

@@ -57,16 +57,3 @@ class PokemonFactory:
     def copy(toCopy):
         """ Copies the Given Pkmn """
         return copy.deepcopy(toCopy)
-        
-        pkmn = Pokemon()
-        pkmn.name = str(toCopy.name)
-        pkmn.species = str(toCopy.species)
-        pkmn.level = toCopy.level
-        pkmn.id = toCopy.id
-        
-        pkmn.ability = toCopy.ability
-        pkmn.battleDelegate = PokemonBattleDelegateFactory.copy(pkmn, toCopy.battleDelegate)
-        pkmn.displayDelegate = PokemonDisplayDelegateFactory.copy(toCopy)
-        pkmn.experienceDelegate = ExperienceDelegateFactory.copy(toCopy)
-        
-        return pkmn

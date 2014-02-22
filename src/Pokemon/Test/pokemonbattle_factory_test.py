@@ -26,7 +26,7 @@ class copy(unittest.TestCase):
         
     def status(self):
         """ Test that status is copied """
-        assert self.copy.status == self.delegate.status, "Should have copied status"
+        assert self.copy.status is not self.delegate.status, "Should have copied status, but it should have a different address"
         
     def types(self):
         """ Test that types is copied """
