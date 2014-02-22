@@ -21,18 +21,18 @@ class ZoneController(PygameController):
         self.zone = zone
         self.doneCallback = doneCallback
         self.zone.setCallbacks(self.interactWithPerson)
-        self.trainerPerson = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer)
+        self.playerPerson = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer)
         
-        screen = ZoneScreen(self.zone)
+        screen = ZoneScreen(self.playerPerson, self.zone)
         
-        cmds = {commands.UP:self.trainerPerson.up,
-                (commands.UP, RELEASED):self.trainerPerson.stopMovingUp,
-                commands.DOWN:self.trainerPerson.down,
-                (commands.DOWN, RELEASED):self.trainerPerson.stopMovingDown,
-                commands.LEFT:self.trainerPerson.left,
-                (commands.LEFT, RELEASED):self.trainerPerson.stopMovingLeft,
-                commands.RIGHT:self.trainerPerson.right,
-                (commands.RIGHT, RELEASED):self.trainerPerson.stopMovingRight,
+        cmds = {commands.UP:self.playerPerson.up,
+                (commands.UP, RELEASED):self.playerPerson.stopMovingUp,
+                commands.DOWN:self.playerPerson.down,
+                (commands.DOWN, RELEASED):self.playerPerson.stopMovingDown,
+                commands.LEFT:self.playerPerson.left,
+                (commands.LEFT, RELEASED):self.playerPerson.stopMovingLeft,
+                commands.RIGHT:self.playerPerson.right,
+                (commands.RIGHT, RELEASED):self.playerPerson.stopMovingRight,
                 commands.SELECT:self.select,
                 commands.EXIT:self.stopRunning}
         
@@ -40,18 +40,18 @@ class ZoneController(PygameController):
                      
     def select(self):
         """ Performs a Select """
-        self.trainerPerson.interactWithAdjacentTile()
+        self.playerPerson.interactWithAdjacentTile()
         
     def interactWithPerson(self, otherPerson, message):
         """ Interact with the given person """
         self.runController(MessageBoxController(BattleMessage(message), self.screen))
         
         if otherPerson.isBattleable():
-            self.runController(BattleController(self.trainerPerson.trainer, otherPerson.trainer))
+            self.runController(BattleController(self.playerPerson.trainer, otherPerson.trainer))
             if self.doneCallback is not None and self.doneCallback():
                 self.stopRunning()
         
     def performGameCycle(self):
         """ Move the Trainer if needed in this tick """
-        self.trainerPerson.performGameTick()
+        self.playerPerson.performGameTick()
         

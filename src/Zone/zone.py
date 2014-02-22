@@ -17,7 +17,7 @@ class Zone:
         for i in range(rows):
             row = []
             for j in range(columns):
-                tile = Tile()
+                tile = Tile(i, j)
                 if j > 0:
                     tile.connectToTile(row[j-1], LEFT)
                 if i > 0:
