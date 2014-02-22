@@ -1,6 +1,4 @@
-from Screen.Console.MessageBox.message_box import MessageBox
 from Screen.Console.Battle.battle_screen import BattleScreen
-from Screen.Console.Battle.player_side_view import PlayerSideView
 
 class BattleMessageScreen(BattleScreen):
     """ View for the Battle """

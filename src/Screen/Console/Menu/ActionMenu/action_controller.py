@@ -19,7 +19,7 @@ class ActionController(ConsoleController):
                    TextMenuEntry("Run", None)]
         self.menu = Menu(entries, columns=2)
         
-        screen = ActionMenuScreen(self.menu, battle.playerSide, battle.oppSide)
+        screen = ActionMenuScreen(self.menu, battle)
         cmds = {ENDL:self.menu.enter,
                 KAO_UP:self.menu.up,
                 KAO_DOWN:self.menu.down,

@@ -1,4 +1,3 @@
-from Screen.Console.MessageBox.message_box import MessageBox
 from Screen.Console.Battle.player_side_view import PlayerSideView
 
 from kao_gui.console.console_screen import ConsoleScreen
