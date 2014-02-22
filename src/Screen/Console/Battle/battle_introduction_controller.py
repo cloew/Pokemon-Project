@@ -1,8 +1,8 @@
+from Battle.battle_message import BattleMessage
+from Screen.Console.MessageBox.message_box import MessageBox
+
 from kao_console.ascii import ENDL
 from kao_gui.console.console_controller import ConsoleController
-
-from Screen.Console.MessageBox.message_box import MessageBox
-from Battle.battle_message import BattleMessage
 
 class BattleIntroductionController(ConsoleController):
     """ Controller for Battle Introductions """
@@ -19,7 +19,7 @@ class BattleIntroductionController(ConsoleController):
         """ Tells the battle object what to perform """
         if self.hasMessages() and self.newMessage():
             self.screen.messageBox = MessageBox(self.battle.messageQueue[0])
-        # self.messageBox.update()
+        
         if self.battle.noMessages():
             self.stopRunning()
             

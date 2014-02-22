@@ -1,5 +1,7 @@
 from Battle.battle import Battle
+
 from Screen.Console.Battle.battle_introduction_controller import BattleIntroductionController
+from Screen.Console.Battle.battle_round_controller import BattleRoundController
 from Screen.Console.Battle.battle_screen import BattleScreen
 
 from kao_console.ascii import ENDL
@@ -18,7 +20,7 @@ class BattleController(ConsoleController):
     def performGameCycle(self):
         """ Tells the battle object what to perform """
         self.runController(BattleIntroductionController(self.battle, self.screen))
-        # self.runController(BattleRoundController(self.battle, self.screen))
+        self.runController(BattleRoundController(self.battle, self.screen))
         # self.runController(BattleAftermathController(self.battle, self.screen))
         
         self.stopRunning()
