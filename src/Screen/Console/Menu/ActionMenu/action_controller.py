@@ -12,6 +12,7 @@ class ActionController(ConsoleController):
         """ Builds the Action Controller """
         self.pokemon = pokemon
         self.battle = battle
+        self.action = None
         
         entries = [TextMenuEntry("Fight", self.chooseAttack),
                    TextMenuEntry("Switch", self.switch),
