@@ -6,6 +6,9 @@ class Tags:
     
     displayTag = "display"
     
+    experienceTag = "experience"
+    rateTypeTag = "rateType"
+    
     nameTag = "name"
     typeTag = "type"
     contactAttribute = "contact"
