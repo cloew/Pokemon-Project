@@ -1,12 +1,13 @@
-import sqlite3
-import xml.etree.ElementTree
-
 from Battle.Attack.attackfactory import AttackFactory
 from Battle.Status.status import Status
 
 from pokemon_battle_delegate import PokemonBattleDelegate
+import species_factory as SpeciesFactory
+
 from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
+
+# import xml.etree.ElementTree
 
 class PokemonBattleDelegateFactory:
     """ Factory to build Pokemon """
@@ -81,8 +82,9 @@ class PokemonBattleDelegateFactory:
         """ Gets info from Pokedex relevant to Battling
         Types, base stats """
         # Open Pokedex and set variables that require Pokedex data
-        tree = PokemonBattleDelegateFactory.getPokedexTree()
-        tree = PokemonBattleDelegateFactory.getPkmnXML(tree, species)
+        # tree = SpeciesFactory.getPokedexTree()
+        tree = SpeciesFactory.loadSpeciesXML(species)
+        # tree = PokemonBattleDelegateFactory.getPkmnXML(tree, species)
 
         # Get type(s) -- Prolly should be its own fuunction
         typesTree = tree.find(Tags.typesTag)
@@ -134,25 +136,25 @@ class PokemonBattleDelegateFactory:
         
         connection.close()
                 
-    @staticmethod
-    def getPokedexTree():
-        """ Opens the pokedex.xml file as an element tree """
-        if PokemonBattleDelegateFactory.tree is not None:
-            return PokemonBattleDelegateFactory.tree
+    # @staticmethod
+    # def getPokedexTree():
+        # """ Opens the pokedex.xml file as an element tree """
+        # if PokemonBattleDelegateFactory.tree is not None:
+            # return PokemonBattleDelegateFactory.tree
         
-        try:
-            pokedex = open(GetResourcePath("pokedex.xml"), 'r')
-        except IOError:
-            print "Unable to open POKEDEX"
-            exit(-2)
+        # try:
+            # pokedex = open(GetResourcePath("pokedex.xml"), 'r')
+        # except IOError:
+            # print "Unable to open POKEDEX"
+            # exit(-2)
     
-        PokemonBattleDelegateFactory.tree = xml.etree.ElementTree.ElementTree(file=pokedex)
-        pokedex.close()
-        return PokemonBattleDelegateFactory.tree
+        # PokemonBattleDelegateFactory.tree = xml.etree.ElementTree.ElementTree(file=pokedex)
+        # pokedex.close()
+        # return PokemonBattleDelegateFactory.tree
         
-    @staticmethod
-    def getPkmnXML(tree, species):
-        """ Returns the XML tree for the pokemon with the species given """
-        for pkmn in tree.getiterator(Tags.pokemonTag):
-            if pkmn.find(Tags.speciesTag).text == species:
-                return pkmn
+    # @staticmethod
+    # def getPkmnXML(tree, species):
+        # """ Returns the XML tree for the pokemon with the species given """
+        # for pkmn in tree.getiterator(Tags.pokemonTag):
+            # if pkmn.find(Tags.speciesTag).text == species:
+                # return pkmn
