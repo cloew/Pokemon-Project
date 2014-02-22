@@ -1,6 +1,6 @@
 
-class FluctuatingExperience:
-    """ Represents the Fluctuating Experience Formula """
+class FluctuatingExperienceRate:
+    """ Represents the Fluctuating Experience Rate Formula """
     
     def getExperinceForLevel(self, level):
         """ Return the experience needed for the given level """

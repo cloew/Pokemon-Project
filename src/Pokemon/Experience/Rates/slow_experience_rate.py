@@ -1,7 +1,7 @@
-from medium_fast_experiece import MediumFastExperience
+from medium_fast_experiece_rate import MediumFastExperienceRate
 
-class SlowExperience(MediumFastExperience):
-    """ Represents the Slow Experience Formula """
+class SlowExperienceRate(MediumFastExperienceRate):
+    """ Represents the Slow Experience Rate Formula """
     
     def getExperinceForLevel(self, level):
         """ Return the experience needed for the given level """

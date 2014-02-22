@@ -1,6 +1,6 @@
 
-class MediumSlowExperience:
-    """ Represents the Medium Slow Experience Formula """
+class MediumSlowExperienceRate:
+    """ Represents the Medium Slow Experience Rate Formula """
     
     def getExperinceForLevel(self, level):
         """ Return the experience needed for the given level """

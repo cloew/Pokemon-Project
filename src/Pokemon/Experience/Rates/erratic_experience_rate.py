@@ -1,6 +1,6 @@
 
-class ErraticExperience:
-    """ Represents the Erratic Experience Formula """
+class ErraticExperienceRate:
+    """ Represents the Erratic Experience Rate Formula """
     
     def getExperinceForLevel(self, level):
         """ Return the experience needed for the given level """
