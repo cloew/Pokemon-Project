@@ -1,4 +1,4 @@
-from Screen.Console.Menu.MainMenu.menu_entry_view import MenuEntryView
+from Screen.Console.Menu.menu_entry_view import MenuEntryView
 from Screen.Console.HealthBar.health_bar_view import HealthBarView
 
 class PokemonMenuEntryView(MenuEntryView):
@@ -8,68 +8,66 @@ class PokemonMenuEntryView(MenuEntryView):
         self.healthBar = HealthBarView(entry.getPokemon())
         MenuEntryView.__init__(self, entry)
         
-    def draw(self, window):
+    def draw(self):
         """ Draws the menu entry """
-        format = self.getTerminalFormatting(self.entry.selected, window.terminal)
-        pkmn = self.entry.getPokemon()
-        return self.getEntryLines(window), self.getEntrySize(window)
+        return self.getEntryLines(), self.getEntrySize()
 
-    def getEntrySize(self, window):
+    def getEntrySize(self):
         """ Return the entry size """
-        return (window.getWidth()/2 - 2, window.getHeight()/3 - 2)
+        return (self.window.width/2 - 2, self.window.height/3 - 2)
 
-    def getEntryLines(self, window):
+    def getEntryLines(self):
         """ Return entry lines """
         lines = []
-        entrySize = self.getEntrySize(window)
+        entrySize = self.getEntrySize()
 
         lines.append("")
-        lines.append(self.getHeaderLine(window))
-        lines.append(self.getPokemonNameLine(window))
-        lines.append(self.getHealthLine(window))
-        lines.append(self.getHealthBarLine(window))
+        lines.append(self.getHeaderLine())
+        lines.append(self.getPokemonNameLine())
+        lines.append(self.getHealthLine())
+        lines.append(self.getHealthBarLine())
         for i in range(entrySize[1]-5):
-            lines.append(self.getLine("", window))
-        lines.append(self.getHeaderLine(window))
+            lines.append(self.getLine(""))
+        lines.append(self.getHeaderLine())
         lines.append("")
         return lines
         
-    def getHeaderLine(self, window):
+    def getHeaderLine(self):
         """ Returns the line for the header and footer of the entry """
-        entrySize = self.getEntrySize(window)
+        entrySize = self.getEntrySize()
         return "|{0}|".format("-"*(entrySize[0]-2))
 
-    def getLine(self, text, window):
+    def getLine(self, text):
         """ Returns a line """
-        entrySize = self.getEntrySize(window)
+        entrySize = self.getEntrySize()
         spacer = " "*(entrySize[0]-2-len(text))
-        format = self.getTerminalFormatting(self.entry.selected, window.terminal)
-        return "|{0}{1}{2}{t.normal}|".format(format, text, spacer, t=window.terminal)
+        format = self.getTerminalFormatting(self.entry.selected)
+        return "|{0}{1}{2}{t.normal}|".format(format, text, spacer, t=self.terminal)
 
-    def getPokemonNameLine(self, window):
+    def getPokemonNameLine(self):
         """ Returns the Pokemon Name and Species as a string """
         pkmn = self.entry.getPokemon()
         nameString = "{0} --- {1}".format(self.getFullString(pkmn.name), self.getFullString(pkmn.species))
-        return self.getLine(nameString, window)
+        return self.getLine(nameString)
 
-    def getHealthLine(self, window):
+    def getHealthLine(self):
         """ Return the line with health stats """
         pkmn = self.entry.getPokemon()
-        return self.getLine("{0}/{1}".format(pkmn.getCurrHP(), pkmn.getStat("HP")), window)
+        return self.getLine("{0}/{1}".format(pkmn.getCurrHP(), pkmn.getStat("HP")))
 
-    def getHealthBarLine(self, window):
+    def getHealthBarLine(self):
         """ Return the line with health bar """
-        entrySize = self.getEntrySize(window)
-        healthBarText = self.healthBar.draw(window, entrySize[0]-2, self.entry.selected)
+        entrySize = self.getEntrySize()
+        healthBarText = self.healthBar.draw(entrySize[0]-2, self.entry.selected)
         return "|{0}|".format(healthBarText)
 
     def getFullString(self, string):
         """ Returns a string with the full 10 char limit """
         return (string + " "*10)[:10]
 
-    def getTerminalFormatting(self, selected, terminal):
+    def getTerminalFormatting(self, selected):
         """ Sets the Boldness of the entry """
         if selected:
-            return terminal.reverse
+            return self.terminal.reverse
         else:
             return ""

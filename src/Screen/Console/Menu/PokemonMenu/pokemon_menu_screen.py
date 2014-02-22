@@ -2,7 +2,9 @@ from Screen.Console.screen import Screen
 from pokemon_menu_column import PokemonMenuColumn
 from pokemon_menu_entry_view import PokemonMenuEntryView
 
-class PokemonMenuScreen(Screen):
+from Screen.Console.Battle.battle_screen import BattleScreen
+
+class PokemonMenuScreen(BattleScreen):
     """ Represents the Pokemon Menu screen """
     
     def __init__(self, menu):
@@ -22,18 +24,17 @@ class PokemonMenuScreen(Screen):
         self.leftColumn = PokemonMenuColumn(leftEntries)
         self.rightColumn = PokemonMenuColumn(rightEntries)
         
-    def draw(self, window):
+    def draw(self):
         """ Draws the screen to the provided window """
-        self.drawLeftColumn(window)
-        self.drawRightColumn(window)
+        self.drawLeftColumn()
+        self.drawRightColumn()
 
-    def drawLeftColumn(self, window):
+    def drawLeftColumn(self):
         """ Draw the left column """
-        menuText, menuSize = self.leftColumn.draw(window)
-        window.draw(menuText, (1, 0))
+        menuText, menuSize = self.leftColumn.draw()
+        self.drawAtPosition(menuText, (1, 0))
         
-    def drawRightColumn(self, window):
+    def drawRightColumn(self):
         """ Draw the right column """
-        menuText, menuSize = self.rightColumn.draw(window)
-        menuPos = self.getCenteredRect(window, menuSize, .66, .5) 
-        window.draw(menuText, (1+window.getWidth()/2, 0))
+        menuText, menuSize = self.rightColumn.draw()
+        self.drawAtPosition(menuText, (1+self.width/2, 0))

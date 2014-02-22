@@ -1,23 +1,22 @@
-from Screen.Console.view import View
-from Screen.Console.Menu.MainMenu.menu_entry_view import MenuEntryView
+from kao_gui.console.console_widget import ConsoleWidget
 
-class PokemonMenuColumn(View):
+class PokemonMenuColumn(ConsoleWidget):
     """ Represents a column of Pokemon entries on the Pokemon menu screen """
     
     def __init__(self, entries):
         """ Build the Column """
         self.entries = entries
         
-    def draw(self, window): 
+    def draw(self): 
         """ Draw the menu """
-        return self.drawEntries(window)
+        return self.drawEntries()
         
-    def drawEntries(self, window):
+    def drawEntries(self):
         """ Draws the menu entries on the Menu Surface """
         menuText = []
         width = 0
         for entry in self.entries:
-            entryLines, entrySize = entry.draw(window)
+            entryLines, entrySize = entry.draw()
             width = entrySize[0]
             menuText += entryLines
         return menuText, (width, len(menuText))
