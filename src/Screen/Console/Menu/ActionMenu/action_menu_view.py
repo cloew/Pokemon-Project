@@ -1,8 +1,4 @@
 from Screen.Console.Menu.menu_entry_view import MenuEntryView
-
-# from Screen.Console.view import View
-# from Screen.Console.screen import Screen
-
 from kao_gui.console.console_widget import ConsoleWidget
 
 class ActionMenuView(ConsoleWidget):

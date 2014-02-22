@@ -1,6 +1,7 @@
 from Menu.menu import Menu
 from Menu.text_menu_entry import TextMenuEntry
 from Screen.Console.Menu.ActionMenu.action_menu_screen import ActionMenuScreen
+from Screen.Console.Menu.ActionMenu.attack_controller import AttackController
 
 from kao_console.ascii import ENDL, KAO_UP, KAO_DOWN, KAO_LEFT, KAO_RIGHT
 from kao_gui.console.console_controller import ConsoleController
@@ -31,7 +32,7 @@ class ActionController(ConsoleController):
         
     def chooseAttack(self, entry):
         """ Run the Attack Menu Controller """
-        attackMenuController = AttackMenuController(self.pokemon, self.battle.oppSide.pkmnInPlay, self.battle.environment)
+        attackMenuController = AttackController(self.pokemon, self.battle.oppSide.pkmnInPlay, self.battle)
         self.runController(attackMenuController)
     
     def switch(self, entry):

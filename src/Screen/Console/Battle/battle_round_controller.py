@@ -52,6 +52,18 @@ class BattleRoundController(ConsoleController):
         self.screen.messageBox = self.messageBox
         self.battle.performRound(pokemonActions)
         
+    def refillSides(self):
+        """ Refill the Battle Sides """
+        pokemonReplacements = {}
+        if self.battle.playerSide.hasMorePokemon():
+            for pokemon in self.battle.playerSide.pkmnInPlay:
+                if pokemon.fainted():
+                    switchMenuController = SwitchMenuController(pokemon)
+                    self.runController(switchMenuController)
+                    pokemonReplacements[pokemon] = switchMenuController.action.pkmnToSwitchTo
+                    
+        self.battle.refillSides(pokemonReplacements)
+        
     def hasMessages(self):
         """ Returns if there are messages in the battle's queue """
         return len(self.battle.messageQueue) > 0
