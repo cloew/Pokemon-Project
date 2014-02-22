@@ -4,11 +4,11 @@ from Screen.Console.MessageBox.message_box import MessageBox
 from kao_console.ascii import ENDL
 from kao_gui.console.console_controller import ConsoleController
 
-class BattleIntroductionController(ConsoleController):
-    """ Controller for Battle Introductions """
+class BattleMessageController(ConsoleController):
+    """ Controller for Battle Messages """
     
     def __init__(self, battle, screen):
-        """ Initialize the Battle Introduction Controller """
+        """ Initialize the Battle Message Controller """
         self.battle = battle
         self.messageBox = MessageBox(BattleMessage(""))
         screen.messageBox = self.messageBox

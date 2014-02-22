@@ -1,6 +1,6 @@
 from Battle.battle import Battle
 
-from Screen.Console.Battle.battle_introduction_controller import BattleIntroductionController
+from Screen.Console.Battle.battle_message_controller import BattleMessageController
 from Screen.Console.Battle.battle_round_controller import BattleRoundController
 from Screen.Console.Battle.battle_message_screen import BattleMessageScreen
 
@@ -19,8 +19,8 @@ class BattleController(ConsoleController):
         
     def performGameCycle(self):
         """ Tells the battle object what to perform """
-        self.runController(BattleIntroductionController(self.battle, self.screen))
+        self.runController(BattleMessageController(self.battle, self.screen))
         self.runController(BattleRoundController(self.battle, self.screen))
-        # self.runController(BattleAftermathController(self.battle, self.screen))
+        self.runController(BattleMessageController(self.battle, self.screen))
         
         self.stopRunning()
