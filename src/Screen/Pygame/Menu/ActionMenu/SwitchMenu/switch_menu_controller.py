@@ -9,7 +9,7 @@ from kao_gui.pygame.pygame_controller import PygameController
 class SwitchMenuController(PygameController):
     """ Controller for Switch Menu """
     
-    def __init__(self, pokemon):
+    def __init__(self, pokemon, cancellable=True):
         """ Initialize the Switch Menu """
         self.pokemon = pokemon
         self.action = None
@@ -24,8 +24,10 @@ class SwitchMenuController(PygameController):
                 commands.DOWN:self.menu.down,
                 commands.LEFT:self.menu.left,
                 commands.RIGHT:self.menu.right,
-                commands.SELECT:self.menu.enter,
-                commands.EXIT:self.stopRunning}
+                commands.SELECT:self.menu.enter}
+        if cancellable:
+            cmds[commands.EXIT] = self.stopRunning
+                
         PygameController.__init__(self, screen, commands=cmds)
                      
     def setAction(self, entry):

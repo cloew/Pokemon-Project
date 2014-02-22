@@ -53,7 +53,7 @@ class BattleRoundController(PygameController):
         if self.battle.playerSide.hasMorePokemon():
             for pokemon in self.battle.playerSide.pkmnInPlay:
                 if pokemon.fainted():
-                    switchMenuController = SwitchMenuController(pokemon)
+                    switchMenuController = SwitchMenuController(pokemon, cancellable=False)
                     self.runController(switchMenuController)
                     pokemonReplacements[pokemon] = switchMenuController.action.pkmnToSwitchTo
                     
