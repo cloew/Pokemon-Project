@@ -1,9 +1,11 @@
-from Screen.Console.Menu.MainMenu.menu_entry_view import MenuEntryView
+from Screen.Console.Menu.menu_entry_view import MenuEntryView
 
-from Screen.Console.view import View
-from Screen.Console.screen import Screen
+# from Screen.Console.view import View
+# from Screen.Console.screen import Screen
 
-class ActionMenuView(View):
+from kao_gui.console.console_widget import ConsoleWidget
+
+class ActionMenuView(ConsoleWidget):
     """ Action Menu View """
     
     def __init__(self, menu):
@@ -14,16 +16,16 @@ class ActionMenuView(View):
         for entry in self.menu.entries:
             self.entries.append(MenuEntryView(entry))
         
-    def draw(self, window):
+    def draw(self):
         """ Draw the window """
-        box = self.getMenuBox(window)
-        return self.drawMenuEntries(window, box)
+        box = self.getMenuBox()
+        return self.drawMenuEntries(box)
 
-    def getMenuBox(self, window):
+    def getMenuBox(self):
         """ Draws the Menu Box """
         lines = []
-        hdrLine ="-"*window.terminal.width
-        line = "|{0}|".format(" "*(window.terminal.width-2))
+        hdrLine ="-"*self.terminal.width
+        line = "|{0}|".format(" "*(self.terminal.width-2))
         
         lines.append(hdrLine)
         lines.append(line)
@@ -31,7 +33,7 @@ class ActionMenuView(View):
         lines.append(hdrLine)
         return lines
 
-    def drawMenuEntries(self, window, box):
+    def drawMenuEntries(self, box):
         """ Draws all Menu Entries """
         menuText = []
         cols = [.33, .66]
@@ -42,14 +44,14 @@ class ActionMenuView(View):
             rowIndex = (index > 1) + 1
             length = entry.entry.getTextLength()
             
-            entryPosition = self.getEntryPosition(length, col, window.terminal.width)
-            box[rowIndex] = self.addEntryText(entry, int(entryPosition), window, box[rowIndex])
-        return box, (window.terminal.width, len(box))
+            entryPosition = self.getEntryPosition(length, col, self.terminal.width)
+            box[rowIndex] = self.addEntryText(entry, int(entryPosition), box[rowIndex])
+        return box, (self.terminal.width, len(box))
 
-    def addEntryText(self, entry, position, window, line):
+    def addEntryText(self, entry, position, line):
         """ Adds the entry text to a line given and returns it """
         newLine  = line[:position]
-        newLine += entry.draw(window)
+        newLine += entry.draw()
         newLine += line[position+entry.entry.getTextLength():]
         return newLine 
 

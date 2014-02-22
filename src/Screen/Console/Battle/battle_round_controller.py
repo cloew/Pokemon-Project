@@ -1,4 +1,5 @@
 from Battle.battle_message import BattleMessage
+from Screen.Console.Menu.ActionMenu.action_controller import ActionController
 from Screen.Console.MessageBox.message_box import MessageBox
 
 from kao_console.ascii import ENDL
@@ -41,7 +42,7 @@ class BattleRoundController(ConsoleController):
         pokemonActions = {}
         for pokemon in self.battle.playerSide.pkmnInPlay:
             if not pokemon.actionLock:
-                actionMenuController = ActionMenuController(pokemon, self.battle, self.screen)
+                actionMenuController = ActionController(pokemon, self.battle)
                 self.runController(actionMenuController)
                 if actionMenuController.action is None:
                     return
