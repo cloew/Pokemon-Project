@@ -7,8 +7,6 @@ import species_factory as SpeciesFactory
 from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
 
-# import xml.etree.ElementTree
-
 class PokemonBattleDelegateFactory:
     """ Factory to build Pokemon """
     

@@ -19,6 +19,8 @@
             <SATK>45</SATK>
             <SDEF>65</SDEF>
         </baseStats>
+        <experience>64</experience>
+        <rateType>MEDIUM SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>CHARMANDER</species>
@@ -38,6 +40,8 @@
             <SATK>60</SATK>
             <SDEF>50</SDEF>
         </baseStats>
+        <experience>62</experience>
+        <rateType>MEDIUM SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>CHARIZARD</species>
@@ -58,6 +62,8 @@
             <SATK>109</SATK>
             <SDEF>85</SDEF>
         </baseStats>
+        <experience>240</experience>
+        <rateType>MEDIUM SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>SQUIRTLE</species>
@@ -77,6 +83,8 @@
             <SATK>50</SATK>
             <SDEF>64</SDEF>
         </baseStats>
+        <experience>63</experience>
+        <rateType>MEDIUM SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>RAICHU</species>
@@ -96,6 +104,8 @@
             <SATK>90</SATK>
             <SDEF>80</SDEF>
         </baseStats>
+        <experience>214</experience>
+        <rateType>MEDIUM FAST</rateType>
     </pokemon>
     <pokemon>
         <species>NIDOKING</species>
@@ -117,6 +127,8 @@
             <SATK>90</SATK>
             <SDEF>80</SDEF>
         </baseStats>
+        <experience>223</experience>
+        <rateType>MEDIUM SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>GEODUDE</species>
@@ -138,6 +150,8 @@
             <SATK>30</SATK>
             <SDEF>30</SDEF>
         </baseStats>
+        <experience>60</experience>
+        <rateType>MEDIUM SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>ELECTRODE</species>
@@ -158,6 +172,8 @@
             <SATK>80</SATK>
             <SDEF>80</SDEF>
         </baseStats>
+        <experience>168</experience>
+        <rateType>MEDIUM FAST</rateType>
     </pokemon>
     <pokemon>
         <species>GYARADOS</species>
@@ -178,6 +194,8 @@
             <SATK>60</SATK>
             <SDEF>100</SDEF>
         </baseStats>
+        <experience>189</experience>
+        <rateType>SLOW</rateType>
     </pokemon>
     <!-- Gen II -->
     <pokemon>
@@ -198,6 +216,8 @@
             <SATK>65</SATK>
             <SDEF>45</SDEF>
         </baseStats>
+        <experience>56</experience>
+        <rateType>MEDIUM SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>SCIZOR</species>
@@ -219,6 +239,8 @@
             <SATK>55</SATK>
             <SDEF>80</SDEF>
         </baseStats>
+        <experience>175</experience>
+        <rateType>MEDIUM FAST</rateType>
     </pokemon>
     <pokemon>
         <species>SNEASEL</species>
@@ -240,6 +262,8 @@
             <SATK>35</SATK>
             <SDEF>75</SDEF>
         </baseStats>
+        <experience>86</experience>
+        <rateType>MEDIUM SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>TYRANITAR</species>
@@ -260,6 +284,8 @@
             <SATK>95</SATK>
             <SDEF>100</SDEF>
         </baseStats>
+        <experience>270</experience>
+        <rateType>SLOW</rateType>
     </pokemon>
     <!-- Gen III -->
     <pokemon>
@@ -281,6 +307,8 @@
             <SATK>30</SATK>
             <SDEF>30</SDEF>
         </baseStats>
+        <experience>44</experience>
+        <rateType>MEDIUM FAST</rateType>
     </pokemon>
     <pokemon>
         <species>SHARPEDO</species>
@@ -301,6 +329,8 @@
             <SATK>95</SATK>
             <SDEF>40</SDEF>
         </baseStats>
+        <experience>161</experience>
+        <rateType>SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>FLYGON</species>
@@ -320,6 +350,8 @@
             <SATK>80</SATK>
             <SDEF>80</SDEF>
         </baseStats>
+        <experience>234</experience>
+        <rateType>MEDIUM SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>SALAMENCE</species>
@@ -340,6 +372,8 @@
             <SATK>110</SATK>
             <SDEF>80</SDEF>
         </baseStats>
+        <experience>270</experience>
+        <rateType>SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>METAGROSS</species>
@@ -360,6 +394,8 @@
             <SATK>95</SATK>
             <SDEF>90</SDEF>
         </baseStats>
+        <experience>270</experience>
+        <rateType>SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>LATIOS</species>
@@ -379,6 +415,8 @@
             <SATK>130</SATK>
             <SDEF>110</SDEF>
         </baseStats>
+        <experience>270</experience>
+        <rateType>SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>RAYQUAZA</species>
@@ -398,6 +436,8 @@
             <SATK>150</SATK>
             <SDEF>90</SDEF>
         </baseStats>
+        <experience>306</experience>
+        <rateType>SLOW</rateType>
     </pokemon>
     <!-- Gen IV -->
     <pokemon>
@@ -420,6 +460,8 @@
             <SATK>116</SATK>
             <SDEF>56</SDEF>
         </baseStats>
+        <experience>180</experience>
+        <rateType>MEDIUM FAST</rateType>
     </pokemon>
     <pokemon>
         <species>HEAT ROTOM</species>
@@ -439,6 +481,8 @@
             <SATK>105</SATK>
             <SDEF>107</SDEF>
         </baseStats>
+        <experience>154</experience>
+        <rateType>MEDIUM FAST</rateType>
     </pokemon>
     <!-- Gen V -->
     <pokemon>
@@ -460,6 +504,8 @@
             <SATK>75</SATK>
             <SDEF>60</SDEF>
         </baseStats>
+        <experience>150</experience>
+        <rateType>MEDIUM FAST</rateType>
     </pokemon>
     <pokemon>
         <species>GALVANTULA</species>
@@ -481,6 +527,8 @@
             <SATK>97</SATK>
             <SDEF>60</SDEF>
         </baseStats>
+        <experience>165</experience>
+        <rateType>MEDIUM FAST</rateType>
     </pokemon>
     <pokemon>
         <species>TYNAMO</species>
@@ -499,6 +547,8 @@
             <SATK>45</SATK>
             <SDEF>40</SDEF>
         </baseStats>
+        <experience>55</experience>
+        <rateType>SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>BISHARP</species>
@@ -520,6 +570,8 @@
             <SATK>60</SATK>
             <SDEF>70</SDEF>
         </baseStats>
+        <experience>172</experience>
+        <rateType>MEDIUM FAST</rateType>
     </pokemon>
     <pokemon>
         <species>HYDREIGON</species>
@@ -539,6 +591,8 @@
             <SATK>125</SATK>
             <SDEF>90</SDEF>
         </baseStats>
+        <experience>270</experience>
+        <rateType>SLOW</rateType>
     </pokemon>
     <pokemon>
         <species>ZEKROM</species>
@@ -558,5 +612,7 @@
             <SATK>120</SATK>
             <SDEF>100</SDEF>
         </baseStats>
+        <experience>306</experience>
+        <rateType>SLOW</rateType>
     </pokemon>
 </pokedex>

@@ -1,4 +1,4 @@
-from medium_fast_experiece_rate import MediumFastExperienceRate
+from medium_fast_experience_rate import MediumFastExperienceRate
 
 class SlowExperienceRate(MediumFastExperienceRate):
     """ Represents the Slow Experience Rate Formula """

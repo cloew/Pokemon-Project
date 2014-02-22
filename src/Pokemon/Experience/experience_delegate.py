@@ -2,7 +2,7 @@
 class ExperienceDelegate:
     """ Represents the Pokemon's Experience Delegate """
     
-    def __init__(self, currentExperince, baseExperience, experienceRate, parent):
+    def __init__(self, currentExperience, baseExperience, experienceRate, parent):
         """ Initialize the Experience Delegate """
         self.currentExperience = currentExperience
         self.baseExperience = baseExperience

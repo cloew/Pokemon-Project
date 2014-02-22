@@ -1,7 +1,9 @@
 from Pokemon.Experience.experience_delegate import ExperienceDelegate
 
-import Poekmon.Experience.species_factory as SpeciesFactory
-import Poekmon.Experience.Rates.experience_rate_factory as ExperienceRateFactory
+import Pokemon.species_factory as SpeciesFactory
+import Pokemon.Experience.Rates.experience_rate_factory as ExperienceRateFactory
+
+from resources.tags import Tags
 
 def loadFromXML(parent, tree):
     """  Build a Pokemon's Battle Information """
