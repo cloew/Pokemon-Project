@@ -58,12 +58,12 @@ class use(unittest.TestCase):
             self.assertIn(message, messages, "Should have returned each message from the Attack")
         self.assertEquals(len(expectedMessages), len(messages), "Should only have returned the Precondition and Attack Messages")
         
-    def failPreconditions(self, user, target, environment, messages):
+    def failPreconditions(self, preconditionChecker, messages):
         self.calledPreconditions = True
         messages.append(self.preconditionMessage)
         return True
         
-    def passPreconditions(self, user, target, environment, messages):
+    def passPreconditions(self, preconditionChecker, messages):
         self.calledPreconditions = True
         messages.append(self.preconditionMessage)
         return False
@@ -252,8 +252,50 @@ suiteDoAttackLoop = unittest.TestSuite(map(doAttackLoop, testcasesDoAttackLoop))
 
 ##########################################################
 
+class checkPreconditions(unittest.TestCase):
+    """ Test cases of checkPreconditions """
+    
+    def  setUp(self):
+        """ Build the Attack for the test """
+        self.attack = Attack()
+        self.messages = ["My Test Messages"]
+        
+        self.calledCheckPreConditions = False
+        
+    def preconditionsPassthrough(self):
+        """ Test that preconditions stop value is returned """
+        for stopCondition in [True, False]:
+            self.failPreconditions = stopCondition
+            stop = self.attack.checkPreconditions(self, [])
+        
+            self.assertEquals(self.failPreconditions, stop, "Should have returned the failPreconditions parameter")
+            self.assertTrue(self.calledCheckPreConditions, "Should have called checkPrecondtitions")
+    
+    def messagesReturned(self):
+        """ Test that messages when no contact is made are returned """
+        self.failPreconditions = False
+        messages = []
+        
+        self.attack.checkPreconditions(self, messages)
+        
+        for expectedMessage in self.messages:
+            i = self.messages.index(expectedMessage)
+            message = messages[i]
+            self.assertEquals(expectedMessage, message, "Should have returned each message in the proper order")
+        self.assertEquals(len(self.messages), len(messages), "Should only have returned the Precondtition Messages")
+        
+    def checkPreConditions(self):
+        self.calledCheckPreConditions = True
+        return self.failPreconditions, self.messages
+
+# Collect all test cases in this class
+testcasesCheckPreconditions = ["preconditionsPassthrough", "messagesReturned"]
+suiteCheckPreconditions = unittest.TestSuite(map(checkPreconditions, testcasesCheckPreconditions))
+
+##########################################################
+
 # Collect all test cases in this file
-suites = [suiteUse, suiteDoAttack, suiteDoAttackLoop]
+suites = [suiteUse, suiteDoAttack, suiteDoAttackLoop, suiteCheckPreconditions]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
