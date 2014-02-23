@@ -22,6 +22,7 @@ class use(unittest.TestCase):
         self.messages = ["My Test Messages"]
         
         self.attack.preconditionsStep = MockStep(self.messages)
+        self.attack.announcementStep = MockStep(self.messages)
         self.attack.hitStep = MockStep(self.messages)
         self.attack.damageStep = MockStep(self.messages)
         self.attack.effectsStep = MockStep(self.messages)
@@ -35,6 +36,7 @@ class use(unittest.TestCase):
         self.attack.use(None, None, None)
         
         self.assertTrue(self.attack.preconditionsStep.performed, "Should have performed the Precondition Step")
+        self.assertFalse(self.attack.announcementStep.performed, "Should not have performed the Announcement Step")
         self.assertFalse(self.attack.hitStep.performed, "Should not have performed the Hit Step")
         self.assertFalse(self.attack.damageStep.performed, "Should not have performed the Damage Step")
         self.assertFalse(self.attack.effectsStep.performed, "Should not have performed the Effects Step")
@@ -49,7 +51,8 @@ class use(unittest.TestCase):
         self.attack.use(None, None, None)
         
         self.assertTrue(self.attack.preconditionsStep.performed, "Should have performed the Precondition Step")
-        self.assertTrue(self.attack.hitStep.performed, "Should not have performed the Hit Step")
+        self.assertTrue(self.attack.announcementStep.performed, "Should have performed the Announcement Step")
+        self.assertTrue(self.attack.hitStep.performed, "Should have performed the Hit Step")
         self.assertTrue(self.attack.damageStep.performed, "Should have performed the Damage Step")
         self.assertTrue(self.attack.effectsStep.performed, "Should have performed the Effects Step")
         self.assertTrue(self.attack.handleContactStep.performed, "Should have performed the Handle Contact Step")
@@ -63,6 +66,7 @@ class use(unittest.TestCase):
         self.attack.use(None, None, None)
         
         self.assertTrue(self.attack.preconditionsStep.performed, "Should have performed the Precondition Step")
+        self.assertTrue(self.attack.announcementStep.performed, "Should have performed the Announcement Step")
         self.assertTrue(self.attack.hitStep.performed, "Should have performed the Hit Step")
         self.assertFalse(self.attack.damageStep.performed, "Should not have performed the Damage Step")
         self.assertFalse(self.attack.effectsStep.performed, "Should not have performed the Effects Step")

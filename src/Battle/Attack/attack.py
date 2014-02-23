@@ -22,6 +22,7 @@ class Attack:
         self.makes_contact = False
         
         self.preconditionsStep = PreconditionStep(self)
+        self.announcementStep = AnnouncementStep(self)
         self.hitStep = HitStep(self)
         self.damageStep = DamageStep(self)
         self.effectsStep = EffectsStep(self)
@@ -33,6 +34,7 @@ class Attack:
         messages = []
         messages += self.preconditionsStep.perform(user, target, environment)
         if self.preconditionsStep.passed:
+            messages += self.announcementStep.perform(user, target, environment)
             messages += self.hitStep.perform(user, target, environment)
             if self.hitStep.hit:
                 messages += self.damageStep.perform(user, target, environment)
