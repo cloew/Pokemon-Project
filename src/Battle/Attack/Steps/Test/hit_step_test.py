@@ -31,19 +31,26 @@ class perform(unittest.TestCase):
         self.assertTrue(self.calledHit, "Should have called hit delegate's hit function")
         self.assertTrue(self.step.hit, "Should have successfully hit")
     
-    def messagesReturned(self):
-        """ Test that messages from the hit attempt are returned """
-        self.shouldHit = True
+    def messagesReturned_Missed(self):
+        """ Test that messages from a missed hit attempt are returned """
+        self.shouldHit = False
         messages = self.step.perform(None, None, None)
         
         self.assertEquals(self.messages, messages, "Should have returned the hit messages")
+        
+    def messagesReturned_Hit(self):
+        """ Test that messages from a successful hit attempt are returned """
+        self.shouldHit = True
+        messages = self.step.perform(None, None, None)
+        
+        self.assertEquals([], messages, "Should have returned the hit messages")
         
     def hit(self, user, target, environment):
         self.calledHit = True
         return self.shouldHit, self.messages
 
 # Collect all test cases in this class
-testcasesPerform = ["hit_Failing", "hit_Passing", "messagesReturned"]
+testcasesPerform = ["hit_Failing", "hit_Passing", "messagesReturned_Missed", "messagesReturned_Hit"]
 suitePerform = unittest.TestSuite(map(perform, testcasesPerform))
 
 ##########################################################

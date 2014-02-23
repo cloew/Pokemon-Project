@@ -10,4 +10,7 @@ class HitStep:
     def perform(self, user, target, environment):
         """ Perform this step """
         self.hit, messages = self.parent.hitDelegate.hit(user, target, environment)
-        return messages
+        if not self.hit:
+            return messages
+        else:
+            return []
