@@ -1,10 +1,11 @@
+from Battle.Attack.Steps.attack_step import AttackStep
 
-class HitStep:
+class HitStep(AttackStep):
     """ Represents the Hit Step in performing an Attack """
     
     def __init__(self, parent):
         """ Initialize the Precondition Step """
-        self.parent = parent
+        AttackStep.__init__(self, parent)
         self.hit = False
         
     def perform(self, user, target, environment):

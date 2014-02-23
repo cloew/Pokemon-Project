@@ -1,11 +1,12 @@
 from Battle.Attack.preconditions import PreconditionChecker
+from Battle.Attack.Steps.attack_step import AttackStep
 
-class PreconditionStep:
+class PreconditionStep(AttackStep):
     """ Represents the Precondition Step in performing an Attack """
     
     def __init__(self, parent):
         """ Initialize the Precondition Step """
-        self.parent = parent
+        AttackStep.__init__(self, parent)
         self.stop = True
         
     def perform(self, user, target, environment, PreconditionChecker=PreconditionChecker):
