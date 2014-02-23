@@ -32,21 +32,32 @@ class comparePrioirty(unittest.TestCase):
     
     def  setUp(self):
         """ Build the Action for the test """
-        self.action1 = BuildBattleAction(priority = 1)
-        self.action2 = BuildBattleAction(priority = 0)
+        self.highPriorityAction = BuildBattleAction(priority = 1)
+        self.lowPriorityAction = BuildBattleAction(priority = 0)
+        self.lowPriorityAction.compareSpeed = self.compareSpeed
+        
+        self.calledCompareSpeed = False
         
     def less(self):
         """ Test that lower priorities return correctly """
-        cmp = self.action2.comparePriority(self.action1)
+        cmp = self.lowPriorityAction.comparePriority(self.highPriorityAction)
         assert cmp == -1, "Should return -1 when the priority is less"
         
     def more(self):
         """ Test that higher priorities return correctly """
-        cmp = self.action1.comparePriority(self.action2)
+        cmp = self.highPriorityAction.comparePriority(self.lowPriorityAction)
         assert cmp == 1, "Should return 1 when the priority is more"
+        
+    def tie(self):
+        """ Test that lower priorities return correctly """
+        cmp = self.lowPriorityAction.comparePriority(self.lowPriorityAction)
+        assert self.calledCompareSpeed, "Should have compared based on speed"
+        
+    def compareSpeed(self, other):
+        self.calledCompareSpeed = True
 
 # Collect all test cases in this class
-testcasesComparePrioirty = ["less", "more"]
+testcasesComparePrioirty = ["less", "more", "tie"]
 suiteComparePrioirty = unittest.TestSuite(map(comparePrioirty, testcasesComparePrioirty))
 
 ##########################################################
