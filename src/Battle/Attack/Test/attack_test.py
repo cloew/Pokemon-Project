@@ -161,8 +161,99 @@ suiteDoAttack = unittest.TestSuite(map(doAttack, testcasesDoAttack))
 
 ##########################################################
 
+class doAttackLoop(unittest.TestCase):
+    """ Test cases of doAttackLoop """
+    
+    def  setUp(self):
+        """ Build the Attack for the test """
+        self.attack = Attack()
+        self.damageMessages = ["My Damage Messages"]
+        self.effectMessages = ["My Effect Messages"]
+        self.contactMessages = ["My Contact Messages"]
+        
+        self.calledDoDamage = False
+        self.calledDoEffects = False
+        self.calledOnContact = False
+        
+    def makesContact(self):
+        """ Test that failing hit prevents the attack loop from being done """
+        self.attack.makes_contact = True
+        self.attack.doDamage = self.doDamage
+        self.attack.doEffects = self.doEffects
+        
+        self.attack.doAttackLoop(None, self, None)
+        
+        self.assertTrue(self.calledDoDamage, "Should have called doDamage")
+        self.assertTrue(self.calledDoEffects, "Should have called doEffects")
+        self.assertTrue(self.calledOnContact, "Should have called onContact")
+        
+    def noContact(self):
+        """ Test that passing hit allows the attack loop to be done """
+        self.attack.makes_contact = False
+        self.attack.doDamage = self.doDamage
+        self.attack.doEffects = self.doEffects
+        
+        self.attack.doAttackLoop(None, self, None)
+        
+        self.assertTrue(self.calledDoDamage, "Should have called doDamage")
+        self.assertTrue(self.calledDoEffects, "Should have called doEffects")
+        self.assertFalse(self.calledOnContact, "Should not have called onContact")
+    
+    def messagesReturned_NoContact(self):
+        """ Test that messages when no contact is made are returned """
+        self.attack.makes_contact = False
+        self.attack.doDamage = self.doDamage
+        self.attack.doEffects = self.doEffects
+        
+        messages = self.attack.doAttackLoop(None, self, None)
+        
+        expectedMessages = self.damageMessages + self.effectMessages
+        
+        for expectedMessage in expectedMessages:
+            i = expectedMessages.index(expectedMessage)
+            message = messages[i]
+            self.assertEquals(expectedMessage, message, "Should have returned each message in the proper order")
+        self.assertEquals(len(expectedMessages), len(messages), "Should only have returned the Damage and Effect Messages")
+    
+    def messagesReturned_OnContact(self):
+        """ Test that messages when contact is made are returned """
+        self.attack.makes_contact = True
+        self.attack.doDamage = self.doDamage
+        self.attack.doEffects = self.doEffects
+        
+        messages = self.attack.doAttackLoop(None, self, None)
+
+        expectedMessages = self.damageMessages + self.effectMessages + self.contactMessages
+        
+        for expectedMessage in expectedMessages:
+            i = expectedMessages.index(expectedMessage)
+            message = messages[i]
+            self.assertEquals(expectedMessage, message, "Should have returned each message in the proper order")
+        self.assertEquals(len(expectedMessages), len(messages), "Should only have returned the Damage, Effect and Contact Messages")
+        
+    def doDamage(self, user, target, environment):
+        self.calledDoDamage = True
+        return self.damageMessages
+        
+    def doEffects(self, user, target, environment):
+        self.calledDoEffects = True
+        return self.effectMessages
+        
+    def getAbility(self):
+        return self
+        
+    def onContact(self, target, user):
+        self.calledOnContact = True
+        return self.contactMessages
+
+# Collect all test cases in this class
+testcasesDoAttackLoop = ["makesContact", "makesContact", "messagesReturned_NoContact", "messagesReturned_OnContact"]
+suiteDoAttackLoop = unittest.TestSuite(map(doAttackLoop, testcasesDoAttackLoop))
+
+##########################################################
+
 # Collect all test cases in this file
-suites = [suiteUse, suiteDoAttack]
+suites = [suiteUse, suiteDoAttack, suiteDoAttackLoop]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":
