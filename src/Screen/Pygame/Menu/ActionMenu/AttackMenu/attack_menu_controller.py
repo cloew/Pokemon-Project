@@ -3,6 +3,7 @@ from InputProcessor import commands
 from Menu.menu import Menu
 from Menu.ActionMenu.AttackMenu.attack_menu_entry import AttackMenuEntry
 from Screen.Pygame.Menu.two_column_menu_view import TwoColumnMenuView
+from Screen.Pygame.Menu.ActionMenu.AttackMenu.attack_menu_entry_widget import AttackMenuEntryWidget
 
 from kao_gui.pygame.pygame_controller import PygameController
 
@@ -21,7 +22,7 @@ class AttackMenuController(PygameController):
             entries.append(AttackMenuEntry(attack, self.setAction))
         self.menu = Menu(entries, columns=2)
         
-        screen.setBottomView(TwoColumnMenuView(self.menu, self.getWindow().width*.9, self.getWindow().height*.3))
+        screen.setBottomView(TwoColumnMenuView(self.menu, self.getWindow().width*.9, self.getWindow().height*.3, MenuEntryView=AttackMenuEntryWidget))
         cmds = {commands.UP:self.menu.up,
                 commands.DOWN:self.menu.down,
                 commands.LEFT:self.menu.left,

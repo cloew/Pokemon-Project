@@ -6,14 +6,16 @@ from kao_gui.pygame.widgets.sized_widget import SizedWidget
 class TwoColumnMenuView(SizedWidget):
     """ Represents a Two Column Menu View """
     
-    def __init__(self, menu, width, height):
+    def __init__(self, menu, width, height, MenuEntryView=MenuEntryView):
         """ Initialize the Two Column Menu View """
         SizedWidget.__init__(self, width, height)
         self.menu = menu
         
         self.entries = []
+        widthPerEntry = width/self.menu.columns
+        heightPerEntry = height/self.menu.rows
         for entry in self.menu.entries:
-            self.entries.append(MenuEntryView(entry))
+            self.entries.append(MenuEntryView(entry, width=widthPerEntry, height=heightPerEntry))
         
     def drawSurface(self):
         """ Draw the Battle Menu View """
