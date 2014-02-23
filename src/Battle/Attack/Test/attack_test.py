@@ -1,4 +1,6 @@
 from Battle.Attack.attack import Attack
+from Battle.Attack.DamageDelegates.damage_delegate import DamageDelegate
+from Battle.Attack.DamageDelegates.null_damage_delegate import NullDamageDelegate
 
 import unittest
 
@@ -73,8 +75,38 @@ suiteUse = unittest.TestSuite(map(use, testcasesUse))
 
 ##########################################################
 
+class isStatus(unittest.TestCase):
+    """ Test cases of isStatus """
+    
+    def  setUp(self):
+        """ Build the Attack and Damage Delegate for the test """
+        self.attack = Attack()
+        self.nullDamageDelegate = NullDamageDelegate()
+        self.normalDamageDelegate = DamageDelegate(None, None, None)
+        
+    def hasNullDamageDelegate(self):
+        """ Test that when the damage delegate is the null damage delegate the attack is a status attack """
+        self.attack.damageDelegate = self.nullDamageDelegate
+        
+        isStausAttack = self.attack.isStatus()
+        self.assertTrue(isStausAttack, "The Attack should be a status attack")
+        
+    def hasNormalDamageDelegate(self):
+        """ Test that when the damage delegate is normal the attack is not a status attack """
+        self.attack.damageDelegate = self.normalDamageDelegate
+        
+        isStausAttack = self.attack.isStatus()
+        self.assertFalse(isStausAttack, "The Attack should not be a status attack")
+
+# Collect all test cases in this class
+testcasesIsStatus = ["hasNullDamageDelegate", "hasNormalDamageDelegate"]
+suiteIsStatus = unittest.TestSuite(map(isStatus, testcasesIsStatus))
+
+##########################################################
+
 # Collect all test cases in this file
-suites = [suiteUse]
+suites = [suiteUse,
+          suiteIsStatus]
 suite = unittest.TestSuite(suites)
 
 if __name__ == "__main__":

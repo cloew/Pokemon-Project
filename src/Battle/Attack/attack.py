@@ -1,6 +1,5 @@
-from preconditions import PreconditionChecker
-
 from Battle.Attack.DamageDelegates.null_damage_delegate import NullDamageDelegate
+
 from Battle.Attack.Steps.announcement_step import AnnouncementStep
 from Battle.Attack.Steps.damage_step import DamageStep
 from Battle.Attack.Steps.effects_step import EffectsStep
@@ -55,4 +54,3 @@ class Attack:
     def isStatus(self):
         """ Returns if the Attack is a status attack """
         return isinstance(self.damageDelegate, NullDamageDelegate)
-        
