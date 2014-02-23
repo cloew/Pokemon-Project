@@ -10,6 +10,7 @@ class AttackMenuEntryWidget(SizedWidget):
         self.entry = entry
         
         self.attackLabel = Label(entry.getText(), size=28)
+        self.typeLabel = Label(entry.attack.type, size=18)
         
     def update(self):
         """ Update the Entry Widget """
@@ -17,4 +18,5 @@ class AttackMenuEntryWidget(SizedWidget):
         
     def drawSurface(self):
         """ Draw the Widget """
-        self.drawOnSurface(self.attackLabel.draw(), centerx=.5, centery=.5)
+        self.drawOnSurface(self.attackLabel.draw(), centerx=.5, centery=.3)
+        self.drawOnSurface(self.typeLabel.draw(), centerx=.3, centery=.65)

@@ -62,6 +62,17 @@ class Menu:
         if self.entries != []:
             self.entries[self.current].deselect()
             
+    def getPosition(self, entry):
+        """ Return the row and column for a given entry """
+        row = None
+        column = None
+        
+        if entry in self.entries:
+            index = self.entries.index(entry)
+            row = index/self.columns
+            column = index%self.rows
+        return row, column    
+            
     @property
     def currentRow(self):
         """ Return the current row """

@@ -21,10 +21,8 @@ class TwoColumnMenuView(SizedWidget):
         """ Draw the Battle Menu View """
         for entry in self.entries:
             entrySurface = entry.draw()
-            index = self.entries.index(entry)
-            xRatio  = self.getXRatio(index)
-            yRatio = self.getYRatio(index)
-            self.drawOnSurface(entrySurface, centerx=xRatio, centery=yRatio)
+            row, column = self.menu.getPosition(entry.entry)
+            self.drawOnSurface(entrySurface, left=float(column)/self.menu.columns, top=float(row)/self.menu.rows)
             
     def getXRatio(self, i):
         """ Returns the xRatio of the entry at i """
