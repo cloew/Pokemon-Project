@@ -17,7 +17,7 @@ class TrainerMenuScreen(PygameScreen):
 
         self.entries = []
         for entry in self.menu.entries:
-            self.entries.append(MenuEntryView(entry))
+            self.entries.append(MenuEntryView(entry, width=self.width, height=self.height/float(len(self.menu.entries))))
             
         self.selectedIndex = 0
         self.buildMessageBox()

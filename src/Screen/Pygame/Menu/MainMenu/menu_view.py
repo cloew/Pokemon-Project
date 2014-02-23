@@ -10,8 +10,12 @@ class MenuView(PygameWidget):
     def __init__(self, menu):
         """ Build the menu """
         self.entries = []
-        for i in range(len(menu.entries)):
-            entryView = MenuEntryView(menu.entries[i])
+        surface = self.buildSurface()
+        width = surface.get_width()
+        height = surface.get_height()
+        numberOfEntries = len(menu.entries)
+        for entry in menu.entries:
+            entryView = MenuEntryView(entry, width=width, height=height/numberOfEntries)
             self.entries.append(entryView)
         
     def buildSurface(self):
@@ -27,7 +31,7 @@ class MenuView(PygameWidget):
         for entry in self.entries:
             entrySurface = entry.draw()
             yRatio = (self.entries.index(entry) + 1)/4.0
-            self.drawOnSurface(entrySurface, centerx=.5, centery=yRatio)
+            self.drawOnSurface(entrySurface, centerx=.5, top=self.entries.index(entry)/3.0)
         
     def getMenu(self):
         """ Build the Surface for the menu """
