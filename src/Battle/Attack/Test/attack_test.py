@@ -255,7 +255,7 @@ suiteDoAttackLoop = unittest.TestSuite(map(doAttackLoop, testcasesDoAttackLoop))
 class checkPreconditions(unittest.TestCase):
     """ Test cases of checkPreconditions """
     
-    def  setUp(self):
+    def setUp(self):
         """ Build the Attack for the test """
         self.attack = Attack()
         self.messages = ["My Test Messages"]
