@@ -1,6 +1,8 @@
 import unittest
 
-import preconditions_test
+from Battle.Attack.Test.attack_test import suite as attack_suite
+from Battle.Attack.Test.preconditions_test import suite as preconditions_suite
 
-suites = [preconditions_test.suite]
+suites = [attack_suite,
+          preconditions_suite]
 suite = unittest.TestSuite(suites)
