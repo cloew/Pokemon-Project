@@ -1,6 +1,13 @@
 from preconditions import PreconditionChecker
-from resources.tags import Tags
+
 from Battle.Attack.DamageDelegates.null_damage_delegate import NullDamageDelegate
+from Battle.Attack.Steps.announcement_step import AnnouncementStep
+from Battle.Attack.Steps.damage_step import DamageStep
+from Battle.Attack.Steps.effects_step import EffectsStep
+from Battle.Attack.Steps.hit_step import HitStep
+from Battle.Attack.Steps.precondition_step import PreconditionStep
+
+from resources.tags import Tags
 
 class Attack:
     """ Represents an Attack """
@@ -16,20 +23,29 @@ class Attack:
     def use(self, user, target, environment):
         """ Uses the current attack Object in a Battle """
         messages = []
-        preconditionChecker = PreconditionChecker(user, target, environment, self)
-        stop = self.checkPreconditions(preconditionChecker, messages)
+        # preconditionChecker = PreconditionChecker(user, target, environment, self)
+        # stop = self.checkPreconditions(preconditionChecker, messages)
         
-        if not stop:
+        preconditionStep = PreconditionStep(self)
+        messages += preconditionStep.perform(user, target, environment)
+        
+        # if not stop:
+        if preconditionStep.passed:
             messages += self.doAttack(user, target, environment)
         
         return messages
         
     def doAttack(self, user, target, environment):
         """  """
-        messages = ["%s USED %s" % (user.getHeader(), self.name)]
-        hit = self.doHit(user, target, environment, messages)
+        # messages = ["%s USED %s" % (user.getHeader(), self.name)]
+        announcementStep = AnnouncementStep(self)
+        messages = announcementStep.perform(user, target, environment)
+        # hit = self.doHit(user, target, environment, messages)
+        hitStep = HitStep(self)
+        messages += hitStep.perform(user, target, environment)
         
-        if hit:
+        # if hit:
+        if hitStep.hit:
             messages += self.doAttackLoop(user, target, environment)
         
         return messages
@@ -37,8 +53,12 @@ class Attack:
     def doAttackLoop(self, user, target, environment):
         """  """
         messages = []
-        messages += self.doDamage(user, target, environment)
-        messages += self.doEffects(user, target, environment)
+        # messages += self.doDamage(user, target, environment)
+        damageStep = DamageStep(self)
+        messages += damageStep.perform(user, target, environment)
+        # messages += self.doEffects(user, target, environment)
+        effectsStep = EffectsStep(self)
+        messages += effectsStep.perform(user, target, environment)
         if self.makes_contact:
             messages += target.getAbility().onContact(target, user)
         return messages
