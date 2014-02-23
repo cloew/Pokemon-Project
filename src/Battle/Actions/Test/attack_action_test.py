@@ -10,14 +10,14 @@ class getPriority(unittest.TestCase):
         """ Build the Attack Action """
         attack = AttackFactory.getAttackAsNew("TACKLE")
         self.priority = attack.speedDelegate.priority
-        self.action = AttackAction(attack)
+        self.action = AttackAction(attack, None, None, None)
         
     def priorityIsCorrect(self):
         """ Test that the priority is returned correctly """
         assert self.action.getPriority() == self.priority, "Priority should be the priority of the attack provided"
 
 # Collect all test cases in this class
-testcasesGetPriority = []
+testcasesGetPriority = ["priorityIsCorrect"]
 suiteGetPriority = unittest.TestSuite(map(getPriority, testcasesGetPriority))
 
 ##########################################################
@@ -30,18 +30,19 @@ class doAction(unittest.TestCase):
         attack = AttackFactory.getAttackAsNew("TACKLE")
         self.priority = attack.speedDelegate.priority
         attack.use = self.use
-        self.action = AttackAction(attack)
+        self.action = AttackAction(attack, None, None, None)
         self.usedAttack = False
         
     def attackUsed(self):
-        """ Test that the priority is returned correctly """
+        """ Test that the wrapped attack is used """
+        self.action.doAction()
         assert self.usedAttack, "Should have used the Action's Attack"
         
     def use(self, user, target, environment):
         self.usedAttack = True
 
 # Collect all test cases in this class
-testcasesDoAction = []
+testcasesDoAction = ["attackUsed"]
 suiteDoAction = unittest.TestSuite(map(doAction, testcasesDoAction))
 
 ##########################################################

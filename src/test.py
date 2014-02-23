@@ -5,7 +5,6 @@ import Pokemon.Test.suite
 import Pokemon.Abilities.Test.suite
 import Trainer.Test.suite
 import Battle.Test.suite
-import Battle.Actions.Test.suite
 import Battle.AfterTurnEffect.Test.suite
 import Battle.Attack.Test.suite
 import Battle.Attack.CritDelegates.Test.suite
@@ -25,7 +24,6 @@ suites = [Menu.Test.suite.suite,
               Pokemon.Abilities.Test.suite.suite,
               Trainer.Test.suite.suite,
               Battle.Test.suite.suite,
-              Battle.Actions.Test.suite.suite,
               Battle.AfterTurnEffect.Test.suite.suite,
               Battle.Attack.Test.suite.suite,
               Battle.Attack.CritDelegates.Test.suite.suite,
