@@ -8,7 +8,6 @@ class BattleAction:
         self.user = user
         self.priority = priority
     
-    
     def getPriority(self):
         """ Returns the Speed Priority of the Action """
         return self.priority
@@ -33,7 +32,7 @@ class BattleAction:
             cmp = self.compareSpeed(other)
         return cmp
             
-    def compareSpeed(self, other):
+    def compareSpeed(self, other, random=random):
         """ Compares Speed to determine who has priority 
              NOTE: Never returns 0
              If the speeds are equal one is randomly chosen as greater """

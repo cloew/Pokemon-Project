@@ -62,21 +62,35 @@ class compareSpeed(unittest.TestCase):
         pkmn1.setStat("SPD", 30)
         pkmn2.setStat("SPD", 20)
         
-        self.action1 = BuildBattleAction(user = pkmn1)
-        self.action2 = BuildBattleAction(user = pkmn2)
+        self.fastAction = BuildBattleAction(user = pkmn1)
+        self.slowAction = BuildBattleAction(user = pkmn2)
+        
+        self.usedRandRange = False
         
     def less(self):
         """ Test that lower priorities return correctly """
-        cmp = self.action2.compareSpeed(self.action1)
+        cmp = self.slowAction.compareSpeed(self.fastAction)
         assert cmp == -1, "Should return -1 when the speed is less"
         
     def more(self):
         """ Test that higher priorities return correctly """
-        cmp = self.action1.compareSpeed(self.action2)
+        cmp = self.fastAction.compareSpeed(self.slowAction)
         assert cmp == 1, "Should return 1 when the speed is more"
+        
+    def tie(self):
+        """ Test that higher priorities return correctly """
+        cmp = self.fastAction.compareSpeed(self.fastAction, random=self)
+        assert self.usedRandRange, "Should have picked a random action to win"
+        assert range(self.bottom, self.top, self.step) == [-1, 1], "Should have tried to pick valid random value"
+        
+    def randrange(self, bottom, top, step):
+        self.bottom = bottom
+        self.top = top
+        self.step = step
+        self.usedRandRange = True
 
 # Collect all test cases in this class
-testcasesCompareSpeed = ["less", "more"]
+testcasesCompareSpeed = ["less", "more", "tie"]
 suiteCompareSpeed = unittest.TestSuite(map(compareSpeed, testcasesCompareSpeed))
 
 ##########################################################
