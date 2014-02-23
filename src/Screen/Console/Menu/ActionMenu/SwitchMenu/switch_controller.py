@@ -41,4 +41,4 @@ class SwitchController(ConsoleController):
             
     def canSwitchTo(self, newPokemon):
         """ Returns if the player can switch to the new Pokemon """
-        return not self.pokemon.isPokemon(newPokemon)
+        return not self.pokemon.isPokemon(newPokemon) and not newPokemon.fainted()
