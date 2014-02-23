@@ -3,11 +3,6 @@ import unittest
 from Battle.Actions.attack_action import AttackAction
 from Battle.Attack.attackfactory import AttackFactory
 
-class AttakMock:
-    def use(self, user, target, environment):
-        self.used = True
-
-
 class getPriority(unittest.TestCase):
     """ Test cases of getPriority """
     
