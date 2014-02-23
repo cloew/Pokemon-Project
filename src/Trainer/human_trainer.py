@@ -1,6 +1,3 @@
-from Battle.Actions.action_factory import ActionFactory
-from Battle.Actions.attack_action import AttackAction
-from Pokemon.pokemon import Pokemon
 from Trainer.trainer import Trainer
 
 import random
@@ -11,9 +8,8 @@ class HumanTrainer(Trainer):
             
     def pickAction(self, user, targets, playerSide, oppSide, environment):
         """ Has the trainer pick its action via the screen """
-        controller = ActionController(user, targets, playerSide, oppSide, environment)
-        controller.run()
-        return controller.menu.action
+        print "Called human trainer PickAction"
+        return None # This method should never be called, since the UI should eb used to select the Attack before the Round begins
 
     def getHeader(self):
         """ Return the header based on the type of trainer """
@@ -25,9 +21,8 @@ class HumanTrainer(Trainer):
         
     def choosePokemon(self, pkmnInPlay):
         """ Returns a Pkmn chosen by the Trainer """
-        controller = SwitchController(pkmnInPlay[0])
-        controller.run()
-        return controller.menu.action.pkmnToSwitchTo
+        print "Called human trainer choosePokemon"
+        return None # This emthod should never be called because choosing a Pkmn should be done from UI
         
     def getFullName(self):
         """ Return the full Name and Title of the trainer """
