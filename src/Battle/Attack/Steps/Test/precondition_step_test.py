@@ -14,7 +14,6 @@ class perform(unittest.TestCase):
         self.attackMessages = ["My Attack Messages"]
         
         self.calledCheckPreConditions = False
-        self.calledDoAttack = False
         
     def preconditions_Failing(self):
         """ Test that failing precodnitions prevents the attack from being done """
@@ -22,7 +21,6 @@ class perform(unittest.TestCase):
         self.step.perform(None, None, None, PreconditionChecker=self.buildPreconditionChecker)
         
         self.assertTrue(self.calledCheckPreConditions, "Should have called checkPreconditions")
-        self.assertFalse(self.calledDoAttack, "Should not have called doAttack")
         
     def preconditions_Passing(self):
         """ Test that passing precodnitions allows the attack to be used """
@@ -30,22 +28,13 @@ class perform(unittest.TestCase):
         self.step.perform(None, None, None, PreconditionChecker=self.buildPreconditionChecker)
         
         self.assertTrue(self.calledCheckPreConditions, "Should have called checkPreconditions")
-        self.assertTrue(self.calledDoAttack, "Should have called doAttack")
     
-    def messagesReturned_Failing(self):
-        """ Test that messages from the attack are returned """
+    def messagesReturned(self):
+        """ Test that messages from the Preconditions Checker are returned """
         self.failPreconditions = False
         messages = self.step.perform(None, None, None, PreconditionChecker=self.buildPreconditionChecker)
         
         self.assertEquals(self.preconditionMessages, messages, "Should have returned the messages from the Preconditions check")
-    
-    def messagesReturned_Passing(self):
-        """ Test that messages from the attack are returned """
-        self.failPreconditions = True
-        messages = self.step.perform(None, None, None, PreconditionChecker=self.buildPreconditionChecker)
-
-        expectedMessages = self.preconditionMessages + self.attackMessages
-        self.assertEquals(expectedMessages, messages, "Should have returned the Precondition and Attack Messages")
         
     def buildPreconditionChecker(self, user, target, environment, attack):
         return self
@@ -55,7 +44,7 @@ class perform(unittest.TestCase):
         return self.failPreconditions, self.preconditionMessages
 
 # Collect all test cases in this class
-testcasesPerform = ["preconditions_Failing", "preconditions_Passing", "messagesReturned_Failing", "messagesReturned_Passing"]
+testcasesPerform = ["preconditions_Failing", "preconditions_Passing", "messagesReturned"]
 suitePerform = unittest.TestSuite(map(perform, testcasesPerform))
 
 ##########################################################
