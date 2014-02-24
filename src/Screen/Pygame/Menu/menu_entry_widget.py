@@ -1,10 +1,10 @@
 from kao_gui.pygame.widgets.label import Label
 from kao_gui.pygame.widgets.sized_widget import SizedWidget
 
-class MenuEntryView(SizedWidget):
+class MenuEntryWidget(SizedWidget):
     """ Represents an entry in the menu """
     
-    def __init__(self, entry, fontSize=36, width=0, height=0):
+    def __init__(self, entry, width, height, fontSize=36):
         """ Sets the entry's text """
         SizedWidget.__init__(self, width, height)
         self.mainLabel = Label(entry.getText(), size=fontSize)

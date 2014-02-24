@@ -1,11 +1,11 @@
-from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
+from Screen.Pygame.Menu.menu_entry_widget import MenuEntryWidget
 
 from kao_gui.pygame.widgets.sized_widget import SizedWidget
 
 class TwoColumnMenuView(SizedWidget):
     """ Represents a Two Column Menu View """
     
-    def __init__(self, menu, width, height, MenuEntryView=MenuEntryView):
+    def __init__(self, menu, width, height, MenuEntryWidget=MenuEntryWidget):
         """ Initialize the Two Column Menu View """
         SizedWidget.__init__(self, width, height)
         self.menu = menu
@@ -14,7 +14,7 @@ class TwoColumnMenuView(SizedWidget):
         widthPerEntry = width/2.0
         heightPerEntry = height/2.0
         for entry in self.menu.entries:
-            self.entries.append(MenuEntryView(entry, width=widthPerEntry, height=heightPerEntry))
+            self.entries.append(MenuEntryWidget(entry, width=widthPerEntry, height=heightPerEntry))
         
     def drawSurface(self):
         """ Draw the Battle Menu View """

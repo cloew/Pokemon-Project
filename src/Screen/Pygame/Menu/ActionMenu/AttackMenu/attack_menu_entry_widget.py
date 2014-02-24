@@ -1,12 +1,13 @@
-from kao_gui.pygame.widgets.label import Label
-from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
+from Screen.Pygame.Menu.menu_entry_widget import MenuEntryWidget
 
-class AttackMenuEntryWidget(MenuEntryView):
+from kao_gui.pygame.widgets.label import Label
+
+class AttackMenuEntryWidget(MenuEntryWidget):
     """ Represents the widget for an Attack Menu Entry """
     
-    def __init__(self, entry, width=0, height=0):
+    def __init__(self, entry, width, height):
         """ Initialize the widget """
-        MenuEntryView.__init__(self, entry, fontSize=28, width=width, height=height)
+        MenuEntryWidget.__init__(self, entry, fontSize=28, width=width, height=height)
         self.entry = entry
         
         self.typeLabel = Label(entry.attack.type, size=18)

@@ -1,23 +1,23 @@
-from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
+from Screen.Pygame.Menu.menu_entry_widget import MenuEntryWidget
 
 from kao_gui.pygame.widgets.sized_widget import SizedWidget
 
 class MenuWidget(SizedWidget):
     """ Represents the widget for a Menu """
     
-    def __init__(self, menu, width, height, MenuEntryView=MenuEntryView):
+    def __init__(self, menu, width, height, MenuEntryWidget=MenuEntryWidget):
         """ Initialize the widget """
         SizedWidget.__init__(self, width, height)
         self.menu = menu
-        self.entries = self.buildEntryViews(MenuEntryView=MenuEntryView)
+        self.entries = self.buildEntryViews(MenuEntryWidget=MenuEntryWidget)
         
-    def buildEntryViews(self, MenuEntryView=MenuEntryView):
+    def buildEntryViews(self, MenuEntryWidget=MenuEntryWidget):
         """ Build the Entry Views """
         entries = []
         widthPerEntry = self.width/self.columns
         heightPerEntry = self.height/self.rows
         for entry in self.menu.entries:
-            entries.append(MenuEntryView(entry, width=widthPerEntry, height=heightPerEntry))
+            entries.append(MenuEntryWidget(entry, widthPerEntry, heightPerEntry))
         return entries
         
     def drawSurface(self):

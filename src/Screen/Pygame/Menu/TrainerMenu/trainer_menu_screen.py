@@ -1,6 +1,6 @@
 from Battle.battle_message import BattleMessage
 
-from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
+from Screen.Pygame.Menu.menu_entry_widget import MenuEntryWidget
 from Screen.Pygame.Menu.MainMenu.scrolling_map import map
 from Screen.Pygame.MessageBox.message_box import MessageBox
 
@@ -17,7 +17,7 @@ class TrainerMenuScreen(PygameScreen):
 
         self.entries = []
         for entry in self.menu.entries:
-            self.entries.append(MenuEntryView(entry, width=self.width, height=self.height/float(len(self.menu.entries))))
+            self.entries.append(MenuEntryWidget(entry, width=self.width, height=self.height/float(len(self.menu.entries))))
             
         self.selectedIndex = 0
         self.buildMessageBox()
