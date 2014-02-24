@@ -1,6 +1,6 @@
 from scrolling_map import map
 from logo import Logo
-from menu_view import MenuView
+from main_menu_widget import MainMenuWidget
 
 from kao_gui.pygame.pygame_screen import PygameScreen
 
@@ -12,7 +12,7 @@ class MainMenuScreen(PygameScreen):
         PygameScreen.__init__(self)
         self.menu = menu
         self.logo = Logo()
-        self.menuView = MenuView(menu)
+        self.menuView = MainMenuWidget(menu)
         
     def drawSurface(self):
         """ Draws the screen to the provided window """
