@@ -22,6 +22,6 @@ class AttackMenuEntryWidget(MenuEntryWidget):
         """ Draw the Widget """
         self.drawOnSurface(self.mainLabel.draw(), centerx=.5, centery=.3)
         self.drawOnSurface(self.typeImage.draw(), centerx=.3, centery=.65)
-        self.drawOnSurface(self.ppTextLabel.draw(), left=.65, centery=.65)
-        self.drawOnSurface(self.ppValuesLabel.draw(), right=1, centery=.65)
+        self.drawOnSurface(self.ppTextLabel.draw(), left=.5, centery=.65)
+        self.drawOnSurface(self.ppValuesLabel.draw(), right=.8, centery=.65)
         
