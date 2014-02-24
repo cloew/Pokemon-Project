@@ -1,8 +1,12 @@
+from Battle.battle_message import BattleMessage
 from Battle.Actions.switch_action import SwitchAction
 from InputProcessor import commands
+
 from Menu.menu import Menu
 from Menu.ActionMenu.SwitchMenu.pokemon_menu_entry import PokemonMenuEntry
+
 from Screen.Pygame.Menu.ActionMenu.SwitchMenu.switch_menu_screen import SwitchMenuScreen
+from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 
 from kao_gui.pygame.pygame_controller import PygameController
 
@@ -32,12 +36,10 @@ class SwitchMenuController(PygameController):
                      
     def setAction(self, entry):
         """ Set the Chosen Action """
-        if self.canSwitchTo(entry.getPokemon()):
+        if self.pokemon.isPokemon(entry.getPokemon()):
+            self.runController(MessageBoxController(BattleMessage("{0} is already out.".format(self.pokemon.name)), self.screen))
+        elif entry.getPokemon().fainted():
+            self.runController(MessageBoxController(BattleMessage("{0} has no will to fight.".format(entry.getPokemon().name)), self.screen))
+        else:
             self.action = SwitchAction(self.pokemon, entry.getPokemon())
             self.stopRunning()
-        else:
-            """ Tell Screen to display message that the pokemon cannot be used """
-            
-    def canSwitchTo(self, newPokemon):
-        """ Returns if the player can switch to the new Pokemon """
-        return not self.pokemon.isPokemon(newPokemon) and not newPokemon.fainted()
