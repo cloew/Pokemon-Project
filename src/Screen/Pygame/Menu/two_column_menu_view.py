@@ -1,6 +1,5 @@
 from Screen.Pygame.Menu.MainMenu.menu_entry_view import MenuEntryView
 
-from kao_gui.pygame.pygame_helper import GetTransparentSurface
 from kao_gui.pygame.widgets.sized_widget import SizedWidget
 
 class TwoColumnMenuView(SizedWidget):
@@ -22,7 +21,6 @@ class TwoColumnMenuView(SizedWidget):
         for entry in self.entries:
             entrySurface = entry.draw()
             row, column = self.menu.getPosition(entry.entry)
-            print entry.entry.getText(), row, column
             self.drawOnSurface(entrySurface, left=column/2.0, top=row/2.0)
             
     def getXRatio(self, i):

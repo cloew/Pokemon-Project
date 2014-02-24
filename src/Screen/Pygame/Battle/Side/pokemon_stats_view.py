@@ -26,11 +26,12 @@ class PokemonStatsView(SizedWidget):
         self.setHealthLabel()
         self.healthBarView = HealthBarView(self.pokemon, width, height*.1)
     
-    def setPokemonMenuEntryView(self, pokemonMenuEntry):
+    def setPokemonMenuEntryView(self, pokemonMenuEntry=None):
         """ Sets the Pokemon Menu Entry """
         if pokemonMenuEntry is None:
             pokemonMenuEntry = PokemonMenuEntry(self.pokemon, None)
-        self.pkmnEntryView = MenuEntryView(pokemonMenuEntry, self.FONT_SIZE)
+        # self.pkmnEntryView = MenuEntryView(pokemonMenuEntry, self.FONT_SIZE)
+        self.pkmnEntryView = Label(pokemonMenuEntry.getText(), size=self.FONT_SIZE)
         
     def setLevelLabel(self):
         """ Set the Level Label """
@@ -59,5 +60,6 @@ class PokemonStatsView(SizedWidget):
         
     def update(self):
         """ Update the Pokemon Stats View """
+        self.setPokemonMenuEntryView()
         self.setLevelLabel()
         self.setHealthLabel()
