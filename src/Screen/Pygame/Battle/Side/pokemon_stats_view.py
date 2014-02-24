@@ -2,25 +2,27 @@ from Menu.text_menu_entry import TextMenuEntry
 from Menu.ActionMenu.SwitchMenu.pokemon_menu_entry import PokemonMenuEntry
 
 from Screen.Pygame.HealthBar.health_bar_view import HealthBarView
+from Screen.Pygame.Menu.menu_entry_widget import MenuEntryWidget
 
 from kao_gui.pygame.pygame_helper import GetTransparentSurface
 from kao_gui.pygame.widgets.label import Label
 from kao_gui.pygame.widgets.sized_widget import SizedWidget
 
-class PokemonStatsView(SizedWidget):
+class PokemonStatsView(MenuEntryWidget):
     """ View for a Pokemon's Stats in a Battle """
     FONT_SIZE = 24
     
     def __init__(self, width, height, pokemon=None, pokemonMenuEntry=None, showHP=True):
         """ Initialize the Pokemon Stats View """
-        SizedWidget.__init__(self, width, height)
         if pokemon is not None:
             self.pokemon = pokemon
+            pokemonMenuEntry = PokemonMenuEntry(self.pokemon, None)
         else:
             self.pokemon = pokemonMenuEntry.getPokemon()
+        MenuEntryWidget.__init__(self, pokemonMenuEntry, width, height, fontSize=self.FONT_SIZE)
             
         self.showHP = showHP
-        self.setPokemonMenuEntryView(pokemonMenuEntry)
+        # self.setPokemonMenuEntryView(pokemonMenuEntry)
         self.setLevelLabel()
         self.setHealthLabel()
         self.healthBarView = HealthBarView(self.pokemon, width, height*.1)
@@ -43,7 +45,7 @@ class PokemonStatsView(SizedWidget):
         
     def drawSurface(self):
         """ Draw the Pokemon Stats View """
-        pkmnSurface = self.pkmnEntryView.draw()
+        pkmnSurface = self.mainLabel.draw()
         self.drawOnSurface(pkmnSurface, left=0, top=0)
         
         levelSurface = self.levelLabel.draw()
@@ -59,6 +61,7 @@ class PokemonStatsView(SizedWidget):
         
     def update(self):
         """ Update the Pokemon Stats View """
-        self.setPokemonMenuEntryView()
+        # self.setPokemonMenuEntryView()
+        MenuEntryWidget.update(self)
         self.setLevelLabel()
         self.setHealthLabel()
