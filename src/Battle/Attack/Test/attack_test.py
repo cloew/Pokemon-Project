@@ -23,6 +23,7 @@ class use(unittest.TestCase):
         
         self.attack.preconditionsStep = MockStep(self.messages)
         self.attack.announcementStep = MockStep(self.messages)
+        self.attack.removePPStep = MockStep(self.messages)
         self.attack.hitStep = MockStep(self.messages)
         self.attack.damageStep = MockStep(self.messages)
         self.attack.effectsStep = MockStep(self.messages)
@@ -33,45 +34,54 @@ class use(unittest.TestCase):
         """ Test that failing precodnitions prevents the attack from being done """
         self.attack.preconditionsStep.passed = False
         
-        self.attack.use(None, None, None)
+        messages = self.attack.use(None, None, None)
         
         self.assertTrue(self.attack.preconditionsStep.performed, "Should have performed the Precondition Step")
         self.assertFalse(self.attack.announcementStep.performed, "Should not have performed the Announcement Step")
+        self.assertFalse(self.attack.removePPStep.performed, "Should not have performed the Remove PP Step")
         self.assertFalse(self.attack.hitStep.performed, "Should not have performed the Hit Step")
         self.assertFalse(self.attack.damageStep.performed, "Should not have performed the Damage Step")
         self.assertFalse(self.attack.effectsStep.performed, "Should not have performed the Effects Step")
         self.assertFalse(self.attack.handleContactStep.performed, "Should not have performed the Handle Contact Step")
         self.assertFalse(self.attack.handleMissEffectsStep.performed, "Should not have performed the Hanlde Miss Effects Step")
         
+        self.assertEquals(self.messages, messages, 'Should have messages for each performed step')
+        
     def hit_Succeeded(self):
         """ Test that passing precodnitions allows the attack to be used """
         self.attack.preconditionsStep.passed = True
         self.attack.hitStep.hit = True
         
-        self.attack.use(None, None, None)
+        messages = self.attack.use(None, None, None)
         
         self.assertTrue(self.attack.preconditionsStep.performed, "Should have performed the Precondition Step")
         self.assertTrue(self.attack.announcementStep.performed, "Should have performed the Announcement Step")
+        self.assertTrue(self.attack.removePPStep.performed, "Should have performed the Remove PP Step")
         self.assertTrue(self.attack.hitStep.performed, "Should have performed the Hit Step")
         self.assertTrue(self.attack.damageStep.performed, "Should have performed the Damage Step")
         self.assertTrue(self.attack.effectsStep.performed, "Should have performed the Effects Step")
         self.assertTrue(self.attack.handleContactStep.performed, "Should have performed the Handle Contact Step")
         self.assertFalse(self.attack.handleMissEffectsStep.performed, "Should not have performed the Hanlde Miss Effects Step")
+        
+        self.assertEquals(self.messages*7, messages, 'Should have messages for each performed step')
     
     def hit_Missed(self):
         """ Test that messages from the attack are returned """
         self.attack.preconditionsStep.passed = True
         self.attack.hitStep.hit = False
         
-        self.attack.use(None, None, None)
+        messages = self.attack.use(None, None, None)
         
         self.assertTrue(self.attack.preconditionsStep.performed, "Should have performed the Precondition Step")
         self.assertTrue(self.attack.announcementStep.performed, "Should have performed the Announcement Step")
+        self.assertTrue(self.attack.removePPStep.performed, "Should have performed the Remove PP Step")
         self.assertTrue(self.attack.hitStep.performed, "Should have performed the Hit Step")
         self.assertFalse(self.attack.damageStep.performed, "Should not have performed the Damage Step")
         self.assertFalse(self.attack.effectsStep.performed, "Should not have performed the Effects Step")
         self.assertFalse(self.attack.handleContactStep.performed, "Should not have performed the Handle Contact Step")
         self.assertTrue(self.attack.handleMissEffectsStep.performed, "Should have performed the Hanlde Miss Effects Step")
+        
+        self.assertEquals(self.messages*5, messages, 'Should have messages for each performed step')
 
 # Collect all test cases in this class
 testcasesUse = ["preconditions_Failing", "hit_Succeeded", "hit_Missed"]

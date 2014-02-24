@@ -7,6 +7,7 @@ from Battle.Attack.Steps.handle_contact_step import HandleContactStep
 from Battle.Attack.Steps.handle_miss_effects_step import HandleMissEffectsStep
 from Battle.Attack.Steps.hit_step import HitStep
 from Battle.Attack.Steps.precondition_step import PreconditionStep
+from Battle.Attack.Steps.remove_pp_step import RemovePPStep
 
 from resources.tags import Tags
 
@@ -25,6 +26,7 @@ class Attack:
         
         self.preconditionsStep = PreconditionStep(self)
         self.announcementStep = AnnouncementStep(self)
+        self.removePPStep = RemovePPStep(self)
         self.hitStep = HitStep(self)
         self.damageStep = DamageStep(self)
         self.effectsStep = EffectsStep(self)
@@ -37,6 +39,7 @@ class Attack:
         messages += self.preconditionsStep.perform(user, target, environment)
         if self.preconditionsStep.passed:
             messages += self.announcementStep.perform(user, target, environment)
+            messages += self.removePPStep.perform(user, target, environment)
             messages += self.hitStep.perform(user, target, environment)
             if self.hitStep.hit:
                 messages += self.damageStep.perform(user, target, environment)
