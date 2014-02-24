@@ -1,5 +1,6 @@
 import unittest
 
+from Battle.Attack.Steps.Test.remove_pp_step_test import suite as remove_pp_step_suite
 from Battle.Attack.Steps.Test.handle_miss_effects_step_test import suite as handle_miss_effects_step_suite
 from Battle.Attack.Steps.Test.handle_contact_step_test import suite as handle_contact_step_suite
 from Battle.Attack.Steps.Test.effects_step_test import suite as effects_step_suite
@@ -14,5 +15,6 @@ suites = [precondition_step_suite,
           damage_step_suite,
           effects_step_suite,
           handle_contact_step_suite,
-          handle_miss_effects_step_suite]
+          handle_miss_effects_step_suite,
+          remove_pp_step_suite]
 suite = unittest.TestSuite(suites)
