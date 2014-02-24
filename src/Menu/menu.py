@@ -70,7 +70,7 @@ class Menu:
         if entry in self.entries:
             index = self.entries.index(entry)
             row = index/self.columns
-            column = index%self.rows
+            column = index%self.columns
         return row, column    
             
     @property

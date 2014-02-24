@@ -12,8 +12,8 @@ class TwoColumnMenuView(SizedWidget):
         self.menu = menu
         
         self.entries = []
-        widthPerEntry = width/self.menu.columns
-        heightPerEntry = height/self.menu.rows
+        widthPerEntry = width/2.0
+        heightPerEntry = height/2.0
         for entry in self.menu.entries:
             self.entries.append(MenuEntryView(entry, width=widthPerEntry, height=heightPerEntry))
         
@@ -22,7 +22,8 @@ class TwoColumnMenuView(SizedWidget):
         for entry in self.entries:
             entrySurface = entry.draw()
             row, column = self.menu.getPosition(entry.entry)
-            self.drawOnSurface(entrySurface, left=float(column)/self.menu.columns, top=float(row)/self.menu.rows)
+            print entry.entry.getText(), row, column
+            self.drawOnSurface(entrySurface, left=column/2.0, top=row/2.0)
             
     def getXRatio(self, i):
         """ Returns the xRatio of the entry at i """
