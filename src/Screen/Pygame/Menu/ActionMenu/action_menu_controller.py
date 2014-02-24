@@ -1,8 +1,7 @@
 from InputProcessor import commands
 from Menu.menu import Menu
 from Menu.text_menu_entry import TextMenuEntry
-# from Screen.Pygame.Controller.controller import Controller
-from Screen.Pygame.Menu.two_column_menu_view import TwoColumnMenuView
+
 from Screen.Pygame.Menu.ActionMenu.action_menu_widget import ActionMenuWidget
 from Screen.Pygame.Menu.ActionMenu.AttackMenu.attack_menu_controller import AttackMenuController
 from Screen.Pygame.Menu.ActionMenu.SwitchMenu.switch_menu_controller import SwitchMenuController
@@ -24,7 +23,6 @@ class ActionMenuController(PygameController):
                    TextMenuEntry("Run", None)]
         self.menu = Menu(entries, columns=2)
         
-        # self.view = TwoColumnMenuView(self.menu, self.getWindow().width*.9, self.getWindow().height*.3)
         self.view = ActionMenuWidget(self.menu, self.getWindow().width*.9, self.getWindow().height*.3)
         screen.setBottomView(self.view)
         cmds = {commands.UP:self.menu.up,
