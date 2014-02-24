@@ -1,5 +1,5 @@
 from Screen.Pygame.Battle.Side.pokemon_stats_view import PokemonStatsView
-from Screen.Pygame.Menu.two_column_menu_view import TwoColumnMenuView
+from Screen.Pygame.Menu.ActionMenu.SwitchMenu.switch_menu_widget import SwitchMenuWidget
 
 from kao_gui.pygame.pygame_screen import PygameScreen
 
@@ -10,7 +10,7 @@ class SwitchMenuScreen(PygameScreen):
         """ Builds the Switch Menu with all Pokemon """
         PygameScreen.__init__(self)
         self.menu = menu
-        self.menuView = TwoColumnMenuView(menu, self.width, self.height)
+        self.menuView = SwitchMenuWidget(menu, self.width, self.height)
         
         self.statViews = []
         width = self.width*.9/self.menu.columns
