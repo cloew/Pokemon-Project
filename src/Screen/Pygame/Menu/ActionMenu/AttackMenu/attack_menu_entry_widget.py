@@ -1,5 +1,7 @@
 from Screen.Pygame.Menu.menu_entry_widget import MenuEntryWidget
+from resources.resource_manager import GetImagePath
 
+from kao_gui.pygame.widgets.image import Image
 from kao_gui.pygame.widgets.label import Label
 
 class AttackMenuEntryWidget(MenuEntryWidget):
@@ -11,14 +13,14 @@ class AttackMenuEntryWidget(MenuEntryWidget):
         self.entry = entry
         
         attack = self.entry.attack
-        self.typeLabel = Label(attack.type, size=18)
+        self.typeImage = Image(GetImagePath("Types/{0}_type.png".format(attack.type.lower())))
         self.ppTextLabel = Label("PP", size=18)
         self.ppValuesLabel = Label("{0}/{1}".format(attack.currPowerPoints, attack.powerPoints), size=18)
         
     def drawSurface(self):
         """ Draw the Widget """
         self.drawOnSurface(self.mainLabel.draw(), centerx=.5, centery=.3)
-        self.drawOnSurface(self.typeLabel.draw(), centerx=.3, centery=.65)
+        self.drawOnSurface(self.typeImage.draw(), centerx=.3, centery=.65)
         self.drawOnSurface(self.ppTextLabel.draw(), left=.65, centery=.65)
         self.drawOnSurface(self.ppValuesLabel.draw(), right=1, centery=.65)
         
