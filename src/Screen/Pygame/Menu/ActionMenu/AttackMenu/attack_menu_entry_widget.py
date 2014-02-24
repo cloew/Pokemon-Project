@@ -1,4 +1,5 @@
 from Screen.Pygame.Menu.menu_entry_widget import MenuEntryWidget
+from Screen.Pygame.Pokemon.type_image import TypeImage
 from resources.resource_manager import GetImagePath
 
 from kao_gui.pygame.widgets.image import Image
@@ -13,7 +14,7 @@ class AttackMenuEntryWidget(MenuEntryWidget):
         self.entry = entry
         
         attack = self.entry.attack
-        self.typeImage = Image(GetImagePath("Types/{0}_type.png".format(attack.type.lower())))
+        self.typeImage = TypeImage(attack.type)
         self.ppTextLabel = Label("PP", size=18)
         self.ppValuesLabel = Label("{0}/{1}".format(attack.currPowerPoints, attack.powerPoints), size=18)
         
