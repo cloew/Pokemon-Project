@@ -20,6 +20,8 @@ class Attack:
         
         self.effectDelegates = []
         self.makes_contact = False
+        self.powerPoints = 0
+        self.currPowerPoints = 0
         
         self.preconditionsStep = PreconditionStep(self)
         self.announcementStep = AnnouncementStep(self)

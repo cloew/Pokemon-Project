@@ -44,7 +44,7 @@ class AttackFactory:
         # Get currPP and PP from file
         values = file.readline().strip().split(" ")
         attack.powerPoints = int(values[0])
-        attack.currPowerPoints = int(values[1])    
+        attack.currPowerPoints = int(values[1])
                 
         attackdex.close()
     

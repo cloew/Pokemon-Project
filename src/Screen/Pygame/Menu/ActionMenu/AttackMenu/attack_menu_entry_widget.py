@@ -10,9 +10,15 @@ class AttackMenuEntryWidget(MenuEntryWidget):
         MenuEntryWidget.__init__(self, entry, fontSize=28, width=width, height=height)
         self.entry = entry
         
-        self.typeLabel = Label(entry.attack.type, size=18)
+        attack = self.entry.attack
+        self.typeLabel = Label(attack.type, size=18)
+        self.ppTextLabel = Label("PP", size=18)
+        self.ppValuesLabel = Label("{0}/{1}".format(attack.currPowerPoints, attack.powerPoints), size=18)
         
     def drawSurface(self):
         """ Draw the Widget """
         self.drawOnSurface(self.mainLabel.draw(), centerx=.5, centery=.3)
         self.drawOnSurface(self.typeLabel.draw(), centerx=.3, centery=.65)
+        self.drawOnSurface(self.ppTextLabel.draw(), left=.65, centery=.65)
+        self.drawOnSurface(self.ppValuesLabel.draw(), right=1, centery=.65)
+        
