@@ -1,10 +1,13 @@
+from Battle.battle_message import BattleMessage
 from Battle.Actions.attack_action import AttackAction
+
 from InputProcessor import commands
 from Menu.menu import Menu
-
 from Menu.ActionMenu.AttackMenu.attack_menu_entry import AttackMenuEntry
+
 from Screen.Pygame.Menu.ActionMenu.action_menu_widget import ActionMenuWidget
 from Screen.Pygame.Menu.ActionMenu.AttackMenu.attack_menu_entry_widget import AttackMenuEntryWidget
+from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 
 from kao_gui.pygame.pygame_controller import PygameController
 
@@ -34,5 +37,8 @@ class AttackMenuController(PygameController):
                      
     def setAction(self, entry):
         """ Set the Chosen Action """
-        self.action = AttackAction(entry.getAttack(), self.pokemon, self.targets[0], self.environment)
-        self.stopRunning()
+        if entry.getAttack().currPowerPoints == 0:
+            self.runController(MessageBoxController(BattleMessage("No PP left for this attack."), self.screen))
+        else:
+            self.action = AttackAction(entry.getAttack(), self.pokemon, self.targets[0], self.environment)
+            self.stopRunning()
