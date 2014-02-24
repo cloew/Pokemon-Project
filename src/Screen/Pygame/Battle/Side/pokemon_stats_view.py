@@ -22,17 +22,9 @@ class PokemonStatsView(MenuEntryWidget):
         MenuEntryWidget.__init__(self, pokemonMenuEntry, width, height, fontSize=self.FONT_SIZE)
             
         self.showHP = showHP
-        # self.setPokemonMenuEntryView(pokemonMenuEntry)
         self.setLevelLabel()
         self.setHealthLabel()
         self.healthBarView = HealthBarView(self.pokemon, width, height*.1)
-    
-    def setPokemonMenuEntryView(self, pokemonMenuEntry=None):
-        """ Sets the Pokemon Menu Entry """
-        if pokemonMenuEntry is None:
-            pokemonMenuEntry = PokemonMenuEntry(self.pokemon, None)
-        # self.pkmnEntryView = MenuEntryView(pokemonMenuEntry, self.FONT_SIZE)
-        self.pkmnEntryView = Label(pokemonMenuEntry.getText(), size=self.FONT_SIZE)
         
     def setLevelLabel(self):
         """ Set the Level Label """
@@ -61,7 +53,6 @@ class PokemonStatsView(MenuEntryWidget):
         
     def update(self):
         """ Update the Pokemon Stats View """
-        # self.setPokemonMenuEntryView()
         MenuEntryWidget.update(self)
         self.setLevelLabel()
         self.setHealthLabel()
