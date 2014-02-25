@@ -2,14 +2,19 @@ from Pokemon.Abilities.abilityfactory import AbilityFactory
 from Pokemon.Abilities.ability import Ability
 from Pokemon.pokemon_battle_delegate import PokemonBattleDelegate
 from Pokemon.DisplayDelegate.pokemon_display_delegate import PokemonDisplayDelegate
+from Pokemon.Stats.stats import Stats
 
 import sys
 
 class Pokemon:
     """ Holds the information for a Pokemon """
   
-    def __init__(self, species=None):
+    def __init__(self, name, level, species):
         """ Builds a Pkmn """
+        self.name = name
+        self.level = level
+        self.species = species
+        self.stats = Stats(self)
         
     def buildStarter(self, species):
         """ Creates a Pokemon with Starter stats """

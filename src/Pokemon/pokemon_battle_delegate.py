@@ -19,4 +19,18 @@ class PokemonBattleDelegate:
         
         if self.currHP <= 0:
             self.currHP = 0
+    
+    @property
+    def currHP(self):
+        """ Return the Pokemon's stats """
+        return self.parent.stats.currentHP
         
+    @currHP.setter
+    def currHP(self, value):
+        """ Return the Pokemon's stats """
+        self.parent.stats.currentHP = value
+    
+    @property
+    def stats(self):
+        """ Return the Pokemon's stats """
+        return self.parent.stats.stats

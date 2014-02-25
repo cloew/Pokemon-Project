@@ -19,11 +19,9 @@ class PokemonFactory:
     @staticmethod
     def buildStarter(species):
         """ Creates a Pokemon with Starter stats """
-        pkmn = Pokemon()
-        
-        pkmn.name = species
-        pkmn.species = species
-        pkmn.level = 5
+        name = species
+        level = 5
+        pkmn = Pokemon(name, level, species)
         pkmn.id = ""
         
         pkmn.ability = Ability(None)
@@ -35,11 +33,12 @@ class PokemonFactory:
     @staticmethod
     def loadFromXML(tree):
         """ Loads a Pokemon object from a file """
-        pkmn = Pokemon()
+        name = tree.findtext(Tags.nameTag)
+        species = tree.findtext(Tags.speciesTag)
+        level = int(tree.findtext(Tags.levelTag))
         
-        pkmn.name = tree.find(Tags.nameTag).text
-        pkmn.species = tree.find(Tags.speciesTag).text
-        pkmn.level = int(tree.find(Tags.levelTag).text)
+        pkmn = Pokemon(name, level, species)
+        
         pkmn.id = ""
         
         pkmn.ability = AbilityFactory.loadFromPkmnXML(tree.find(Tags.abilityTag).text)
