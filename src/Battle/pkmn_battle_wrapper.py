@@ -189,3 +189,13 @@ class PkmnBattleWrapper:
     def gainExperience(self, experience):
         """ Gain experience """
         self.original.gainExperience(experience)
+        
+    def canLevelUp(self):
+        """ Return if the Pokemon has enough experience to level """
+        return self.original.canLevelUp()
+        
+    def levelUp(self):
+        """ Level up the Pokemon """
+        self.original.levelUp()
+        self.setPkmn(self.original)
+        return ["{0} leveled up to level {1}".format(self.original.name, self.original.level)]

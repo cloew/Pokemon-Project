@@ -6,12 +6,16 @@ class ExperienceDelegate:
         """ Initialize the Experience Delegate """
         self.currentExperience = currentExperience
         self.baseExperience = baseExperience
-        self.experieceRate = experienceRate
+        self.experienceRate = experienceRate
         self.parent = parent
     
     def gainExperience(self, experience):
         """ Gain experience """
         self.currentExperience += experience
+        
+    def canLevelUp(self):
+        """ Return if the Pokemon has enough experience to level """
+        return self.currentExperience >= self.experinceForNextLevel
     
     @property
     def experienceToAward(self):

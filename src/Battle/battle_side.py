@@ -65,6 +65,8 @@ class BattleSide:
             for pkmn in self.pkmnInPlay:
                 pkmn.gainExperience(experienceToAward)
                 messages += ["{0} gained {1} experience points.".format(pkmn.name, experienceToAward)]
+                while pkmn.canLevelUp():
+                    messages += pkmn.levelUp()
                 
         return messages
         

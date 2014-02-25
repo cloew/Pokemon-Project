@@ -100,3 +100,11 @@ class Pokemon:
     def gainExperience(self, experience):
         """ Gain experience """
         self.experienceDelegate.gainExperience(experience)
+        
+    def canLevelUp(self):
+        """ Return if the Pokemon has enough experience to level """
+        return self.experienceDelegate.canLevelUp()
+        
+    def levelUp(self):
+        """ Level up the Pokemon """
+        self.level += 1
