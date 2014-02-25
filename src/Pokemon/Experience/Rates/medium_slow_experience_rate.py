@@ -4,4 +4,4 @@ class MediumSlowExperienceRate:
     
     def getExperinceForLevel(self, level):
         """ Return the experience needed for the given level """
-        return int(6.0*(level**3)/5 + 15*(level**2) + 100*level - 140)
+        return int(1.2*(level**3) - 15*(level**2) + 100*level - 140)
