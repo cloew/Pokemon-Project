@@ -15,7 +15,7 @@ class ExperienceDelegate:
         
     def canLevelUp(self):
         """ Return if the Pokemon has enough experience to level """
-        return self.currentExperience >= self.experinceForNextLevel
+        return self.parent.level != 100 and self.currentExperience >= self.experinceForNextLevel
     
     @property
     def experienceToAward(self):
