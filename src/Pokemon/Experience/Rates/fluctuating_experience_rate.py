@@ -1,8 +1,9 @@
+from experience_rate import ExperienceRate
 
-class FluctuatingExperienceRate:
+class FluctuatingExperienceRate(ExperienceRate):
     """ Represents the Fluctuating Experience Rate Formula """
     
-    def getExperinceForLevel(self, level):
+    def getExperinceFromFormula(self, level):
         """ Return the experience needed for the given level """
         intermediateAmount = 0
         if level < 15:

@@ -1,8 +1,9 @@
+from experience_rate import ExperienceRate
 
-class ErraticExperienceRate:
+class ErraticExperienceRate(ExperienceRate):
     """ Represents the Erratic Experience Rate Formula """
     
-    def getExperinceForLevel(self, level):
+    def getExperinceFromFormula(self, level):
         """ Return the experience needed for the given level """
         intermediateAmount = 0
         if level < 50:
