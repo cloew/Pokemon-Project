@@ -70,7 +70,7 @@ class Battle:
         """ Checks if the game is over because the side has no Pkmn """
         if not side.hasPokemon():
             self.over = True
-            self.addMessages([side.trainer.beaten()])
+            self.addMessages([side.trainer.getBeatenMessage()])
         
     def addMessages(self, messages):
         """ Adds the given messages to the message queue """

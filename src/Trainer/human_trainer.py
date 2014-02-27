@@ -28,6 +28,6 @@ class HumanTrainer(Trainer):
         """ Return the full Name and Title of the trainer """
         return "You"
         
-    def beaten(self):
+    def getBeatenMessage(self):
         """ Returns a string that tells that the Trainer was beaten in Battle """
         return self.name + " blacked out."

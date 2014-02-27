@@ -27,6 +27,6 @@ class ComputerTrainer(Trainer):
         """ Return the full Name and Title of the trainer """
         return "%s %s" % (self.title, self.name)
         
-    def beaten(self):
+    def getBeatenMessage(self):
         """ Returns a string that tells that the Trainer was beaten in Battle """
         return "Defeated " + self.name + "."

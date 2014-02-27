@@ -74,7 +74,7 @@ class Trainer:
         """ Return the header based on the type of trainer """
         return ""
         
-    def beaten(self):
+    def getBeatenMessage(self):
         """ Returns a string that tells that the Trainer was beaten in Battle """
         
     def announcePkmn(self, pkmn):
