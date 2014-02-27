@@ -13,6 +13,12 @@ class Stats:
         self.stats = {}
         self.loadStats()
         
+    def levelUp(self):
+        """ Level up the Pkmn's stats """
+        originalHP = self.hp
+        self.loadStats()
+        self.currentHP += (self.hp-originalHP)
+        
     def loadStats(self):
         """ Load Stats from the Pokedex XML file """
         tree = SpeciesFactory.loadSpeciesXML(self.parent.species)
@@ -34,3 +40,8 @@ class Stats:
         """ Calculate a Stat """
         # (((IV + 2 * BaseStat + (EV/4) ) * Level/100 ) + 5) * Nature Value
         return int(((2*int(baseStat))* self.parent.level/100.0) + 5)
+        
+    @property
+    def hp(self):
+        """ Return the HP Stat of the Pokemon """
+        return self.stats["HP"]

@@ -108,4 +108,4 @@ class Pokemon:
     def levelUp(self):
         """ Level up the Pokemon """
         self.level += 1
-        self.stats.loadStats()
+        self.stats.levelUp()
