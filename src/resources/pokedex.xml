@@ -87,6 +87,29 @@
         <rateType>MEDIUM SLOW</rateType>
     </pokemon>
     <pokemon>
+        <species>PIDGEY</species>
+        <dex>16</dex>
+        <types>
+            <type>NORMAL</type>
+            <type>FLYING</type>
+        </types>
+        <abilities>
+            <ability>KEEN EYE</ability>
+            <ability>TANGLED FEET</ability>
+            <dream>BIG PECKS</dream>
+        </abilities>
+        <baseStats>
+            <HP>40</HP>
+            <ATK>45</ATK>
+            <DEF>40</DEF>
+            <SPD>56</SPD>
+            <SATK>35</SATK>
+            <SDEF>35</SDEF>
+        </baseStats>
+        <experience>50</experience>
+        <rateType>MEDIUM SLOW</rateType>
+    </pokemon>
+    <pokemon>
         <species>RAICHU</species>
         <dex>26</dex>
         <types>
