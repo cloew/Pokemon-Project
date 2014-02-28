@@ -7,7 +7,7 @@ class CrashDelegate(RecoilDelegate):
     def __init__(self, parent, recoilRatio):
         """ Builds a Recoil Effect with a set ration """
         self.parent = parent
-        RecoilDelegate.__init__(self, recoilRatio)
+        RecoilDelegate.__init__(self, recoilRatio, preventable=False)
         
     def applyEffect(self, user, target, environment):
         """ No effect normally"""

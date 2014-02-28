@@ -81,6 +81,9 @@ class Ability(AfterTurnEffect):
     def onSwitch(self):
         """ Perform on switch """
         
+    def preventRecoil(self):
+        """ Return if recoil damage is prevented """
+        return False
     
     def callEffects(self, user=None, target=None, environment=None):
         """ Call the effects the ability has """
