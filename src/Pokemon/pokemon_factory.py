@@ -55,4 +55,6 @@ class PokemonFactory:
     @staticmethod
     def copy(toCopy):
         """ Copies the Given Pkmn """
-        return copy.deepcopy(toCopy)
+        copiedPkmn = copy.deepcopy(toCopy)
+        copiedPkmn.battleDelegate.attacks = toCopy.battleDelegate.attacks
+        return copiedPkmn
