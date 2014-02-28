@@ -86,6 +86,10 @@
         <degree>1.5</degree>
     </ability>
     <ability>
+        <name>ROCK HEAD</name>
+        <type>PREVENT RECOIL</type>
+    </ability>
+    <ability>
         <name>SHED SKIN</name>
         <type>EFFECT AFTER TURN</type>
         <effectDelegates>
