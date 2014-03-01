@@ -14,7 +14,6 @@ class TileWidget(SizedWidget):
         
     def drawSurface(self):
         """ Draw the Widget """
-        # print "Drawing tile surface"
         self.drawOnSurface(self.tileImage, left=0, bottom=1)
         if self.tile.contents is not None:
             trainerImage = load_image(GetImagePath("Trainers/{0}.png".format(self.tile.contents.getImageBaseName())))
