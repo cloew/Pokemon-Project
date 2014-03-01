@@ -91,3 +91,4 @@ class Tags:
     imageTag = "image"
     
     playerTag = "player"
+    lastTag = "last"
