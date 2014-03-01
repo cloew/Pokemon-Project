@@ -7,7 +7,7 @@ from Trainer.computer_trainer import ComputerTrainer
 from Trainer.human_trainer import HumanTrainer
 
 from XML.xml_factory import XmlFactory
-import xml.etree.ElementTree
+from xml.etree.ElementTree import SubElement
 
 class TrainerFactory(XmlFactory):
     """ Builds a Trainer """
@@ -73,4 +73,17 @@ class TrainerFactory(XmlFactory):
                 if trainer.find(Tags.titleTag).text == title:
                     return trainer
                     
+    def createNewTrainer(self, title, name):
+        """ Create a New Trainer """
+        trainerElement = SubElement(self.rootElement, Tags.trainerTag)
+        nameElement = SubElement(trainerElement, Tags.nameTag)
+        nameElement.text = name
+        titleElement = SubElement(trainerElement, Tags.titleTag)
+        titleElement.text = title
+                    
+        trainer = self.buildTrainerFromType(self.HUMAN)
+        trainer.title = title
+        trainer.name = name
+        return trainer
+
 TrainerFactory = TrainerFactory()
