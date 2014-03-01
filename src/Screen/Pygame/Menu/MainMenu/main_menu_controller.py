@@ -8,18 +8,21 @@ from Screen.Pygame.Menu.MainMenu.main_menu_screen import MainMenuScreen
 from Screen.Pygame.Menu.OptionsMenu.options_menu_controller import OptionsMenuController
 from Screen.Pygame.Menu.TrainerMenu.trainer_menu_controller import TrainerMenuController
 
+from Player.player_factory import PlayerFactory
+
 class MainMenuController(PygameController):
     """ Controller for the Pygame Main Menu """
     
     def __init__(self):
         """ Initialize the Main Menu Controller """
+        self.currentPlayer = PlayerFactory.getLastPlayer()
         entries = [TextMenuEntry("New", self.newGame),
                    TextMenuEntry("Start", self.startGame),
                    TextMenuEntry("Options", self.runOptions),
                    TextMenuEntry("Exit", self.stopRunning)]
         self.menu = Menu(entries)
         
-        screen = MainMenuScreen(self.menu)
+        screen = MainMenuScreen(self.menu, self.currentPlayer)
         PygameController.__init__(self, screen, commands = {commands.UP:self.menu.up,
                                                             commands.DOWN:self.menu.down,
                                                             commands.EXIT:self.stopRunning,
@@ -27,7 +30,7 @@ class MainMenuController(PygameController):
         
     def newGame(self, entry):
         """ Start a New Game """
-        print "Starting New Character"
+        PlayerFactory.createNewPlayer("Doe")
         
     def startGame(self, entry):
         """ Start the Game """

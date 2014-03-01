@@ -5,3 +5,8 @@ class Player:
     def __init__(self, trainer):
         """ Initialize the Player """
         self.trainer = trainer
+        
+    @property
+    def fullname(self):
+        """ Return the fullname of the Player """
+        return "{0} {1}".format(self.trainer.title, self.trainer.name)

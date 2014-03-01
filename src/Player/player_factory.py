@@ -36,8 +36,31 @@ class PlayerFactory(XmlFactory):
     def setLastPlayer(self):
         """ Set the Last Player field on all the players """
         for playerElement in self.tree.getiterator(Tags.playerTag):
-            lastPlayerElement = SubElement(playerElement, Tags.lastTag)
+            lastPlayerElement = playerElement.find(Tags.lastTag)
             lastPlayerElement.text = "false"
         self.saveXMLTree()
+        
+    def getLastPlayer(self):
+        """ Return the last Player played as """
+        playerElement = self.getLastPlayerElement()
+        if playerElement is None:
+            return None
+        
+        trainer = self.loadTrainerFromPlayerElement(playerElement)
+        return Player(trainer)
+        
+    def getLastPlayerElement(self):
+        """ Return the last Player played as """
+        for playerElement in self.tree.getiterator(Tags.playerTag):
+            if playerElement.findtext(Tags.lastTag) == "true":
+                return playerElement
+        
+    def loadTrainerFromPlayerElement(self, playerElement):
+        """ Load a trainer from a player element """
+        trainerElement = playerElement.find(Tags.trainerTag)
+        title = trainerElement.findtext(Tags.titleTag)
+        name = trainerElement.findtext(Tags.nameTag)
+        
+        return TrainerFactory.createNewTrainer(title, name)
 
 PlayerFactory = PlayerFactory()
