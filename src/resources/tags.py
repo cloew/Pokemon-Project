@@ -82,6 +82,7 @@ class Tags:
     zoneTag = "zone"
     rowsTag = "rows"
     columnsTag = "columns"
+    tileTag = "tile"
     peopleTag = "people"
     personTag = "person"
     positionTag = "position"

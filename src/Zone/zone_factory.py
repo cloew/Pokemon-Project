@@ -23,7 +23,8 @@ class ZoneFactory:
         """ Loads a Zone object from a file """
         rows = int(tree.findtext(Tags.rowsTag))
         columns = int(tree.findtext(Tags.columnsTag))
-        zone = Zone(rows, columns)
+        tileFilename = tree.findtext(Tags.tileTag)
+        zone = Zone(rows, columns, tileFilename)
         zone.people = LoadPeopleFromZoneXML(tree, zone.tiles)
         return zone
         

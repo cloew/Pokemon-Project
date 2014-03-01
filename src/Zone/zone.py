@@ -9,15 +9,16 @@ from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 class Zone:
     """ Represents a Zone in the Game """
     
-    def __init__(self, rows, columns):
+    def __init__(self, rows, columns, tileFilename):
         """ Initialize the Zone """
         self.people = []
         self.tiles = []
+        self.tileFilename = tileFilename
         
         for i in range(rows):
             row = []
             for j in range(columns):
-                tile = Tile(i, j)
+                tile = Tile(i, j, tileFilename)
                 if j > 0:
                     tile.connectToTile(row[j-1], LEFT)
                 if i > 0:

@@ -3,10 +3,11 @@ from Zone.direction import GetOppositeDirection
 class Tile:
     """ Represents a tile in a Pokemon Zone """
     
-    def __init__(self, row, column):
+    def __init__(self, row, column, tileFilename):
         """ Initialize the Zone Tile """
         self.row = row
         self.column = column
+        self.tileFilename = tileFilename
         self.connections = {}
         self.contents = None
         
