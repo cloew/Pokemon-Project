@@ -47,4 +47,20 @@
             </person>
         </people>
     </zone>
+    <zone>
+        <name>Player Bedroom - Pallet Town</name>
+        <rows>8</rows>
+        <columns>11</columns>
+        <tile>bedroom_floor</tile>
+        <people>
+            <person>
+                <position>
+                    <row>2</row>
+                    <column>2</column>
+                </position>
+                <message>I'm in your bedroom</message>
+                <image>npc</image>
+            </person>
+        </people>
+    </zone>
 </zones>
