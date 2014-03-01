@@ -1,41 +1,30 @@
 from Player.player import Player
+from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
 
+from XML.xml_factory import XmlFactory
+
 from xml.dom.minidom import parseString
-from xml.etree.ElementTree import SubElement, tostring
+from xml.etree.ElementTree import ElementTree, SubElement, tostring
 
-tree = None
+factory = XmlFactory("player.xml")
 
-def NewPlayer(name):
-    """ Create a new player from the given name """
-    player = Player(player)
+class PlayerFactory(XmlFactory):
+    """ Represents the Player Factory """
     
-    tree = GetXMLTree()
-    playerElement = SubElement(tree.getroot(), Tags.playerTag)
-    nameElement = SubElement(playerElement, Tags.nameTag)
-    nameElement.text = player.name
-    SaveXMLTree(tree)
-    
-def GetXMLTree():
-    """ Return the Player XML Tree """
-    global tree
-    
-    if tree is None:
-        with open(GetResourcePath("player.xml"), 'r') as playerTreeFile:
-            tree = xml.etree.ElementTree.ElementTree(file=playerTreeFile)
-    return tree
-    
-def SaveXMLTree(tree):
-    """ Save the Player XML Tree """
-    xmlString = tostring(tree.getroot())
-    
-    xmlString = xmlString.replace('\n', '')
-    xmlString = xmlString.replace('\t', '')
-    xmlString = xmlString.replace('ns0:', '')
-    xmlString = xmlString.replace(':ns0', '')
-    
-    xml = parseString(xmlString)
-    prettyXMLString = xml.toprettyxml()
-    
-    with open(GetResourcePath("player.xml"), 'w') as file:
-        file.write(prettyXMLString)
+    def __init__(self):
+        """ Initialize the player factory """
+        XmlFactory.__init__(self, "player.xml")
+        
+    def createNewPlayer(self, name):
+        """ Create a New Player """
+        title = "Pokemon Trainer"
+        player = Player(name)
+        
+        playerElement = SubElement(self.rootElement, Tags.playerTag)
+        nameElement = SubElement(playerElement, Tags.nameTag)
+        nameElement.text = player.name
+        self.saveXMLTree()
+        return player
+
+PlayerFactory = PlayerFactory()

@@ -1,5 +1,8 @@
 from resources.resource_manager import GetResourcePath
 
+from xml.dom.minidom import parseString
+from xml.etree.ElementTree import ElementTree, tostring
+
 class XmlFactory:
     """ Represents an XML Factory """
     
@@ -15,6 +18,11 @@ class XmlFactory:
             with open(self.filename, 'r') as xmlFile:
                 self.__tree = ElementTree(file=xmlFile)
         return self.__tree
+        
+    @property
+    def rootElement(self):
+        """ Return the Tree's Root Element """
+        return self.tree.getroot()
         
     def saveXMLTree(self):
         """ Save the XML Tree """
