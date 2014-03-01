@@ -1,5 +1,3 @@
-import xml.etree.ElementTree
-
 from Pokemon.pokemon_factory import PokemonFactory
 
 from resources.resource_manager import GetResourcePath
@@ -8,57 +6,57 @@ from resources.tags import Tags
 from Trainer.computer_trainer import ComputerTrainer
 from Trainer.human_trainer import HumanTrainer
 
-class TrainerFactory:
+from XML.xml_factory import XmlFactory
+import xml.etree.ElementTree
+
+class TrainerFactory(XmlFactory):
     """ Builds a Trainer """
     HUMAN = 1
     COMPUTER = 2
     trainers = {HUMAN:HumanTrainer,
                 COMPUTER:ComputerTrainer}
-    tree = None
+                
+    def __init__(self):
+        """ Initialize the Trainer Factory """
+        XmlFactory.__init__(self, "trainerdex.xml")
                    
-    @staticmethod
-    def getPlayableTrainers():
+    def getPlayableTrainers(self):
         """ Returns a list of the playable trainers """
         playableTrainers = []
         
-        tree = TrainerFactory.getTrainerdexTree()
-        for trainerXML in tree.getiterator(Tags.trainerTag):
+        # tree = TrainerFactory.getTrainerdexTree()
+        for trainerXML in self.tree.getiterator(Tags.trainerTag):
             if trainerXML.find(Tags.playableTag) != None:
                 trainer = HumanTrainer() # May want to use the dict up top
-                TrainerFactory.buildTrainerFromXML(trainer, trainerXML) # Really slow for whatever reason
+                self.buildTrainerFromXML(trainer, trainerXML) # Really slow for whatever reason
                 playableTrainers.append(trainer)
         
         return  playableTrainers
     
-    @staticmethod
-    def loadFromXML(title, name, trainerType=COMPUTER):
+    def loadFromXML(self, title, name, trainerType=COMPUTER):
         """ Loads a Trainer from an XML file """
-        tree = TrainerFactory.getTrainerdexTree()
-        tree = TrainerFactory.getTrainerXML(tree, title, name)
+        tree = self.getTrainerXML(title, name)
         
         if tree == None:
             print "Could not find Trainer:", title, name
             return None
             
-        trainer = TrainerFactory.buildTrainerFromType(trainerType)
-        TrainerFactory.buildTrainerFromXML(trainer, tree)
+        trainer = self.buildTrainerFromType(trainerType)
+        self.buildTrainerFromXML(trainer, tree)
         return trainer
         
-    @staticmethod
-    def buildTrainerFromType(type):
+    def buildTrainerFromType(self, type):
         """ Builds a Pokemon as a certain Trainer Type """
         return TrainerFactory.trainers[type]()
         
-    @staticmethod
-    def buildTrainerFromXML(trainer, tree):
+    def buildTrainerFromXML(self, trainer, tree):
         """ Builds a Trainer from XML """
         trainer.name = tree.find(Tags.nameTag).text
         trainer.title = tree.find(Tags.titleTag).text
         
         TrainerFactory.loadPokemonFromXML(trainer, tree)
         
-    @staticmethod
-    def loadPokemonFromXML(trainer, tree):
+    def loadPokemonFromXML(self, trainer, tree):
         """ Loads the Trainer's Pokemon from XML """
         pokemon = []
         tree = tree.find(Tags.beltTag)
@@ -68,26 +66,11 @@ class TrainerFactory:
         
         trainer.beltPokemon = pokemon
         
-    @staticmethod
-    def getTrainerdexTree():
-        """ Opens the trainerdex.xml file as an element tree """
-        if TrainerFactory.tree is not None:
-            return TrainerFactory.tree
-        
-        try:
-            trainerdex = open(GetResourcePath("trainerdex.xml"), 'r')
-        except IOError:
-            print "Unable to open TRAINERDEX"
-            exit(-2)
-    
-        TrainerFactory.tree = xml.etree.ElementTree.ElementTree(file=trainerdex)
-        trainerdex.close()
-        return TrainerFactory.tree
-        
-    @staticmethod
-    def getTrainerXML(tree, title, name):
-        """ Returns the XML tree for the trainer with the name given """
-        for trainer in tree.getiterator(Tags.trainerTag):
+    def getTrainerXML(self, title, name):
+        """ Returns the XML Element for the trainer with the name given """
+        for trainer in self.tree.getiterator(Tags.trainerTag):
             if trainer.find(Tags.nameTag).text == name:
                 if trainer.find(Tags.titleTag).text == title:
                     return trainer
+                    
+TrainerFactory = TrainerFactory()
