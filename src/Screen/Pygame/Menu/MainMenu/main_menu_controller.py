@@ -13,7 +13,8 @@ class MainMenuController(PygameController):
     
     def __init__(self):
         """ Initialize the Main Menu Controller """
-        entries = [TextMenuEntry("Start", self.startGame),
+        entries = [TextMenuEntry("New", self.newGame),
+                   TextMenuEntry("Start", self.startGame),
                    TextMenuEntry("Options", self.runOptions),
                    TextMenuEntry("Exit", self.stopRunning)]
         self.menu = Menu(entries)
@@ -23,6 +24,10 @@ class MainMenuController(PygameController):
                                                             commands.DOWN:self.menu.down,
                                                             commands.EXIT:self.stopRunning,
                                                             commands.SELECT:self.menu.enter})
+        
+    def newGame(self, entry):
+        """ Start a New Game """
+        print "Starting New Character"
         
     def startGame(self, entry):
         """ Start the Game """
