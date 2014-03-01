@@ -30,6 +30,7 @@ class XmlFactory:
         
         xmlString = xmlString.replace('\n', '')
         xmlString = xmlString.replace('\t', '')
+        xmlString = xmlString.replace('    ', '')
         xmlString = xmlString.replace('ns0:', '')
         xmlString = xmlString.replace(':ns0', '')
         

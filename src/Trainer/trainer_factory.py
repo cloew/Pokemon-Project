@@ -84,6 +84,7 @@ class TrainerFactory(XmlFactory):
         trainer = self.buildTrainerFromType(self.HUMAN)
         trainer.title = title
         trainer.name = name
+        self.saveXMLTree()
         return trainer
 
 TrainerFactory = TrainerFactory()

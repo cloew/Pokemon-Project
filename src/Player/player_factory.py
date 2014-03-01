@@ -61,6 +61,6 @@ class PlayerFactory(XmlFactory):
         title = trainerElement.findtext(Tags.titleTag)
         name = trainerElement.findtext(Tags.nameTag)
         
-        return TrainerFactory.createNewTrainer(title, name)
+        return TrainerFactory.loadFromXML(title, name, trainerType=TrainerFactory.HUMAN)
 
 PlayerFactory = PlayerFactory()
