@@ -22,7 +22,7 @@ class PokemonBattleDelegateFactory:
         delegate.parent = parent
     
         # Get common info from Pokedex 
-        PokemonBattleDelegateFactory.loadPokedexBattleInfo(delegate, parent.species)
+        # PokemonBattleDelegateFactory.loadPokedexBattleInfo(delegate, parent.species)
     
         # Set currHP to full
         delegate.currHP = delegate.stats["HP"]
@@ -42,9 +42,6 @@ class PokemonBattleDelegateFactory:
         
         # Set parent
         delegate.parent = parent
-    
-        # Get Pokedex battle info on the Pokemon
-        PokemonBattleDelegateFactory.loadPokedexBattleInfo(delegate, parent.species)
     
         # Get current HP
         delegate.parent.stats.currentHP = int(tree.find(Tags.currHPTag).text)
@@ -74,17 +71,3 @@ class PokemonBattleDelegateFactory:
         delegate.stats = dict(toCopy.stats)
         
         return delegate
-    
-    @staticmethod
-    def loadPokedexBattleInfo(delegate, species):
-        """ Gets info from Pokedex relevant to Battling
-        Types, base stats """
-        # Open Pokedex and set variables that require Pokedex data
-        tree = SpeciesFactory.loadSpeciesXML(species)
-
-        # Get type(s) -- Prolly should be its own function
-        typesTree = tree.find(Tags.typesTag)
-        types = []
-        for type in typesTree.getiterator(Tags.typeTag):
-            types.append(type.text)
-        delegate.types = types

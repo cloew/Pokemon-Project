@@ -8,10 +8,7 @@ from resources.tags import Tags
 def loadFromXML(parent, tree):
     """  Build a Pokemon's Battle Information """
     currentExperience = int(tree.findtext(Tags.experienceTag))
-    
-    speciesXML = SpeciesFactory.loadSpeciesXML(parent.species)
-    baseExperience = int(speciesXML.findtext(Tags.experienceTag))
-    rateType = speciesXML.findtext(Tags.rateTypeTag)
+    rateType = parent.species.rateType
     rate = ExperienceRateFactory.buildExperienceRate(rateType)
     
-    return ExperienceDelegate(currentExperience, baseExperience, rate, parent)
+    return ExperienceDelegate(currentExperience, rate, parent)

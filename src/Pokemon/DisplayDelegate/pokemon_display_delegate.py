@@ -8,4 +8,4 @@ class PokemonDisplayDelegate:
         
     def getDisplayImageBaseName(self):
         """ Return the Base Image Name based on the species """
-        return self.species.lower()
+        return self.species.name.lower()

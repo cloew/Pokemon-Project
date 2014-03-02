@@ -8,6 +8,7 @@ from Pokemon.Abilities.ability import Ability
 from Pokemon.Abilities.abilityfactory import AbilityFactory
 from Pokemon.DisplayDelegate.pokemon_display_delegate_factory import PokemonDisplayDelegateFactory
 import Pokemon.Experience.experience_delegate_factory as ExperienceDelegateFactory
+from Pokemon.Species.species_factory import SpeciesFactory
 
 from resources.tags import Tags
 
@@ -34,7 +35,8 @@ class PokemonFactory:
     def loadFromXML(tree):
         """ Loads a Pokemon object from a file """
         name = tree.findtext(Tags.nameTag)
-        species = tree.findtext(Tags.speciesTag)
+        speciesName = tree.findtext(Tags.speciesTag)
+        species = SpeciesFactory.getSpecies(speciesName)
         level = int(tree.findtext(Tags.levelTag))
         
         pkmn = Pokemon(name, level, species)

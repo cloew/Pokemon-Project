@@ -19,6 +19,11 @@ class PokemonBattleDelegate:
         
         if self.currHP <= 0:
             self.currHP = 0
+            
+    @property
+    def types(self):
+        """ Return the Pokemon's types """
+        return self.parent.species.types
     
     @property
     def currHP(self):

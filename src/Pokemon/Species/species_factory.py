@@ -18,6 +18,8 @@ class SpeciesFactory(XmlFactory):
     def getSpecies(self, species):
         """ Return the Species object for the given Species """
         speciesXML = self.loadSpeciesXML(species)
+        baseExperience = int(speciesXML.findtext(Tags.experienceTag))
+        rateType = speciesXML.findtext(Tags.rateTypeTag)
         
         baseStats = {}
         statsXML = speciesXML.find(Tags.baseStatsTag)
@@ -29,7 +31,7 @@ class SpeciesFactory(XmlFactory):
         for type in typesXML.getiterator(Tags.typeTag):
             types.append(type.text)
             
-        return Species(species, types, baseStats)
+        return Species(species, types, baseStats, baseExperience, rateType)
 
     def loadSpeciesXML(self, species):
         """ Returns the XML tree for the pokemon with the species given """

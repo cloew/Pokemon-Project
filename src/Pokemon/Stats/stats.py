@@ -21,11 +21,8 @@ class Stats:
         
     def loadStats(self):
         """ Load Stats from the Pokedex XML file """
-        tree = SpeciesFactory.loadSpeciesXML(self.parent.species)
-        statsTree = tree.find(Tags.baseStatsTag)
-        
         for key in self.statKeys:
-            baseStat = int(statsTree.find(key).text)
+            baseStat = self.parent.species.baseStats[key]
             if (key is "HP"):
                 self.stats[key] = self.calculateHPStat(baseStat)
             else:

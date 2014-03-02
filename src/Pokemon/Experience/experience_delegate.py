@@ -2,10 +2,9 @@
 class ExperienceDelegate:
     """ Represents the Pokemon's Experience Delegate """
     
-    def __init__(self, currentExperience, baseExperience, experienceRate, parent):
+    def __init__(self, currentExperience, experienceRate, parent):
         """ Initialize the Experience Delegate """
         self.currentExperience = currentExperience
-        self.baseExperience = baseExperience
         self.experienceRate = experienceRate
         self.parent = parent
     
@@ -16,6 +15,11 @@ class ExperienceDelegate:
     def canLevelUp(self):
         """ Return if the Pokemon has enough experience to level """
         return self.parent.level != 100 and self.currentExperience >= self.experinceForNextLevel
+        
+    @property
+    def baseExperience(self):
+        """ Return the experince to the next level """
+        return self.parent.species.baseExperience
     
     @property
     def experienceToAward(self):
