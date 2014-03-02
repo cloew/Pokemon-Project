@@ -18,7 +18,7 @@ class PlayerFactory(XmlFactory):
     def createNewPlayer(self, name):
         """ Create a New Player """
         trainer = TrainerFactory.createNewTrainer("Pokemon Trainer", name)
-        player = Player(trainer)
+        player = Player(trainer, "Player Bedroom - Pallet Town", 5, 5)
         
         self.setLastPlayer()
         
@@ -28,6 +28,15 @@ class PlayerFactory(XmlFactory):
         nameElement.text = trainer.name
         titleElement = SubElement(trainerElement, Tags.titleTag)
         titleElement.text = trainer.title
+        
+        zoneElement = SubElement(playerElement, Tags.zoneTag)
+        zoneNameElement = SubElement(zoneElement, Tags.nameTag)
+        zoneNameElement.text = player.zone
+        rowElement = SubElement(zoneElement, Tags.rowTag)
+        rowElement.text = str(player.row)
+        columnElement = SubElement(zoneElement, Tags.columnTag)
+        columnElement.text = str(player.column)
+        
         lastPlayerElement = SubElement(playerElement, Tags.lastTag)
         lastPlayerElement.text = "true"
         self.saveXMLTree()
@@ -47,7 +56,11 @@ class PlayerFactory(XmlFactory):
             return None
         
         trainer = self.loadTrainerFromPlayerElement(playerElement)
-        return Player(trainer)
+        zoneElement = playerElement.find(Tags.zoneTag)
+        zoneName = zoneElement.findtext(Tags.nameTag)
+        row = int(zoneElement.findtext(Tags.rowTag))
+        column = int(zoneElement.findtext(Tags.columnTag))
+        return Player(trainer, zoneName, row, column)
         
     def getLastPlayerElement(self):
         """ Return the last Player played as """
