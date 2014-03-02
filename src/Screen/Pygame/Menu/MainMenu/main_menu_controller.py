@@ -4,10 +4,10 @@ from Menu.text_menu_entry import TextMenuEntry
 
 from kao_gui.pygame.pygame_controller import PygameController
 
+from Screen.Pygame.Menu.MainMenu.game_menu_controller import GameMenuController
 from Screen.Pygame.Menu.MainMenu.main_menu_screen import MainMenuScreen
-from Screen.Pygame.Marathon.marathon_controller import MarathonController
 from Screen.Pygame.Menu.OptionsMenu.options_menu_controller import OptionsMenuController
-from Screen.Pygame.Menu.TrainerMenu.trainer_menu_controller import TrainerMenuController
+# from Screen.Pygame.Menu.TrainerMenu.trainer_menu_controller import TrainerMenuController
 
 from Player.player_factory import PlayerFactory
 
@@ -41,8 +41,7 @@ class MainMenuController(PygameController):
         
     def continueGame(self, entry):
         """ Continue the Game """
-        self.runController(MarathonController(self.currentPlayer.trainer))
-        # self.runController(TrainerMenuController())
+        self.runController(GameMenuController(self.currentPlayer))
         
     def runOptions(self, entry):
         """ Run Options Controller """
