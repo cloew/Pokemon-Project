@@ -34,6 +34,9 @@ class ZoneFactory:
     def loadContentsFromXML(tree, tiles):
         """ Loads a Zone object from a file """
         contentsElement = tree.find(Tags.contentsTag)
+        if contentsElement is None:
+            return
+            
         for contentElement in contentsElement.findall(Tags.contentTag):
             row = int(contentElement.findtext(Tags.rowTag))
             column = int(contentElement.findtext(Tags.columnTag))
