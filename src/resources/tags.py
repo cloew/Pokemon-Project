@@ -89,6 +89,8 @@ class Tags:
     rowTag = "row"
     columnTag = "column"
     imageTag = "image"
+    contentsTag = "contents"
+    contentTag = "content"
     
     playerTag = "player"
     lastTag = "last"

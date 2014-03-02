@@ -29,7 +29,7 @@ class Person:
         
     def getImageBaseName(self):
         """ Return the base image name for the Trainer Position Wrapper """
-        return "{0}_{1}".format(self.imageBaseName, GetTextFromDirection(self.movementDelegate.direction))
+        return "Trainers/{0}_{1}.png".format(self.imageBaseName, GetTextFromDirection(self.movementDelegate.direction))
         
     def setTile(self, tile):
         """ Set the Trainer's current tile """

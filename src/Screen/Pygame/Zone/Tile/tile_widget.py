@@ -18,8 +18,8 @@ class TileWidget(SizedWidget):
         """ Draw the Widget """
         self.drawOnSurface(self.tileImage, left=0, bottom=1)
         if self.tile.contents is not None:
-            trainerImage = load_image(GetImagePath("Trainers/{0}.png".format(self.tile.contents.getImageBaseName())))
-            self.drawOnSurface(trainerImage, left=0, bottom=1)
+            contentsImage = load_image(GetImagePath(self.tile.contents.getImageBaseName()))
+            self.drawOnSurface(contentsImage, left=0, bottom=1)
             
     def loadImage(self):
         """ Load the tile image """

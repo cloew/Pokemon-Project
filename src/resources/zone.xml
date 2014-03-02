@@ -62,5 +62,17 @@
                 <image>npc</image>
             </person>
         </people>
+        <contents>
+            <content>
+                <row>1</row>
+                <column>0</column>
+                <image>table_with_laptop_left</image>
+            </content>
+            <content>
+                <row>1</row>
+                <column>1</column>
+                <image>table_with_laptop_right</image>
+            </content>
+        </contents>
     </zone>
 </zones>

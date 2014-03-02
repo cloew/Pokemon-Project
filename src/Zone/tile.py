@@ -11,7 +11,6 @@ class Tile:
         self.connections = {}
         self.contents = None
         
-        
     def connectToTile(self, tile, direction, twoWay=True):
         """ Connect this tile and the given tile """
         self.connections[direction] = tile

@@ -1,6 +1,7 @@
 from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
 
+from Zone.tile_content import TileContent
 from Zone.zone import Zone
 from Zone.Person.person_factory import LoadPeopleFromZoneXML
 
@@ -25,8 +26,21 @@ class ZoneFactory:
         columns = int(tree.findtext(Tags.columnsTag))
         tileFilename = tree.findtext(Tags.tileTag)
         zone = Zone(rows, columns, tileFilename)
+        ZoneFactory.loadContentsFromXML(tree, zone.tiles)
         zone.people = LoadPeopleFromZoneXML(tree, zone.tiles)
         return zone
+        
+    @staticmethod
+    def loadContentsFromXML(tree, tiles):
+        """ Loads a Zone object from a file """
+        contentsElement = tree.find(Tags.contentsTag)
+        for contentElement in contentsElement.findall(Tags.contentTag):
+            row = int(contentElement.findtext(Tags.rowTag))
+            column = int(contentElement.findtext(Tags.columnTag))
+            image = contentElement.findtext(Tags.imageTag)
+            
+            content = TileContent(image)
+            tiles[row][column].contents = content
         
     @staticmethod
     def loadFromDB():
