@@ -25,4 +25,4 @@ class MarathonController(PygameController):
             self.stopRunning()
         else:
             zone = self.marathon.loadZone()
-            self.runController(ZoneController(self.trainer, zone, doneCallback=self.marathon.beaten))
+            self.runController(ZoneController(self.trainer, zone, 1, 2, doneCallback=self.marathon.beaten))

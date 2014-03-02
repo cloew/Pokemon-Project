@@ -32,7 +32,7 @@ class ModeMenuController(PygameController):
     def playStory(self, entry):
         """ Play the Story Mode """
         zone = ZoneFactory.getZone(self.currentPlayer.zone)
-        self.runController(ZoneController(self.currentPlayer.trainer, zone))
+        self.runController(ZoneController(self.currentPlayer.trainer, zone, self.currentPlayer.row, self.currentPlayer.column))
         
     def runMarathon(self, entry):
         """ Run a marathon """

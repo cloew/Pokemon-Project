@@ -16,12 +16,12 @@ from kao_gui.pygame.pygame_controller import PygameController
 class ZoneController(PygameController):
     """ Controller for a Zone """
     
-    def __init__(self, trainer, zone, doneCallback=None):
+    def __init__(self, trainer, zone, row, column, doneCallback=None):
         """ Initialize the Zone Controller """
         self.zone = zone
         self.doneCallback = doneCallback
         self.zone.setCallbacks(self.interactWithPerson)
-        self.playerPerson = TrainerPerson(self.zone.tiles[1][1], "trainer", trainer)
+        self.playerPerson = TrainerPerson(self.zone.tiles[row][column], "trainer", trainer)
         
         screen = ZoneScreen(self.playerPerson, self.zone)
         
