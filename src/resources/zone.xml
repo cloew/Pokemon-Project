@@ -74,9 +74,34 @@
                 <image>table_with_laptop_right</image>
             </content>
             <content>
-                <row>4</row>
+                <row>3</row>
                 <column>5</column>
                 <image>old_tv</image>
+            </content>
+            <content>
+                <row>4</row>
+                <column>5</column>
+                <image>game_cube</image>
+            </content>
+            <content>
+                <row>6</row>
+                <column>0</column>
+                <image>bed_up_left</image>
+            </content>
+            <content>
+                <row>6</row>
+                <column>1</column>
+                <image>bed_up_right</image>
+            </content>
+            <content>
+                <row>7</row>
+                <column>0</column>
+                <image>bed_bottom_left</image>
+            </content>
+            <content>
+                <row>7</row>
+                <column>1</column>
+                <image>bed_bottom_right</image>
             </content>
         </contents>
     </zone>
