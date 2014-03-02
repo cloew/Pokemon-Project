@@ -2,7 +2,7 @@ from Battle.Attack.attackfactory import AttackFactory
 from Battle.Status.status import Status
 
 from pokemon_battle_delegate import PokemonBattleDelegate
-import species_factory as SpeciesFactory
+from Pokemon.Species.species_factory import SpeciesFactory
 
 from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
