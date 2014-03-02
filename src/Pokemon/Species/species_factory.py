@@ -1,6 +1,9 @@
 from resources.resource_manager import GetResourcePath
 from resources.tags import Tags
 
+from Pokemon.Species.species import Species
+from Pokemon.Stats.stats import Stats
+
 from XML.xml_factory import XmlFactory
 
 import xml.etree.ElementTree
@@ -11,6 +14,22 @@ class SpeciesFactory(XmlFactory):
     def __init__(self):
         """ Initialize the Species Factory """
         XmlFactory.__init__(self, "pokedex.xml")
+        
+    def getSpecies(self, species):
+        """ Return the Species object for the given Species """
+        speciesXML = self.loadSpeciesXML(species)
+        
+        baseStats = {}
+        statsXML = speciesXML.find(Tags.baseStatsTag)
+        for key in Stats.statKeys:
+            baseStats[key] = int(statsXML.find(key).text)
+            
+        typesXML = speciesXML.find(Tags.typesTag)
+        types = []
+        for type in typesXML.getiterator(Tags.typeTag):
+            types.append(type.text)
+            
+        return Species(species, types, baseStats)
 
     def loadSpeciesXML(self, species):
         """ Returns the XML tree for the pokemon with the species given """
