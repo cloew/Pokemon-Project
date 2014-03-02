@@ -1,2 +1,15 @@
+<?xml version="1.0" ?>
 <players>
+	<player>
+		<trainer>
+			<name>Chris</name>
+			<title>Pkmn Trainer</title>
+		</trainer>
+		<last>true</last>
+		<zone>
+			<name>Player Bedroom - Pallet Town</name>
+			<row>5</row>
+			<column>5</column>
+		</zone>
+	</player>
 </players>
