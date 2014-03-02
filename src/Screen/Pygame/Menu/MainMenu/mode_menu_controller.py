@@ -7,11 +7,11 @@ from Screen.Pygame.Marathon.marathon_controller import MarathonController
 
 from kao_gui.pygame.pygame_controller import PygameController
 
-class GameMenuController(PygameController):
-    """ Controller for a picking the Game Mode """
+class ModeMenuController(PygameController):
+    """ Controller for picking the Game Mode """
     
     def __init__(self, currentPlayer):
-        """ Initialize the Main Menu Controller """
+        """ Initialize the Mode Menu Controller """
         self.currentPlayer = currentPlayer
         
         
