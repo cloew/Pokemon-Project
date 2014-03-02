@@ -6,7 +6,6 @@ from kao_gui.pygame.widgets.sized_widget import SizedWidget
 class TileWidget(SizedWidget):
     """ Represents the widget for a Tile """
     filenameToImage = {}
-    # tileImage = load_image(GetImagePath("Tiles/tile.png"))
     
     def __init__(self, tile):
         """ Initialize the widget """
