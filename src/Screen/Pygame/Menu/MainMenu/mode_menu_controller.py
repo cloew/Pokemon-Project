@@ -1,9 +1,12 @@
 from InputProcessor import commands
+
 from Menu.menu import Menu
 from Menu.text_menu_entry import TextMenuEntry
+from Zone.zone_factory import ZoneFactory
 
 from Screen.Pygame.Menu.MainMenu.main_menu_screen import MainMenuScreen
 from Screen.Pygame.Marathon.marathon_controller import MarathonController
+from Screen.Pygame.Zone.zone_controller import ZoneController
 
 from kao_gui.pygame.pygame_controller import PygameController
 
@@ -28,7 +31,8 @@ class ModeMenuController(PygameController):
                                                             
     def playStory(self, entry):
         """ Play the Story Mode """
-        print "Playing Story mode"
+        zone = ZoneFactory.getZone(self.currentPlayer.zone)
+        self.runController(ZoneController(self.currentPlayer.trainer, zone))
         
     def runMarathon(self, entry):
         """ Run a marathon """
