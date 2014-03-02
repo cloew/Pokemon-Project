@@ -73,6 +73,11 @@
                 <column>1</column>
                 <image>table_with_laptop_right</image>
             </content>
+            <content>
+                <row>4</row>
+                <column>5</column>
+                <image>old_tv</image>
+            </content>
         </contents>
     </zone>
 </zones>
