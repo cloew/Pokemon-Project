@@ -1,6 +1,4 @@
 from Pokemon.Experience.experience_delegate import ExperienceDelegate
-
-import Pokemon.species_factory as SpeciesFactory
 import Pokemon.Experience.Rates.experience_rate_factory as ExperienceRateFactory
 
 from resources.tags import Tags

@@ -1,5 +1,3 @@
-from Pokemon import species_factory as SpeciesFactory
-
 from resources.tags import Tags
 
 class Stats:
