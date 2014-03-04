@@ -8,7 +8,7 @@
 			<pokemon>
 				<name>Mr Slice</name>
 				<species>SNEASEL</species>
-				<level>20</level>
+				<level>1</level>
 				<currHP>60</currHP>
 				<experience>0</experience>
 				<ability>ROCK HEAD</ability>
@@ -25,8 +25,7 @@
 					</attack>
 					<attack>
 						<name>GROWL</name>
-						<currPP>30</currPP>
-						 
+						<currPP>30</currPP> 
 						<PP>30</PP>
 					</attack>
 					<attack>

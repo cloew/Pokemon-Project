@@ -9,3 +9,12 @@ class Species:
         self.baseStats = baseStats
         self.baseExperience = baseExperience
         self.rateType = rateType
+        
+        self.attacksForLevel = {}
+        
+    def addAttack(self, attack, level):
+        """ Add an Attack to be learned at the given level """
+        if level in self.attacksForLevel:
+            self.attacksForLevel[level].append(attack)
+        else:
+            self.attacksForLevel[level] = [attack]
