@@ -1,6 +1,9 @@
+from Battle.Attack.attackfactory import AttackFactory
+
+from Pokemon.pokemon_battle_delegate import PokemonBattleDelegate
 from Pokemon.Abilities.abilityfactory import AbilityFactory
 from Pokemon.Abilities.ability import Ability
-from Pokemon.pokemon_battle_delegate import PokemonBattleDelegate
+from Pokemon.LevelEvents.learn_attack_event import LearnAttackEvent
 from Pokemon.DisplayDelegate.pokemon_display_delegate import PokemonDisplayDelegate
 from Pokemon.Stats.stats import Stats
 
@@ -108,4 +111,14 @@ class Pokemon:
     def levelUp(self):
         """ Level up the Pokemon """
         self.level += 1
+        messages = ["{0} leveled up to level {1}.".format(self.name, self.level)]
+        
         self.stats.levelUp()
+        if self.level in self.species.attacksForLevel:
+            for attackName in self.species.attacksForLevel[self.level]:
+                attack = AttackFactory.getAttackAsNew(attackName)
+                event = LearnAttackEvent(self, attack)
+                if event.canLearnAttack():
+                    messages += event.perform()
+                    
+        return messages

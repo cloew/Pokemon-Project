@@ -196,6 +196,6 @@ class PkmnBattleWrapper:
         
     def levelUp(self):
         """ Level up the Pokemon """
-        self.original.levelUp()
+        messages = self.original.levelUp()
         self.setPkmn(self.original)
-        return ["{0} leveled up to level {1}".format(self.original.name, self.original.level)]
+        return messages

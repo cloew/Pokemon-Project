@@ -11,3 +11,8 @@ class LearnAttackEvent(LevelEvent):
     def canLearnAttack(self):
         """ Return if the Pokemon can learn the attack """
         return len(self.pokemon.getAttacks()) < 4
+        
+    def perform(self):
+        """ Perform the event """
+        self.pokemon.getAttacks().append(self.attack)
+        return ["{0} learned {1}.".format(self.pokemon.name, self.attack.name)]
