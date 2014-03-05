@@ -13,8 +13,8 @@ class BattleMessageBox(SizedWidget):
         
     def update(self):
         """ Update the screen """
-        if not self.battle.noMessages() and not self.battle.messageQueue[0] == self.messageBox.message:
-            self.messageBox = MessageBox(self.battle.messageQueue[0])
+        if not self.battle.noEvents() and not self.battle.eventQueue[0] == self.messageBox.message:
+            self.messageBox = MessageBox(self.battle.eventQueue[0])
         self.messageBox.update()
         
     def drawSurface(self):

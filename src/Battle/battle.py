@@ -15,27 +15,27 @@ class Battle:
         self.environment = BattleEnvironment()
         self.over = False
         self.round = BattleRound(self.playerSide, self.oppSide, self.environment)
-        self.messageQueue = deque()
+        self.eventQueue = deque()
         self.introduce()
         
     def introduce(self):
         """ Introduces the battle """
-        messages = ["%s challenges you to a Pokemon Battle!" % self.getOppTrainer().getFullName()]
-        messages += self.sendOutPkmnToStart()
-        self.addMessages(messages)
+        events = ["%s challenges you to a Pokemon Battle!" % self.getOppTrainer().getFullName()]
+        events += self.sendOutPkmnToStart()
+        self.addEvents(events)
         
     def sendOutPkmnToStart(self):
         """ Sends out Pkmn on both sides """
-        messages = []
-        messages += self.oppSide.sendOutPkmnAtStart()
-        messages += self.playerSide.sendOutPkmnAtStart()
-        return messages
+        events = []
+        events += self.oppSide.sendOutPkmnAtStart()
+        events += self.playerSide.sendOutPkmnAtStart()
+        return events
         
-    def removeMessageFromQueue(self, event=None):
+    def removeEventFromQueue(self, event=None):
         """ Pops a message from the message queue if it has been fully displayed """
-        if len(self.messageQueue) > 0:
-            if self.messageQueue[0].fullyDisplayed:
-                self.messageQueue.popleft()
+        if len(self.eventQueue) > 0:
+            if self.eventQueue[0].fullyDisplayed:
+                self.eventQueue.popleft()
 
     def update(self):
         """ Update the Battle object """
@@ -43,8 +43,8 @@ class Battle:
     def performRound(self, alreadySelectedActions):
         """  Performs a single round """
         self.round.run(alreadySelectedActions)
-        self.addMessages(self.round.messages)
-        self.addMessages(self.betweenRounds())
+        self.addEvents(self.round.events)
+        self.addEvents(self.betweenRounds())
         
     def betweenRounds(self):
         """ Perform between rounds """
@@ -56,9 +56,9 @@ class Battle:
         """ Refills fainted Pkmn on each side """
         self.checkOver()
         if not self.over:
-            messages = self.playerSide.refill(pokemonReplacements)
-            messages += self.oppSide.refill(pokemonReplacements)
-            self.addMessages(messages)
+            events = self.playerSide.refill(pokemonReplacements)
+            events += self.oppSide.refill(pokemonReplacements)
+            self.addEvents(events)
         
     def checkOver(self):
         """ Checks if the game is Over """
@@ -70,19 +70,22 @@ class Battle:
         """ Checks if the game is over because the side has no Pkmn """
         if not side.hasPokemon():
             self.over = True
-            self.addMessages([side.trainer.getBeatenMessage()])
+            self.addEvents([side.trainer.getBeatenMessage()])
         
-    def addMessages(self, messages):
-        """ Adds the given messages to the message queue """
-        battleMessages = []
-        for message in messages:
-            battleMessages.append(BattleMessage(message))
+    def addEvents(self, events):
+        """ Adds the given events to the event queue """
+        battleEvents = []
+        for event in events:
+            if type(event) is str:
+                battleEvents.append(BattleMessage(event))
+            else:
+                battleEvents.append(event)
         
-        self.messageQueue += deque(battleMessages)
+        self.eventQueue += deque(battleEvents)
         
-    def noMessages(self):
-        """ Returns if there are no messages in the message queue """
-        return len(self.messageQueue) == 0
+    def noEvents(self):
+        """ Returns if there are no events in the event queue """
+        return len(self.eventQueue) == 0
         
     def getPlayerTrainer(self):
         """ Returns the Player Trainer """

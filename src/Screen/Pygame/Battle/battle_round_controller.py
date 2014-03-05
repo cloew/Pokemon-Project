@@ -11,14 +11,14 @@ class BattleRoundController(PygameController):
     def __init__(self, battle, screen):
         """ Initialize the Battle Round Controller """
         self.battle = battle
-        cmds = {commands.SELECT:self.battle.removeMessageFromQueue}
+        cmds = {commands.SELECT:self.battle.removeEventFromQueue}
         PygameController.__init__(self, screen, commands=cmds)
         
         self.coroutine = self.performEntireRound()
         
     def performGameCycle(self):
         """ Tells the battle object what to perform """
-        if self.battle.noMessages():
+        if self.battle.noEvents():
             self.coroutine.send(None)
                     
             if self.battle.over:

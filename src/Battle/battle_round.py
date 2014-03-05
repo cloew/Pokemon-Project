@@ -8,6 +8,7 @@ class BattleRound:
         self.playerSide = playerSide
         self.oppSide = oppSide
         self.environment = environment
+        self.events = []
         
     def run(self, alreadySelectedActions):
         """ Runs the Round """
@@ -15,18 +16,18 @@ class BattleRound:
         
     def performActions(self, alreadySelectedActions):
         """ Perform all the Round actions """
-        self.messages = []
+        self.events = []
         actions = self.getActions(alreadySelectedActions)
         
         pkmnWhoHaveGivenExperience = []
         
         for action in actions:
-            messages = []
-            messages += self.act(action)
-            messages += self.afterTurn(action.user)
-            messages += self.awardExperience(pkmnWhoHaveGivenExperience)
+            events = []
+            events += self.act(action)
+            events += self.afterTurn(action.user)
+            events += self.awardExperience(pkmnWhoHaveGivenExperience)
             
-            self.messages += messages
+            self.events += events
         
     def getActions(self, alreadySelectedActions):
         """ Get all actions in the round """
@@ -56,7 +57,7 @@ class BattleRound:
         
     def awardExperience(self, pkmnWhoHaveAwardedExperience):
         """ Awards experience for any newly fallen enemies """
-        messages = []
+        events = []
         pkmnToAwardExperienceFrom = [pkmn for pkmn in self.oppSide.pkmnInPlay if pkmn.fainted() and pkmn not in pkmnWhoHaveAwardedExperience]
         pkmnWhoHaveAwardedExperience += pkmnToAwardExperienceFrom
         return self.playerSide.awardExperience(pkmnToAwardExperienceFrom)

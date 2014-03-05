@@ -10,11 +10,11 @@ class BattleAftermathController(PygameController):
         """ Initialize the Battle Aftermath Controller """
         self.battle = battle
         screen.setBottomView(BattleMessageBox(self.battle, self.getWindow().width*.9, self.getWindow().height*.3))
-        cmds = {commands.SELECT:self.battle.removeMessageFromQueue}
+        cmds = {commands.SELECT:self.battle.removeEventFromQueue}
         PygameController.__init__(self, screen, commands=cmds)
         
     def performGameCycle(self):
         """ Tells the battle object what to perform """
         self.battle.update()
-        if self.battle.noMessages():
+        if self.battle.noEvents():
             self.stopRunning()
