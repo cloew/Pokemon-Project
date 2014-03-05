@@ -291,7 +291,7 @@
     <attack contact="true">
         <name>SCRATCH</name>
         <type>NORMAL</type>
-        <PP>25</PP>
+        <PP>35</PP>
         <speedDelegate>
             <type>CORE</type>
             <priority>0</priority>
