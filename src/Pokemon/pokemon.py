@@ -111,7 +111,7 @@ class Pokemon:
     def levelUp(self):
         """ Level up the Pokemon """
         self.level += 1
-        messages = ["{0} leveled up to level {1}.".format(self.name, self.level)]
+        events = ["{0} leveled up to level {1}.".format(self.name, self.level)]
         
         self.stats.levelUp()
         if self.level in self.species.attacksForLevel:
@@ -119,8 +119,8 @@ class Pokemon:
                 attack = AttackFactory.getAttackAsNew(attackName)
                 event = LearnAttackEvent(self, attack)
                 if event.canLearnAttack():
-                    messages += event.perform()
+                    events += event.perform()
                 else:
-                    messages += event.getTryToLearnMessages()
-                    
-        return messages
+                    events += event.getTryToLearnMessages()
+                    events.append(event)
+        return events
