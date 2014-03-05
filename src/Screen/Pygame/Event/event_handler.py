@@ -1,6 +1,7 @@
 from Battle.battle_message import BattleMessage
 from Pokemon.LevelEvents.learn_attack_event import LearnAttackEvent
 
+from Screen.Pygame.Event.learn_attack_controller import LearnAttackController
 from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 
 def PerformEvents(eventQueue, controller):
@@ -11,7 +12,12 @@ def PerformEvents(eventQueue, controller):
 
 def PerformEvent(event, controller):
     """ Perform the given event """
+    eventController = None
+    
     if isinstance(event, BattleMessage):
-        controller.runController(MessageBoxController(event, controller.screen))
+        eventController = MessageBoxController(event, controller.screen)
     elif isinstance(event, LearnAttackEvent):
-        print "Received Learn Attack Event"
+        eventController = LearnAttackController(event, controller.screen)
+        
+    if eventController is not None:
+        controller.runController(eventController)
