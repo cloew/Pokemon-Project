@@ -15,8 +15,7 @@ class BattleController(PygameController):
         """ Builds the Battle Controller """
         self.battle = Battle(playerTrainer, oppTrainer)
         screen = BattleScreen(self.battle)
-        cmds = {commands.SELECT:self.battle.removeEventFromQueue}
-        PygameController.__init__(self, screen, commands=cmds)
+        PygameController.__init__(self, screen)
         
     def performGameCycle(self):
         """ Tells the battle object what to perform """

@@ -1,7 +1,8 @@
 from InputProcessor import commands
+
+from Screen.Pygame.Event.event_handler import PerformEvents
 from Screen.Pygame.Menu.ActionMenu.action_menu_controller import ActionMenuController
 from Screen.Pygame.Menu.ActionMenu.SwitchMenu.switch_menu_controller import SwitchMenuController
-from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 
 from kao_gui.pygame.pygame_controller import PygameController
 
@@ -18,11 +19,9 @@ class BattleRoundController(PygameController):
     def performGameCycle(self):
         """ Tells the battle object what to perform """
         self.screen.setBottomView(None)
-        while not self.battle.noEvents():
-            event = self.battle.eventQueue.popleft()
-            self.runController(MessageBoxController(event, self.screen))
-            
+        PerformEvents(self.battle.eventQueue, self)
         self.coroutine.send(None)
+        
         if self.battle.over:
             self.stopRunning()
                 
