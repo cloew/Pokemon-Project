@@ -24,11 +24,6 @@
 						<PP>35</PP>
 					</attack>
 					<attack>
-						<name>GROWL</name>
-						<currPP>30</currPP> 
-						<PP>30</PP>
-					</attack>
-					<attack>
 						<name>EARTHQUAKE</name>
 						<currPP>35</currPP>
 						<PP>35</PP>
