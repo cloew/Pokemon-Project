@@ -1,5 +1,7 @@
 from InputProcessor import commands
+
 from Screen.Pygame.Battle.battle_message_box import BattleMessageBox
+from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 
 from kao_gui.pygame.pygame_controller import PygameController
 
@@ -9,12 +11,11 @@ class BattleIntroductionController(PygameController):
     def __init__(self, battle, screen):
         """ Initialize the Battle Introduction Controller """
         self.battle = battle
-        screen.setBottomView(BattleMessageBox(self.battle, self.getWindow().width*.9, self.getWindow().height*.3))
-        cmds = {commands.SELECT:self.battle.removeEventFromQueue}
-        PygameController.__init__(self, screen, commands=cmds)
+        PygameController.__init__(self, screen)
         
     def performGameCycle(self):
         """ Tells the battle object what to perform """
-        self.battle.update()
-        if self.battle.noEvents():
-            self.stopRunning()
+        while not self.battle.noEvents():
+            event = self.battle.eventQueue.popleft()
+            self.runController(MessageBoxController(event, self.screen))
+        self.stopRunning()
