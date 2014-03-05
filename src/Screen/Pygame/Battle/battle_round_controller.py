@@ -1,7 +1,7 @@
 from InputProcessor import commands
-from Screen.Pygame.Battle.battle_message_box import BattleMessageBox
 from Screen.Pygame.Menu.ActionMenu.action_menu_controller import ActionMenuController
 from Screen.Pygame.Menu.ActionMenu.SwitchMenu.switch_menu_controller import SwitchMenuController
+from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 
 from kao_gui.pygame.pygame_controller import PygameController
 
@@ -11,18 +11,20 @@ class BattleRoundController(PygameController):
     def __init__(self, battle, screen):
         """ Initialize the Battle Round Controller """
         self.battle = battle
-        cmds = {commands.SELECT:self.battle.removeEventFromQueue}
-        PygameController.__init__(self, screen, commands=cmds)
+        PygameController.__init__(self, screen)
         
         self.coroutine = self.performEntireRound()
         
     def performGameCycle(self):
         """ Tells the battle object what to perform """
-        if self.battle.noEvents():
-            self.coroutine.send(None)
-                    
-            if self.battle.over:
-                self.stopRunning()
+        self.screen.setBottomView(None)
+        while not self.battle.noEvents():
+            event = self.battle.eventQueue.popleft()
+            self.runController(MessageBoxController(event, self.screen))
+            
+        self.coroutine.send(None)
+        if self.battle.over:
+            self.stopRunning()
                 
     def performEntireRound(self):
         """ Perform an Entire Round """
@@ -43,8 +45,7 @@ class BattleRoundController(PygameController):
                     return
                 else:
                     pokemonActions[pokemon] = actionMenuController.action
-        
-        self.screen.setBottomView(BattleMessageBox(self.battle, self.getWindow().width*.9, self.getWindow().height*.3))
+                    
         self.battle.performRound(pokemonActions)
         
     def refillSides(self):

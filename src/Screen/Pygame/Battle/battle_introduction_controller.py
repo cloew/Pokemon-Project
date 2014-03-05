@@ -1,6 +1,5 @@
 from InputProcessor import commands
 
-from Screen.Pygame.Battle.battle_message_box import BattleMessageBox
 from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 
 from kao_gui.pygame.pygame_controller import PygameController
