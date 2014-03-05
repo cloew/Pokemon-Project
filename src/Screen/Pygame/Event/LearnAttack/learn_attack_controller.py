@@ -1,6 +1,6 @@
 from Battle.battle_message import BattleMessage
 
-from Screen.Pygame.Event.learn_attack_screen import LearnAttackScreen
+from Screen.Pygame.Event.LearnAttack.learn_attack_screen import LearnAttackScreen
 from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 
 from kao_gui.pygame.pygame_controller import PygameController

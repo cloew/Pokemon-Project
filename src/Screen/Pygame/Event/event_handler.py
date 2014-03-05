@@ -1,7 +1,7 @@
 from Battle.battle_message import BattleMessage
 from Pokemon.LevelEvents.learn_attack_event import LearnAttackEvent
 
-from Screen.Pygame.Event.learn_attack_controller import LearnAttackController
+from Screen.Pygame.Event.LearnAttack.learn_attack_controller import LearnAttackController
 from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 
 def PerformEvents(eventQueue, controller):
