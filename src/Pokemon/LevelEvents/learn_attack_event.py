@@ -16,3 +16,11 @@ class LearnAttackEvent(LevelEvent):
         """ Perform the event """
         self.pokemon.getAttacks().append(self.attack)
         return ["{0} learned {1}.".format(self.pokemon.name, self.attack.name)]
+        
+    def getTryToLearnMessages(self):
+        """ Return the messages for the Pokemon to try to learn an attack """
+        messages = []
+        messages.append("{0} is trying to learn {1}.".format(self.pokemon.name, self.attack.name))
+        messages.append("But {0} can't learn more than four moves.".format(self.pokemon.name))
+        messages.append("Forget a move to learn {0}?".format(self.attack.name))
+        return messages

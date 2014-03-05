@@ -120,5 +120,7 @@ class Pokemon:
                 event = LearnAttackEvent(self, attack)
                 if event.canLearnAttack():
                     messages += event.perform()
+                else:
+                    messages += event.getTryToLearnMessages()
                     
         return messages
