@@ -7,13 +7,16 @@ class MessageBox(SizedWidget):
     """ Represents a message box on the screen """
     maxChars = 35
     
-    def __init__(self, message):
+    def __init__(self, message, fullyDisplay=False):
         """ Builds the Message Box with the given message box """
         SizedWidget.__init__(self, 576, 82)
         self.message = message
         self.charsShown = 0
         self.font = pygame.font.SysFont("Times New Roman", 36)
         self.stringToDisplay = ""
+        
+        if fullyDisplay:
+            self.showFully()
     
     def update(self):
         """ Updates the message box """
@@ -33,3 +36,7 @@ class MessageBox(SizedWidget):
     def isFullyShown(self):
         """ Returns if the current message string is fully shown """
         return self.charsShown >= self.message.length()
+        
+    def showFully(self):
+        """ Make the message display fully """
+        self.charsShown = self.message.length()

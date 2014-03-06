@@ -2,6 +2,7 @@ from Battle.battle_message import BattleMessage
 
 from Screen.Pygame.Event.LearnAttack.learn_attack_screen import LearnAttackScreen
 from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
+from Screen.Pygame.YesNo.yes_no_controller import YesNoController
 
 from kao_gui.pygame.pygame_controller import PygameController
 
@@ -17,9 +18,13 @@ class LearnAttackController(PygameController):
         
     def performGameCycle(self):
         """ Perform the learn attack loop """
-        while not self.done:
+        while not self.done and self.isRunning():
             messages = self.event.getTryToLearnMessages()
             for message in messages:
                 self.runController(MessageBoxController(BattleMessage(message), self.screen))
-            self.done = True
+                
+            yesNoController = YesNoController(BattleMessage(messages[-1]), self.screen)
+            self.runController(yesNoController)
+            if yesNoController.answer:
+                self.done = True
         self.stopRunning()
