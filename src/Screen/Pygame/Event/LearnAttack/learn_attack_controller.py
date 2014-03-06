@@ -20,11 +20,18 @@ class LearnAttackController(PygameController):
         """ Perform the learn attack loop """
         while not self.done and self.isRunning():
             messages = self.event.getTryToLearnMessages()
-            for message in messages:
+            for message in messages[:-1]:
                 self.runController(MessageBoxController(BattleMessage(message), self.screen))
                 
             yesNoController = YesNoController(BattleMessage(messages[-1]), self.screen)
             self.runController(yesNoController)
             if yesNoController.answer:
                 self.done = True
+            else:
+                message = BattleMessage(self.event.getStopLearningMessage())
+                # self.runController(MessageBoxController(message, self.screen))
+                yesNoController = YesNoController(message, self.screen)
+                self.runController(yesNoController)
+                if yesNoController.answer:
+                    self.done = True
         self.stopRunning()

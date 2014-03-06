@@ -24,3 +24,7 @@ class LearnAttackEvent(LevelEvent):
         messages.append("But {0} can't learn more than four moves.".format(self.pokemon.name))
         messages.append("Forget a move to learn {0}?".format(self.attack.name))
         return messages
+        
+    def getStopLearningMessage(self):
+        """ Return the Stop Learning Message """
+        return "Stop trying to learn {0}".format(self.attack.name)
