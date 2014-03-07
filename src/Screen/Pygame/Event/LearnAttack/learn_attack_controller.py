@@ -21,18 +21,14 @@ class LearnAttackController(PygameController):
         """ Perform the learn attack loop """
         while not self.done and self.isRunning():
             messages = self.event.getTryToLearnMessages()
-            for message in messages[:-1]:
-                self.runController(MessageBoxController(BattleMessage(message), self.screen))
+            self.presentMessages(messages[:-1])
                 
-            yesNoController = YesNoController(BattleMessage(messages[-1]), self.screen)
-            self.runController(yesNoController)
             if self.userWantsToForget(messages[-1]):
                 attack = self.pickAttackToForget()
                 if attack is not None:
                     self.done = True
                     messages = self.event.learnAndReplace(attack)
-                    for message in messages:
-                        self.runController(MessageBoxController(BattleMessage(message), self.screen))
+                    self.presentMessages(messages)
             elif self.userWantsToStopLearning(self.event.getStopLearningMessage()):
                     self.done = True
                         
@@ -57,3 +53,8 @@ class LearnAttackController(PygameController):
         yesNoController = YesNoController(BattleMessage(message), self.screen)
         self.runController(yesNoController)
         return yesNoController.answer
+        
+    def presentMessages(self, messages):
+        """ Present the given messages """
+        for message in messages:
+            self.runController(MessageBoxController(BattleMessage(message), self.screen))
