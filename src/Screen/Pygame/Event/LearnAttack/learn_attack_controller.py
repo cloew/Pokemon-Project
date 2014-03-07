@@ -16,23 +16,27 @@ class LearnAttackController(PygameController):
         PygameController.__init__(self, screen)
         self.event = event
         self.done = False
+        self.coroutine = self.performLearnAttackLoop()
         
     def performGameCycle(self):
+        """ Run the Learn Attack Loop """
+        self.coroutine.next()
+    
+    def performLearnAttackLoop(self):
         """ Perform the learn attack loop """
-        while not self.done and self.isRunning():
+        while self.isRunning():
             messages = self.event.getTryToLearnMessages()
             self.presentMessages(messages[:-1])
-                
+            
             if self.userWantsToForget(messages[-1]):
                 attack = self.pickAttackToForget()
                 if attack is not None:
-                    self.done = True
+                    self.stopRunning()
                     messages = self.event.learnAndReplace(attack)
                     self.presentMessages(messages)
             elif self.userWantsToStopLearning(self.event.getStopLearningMessage()):
-                    self.done = True
-                        
-        self.stopRunning()
+                self.stopRunning()
+            yield
         
     def userWantsToForget(self, message):
         """ Return if the Player wants to forget a move """
