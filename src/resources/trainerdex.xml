@@ -28,6 +28,11 @@
 						<currPP>35</currPP>
 						<PP>35</PP>
 					</attack>
+                    <attack>
+						<name>GROWL</name>
+						<currPP>35</currPP>
+						<PP>35</PP>
+					</attack>
 				</attacks>
 			</pokemon>
 			<pokemon>
