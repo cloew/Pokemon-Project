@@ -17,6 +17,16 @@ class LearnAttackEvent(LevelEvent):
         self.pokemon.getAttacks().append(self.attack)
         return ["{0} learned {1}.".format(self.pokemon.name, self.attack.name)]
         
+    def learnAndReplace(self, attack):
+        """ Learn the new attack and Replace the given attack """
+        attacks = self.pokemon.getAttacks()
+        index = attacks.index(attack)
+        attacks[index] = self.attack
+        
+        forgotMessage = "{0} forgot {1}...".format(self.pokemon.name, attack.name)
+        learnedMessage = "And {0} learned {1}".format(self.pokemon.name, self.attack.name)
+        return [forgotMessage, learnedMessage]
+        
     def getTryToLearnMessages(self):
         """ Return the messages for the Pokemon to try to learn an attack """
         messages = []
