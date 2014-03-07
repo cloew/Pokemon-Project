@@ -26,19 +26,34 @@ class LearnAttackController(PygameController):
                 
             yesNoController = YesNoController(BattleMessage(messages[-1]), self.screen)
             self.runController(yesNoController)
-            if yesNoController.answer:
-                pickAttackController = AttackPickerController(self.event.pokemon, self.screen)
-                self.runController(pickAttackController)
-                if pickAttackController.attack is not None:
+            if self.userWantsToForget(messages[-1]):
+                attack = self.pickAttackToForget()
+                if attack is not None:
                     self.done = True
-                    messages = self.event.learnAndReplace(pickAttackController.attack)
+                    messages = self.event.learnAndReplace(attack)
                     for message in messages:
                         self.runController(MessageBoxController(BattleMessage(message), self.screen))
-            else:
-                message = BattleMessage(self.event.getStopLearningMessage())
-                yesNoController = YesNoController(message, self.screen)
-                self.runController(yesNoController)
-                if yesNoController.answer:
+            elif self.userWantsToStopLearning(self.event.getStopLearningMessage()):
                     self.done = True
                         
         self.stopRunning()
+        
+    def userWantsToForget(self, message):
+        """ Return if the Player wants to forget a move """
+        return self.getYesNoResponse(message)
+        
+    def userWantsToStopLearning(self, message):
+        """ Return if the user wants to stop learning the new attack """
+        return self.getYesNoResponse(message)
+        
+    def pickAttackToForget(self):
+        """ Return the Attack the user would like to replace """
+        pickAttackController = AttackPickerController(self.event.pokemon, self.screen)
+        self.runController(pickAttackController)
+        return pickAttackController.attack
+        
+    def getYesNoResponse(self, message):
+        """ Return the Yes/No Response """
+        yesNoController = YesNoController(BattleMessage(message), self.screen)
+        self.runController(yesNoController)
+        return yesNoController.answer
