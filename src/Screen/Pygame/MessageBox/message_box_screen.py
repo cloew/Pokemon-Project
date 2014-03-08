@@ -1,3 +1,4 @@
+from Screen.Pygame.Menu.menu_background_widget import MenuBackgroundWidget
 from Screen.Pygame.MessageBox.message_box import MessageBox
 
 from kao_gui.pygame.pygame_helper import GetTransparentSurface
@@ -9,7 +10,7 @@ class MessageBoxScreen(PygameScreen):
     def __init__(self, message, lastScreen):
         """ Initialize the Message Box Screen """
         PygameScreen.__init__(self)
-        self.messageBox = MessageBox(message)
+        self.messageBox = MessageBox(self.width*.95, self.height*.3, message)
         self.lastScreen = lastScreen
         
     def drawSurface(self):
@@ -17,15 +18,8 @@ class MessageBoxScreen(PygameScreen):
         previousScreenSurface = self.lastScreen.draw()
         self.drawOnSurface(previousScreenSurface, left=0, top=0)
         
-        width = self.width*.9
-        height = self.height*.3
-        
-        messageBoxWindowSurface = GetTransparentSurface(width, height)
         messageBoxSurface = self.messageBox.draw()
-        
-        messageBoxPosition = messageBoxSurface.get_rect(centerx=width*.5, centery=height*.5)
-        messageBoxWindowSurface.blit(messageBoxSurface, messageBoxPosition)
-        self.drawOnSurface(messageBoxWindowSurface, left=.05, top=.7)
+        self.drawOnSurface(messageBoxSurface, left=.025, top=.7)
         
     def update(self):
         """ Update the Screen """

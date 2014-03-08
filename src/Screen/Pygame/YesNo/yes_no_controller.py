@@ -14,7 +14,7 @@ class YesNoController(PygameController):
         self.message = BattleMessage(message.message)
         self.lastScreen = lastScreen
         
-        screen = YesNoScreen(message, lastScreen)
+        screen = YesNoScreen(lastScreen)
         cmds = {commands.SELECT:self.select,
                 commands.EXIT:self.back}
         PygameController.__init__(self, screen, commands=cmds)
@@ -25,7 +25,9 @@ class YesNoController(PygameController):
     def performGameCycle(self):
         """ Perform the learn attack loop """
         if not self.displayedMessage:
-            self.runController(MessageBoxController(self.message, self.lastScreen, autoClose=True))
+            controller = MessageBoxController(self.message, self.lastScreen, autoClose=True)
+            self.screen.messageBox = controller.screen.messageBox
+            self.runController(controller)
             self.displayedMessage = True
         
     def select(self):

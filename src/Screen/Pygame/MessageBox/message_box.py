@@ -1,3 +1,5 @@
+from Screen.Pygame.Menu.menu_background_widget import MenuBackgroundWidget
+
 from kao_gui.pygame.pygame_helper import GetTransparentSurface
 from kao_gui.pygame.widgets.sized_widget import SizedWidget
 
@@ -7,13 +9,15 @@ class MessageBox(SizedWidget):
     """ Represents a message box on the screen """
     maxChars = 35
     
-    def __init__(self, message, fullyDisplay=False):
+    def __init__(self, width, height, message, fullyDisplay=False):
         """ Builds the Message Box with the given message box """
-        SizedWidget.__init__(self, 576, 82)
+        SizedWidget.__init__(self, width, height)
         self.message = message
         self.charsShown = 0
         self.font = pygame.font.SysFont("Times New Roman", 36)
         self.stringToDisplay = ""
+        
+        self.background = MenuBackgroundWidget(self.width, self.height)
         
         if fullyDisplay:
             self.showFully()
@@ -27,11 +31,13 @@ class MessageBox(SizedWidget):
         
     def drawSurface(self):
         """ Draws the message box """
+        self.drawOnSurface(self.background.draw(), left=0, top=0)
+        
         line1 = self.font.render(self.stringToDisplay[:self.maxChars], 1, (10, 10, 10)) # Logic to split string to display may belong better in model
         line2 = self.font.render(self.stringToDisplay[self.maxChars:], 1, (10, 10, 10))
         
-        self.drawOnSurface(line1, left=0, top=0)
-        self.drawOnSurface(line2, left=0, top=42.0/self.height)
+        self.drawOnSurface(line1, left=.05, centery=.33)
+        self.drawOnSurface(line2, left=.05, centery=.66)
         
     def isFullyShown(self):
         """ Returns if the current message string is fully shown """
