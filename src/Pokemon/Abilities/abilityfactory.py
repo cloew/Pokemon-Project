@@ -12,6 +12,7 @@ from effecton_contact_ability import EffectOnContactAbility
 from effectoncrit_ability import EffectOnCritAbility
 from effecton_statmod_ability import EffectOnStatModAbility
 from nocrit_ability import NoCritAbility
+from pressure_ability import PressureAbility
 from prevent_recoil_ability import PreventRecoilAbility
 from resist_type_ability import ResistTypeAbility
 from skip_turn_ability import SkipTurnAbility
@@ -138,6 +139,9 @@ class AbilityFactory:
             
         elif abilityType == "NO CRIT":
             return NoCritAbility(name)
+            
+        elif abilityType == "PRESSURE":
+            return PressureAbility(name)
             
         elif abilityType == "PREVENT RECOIL":
             return PreventRecoilAbility(name)

@@ -1,5 +1,6 @@
+from ability import Ability
 
-class PressureAbility:
+class PressureAbility(Ability):
     """ Represents the Pressure Ability """
     
     def powerPointsPressure(self):

@@ -59,6 +59,10 @@
         </effectivenesses>
     </ability>
     <ability>
+        <name>PRESSURE</name>
+        <type>PRESSURE</type>
+    </ability>
+    <ability>
         <name>POISON POINT</name>
         <type>EFFECT ON CONTACT</type>
         <effectDelegates>
