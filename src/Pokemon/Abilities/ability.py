@@ -63,6 +63,7 @@ class Ability(AfterTurnEffect):
         
     def onEntry(self):
         """ Perform when a Pkmn arrives in the battle """
+        return []
         
     def onFlinch(self, pkmn):
         """ Perform on Flinch """
