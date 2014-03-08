@@ -61,7 +61,7 @@ class Ability(AfterTurnEffect):
     def onDamage(self, pkmn, damage):
         """ Perform on damage """
         
-    def onEntry(self):
+    def onEntry(self, pkmn):
         """ Perform when a Pkmn arrives in the battle """
         return []
         

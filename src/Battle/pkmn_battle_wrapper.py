@@ -21,7 +21,7 @@ class PkmnBattleWrapper:
             
         self.lastAction = None
         self.setPkmn(pkmn)
-        messages = self.pkmn.ability.onEntry()
+        messages = self.pkmn.ability.onEntry(self.pkmn)
         return [self.side.trainer.announcePkmn(pkmn)] + messages
         
     def reset(self):

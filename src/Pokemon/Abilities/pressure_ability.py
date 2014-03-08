@@ -7,6 +7,6 @@ class PressureAbility(Ability):
         """ Return the power point Pressure this Pokemon applies """
         return 2
         
-    def onEntry(self):
+    def onEntry(self, pkmn):
         """ Perform when a Pkmn arrives in the battle """
-        return ["{0} is exerting its Pressure."]
+        return ["{0} is exerting its Pressure.".format(pkmn.name)]
