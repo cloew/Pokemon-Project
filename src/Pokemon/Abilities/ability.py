@@ -25,6 +25,10 @@ class Ability(AfterTurnEffect):
         """ Return whether effects on damaging attacks can be used """
         return True
         
+    def powerPointsPressure(self):
+        """ Return the power point Pressure this Pokemon applies """
+        return 1
+        
     # Effects on Crit
     def giveCrit(self, critMod):
         """ Perform on a critical hit """

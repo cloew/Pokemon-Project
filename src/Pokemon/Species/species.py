@@ -18,3 +18,7 @@ class Species:
             self.attacksForLevel[level].append(attack)
         else:
             self.attacksForLevel[level] = [attack]
+            
+    def __eq__(self, other):
+        """ Return if the other and self are for the same species """
+        return self.name == other.name

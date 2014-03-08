@@ -55,6 +55,23 @@ suiteCanUseEffects = unittest.TestSuite(map(canUseEffects, testcasesCanUseEffect
 
 ##########################################################
 
+class powerPointsPressure(unittest.TestCase):
+    """ Test that powerPointsPressure returns the correct default values """
+    
+    def setUp(self):
+        """ Builds the ability """
+        self.ability = Ability(None)
+        
+    def properReturnValues(self):
+        """ Check that powerPointsPressure returns the proper default values """
+        pressure = self.ability.powerPointsPressure()
+        assert pressure == 1, "Pressure should be 1 by default"
+        
+testcasesPowerPointsPressure = ["properReturnValues"]
+suitePowerPointsPressure = unittest.TestSuite(map(powerPointsPressure, testcasesPowerPointsPressure))
+
+##########################################################
+
 class canBeConfused(unittest.TestCase):
     """ Test that canBeConfused returns the correct default values """
     
@@ -249,7 +266,7 @@ suiteOnStatus = unittest.TestSuite(map(onStatus, testcasesOnStatus))
 ##########################################################
 
  
-suites = [suiteStopAttack, suiteAfterTurn, suiteCanUseEffects, suiteGiveCrit, suiteTakeCrit,\
+suites = [suiteStopAttack, suiteAfterTurn, suiteCanUseEffects, suitePowerPointsPressure, suiteGiveCrit, suiteTakeCrit,\
           suiteEffectivenessOnAttack, suiteEffectivenessOnDefense, suiteOnAccuracy, suiteOnContact,
           suiteOnStab, suiteOnStatMod, suiteOnStatus, suiteCanBeConfused]
 suite = unittest.TestSuite(suites)

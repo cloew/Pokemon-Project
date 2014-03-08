@@ -18,9 +18,10 @@ class PokemonFactory:
     """ Factory to build Pokemon """
     
     @staticmethod
-    def buildStarter(species):
+    def buildStarter(speciesName):
         """ Creates a Pokemon with Starter stats """
-        name = species
+        name = speciesName
+        species = SpeciesFactory.getSpecies(speciesName)
         level = 5
         pkmn = Pokemon(name, level, species)
         pkmn.id = ""
@@ -28,6 +29,7 @@ class PokemonFactory:
         pkmn.ability = Ability(None)
         pkmn.battleDelegate = PokemonBattleDelegateFactory.buildStarter(pkmn)
         pkmn.displayDelegate = PokemonDisplayDelegateFactory.buildStarter(species)
+        # pkmn.experienceDelegate = ExperienceDelegateFactory.loadFromXML(pkmn, tree)
     
         return pkmn
     
