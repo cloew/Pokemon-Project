@@ -1,5 +1,7 @@
 from Battle.battle_message import BattleMessage
 from InputProcessor import commands
+from Menu.menu import Menu
+from Menu.text_menu_entry import TextMenuEntry
 
 from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 from Screen.Pygame.YesNo.yes_no_screen import YesNoScreen
@@ -14,8 +16,14 @@ class YesNoController(PygameController):
         self.message = BattleMessage(message.message)
         self.lastScreen = lastScreen
         
-        screen = YesNoScreen(lastScreen)
-        cmds = {commands.SELECT:self.select,
+        entries = [TextMenuEntry("Yes", self.select),
+                   TextMenuEntry("No", self.back)]
+        self.menu = Menu(entries)
+        
+        screen = YesNoScreen(self.menu, lastScreen)
+        cmds = {commands.UP:self.menu.up,
+                commands.DOWN:self.menu.down,
+                commands.SELECT:self.menu.enter,
                 commands.EXIT:self.back}
         PygameController.__init__(self, screen, commands=cmds)
         
@@ -30,12 +38,12 @@ class YesNoController(PygameController):
             self.runController(controller)
             self.displayedMessage = True
         
-    def select(self):
+    def select(self, entry=None):
         """ Select the current entry """
         self.answer = True
         self.stopRunning()
         
-    def back(self):
+    def back(self, entry=None):
         """ Return to the previous """
         self.answer = False
         self.stopRunning()
