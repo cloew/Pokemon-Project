@@ -10,7 +10,7 @@ class MessageBoxScreen(PygameScreen):
     def __init__(self, message, lastScreen):
         """ Initialize the Message Box Screen """
         PygameScreen.__init__(self)
-        self.messageBox = MessageBox(self.width*.95, self.height*.3, message)
+        self.messageBox = MessageBox(self.width*.9, self.height*.3, message)
         self.lastScreen = lastScreen
         
     def drawSurface(self):
@@ -19,7 +19,7 @@ class MessageBoxScreen(PygameScreen):
         self.drawOnSurface(previousScreenSurface, left=0, top=0)
         
         messageBoxSurface = self.messageBox.draw()
-        self.drawOnSurface(messageBoxSurface, left=.025, top=.7)
+        self.drawOnSurface(messageBoxSurface, left=.05, top=.7)
         
     def update(self):
         """ Update the Screen """

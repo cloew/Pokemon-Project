@@ -16,4 +16,4 @@ class YesNoScreen(PygameScreen):
         
         if self.messageBox is not None:
             messageBoxSurface = self.messageBox.draw()
-            self.drawOnSurface(messageBoxSurface, left=.025, top=.7)
+            self.drawOnSurface(messageBoxSurface, left=.05, top=.7)

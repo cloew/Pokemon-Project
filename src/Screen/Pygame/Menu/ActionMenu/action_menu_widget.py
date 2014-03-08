@@ -1,6 +1,7 @@
 from Screen.Pygame.Menu.menu_widget import MenuWidget
+from Screen.Pygame.Menu.menu_with_background_widget import MenuWithBackgroundWidget
 
-class ActionMenuWidget(MenuWidget):
+class ActionMenuWidget(MenuWithBackgroundWidget):
     """ Represents the widget for the Action Menus """
     
     @property
