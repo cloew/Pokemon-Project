@@ -115,6 +115,29 @@
         <attacks />
     </pokemon>
     <pokemon>
+        <species>RATTATA</species>
+        <dex>19</dex>
+        <types>
+            <type>NORMAL</type>
+        </types>
+        <abilities>
+            <ability>RUN AWAY</ability>
+            <ability>GUTS</ability>
+            <dream>HUSTLE</dream>
+        </abilities>
+        <baseStats>
+            <HP>30</HP>
+            <ATK>56</ATK>
+            <DEF>35</DEF>
+            <SPD>72</SPD>
+            <SATK>25</SATK>
+            <SDEF>35</SDEF>
+        </baseStats>
+        <experience>51</experience>
+        <rateType>MEDIUM FAST</rateType>
+        <attacks />
+    </pokemon>
+    <pokemon>
         <species>RAICHU</species>
         <dex>26</dex>
         <types>

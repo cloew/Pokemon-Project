@@ -629,7 +629,7 @@
 				<level>20</level>
 				<currHP>1</currHP>
 				<experience>0</experience>
-				<ability>STURDY</ability>
+				<ability>PRESSURE</ability>
 				<attacks>
 					<attack>
 						<name>IRON TAIL</name>
