@@ -76,10 +76,7 @@ class Battle:
         """ Adds the given events to the event queue """
         battleEvents = []
         for event in events:
-            if type(event) is str:
-                battleEvents.append(BattleMessage(event))
-            else:
-                battleEvents.append(event)
+            battleEvents.append(event)
         
         self.eventQueue += deque(battleEvents)
         

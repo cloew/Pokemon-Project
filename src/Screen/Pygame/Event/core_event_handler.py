@@ -14,8 +14,8 @@ def PerformEvent(event, controller):
     """ Perform the given event """
     eventController = None
     
-    if isinstance(event, BattleMessage):
-        eventController = MessageBoxController(event, controller.screen)
+    if isinstance(event, str):
+        eventController = MessageBoxController(BattleMessage(event), controller.screen)
     elif isinstance(event, LearnAttackEvent):
         eventController = LearnAttackController(event, controller.screen)
         

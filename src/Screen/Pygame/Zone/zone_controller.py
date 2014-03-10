@@ -45,7 +45,7 @@ class ZoneController(PygameController):
         
     def interactWithPerson(self, content, message):
         """ Interact with the given person """
-        PerformEvents(deque([BattleMessage(message)]), self)
+        PerformEvents(deque([message]), self)
         
         if content.isBattleable():
             self.runController(BattleController(self.playerPerson.trainer, content.trainer))
