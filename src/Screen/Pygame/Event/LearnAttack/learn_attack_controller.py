@@ -31,9 +31,9 @@ class LearnAttackController(PygameController):
             if self.userWantsToForget(messages[-1]):
                 attack = self.pickAttackToForget()
                 if attack is not None:
-                    self.stopRunning()
                     messages = self.event.learnAndReplace(attack)
                     self.presentMessages(messages)
+                    self.stopRunning()
             elif self.userWantsToStopLearning(self.event.getStopLearningMessage()):
                 self.stopRunning()
             yield
