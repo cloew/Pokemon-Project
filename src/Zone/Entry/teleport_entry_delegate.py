@@ -6,7 +6,7 @@ class TeleportEntryDelegate(EntryDelegate):
     
     def onEnter(self, player):
         """ Perform on Enter event """
-        print "Teleporting"
-        from Zone.zone_factory import ZoneFactory
-        zone = ZoneFactory.getZone("Kanto Gym Leaders Marathon")
-        self.callback([TeleportEvent(zone, 0, 0)])
+        # print "Teleporting"
+        # from Zone.zone_factory import ZoneFactory
+        zoneName = "Kanto Gym Leaders Marathon"
+        self.callback([TeleportEvent(zoneName, 0, 0)])
