@@ -9,5 +9,8 @@ class PersonInteractionDelegate(InteractionDelegate):
     def interact(self, direction):
         """ Interact with the trainer """
         self.content.movementDelegate.direction = GetOppositeDirection(direction)
+        events = [self.message]
+        if self.content.isBattleable():
+            events.append(BattleEvent(self.content.trainer))
         if self.callback is not None:
-            self.callback(self.content, [self.message, BattleEvent(self.content.trainer)])
+            self.callback(events)

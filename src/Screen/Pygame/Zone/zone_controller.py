@@ -43,7 +43,7 @@ class ZoneController(PygameController):
         """ Performs a Select """
         self.playerPerson.interactWithAdjacentTile()
         
-    def handleZoneEvents(self, content, events):
+    def handleZoneEvents(self, events):
         """ Handle Zone Events """
         PerformEvents(deque(events), self)
         
