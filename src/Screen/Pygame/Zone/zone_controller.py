@@ -8,7 +8,6 @@ from Screen.Pygame.Zone.zone_screen import ZoneScreen
 from Zone.zone import Zone
 from Zone.zone_factory import ZoneFactory
 from Zone.Person.trainer_person import TrainerPerson
-# from Zone.Person.Interaction.person_interaction_delegate import PersonInteractionDelegate
 
 from kao_gui.pygame.key_states import PRESSED, RELEASED
 from kao_gui.pygame.pygame_controller import PygameController
@@ -42,12 +41,12 @@ class ZoneController(PygameController):
         """ Performs a Select """
         self.playerPerson.interactWithAdjacentTile()
         
-    def interactWithPerson(self, otherPerson, message):
+    def interactWithPerson(self, content, message):
         """ Interact with the given person """
         self.runController(MessageBoxController(BattleMessage(message), self.screen))
         
-        if otherPerson.isBattleable():
-            self.runController(BattleController(self.playerPerson.trainer, otherPerson.trainer))
+        if content.isBattleable():
+            self.runController(BattleController(self.playerPerson.trainer, content.trainer))
             if self.doneCallback is not None and self.doneCallback():
                 self.stopRunning()
         

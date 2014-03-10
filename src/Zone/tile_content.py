@@ -15,8 +15,14 @@ class TileContent:
         
     def interact(self, direction):
         """ Interact with the contents """
-        self.interactionDelegate.interact(direction)
+        if self.interactionDelegate is not None:
+            self.interactionDelegate.interact(direction)
         
     def setInteractionCallback(self, callback):
         """ Set the Person's Interaction Callback """
-        self.interactionDelegate.callback = callback
+        if self.interactionDelegate is not None:
+            self.interactionDelegate.callback = callback
+            
+    def isBattleable(self):
+        """ Return if the content is battleable """
+        return False

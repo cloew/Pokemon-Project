@@ -1,3 +1,4 @@
+from Zone.direction import GetOppositeDirection
 
 class InteractionDelegate:
     """ Interaction Delegate for Tile Contents """
@@ -14,6 +15,6 @@ class InteractionDelegate:
         
     def interact(self, direction):
         """ Interact with the trainer """
-        if self.direction is None or self.direction == direction:
+        if self.direction is None or self.direction == GetOppositeDirection(direction):
             if self.callback is not None:
                 self.callback(self.content, self.message)

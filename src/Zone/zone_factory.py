@@ -46,7 +46,6 @@ class ZoneFactory:
             interactionDelegate = LoadInteractionDelegateFromXML(contentElement)
             content = TileContent(image, interactionDelegate)
             tiles[row][column].contents = content
-            
         
     @staticmethod
     def loadFromDB():
