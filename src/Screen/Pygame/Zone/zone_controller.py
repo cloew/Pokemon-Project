@@ -2,6 +2,7 @@ from Battle.battle_message import BattleMessage
 from InputProcessor import commands
 
 from Screen.Pygame.Battle.battle_controller import BattleController
+from Screen.Pygame.Event.zone_event_handler import PerformEvents
 from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 from Screen.Pygame.Zone.zone_screen import ZoneScreen
 
@@ -9,6 +10,7 @@ from Zone.zone import Zone
 from Zone.zone_factory import ZoneFactory
 from Zone.Person.trainer_person import TrainerPerson
 
+from collections import deque
 from kao_gui.pygame.key_states import PRESSED, RELEASED
 from kao_gui.pygame.pygame_controller import PygameController
 
@@ -43,7 +45,7 @@ class ZoneController(PygameController):
         
     def interactWithPerson(self, content, message):
         """ Interact with the given person """
-        self.runController(MessageBoxController(BattleMessage(message), self.screen))
+        PerformEvents(deque([BattleMessage(message)]), self)
         
         if content.isBattleable():
             self.runController(BattleController(self.playerPerson.trainer, content.trainer))
