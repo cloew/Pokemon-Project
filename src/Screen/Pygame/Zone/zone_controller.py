@@ -58,7 +58,7 @@ class ZoneController(PygameController):
         """ Setup the current zone """
         self.zone = zone
         self.zone.setCallbacks(self.handleZoneEvents)
-        self.playerPerson = TrainerPerson(self.zone.tiles[row][column], "trainer", self.playerPerson.trainer, causeEnterEvents=True)
+        self.playerPerson.setTile(self.zone.tiles[row][column])
         
         self.screen.playerPerson = self.playerPerson
         self.screen.zone = self.zone
