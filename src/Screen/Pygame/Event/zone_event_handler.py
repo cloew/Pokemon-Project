@@ -16,6 +16,6 @@ def PerformEvent(event, zoneController):
         zoneController.runController(BattleController(zoneController.playerPerson.trainer, event.trainerToFight))
     elif isinstance(event, TeleportEvent):
         zone = ZoneFactory.getZone(event.newZoneName)
-        zoneController.setupZone(event.newZone, event.row, event.column)
+        zoneController.setupZone(zone, event.row, event.column)
     else:
         PerformCoreEvent(event, zoneController)

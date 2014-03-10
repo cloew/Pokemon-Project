@@ -3,6 +3,7 @@ from resources.tags import Tags
 
 from Zone.tile_content import TileContent
 from Zone.zone import Zone
+from Zone.Entry.teleport_entry_delegate import TeleportEntryDelegate
 from Zone.Interaction.interaction_factory import LoadInteractionDelegateFromXML
 from Zone.Person.person_factory import LoadPeopleFromZoneXML
 
@@ -28,6 +29,7 @@ class ZoneFactory:
         tileFilename = tree.findtext(Tags.tileTag)
         zone = Zone(rows, columns, tileFilename)
         ZoneFactory.loadContentsFromXML(tree, zone.tiles)
+        ZoneFactory.loadPortalsFromXML(tree, zone.tiles)
         zone.people = LoadPeopleFromZoneXML(tree, zone.tiles)
         return zone
         
@@ -46,6 +48,24 @@ class ZoneFactory:
             interactionDelegate = LoadInteractionDelegateFromXML(contentElement)
             content = TileContent(image, interactionDelegate)
             tiles[row][column].contents = content
+            
+    @staticmethod
+    def loadPortalsFromXML(tree, tiles):
+        """ Loads a Zone object from a file """
+        portalsElement = tree.find(Tags.portalsTag)
+        if portalsElement is None:
+            return
+            
+        for portalElement in portalsElement.findall(Tags.portalTag):
+            row = int(portalElement.findtext(Tags.rowTag))
+            column = int(portalElement.findtext(Tags.columnTag))
+            destinationElement = portalElement.find(Tags.destinationTag)
+            zoneName = destinationElement.findtext(Tags.zoneTag)
+            destinationRow = int(portalElement.findtext(Tags.rowTag))
+            destinationColumn = int(portalElement.findtext(Tags.columnTag))
+            
+            tiles[row][column].entryDelegate = TeleportEntryDelegate(zoneName, destinationRow, destinationColumn)
+            
         
     @staticmethod
     def loadFromDB():

@@ -12,9 +12,9 @@ class Tile:
         self.connections = {}
         
         self.contents = None
-        self.enterDelegate = None
-        if self.row == 0 and self.column == 9:
-            self.enterDelegate = TeleportEntryDelegate()
+        self.entryDelegate = None
+        # if self.row == 0 and self.column == 9:
+            # self.enterDelegate = TeleportEntryDelegate()
         
     def connectToTile(self, tile, direction, twoWay=True):
         """ Connect this tile and the given tile """
@@ -29,8 +29,8 @@ class Tile:
         
     def onEnter(self, player):
         """ Perform enter event """
-        if self.enterDelegate is not None:
-            self.enterDelegate.onEnter(player)
+        if self.entryDelegate is not None:
+            self.entryDelegate.onEnter(player)
             
     def setContents(self, contents):
         """ Sets the tile's contents """
@@ -41,5 +41,5 @@ class Tile:
         if self.contents is not None:
             self.contents.setInteractionCallback(callback)
             
-        if self.enterDelegate is not None:
-            self.enterDelegate.setCallback(callback)
+        if self.entryDelegate is not None:
+            self.entryDelegate.setCallback(callback)

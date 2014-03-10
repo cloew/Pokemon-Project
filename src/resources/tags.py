@@ -93,6 +93,9 @@ class Tags:
     contentTag = "content"
     interactionTag = "interaction"
     directionTag = "direction"
+    portalsTag = "portals"
+    portalTag = "portal"
+    destinationTag = "destination"
     
     playerTag = "player"
     lastTag = "last"
