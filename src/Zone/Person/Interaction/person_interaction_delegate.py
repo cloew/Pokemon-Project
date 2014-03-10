@@ -1,3 +1,5 @@
+from Event.battle_event import BattleEvent
+
 from Zone.direction import GetOppositeDirection
 from Zone.Interaction.interaction_delegate import InteractionDelegate
 
@@ -8,4 +10,4 @@ class PersonInteractionDelegate(InteractionDelegate):
         """ Interact with the trainer """
         self.content.movementDelegate.direction = GetOppositeDirection(direction)
         if self.callback is not None:
-            self.callback(self.content, [self.message])
+            self.callback(self.content, [self.message, BattleEvent(self.content.trainer)])

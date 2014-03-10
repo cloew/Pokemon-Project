@@ -47,10 +47,8 @@ class ZoneController(PygameController):
         """ Handle Zone Events """
         PerformEvents(deque(events), self)
         
-        if content.isBattleable():
-            self.runController(BattleController(self.playerPerson.trainer, content.trainer))
-            if self.doneCallback is not None and self.doneCallback():
-                self.stopRunning()
+        if self.doneCallback is not None and self.doneCallback():
+            self.stopRunning()
         
     def performGameCycle(self):
         """ Move the Trainer if needed in this tick """
