@@ -91,6 +91,8 @@ class Tags:
     imageTag = "image"
     contentsTag = "contents"
     contentTag = "content"
+    interactionTag = "interaction"
+    directionTag = "direction"
     
     playerTag = "player"
     lastTag = "last"

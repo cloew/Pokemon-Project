@@ -8,7 +8,7 @@ from Screen.Pygame.Zone.zone_screen import ZoneScreen
 from Zone.zone import Zone
 from Zone.zone_factory import ZoneFactory
 from Zone.Person.trainer_person import TrainerPerson
-from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
+# from Zone.Person.Interaction.person_interaction_delegate import PersonInteractionDelegate
 
 from kao_gui.pygame.key_states import PRESSED, RELEASED
 from kao_gui.pygame.pygame_controller import PygameController

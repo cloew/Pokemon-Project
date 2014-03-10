@@ -2,9 +2,6 @@ from Trainer.trainer_factory import TrainerFactory
 
 from Zone.direction import UP, LEFT
 from Zone.tile import Tile
-from Zone.Person.person import Person
-from Zone.Person.trainer_person import TrainerPerson
-from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 
 class Zone:
     """ Represents a Zone in the Game """

@@ -2,9 +2,10 @@
 class InteractionDelegate:
     """ Interaction Delegate for Tile Contents """
     
-    def __init__(self, message, callback=None):
+    def __init__(self, message, direction=None, callback=None):
         """ Initialize the Interaction delegate """
         self.message = message
+        self.direction = direction
         self.callback = callback
         
     def setContent(self, content):
@@ -13,5 +14,6 @@ class InteractionDelegate:
         
     def interact(self, direction):
         """ Interact with the trainer """
-        if self.callback is not None:
-            self.callback(self.content, self.message)
+        if self.direction is None or self.direction == direction:
+            if self.callback is not None:
+                self.callback(self.content, self.message)

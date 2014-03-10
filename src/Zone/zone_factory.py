@@ -3,6 +3,7 @@ from resources.tags import Tags
 
 from Zone.tile_content import TileContent
 from Zone.zone import Zone
+from Zone.Interaction.interaction_factory import LoadInteractionDelegateFromXML
 from Zone.Person.person_factory import LoadPeopleFromZoneXML
 
 import xml.etree.ElementTree
@@ -42,8 +43,10 @@ class ZoneFactory:
             column = int(contentElement.findtext(Tags.columnTag))
             image = contentElement.findtext(Tags.imageTag)
             
-            content = TileContent(image)
+            interactionDelegate = LoadInteractionDelegateFromXML(contentElement)
+            content = TileContent(image, interactionDelegate)
             tiles[row][column].contents = content
+            
         
     @staticmethod
     def loadFromDB():

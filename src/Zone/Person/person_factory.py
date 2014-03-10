@@ -2,7 +2,7 @@ from Trainer.trainer_factory import TrainerFactory
 
 from Zone.Person.person import Person
 from Zone.Person.trainer_person import TrainerPerson
-from Zone.Person.Interaction.interaction_delegate import PersonInteractionDelegate
+from Zone.Person.Interaction.person_interaction_delegate import PersonInteractionDelegate
 
 from resources.tags import Tags
 
