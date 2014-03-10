@@ -1,4 +1,5 @@
 from Zone.direction import GetOppositeDirection
+from Zone.Entry.entry_delegate import EntryDelegate
 
 class Tile:
     """ Represents a tile in a Pokemon Zone """
@@ -9,6 +10,7 @@ class Tile:
         self.column = column
         self.tileFilename = tileFilename
         self.connections = {}
+        
         self.contents = None
         self.enterDelegate = None
         
@@ -31,3 +33,11 @@ class Tile:
     def setContents(self, contents):
         """ Sets the tile's contents """
         self.contents = contents
+        
+    def setCallbacks(self, callback):
+        """ Set the callback for tile based events """
+        if self.contents is not None:
+            self.contents.setInteractionCallback(callback)
+            
+        if self.enterDelegate is not None:
+            self.enterDelegate.setCallback(callback)

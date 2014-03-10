@@ -26,9 +26,12 @@ class Zone:
     def setCallbacks(self, callback):
         """ Set Callbacks to allow each Person in the Zone 
             to interact with the Window to display messages """
-        contents = []
         for row in self.tiles:
-            contents += [tile.contents for tile in row if tile.contents is not None]
+            for tile in row:
+                tile.setCallbacks(callback)
+        # contents = []
+        # for row in self.tiles:
+            # contents += [tile.contents for tile in row if tile.contents is not None]
         
-        for content in contents:
-            content.setInteractionCallback(callback)
+        # for content in contents:
+            # content.setInteractionCallback(callback)
