@@ -1,6 +1,6 @@
 from InputProcessor import commands
 
-from Screen.Pygame.Event.event_handler import PerformEvents
+from Screen.Pygame.Event.core_event_handler import PerformEvents
 from Screen.Pygame.Menu.ActionMenu.action_menu_controller import ActionMenuController
 from Screen.Pygame.Menu.ActionMenu.SwitchMenu.switch_menu_controller import SwitchMenuController
 
