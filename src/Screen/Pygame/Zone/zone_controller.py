@@ -21,7 +21,7 @@ class ZoneController(PygameController):
         """ Initialize the Zone Controller """
         self.zone = zone
         self.doneCallback = doneCallback
-        self.zone.setCallbacks(self.interactWithPerson)
+        self.zone.setCallbacks(self.handleZoneEvents)
         self.playerPerson = TrainerPerson(self.zone.tiles[row][column], "trainer", trainer)
         
         screen = ZoneScreen(self.playerPerson, self.zone)
@@ -43,9 +43,9 @@ class ZoneController(PygameController):
         """ Performs a Select """
         self.playerPerson.interactWithAdjacentTile()
         
-    def interactWithPerson(self, content, message):
-        """ Interact with the given person """
-        PerformEvents(deque([message]), self)
+    def handleZoneEvents(self, content, events):
+        """ Handle Zone Events """
+        PerformEvents(deque(events), self)
         
         if content.isBattleable():
             self.runController(BattleController(self.playerPerson.trainer, content.trainer))

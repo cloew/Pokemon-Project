@@ -17,4 +17,4 @@ class InteractionDelegate:
         """ Interact with the trainer """
         if self.direction is None or self.direction == GetOppositeDirection(direction):
             if self.callback is not None:
-                self.callback(self.content, self.message)
+                self.callback(self.content, [self.message])
