@@ -2,7 +2,7 @@ from Trainer.trainer_factory import TrainerFactory
 
 from Zone.Person.person import Person
 from Zone.Person.trainer_person import TrainerPerson
-from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
+from Zone.Person.Interaction.person_interaction_delegate import PersonInteractionDelegate
 
 from resources.tags import Tags
 
@@ -22,9 +22,9 @@ def LoadPerson(element, tiles):
     imageFilename = element.findtext(Tags.imageTag)
     if element.find(Tags.trainerTag) is not None:
         trainer = LoadTrainer(element)
-        return TrainerPerson(tile, imageFilename, trainer, InteractionDelegate(message))
+        return TrainerPerson(tile, imageFilename, trainer, PersonInteractionDelegate(message))
     else:
-        return Person(tile, imageFilename, InteractionDelegate(message))
+        return Person(tile, imageFilename, PersonInteractionDelegate(message))
         
 def LoadTrainer(element):
     """ Load trainer from a Person Element """

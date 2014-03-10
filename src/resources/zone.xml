@@ -82,6 +82,10 @@
                 <row>4</row>
                 <column>5</column>
                 <image>game_cube</image>
+                <interaction>
+                    <direction>DOWN</direction>
+                    <message>It's a Nintendo Game Cube.</message>
+                </interaction>
             </content>
             <content>
                 <row>6</row>

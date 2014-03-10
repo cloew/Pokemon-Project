@@ -14,7 +14,7 @@ class Person:
         
         self.interactionDelegate = interactionDelegate
         if self.interactionDelegate is not None:
-            self.interactionDelegate.setTrainer(self)
+            self.interactionDelegate.setContent(self)
         
         self.movementDelegate = MovementDelegate(self)
         self.up = MakeMoveFunction(self, UP)

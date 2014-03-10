@@ -2,9 +2,6 @@ from Trainer.trainer_factory import TrainerFactory
 
 from Zone.direction import UP, LEFT
 from Zone.tile import Tile
-from Zone.Person.person import Person
-from Zone.Person.trainer_person import TrainerPerson
-from Zone.Person.Interaction.interaction_delegate import InteractionDelegate
 
 class Zone:
     """ Represents a Zone in the Game """
@@ -29,5 +26,9 @@ class Zone:
     def setCallbacks(self, callback):
         """ Set Callbacks to allow each Person in the Zone 
             to interact with the Window to display messages """
-        for person in self.people:
-            person.setInteractionCallback(callback)
+        contents = []
+        for row in self.tiles:
+            contents += [tile.contents for tile in row if tile.contents is not None]
+        
+        for content in contents:
+            content.setInteractionCallback(callback)

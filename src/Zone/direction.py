@@ -12,6 +12,14 @@ def GetTextFromDirection(direction):
                        RIGHT:"right"}
     return directionToText[direction]
     
+def GetDirectionFromText(directionText):
+    """ Returns the text form of a direction """
+    textToDirection = {"UP":UP,
+                       "DOWN":DOWN,
+                       "LEFT":LEFT,
+                       "RIGHT":RIGHT}
+    return textToDirection[directionText.upper()]
+    
 def GetOppositeDirection(direction):
     """ Return the opposite direction of the direction given """
     oppositeDirections = {UP:DOWN,
