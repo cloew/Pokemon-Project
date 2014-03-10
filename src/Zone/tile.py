@@ -10,6 +10,7 @@ class Tile:
         self.tileFilename = tileFilename
         self.connections = {}
         self.contents = None
+        self.enterDelegate = None
         
     def connectToTile(self, tile, direction, twoWay=True):
         """ Connect this tile and the given tile """
@@ -21,6 +22,11 @@ class Tile:
     def isEnterable(self):
         """ Return if the tile can be entered """
         return self.contents is None
+        
+    def onEnter(self):
+        """ Perform enter event """
+        if self.enterDelegate is not None:
+            self.enterDelegate.onEnter()
             
     def setContents(self, contents):
         """ Sets the tile's contents """

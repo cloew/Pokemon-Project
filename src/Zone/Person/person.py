@@ -5,9 +5,10 @@ from Zone.Person.Movement.movement_helper import MakeMoveFunction, MakeStopMovin
 class Person:   
     """ Represents a person in a game zone """
     
-    def __init__(self, tile, imageBaseName, interactionDelegate):
+    def __init__(self, tile, imageBaseName, interactionDelegate, causeEnterEvents=False):
         """ Initialize the Person """
         self.tile = tile
+        self.causeEnterEvents = causeEnterEvents
         self.setTile(tile)
         
         self.imageBaseName = imageBaseName
@@ -38,6 +39,8 @@ class Person:
         self.tile = tile
         if self.tile is not None:
             tile.setContents(self)
+            if self.causeEnterEvents:
+                tile.onEnter()
             
     def setInteractionCallback(self, callback):
         """ Set the Person's Interaction Callback """

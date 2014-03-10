@@ -22,7 +22,7 @@ class ZoneController(PygameController):
         self.zone = zone
         self.doneCallback = doneCallback
         self.zone.setCallbacks(self.handleZoneEvents)
-        self.playerPerson = TrainerPerson(self.zone.tiles[row][column], "trainer", trainer)
+        self.playerPerson = TrainerPerson(self.zone.tiles[row][column], "trainer", trainer, causeEnterEvents=True)
         
         screen = ZoneScreen(self.playerPerson, self.zone)
         

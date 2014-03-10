@@ -4,10 +4,10 @@ from Zone.Person.person import Person
 class TrainerPerson(Person):
     """ A person that also acts as a trainer """
     
-    def __init__(self, tile, imageBaseName, trainer, interactionDelegate=None):
+    def __init__(self, tile, imageBaseName, trainer, interactionDelegate=None, causeEnterEvents=False):
         """ Initialize the Trainer Position Wrapper """
         self.trainer = trainer
-        Person.__init__(self, tile, imageBaseName, interactionDelegate)
+        Person.__init__(self, tile, imageBaseName, interactionDelegate, causeEnterEvents=causeEnterEvents)
             
     def isBattleable(self):
         """ Return if the trainer is Battleable """
