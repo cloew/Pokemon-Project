@@ -54,3 +54,20 @@ class ZoneController(PygameController):
         """ Move the Trainer if needed in this tick """
         self.playerPerson.performGameTick()
         
+    def setupZone(self, zone, row, column):
+        """ Setup the current zone """
+        self.zone = zone
+        self.zone.setCallbacks(self.handleZoneEvents)
+        self.playerPerson = TrainerPerson(self.zone.tiles[row][column], "trainer", self.playerPerson.trainer, causeEnterEvents=True)
+        
+        self.screen.playerPerson = self.playerPerson
+        self.screen.zone = self.zone
+        
+        self.commands[commands.UP] = self.playerPerson.up
+        self.commands[(commands.UP, RELEASED)] = self.playerPerson.stopMovingUp
+        self.commands[commands.DOWN] = self.playerPerson.down
+        self.commands[(commands.DOWN, RELEASED)] = self.playerPerson.stopMovingDown
+        self.commands[commands.LEFT] = self.playerPerson.left
+        self.commands[(commands.LEFT, RELEASED)] = self.playerPerson.stopMovingLeft
+        self.commands[commands.RIGHT] = self.playerPerson.right
+        self.commands[(commands.RIGHT, RELEASED)] = self.playerPerson.stopMovingRight

@@ -40,7 +40,7 @@ class Person:
         if self.tile is not None:
             tile.setContents(self)
             if self.causeEnterEvents:
-                tile.onEnter()
+                tile.onEnter(self)
             
     def setInteractionCallback(self, callback):
         """ Set the Person's Interaction Callback """

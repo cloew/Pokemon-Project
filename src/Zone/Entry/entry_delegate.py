@@ -10,6 +10,10 @@ class EntryDelegate:
         """ Set the Entry Delegate callback """
         self.callback = callback
         
-    def onEnter(self):
+    def onEnter(self, player):
         """ Perform on Enter event """
+        player.stopMovingUp()
+        player.stopMovingDown()
+        player.stopMovingLeft()
+        player.stopMovingRight()
         self.callback(["Entered a tile"])

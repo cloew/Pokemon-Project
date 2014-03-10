@@ -1,5 +1,5 @@
 from Zone.direction import GetOppositeDirection
-from Zone.Entry.entry_delegate import EntryDelegate
+from Zone.Entry.teleport_entry_delegate import TeleportEntryDelegate
 
 class Tile:
     """ Represents a tile in a Pokemon Zone """
@@ -13,6 +13,8 @@ class Tile:
         
         self.contents = None
         self.enterDelegate = None
+        if self.row == 0 and self.column == 9:
+            self.enterDelegate = TeleportEntryDelegate()
         
     def connectToTile(self, tile, direction, twoWay=True):
         """ Connect this tile and the given tile """
@@ -25,10 +27,10 @@ class Tile:
         """ Return if the tile can be entered """
         return self.contents is None
         
-    def onEnter(self):
+    def onEnter(self, player):
         """ Perform enter event """
         if self.enterDelegate is not None:
-            self.enterDelegate.onEnter()
+            self.enterDelegate.onEnter(player)
             
     def setContents(self, contents):
         """ Sets the tile's contents """
