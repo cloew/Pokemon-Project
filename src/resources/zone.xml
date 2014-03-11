@@ -57,7 +57,7 @@
                 <row>1</row>
                 <column>9</column>
                 <destination>
-                    <zone>Kanto Gym Leaders Marathon</zone>
+                    <zone>Player House 1F - Pallet Town</zone>
                     <row>1</row>
                     <column>9</column>
                 </destination>
@@ -117,6 +117,40 @@
                 <row>7</row>
                 <column>1</column>
                 <image>bed_bottom_right</image>
+            </content>
+        </contents>
+    </zone>
+    <zone>
+        <name>Player House 1F - Pallet Town</name>
+        <rows>8</rows>
+        <columns>12</columns>
+        <tile>bedroom_floor</tile>
+        <portals>
+            <portal>
+                <row>0</row>
+                <column>4</column>
+                <destination>
+                    <zone>Kanto Gym Leaders Marathon</zone>
+                    <row>7</row>
+                    <column>4</column>
+                </destination>
+            </portal>
+        </portals>
+        <people>
+            <person>
+                <position>
+                    <row>2</row>
+                    <column>2</column>
+                </position>
+                <message>I'm now on your main floor.</message>
+                <image>npc</image>
+            </person>
+        </people>
+        <contents>
+            <content>
+                <row>1</row>
+                <column>6</column>
+                <image>old_tv</image>
             </content>
         </contents>
     </zone>
