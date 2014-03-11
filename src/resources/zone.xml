@@ -48,7 +48,7 @@
         </people>
     </zone>
     <zone>
-        <name>Player Bedroom - Pallet Town</name>
+        <name>Player House 2F - Pallet Town</name>
         <rows>8</rows>
         <columns>11</columns>
         <tile>bedroom_floor</tile>
