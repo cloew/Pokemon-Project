@@ -1,8 +1,8 @@
 from Battle.battle_message import BattleMessage
 from InputProcessor import commands
 
-from Screen.Pygame.Battle.battle_controller import BattleController
 from Screen.Pygame.Event.zone_event_handler import PerformEvents
+from Screen.Pygame.Menu.ZoneMenu.zone_menu_controller import ZoneMenuController
 from Screen.Pygame.MessageBox.message_box_controller import MessageBoxController
 from Screen.Pygame.Zone.zone_screen import ZoneScreen
 
@@ -35,13 +35,17 @@ class ZoneController(PygameController):
                 commands.RIGHT:self.playerPerson.right,
                 (commands.RIGHT, RELEASED):self.playerPerson.stopMovingRight,
                 commands.SELECT:self.select,
-                commands.EXIT:self.stopRunning}
+                commands.EXIT:self.runZoneMenu}
         
         PygameController.__init__(self, screen, commands=cmds)
                      
     def select(self):
         """ Performs a Select """
         self.playerPerson.interactWithAdjacentTile()
+        
+    def runZoneMenu(self):
+        """ Run the Zone Menu """
+        self.runController(ZoneMenuController(self))
         
     def handleZoneEvents(self, events):
         """ Handle Zone Events """
