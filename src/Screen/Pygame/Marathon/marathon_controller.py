@@ -9,10 +9,10 @@ from kao_gui.pygame.pygame_controller import PygameController
 class MarathonController(PygameController):
     """ Controller for a Marathon """
     
-    def __init__(self, trainer):
+    def __init__(self, player):
         """ Initialize the Marathon Controller """
         self.marathon = Marathon()
-        self.trainer = trainer
+        self.player = player
         screen = MarathonScreen(self.marathon)
         
         cmds = {commands.SELECT:self.select,
@@ -25,4 +25,4 @@ class MarathonController(PygameController):
             self.stopRunning()
         else:
             zone = self.marathon.loadZone()
-            self.runController(ZoneController(self.trainer, zone, 1, 2, doneCallback=self.marathon.beaten))
+            self.runController(ZoneController(self.player, zone, 1, 2, doneCallback=self.marathon.beaten))
