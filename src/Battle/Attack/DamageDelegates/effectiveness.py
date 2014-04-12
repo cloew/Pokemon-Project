@@ -13,22 +13,23 @@ class Effectiveness:
                   "ICE":{"FIRE":.5, "WATER":.5, "GRASS":2, "ICE":.5, "GROUND":2, 
                              "FLYING":2, "DRAGON":2, "STEEL":.5},
                   "FIGHTING":{"NORMAL":2, "ICE":2, "POISON":.5, "FLYING":.5, "PSYCHIC":.5,
-                                      "BUG":.5, "ROCK":2, "GHOST":0, "DARK":2, "STEEL":2},
+                                      "BUG":.5, "ROCK":2, "GHOST":0, "DARK":2, "STEEL":2, "FAIRY":.5},
                   "POISON":{"GRASS":2, "POISON":.5, "GROUND":.5, "ROCK":.5, "GHOST":.5,
-                                   "STEEL":0},
+                                   "STEEL":0, "FAIRY":2},
                   "GROUND":{"FIRE":2, "ELECTRIC":2, "GRASS":.5, "POISON":2, "FLYING":0,
                                      "BUG":.5, "ROCK":2, "STEEL":2},
                   "FLYING":{"ELECTRIC":.5, "GRASS":2, "FIGHTING":2, "BUG":2, "ROCK":.5,
                                   "STEEL":.5},
                   "PSYCHIC":{"FIGHTING":2, "POISON":2, "PSYCHIC":.5, "DARK":0, "STEEL":.5},
                   "BUG":{"FIRE":.5, "GRASS":2, "FIGHTING":.5, "POISON":.5, "FLYING":.5,
-                              "PSYCHIC":2, "GHOST":.5, "DARK":2, "STEEL":.5},
+                              "PSYCHIC":2, "GHOST":.5, "DARK":2, "STEEL":.5, "FAIRY":.5},
                   "ROCK":{"FIRE":2, "ICE":2, "FIGHTING":.5, "GROUND":.5, "FLYING":2, "BUG":2,
                                 "STEEL":.5},
                   "GHOST":{"NORMAL":0, "PSYCHIC":2, "GHOST":2, "DARK":.5, "STEEL":.5},
-                  "DRAGON":{"DRAGON":2, "STEEL":.5},
-                  "DARK":{"FIGHTING":.5, "PSYCHIC":2, "GHOST":2, "DARK":.5, "STEEL":.5},
-                  "STEEL":{"FIRE":.5, "WATER":.5, "ELECTRIC":.5, "ICE":2, "ROCK":2, "STEEL":.5}
+                  "DRAGON":{"DRAGON":2, "STEEL":.5, "FAIRY":0},
+                  "DARK":{"FIGHTING":.5, "PSYCHIC":2, "GHOST":2, "DARK":.5, "STEEL":.5, "FAIRY":.5},
+                  "STEEL":{"FIRE":.5, "WATER":.5, "ELECTRIC":.5, "ICE":2, "ROCK":2, "STEEL":.5, "FAIRY":2},
+                  "FAIRY":{"FIRE":.5, "FIGHTING":2, "POISON":.5, "DRAGON":2, "DARK":2, "STEEL":.5}
                   }
     immuneResponse = "It has no effect."
     ineffectiveResponse = "It wasn't very effective."
